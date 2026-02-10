@@ -1,0 +1,2 @@
+# MyGardenApp
+Plant Care app
