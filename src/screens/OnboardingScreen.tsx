@@ -18,6 +18,7 @@ import { PlantDBEntry, PlantCategory, Plant } from '../types';
 import { PLANT_DATABASE, PLANT_CATEGORIES } from '../data/plantDatabase';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
+import { trackEvent } from '../services/analyticsService';
 
 // Optional: Try to use expo-linear-gradient if available
 let LinearGradient: React.ComponentType<any> | null = null;
@@ -186,6 +187,7 @@ export default function OnboardingScreen() {
 
   const handleComplete = useCallback(async () => {
     console.log('[Onboarding] Completing onboarding...');
+    trackEvent('onboarding_completed', { plants_selected: selectedPlants.size });
 
     // Save user name if provided
     if (name.trim()) {

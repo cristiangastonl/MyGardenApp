@@ -3,6 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { IdentificationState, IdentificationResult, IdentifiedPlant } from '../types';
 import { identifyPlant } from '../utils/plantIdentification';
 import { getEnrichedPlantData, EnrichedPlantData } from '../services/plantKnowledgeService';
+import { trackEvent } from '../services/analyticsService';
 
 const TIMEOUT_MS = 30000; // 30 seconds timeout
 
@@ -68,25 +69,28 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
   const pickFromCamera = useCallback(async () => {
     try {
-      // Request camera permission
+      console.log('[PlantID] Requesting camera permission...');
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      console.log('[PlantID] Camera permission status:', status);
       if (status !== 'granted') {
         setError('Se necesita permiso para acceder a la cámara');
         setState('error');
         return;
       }
 
+      console.log('[PlantID] Launching camera...');
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: 'images',
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 0.8,
+        quality: 0.5,
         base64: true,
       });
 
+      console.log('[PlantID] Camera result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
       handleImageResult(result);
     } catch (err) {
-      console.error('Camera error:', err);
+      console.error('[PlantID] Camera error:', err);
       setError('Error al abrir la cámara');
       setState('error');
     }
@@ -94,25 +98,28 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
   const pickFromGallery = useCallback(async () => {
     try {
-      // Request media library permission
+      console.log('[PlantID] Requesting gallery permission...');
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      console.log('[PlantID] Gallery permission status:', status);
       if (status !== 'granted') {
         setError('Se necesita permiso para acceder a la galería');
         setState('error');
         return;
       }
 
+      console.log('[PlantID] Launching gallery...');
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: 'images',
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 0.8,
+        quality: 0.5,
         base64: true,
       });
 
+      console.log('[PlantID] Gallery result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
       handleImageResult(result);
     } catch (err) {
-      console.error('Gallery error:', err);
+      console.error('[PlantID] Gallery error:', err);
       setError('Error al abrir la galería');
       setState('error');
     }
@@ -125,6 +132,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       return;
     }
 
+    console.log('[PlantID] Starting analysis, base64 length:', imageBase64.length);
     setState('analyzing');
     setError(null);
     setResult(null);
@@ -132,6 +140,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
     // Create abort controller for timeout
     abortControllerRef.current = new AbortController();
     const timeoutId = setTimeout(() => {
+      console.log('[PlantID] Request timed out after', TIMEOUT_MS, 'ms');
       abortControllerRef.current?.abort();
     }, TIMEOUT_MS);
 
@@ -144,10 +153,15 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
       clearTimeout(timeoutId);
 
+      console.log('[PlantID] Result:', JSON.stringify({ success: identificationResult.success, type: identificationResult.type, resultsCount: identificationResult.results.length, reason: identificationResult.reason }));
       setResult(identificationResult);
 
       if (identificationResult.success) {
         setState('results');
+        trackEvent('plant_identified', {
+          result_count: identificationResult.results.length,
+          top_result: identificationResult.results[0]?.commonName,
+        });
         // Auto-select if single high-confidence result
         if (identificationResult.type === 'single' && identificationResult.results.length === 1) {
           setSelectedPlant(identificationResult.results[0]);
@@ -157,6 +171,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       }
     } catch (err: any) {
       clearTimeout(timeoutId);
+      console.error('[PlantID] Analysis threw error:', err.name, err.message, err);
 
       if (err.name === 'AbortError') {
         setError('La identificación tardó demasiado. Intentá de nuevo.');

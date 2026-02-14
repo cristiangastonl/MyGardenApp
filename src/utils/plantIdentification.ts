@@ -244,10 +244,16 @@ export async function identifyPlant(
   }
 
   try {
+    console.log('[PlantID] Calling edge function, image size:', Math.round(imageBase64.length / 1024), 'KB');
     // Llamar a la Edge Function
+    // Usamos la anon key explícitamente para que funcione sin usuario logueado
     const { data, error } = await supabase.functions.invoke<PlantNetResponse>('identify-plant', {
       body: { imageBase64, organ: 'auto' },
+      headers: {
+        Authorization: `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY}`,
+      },
     });
+    console.log('[PlantID] Edge function returned - data:', !!data, 'error:', !!error);
 
     // Manejar cancelación (AbortSignal no es soportado directamente por supabase.functions.invoke,
     // pero dejamos el chequeo por si el usuario navega fuera)
@@ -263,11 +269,26 @@ export async function identifyPlant(
     // Error de la función
     if (error) {
       console.error('[PlantID] Edge function error:', error);
+
+      // FunctionsHttpError tiene el response en .context — extraer el mensaje real
+      let reason = 'Error al conectar con el servicio de identificación';
+      try {
+        if (error.context && typeof error.context.json === 'function') {
+          const errorBody = await error.context.json();
+          reason = errorBody?.error || errorBody?.message || reason;
+          console.error('[PlantID] Server response:', errorBody);
+        } else if (error.message) {
+          reason = error.message;
+        }
+      } catch {
+        // If we can't parse the error body, use the default message
+      }
+
       return {
         success: false,
         type: 'none',
         results: [],
-        reason: error.message || 'Error al conectar con el servicio de identificación',
+        reason,
       };
     }
 

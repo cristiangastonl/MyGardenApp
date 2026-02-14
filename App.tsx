@@ -23,6 +23,7 @@ import { useSync } from './src/hooks/useSync';
 import { AuthProvider, useAuthContext } from './src/components/AuthProvider';
 import { DataMigrationModal } from './src/components/DataMigrationModal';
 import { CloudData } from './src/services/syncService';
+import { initAnalytics, trackEvent } from './src/services/analyticsService';
 
 // Screens
 import TodayScreen from './src/screens/TodayScreen';
@@ -103,6 +104,11 @@ function AppContent() {
   } = useStorage();
 
   const { user, loading: authLoading, isAuthenticated } = useAuthContext();
+
+  // Initialize analytics and track app open
+  useEffect(() => {
+    initAnalytics().then(() => trackEvent('app_opened'));
+  }, []);
 
   // Migration modal state
   const [showMigrationModal, setShowMigrationModal] = useState(false);

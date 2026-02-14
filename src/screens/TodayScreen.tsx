@@ -33,6 +33,7 @@ import {
   PlantIdentifierModal,
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
+import { trackEvent } from '../services/analyticsService';
 
 export default function TodayScreen() {
   const {
@@ -116,6 +117,7 @@ export default function TodayScreen() {
 
   const handleWater = (plantId: string) => {
     updatePlant(plantId, { lastWatered: todayStr });
+    trackEvent('watering_logged', { plant_id: plantId });
   };
 
   const handleSunDone = (plantId: string) => {
@@ -124,6 +126,7 @@ export default function TodayScreen() {
       updatePlant(plantId, {
         sunDoneDate: plant.sunDoneDate === todayStr ? null : todayStr
       });
+      trackEvent('sun_logged', { plant_id: plantId });
     }
   };
 
@@ -133,6 +136,7 @@ export default function TodayScreen() {
       updatePlant(plantId, {
         outdoorDoneDate: plant.outdoorDoneDate === todayStr ? null : todayStr
       });
+      trackEvent('outdoor_logged', { plant_id: plantId });
     }
   };
 
@@ -154,6 +158,12 @@ export default function TodayScreen() {
       imageUrl,
     };
     addPlant(newPlant);
+    trackEvent('plant_added', { plant_name: plantData.name, source: 'today' });
+  };
+
+  const handleDeletePlant = (plantId: string) => {
+    deletePlant(plantId);
+    trackEvent('plant_deleted', { plant_id: plantId });
   };
 
   const handleToggleReminder = (reminderId: string, done: boolean) => {
@@ -264,7 +274,7 @@ export default function TodayScreen() {
                 onWater={handleWater}
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
-                onDelete={deletePlant}
+                onDelete={handleDeletePlant}
               />
             ))}
           </View>
@@ -283,7 +293,7 @@ export default function TodayScreen() {
                 onWater={handleWater}
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
-                onDelete={deletePlant}
+                onDelete={handleDeletePlant}
               />
             ))}
           </View>

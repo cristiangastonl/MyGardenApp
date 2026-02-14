@@ -9,6 +9,7 @@ import {
   CloudData,
 } from '../services/syncService';
 import { Plant, Note, Reminder, Location, NotificationSettings } from '../types';
+import { flushEvents } from '../services/analyticsService';
 
 // Debounce delay for auto-sync after changes (5 seconds)
 const SYNC_DEBOUNCE_MS = 5000;
@@ -157,6 +158,7 @@ export function useSync({
         lastBackgroundTimeRef.current = Date.now();
         // Sync before going to background
         syncUp();
+        flushEvents();
       }
     };
 

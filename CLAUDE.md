@@ -1,104 +1,83 @@
 # CLAUDE.md
 
-Guía para Claude Code al trabajar en este repositorio.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Descripción
+## About
 
-Mi Jardín es una app React Native (Expo) para cuidado de plantas. Ayuda a los usuarios a trackear riego, sol, y actividades de exterior, con integración de clima.
+Mi Jardín is a React Native (Expo) plant care app. Users track watering, sun, and outdoor activities for their plants, with weather integration and plant identification.
 
-## Stack
+## Commands
 
-- **Framework**: React Native con Expo SDK 52
-- **Lenguaje**: TypeScript
-- **Navegación**: @react-navigation/bottom-tabs
-- **Storage**: AsyncStorage + Supabase (sync)
-- **Backend**: Supabase (auth, database, edge functions)
-- **APIs**:
-  - Open-Meteo (clima y geocoding, gratis sin key)
-  - PlantNet (identificación de plantas, via Edge Function)
-
-## Estructura del proyecto
-
-```
-src/
-├── components/     # Componentes reutilizables (PlantCard, WeatherWidget, etc.)
-├── screens/        # Pantallas principales (TodayScreen, CalendarScreen, etc.)
-├── hooks/          # useStorage, useWeather
-├── data/           # plantDatabase.ts, constants.ts, weatherCodes.ts
-├── utils/          # dates.ts, plantLogic.ts
-├── types/          # Interfaces TypeScript
-└── theme.ts        # Sistema de diseño (colores, fuentes, spacing)
-```
-
-## Sistema de diseño (RESPETAR)
-
-### Colores (no agregar otros)
-- Background: `#f5f0e6`, `#ede7d9`
-- Cards: `#fffdf8`
-- Texto primario: `#2d3a2e`
-- Texto secundario: `#8a7e6b`
-- Acento verde: `#5b9a6a`
-- Acento sol: `#f0c040`
-- Acento agua: `#3a6b8c`
-
-### Fuentes
-- Títulos: `PlayfairDisplay_700Bold`
-- Body: `DMSans_400Regular`, `DMSans_500Medium`, `DMSans_600SemiBold`
-
-### Estilos
-- Border radius: 8-20px
-- Sombras: sutiles (usar `shadows` de theme.ts)
-- Animaciones: fadeIn suave, transiciones 0.2-0.3s
-
-## Supabase
-
-El proyecto usa Supabase para auth y sync. La configuración está en:
-- **`.env`** - URL y anon key de Supabase (para el cliente)
-- **`.envrc`** - Access token para CLI de Supabase (para deploy)
-
-### Edge Functions
-
-- **`identify-plant`** - Proxy a PlantNet API para identificación de plantas por foto
-
-Para deployear funciones:
 ```bash
+npx expo start                # Dev server (Expo Go or dev client)
+npx tsc --noEmit              # Type-check (no linter or test runner configured)
+npx expo install [pkg]        # Install Expo-compatible dependency version
+
+# Supabase Edge Functions
 source .envrc && supabase functions deploy identify-plant
+source .envrc && supabase secrets set KEY=value
 ```
 
-Para configurar secrets:
-```bash
-source .envrc && supabase secrets set NOMBRE=valor
+No test framework is set up. No linter/formatter configured.
+
+## Architecture
+
+### Stack
+- React Native + Expo SDK 54, TypeScript (strict)
+- `@react-navigation/bottom-tabs` (4 tabs: Hoy, Calendario, Plantas, Explorar)
+- AsyncStorage (local) + Supabase (cloud sync, auth, edge functions, storage)
+- Open-Meteo API (weather/geocoding, free), PlantNet API (plant ID, via edge function)
+
+### Data Flow: Local-First with Cloud Sync
+The app is **local-first**. All writes go to AsyncStorage immediately, then sync to Supabase in the background.
+
+1. **`useStorage` (Context + Hook)** — Single source of truth. Wraps all app data in `AppData` under storage key `'plant-agenda-v2'`. Every mutation calls `AsyncStorage.setItem` synchronously.
+2. **`useSync`** — Debounced (5s) auto-sync to Supabase after local changes. Also syncs on app background/foreground transitions. Cloud wins on conflicts.
+3. **`syncService.ts`** — Full sync (not incremental). Converts between camelCase (local) ↔ snake_case (DB). Small dataset makes full sync viable.
+
+Auth is optional — the app works fully offline without login.
+
+### Provider Hierarchy (App.tsx)
 ```
-
-### Secrets configurados en Supabase
-- `PLANTNET_API_KEY` - API key de PlantNet (https://my.plantnet.org/)
-
-## SEGURIDAD - NO COMMITEAR
-
-**NUNCA versionar estos archivos** (ya están en .gitignore):
-- `.env` - Contiene keys de Supabase
-- `.envrc` - Contiene access token de Supabase CLI
-
-Si se regeneran tokens:
-1. PlantNet: https://my.plantnet.org/ → regenerar → `supabase secrets set PLANTNET_API_KEY=nuevo_token`
-2. Supabase CLI: https://supabase.com/dashboard/account/tokens → actualizar `.envrc`
-
-## Comandos útiles
-
-```bash
-npx expo start          # Iniciar dev server
-npx tsc --noEmit        # Verificar TypeScript
-npx expo install [pkg]  # Instalar dependencias compatibles
-
-# Supabase
-source .envrc && supabase functions deploy [nombre]  # Deploy edge function
-source .envrc && supabase secrets list               # Ver secrets
+SafeAreaProvider → StorageProvider → AuthProvider → AppContent
 ```
+`AppContent` conditionally renders: Loading → LoginScreen → OnboardingScreen → MainTabs.
 
-## Idioma
+### Key Patterns
 
-Todo el texto de UI está en **español argentino** (vos, regá, sacá).
+- **No nested navigators** — All modals use local state visibility toggles within screens
+- **Task generation is stateless** — `getTasksForDay()` in `plantLogic.ts` recalculates tasks fresh from plant data each time (no task storage)
+- **Health scoring** — `plantHealth.ts` computes a 0-100 score from watering/sun/outdoor overdue days + weather extremes → maps to excellent/good/warning/danger
+- **Dual data model** — Local types (camelCase in `types/index.ts`) and DB types (snake_case in `types/database.ts`) with converters in `syncService.ts`
+- **Edge function as API proxy** — `identify-plant` edge function proxies PlantNet API to keep the API key server-side
+- **Plant knowledge cache** — `plantKnowledgeService.ts` checks Supabase `plant_knowledge` table first, falls back to Perenual API, then caches result
+- **Emoji icons throughout** — Uses emoji (🌱💧☀️) instead of an icon library
 
-## Estado actual
+### Services Layer (`src/services/`)
+- `authService.ts` — Google/Apple OAuth via `expo-auth-session` + `expo-web-browser`
+- `syncService.ts` — Supabase CRUD with local↔DB converters
+- `plantKnowledgeService.ts` — Two-tier lookup: Supabase cache → Perenual API → cache result
+- `imageService.ts` — Upload/delete plant photos to Supabase Storage bucket `plant-images`
 
-Ver `ROADMAP.md` para fases completadas y pendientes.
+### Supabase Configuration
+- Client in `src/lib/supabase.ts` — Uses `expo-secure-store` for session (localStorage on web)
+- Env vars: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY` in `.env`
+- RLS enabled on all tables — users only access their own data (`auth.uid() = user_id`)
+- Edge functions in `supabase/functions/`
+- Secret: `PLANTNET_API_KEY` configured in Supabase dashboard
+
+## Design System (MUST follow)
+
+Use values from `src/theme.ts`. Do not introduce new colors, fonts, or shadow values.
+
+- **Colors**: `colors.*` from theme.ts (bgPrimary `#f5f0e6`, card `#fffdf8`, textPrimary `#2d3a2e`, green `#5b9a6a`, sunGold `#f0c040`, waterBlue `#3a6b8c`, etc.)
+- **Fonts**: Titles → `PlayfairDisplay_700Bold`, Body → `DMSans_400Regular` / `500Medium` / `600SemiBold`
+- **Spacing/radius/shadows**: Use `spacing.*`, `borderRadius.*`, `shadows.*` from theme.ts
+
+## Language
+
+All UI text in **Spanish (Argentine)**: vos conjugation (regá, sacá, podés). Friendly, casual tone.
+
+## Security
+
+**Never commit** `.env` or `.envrc` (both in .gitignore). These contain Supabase keys and CLI tokens.

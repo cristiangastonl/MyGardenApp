@@ -91,5 +91,6 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
 - Verificar que el proyecto de Google Cloud esté publicado o el email esté en testers
 
 ### App no se abre después del login
-- Verificar que el scheme `mijardin` esté en app.json
+- Verificar que el scheme `mijardin
+` esté en app.json
 - Rebuildar la app después de cambiar app.json

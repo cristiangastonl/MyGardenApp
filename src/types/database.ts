@@ -96,6 +96,19 @@ export interface DbPlantKnowledge {
 
 export type DbPlantKnowledgeInsert = Omit<DbPlantKnowledge, 'id' | 'created_at' | 'updated_at'>;
 
+// Analytics events (anonymous, privacy-first)
+export interface DbAnalyticsEvent {
+  id: string; // UUID
+  device_id: string;
+  event_name: string;
+  event_data: Record<string, unknown>;
+  created_at: string;
+  app_version: string | null;
+  platform: string | null;
+}
+
+export type DbAnalyticsEventInsert = Omit<DbAnalyticsEvent, 'id' | 'created_at'>;
+
 // Supabase Database schema type for type-safe queries
 export interface Database {
   public: {
@@ -104,32 +117,46 @@ export interface Database {
         Row: DbProfile;
         Insert: Omit<DbProfile, 'created_at'>;
         Update: Partial<Omit<DbProfile, 'id' | 'created_at'>>;
+        Relationships: [];
       };
       plants: {
         Row: DbPlant;
         Insert: DbPlantInsert;
         Update: Partial<Omit<DbPlant, 'id' | 'user_id'>>;
+        Relationships: [];
       };
       notes: {
         Row: DbNote;
         Insert: DbNoteInsert;
         Update: Partial<Omit<DbNote, 'id' | 'user_id'>>;
+        Relationships: [];
       };
       reminders: {
         Row: DbReminder;
         Insert: DbReminderInsert;
         Update: Partial<Omit<DbReminder, 'id' | 'user_id'>>;
+        Relationships: [];
       };
       user_settings: {
         Row: DbUserSettings;
         Insert: DbUserSettingsInsert;
         Update: Partial<Omit<DbUserSettings, 'user_id'>>;
+        Relationships: [];
       };
       plant_knowledge: {
         Row: DbPlantKnowledge;
         Insert: DbPlantKnowledgeInsert;
         Update: Partial<Omit<DbPlantKnowledge, 'id' | 'created_at'>>;
+        Relationships: [];
+      };
+      analytics_events: {
+        Row: DbAnalyticsEvent;
+        Insert: DbAnalyticsEventInsert;
+        Update: Partial<DbAnalyticsEventInsert>;
+        Relationships: [];
       };
     };
+    Views: {};
+    Functions: {};
   };
 }

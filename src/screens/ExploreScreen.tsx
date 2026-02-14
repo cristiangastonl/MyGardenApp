@@ -18,6 +18,7 @@ import {
   PlantDatabaseCard,
   PlantDetailModal,
 } from '../components';
+import { trackEvent } from '../services/analyticsService';
 
 export default function ExploreScreen() {
   const { addPlant } = useStorage();
@@ -68,6 +69,7 @@ export default function ExploreScreen() {
     };
 
     addPlant(newPlant);
+    trackEvent('plant_added', { plant_name: plantDB.name, source: 'explore' });
     setShowPlantDetail(false);
     setSelectedPlant(null);
 
