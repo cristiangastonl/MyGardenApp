@@ -280,6 +280,7 @@ export default function OnboardingScreen() {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categoryScroll}
+        style={styles.categoryScrollContainer}
       >
         <TouchableOpacity
           style={[
@@ -628,9 +629,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.textSecondary,
   },
+  categoryScrollContainer: {
+    flexGrow: 0,
+    marginBottom: spacing.md,
+  },
   categoryScroll: {
     paddingVertical: spacing.sm,
-    marginBottom: spacing.md,
+    alignItems: 'center',
   },
   categoryChip: {
     flexDirection: 'row',

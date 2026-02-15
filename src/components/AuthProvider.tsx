@@ -29,10 +29,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
+const noopAuthResult = async () => ({ success: false as const, error: 'Auth not available' });
+
+const defaultAuthContext: AuthContextType = {
+  user: null,
+  session: null,
+  loading: false,
+  isAuthenticated: false,
+  isConfigured: false,
+  displayName: null,
+  avatarUrl: null,
+  signInWithGoogle: noopAuthResult,
+  signInWithApple: noopAuthResult,
+  signOut: async () => ({ success: false, error: 'Auth not available' }),
+  skipAuth: () => {},
+};
+
 export function useAuthContext(): AuthContextType {
   const context = useContext(AuthContext);
+  // Return safe defaults when used outside AuthProvider (e.g. MVP mode with AUTH flag off)
   if (context === undefined) {
-    throw new Error('useAuthContext must be used within an AuthProvider');
+    return defaultAuthContext;
   }
   return context;
 }

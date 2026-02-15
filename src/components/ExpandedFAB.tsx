@@ -14,9 +14,10 @@ import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 interface ExpandedFABProps {
   onAddManual: () => void;
   onIdentify: () => void;
+  showIdentifyOption?: boolean;
 }
 
-export function ExpandedFAB({ onAddManual, onIdentify }: ExpandedFABProps) {
+export function ExpandedFAB({ onAddManual, onIdentify, showIdentifyOption = true }: ExpandedFABProps) {
   const insets = useSafeAreaInsets();
   const [isExpanded, setIsExpanded] = useState(false);
   const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -48,6 +49,10 @@ export function ExpandedFAB({ onAddManual, onIdentify }: ExpandedFABProps) {
   }, [isExpanded, rotateAnim, scaleAnim, fadeAnim]);
 
   const handleToggle = () => {
+    if (!showIdentifyOption) {
+      onAddManual();
+      return;
+    }
     setIsExpanded(!isExpanded);
   };
 

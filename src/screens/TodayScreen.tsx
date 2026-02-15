@@ -34,8 +34,11 @@ import {
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
+import { Features } from '../config/features';
+import { usePremiumGate } from '../config/premium';
 
 export default function TodayScreen() {
+  const premium = usePremiumGate();
   const {
     plants,
     notes,
@@ -83,7 +86,6 @@ export default function TodayScreen() {
   });
 
   const [showAddPlant, setShowAddPlant] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -192,7 +194,7 @@ export default function TodayScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header userName={userName} onSettingsPress={() => setShowSettings(true)} />
+      <Header userName={userName} onSettingsPress={() => {}} />
 
       <ScrollView
         style={styles.content}
@@ -213,7 +215,7 @@ export default function TodayScreen() {
           location={location}
           loading={weatherLoading}
           error={weatherError}
-          onOpenSettings={() => setShowSettings(true)}
+          onOpenSettings={() => {}}
         />
 
         {/* Weather Alerts */}
@@ -313,10 +315,10 @@ export default function TodayScreen() {
         <View style={styles.bottomPadding} />
       </ScrollView>
 
-      {/* Expanded FAB */}
       <ExpandedFAB
         onAddManual={() => setShowAddPlant(true)}
         onIdentify={() => setShowIdentifier(true)}
+        showIdentifyOption={Features.PLANT_IDENTIFICATION}
       />
 
       {/* Add Plant Modal */}
@@ -326,30 +328,14 @@ export default function TodayScreen() {
         onAdd={handleAddPlant}
       />
 
-      {/* Plant Identifier Modal */}
-      <PlantIdentifierModal
-        visible={showIdentifier}
-        onClose={() => setShowIdentifier(false)}
-        onAddPlant={handleAddPlant}
-      />
-
-      {/* Settings Panel */}
-      <SettingsPanel
-        visible={showSettings}
-        onClose={() => setShowSettings(false)}
-        location={location}
-        onUpdateLocation={updateLocation}
-        notificationSettings={notifSettings}
-        notificationPermission={permissionStatus}
-        notificationCounts={scheduledCounts}
-        isRequestingPermission={isRequesting}
-        onUpdateNotificationSettings={updateSettings}
-        onEnableNotifications={enableNotifications}
-        onDisableNotifications={disableNotifications}
-        onSendTestNotification={sendTest}
-        plantNetApiKey={plantNetApiKey}
-        onUpdatePlantNetApiKey={updatePlantNetApiKey}
-      />
+      {/* Plant Identifier Modal — only when flag is on */}
+      {Features.PLANT_IDENTIFICATION && (
+        <PlantIdentifierModal
+          visible={showIdentifier}
+          onClose={() => setShowIdentifier(false)}
+          onAddPlant={handleAddPlant}
+        />
+      )}
     </SafeAreaView>
   );
 }

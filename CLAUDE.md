@@ -24,24 +24,38 @@ No test framework is set up. No linter/formatter configured.
 
 ### Stack
 - React Native + Expo SDK 54, TypeScript (strict)
-- `@react-navigation/bottom-tabs` (4 tabs: Hoy, Calendario, Plantas, Explorar)
-- AsyncStorage (local) + Supabase (cloud sync, auth, edge functions, storage)
-- Open-Meteo API (weather/geocoding, free), PlantNet API (plant ID, via edge function)
+- `@react-navigation/bottom-tabs` (MVP: 3 tabs — Hoy, Plantas, Ajustes)
+- AsyncStorage (local-first, no cloud sync in MVP)
+- Open-Meteo API (weather/geocoding, free)
 
-### Data Flow: Local-First with Cloud Sync
-The app is **local-first**. All writes go to AsyncStorage immediately, then sync to Supabase in the background.
+### Feature Flags (`src/config/features.ts`)
+
+The app uses a **two-axis gating model**: version flags × premium gate.
+
+- **`Features`** object — compile-time constants. MVP flags are `true`, everything else `false`.
+- **`usePremiumGate()`** hook (`src/config/premium.ts`) — runtime checks combining feature flags with premium status (always `false` in MVP).
+
+| Version | Flags enabled |
+|---------|--------------|
+| MVP | WEATHER_ALERTS, HEALTH_SCORE, DAILY_TIPS, NOTIFICATIONS_BASIC, PLANT_CATALOG, PREMIUM_GATE |
+| V1.1 | AUTH, CLOUD_SYNC, CALENDAR_TAB, EXPLORE_TAB, PLANT_IDENTIFICATION, PHOTO_UPLOAD, FULL_CATALOG, NOTIFICATIONS_ADVANCED |
+| V1.2 | DLC_KITCHEN_GARDEN, DLC_PEST_DIAGNOSIS, AFFILIATE_LINKS, REFERRAL_SYSTEM, HOME_WIDGETS |
+| V2.0 | DLC_SEASONAL_PREP, DLC_ADVANCED_DIAGNOSTICS, PLANT_COMPATIBILITY, CARE_STREAKS, SPONSORED_TIPS, MULTIPLE_GARDENS |
+
+To enable V1.1 features, flip the V1.1 flags to `true` in `features.ts`. All existing code (auth, sync, calendar, explore) is preserved but not rendered.
+
+### Data Flow: Local-First
+The app is **local-first**. All writes go to AsyncStorage immediately.
 
 1. **`useStorage` (Context + Hook)** — Single source of truth. Wraps all app data in `AppData` under storage key `'plant-agenda-v2'`. Every mutation calls `AsyncStorage.setItem` synchronously.
-2. **`useSync`** — Debounced (5s) auto-sync to Supabase after local changes. Also syncs on app background/foreground transitions. Cloud wins on conflicts.
-3. **`syncService.ts`** — Full sync (not incremental). Converts between camelCase (local) ↔ snake_case (DB). Small dataset makes full sync viable.
-
-Auth is optional — the app works fully offline without login.
+2. **`useSync`** — (V1.1) Debounced auto-sync to Supabase. Only active when `Features.CLOUD_SYNC` is `true`.
+3. **`syncService.ts`** — (V1.1) Full sync with camelCase ↔ snake_case converters.
 
 ### Provider Hierarchy (App.tsx)
 ```
-SafeAreaProvider → StorageProvider → AuthProvider → AppContent
+SafeAreaProvider → StorageProvider → [AuthProvider if AUTH] → AppContent
 ```
-`AppContent` conditionally renders: Loading → LoginScreen → OnboardingScreen → MainTabs.
+When `Features.AUTH` is `false`, AuthProvider is skipped entirely. AppContent goes straight to OnboardingScreen or MainTabs.
 
 ### Key Patterns
 
@@ -51,13 +65,14 @@ SafeAreaProvider → StorageProvider → AuthProvider → AppContent
 - **Dual data model** — Local types (camelCase in `types/index.ts`) and DB types (snake_case in `types/database.ts`) with converters in `syncService.ts`
 - **Edge function as API proxy** — `identify-plant` edge function proxies PlantNet API to keep the API key server-side
 - **Plant knowledge cache** — `plantKnowledgeService.ts` checks Supabase `plant_knowledge` table first, falls back to Perenual API, then caches result
-- **Emoji icons throughout** — Uses emoji (🌱💧☀️) instead of an icon library
+- **Emoji icons throughout** — Uses emoji instead of an icon library
+- **Feature-gated rendering** — Components check `Features.*` and `usePremiumGate()` before rendering gated UI
 
 ### Services Layer (`src/services/`)
-- `authService.ts` — Google/Apple OAuth via `expo-auth-session` + `expo-web-browser`
-- `syncService.ts` — Supabase CRUD with local↔DB converters
+- `authService.ts` — (V1.1) Google/Apple OAuth via `expo-auth-session` + `expo-web-browser`
+- `syncService.ts` — (V1.1) Supabase CRUD with local↔DB converters
 - `plantKnowledgeService.ts` — Two-tier lookup: Supabase cache → Perenual API → cache result
-- `imageService.ts` — Upload/delete plant photos to Supabase Storage bucket `plant-images`
+- `imageService.ts` — (V1.1) Upload/delete plant photos to Supabase Storage bucket `plant-images`
 
 ### Supabase Configuration
 - Client in `src/lib/supabase.ts` — Uses `expo-secure-store` for session (localStorage on web)

@@ -19,10 +19,7 @@ import {
 
 import { colors } from './src/theme';
 import { useStorage, StorageProvider } from './src/hooks/useStorage';
-import { useSync } from './src/hooks/useSync';
-import { AuthProvider, useAuthContext } from './src/components/AuthProvider';
-import { DataMigrationModal } from './src/components/DataMigrationModal';
-import { CloudData } from './src/services/syncService';
+import { Features } from './src/config/features';
 import { initAnalytics, trackEvent } from './src/services/analyticsService';
 
 // Screens
@@ -31,7 +28,7 @@ import CalendarScreen from './src/screens/CalendarScreen';
 import PlantsScreen from './src/screens/PlantsScreen';
 import ExploreScreen from './src/screens/ExploreScreen';
 import OnboardingScreen from './src/screens/OnboardingScreen';
-import LoginScreen from './src/screens/LoginScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -60,26 +57,106 @@ function MainTabs() {
         component={TodayScreen}
         options={{ tabBarLabel: 'Hoy', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🌱</Text> }}
       />
-      <Tab.Screen
-        name="Calendario"
-        component={CalendarScreen}
-        options={{ tabBarLabel: 'Calendario', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>📅</Text> }}
-      />
+      {Features.CALENDAR_TAB && (
+        <Tab.Screen
+          name="Calendario"
+          component={CalendarScreen}
+          options={{ tabBarLabel: 'Calendario', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>📅</Text> }}
+        />
+      )}
       <Tab.Screen
         name="Plantas"
         component={PlantsScreen}
         options={{ tabBarLabel: 'Plantas', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🪴</Text> }}
       />
+      {Features.EXPLORE_TAB && (
+        <Tab.Screen
+          name="Explorar"
+          component={ExploreScreen}
+          options={{ tabBarLabel: 'Explorar', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔍</Text> }}
+        />
+      )}
       <Tab.Screen
-        name="Explorar"
-        component={ExploreScreen}
-        options={{ tabBarLabel: 'Explorar', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔍</Text> }}
+        name="Ajustes"
+        component={SettingsScreen}
+        options={{ tabBarLabel: 'Ajustes', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>⚙️</Text> }}
       />
     </Tab.Navigator>
   );
 }
 
-function AppContent() {
+// MVP AppContent — no auth, no sync
+function AppContentMVP() {
+  const [fontsLoaded] = useFonts({
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_600SemiBold,
+    PlayfairDisplay_700Bold,
+    DMSans_400Regular,
+    DMSans_500Medium,
+    DMSans_600SemiBold,
+    DMSans_700Bold,
+  });
+
+  const {
+    loading: storageLoading,
+    onboardingCompleted,
+    plants,
+  } = useStorage();
+
+  useEffect(() => {
+    initAnalytics().then(() => trackEvent('app_opened'));
+  }, []);
+
+  if (!fontsLoaded || storageLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>🌿</Text>
+        <ActivityIndicator size="large" color={colors.green} />
+      </View>
+    );
+  }
+
+  const showOnboarding = !onboardingCompleted && plants.length === 0;
+
+  return (
+    <NavigationContainer>
+      <StatusBar style="dark" />
+      {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
+    </NavigationContainer>
+  );
+}
+
+// Full AppContent with auth + sync — only used when those flags are on
+function AppContentFull() {
+  // Lazy-require to avoid importing auth/sync modules at the top level when not needed
+  const { AuthProvider, useAuthContext } = require('./src/components/AuthProvider');
+  const { useSync } = require('./src/hooks/useSync');
+  const { DataMigrationModal } = require('./src/components/DataMigrationModal');
+  const { default: LoginScreen } = require('./src/screens/LoginScreen');
+
+  return (
+    <AuthProvider>
+      <AppContentFullInner
+        useAuthContext={useAuthContext}
+        useSync={useSync}
+        DataMigrationModal={DataMigrationModal}
+        LoginScreen={LoginScreen}
+      />
+    </AuthProvider>
+  );
+}
+
+function AppContentFullInner({
+  useAuthContext,
+  useSync,
+  DataMigrationModal,
+  LoginScreen,
+}: {
+  useAuthContext: any;
+  useSync: any;
+  DataMigrationModal: any;
+  LoginScreen: any;
+}) {
   const [fontsLoaded] = useFonts({
     PlayfairDisplay_400Regular,
     PlayfairDisplay_600SemiBold,
@@ -100,89 +177,56 @@ function AppContent() {
     notificationSettings,
     plantNetApiKey,
     setPlants,
-    addPlants,
   } = useStorage();
 
   const { user, loading: authLoading, isAuthenticated } = useAuthContext();
 
-  // Initialize analytics and track app open
   useEffect(() => {
     initAnalytics().then(() => trackEvent('app_opened'));
   }, []);
 
-  // Migration modal state
   const [showMigrationModal, setShowMigrationModal] = useState(false);
   const [migrationChecked, setMigrationChecked] = useState(false);
 
-  // Handle data received from cloud
-  const handleDataReceived = useCallback((data: CloudData) => {
-    // Merge cloud data with local - for now, cloud data takes precedence
+  const handleDataReceived = useCallback((data: any) => {
     if (data.plants.length > 0) {
       setPlants(data.plants);
     }
-    // Notes, reminders, settings would be handled by useStorage updates
   }, [setPlants]);
 
-  // Sync hook
-  const {
-    syncUp,
-    syncDown,
-    checkCloudData,
-    hasCloudData,
-  } = useSync({
-    user,
-    plants,
-    notes,
-    reminders,
-    location,
-    notificationSettings,
-    plantNetApiKey,
-    onDataReceived: handleDataReceived,
-  });
+  const { syncUp, syncDown, checkCloudData } = Features.CLOUD_SYNC
+    ? useSync({
+        user,
+        plants,
+        notes,
+        reminders,
+        location,
+        notificationSettings,
+        plantNetApiKey,
+        onDataReceived: handleDataReceived,
+      })
+    : { syncUp: async () => {}, syncDown: async () => null, checkCloudData: async () => false };
 
-  // Check for migration scenario when user logs in
   useEffect(() => {
+    if (!Features.CLOUD_SYNC) return;
     if (user && !migrationChecked && !storageLoading) {
-      const checkMigration = async () => {
+      const check = async () => {
         const cloudHasData = await checkCloudData();
-
         if (!cloudHasData && plants.length > 0) {
-          // User has local data but no cloud data - offer migration
           setShowMigrationModal(true);
         } else if (cloudHasData) {
-          // Cloud has data - sync down
           await syncDown();
         }
         setMigrationChecked(true);
       };
-
-      checkMigration();
+      check();
     }
-  }, [user, migrationChecked, storageLoading, plants.length, checkCloudData, syncDown]);
+  }, [user, migrationChecked, storageLoading, plants.length]);
 
-  // Reset migration check when user changes
   useEffect(() => {
-    if (!user) {
-      setMigrationChecked(false);
-    }
+    if (!user) setMigrationChecked(false);
   }, [user]);
 
-  const handleUploadToCloud = async () => {
-    await syncUp();
-    setShowMigrationModal(false);
-  };
-
-  const handleStartFresh = () => {
-    // Clear local data - user chose to start fresh
-    setPlants([]);
-    setShowMigrationModal(false);
-  };
-
-  const handleCancelMigration = () => {
-    setShowMigrationModal(false);
-  };
-
-  // Loading state
   if (!fontsLoaded || storageLoading || authLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -192,7 +236,6 @@ function AppContent() {
     );
   }
 
-  // Show login if not authenticated
   if (!isAuthenticated) {
     return <LoginScreen />;
   }
@@ -206,13 +249,15 @@ function AppContent() {
         {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
       </NavigationContainer>
 
-      <DataMigrationModal
-        visible={showMigrationModal}
-        plantCount={plants.length}
-        onUploadToCloud={handleUploadToCloud}
-        onStartFresh={handleStartFresh}
-        onCancel={handleCancelMigration}
-      />
+      {Features.CLOUD_SYNC && (
+        <DataMigrationModal
+          visible={showMigrationModal}
+          plantCount={plants.length}
+          onUploadToCloud={async () => { await syncUp(); setShowMigrationModal(false); }}
+          onStartFresh={() => { setPlants([]); setShowMigrationModal(false); }}
+          onCancel={() => setShowMigrationModal(false)}
+        />
+      )}
     </>
   );
 }
@@ -221,9 +266,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StorageProvider>
-        <AuthProvider>
-          <AppContent />
-        </AuthProvider>
+        {Features.AUTH ? <AppContentFull /> : <AppContentMVP />}
       </StorageProvider>
     </SafeAreaProvider>
   );

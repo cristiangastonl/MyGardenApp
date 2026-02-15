@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle, Alert } from 'react-native';
 import { Plant, WeatherData } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { getNextWaterDate } from '../utils/plantLogic';
@@ -83,7 +83,19 @@ export function PlantCard({
               onPress={() => setShowHealthDetail(true)}
             />
           )}
-          <TouchableOpacity onPress={() => onDelete(plant.id)} style={styles.deleteButton}>
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert(
+                'Eliminar planta',
+                `Seguro que queres eliminar "${plant.name}"?`,
+                [
+                  { text: 'Cancelar', style: 'cancel' },
+                  { text: 'Eliminar', style: 'destructive', onPress: () => onDelete(plant.id) },
+                ]
+              );
+            }}
+            style={styles.deleteButton}
+          >
             <Text style={styles.deleteIcon}>🗑️</Text>
           </TouchableOpacity>
         </View>

@@ -20,8 +20,11 @@ import {
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
+import { Features } from '../config/features';
+import { usePremiumGate } from '../config/premium';
 
 export default function PlantsScreen() {
+  const premium = usePremiumGate();
   const {
     plants,
     plantNetApiKey,
@@ -161,10 +164,10 @@ export default function PlantsScreen() {
         showsVerticalScrollIndicator={false}
       />
 
-      {/* Expanded FAB */}
       <ExpandedFAB
         onAddManual={() => setShowAddPlant(true)}
         onIdentify={() => setShowIdentifier(true)}
+        showIdentifyOption={Features.PLANT_IDENTIFICATION}
       />
 
       {/* Add Plant Modal */}
@@ -174,12 +177,14 @@ export default function PlantsScreen() {
         onAdd={handleAddPlant}
       />
 
-      {/* Plant Identifier Modal */}
-      <PlantIdentifierModal
-        visible={showIdentifier}
-        onClose={() => setShowIdentifier(false)}
-        onAddPlant={handleAddPlant}
-      />
+      {/* Plant Identifier Modal — only when flag is on */}
+      {Features.PLANT_IDENTIFICATION && (
+        <PlantIdentifierModal
+          visible={showIdentifier}
+          onClose={() => setShowIdentifier(false)}
+          onAddPlant={handleAddPlant}
+        />
+      )}
     </SafeAreaView>
   );
 }
