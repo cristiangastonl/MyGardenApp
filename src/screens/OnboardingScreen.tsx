@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { PlantDBEntry, PlantCategory, Plant } from '../types';
 import { PLANT_DATABASE, PLANT_CATEGORIES } from '../data/plantDatabase';
+import { PLANT_TYPES } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { trackEvent } from '../services/analyticsService';
@@ -30,14 +31,44 @@ try {
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
+// Map plant database IDs to PLANT_TYPES care type IDs
+const PLANT_TYPE_MAP: Record<string, string> = {
+  'potus': 'trepa',
+  'monstera': 'trepa',
+  'ficus': 'otra',
+  'sansevieria': 'suculenta',
+  'orquidea': 'floral',
+  'calathea': 'helecho',
+  'cinta': 'helecho',
+  'palmera-interior': 'otra',
+  'aloe-vera': 'suculenta',
+  'lavanda': 'aromatica',
+  'petunia': 'floral',
+  'hortensia': 'floral',
+  'jazmin': 'trepa',
+  'geranio': 'floral',
+  'albahaca': 'aromatica',
+  'romero': 'aromatica',
+  'menta': 'aromatica',
+  'tomatera': 'frutal',
+  'pimiento': 'frutal',
+  'frutilla': 'frutal',
+  'limonero': 'frutal',
+  'suculenta-generica': 'suculenta',
+  'cactus': 'cactus',
+  'echeveria': 'suculenta',
+};
+
 // Helper to convert PlantDBEntry to Plant
 function plantDBToPlant(dbEntry: PlantDBEntry): Plant {
   const today = new Date().toISOString().split('T')[0];
+  const typeId = PLANT_TYPE_MAP[dbEntry.id] || 'otra';
+  const plantType = PLANT_TYPES.find(t => t.id === typeId);
   return {
     id: `${dbEntry.id}-${Date.now()}`,
     name: dbEntry.name,
-    typeId: dbEntry.category,
-    typeName: PLANT_CATEGORIES.find(c => c.id === dbEntry.category)?.name || dbEntry.category,
+    typeId,
+    typeName: plantType?.name || 'Otra',
     icon: dbEntry.icon,
     imageUrl: dbEntry.imageUrl,
     waterEvery: dbEntry.waterDays,

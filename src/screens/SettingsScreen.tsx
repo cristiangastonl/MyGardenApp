@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
+import { LinearGradient } from 'expo-linear-gradient';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { useStorage } from '../hooks/useStorage';
 import { usePremium } from '../hooks/usePremium';
@@ -398,14 +399,25 @@ export default function SettingsScreen() {
             <TouchableOpacity
               style={styles.upgradeButton}
               onPress={() => showPaywall('settings')}
-              activeOpacity={0.7}
+              activeOpacity={0.8}
             >
-              <Text style={styles.upgradeIcon}>🌟</Text>
-              <View style={styles.upgradeTextContainer}>
-                <Text style={styles.upgradeTitle}>Pasate a Premium</Text>
-                <Text style={styles.upgradeSubtitle}>Plantas ilimitadas, alertas y mas</Text>
-              </View>
-              <Text style={styles.upgradeArrow}>→</Text>
+              <LinearGradient
+                colors={['#4A5A40', '#5B6E4E']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.upgradeGradient}
+              >
+                <View style={styles.upgradeIconCircle}>
+                  <Text style={styles.upgradeIcon}>🌱</Text>
+                </View>
+                <View style={styles.upgradeTextContainer}>
+                  <Text style={styles.upgradeTitle}>Pasate a Premium</Text>
+                  <Text style={styles.upgradeSubtitle}>Plantas ilimitadas, alertas, consejos y mas</Text>
+                </View>
+                <View style={styles.upgradeArrowCircle}>
+                  <Text style={styles.upgradeArrow}>→</Text>
+                </View>
+              </LinearGradient>
             </TouchableOpacity>
           )}
         </View>
@@ -806,16 +818,26 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   upgradeButton: {
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
+    ...shadows.md,
+  },
+  upgradeGradient: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.card,
-    padding: spacing.md,
-    borderRadius: borderRadius.lg,
-    ...shadows.sm,
+    padding: spacing.lg,
+  },
+  upgradeIconCircle: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: spacing.md,
   },
   upgradeIcon: {
-    fontSize: 24,
-    marginRight: spacing.md,
+    fontSize: 22,
   },
   upgradeTextContainer: {
     flex: 1,
@@ -823,19 +845,27 @@ const styles = StyleSheet.create({
   upgradeTitle: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 16,
-    color: colors.textPrimary,
+    color: colors.white,
   },
   upgradeSubtitle: {
     fontFamily: fonts.body,
     fontSize: 13,
-    color: colors.textSecondary,
+    color: 'rgba(255,255,255,0.75)',
     marginTop: 2,
   },
-  upgradeArrow: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 18,
-    color: colors.textSecondary,
+  upgradeArrowCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginLeft: spacing.sm,
+  },
+  upgradeArrow: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.white,
   },
   devButton: {
     backgroundColor: colors.bgTertiary,

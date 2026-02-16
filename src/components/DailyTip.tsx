@@ -158,6 +158,11 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
           activeOpacity={0.7}
         >
           <Text style={styles.nextButtonText}>Otro consejo</Text>
+          {!isPremium && seenTipIds.length >= 1 && (
+            <View style={styles.proBadge}>
+              <Text style={styles.proBadgeText}>PRO</Text>
+            </View>
+          )}
           <Text style={styles.nextButtonIcon}>→</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -263,5 +268,18 @@ const styles = StyleSheet.create({
   nextButtonIcon: {
     fontSize: 14,
     color: colors.green,
+  },
+  proBadge: {
+    backgroundColor: '#4A5A40',
+    paddingHorizontal: 6,
+    paddingVertical: 1,
+    borderRadius: 4,
+    marginHorizontal: 4,
+  },
+  proBadgeText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 8,
+    color: '#fff',
+    letterSpacing: 0.5,
   },
 });

@@ -6,9 +6,11 @@ import {
   StyleSheet,
   RefreshControl,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, spacing, fonts } from '../theme';
+import { useNavigation } from '@react-navigation/native';
+import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
@@ -34,11 +36,13 @@ import {
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 
 export default function TodayScreen() {
+  const navigation = useNavigation<any>();
   const premium = usePremiumGate();
   const { showPaywall } = usePremium();
   const {
@@ -204,7 +208,7 @@ export default function TodayScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header userName={userName} onSettingsPress={() => {}} />
+      <Header userName={userName} onSettingsPress={() => navigation.navigate('Ajustes')} />
 
       <ScrollView
         style={styles.content}
@@ -225,11 +229,36 @@ export default function TodayScreen() {
           location={location}
           loading={weatherLoading}
           error={weatherError}
-          onOpenSettings={() => {}}
+          onOpenSettings={() => navigation.navigate('Ajustes')}
         />
 
         {/* Weather Alerts */}
         <WeatherAlerts weather={weather} plants={plants} />
+
+        {/* Premium banner for free users */}
+        {!premium.isPremium && plants.length >= 3 && (
+          <TouchableOpacity
+            style={styles.premiumBanner}
+            onPress={() => showPaywall('premium_feature')}
+            activeOpacity={0.8}
+          >
+            <LinearGradient
+              colors={['#4A5A40', '#5B6E4E']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.premiumBannerGradient}
+            >
+              <Text style={styles.premiumBannerIcon}>🌿</Text>
+              <View style={styles.premiumBannerText}>
+                <Text style={styles.premiumBannerTitle}>Desbloquea tu jardin completo</Text>
+                <Text style={styles.premiumBannerSubtitle}>Plantas ilimitadas, alertas y mas</Text>
+              </View>
+              <View style={styles.premiumBannerArrow}>
+                <Text style={styles.premiumBannerArrowText}>→</Text>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        )}
 
         {/* Daily Tip - Contextual care advice */}
         <DailyTip
@@ -398,6 +427,51 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     lineHeight: 22,
+  },
+  premiumBanner: {
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
+    ...shadows.md,
+  },
+  premiumBannerGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+  },
+  premiumBannerIcon: {
+    fontSize: 24,
+    marginRight: spacing.md,
+  },
+  premiumBannerText: {
+    flex: 1,
+  },
+  premiumBannerTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: '#fff',
+  },
+  premiumBannerSubtitle: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 1,
+  },
+  premiumBannerArrow: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: spacing.sm,
+  },
+  premiumBannerArrowText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: '#fff',
   },
   bottomPadding: {
     height: 100,

@@ -165,16 +165,22 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
                 </View>
               </View>
               {showLock ? (
-                <Text
-                  style={[
-                    styles.alertMessage,
-                    useCompactMode && styles.alertMessageCompact,
-                    { color: alertColors.text, fontStyle: 'italic' }
-                  ]}
-                  numberOfLines={2}
-                >
-                  Toca para ver el detalle (Premium)
-                </Text>
+                <View style={styles.lockRow}>
+                  <Text style={styles.lockIcon}>🔒</Text>
+                  <Text
+                    style={[
+                      styles.alertMessage,
+                      useCompactMode && styles.alertMessageCompact,
+                      { color: alertColors.text, flex: 1 }
+                    ]}
+                    numberOfLines={2}
+                  >
+                    Toca para desbloquear
+                  </Text>
+                  <View style={styles.proBadge}>
+                    <Text style={styles.proBadgeText}>PRO</Text>
+                  </View>
+                </View>
               ) : (
                 <Text
                   style={[
@@ -350,5 +356,25 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 12,
     color: colors.textSecondary,
+  },
+  lockRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  lockIcon: {
+    fontSize: 12,
+  },
+  proBadge: {
+    backgroundColor: '#4A5A40',
+    paddingHorizontal: 6,
+    paddingVertical: 1,
+    borderRadius: 4,
+  },
+  proBadgeText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 8,
+    color: '#fff',
+    letterSpacing: 0.5,
   },
 });
