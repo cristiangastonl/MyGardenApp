@@ -4,6 +4,7 @@ import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { WeatherData, WeatherAlert, Plant } from '../types';
 import { isRainyWeather } from '../data/weatherCodes';
 import { generatePlantAlerts, PlantAlert, getAlertCounts } from '../utils/plantAlerts';
+import { usePremium } from '../hooks/usePremium';
 
 interface WeatherAlertsProps {
   weather: WeatherData | null;
@@ -45,6 +46,7 @@ function generateGenericAlerts(weather: WeatherData | null, plants: Plant[]): We
 }
 
 export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
+  const { isPremium, showPaywall } = usePremium();
   const [showAll, setShowAll] = useState(false);
 
   // Generate personalized plant alerts
@@ -124,8 +126,9 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
         {visibleAlerts.map((alert, index) => {
           const alertColors = getAlertStyles(alert.severity);
           const isPlant = isPlantAlert(alert);
+          const showLock = isPlant && !isPremium;
 
-          return (
+          const cardContent = (
             <View
               key={isPlant ? `${alert.plantId}-${alert.type}` : `generic-${alert.type}-${index}`}
               style={[
@@ -161,18 +164,45 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
                   )}
                 </View>
               </View>
-              <Text
-                style={[
-                  styles.alertMessage,
-                  useCompactMode && styles.alertMessageCompact,
-                  { color: alertColors.text }
-                ]}
-                numberOfLines={useCompactMode ? 2 : 3}
-              >
-                {alert.message}
-              </Text>
+              {showLock ? (
+                <Text
+                  style={[
+                    styles.alertMessage,
+                    useCompactMode && styles.alertMessageCompact,
+                    { color: alertColors.text, fontStyle: 'italic' }
+                  ]}
+                  numberOfLines={2}
+                >
+                  Toca para ver el detalle (Premium)
+                </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.alertMessage,
+                    useCompactMode && styles.alertMessageCompact,
+                    { color: alertColors.text }
+                  ]}
+                  numberOfLines={useCompactMode ? 2 : 3}
+                >
+                  {alert.message}
+                </Text>
+              )}
             </View>
           );
+
+          if (showLock) {
+            return (
+              <TouchableOpacity
+                key={`${alert.plantId}-${alert.type}`}
+                onPress={() => showPaywall('weather_alert')}
+                activeOpacity={0.7}
+              >
+                {cardContent}
+              </TouchableOpacity>
+            );
+          }
+
+          return cardContent;
         })}
 
         {hasMoreAlerts && !showAll && (

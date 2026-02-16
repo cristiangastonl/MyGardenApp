@@ -19,8 +19,10 @@ import {
 
 import { colors } from './src/theme';
 import { useStorage, StorageProvider } from './src/hooks/useStorage';
+import { PremiumProvider } from './src/hooks/usePremium';
 import { Features } from './src/config/features';
 import { initAnalytics, trackEvent } from './src/services/analyticsService';
+import { PaywallModal } from './src/components';
 
 // Screens
 import TodayScreen from './src/screens/TodayScreen';
@@ -119,10 +121,13 @@ function AppContentMVP() {
   const showOnboarding = !onboardingCompleted && plants.length === 0;
 
   return (
-    <NavigationContainer>
-      <StatusBar style="dark" />
-      {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <StatusBar style="dark" />
+        {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
+      </NavigationContainer>
+      <PaywallModal />
+    </>
   );
 }
 
@@ -266,7 +271,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StorageProvider>
-        {Features.AUTH ? <AppContentFull /> : <AppContentMVP />}
+        <PremiumProvider>
+          {Features.AUTH ? <AppContentFull /> : <AppContentMVP />}
+        </PremiumProvider>
       </StorageProvider>
     </SafeAreaProvider>
   );

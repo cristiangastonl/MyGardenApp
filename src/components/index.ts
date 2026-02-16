@@ -25,3 +25,4 @@ export { PlantIdentifierModal } from './PlantIdentifier';
 export { AuthProvider, useAuthContext } from './AuthProvider';
 export { DataMigrationModal } from './DataMigrationModal';
 export { SyncStatusBadge } from './SyncStatusBadge';
+export { PaywallModal } from './PaywallModal';

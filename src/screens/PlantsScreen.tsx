@@ -22,9 +22,11 @@ import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
+import { usePremium } from '../hooks/usePremium';
 
 export default function PlantsScreen() {
   const premium = usePremiumGate();
+  const { showPaywall } = usePremium();
   const {
     plants,
     plantNetApiKey,
@@ -39,6 +41,14 @@ export default function PlantsScreen() {
 
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
+
+  const handleOpenAddPlant = () => {
+    if (!premium.canAddPlant(plants.length)) {
+      showPaywall('plant_limit');
+      return;
+    }
+    setShowAddPlant(true);
+  };
 
   const today = new Date();
   const todayStr = formatDate(today);
@@ -165,7 +175,7 @@ export default function PlantsScreen() {
       />
 
       <ExpandedFAB
-        onAddManual={() => setShowAddPlant(true)}
+        onAddManual={handleOpenAddPlant}
         onIdentify={() => setShowIdentifier(true)}
         showIdentifyOption={Features.PLANT_IDENTIFICATION}
       />

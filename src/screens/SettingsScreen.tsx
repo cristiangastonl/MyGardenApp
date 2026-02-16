@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { useStorage } from '../hooks/useStorage';
+import { usePremium } from '../hooks/usePremium';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
 import { generatePlantAlerts } from '../utils/plantAlerts';
@@ -37,6 +38,8 @@ export default function SettingsScreen() {
     updateNotificationSettings,
     updatePlantNetApiKey,
   } = useStorage();
+
+  const { isPremium, showPaywall, toggleMockPremium } = usePremium();
 
   const { weather } = useWeather(location);
   const plantAlerts = useMemo(() => generatePlantAlerts(plants, weather), [plants, weather]);
@@ -368,10 +371,75 @@ export default function SettingsScreen() {
           </View>
         )}
 
+        {/* Premium Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Apariencia</Text>
-          <Text style={styles.comingSoon}>Proximamente</Text>
+          <Text style={styles.sectionTitle}>Premium</Text>
+          {isPremium ? (
+            <>
+              <View style={styles.premiumActiveCard}>
+                <View style={styles.premiumActiveRow}>
+                  <Text style={styles.premiumActiveIcon}>✓</Text>
+                  <Text style={styles.premiumActiveText}>Premium activo</Text>
+                </View>
+              </View>
+              <TouchableOpacity
+                style={styles.manageSubButton}
+                onPress={() => {
+                  const url = Platform.OS === 'android'
+                    ? 'https://play.google.com/store/account/subscriptions'
+                    : 'https://apps.apple.com/account/subscriptions';
+                  Linking.openURL(url);
+                }}
+              >
+                <Text style={styles.manageSubText}>Gestionar suscripcion</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <TouchableOpacity
+              style={styles.upgradeButton}
+              onPress={() => showPaywall('settings')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.upgradeIcon}>🌟</Text>
+              <View style={styles.upgradeTextContainer}>
+                <Text style={styles.upgradeTitle}>Pasate a Premium</Text>
+                <Text style={styles.upgradeSubtitle}>Plantas ilimitadas, alertas y mas</Text>
+              </View>
+              <Text style={styles.upgradeArrow}>→</Text>
+            </TouchableOpacity>
+          )}
         </View>
+
+        {/* Dev tools — only in development */}
+        {__DEV__ && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Herramientas de desarrollo</Text>
+            <Text style={styles.sectionDescription}>Solo visibles en modo desarrollo.</Text>
+
+            <View style={styles.settingRow}>
+              <View style={styles.settingInfo}>
+                <Text style={styles.settingIcon}>🔧</Text>
+                <View style={styles.settingText}>
+                  <Text style={styles.settingTitle}>Toggle Premium</Text>
+                  <Text style={styles.settingSubtitle}>{isPremium ? 'Activo' : 'Inactivo'}</Text>
+                </View>
+              </View>
+              <Switch
+                value={isPremium}
+                onValueChange={() => toggleMockPremium()}
+                trackColor={{ false: colors.border, true: colors.green }}
+                thumbColor={colors.white}
+              />
+            </View>
+
+            <TouchableOpacity
+              style={styles.devButton}
+              onPress={() => showPaywall('dev_test')}
+            >
+              <Text style={styles.devButtonText}>Mostrar Paywall</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         <View style={styles.bottomPadding} />
       </ScrollView>
@@ -705,11 +773,82 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.dangerText,
   },
-  comingSoon: {
-    fontFamily: fonts.body,
+  premiumActiveCard: {
+    backgroundColor: '#f0f7f0',
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: '#d4e8d4',
+    marginBottom: spacing.sm,
+  },
+  premiumActiveRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  premiumActiveIcon: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.green,
+    marginRight: spacing.sm,
+  },
+  premiumActiveText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 15,
+    color: colors.green,
+  },
+  manageSubButton: {
+    alignSelf: 'flex-start',
+    paddingVertical: spacing.xs,
+  },
+  manageSubText: {
+    fontFamily: fonts.bodyMedium,
     fontSize: 14,
-    color: colors.textMuted,
-    fontStyle: 'italic',
+    color: colors.textSecondary,
+  },
+  upgradeButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    ...shadows.sm,
+  },
+  upgradeIcon: {
+    fontSize: 24,
+    marginRight: spacing.md,
+  },
+  upgradeTextContainer: {
+    flex: 1,
+  },
+  upgradeTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.textPrimary,
+  },
+  upgradeSubtitle: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textSecondary,
+    marginTop: 2,
+  },
+  upgradeArrow: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 18,
+    color: colors.textSecondary,
+    marginLeft: spacing.sm,
+  },
+  devButton: {
+    backgroundColor: colors.bgTertiary,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.md,
+    alignSelf: 'flex-start',
+    marginTop: spacing.sm,
+  },
+  devButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.textPrimary,
   },
   bottomPadding: {
     height: spacing.xxxl,

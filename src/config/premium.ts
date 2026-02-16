@@ -1,9 +1,9 @@
 import { Features } from './features';
-
-// For MVP, premium is always false. Later this will come from useStorage or a purchase hook.
-const isPremium = false;
+import { usePremium } from '../hooks/usePremium';
 
 export function usePremiumGate() {
+  const { isPremium } = usePremium();
+
   return {
     isPremium,
 

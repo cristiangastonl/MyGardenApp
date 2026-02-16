@@ -12,6 +12,7 @@ import { Plant, Location, WeatherData } from '../types';
 import { TipContext, CareTip } from '../data/careTips';
 import { getCurrentSeason, selectRandomTip } from '../utils/tipSelector';
 import { formatDate } from '../utils/dates';
+import { usePremium } from '../hooks/usePremium';
 
 const SEEN_TIPS_KEY = 'daily-tips-seen';
 
@@ -27,6 +28,7 @@ interface SeenTipsData {
 }
 
 export function DailyTip({ plants, location, weather }: DailyTipProps) {
+  const { isPremium, showPaywall } = usePremium();
   const [currentTip, setCurrentTip] = useState<CareTip | null>(null);
   const [seenTipIds, setSeenTipIds] = useState<string[]>([]);
   const [fadeAnim] = useState(new Animated.Value(1));
@@ -100,6 +102,12 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
 
   // Mostrar otro tip
   const handleNextTip = () => {
+    // Free users only get 1 tip per day (the initial one)
+    if (!isPremium && seenTipIds.length >= 1) {
+      showPaywall('daily_tip');
+      return;
+    }
+
     // Animar fade out
     Animated.timing(fadeAnim, {
       toValue: 0,
