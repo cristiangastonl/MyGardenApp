@@ -42,3 +42,19 @@ yarn-error.*
 .envrc
 .env
 pc-api-key.json
+
+# Build artifacts
+*.aab
+*.apk
+
+# Credentials
+credentials.json
+
+# Store assets
+feature-graphic-*.png
+
+# Downloaded images (reproducible, hosted on Supabase)
+plant-images/
+
+# Screenshots
+screenshots/

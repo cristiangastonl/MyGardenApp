@@ -1,0 +1,33 @@
+{
+  "codes": {
+    "0": "Despejado",
+    "1": "Mayormente despejado",
+    "2": "Parcialmente nublado",
+    "3": "Nublado",
+    "45": "Niebla",
+    "48": "Niebla con escarcha",
+    "51": "Llovizna leve",
+    "53": "Llovizna moderada",
+    "55": "Llovizna intensa",
+    "56": "Llovizna helada leve",
+    "57": "Llovizna helada intensa",
+    "61": "Lluvia leve",
+    "63": "Lluvia moderada",
+    "65": "Lluvia intensa",
+    "66": "Lluvia helada leve",
+    "67": "Lluvia helada intensa",
+    "71": "Nevada leve",
+    "73": "Nevada moderada",
+    "75": "Nevada intensa",
+    "77": "Granizo fino",
+    "80": "Chubascos leves",
+    "81": "Chubascos moderados",
+    "82": "Chubascos intensos",
+    "85": "Chubascos de nieve leves",
+    "86": "Chubascos de nieve intensos",
+    "95": "Tormenta",
+    "96": "Tormenta con granizo leve",
+    "99": "Tormenta con granizo intenso"
+  },
+  "unknown": "Desconocido"
+}

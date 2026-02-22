@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
-import { REVENUECAT_API_KEY, ENTITLEMENT_ID, PRODUCT_IDS } from '../constants/config';
+import { REVENUECAT_API_KEY, ENTITLEMENT_ID, PRODUCT_IDS } from '../config/revenuecat';
 import { trackEvent } from './analyticsService';
 
 // ─── Types ───────────────────────────────────────────────────────
