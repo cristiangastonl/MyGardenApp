@@ -26,3 +26,5 @@ export { AuthProvider, useAuthContext } from './AuthProvider';
 export { DataMigrationModal } from './DataMigrationModal';
 export { SyncStatusBadge } from './SyncStatusBadge';
 export { PaywallModal } from './PaywallModal';
+export { PlantPhotoAlbum } from './PlantPhotoAlbum';
+export { MyPlantDetailModal } from './MyPlantDetailModal';

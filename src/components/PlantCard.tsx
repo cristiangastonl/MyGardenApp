@@ -5,10 +5,11 @@ import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { isSameDay, daysBetween, formatDate } from '../utils/dates';
 import { calculatePlantHealth } from '../utils/plantHealth';
+import { useTranslation } from 'react-i18next';
 import { TaskButton } from './TaskButton';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantHealthDetail } from './PlantHealthDetail';
-import { PLANT_TYPES } from '../data/constants';
+import { getPlantTypes } from '../data/constants';
 
 interface PlantCardProps {
   plant: Plant;
@@ -18,6 +19,7 @@ interface PlantCardProps {
   onSunDone: (plantId: string) => void;
   onOutdoorDone: (plantId: string) => void;
   onDelete: (plantId: string) => void;
+  onPress?: (plant: Plant) => void;
 }
 
 export function PlantCard({
@@ -28,7 +30,9 @@ export function PlantCard({
   onSunDone,
   onOutdoorDone,
   onDelete,
+  onPress,
 }: PlantCardProps) {
+  const { t } = useTranslation();
   const [showHealthDetail, setShowHealthDetail] = useState(false);
 
   const todayStr = formatDate(today);
@@ -44,7 +48,7 @@ export function PlantCard({
 
   const hasTasks = needsWaterToday || needsSunToday || needsOutdoorToday;
 
-  const plantType = PLANT_TYPES.find(t => t.id === plant.typeId);
+  const plantType = getPlantTypes().find(pt => pt.id === plant.typeId);
   const tip = plantType?.tip || '';
 
   const daysUntilWater = daysBetween(today, nextWater);
@@ -59,7 +63,11 @@ export function PlantCard({
   const showHealthBadge = healthStatus.score < 80;
 
   return (
-    <View style={[styles.card, needsWaterToday && !waterDone && styles.cardNeedsWater]}>
+    <TouchableOpacity
+      style={[styles.card, needsWaterToday && !waterDone && styles.cardNeedsWater]}
+      onPress={() => onPress?.(plant)}
+      activeOpacity={onPress ? 0.7 : 1}
+    >
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           {plant.imageUrl ? (
@@ -72,8 +80,8 @@ export function PlantCard({
             <Text style={styles.icon}>{plant.icon}</Text>
           )}
           <View style={styles.info}>
-            <Text style={styles.name}>{plant.name}</Text>
-            <Text style={styles.type}>{plant.typeName}</Text>
+            <Text style={styles.name} numberOfLines={1}>{plant.name}</Text>
+            <Text style={styles.type} numberOfLines={1}>{plant.typeName}</Text>
           </View>
         </View>
         <View style={styles.headerRight}>
@@ -86,11 +94,11 @@ export function PlantCard({
           <TouchableOpacity
             onPress={() => {
               Alert.alert(
-                'Eliminar planta',
-                `Seguro que queres eliminar "${plant.name}"?`,
+                t('plantCard.deletePlant'),
+                t('plantCard.deleteConfirm', { name: plant.name }),
                 [
-                  { text: 'Cancelar', style: 'cancel' },
-                  { text: 'Eliminar', style: 'destructive', onPress: () => onDelete(plant.id) },
+                  { text: t('plantCard.cancelButton'), style: 'cancel' },
+                  { text: t('plantCard.deleteButton'), style: 'destructive', onPress: () => onDelete(plant.id) },
                 ]
               );
             }}
@@ -110,7 +118,7 @@ export function PlantCard({
               done={waterDone}
               onPress={() => onWater(plant.id)}
               icon="💧"
-              label="Regar"
+              label={t('plantCard.water')}
               bgColor={colors.waterLight}
               textColor={colors.waterBlue}
             />
@@ -120,7 +128,7 @@ export function PlantCard({
               done={sunDone}
               onPress={() => onSunDone(plant.id)}
               icon="☀️"
-              label={`Sol (${plant.sunHours}h)`}
+              label={t('plantCard.sunLabel', { hours: plant.sunHours })}
               bgColor={colors.warningBg}
               textColor={colors.sunDark}
             />
@@ -130,7 +138,7 @@ export function PlantCard({
               done={outdoorDone}
               onPress={() => onOutdoorDone(plant.id)}
               icon="🌤️"
-              label="Sacar afuera"
+              label={t('plantCard.outdoor')}
               bgColor={colors.infoBg}
               textColor={colors.infoText}
             />
@@ -138,13 +146,13 @@ export function PlantCard({
         </View>
       ) : (
         <View style={styles.nextWater}>
-          <Text style={styles.nextWaterLabel}>PROXIMO RIEGO</Text>
+          <Text style={styles.nextWaterLabel}>{t('plantCard.nextWater')}</Text>
           <Text style={styles.nextWaterText}>
             {daysUntilWater === 0
-              ? 'Hoy'
+              ? t('plantCard.today')
               : daysUntilWater === 1
-              ? 'Manana'
-              : `En ${daysUntilWater} dias`}
+              ? t('plantCard.tomorrow')
+              : t('plantCard.inDays', { count: daysUntilWater })}
           </Text>
         </View>
       )}
@@ -156,7 +164,7 @@ export function PlantCard({
         plant={plant}
         healthStatus={healthStatus}
       />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -233,6 +241,10 @@ const styles = StyleSheet.create<Styles>({
   },
   deleteButton: {
     padding: spacing.xs,
+    minWidth: 44,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   deleteIcon: {
     fontSize: 18,

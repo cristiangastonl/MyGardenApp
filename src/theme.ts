@@ -25,15 +25,40 @@ export const colors = {
   // Alerts
   dangerBg: '#fde8e8',
   dangerText: '#8c3a3a',
+  dangerBorder: '#e8b4b4',
   warningBg: '#fef9e7',
   warningText: '#8c7a3a',
+  warningBorder: '#e8dbb4',
+  warningHeaderBg: '#f5ecd0',
   infoBg: '#e8f4fb',
   infoText: '#3a6b8c',
+  infoBorder: '#b4d4e8',
+  infoHeaderBg: '#d4e8f4',
+  successBg: '#f0f7f0',
+  successBorder: '#d4e8d4',
+  successLight: '#e8f5e8',
+  successLightBorder: '#b4e8b4',
+  successHeaderBg: '#d4f0d4',
+
+  // Premium / Paywall
+  premiumDark: '#4A5A40',
+  premiumLight: '#5B6E4E',
+  premiumSage: '#7A8B6F',
+  premiumSageLight: '#E8EFE4',
+  premiumBark: '#3D3229',
+  premiumBarkLight: '#6B5D52',
+  premiumCream: '#F7F4ED',
+  premiumCreamLight: '#FDFBF7',
+  premiumTerracotta: '#C4745A',
+  premiumLavender: '#EDE8F5',
 
   // UI
   border: '#e0d8c8',
   borderLight: '#f0ebe0',
+  borderSeparator: 'rgba(0,0,0,0.08)',
   white: '#fff',
+  whiteOverlay: 'rgba(255,255,255,0.2)',
+  whiteSubdued: 'rgba(255,255,255,0.75)',
 };
 
 export const fonts = {

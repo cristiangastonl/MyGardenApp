@@ -10,9 +10,10 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius } from "../theme";
 import { Plant, PlantDBEntry } from "../types";
-import { PLANT_TYPES, DAYS_ES } from "../data/constants";
+import { getPlantTypes } from "../data/constants";
 
 interface AddPlantModalProps {
   visible: boolean;
@@ -27,12 +28,11 @@ export function AddPlantModal({
   onAdd,
   prefilledPlant,
 }: AddPlantModalProps) {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [selectedTypeId, setSelectedTypeId] = useState("otra");
   const [waterEvery, setWaterEvery] = useState("4");
   const [sunHours, setSunHours] = useState("3");
-  const [sunDays, setSunDays] = useState<number[]>([]);
-  const [outdoorDays, setOutdoorDays] = useState<number[]>([]);
 
   // Reset or prefill form when modal opens
   useEffect(() => {
@@ -40,7 +40,7 @@ export function AddPlantModal({
       if (prefilledPlant) {
         setName(prefilledPlant.name);
         // Match plant type from database
-        const matchedType = PLANT_TYPES.find(
+        const matchedType = getPlantTypes().find(
           (t) =>
             t.name.toLowerCase() === prefilledPlant.category.toLowerCase() ||
             t.id === prefilledPlant.category
@@ -48,8 +48,6 @@ export function AddPlantModal({
         setSelectedTypeId(matchedType?.id || "otra");
         setWaterEvery(String(prefilledPlant.waterDays));
         setSunHours(String(prefilledPlant.sunHours));
-        setSunDays([]);
-        setOutdoorDays(prefilledPlant.outdoor ? [0, 6] : []);
       } else {
         resetForm();
       }
@@ -61,35 +59,21 @@ export function AddPlantModal({
     setSelectedTypeId("otra");
     setWaterEvery("4");
     setSunHours("3");
-    setSunDays([]);
-    setOutdoorDays([]);
   };
 
   const handleTypeSelect = (typeId: string) => {
     setSelectedTypeId(typeId);
-    const plantType = PLANT_TYPES.find((t) => t.id === typeId);
+    const plantType = getPlantTypes().find((pt) => pt.id === typeId);
     if (plantType) {
       setWaterEvery(String(plantType.waterDays));
       setSunHours(String(plantType.sunHours));
     }
   };
 
-  const toggleDay = (
-    dayIndex: number,
-    days: number[],
-    setDays: (days: number[]) => void
-  ) => {
-    if (days.includes(dayIndex)) {
-      setDays(days.filter((d) => d !== dayIndex));
-    } else {
-      setDays([...days, dayIndex]);
-    }
-  };
-
   const handleAdd = () => {
     if (!name.trim()) return;
 
-    const selectedType = PLANT_TYPES.find((t) => t.id === selectedTypeId);
+    const selectedType = getPlantTypes().find((pt) => pt.id === selectedTypeId);
 
     const newPlant: Omit<Plant, "id"> = {
       name: name.trim(),
@@ -98,8 +82,8 @@ export function AddPlantModal({
       icon: selectedType?.icon || "🌻",
       waterEvery: parseInt(waterEvery) || 4,
       sunHours: parseInt(sunHours) || 3,
-      sunDays,
-      outdoorDays,
+      sunDays: [],
+      outdoorDays: [],
       lastWatered: null,
       sunDoneDate: null,
       outdoorDoneDate: null,
@@ -109,7 +93,7 @@ export function AddPlantModal({
     onClose();
   };
 
-  const selectedType = PLANT_TYPES.find((t) => t.id === selectedTypeId);
+  const selectedType = getPlantTypes().find((pt) => pt.id === selectedTypeId);
 
   return (
     <Modal
@@ -126,7 +110,7 @@ export function AddPlantModal({
           <View style={styles.content}>
             <View style={styles.handle} />
 
-            <Text style={styles.title}>Nueva planta</Text>
+            <Text style={styles.title}>{t('addPlant.title')}</Text>
 
             {prefilledPlant && (
               <View style={styles.prefilledBanner}>
@@ -141,28 +125,29 @@ export function AddPlantModal({
             <ScrollView
               style={styles.scrollContent}
               showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
             >
               {/* Name input */}
               <View style={styles.section}>
-                <Text style={styles.label}>NOMBRE</Text>
+                <Text style={styles.label}>{t('addPlant.name')}</Text>
                 <TextInput
                   style={styles.input}
                   value={name}
                   onChangeText={setName}
-                  placeholder="Mi potus favorito"
+                  placeholder={t('addPlant.namePlaceholder')}
                   placeholderTextColor={colors.textMuted}
                 />
               </View>
 
               {/* Plant type selector */}
               <View style={styles.section}>
-                <Text style={styles.label}>TIPO DE PLANTA</Text>
+                <Text style={styles.label}>{t('addPlant.plantType')}</Text>
                 <ScrollView
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.typeSelector}
                 >
-                  {PLANT_TYPES.map((type) => (
+                  {getPlantTypes().map((type) => (
                     <TouchableOpacity
                       key={type.id}
                       style={[
@@ -190,7 +175,7 @@ export function AddPlantModal({
 
               {/* Watering interval */}
               <View style={styles.section}>
-                <Text style={styles.label}>RIEGO CADA (DIAS)</Text>
+                <Text style={styles.label}>{t('addPlant.waterEvery')}</Text>
                 <View style={styles.numberInputRow}>
                   <TouchableOpacity
                     style={styles.numberButton}
@@ -220,7 +205,7 @@ export function AddPlantModal({
 
               {/* Sun hours */}
               <View style={styles.section}>
-                <Text style={styles.label}>HORAS DE SOL</Text>
+                <Text style={styles.label}>{t('addPlant.sunHours')}</Text>
                 <View style={styles.numberInputRow}>
                   <TouchableOpacity
                     style={styles.numberButton}
@@ -246,72 +231,20 @@ export function AddPlantModal({
                 </View>
               </View>
 
-              {/* Sun days */}
-              <View style={styles.section}>
-                <Text style={styles.label}>DIAS PARA SOL</Text>
-                <View style={styles.daysRow}>
-                  {DAYS_ES.map((day, index) => (
-                    <TouchableOpacity
-                      key={day}
-                      style={[
-                        styles.dayChip,
-                        sunDays.includes(index) && styles.dayChipSelected,
-                      ]}
-                      onPress={() => toggleDay(index, sunDays, setSunDays)}
-                    >
-                      <Text
-                        style={[
-                          styles.dayText,
-                          sunDays.includes(index) && styles.dayTextSelected,
-                        ]}
-                      >
-                        {day}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
-
-              {/* Outdoor days */}
-              <View style={styles.section}>
-                <Text style={styles.label}>DIAS EXTERIOR</Text>
-                <View style={styles.daysRow}>
-                  {DAYS_ES.map((day, index) => (
-                    <TouchableOpacity
-                      key={day}
-                      style={[
-                        styles.dayChip,
-                        outdoorDays.includes(index) && styles.dayChipSelectedOutdoor,
-                      ]}
-                      onPress={() => toggleDay(index, outdoorDays, setOutdoorDays)}
-                    >
-                      <Text
-                        style={[
-                          styles.dayText,
-                          outdoorDays.includes(index) && styles.dayTextSelected,
-                        ]}
-                      >
-                        {day}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
-
               <View style={styles.bottomPadding} />
             </ScrollView>
 
             {/* Action buttons */}
             <View style={styles.actions}>
               <TouchableOpacity style={styles.cancelButton} onPress={onClose}>
-                <Text style={styles.cancelButtonText}>Cancelar</Text>
+                <Text style={styles.cancelButtonText}>{t('addPlant.cancel')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.addButton, !name.trim() && styles.addButtonDisabled]}
                 onPress={handleAdd}
                 disabled={!name.trim()}
               >
-                <Text style={styles.addButtonText}>Agregar</Text>
+                <Text style={styles.addButtonText}>{t('addPlant.add')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -324,7 +257,7 @@ export function AddPlantModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(45, 58, 46, 0.4)",
+    backgroundColor: `${colors.textPrimary}66`,
     justifyContent: "flex-end",
   },
   keyboardView: {
@@ -465,36 +398,6 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     width: 60,
     textAlign: "center",
-  },
-  daysRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  dayChip: {
-    width: 44,
-    height: 44,
-    backgroundColor: colors.bgPrimary,
-    borderRadius: borderRadius.md,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.borderLight,
-  },
-  dayChipSelected: {
-    backgroundColor: colors.sunGold,
-    borderColor: colors.sunGold,
-  },
-  dayChipSelectedOutdoor: {
-    backgroundColor: colors.green,
-    borderColor: colors.green,
-  },
-  dayText: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 14,
-    color: colors.textPrimary,
-  },
-  dayTextSelected: {
-    color: colors.white,
   },
   bottomPadding: {
     height: spacing.lg,

@@ -9,6 +9,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { PlantHealthStatus, HealthLevel } from '../types';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import {
@@ -30,6 +31,7 @@ export function PlantHealthBadge({
   onPress,
   size = 'small',
 }: PlantHealthBadgeProps) {
+  const { t } = useTranslation();
   const [showTooltip, setShowTooltip] = useState(false);
 
   const healthColor = getHealthColor(healthStatus.level);
@@ -94,7 +96,7 @@ export function PlantHealthBadge({
                   {healthMessage}
                 </Text>
                 <Text style={styles.tooltipScore}>
-                  Salud: {healthStatus.score}/100
+                  {t('health.score', { score: healthStatus.score })}
                 </Text>
               </View>
             </View>
@@ -112,7 +114,7 @@ export function PlantHealthBadge({
 
             {healthStatus.issues.length === 0 && (
               <Text style={styles.tooltipNoIssues}>
-                Esta planta esta en optimas condiciones
+                {t('health.optimalCondition')}
               </Text>
             )}
           </View>

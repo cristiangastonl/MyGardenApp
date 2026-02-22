@@ -9,10 +9,11 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { useStorage } from '../hooks/useStorage';
-import { PLANT_DATABASE, PLANT_CATEGORIES, searchPlants } from '../data/plantDatabase';
+import { PLANT_DATABASE, getPlantCategories, getTranslatedDatabase, getTranslatedPlant, searchPlants } from '../data/plantDatabase';
 import { PlantDBEntry, PlantCategory, Plant } from '../types';
 import {
   PlantDatabaseCard,
@@ -21,6 +22,7 @@ import {
 import { trackEvent } from '../services/analyticsService';
 
 export default function ExploreScreen() {
+  const { t } = useTranslation();
   const { addPlant } = useStorage();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,9 +30,11 @@ export default function ExploreScreen() {
   const [selectedPlant, setSelectedPlant] = useState<PlantDBEntry | null>(null);
   const [showPlantDetail, setShowPlantDetail] = useState(false);
 
+  const translatedDatabase = getTranslatedDatabase();
+
   // Filter plants based on search and category
   const filteredPlants = useMemo(() => {
-    let results = PLANT_DATABASE;
+    let results = translatedDatabase;
 
     if (searchQuery.trim()) {
       results = searchPlants(searchQuery);
@@ -41,7 +45,7 @@ export default function ExploreScreen() {
     }
 
     return results;
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, translatedDatabase]);
 
   const handleSelectCategory = (category: PlantCategory | null) => {
     setSelectedCategory(selectedCategory === category ? null : category);
@@ -74,14 +78,14 @@ export default function ExploreScreen() {
     setSelectedPlant(null);
 
     Alert.alert(
-      'Planta agregada',
-      `${plantDB.name} fue agregada a tu jardin.`,
+      t('explore.plantAdded'),
+      t('explore.plantAddedMessage', { name: getTranslatedPlant(plantDB).name }),
       [{ text: 'OK' }]
     );
   };
 
   const getCategoryName = (categoryId: PlantCategory): string => {
-    const category = PLANT_CATEGORIES.find(c => c.id === categoryId);
+    const category = getPlantCategories().find(c => c.id === categoryId);
     return category?.name || categoryId;
   };
 
@@ -94,9 +98,9 @@ export default function ExploreScreen() {
 
   const ListHeader = () => (
     <View style={styles.header}>
-      <Text style={styles.title}>Explorar plantas</Text>
+      <Text style={styles.title}>{t('explore.title')}</Text>
       <Text style={styles.subtitle}>
-        Base de datos con {PLANT_DATABASE.length} plantas comunes
+        {t('explore.subtitle', { count: PLANT_DATABASE.length })}
       </Text>
 
       {/* Search input */}
@@ -104,7 +108,7 @@ export default function ExploreScreen() {
         <Text style={styles.searchIcon}>🔍</Text>
         <TextInput
           style={styles.searchInput}
-          placeholder="Buscar por nombre..."
+          placeholder={t('explore.searchPlaceholder')}
           placeholderTextColor={colors.textMuted}
           value={searchQuery}
           onChangeText={setSearchQuery}
@@ -124,7 +128,7 @@ export default function ExploreScreen() {
         style={styles.categoriesScroll}
         contentContainerStyle={styles.categoriesContent}
       >
-        {PLANT_CATEGORIES.map((category) => (
+        {getPlantCategories().map((category) => (
           <TouchableOpacity
             key={category.id}
             style={[
@@ -150,8 +154,8 @@ export default function ExploreScreen() {
       <View style={styles.resultsInfo}>
         <Text style={styles.resultsText}>
           {filteredPlants.length === PLANT_DATABASE.length
-            ? `${PLANT_DATABASE.length} plantas disponibles`
-            : `${filteredPlants.length} resultado${filteredPlants.length !== 1 ? 's' : ''}`}
+            ? t('explore.available', { count: PLANT_DATABASE.length })
+            : t('explore.result', { count: filteredPlants.length })}
         </Text>
       </View>
     </View>
@@ -160,9 +164,9 @@ export default function ExploreScreen() {
   const EmptyState = () => (
     <View style={styles.emptyState}>
       <Text style={styles.emptyIcon}>🔍</Text>
-      <Text style={styles.emptyTitle}>Sin resultados</Text>
+      <Text style={styles.emptyTitle}>{t('explore.noResults')}</Text>
       <Text style={styles.emptyText}>
-        No encontramos plantas con ese nombre. Proba con otro termino de busqueda.
+        {t('explore.noResultsText')}
       </Text>
     </View>
   );

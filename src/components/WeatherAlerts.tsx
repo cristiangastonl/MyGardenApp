@@ -4,7 +4,7 @@ import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { WeatherData, WeatherAlert, Plant } from '../types';
 import { isRainyWeather } from '../data/weatherCodes';
 import { generatePlantAlerts, PlantAlert, getAlertCounts } from '../utils/plantAlerts';
-import { usePremium } from '../hooks/usePremium';
+import { useTranslation } from 'react-i18next';
 
 interface WeatherAlertsProps {
   weather: WeatherData | null;
@@ -16,7 +16,7 @@ const MAX_VISIBLE_ALERTS = 5;
 /**
  * Generates generic weather alerts (not plant-specific)
  */
-function generateGenericAlerts(weather: WeatherData | null, plants: Plant[]): WeatherAlert[] {
+function generateGenericAlerts(weather: WeatherData | null, plants: Plant[], t: (key: string, options?: Record<string, unknown>) => string): WeatherAlert[] {
   if (!weather || plants.length === 0) return [];
 
   const alerts: WeatherAlert[] = [];
@@ -28,16 +28,16 @@ function generateGenericAlerts(weather: WeatherData | null, plants: Plant[]): We
     alerts.push({
       type: 'rain',
       icon: '🌧️',
-      title: 'Lluvia actual',
-      message: 'No necesitas regar hoy. La naturaleza se encarga.',
+      title: t('weatherAlerts.currentRain'),
+      message: t('weatherAlerts.currentRainMessage'),
       severity: 'info',
     });
   } else if (todayForecast && todayForecast.precipitation > 5) {
     alerts.push({
       type: 'rain',
       icon: '☔',
-      title: 'Lluvia esperada',
-      message: `Se esperan ${Math.round(todayForecast.precipitation)}mm de lluvia. Podes omitir el riego.`,
+      title: t('weatherAlerts.expectedRain'),
+      message: t('weatherAlerts.expectedRainMessage', { amount: Math.round(todayForecast.precipitation) }),
       severity: 'info',
     });
   }
@@ -46,14 +46,15 @@ function generateGenericAlerts(weather: WeatherData | null, plants: Plant[]): We
 }
 
 export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
-  const { isPremium, showPaywall } = usePremium();
+  const { t } = useTranslation();
+  // Premium imports removed — all alerts are free
   const [showAll, setShowAll] = useState(false);
 
   // Generate personalized plant alerts
   const plantAlerts = generatePlantAlerts(plants, weather);
 
   // Generate generic alerts
-  const genericAlerts = generateGenericAlerts(weather, plants);
+  const genericAlerts = generateGenericAlerts(weather, plants, t);
 
   // Combine all alerts, plant-specific first (sorted by severity)
   const allAlerts = [...plantAlerts, ...genericAlerts];
@@ -72,20 +73,20 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
       case 'danger':
         return {
           bg: colors.dangerBg,
-          border: '#e8b4b4',
+          border: colors.dangerBorder,
           text: colors.dangerText,
         };
       case 'warning':
         return {
           bg: colors.warningBg,
-          border: '#e8dbb4',
+          border: colors.warningBorder,
           text: colors.warningText,
         };
       case 'info':
       default:
         return {
           bg: colors.infoBg,
-          border: '#b4d4e8',
+          border: colors.infoBorder,
           text: colors.infoText,
         };
     }
@@ -110,7 +111,7 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Text style={styles.title}>ALERTAS PARA TUS PLANTAS</Text>
+        <Text style={styles.title}>{t('weatherAlerts.title')}</Text>
         {alertCounts.danger > 0 && (
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{alertCounts.danger}</Text>
@@ -126,9 +127,8 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
         {visibleAlerts.map((alert, index) => {
           const alertColors = getAlertStyles(alert.severity);
           const isPlant = isPlantAlert(alert);
-          const showLock = isPlant && !isPremium;
 
-          const cardContent = (
+          return (
             <View
               key={isPlant ? `${alert.plantId}-${alert.type}` : `generic-${alert.type}-${index}`}
               style={[
@@ -164,51 +164,18 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
                   )}
                 </View>
               </View>
-              {showLock ? (
-                <View style={styles.lockRow}>
-                  <Text style={styles.lockIcon}>🔒</Text>
-                  <Text
-                    style={[
-                      styles.alertMessage,
-                      useCompactMode && styles.alertMessageCompact,
-                      { color: alertColors.text, flex: 1 }
-                    ]}
-                    numberOfLines={2}
-                  >
-                    Toca para desbloquear
-                  </Text>
-                  <View style={styles.proBadge}>
-                    <Text style={styles.proBadgeText}>PRO</Text>
-                  </View>
-                </View>
-              ) : (
-                <Text
-                  style={[
-                    styles.alertMessage,
-                    useCompactMode && styles.alertMessageCompact,
-                    { color: alertColors.text }
-                  ]}
-                  numberOfLines={useCompactMode ? 2 : 3}
-                >
-                  {alert.message}
-                </Text>
-              )}
+              <Text
+                style={[
+                  styles.alertMessage,
+                  useCompactMode && styles.alertMessageCompact,
+                  { color: alertColors.text }
+                ]}
+                numberOfLines={useCompactMode ? 2 : 3}
+              >
+                {alert.message}
+              </Text>
             </View>
           );
-
-          if (showLock) {
-            return (
-              <TouchableOpacity
-                key={`${alert.plantId}-${alert.type}`}
-                onPress={() => showPaywall('weather_alert')}
-                activeOpacity={0.7}
-              >
-                {cardContent}
-              </TouchableOpacity>
-            );
-          }
-
-          return cardContent;
         })}
 
         {hasMoreAlerts && !showAll && (
@@ -218,7 +185,7 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
             activeOpacity={0.7}
           >
             <Text style={styles.viewMoreNumber}>+{hiddenCount}</Text>
-            <Text style={styles.viewMoreText}>Ver mas</Text>
+            <Text style={styles.viewMoreText}>{t('weatherAlerts.viewMore')}</Text>
           </TouchableOpacity>
         )}
 
@@ -228,7 +195,7 @@ export function WeatherAlerts({ weather, plants }: WeatherAlertsProps) {
             onPress={() => setShowAll(false)}
             activeOpacity={0.7}
           >
-            <Text style={styles.viewLessText}>Ocultar</Text>
+            <Text style={styles.viewLessText}>{t('weatherAlerts.hide')}</Text>
           </TouchableOpacity>
         )}
       </ScrollView>
@@ -356,25 +323,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 12,
     color: colors.textSecondary,
-  },
-  lockRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  lockIcon: {
-    fontSize: 12,
-  },
-  proBadge: {
-    backgroundColor: '#4A5A40',
-    paddingHorizontal: 6,
-    paddingVertical: 1,
-    borderRadius: 4,
-  },
-  proBadgeText: {
-    fontFamily: fonts.bodySemiBold,
-    fontSize: 8,
-    color: '#fff',
-    letterSpacing: 0.5,
   },
 });

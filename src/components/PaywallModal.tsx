@@ -11,38 +11,41 @@ import {
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { usePremium } from '../hooks/usePremium';
 import { paymentService, Offerings } from '../services/payments';
 
 type PlanType = 'annual' | 'lifetime';
 
-const BENEFITS = [
-  { icon: '🌿', title: 'Plantas ilimitadas', description: 'Agrega todas las que quieras', bg: '#E8F0E4' },
-  { icon: '🌦', title: 'Pronostico 3 dias', description: 'Planifica el cuidado con anticipacion', bg: '#E3EEF5' },
-  { icon: '🛡', title: 'Alertas por planta', description: 'Proteccion de helada y calor personalizada', bg: '#FDEEE8' },
-  { icon: '💡', title: 'Consejos ilimitados', description: 'Aprende algo nuevo cada dia', bg: '#FEF6E0' },
-  { icon: '📊', title: 'Salud en detalle', description: 'Desgloses completos de cuidado', bg: '#EDE8F5' },
+const BENEFIT_CONFIGS = [
+  { icon: '🌿', titleKey: 'paywall.unlimitedPlants', descKey: 'paywall.unlimitedPlantsDesc', bg: colors.premiumSageLight },
+  { icon: '🌦', titleKey: 'paywall.forecast7Days', descKey: 'paywall.forecast7DaysDesc', bg: colors.infoBg },
+  { icon: '💡', titleKey: 'paywall.unlimitedTips', descKey: 'paywall.unlimitedTipsDesc', bg: colors.warningBg },
+  { icon: '📸', titleKey: 'paywall.plantIdentification', descKey: 'paywall.plantIdentificationDesc', bg: colors.premiumSageLight },
+  { icon: '🖼', titleKey: 'paywall.photoAlbum', descKey: 'paywall.photoAlbumDesc', bg: colors.premiumLavender },
+  { icon: '📊', titleKey: 'paywall.detailedHealth', descKey: 'paywall.detailedHealthDesc', bg: colors.dangerBg },
 ] as const;
 
-// Paywall color palette
+// Paywall color aliases from theme
 const pw = {
-  cream: '#F7F4ED',
-  creamLight: '#FDFBF7',
-  bark: '#3D3229',
-  barkLight: '#6B5D52',
-  sageDark: '#4A5A40',
-  sage: '#7A8B6F',
-  sageLight: '#E8EFE4',
-  terracotta: '#C4745A',
-  gradientTop: '#F7F4ED',
-  gradientBottom: '#E8EFE4',
+  cream: colors.premiumCream,
+  creamLight: colors.premiumCreamLight,
+  bark: colors.premiumBark,
+  barkLight: colors.premiumBarkLight,
+  sageDark: colors.premiumDark,
+  sage: colors.premiumSage,
+  sageLight: colors.premiumSageLight,
+  terracotta: colors.premiumTerracotta,
+  gradientTop: colors.premiumCream,
+  gradientBottom: colors.premiumSageLight,
 };
 
 const ANIM_STAGGER = 80;
 const ANIM_DURATION = 400;
 
 export function PaywallModal() {
+  const { t } = useTranslation();
   const { isPaywallVisible, hidePaywall, isPremium } = usePremium();
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('annual');
   const [offerings, setOfferings] = useState<Offerings | null>(null);
@@ -50,12 +53,12 @@ export function PaywallModal() {
   const [error, setError] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
 
-  // Animation refs — header + 5 benefits + plans + cta + footer = 9 items
+  // Animation refs — header + 6 benefits + plans + cta + footer = 10 items
   const fadeAnims = useRef(
-    Array.from({ length: 9 }, () => new Animated.Value(0))
+    Array.from({ length: 10 }, () => new Animated.Value(0))
   ).current;
   const slideAnims = useRef(
-    Array.from({ length: 9 }, () => new Animated.Value(20))
+    Array.from({ length: 10 }, () => new Animated.Value(20))
   ).current;
 
   useEffect(() => {
@@ -105,10 +108,10 @@ export function PaywallModal() {
         ? await paymentService.purchaseAnnual()
         : await paymentService.purchaseLifetime();
       if (!success) {
-        setError('No se pudo completar la compra. Intenta de nuevo.');
+        setError(t('paywall.purchaseError'));
       }
     } catch {
-      setError('Ocurrio un error. Intenta de nuevo.');
+      setError(t('paywall.genericError'));
     } finally {
       setLoading(false);
     }
@@ -120,10 +123,10 @@ export function PaywallModal() {
     try {
       const found = await paymentService.restorePurchases();
       if (!found) {
-        setError('No se encontraron compras previas.');
+        setError(t('paywall.noPurchasesFound'));
       }
     } catch {
-      setError('Error al restaurar compras.');
+      setError(t('paywall.restoreError'));
     } finally {
       setRestoring(false);
     }
@@ -133,10 +136,10 @@ export function PaywallModal() {
   const lifetimePrice = offerings?.lifetime.priceString ?? '$69.99';
 
   const ctaText = loading
-    ? 'Procesando...'
+    ? t('paywall.processing')
     : selectedPlan === 'annual'
-    ? 'Empezar mi prueba gratuita'
-    : 'Desbloquear para siempre';
+    ? t('paywall.startFreeTrial')
+    : t('paywall.unlockForever');
 
   const animatedStyle = (index: number) => ({
     opacity: fadeAnims[index],
@@ -191,40 +194,40 @@ export function PaywallModal() {
               </View>
 
               <Text style={styles.headline}>
-                Tu jardin merece{'\n'}lo mejor
+                {t('paywall.headline')}
               </Text>
               <Text style={styles.subtitle}>
-                Desbloquea todas las herramientas para cuidar tus plantas como un experto
+                {t('paywall.subtitle')}
               </Text>
 
               {/* Social proof */}
               <View style={styles.socialProof}>
                 <Text style={styles.socialProofStars}>★★★★★</Text>
                 <Text style={styles.socialProofText}>
-                  Miles de jardineros ya usan Premium
+                  {t('paywall.socialProof')}
                 </Text>
               </View>
             </Animated.View>
 
             {/* Benefits list */}
-            {BENEFITS.map((benefit, i) => (
+            {BENEFIT_CONFIGS.map((benefit, i) => (
               <Animated.View
-                key={benefit.title}
+                key={benefit.titleKey}
                 style={[styles.benefitRow, animatedStyle(i + 1)]}
               >
                 <View style={[styles.benefitIconContainer, { backgroundColor: benefit.bg }]}>
                   <Text style={styles.benefitIcon}>{benefit.icon}</Text>
                 </View>
                 <View style={styles.benefitText}>
-                  <Text style={styles.benefitTitle}>{benefit.title}</Text>
-                  <Text style={styles.benefitDescription}>{benefit.description}</Text>
+                  <Text style={styles.benefitTitle}>{t(benefit.titleKey)}</Text>
+                  <Text style={styles.benefitDescription}>{t(benefit.descKey)}</Text>
                 </View>
                 <Text style={styles.benefitCheck}>✓</Text>
               </Animated.View>
             ))}
 
             {/* Plan selector */}
-            <Animated.View style={[styles.plansContainer, animatedStyle(6)]}>
+            <Animated.View style={[styles.plansContainer, animatedStyle(7)]}>
               {/* Annual plan */}
               <TouchableOpacity
                 style={[
@@ -236,10 +239,10 @@ export function PaywallModal() {
               >
                 {/* Recommended ribbon */}
                 <View style={styles.planRecommended}>
-                  <Text style={styles.planRecommendedText}>RECOMENDADO</Text>
+                  <Text style={styles.planRecommendedText}>{t('paywall.recommended')}</Text>
                 </View>
                 <View style={styles.planBadge}>
-                  <Text style={styles.planBadgeText}>7 DIAS GRATIS</Text>
+                  <Text style={styles.planBadgeText}>{t('paywall.freeTrial')}</Text>
                 </View>
                 <Text style={[
                   styles.planPrice,
@@ -251,10 +254,10 @@ export function PaywallModal() {
                   styles.planPeriod,
                   selectedPlan === 'annual' && styles.planPeriodSelected,
                 ]}>
-                  por año
+                  {t('paywall.perYear')}
                 </Text>
                 <View style={styles.planSavings}>
-                  <Text style={styles.planSavingsText}>AHORRA 57%</Text>
+                  <Text style={styles.planSavingsText}>{t('paywall.save57')}</Text>
                 </View>
                 {/* Radio indicator */}
                 <View style={[
@@ -278,7 +281,7 @@ export function PaywallModal() {
                   <Text style={styles.planRecommendedText}> </Text>
                 </View>
                 <View style={[styles.planBadge, styles.planBadgeLifetime]}>
-                  <Text style={styles.planBadgeText}>PARA SIEMPRE</Text>
+                  <Text style={styles.planBadgeText}>{t('paywall.forever')}</Text>
                 </View>
                 <Text style={[
                   styles.planPrice,
@@ -290,7 +293,7 @@ export function PaywallModal() {
                   styles.planPeriod,
                   selectedPlan === 'lifetime' && styles.planPeriodSelected,
                 ]}>
-                  pago unico
+                  {t('paywall.oneTime')}
                 </Text>
                 <View style={styles.planSavingsHidden}>
                   <Text style={styles.planSavingsText}> </Text>
@@ -306,7 +309,7 @@ export function PaywallModal() {
             </Animated.View>
 
             {/* CTA button */}
-            <Animated.View style={animatedStyle(7)}>
+            <Animated.View style={animatedStyle(8)}>
               <TouchableOpacity
                 style={[styles.ctaButton, loading && styles.ctaButtonDisabled]}
                 onPress={handlePurchase}
@@ -322,7 +325,7 @@ export function PaywallModal() {
                   <>
                     <Text style={styles.ctaText}>{ctaText}</Text>
                     <Text style={styles.ctaSubtext}>
-                      {selectedPlan === 'annual' ? 'Sin cargo por 7 dias' : 'Un solo pago, acceso eterno'}
+                      {selectedPlan === 'annual' ? t('paywall.noCharge7Days') : t('paywall.oneTimeAccess')}
                     </Text>
                   </>
                 )}
@@ -333,7 +336,7 @@ export function PaywallModal() {
             {error && <Text style={styles.errorText}>{error}</Text>}
 
             {/* Footer: restore + fine print */}
-            <Animated.View style={[styles.footer, animatedStyle(8)]}>
+            <Animated.View style={[styles.footer, animatedStyle(9)]}>
               <TouchableOpacity
                 style={styles.restoreButton}
                 onPress={handleRestore}
@@ -342,14 +345,14 @@ export function PaywallModal() {
                 {restoring ? (
                   <ActivityIndicator color={pw.sage} size="small" />
                 ) : (
-                  <Text style={styles.restoreText}>Restaurar compras</Text>
+                  <Text style={styles.restoreText}>{t('paywall.restorePurchases')}</Text>
                 )}
               </TouchableOpacity>
 
               <Text style={styles.finePrint}>
                 {selectedPlan === 'annual'
-                  ? 'Cancela cuando quieras durante la prueba gratuita. No se cobra hasta que terminen los 7 dias.'
-                  : 'Pago unico. Acceso premium de por vida sin renovaciones.'}
+                  ? t('paywall.finePrintAnnual')
+                  : t('paywall.finePrintLifetime')}
               </Text>
             </Animated.View>
           </ScrollView>
@@ -364,7 +367,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(45, 58, 46, 0.55)',
+    backgroundColor: `${colors.textPrimary}8C`,
     justifyContent: 'flex-end',
   },
   container: {
@@ -475,7 +478,7 @@ const styles = StyleSheet.create({
   },
   socialProofStars: {
     fontSize: 12,
-    color: '#E8A820',
+    color: colors.sunDark,
     marginRight: spacing.xs,
   },
   socialProofText: {
@@ -603,7 +606,7 @@ const styles = StyleSheet.create({
     color: pw.sageDark,
   },
   planSavings: {
-    backgroundColor: '#FEF6E0',
+    backgroundColor: colors.warningBg,
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: borderRadius.sm,
@@ -618,7 +621,7 @@ const styles = StyleSheet.create({
   planSavingsText: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 10,
-    color: '#B8940F',
+    color: colors.sunDark,
     letterSpacing: 0.3,
   },
   radioOuter: {
@@ -666,7 +669,7 @@ const styles = StyleSheet.create({
   ctaSubtext: {
     fontFamily: fonts.body,
     fontSize: 12,
-    color: 'rgba(255,255,255,0.7)',
+    color: colors.whiteSubdued,
     marginTop: 2,
   },
   errorText: {
@@ -685,6 +688,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
     marginBottom: spacing.md,
+    minHeight: 44,
+    justifyContent: 'center',
   },
   restoreText: {
     fontFamily: fonts.bodyMedium,

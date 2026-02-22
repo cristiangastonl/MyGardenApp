@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,6 +18,7 @@ import {
   DMSans_700Bold,
 } from '@expo-google-fonts/dm-sans';
 
+import './src/i18n';
 import { colors } from './src/theme';
 import { useStorage, StorageProvider } from './src/hooks/useStorage';
 import { PremiumProvider } from './src/hooks/usePremium';
@@ -35,6 +37,7 @@ import SettingsScreen from './src/screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 function MainTabs() {
+  const { t } = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -57,31 +60,31 @@ function MainTabs() {
       <Tab.Screen
         name="Hoy"
         component={TodayScreen}
-        options={{ tabBarLabel: 'Hoy', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🌱</Text> }}
+        options={{ tabBarLabel: t('tabs.today'), tabBarIcon: ({ focused }) => <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>🌱</Text> }}
       />
       {Features.CALENDAR_TAB && (
         <Tab.Screen
           name="Calendario"
           component={CalendarScreen}
-          options={{ tabBarLabel: 'Calendario', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>📅</Text> }}
+          options={{ tabBarLabel: t('tabs.calendar'), tabBarIcon: ({ focused }) => <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>📅</Text> }}
         />
       )}
       <Tab.Screen
         name="Plantas"
         component={PlantsScreen}
-        options={{ tabBarLabel: 'Plantas', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🪴</Text> }}
+        options={{ tabBarLabel: t('tabs.plants'), tabBarIcon: ({ focused }) => <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>🪴</Text> }}
       />
       {Features.EXPLORE_TAB && (
         <Tab.Screen
           name="Explorar"
           component={ExploreScreen}
-          options={{ tabBarLabel: 'Explorar', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔍</Text> }}
+          options={{ tabBarLabel: t('tabs.explore'), tabBarIcon: ({ focused }) => <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>🔍</Text> }}
         />
       )}
       <Tab.Screen
         name="Ajustes"
         component={SettingsScreen}
-        options={{ tabBarLabel: 'Ajustes', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>⚙️</Text> }}
+        options={{ tabBarLabel: t('tabs.settings'), tabBarIcon: ({ focused }) => <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>⚙️</Text> }}
       />
     </Tab.Navigator>
   );

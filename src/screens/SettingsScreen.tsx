@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -11,6 +12,7 @@ import { useNotifications } from '../hooks/useNotifications';
 import { generatePlantAlerts } from '../utils/plantAlerts';
 import { Location } from '../types';
 import { Features } from '../config/features';
+import i18n, { setLanguage } from '../i18n';
 
 interface GeocodingResult {
   id: number;
@@ -30,6 +32,7 @@ const TIME_OPTIONS = [
 ];
 
 export default function SettingsScreen() {
+  const { t } = useTranslation();
   const {
     plants,
     location,
@@ -75,7 +78,7 @@ export default function SettingsScreen() {
     try {
       const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permiso denegado', 'Necesitamos acceso a tu ubicacion para mostrar el clima local.');
+        Alert.alert(t('settings.permissionDenied'), t('settings.permissionDeniedMessage'));
         setIsDetecting(false);
         return;
       }
@@ -86,14 +89,14 @@ export default function SettingsScreen() {
       const newLocation: Location = {
         lat: latitude,
         lon: longitude,
-        name: place?.city || place?.subregion || 'Tu ubicacion',
+        name: place?.city || place?.subregion || 'Tu ubicación',
         country: place?.country || '',
         admin1: place?.region || undefined,
       };
       updateLocation(newLocation);
       setShowSearch(false);
     } catch {
-      Alert.alert('Error', 'No se pudo detectar tu ubicacion. Intenta buscar tu ciudad manualmente.');
+      Alert.alert(t('settings.error'), t('settings.locationError'));
     } finally {
       setIsDetecting(false);
     }
@@ -103,7 +106,7 @@ export default function SettingsScreen() {
     if (query.length < 2) { setSearchResults([]); return; }
     setIsSearching(true);
     try {
-      const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=es`);
+      const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=${i18n.language}`);
       const data = await response.json();
       setSearchResults(data.results || []);
     } catch { setSearchResults([]); }
@@ -120,7 +123,7 @@ export default function SettingsScreen() {
   const handleNotificationToggle = async (enabled: boolean) => {
     if (enabled) {
       const granted = await enableNotifications();
-      if (!granted) Alert.alert('Permisos necesarios', 'Para recibir notificaciones, necesitas permitir el acceso en la configuracion de tu dispositivo.');
+      if (!granted) Alert.alert(t('settings.permissionsNeeded'), t('settings.permissionsNeededMessage'));
     } else {
       await disableNotifications();
     }
@@ -128,9 +131,9 @@ export default function SettingsScreen() {
 
   const getPermissionStatusText = (): string => {
     switch (permissionStatus) {
-      case 'granted': return 'Permitidas';
-      case 'denied': return 'Bloqueadas';
-      default: return 'No configuradas';
+      case 'granted': return t('settings.granted');
+      case 'denied': return t('settings.denied');
+      default: return t('settings.notConfigured');
     }
   };
 
@@ -145,14 +148,14 @@ export default function SettingsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Configuracion</Text>
+        <Text style={styles.title}>{t('settings.title')}</Text>
       </View>
 
       <ScrollView style={styles.scrollContent} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         {/* Location Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Ubicacion</Text>
-          <Text style={styles.sectionDescription}>Tu ubicacion se usa para mostrar el clima y alertas relevantes para tus plantas.</Text>
+          <Text style={styles.sectionTitle}>{t('settings.location')}</Text>
+          <Text style={styles.sectionDescription}>{t('settings.locationDescription')}</Text>
 
           {location && !showSearch ? (
             <View style={styles.locationCard}>
@@ -164,7 +167,7 @@ export default function SettingsScreen() {
                 </View>
               </View>
               <TouchableOpacity style={styles.changeButton} onPress={() => setShowSearch(true)}>
-                <Text style={styles.changeButtonText}>Cambiar</Text>
+                <Text style={styles.changeButtonText}>{t('settings.change')}</Text>
               </TouchableOpacity>
             </View>
           ) : (
@@ -175,14 +178,14 @@ export default function SettingsScreen() {
                 ) : (
                   <>
                     <Text style={styles.detectButtonIcon}>📍</Text>
-                    <Text style={styles.detectButtonText}>Detectar ubicacion</Text>
+                    <Text style={styles.detectButtonText}>{t('settings.detectLocation')}</Text>
                   </>
                 )}
               </TouchableOpacity>
 
               <View style={styles.divider}>
                 <View style={styles.dividerLine} />
-                <Text style={styles.dividerText}>o buscar ciudad</Text>
+                <Text style={styles.dividerText}>{t('settings.orSearchCity')}</Text>
                 <View style={styles.dividerLine} />
               </View>
 
@@ -191,7 +194,7 @@ export default function SettingsScreen() {
                   style={styles.searchInput}
                   value={searchQuery}
                   onChangeText={(text) => { setSearchQuery(text); searchCities(text); }}
-                  placeholder="Buscar ciudad..."
+                  placeholder={t('settings.searchCity')}
                   placeholderTextColor={colors.textMuted}
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -211,12 +214,12 @@ export default function SettingsScreen() {
               )}
 
               {searchQuery.length >= 2 && !isSearching && searchResults.length === 0 && (
-                <Text style={styles.noResults}>No se encontraron resultados</Text>
+                <Text style={styles.noResults}>{t('settings.noResults')}</Text>
               )}
 
               {location && showSearch && (
                 <TouchableOpacity style={styles.cancelSearchButton} onPress={() => setShowSearch(false)}>
-                  <Text style={styles.cancelSearchText}>Cancelar</Text>
+                  <Text style={styles.cancelSearchText}>{t('settings.cancel')}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -225,11 +228,11 @@ export default function SettingsScreen() {
 
         {/* Notifications Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Notificaciones</Text>
-          <Text style={styles.sectionDescription}>Recibe recordatorios para cuidar tus plantas y alertas de clima.</Text>
+          <Text style={styles.sectionTitle}>{t('settings.notifications')}</Text>
+          <Text style={styles.sectionDescription}>{t('settings.notificationsDescription')}</Text>
 
           <View style={styles.permissionRow}>
-            <Text style={styles.permissionLabel}>Estado:</Text>
+            <Text style={styles.permissionLabel}>{t('settings.status')}</Text>
             <Text style={[styles.permissionStatus, { color: getPermissionStatusColor() }]}>{getPermissionStatusText()}</Text>
           </View>
 
@@ -237,8 +240,8 @@ export default function SettingsScreen() {
             <View style={styles.settingInfo}>
               <Text style={styles.settingIcon}>🔔</Text>
               <View style={styles.settingText}>
-                <Text style={styles.settingTitle}>Activar notificaciones</Text>
-                <Text style={styles.settingSubtitle}>{scheduledCounts.total > 0 ? `${scheduledCounts.total} programadas` : 'Ninguna programada'}</Text>
+                <Text style={styles.settingTitle}>{t('settings.enableNotifications')}</Text>
+                <Text style={styles.settingSubtitle}>{scheduledCounts.total > 0 ? t('settings.scheduled', { count: scheduledCounts.total }) : t('settings.noneScheduled')}</Text>
               </View>
             </View>
             {isRequesting ? (
@@ -259,8 +262,8 @@ export default function SettingsScreen() {
                 <View style={styles.settingInfo}>
                   <Text style={styles.settingIcon}>🌅</Text>
                   <View style={styles.settingText}>
-                    <Text style={styles.settingTitle}>Resumen matutino</Text>
-                    <Text style={styles.settingSubtitle}>Tareas del dia cada manana</Text>
+                    <Text style={styles.settingTitle}>{t('settings.morningSummary')}</Text>
+                    <Text style={styles.settingSubtitle}>{t('settings.dailyTasks')}</Text>
                   </View>
                 </View>
                 <Switch
@@ -273,7 +276,7 @@ export default function SettingsScreen() {
 
               {notifSettings.morningReminder && (
                 <View style={styles.timeSelector}>
-                  <Text style={styles.timeSelectorLabel}>Hora del recordatorio:</Text>
+                  <Text style={styles.timeSelectorLabel}>{t('settings.reminderTime')}</Text>
                   <View style={styles.timeOptions}>
                     {TIME_OPTIONS.map((option) => (
                       <TouchableOpacity
@@ -292,8 +295,8 @@ export default function SettingsScreen() {
                 <View style={styles.settingInfo}>
                   <Text style={styles.settingIcon}>⚠️</Text>
                   <View style={styles.settingText}>
-                    <Text style={styles.settingTitle}>Alertas de clima</Text>
-                    <Text style={styles.settingSubtitle}>Heladas, calor extremo, etc.</Text>
+                    <Text style={styles.settingTitle}>{t('settings.weatherAlerts')}</Text>
+                    <Text style={styles.settingSubtitle}>{t('settings.weatherAlertsSubtitle')}</Text>
                   </View>
                 </View>
                 <Switch
@@ -308,8 +311,8 @@ export default function SettingsScreen() {
                 <View style={styles.settingInfo}>
                   <Text style={styles.settingIcon}>💧</Text>
                   <View style={styles.settingText}>
-                    <Text style={styles.settingTitle}>Recordatorios de cuidado</Text>
-                    <Text style={styles.settingSubtitle}>Cuando se atrasa el riego</Text>
+                    <Text style={styles.settingTitle}>{t('settings.careReminders')}</Text>
+                    <Text style={styles.settingSubtitle}>{t('settings.careRemindersSubtitle')}</Text>
                   </View>
                 </View>
                 <Switch
@@ -320,15 +323,18 @@ export default function SettingsScreen() {
                 />
               </View>
 
-              <TouchableOpacity style={styles.testButton} onPress={async () => { await sendTest(); Alert.alert('Listo!', 'Se envio una notificacion de prueba.'); }}>
-                <Text style={styles.testButtonText}>Enviar notificacion de prueba</Text>
+              <TouchableOpacity style={styles.testButton} onPress={async () => { await sendTest(); Alert.alert(t('settings.testSent'), t('settings.testSentMessage')); }}>
+                <Text style={styles.testButtonText}>{t('settings.sendTest')}</Text>
               </TouchableOpacity>
             </>
           )}
 
           {permissionStatus === 'denied' && (
             <View style={styles.warningBox}>
-              <Text style={styles.warningText}>Las notificaciones estan bloqueadas. Para activarlas, ve a Configuracion {'>'} Mi Jardin {'>'} Notificaciones en tu dispositivo.</Text>
+              <Text style={styles.warningText}>{t('settings.notificationsBlocked')}</Text>
+              <TouchableOpacity style={styles.openSettingsButton} onPress={() => Linking.openSettings()}>
+                <Text style={styles.openSettingsText}>{t('settings.openSettings')}</Text>
+              </TouchableOpacity>
             </View>
           )}
         </View>
@@ -336,8 +342,8 @@ export default function SettingsScreen() {
         {/* PlantNet API Section — only show when PLANT_IDENTIFICATION is enabled */}
         {Features.PLANT_IDENTIFICATION && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Identificacion de plantas</Text>
-            <Text style={styles.sectionDescription}>Configura tu API key de PlantNet para identificar plantas con fotos. Obtene una gratis en my.plantnet.org</Text>
+            <Text style={styles.sectionTitle}>{t('settings.plantId')}</Text>
+            <Text style={styles.sectionDescription}>{t('settings.plantIdDescription')}</Text>
 
             <View style={styles.apiKeyContainer}>
               <View style={styles.apiKeyInputContainer}>
@@ -345,7 +351,7 @@ export default function SettingsScreen() {
                   style={styles.apiKeyInput}
                   value={apiKeyInput}
                   onChangeText={setApiKeyInput}
-                  placeholder="Pegar API key aqui..."
+                  placeholder={t('settings.pasteApiKey')}
                   placeholderTextColor={colors.textMuted}
                   secureTextEntry={!showApiKey}
                   autoCapitalize="none"
@@ -358,13 +364,13 @@ export default function SettingsScreen() {
 
               <View style={styles.apiKeyActions}>
                 {apiKeyInput !== (plantNetApiKey || '') && (
-                  <TouchableOpacity style={styles.saveApiKeyButton} onPress={() => { updatePlantNetApiKey(apiKeyInput || null); Alert.alert('Guardado', 'API key guardada correctamente.'); }}>
-                    <Text style={styles.saveApiKeyText}>Guardar</Text>
+                  <TouchableOpacity style={styles.saveApiKeyButton} onPress={() => { updatePlantNetApiKey(apiKeyInput || null); Alert.alert(t('settings.saved'), t('settings.savedMessage')); }}>
+                    <Text style={styles.saveApiKeyText}>{t('settings.save')}</Text>
                   </TouchableOpacity>
                 )}
                 {plantNetApiKey && (
                   <TouchableOpacity style={styles.clearApiKeyButton} onPress={() => { setApiKeyInput(''); updatePlantNetApiKey(null); }}>
-                    <Text style={styles.clearApiKeyText}>Borrar</Text>
+                    <Text style={styles.clearApiKeyText}>{t('settings.delete')}</Text>
                   </TouchableOpacity>
                 )}
               </View>
@@ -372,15 +378,43 @@ export default function SettingsScreen() {
           </View>
         )}
 
+        {/* Language Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
+          <Text style={styles.sectionDescription}>{t('settings.languageDescription')}</Text>
+
+          <TouchableOpacity
+            style={[styles.settingRow, i18n.language === 'es' && { borderWidth: 2, borderColor: colors.green }]}
+            onPress={() => setLanguage('es')}
+          >
+            <View style={styles.settingInfo}>
+              <Text style={styles.settingIcon}>🇪🇸</Text>
+              <Text style={styles.settingTitle}>{t('settings.spanish')}</Text>
+            </View>
+            {i18n.language === 'es' && <Text style={{ color: colors.green, fontFamily: fonts.bodySemiBold }}>✓</Text>}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.settingRow, i18n.language === 'en' && { borderWidth: 2, borderColor: colors.green }]}
+            onPress={() => setLanguage('en')}
+          >
+            <View style={styles.settingInfo}>
+              <Text style={styles.settingIcon}>🇺🇸</Text>
+              <Text style={styles.settingTitle}>{t('settings.english')}</Text>
+            </View>
+            {i18n.language === 'en' && <Text style={{ color: colors.green, fontFamily: fonts.bodySemiBold }}>✓</Text>}
+          </TouchableOpacity>
+        </View>
+
         {/* Premium Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Premium</Text>
+          <Text style={styles.sectionTitle}>{t('settings.premium')}</Text>
           {isPremium ? (
             <>
               <View style={styles.premiumActiveCard}>
                 <View style={styles.premiumActiveRow}>
                   <Text style={styles.premiumActiveIcon}>✓</Text>
-                  <Text style={styles.premiumActiveText}>Premium activo</Text>
+                  <Text style={styles.premiumActiveText}>{t('settings.premiumActive')}</Text>
                 </View>
               </View>
               <TouchableOpacity
@@ -392,7 +426,7 @@ export default function SettingsScreen() {
                   Linking.openURL(url);
                 }}
               >
-                <Text style={styles.manageSubText}>Gestionar suscripcion</Text>
+                <Text style={styles.manageSubText}>{t('settings.manageSubscription')}</Text>
               </TouchableOpacity>
             </>
           ) : (
@@ -402,7 +436,7 @@ export default function SettingsScreen() {
               activeOpacity={0.8}
             >
               <LinearGradient
-                colors={['#4A5A40', '#5B6E4E']}
+                colors={[colors.premiumDark, colors.premiumLight]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={styles.upgradeGradient}
@@ -411,8 +445,8 @@ export default function SettingsScreen() {
                   <Text style={styles.upgradeIcon}>🌱</Text>
                 </View>
                 <View style={styles.upgradeTextContainer}>
-                  <Text style={styles.upgradeTitle}>Pasate a Premium</Text>
-                  <Text style={styles.upgradeSubtitle}>Plantas ilimitadas, alertas, consejos y mas</Text>
+                  <Text style={styles.upgradeTitle}>{t('settings.upgradeToPremium')}</Text>
+                  <Text style={styles.upgradeSubtitle}>{t('settings.upgradeSubtitle')}</Text>
                 </View>
                 <View style={styles.upgradeArrowCircle}>
                   <Text style={styles.upgradeArrow}>→</Text>
@@ -425,15 +459,15 @@ export default function SettingsScreen() {
         {/* Dev tools — only in development */}
         {__DEV__ && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Herramientas de desarrollo</Text>
-            <Text style={styles.sectionDescription}>Solo visibles en modo desarrollo.</Text>
+            <Text style={styles.sectionTitle}>{t('settings.devTools')}</Text>
+            <Text style={styles.sectionDescription}>{t('settings.devToolsDescription')}</Text>
 
             <View style={styles.settingRow}>
               <View style={styles.settingInfo}>
                 <Text style={styles.settingIcon}>🔧</Text>
                 <View style={styles.settingText}>
-                  <Text style={styles.settingTitle}>Toggle Premium</Text>
-                  <Text style={styles.settingSubtitle}>{isPremium ? 'Activo' : 'Inactivo'}</Text>
+                  <Text style={styles.settingTitle}>{t('settings.togglePremium')}</Text>
+                  <Text style={styles.settingSubtitle}>{isPremium ? t('settings.active') : t('settings.inactive')}</Text>
                 </View>
               </View>
               <Switch
@@ -448,7 +482,7 @@ export default function SettingsScreen() {
               style={styles.devButton}
               onPress={() => showPaywall('dev_test')}
             >
-              <Text style={styles.devButtonText}>Mostrar Paywall</Text>
+              <Text style={styles.devButtonText}>{t('settings.showPaywall')}</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -735,6 +769,21 @@ const styles = StyleSheet.create({
     color: colors.warningText,
     textAlign: 'center',
   },
+  openSettingsButton: {
+    marginTop: spacing.sm,
+    alignSelf: 'center',
+    backgroundColor: colors.warningText,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.md,
+    minHeight: 44,
+    justifyContent: 'center',
+  },
+  openSettingsText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.white,
+  },
   apiKeyContainer: {
     marginBottom: spacing.md,
   },
@@ -786,11 +835,11 @@ const styles = StyleSheet.create({
     color: colors.dangerText,
   },
   premiumActiveCard: {
-    backgroundColor: '#f0f7f0',
+    backgroundColor: colors.successBg,
     padding: spacing.md,
     borderRadius: borderRadius.lg,
     borderWidth: 1,
-    borderColor: '#d4e8d4',
+    borderColor: colors.successBorder,
     marginBottom: spacing.sm,
   },
   premiumActiveRow: {
@@ -831,7 +880,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: colors.whiteOverlay,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: spacing.md,
@@ -850,14 +899,14 @@ const styles = StyleSheet.create({
   upgradeSubtitle: {
     fontFamily: fonts.body,
     fontSize: 13,
-    color: 'rgba(255,255,255,0.75)',
+    color: colors.whiteSubdued,
     marginTop: 2,
   },
   upgradeArrowCircle: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: colors.whiteOverlay,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: spacing.sm,

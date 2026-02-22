@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { WeatherData, Location } from '../types';
+import { useTranslation } from 'react-i18next';
 import { getWeatherInfo } from '../data/weatherCodes';
-import { DAYS_ES } from '../data/constants';
+import { getDaysShort } from '../data/constants';
+import { usePremium } from '../hooks/usePremium';
 
 interface WeatherWidgetProps {
   weather: WeatherData | null;
@@ -27,6 +29,9 @@ export function WeatherWidget({
   error,
   onOpenSettings,
 }: WeatherWidgetProps) {
+  const { t } = useTranslation();
+  const { isPremium } = usePremium();
+
   // No location configured - show setup banner
   if (!location) {
     return (
@@ -39,9 +44,9 @@ export function WeatherWidget({
           <Text style={styles.setupIcon}>📍</Text>
         </View>
         <View style={styles.setupTextContainer}>
-          <Text style={styles.setupTitle}>Configura tu ubicacion</Text>
+          <Text style={styles.setupTitle}>{t('weatherWidget.configureLocation')}</Text>
           <Text style={styles.setupSubtitle}>
-            Para ver el clima y alertas personalizadas
+            {t('weatherWidget.forWeatherAlerts')}
           </Text>
         </View>
         <Text style={styles.setupArrow}>→</Text>
@@ -55,7 +60,7 @@ export function WeatherWidget({
       <View style={styles.container}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="small" color={colors.green} />
-          <Text style={styles.loadingText}>Cargando clima...</Text>
+          <Text style={styles.loadingText}>{t('weatherWidget.loadingWeather')}</Text>
         </View>
       </View>
     );
@@ -68,10 +73,10 @@ export function WeatherWidget({
         <View style={styles.errorContainer}>
           <Text style={styles.errorIcon}>⚠️</Text>
           <Text style={styles.errorText}>
-            {error || 'No se pudo cargar el clima'}
+            {error || t('weatherWidget.errorLoading')}
           </Text>
           <TouchableOpacity onPress={onOpenSettings} style={styles.retryButton}>
-            <Text style={styles.retryText}>Reintentar</Text>
+            <Text style={styles.retryText}>{t('weatherWidget.retry')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -79,7 +84,7 @@ export function WeatherWidget({
   }
 
   const currentWeather = getWeatherInfo(weather.current.weatherCode);
-  const forecastDays = weather.daily.slice(0, 5);
+  const forecastDays = weather.daily.slice(0, isPremium ? 7 : 2);
 
   return (
     <View style={styles.container}>
@@ -125,7 +130,7 @@ export function WeatherWidget({
 
       {/* 5-Day Forecast */}
       <View style={styles.forecastSection}>
-        <Text style={styles.forecastTitle}>PROXIMOS DIAS</Text>
+        <Text style={styles.forecastTitle}>{t('weatherWidget.nextDays')}</Text>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -134,7 +139,7 @@ export function WeatherWidget({
           {forecastDays.map((day, index) => {
             const dayWeather = getWeatherInfo(day.weatherCode);
             const date = new Date(day.date);
-            const dayName = index === 0 ? 'Hoy' : DAYS_ES[date.getDay()];
+            const dayName = index === 0 ? t('weatherWidget.todayLabel') : getDaysShort()[date.getDay()];
 
             return (
               <View key={day.date} style={styles.forecastDay}>
@@ -251,6 +256,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     backgroundColor: colors.bgSecondary,
     borderRadius: borderRadius.md,
+    minHeight: 44,
+    justifyContent: 'center',
   },
   retryText: {
     fontFamily: fonts.bodyMedium,
@@ -309,10 +316,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    paddingVertical: spacing.xs,
+    paddingVertical: spacing.sm,
     paddingHorizontal: spacing.sm,
     backgroundColor: colors.bgSecondary,
     borderRadius: borderRadius.full,
+    minHeight: 36,
   },
   locationIcon: {
     fontSize: 12,

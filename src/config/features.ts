@@ -12,8 +12,8 @@ export const Features = {
   CLOUD_SYNC: false,
   CALENDAR_TAB: false,
   EXPLORE_TAB: false,
-  PLANT_IDENTIFICATION: false,
-  PHOTO_UPLOAD: false,
+  PLANT_IDENTIFICATION: true,
+  PHOTO_UPLOAD: true,
   FULL_CATALOG: false,
   NOTIFICATIONS_ADVANCED: false,
 

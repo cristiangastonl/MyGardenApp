@@ -9,6 +9,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Plant, PlantHealthStatus, HealthIssueSeverity } from '../types';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import {
@@ -17,6 +18,7 @@ import {
   getHealthMessage,
 } from '../utils/plantHealth';
 import { formatDate } from '../utils/dates';
+import { getDaysShort } from '../data/constants';
 import { ProgressBar } from './ProgressBar';
 
 interface PlantHealthDetailProps {
@@ -32,6 +34,7 @@ export function PlantHealthDetail({
   plant,
   healthStatus,
 }: PlantHealthDetailProps) {
+  const { t } = useTranslation();
   const healthColor = getHealthColor(healthStatus.level);
   const healthBgColor = getHealthBgColor(healthStatus.level);
   const healthMessage = getHealthMessage(healthStatus.level);
@@ -50,24 +53,24 @@ export function PlantHealthDetail({
   const getSeverityLabel = (severity: HealthIssueSeverity): string => {
     switch (severity) {
       case 'high':
-        return 'Urgente';
+        return t('health.urgent');
       case 'medium':
-        return 'Importante';
+        return t('health.important');
       case 'low':
-        return 'Sugerencia';
+        return t('health.suggestion');
     }
   };
 
   const getSuggestion = (issueType: string): string => {
     switch (issueType) {
       case 'overdue_water':
-        return 'Rega la planta lo antes posible. Asegurate de mojar bien toda la tierra.';
+        return t('health.overdueWaterSuggestion');
       case 'overdue_sun':
-        return 'Coloca la planta en un lugar con luz natural durante las horas recomendadas.';
+        return t('health.overdueSunSuggestion');
       case 'no_care':
-        return 'Registra cuando riegas o cuidas la planta para hacer un seguimiento.';
+        return t('health.noCareSuggestion');
       case 'extreme_weather':
-        return 'Presta atencion a las condiciones climaticas y protege tus plantas.';
+        return t('health.extremeWeatherSuggestion');
       default:
         return '';
     }
@@ -100,7 +103,7 @@ export function PlantHealthDetail({
             {/* Health Score Bar */}
             <View style={styles.scoreSection}>
               <View style={styles.scoreHeader}>
-                <Text style={styles.scoreLabel}>SALUD</Text>
+                <Text style={styles.scoreLabel}>{t('health.healthLabel')}</Text>
                 <Text style={[styles.scoreValue, { color: healthColor }]}>
                   {healthStatus.score}/100
                 </Text>
@@ -118,7 +121,7 @@ export function PlantHealthDetail({
             {/* Issues List */}
             {healthStatus.issues.length > 0 ? (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>PROBLEMAS DETECTADOS</Text>
+                <Text style={styles.sectionTitle}>{t('health.detectedProblems')}</Text>
                 {healthStatus.issues.map((issue, index) => (
                   <View key={index} style={styles.issueCard}>
                     <View style={styles.issueHeader}>
@@ -139,7 +142,7 @@ export function PlantHealthDetail({
                       </View>
                       {issue.daysSince !== undefined && (
                         <Text style={styles.daysSince}>
-                          Hace {issue.daysSince} {issue.daysSince === 1 ? 'dia' : 'dias'}
+                          {t('health.daysAgo', { count: issue.daysSince })}
                         </Text>
                       )}
                     </View>
@@ -153,25 +156,25 @@ export function PlantHealthDetail({
             ) : (
               <View style={styles.noIssuesSection}>
                 <Text style={styles.noIssuesIcon}>🌿</Text>
-                <Text style={styles.noIssuesTitle}>Tu planta esta sana</Text>
+                <Text style={styles.noIssuesTitle}>{t('health.plantHealthy')}</Text>
                 <Text style={styles.noIssuesText}>
-                  No hay problemas detectados. Segui cuidandola asi!
+                  {t('health.keepItUp')}
                 </Text>
               </View>
             )}
 
             {/* Care History */}
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>HISTORIAL RECIENTE</Text>
+              <Text style={styles.sectionTitle}>{t('health.recentHistory')}</Text>
               <View style={styles.historyCard}>
                 <View style={styles.historyItem}>
                   <Text style={styles.historyIcon}>💧</Text>
                   <View style={styles.historyInfo}>
-                    <Text style={styles.historyLabel}>Ultimo riego</Text>
+                    <Text style={styles.historyLabel}>{t('health.lastWatering')}</Text>
                     <Text style={styles.historyValue}>
                       {plant.lastWatered
-                        ? formatDateFriendly(plant.lastWatered)
-                        : 'Sin registro'}
+                        ? formatDateFriendly(plant.lastWatered, t)
+                        : t('health.noRecord')}
                     </Text>
                   </View>
                 </View>
@@ -179,11 +182,11 @@ export function PlantHealthDetail({
                 <View style={styles.historyItem}>
                   <Text style={styles.historyIcon}>☀️</Text>
                   <View style={styles.historyInfo}>
-                    <Text style={styles.historyLabel}>Ultima exposicion al sol</Text>
+                    <Text style={styles.historyLabel}>{t('health.lastSun')}</Text>
                     <Text style={styles.historyValue}>
                       {plant.sunDoneDate
-                        ? formatDateFriendly(plant.sunDoneDate)
-                        : 'Sin registro'}
+                        ? formatDateFriendly(plant.sunDoneDate, t)
+                        : t('health.noRecord')}
                     </Text>
                   </View>
                 </View>
@@ -191,11 +194,11 @@ export function PlantHealthDetail({
                 <View style={styles.historyItem}>
                   <Text style={styles.historyIcon}>🌤️</Text>
                   <View style={styles.historyInfo}>
-                    <Text style={styles.historyLabel}>Ultima salida al exterior</Text>
+                    <Text style={styles.historyLabel}>{t('health.lastOutdoor')}</Text>
                     <Text style={styles.historyValue}>
                       {plant.outdoorDoneDate
-                        ? formatDateFriendly(plant.outdoorDoneDate)
-                        : 'Sin registro'}
+                        ? formatDateFriendly(plant.outdoorDoneDate, t)
+                        : t('health.noRecord')}
                     </Text>
                   </View>
                 </View>
@@ -204,24 +207,24 @@ export function PlantHealthDetail({
 
             {/* Tips */}
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>CONSEJOS</Text>
+              <Text style={styles.sectionTitle}>{t('health.tipsLabel')}</Text>
               <View style={styles.tipsCard}>
                 <Text style={styles.tipItem}>
-                  • Riega cada {plant.waterEvery} dias para mantenerla saludable
+                  {t('health.waterEvery', { days: plant.waterEvery })}
                 </Text>
                 {plant.sunHours > 0 && (
                   <Text style={styles.tipItem}>
-                    • Necesita {plant.sunHours} horas de sol por dia
+                    {t('health.needsSunHours', { hours: plant.sunHours })}
                   </Text>
                 )}
                 {plant.sunDays.length > 0 && (
                   <Text style={styles.tipItem}>
-                    • Dias de sol: {getDayNames(plant.sunDays)}
+                    {t('health.sunDaysLabel', { days: getDayNames(plant.sunDays) })}
                   </Text>
                 )}
                 {plant.outdoorDays.length > 0 && (
                   <Text style={styles.tipItem}>
-                    • Sacar afuera: {getDayNames(plant.outdoorDays)}
+                    {t('health.outdoorDaysLabel', { days: getDayNames(plant.outdoorDays) })}
                   </Text>
                 )}
               </View>
@@ -235,30 +238,30 @@ export function PlantHealthDetail({
   );
 }
 
-function formatDateFriendly(dateStr: string): string {
+function formatDateFriendly(dateStr: string, t: (key: string, options?: Record<string, unknown>) => string): string {
   const today = new Date();
   const todayStr = formatDate(today);
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
   const yesterdayStr = formatDate(yesterday);
 
-  if (dateStr === todayStr) return 'Hoy';
-  if (dateStr === yesterdayStr) return 'Ayer';
+  if (dateStr === todayStr) return t('health.today');
+  if (dateStr === yesterdayStr) return t('health.yesterday');
 
   const [year, month, day] = dateStr.split('-').map(Number);
   const date = new Date(year, month - 1, day);
   const dayDiff = Math.floor((today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 
   if (dayDiff < 7) {
-    return `Hace ${dayDiff} dias`;
+    return t('health.daysAgo', { count: dayDiff });
   }
 
-  const dayNames = ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'];
+  const dayNames = getDaysShort();
   return `${dayNames[date.getDay()]} ${day}/${month}`;
 }
 
 function getDayNames(days: number[]): string {
-  const names = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+  const names = getDaysShort();
   return days.map((d) => names[d]).join(', ');
 }
 

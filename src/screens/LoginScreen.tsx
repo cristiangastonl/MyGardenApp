@@ -8,11 +8,13 @@ import {
   Platform,
   Alert,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { useAuthContext } from '../components/AuthProvider';
 
 export default function LoginScreen() {
+  const { t } = useTranslation();
   const { signInWithGoogle, signInWithApple, skipAuth, isConfigured } = useAuthContext();
   const [isLoading, setIsLoading] = useState<'google' | 'apple' | null>(null);
 
@@ -22,7 +24,7 @@ export default function LoginScreen() {
     setIsLoading(null);
 
     if (!result.success && result.error !== 'Cancelado por el usuario') {
-      Alert.alert('Error', result.error || 'No se pudo iniciar sesion con Google');
+      Alert.alert('Error', result.error || t('login.errorGoogle'));
     }
   };
 
@@ -32,7 +34,7 @@ export default function LoginScreen() {
     setIsLoading(null);
 
     if (!result.success && result.error !== 'Cancelado por el usuario') {
-      Alert.alert('Error', result.error || 'No se pudo iniciar sesion con Apple');
+      Alert.alert('Error', result.error || t('login.errorApple'));
     }
   };
 
@@ -46,8 +48,8 @@ export default function LoginScreen() {
         {/* Logo */}
         <View style={styles.logoContainer}>
           <Text style={styles.logoEmoji}>🌿</Text>
-          <Text style={styles.logoText}>Mi Jardin</Text>
-          <Text style={styles.tagline}>Cuida tus plantas con amor</Text>
+          <Text style={styles.logoText}>{t('login.appName')}</Text>
+          <Text style={styles.tagline}>{t('login.tagline')}</Text>
         </View>
 
         {/* Auth Buttons */}
@@ -55,8 +57,7 @@ export default function LoginScreen() {
           {!isConfigured && (
             <View style={styles.warningBox}>
               <Text style={styles.warningText}>
-                La sincronizacion en la nube no esta configurada.
-                Podes usar la app sin cuenta.
+                {t('login.syncNotConfigured')}
               </Text>
             </View>
           )}
@@ -74,7 +75,7 @@ export default function LoginScreen() {
                 ) : (
                   <>
                     <Text style={styles.buttonIcon}>G</Text>
-                    <Text style={styles.buttonText}>Continuar con Google</Text>
+                    <Text style={styles.buttonText}>{t('login.continueWithGoogle')}</Text>
                   </>
                 )}
               </TouchableOpacity>
@@ -91,7 +92,7 @@ export default function LoginScreen() {
                   ) : (
                     <>
                       <Text style={styles.appleIcon}></Text>
-                      <Text style={styles.appleButtonText}>Continuar con Apple</Text>
+                      <Text style={styles.appleButtonText}>{t('login.continueWithApple')}</Text>
                     </>
                   )}
                 </TouchableOpacity>
@@ -99,7 +100,7 @@ export default function LoginScreen() {
 
               <View style={styles.divider}>
                 <View style={styles.dividerLine} />
-                <Text style={styles.dividerText}>o</Text>
+                <Text style={styles.dividerText}>{t('login.or')}</Text>
                 <View style={styles.dividerLine} />
               </View>
             </>
@@ -112,14 +113,13 @@ export default function LoginScreen() {
             disabled={isLoading !== null}
           >
             <Text style={styles.skipButtonText}>
-              {isConfigured ? 'Continuar sin cuenta' : 'Continuar'}
+              {isConfigured ? t('login.continueWithout') : t('login.continueButton')}
             </Text>
           </TouchableOpacity>
 
           {isConfigured && (
             <Text style={styles.disclaimer}>
-              Tus datos se guardaran solo en este dispositivo.
-              Inicia sesion para sincronizar entre dispositivos.
+              {t('login.disclaimer')}
             </Text>
           )}
         </View>

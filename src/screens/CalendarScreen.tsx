@@ -7,10 +7,11 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { useStorage } from '../hooks/useStorage';
-import { MONTHS_ES } from '../data/constants';
+import { getMonths } from '../data/constants';
 import { formatDate } from '../utils/dates';
 import { Note, Reminder } from '../types';
 import {
@@ -19,6 +20,7 @@ import {
 } from '../components';
 
 export default function CalendarScreen() {
+  const { t } = useTranslation();
   const {
     plants,
     notes,
@@ -157,7 +159,7 @@ export default function CalendarScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.green} />
-          <Text style={styles.loadingText}>Cargando calendario...</Text>
+          <Text style={styles.loadingText}>{t('calendar.loadingCalendar')}</Text>
         </View>
       </SafeAreaView>
     );
@@ -172,9 +174,9 @@ export default function CalendarScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Calendario</Text>
+          <Text style={styles.title}>{t('calendar.title')}</Text>
           <TouchableOpacity style={styles.todayButton} onPress={goToToday}>
-            <Text style={styles.todayButtonText}>Hoy</Text>
+            <Text style={styles.todayButtonText}>{t('calendar.today')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -184,7 +186,7 @@ export default function CalendarScreen() {
             <Text style={styles.navButtonText}>←</Text>
           </TouchableOpacity>
           <Text style={styles.monthTitle}>
-            {MONTHS_ES[viewMonth]} {viewYear}
+            {getMonths()[viewMonth]} {viewYear}
           </Text>
           <TouchableOpacity style={styles.navButton} onPress={goToNextMonth}>
             <Text style={styles.navButtonText}>→</Text>
@@ -204,27 +206,27 @@ export default function CalendarScreen() {
 
         {/* Legend */}
         <View style={styles.legend}>
-          <Text style={styles.legendTitle}>LEYENDA</Text>
+          <Text style={styles.legendTitle}>{t('calendar.legend')}</Text>
           <View style={styles.legendItems}>
             <View style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: colors.waterBlue }]} />
-              <Text style={styles.legendText}>Riego</Text>
+              <Text style={styles.legendText}>{t('calendar.watering')}</Text>
             </View>
             <View style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: colors.sunGold }]} />
-              <Text style={styles.legendText}>Sol</Text>
+              <Text style={styles.legendText}>{t('calendar.sun')}</Text>
             </View>
             <View style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: colors.green }]} />
-              <Text style={styles.legendText}>Exterior</Text>
+              <Text style={styles.legendText}>{t('calendar.outdoor')}</Text>
             </View>
             <View style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: colors.warningText }]} />
-              <Text style={styles.legendText}>Notas</Text>
+              <Text style={styles.legendText}>{t('calendar.notesLabel')}</Text>
             </View>
             <View style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: colors.textSecondary }]} />
-              <Text style={styles.legendText}>Recordatorios</Text>
+              <Text style={styles.legendText}>{t('calendar.remindersLabel')}</Text>
             </View>
           </View>
         </View>
@@ -233,7 +235,7 @@ export default function CalendarScreen() {
         <View style={styles.instructions}>
           <Text style={styles.instructionsIcon}>💡</Text>
           <Text style={styles.instructionsText}>
-            Toca un dia para ver las tareas, agregar notas o recordatorios.
+            {t('calendar.instructions')}
           </Text>
         </View>
       </ScrollView>

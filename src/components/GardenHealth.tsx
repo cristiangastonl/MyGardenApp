@@ -7,6 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Plant, PlantHealthStatus, WeatherData } from '../types';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import {
@@ -28,6 +29,7 @@ export function GardenHealth({
   weather,
   onPlantPress,
 }: GardenHealthProps) {
+  const { t } = useTranslation();
   const today = new Date();
   const {
     averageScore,
@@ -46,15 +48,15 @@ export function GardenHealth({
 
   const getGardenMessage = (): string => {
     if (level === 'excellent') {
-      return 'Tu jardin esta en optimas condiciones';
+      return t('gardenHealth.excellent');
     }
     if (level === 'good') {
-      return 'Tu jardin esta bien, con algunos detalles';
+      return t('gardenHealth.good');
     }
     if (level === 'warning') {
-      return 'Algunas plantas necesitan atencion';
+      return t('gardenHealth.warning');
     }
-    return 'Varias plantas requieren cuidado urgente';
+    return t('gardenHealth.danger');
   };
 
   const getGardenIcon = (): string => {
@@ -71,7 +73,7 @@ export function GardenHealth({
         <View style={styles.headerLeft}>
           <Text style={styles.icon}>{getGardenIcon()}</Text>
           <View style={styles.headerInfo}>
-            <Text style={styles.title}>Salud del jardin</Text>
+            <Text style={styles.title}>{t('gardenHealth.title')}</Text>
             <Text style={[styles.status, { color: healthColor }]}>
               {healthMessage}
             </Text>
@@ -101,9 +103,7 @@ export function GardenHealth({
       {plantsNeedingAttention.length > 0 && (
         <View style={styles.attentionSection}>
           <Text style={styles.attentionLabel}>
-            {plantsNeedingAttention.length === 1
-              ? '1 planta necesita atencion'
-              : `${plantsNeedingAttention.length} plantas necesitan atencion`}
+            {t('gardenHealth.attention', { count: plantsNeedingAttention.length })}
           </Text>
           <View style={styles.attentionPlants}>
             {plantsNeedingAttention.slice(0, 4).map((status) => {
@@ -160,7 +160,7 @@ export function GardenHealth({
       {plantsNeedingAttention.length === 0 && level === 'excellent' && (
         <View style={styles.allGoodSection}>
           <Text style={styles.allGoodText}>
-            Todas tus plantas estan saludables
+            {t('gardenHealth.allHealthy')}
           </Text>
         </View>
       )}
@@ -256,7 +256,7 @@ const styles = StyleSheet.create<Styles>({
     marginTop: spacing.md,
     paddingTop: spacing.md,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,0.08)',
+    borderTopColor: colors.borderSeparator,
   },
   attentionLabel: {
     fontFamily: fonts.bodyMedium,
@@ -277,8 +277,9 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     backgroundColor: colors.white,
     borderRadius: borderRadius.lg,
-    paddingVertical: spacing.xs,
+    paddingVertical: spacing.sm,
     paddingHorizontal: spacing.sm,
+    minHeight: 44,
     ...shadows.sm,
   },
   plantBadge: {
@@ -297,7 +298,7 @@ const styles = StyleSheet.create<Styles>({
     fontFamily: fonts.body,
     fontSize: 13,
     color: colors.textPrimary,
-    maxWidth: 60,
+    maxWidth: 80,
     marginRight: spacing.xs,
   },
   plantScore: {
@@ -319,7 +320,7 @@ const styles = StyleSheet.create<Styles>({
     marginTop: spacing.md,
     paddingTop: spacing.md,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,0.08)',
+    borderTopColor: colors.borderSeparator,
   },
   allGoodText: {
     fontFamily: fonts.body,

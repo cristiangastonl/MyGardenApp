@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, spacing, fonts } from '../theme';
-import { DAYS_FULL, MONTHS_ES } from '../data/constants';
+import { getDaysFull, getMonths } from '../data/constants';
 
 interface HeaderProps {
   userName: string | null;
@@ -9,10 +10,11 @@ interface HeaderProps {
 }
 
 export function Header({ userName, onSettingsPress }: HeaderProps) {
+  const { t } = useTranslation();
   const today = new Date();
-  const dayName = DAYS_FULL[today.getDay()];
+  const dayName = getDaysFull()[today.getDay()];
   const day = today.getDate();
-  const month = MONTHS_ES[today.getMonth()];
+  const month = getMonths()[today.getMonth()];
 
   return (
     <View style={styles.container}>
@@ -21,7 +23,7 @@ export function Header({ userName, onSettingsPress }: HeaderProps) {
           {dayName} {day} de {month}
         </Text>
         <Text style={styles.title}>
-          {userName ? `Hola ${userName}!` : 'Mi Jardin'}
+          {userName ? t('header.hello', { name: userName }) : t('header.appName')}
         </Text>
       </View>
       <TouchableOpacity onPress={onSettingsPress} style={styles.settingsButton}>

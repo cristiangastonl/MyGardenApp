@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, WeatherData } from '../types';
 import {
@@ -26,27 +27,27 @@ function getTypeStyles(type: WateringRecommendation['type']): RecommendationType
       // Info style - blue tones
       return {
         bg: colors.infoBg,
-        border: '#b4d4e8',
+        border: colors.infoBorder,
         text: colors.infoText,
-        headerBg: '#d4e8f4',
+        headerBg: colors.infoHeaderBg,
       };
     case 'advance':
     case 'extra':
       // Warning style - golden tones
       return {
         bg: colors.warningBg,
-        border: '#e8dbb4',
+        border: colors.warningBorder,
         text: colors.warningText,
-        headerBg: '#f5ecd0',
+        headerBg: colors.warningHeaderBg,
       };
     case 'normal':
     default:
       // Green style
       return {
-        bg: '#e8f5e8',
-        border: '#b4e8b4',
+        bg: colors.successLight,
+        border: colors.successLightBorder,
         text: colors.green,
-        headerBg: '#d4f0d4',
+        headerBg: colors.successHeaderBg,
       };
   }
 }
@@ -67,23 +68,24 @@ function getTypeIcon(type: WateringRecommendation['type']): string {
   }
 }
 
-function getTypeTitle(type: WateringRecommendation['type']): string {
+function getTypeTitle(type: WateringRecommendation['type'], t: (key: string) => string): string {
   switch (type) {
     case 'skip':
-      return 'No riegues hoy';
+      return t('wateringTips.skip');
     case 'delay':
-      return 'Podes esperar';
+      return t('wateringTips.delay');
     case 'advance':
-      return 'Rega temprano';
+      return t('wateringTips.advance');
     case 'extra':
-      return 'Riego extra';
+      return t('wateringTips.extra');
     case 'normal':
     default:
-      return 'Riego normal';
+      return t('wateringTips.normal');
   }
 }
 
 export function WateringTips({ plants, weather }: WateringTipsProps) {
+  const { t } = useTranslation();
   const today = new Date();
   const recommendations = getWateringRecommendations(plants, weather, today);
 
@@ -113,7 +115,7 @@ export function WateringTips({ plants, weather }: WateringTipsProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>CONSEJOS DE RIEGO</Text>
+      <Text style={styles.title}>{t('wateringTips.title')}</Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -122,7 +124,7 @@ export function WateringTips({ plants, weather }: WateringTipsProps) {
         {groups.map((group, index) => {
           const typeStyles = getTypeStyles(group.type);
           const typeIcon = getTypeIcon(group.type);
-          const typeTitle = getTypeTitle(group.type);
+          const typeTitle = getTypeTitle(group.type, t);
 
           return (
             <View

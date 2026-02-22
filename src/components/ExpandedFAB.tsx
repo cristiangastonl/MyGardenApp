@@ -9,6 +9,7 @@ import {
   Modal,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 
 interface ExpandedFABProps {
@@ -18,6 +19,7 @@ interface ExpandedFABProps {
 }
 
 export function ExpandedFAB({ onAddManual, onIdentify, showIdentifyOption = true }: ExpandedFABProps) {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [isExpanded, setIsExpanded] = useState(false);
   const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -105,8 +107,8 @@ export function ExpandedFAB({ onAddManual, onIdentify, showIdentifyOption = true
                 <Text style={styles.menuIconText}>📷</Text>
               </View>
               <View style={styles.menuTextContainer}>
-                <Text style={styles.menuLabel}>Identificar con foto</Text>
-                <Text style={styles.menuHint}>Usá la cámara o galería</Text>
+                <Text style={styles.menuLabel}>{t('fab.identifyPhoto')}</Text>
+                <Text style={styles.menuHint}>{t('fab.useCamera')}</Text>
               </View>
             </TouchableOpacity>
 
@@ -119,8 +121,8 @@ export function ExpandedFAB({ onAddManual, onIdentify, showIdentifyOption = true
                 <Text style={styles.menuIconText}>🌱</Text>
               </View>
               <View style={styles.menuTextContainer}>
-                <Text style={styles.menuLabel}>Agregar de la lista</Text>
-                <Text style={styles.menuHint}>Elegí de plantas conocidas</Text>
+                <Text style={styles.menuLabel}>{t('fab.addFromList')}</Text>
+                <Text style={styles.menuHint}>{t('fab.chooseKnown')}</Text>
               </View>
             </TouchableOpacity>
           </Animated.View>
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
   },
   backdropInner: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(45, 58, 46, 0.4)',
+    backgroundColor: `${colors.textPrimary}66`,
   },
   menuContainer: {
     position: 'absolute',
