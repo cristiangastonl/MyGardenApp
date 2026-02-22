@@ -12,11 +12,12 @@ import {
   Platform,
   Image,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { PlantDBEntry, PlantCategory, Plant } from '../types';
-import { PLANT_DATABASE, PLANT_CATEGORIES } from '../data/plantDatabase';
-import { PLANT_TYPES } from '../data/constants';
+import { PLANT_DATABASE, getPlantCategories, getTranslatedPlant, getTranslatedDatabase } from '../data/plantDatabase';
+import { getPlantTypes } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { trackEvent } from '../services/analyticsService';
@@ -57,13 +58,39 @@ const PLANT_TYPE_MAP: Record<string, string> = {
   'suculenta-generica': 'suculenta',
   'cactus': 'cactus',
   'echeveria': 'suculenta',
+  // New plants
+  'espatifilo': 'otra',
+  'dracaena': 'otra',
+  'filodendro': 'trepa',
+  'jade': 'suculenta',
+  'peperomia': 'otra',
+  'rosa': 'floral',
+  'bougainvillea': 'trepa',
+  'hibisco': 'floral',
+  'margarita': 'floral',
+  'perejil': 'aromatica',
+  'oregano': 'aromatica',
+  'cilantro': 'aromatica',
+  'tomillo': 'aromatica',
+  'lechuga': 'otra',
+  'pepino': 'frutal',
+  'zanahoria': 'otra',
+  'rucula': 'otra',
+  'naranjo': 'frutal',
+  'aguacate': 'frutal',
+  'higuera': 'frutal',
+  'mandarino': 'frutal',
+  'zapallito': 'frutal',
+  'ciboulette': 'aromatica',
+  'haworthia': 'suculenta',
+  'sedum': 'suculenta',
 };
 
 // Helper to convert PlantDBEntry to Plant
 function plantDBToPlant(dbEntry: PlantDBEntry): Plant {
   const today = new Date().toISOString().split('T')[0];
   const typeId = PLANT_TYPE_MAP[dbEntry.id] || 'otra';
-  const plantType = PLANT_TYPES.find(t => t.id === typeId);
+  const plantType = getPlantTypes().find(t => t.id === typeId);
   return {
     id: `${dbEntry.id}-${Date.now()}`,
     name: dbEntry.name,
@@ -110,6 +137,7 @@ interface PlantSelectCardProps {
 }
 
 function PlantSelectCard({ plant, selected, onToggle }: PlantSelectCardProps) {
+  const translated = getTranslatedPlant(plant);
   return (
     <TouchableOpacity
       style={[styles.plantCard, selected && styles.plantCardSelected]}
@@ -127,10 +155,10 @@ function PlantSelectCard({ plant, selected, onToggle }: PlantSelectCardProps) {
       )}
       <View style={styles.plantCardContent}>
         <Text style={styles.plantCardName} numberOfLines={1}>
-          {plant.name}
+          {translated.name}
         </Text>
         <Text style={styles.plantCardTip} numberOfLines={2}>
-          {plant.tip}
+          {translated.tip}
         </Text>
       </View>
       <View style={[styles.checkbox, selected && styles.checkboxSelected]}>
@@ -141,20 +169,23 @@ function PlantSelectCard({ plant, selected, onToggle }: PlantSelectCardProps) {
 }
 
 export default function OnboardingScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { completeOnboarding, setUserName, addPlants } = useStorage();
+  const { completeOnboardingWithData } = useStorage();
   const { displayName } = useAuthContext();
 
   const [currentStep, setCurrentStep] = useState(0);
   // Pre-fill name from auth if available
   const [name, setName] = useState(displayName || '');
-  const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set());
+  // Pre-select Pothos as a quick-start plant
+  const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set(['potus']));
   const [selectedCategory, setSelectedCategory] = useState<PlantCategory | 'all'>('all');
 
   // Animation values
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
 
+  const translatedDatabase = getTranslatedDatabase();
   const filteredPlants = selectedCategory === 'all'
     ? PLANT_DATABASE
     : PLANT_DATABASE.filter(p => p.category === selectedCategory);
@@ -216,48 +247,38 @@ export default function OnboardingScreen() {
     }
   }, [currentStep, animateTransition]);
 
-  const handleComplete = useCallback(async () => {
+  const handleComplete = useCallback(() => {
     console.log('[Onboarding] Completing onboarding...');
     trackEvent('onboarding_completed', { plants_selected: selectedPlants.size });
 
-    // Save user name if provided
-    if (name.trim()) {
-      setUserName(name.trim());
-    }
+    // Convert selected plants to Plant format
+    const plantsToAdd = selectedPlants.size > 0
+      ? PLANT_DATABASE.filter(p => selectedPlants.has(p.id)).map(plantDBToPlant)
+      : [];
 
-    // Convert selected plants to Plant format and add them
-    if (selectedPlants.size > 0) {
-      const plantsToAdd = PLANT_DATABASE
-        .filter(p => selectedPlants.has(p.id))
-        .map(plantDBToPlant);
-      addPlants(plantsToAdd);
-    }
+    const finalName = name.trim() || null;
 
-    // Mark onboarding as complete - do this last
-    // Small delay to ensure previous saves complete
-    setTimeout(() => {
-      console.log('[Onboarding] Calling completeOnboarding()');
-      completeOnboarding();
-    }, 100);
-  }, [name, selectedPlants, setUserName, addPlants, completeOnboarding]);
+    // Atomic save: plants + userName + onboardingCompleted in a single write
+    completeOnboardingWithData(plantsToAdd, finalName);
+  }, [name, selectedPlants, completeOnboardingWithData]);
 
   const renderStep0 = () => (
     <View style={styles.stepContent}>
       <View style={styles.welcomeSection}>
         <Text style={styles.welcomeEmoji}>🌱</Text>
-        <Text style={styles.welcomeTitle}>Bienvenido a Mi Jardin</Text>
+        <Text style={styles.welcomeTitle}>{t('onboarding.welcome')}</Text>
         <Text style={styles.welcomeSubtitle}>
-          Tu asistente personal para el cuidado de plantas
+          {t('onboarding.subtitle')}
         </Text>
       </View>
 
       <View style={styles.nameSection}>
         <Text style={styles.inputLabel}>
-          {displayName ? 'TU NOMBRE' : 'COMO TE LLAMAS? (OPCIONAL)'}
+          {displayName ? t('onboarding.yourName') : t('onboarding.whatsYourName')}
         </Text>
         <TextInput
           style={styles.nameInput}
-          placeholder="Tu nombre"
+          placeholder={t('onboarding.namePlaceholder')}
           placeholderTextColor={colors.textMuted}
           value={name}
           onChangeText={setName}
@@ -266,8 +287,8 @@ export default function OnboardingScreen() {
         />
         <Text style={styles.inputHint}>
           {displayName
-            ? 'Podes cambiarlo si preferis otro nombre'
-            : 'Lo usaremos para personalizar tu experiencia'}
+            ? t('onboarding.canChangeName')
+            : t('onboarding.weWillUseIt')}
         </Text>
       </View>
 
@@ -275,22 +296,22 @@ export default function OnboardingScreen() {
         <View style={styles.featureItem}>
           <Text style={styles.featureIcon}>💧</Text>
           <View style={styles.featureText}>
-            <Text style={styles.featureTitle}>Recordatorios de riego</Text>
-            <Text style={styles.featureDesc}>Nunca mas olvides regar</Text>
+            <Text style={styles.featureTitle}>{t('onboarding.wateringReminders')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.neverForget')}</Text>
           </View>
         </View>
         <View style={styles.featureItem}>
           <Text style={styles.featureIcon}>☀️</Text>
           <View style={styles.featureText}>
-            <Text style={styles.featureTitle}>Control de sol</Text>
-            <Text style={styles.featureDesc}>Seguimiento de horas de luz</Text>
+            <Text style={styles.featureTitle}>{t('onboarding.sunControl')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.lightTracking')}</Text>
           </View>
         </View>
         <View style={styles.featureItem}>
           <Text style={styles.featureIcon}>🌤️</Text>
           <View style={styles.featureText}>
-            <Text style={styles.featureTitle}>Alertas de clima</Text>
-            <Text style={styles.featureDesc}>Protege tus plantas del frio</Text>
+            <Text style={styles.featureTitle}>{t('onboarding.weatherAlerts')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.protectPlants')}</Text>
           </View>
         </View>
       </View>
@@ -300,9 +321,9 @@ export default function OnboardingScreen() {
   const renderStep1 = () => (
     <View style={styles.stepContent}>
       <View style={styles.stepHeader}>
-        <Text style={styles.stepTitle}>Elegí tus plantas</Text>
+        <Text style={styles.stepTitle}>{t('onboarding.choosePlants')}</Text>
         <Text style={styles.stepSubtitle}>
-          Selecciona las plantas que tenes o queres agregar
+          {t('onboarding.selectPlants')}
         </Text>
       </View>
 
@@ -326,10 +347,10 @@ export default function OnboardingScreen() {
               selectedCategory === 'all' && styles.categoryChipTextActive,
             ]}
           >
-            Todas
+            {t('onboarding.all')}
           </Text>
         </TouchableOpacity>
-        {PLANT_CATEGORIES.map(cat => (
+        {getPlantCategories().map(cat => (
           <TouchableOpacity
             key={cat.id}
             style={[
@@ -370,7 +391,7 @@ export default function OnboardingScreen() {
       {selectedPlants.size > 0 && (
         <View style={styles.selectionBadge}>
           <Text style={styles.selectionBadgeText}>
-            {selectedPlants.size} {selectedPlants.size === 1 ? 'planta seleccionada' : 'plantas seleccionadas'}
+            {t('onboarding.plantSelected', { count: selectedPlants.size })}
           </Text>
         </View>
       )}
@@ -382,19 +403,19 @@ export default function OnboardingScreen() {
       <View style={styles.confirmSection}>
         <Text style={styles.confirmEmoji}>🎉</Text>
         <Text style={styles.confirmTitle}>
-          {name.trim() ? `Listo, ${name.trim()}!` : 'Todo listo!'}
+          {name.trim() ? t('onboarding.ready', { name: name.trim() }) : t('onboarding.allReady')}
         </Text>
         <Text style={styles.confirmSubtitle}>
-          Tu jardin esta configurado y listo para empezar
+          {t('onboarding.gardenConfigured')}
         </Text>
       </View>
 
       <View style={styles.summarySection}>
         {selectedPlants.size > 0 ? (
           <>
-            <Text style={styles.summaryLabel}>TUS PLANTAS</Text>
+            <Text style={styles.summaryLabel}>{t('onboarding.yourPlants')}</Text>
             <View style={styles.summaryPlants}>
-              {PLANT_DATABASE
+              {translatedDatabase
                 .filter(p => selectedPlants.has(p.id))
                 .slice(0, 6)
                 .map(plant => (
@@ -408,7 +429,7 @@ export default function OnboardingScreen() {
               {selectedPlants.size > 6 && (
                 <View style={styles.summaryMore}>
                   <Text style={styles.summaryMoreText}>
-                    +{selectedPlants.size - 6} mas
+                    {t('onboarding.more', { count: selectedPlants.size - 6 })}
                   </Text>
                 </View>
               )}
@@ -418,24 +439,24 @@ export default function OnboardingScreen() {
           <View style={styles.noPlantsSummary}>
             <Text style={styles.noPlantsSummaryIcon}>🌿</Text>
             <Text style={styles.noPlantsSummaryText}>
-              Podes agregar plantas despues desde la app
+              {t('onboarding.canAddLater')}
             </Text>
           </View>
         )}
       </View>
 
       <View style={styles.tipsSection}>
-        <Text style={styles.tipsLabel}>CONSEJOS</Text>
+        <Text style={styles.tipsLabel}>{t('onboarding.tips')}</Text>
         <View style={styles.tipItem}>
           <Text style={styles.tipIcon}>💡</Text>
           <Text style={styles.tipText}>
-            Configura tu ubicacion para recibir alertas de clima
+            {t('onboarding.configureLocation')}
           </Text>
         </View>
         <View style={styles.tipItem}>
           <Text style={styles.tipIcon}>📱</Text>
           <Text style={styles.tipText}>
-            Activa las notificaciones para no olvidar el riego
+            {t('onboarding.enableNotifications')}
           </Text>
         </View>
       </View>
@@ -506,15 +527,15 @@ export default function OnboardingScreen() {
                 onPress={handleBack}
                 activeOpacity={0.7}
               >
-                <Text style={styles.backButtonText}>← Atras</Text>
+                <Text style={styles.backButtonText}>{t('onboarding.back')}</Text>
               </TouchableOpacity>
             ) : (
               <View style={styles.backButton} />
             )}
 
             {currentStep < 2
-              ? renderPrimaryButton(currentStep === 0 ? 'Empezar' : 'Continuar', handleNext)
-              : renderPrimaryButton('Comenzar', handleComplete)
+              ? renderPrimaryButton(currentStep === 0 ? t('onboarding.start') : t('onboarding.continue'), handleNext)
+              : renderPrimaryButton(t('onboarding.begin'), handleComplete)
             }
           </View>
         </View>
@@ -714,7 +735,7 @@ const styles = StyleSheet.create({
   },
   plantCardSelected: {
     borderColor: colors.green,
-    backgroundColor: '#f0f7f1',
+    backgroundColor: colors.successBg,
   },
   plantCardContent: {
     flex: 1,

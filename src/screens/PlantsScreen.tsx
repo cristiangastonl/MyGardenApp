@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius, fonts } from '../theme';
 import { useStorage } from '../hooks/useStorage';
@@ -17,6 +18,7 @@ import {
   ExpandedFAB,
   AddPlantModal,
   PlantIdentifierModal,
+  MyPlantDetailModal,
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
@@ -25,6 +27,7 @@ import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 
 export default function PlantsScreen() {
+  const { t } = useTranslation();
   const premium = usePremiumGate();
   const { showPaywall } = usePremium();
   const {
@@ -32,15 +35,20 @@ export default function PlantsScreen() {
     plantNetApiKey,
     location,
     loading,
+    identificationCount,
+    incrementIdentificationCount,
     updatePlant,
     deletePlant,
     addPlant,
+    addPhotoToPlant,
+    removePhotoFromPlant,
   } = useStorage();
 
   const { weather } = useWeather(location);
 
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
+  const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -84,9 +92,13 @@ export default function PlantsScreen() {
     // Upload image if provided
     let imageUrl: string | undefined;
     if (imageUri) {
-      const uploadedUrl = await uploadPlantImage(imageUri, plantId);
-      if (uploadedUrl) {
-        imageUrl = uploadedUrl;
+      try {
+        const uploadedUrl = await uploadPlantImage(imageUri, plantId);
+        if (uploadedUrl) {
+          imageUrl = uploadedUrl;
+        }
+      } catch (e) {
+        console.error('Error uploading plant image:', e);
       }
     }
 
@@ -109,7 +121,7 @@ export default function PlantsScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.green} />
-          <Text style={styles.loadingText}>Cargando plantas...</Text>
+          <Text style={styles.loadingText}>{t('plants.loadingPlants')}</Text>
         </View>
       </SafeAreaView>
     );
@@ -124,28 +136,26 @@ export default function PlantsScreen() {
       onSunDone={handleSunDone}
       onOutdoorDone={handleOutdoorDone}
       onDelete={handleDeletePlant}
+      onPress={setDetailPlant}
     />
   );
 
   const ListHeader = () => (
     <View style={styles.header}>
-      <Text style={styles.title}>Mis Plantas</Text>
+      <Text style={styles.title}>{t('plants.title')}</Text>
       <Text style={styles.subtitle}>
         {plants.length === 0
-          ? 'No tenes plantas todavia'
-          : plants.length === 1
-          ? '1 planta en tu jardin'
-          : `${plants.length} plantas en tu jardin`}
+          ? t('plants.noPlants')
+          : t('plants.plantCount', { count: plants.length })}
       </Text>
 
       {/* Tip card */}
       <View style={styles.tipCard}>
         <Text style={styles.tipIcon}>💡</Text>
         <View style={styles.tipContent}>
-          <Text style={styles.tipTitle}>Consejo</Text>
+          <Text style={styles.tipTitle}>{t('plants.tip')}</Text>
           <Text style={styles.tipText}>
-            Toca una planta para ver sus tareas del dia. Arrastra hacia abajo para
-            actualizar. Usa el boton + para agregar nuevas plantas.
+            {t('plants.tipText')}
           </Text>
         </View>
       </View>
@@ -155,9 +165,9 @@ export default function PlantsScreen() {
   const EmptyState = () => (
     <View style={styles.emptyState}>
       <Text style={styles.emptyIcon}>🌿</Text>
-      <Text style={styles.emptyTitle}>Sin plantas todavia</Text>
+      <Text style={styles.emptyTitle}>{t('plants.emptyTitle')}</Text>
       <Text style={styles.emptyText}>
-        Toca el boton + para agregar tu primera planta y comenzar a cuidar tu jardin.
+        {t('plants.emptyText')}
       </Text>
     </View>
   );
@@ -176,7 +186,14 @@ export default function PlantsScreen() {
 
       <ExpandedFAB
         onAddManual={handleOpenAddPlant}
-        onIdentify={() => setShowIdentifier(true)}
+        onIdentify={() => {
+          if (!premium.canIdentify(identificationCount)) {
+            showPaywall('plant_identification');
+            return;
+          }
+          incrementIdentificationCount();
+          setShowIdentifier(true);
+        }}
         showIdentifyOption={Features.PLANT_IDENTIFICATION}
       />
 
@@ -195,6 +212,20 @@ export default function PlantsScreen() {
           onAddPlant={handleAddPlant}
         />
       )}
+
+      {/* Plant Detail Modal with Photo Album */}
+      <MyPlantDetailModal
+        visible={!!detailPlant}
+        plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
+        weather={weather}
+        onClose={() => setDetailPlant(null)}
+        onDelete={(id) => {
+          handleDeletePlant(id);
+          setDetailPlant(null);
+        }}
+        onAddPhoto={addPhotoToPlant}
+        onDeletePhoto={removePhotoFromPlant}
+      />
     </SafeAreaView>
   );
 }

@@ -1,0 +1,402 @@
+{
+  "winter-less-water": {
+    "title": "Winter watering",
+    "message": "In winter, reduce watering by half. Plants grow slower and need less water."
+  },
+  "spring-fertilize": {
+    "title": "Time to fertilize",
+    "message": "Spring is the best time to fertilize. Plants are waking up and need nutrients."
+  },
+  "summer-early-water": {
+    "title": "Water early",
+    "message": "In summer, water early in the morning or at dusk to prevent evaporation."
+  },
+  "fall-prepare": {
+    "title": "Prepare for winter",
+    "message": "Fall is a good time to prune and prepare your plants for the coming cold."
+  },
+  "spring-repot": {
+    "title": "Spring repotting",
+    "message": "If your plants have outgrown their pots, this is the best time to repot them."
+  },
+  "summer-mulch": {
+    "title": "Protect the soil",
+    "message": "Add mulch or bark on top of the soil to retain moisture and protect roots from heat."
+  },
+  "cloudy-less-evaporation": {
+    "title": "Cloudy day",
+    "message": "Cloudy days have less evaporation. You can space out watering a bit more."
+  },
+  "high-humidity-fungus": {
+    "title": "High humidity",
+    "message": "With high humidity, watch out for fungus. Make sure there is good airflow between plants."
+  },
+  "hot-day-shade": {
+    "title": "Very hot day",
+    "message": "Above 30 degrees, consider moving sensitive plants to a spot with partial shade."
+  },
+  "rain-coming": {
+    "title": "Rain tomorrow",
+    "message": "Rain is expected tomorrow. You can skip watering outdoor plants."
+  },
+  "windy-protect": {
+    "title": "Windy day",
+    "message": "With strong wind, protect delicate plants and check that pots are stable."
+  },
+  "cold-night": {
+    "title": "Cold night",
+    "message": "Low temperatures are expected tonight. Consider bringing cold-sensitive plants indoors."
+  },
+  "yellow-leaves-overwater": {
+    "title": "Yellow leaves",
+    "message": "If a plant has yellow leaves, it may be overwatered. Let the soil dry out between waterings."
+  },
+  "brown-tips-humidity": {
+    "title": "Brown tips",
+    "message": "Leaves with brown tips usually indicate low humidity. Try misting them with water."
+  },
+  "droopy-leaves": {
+    "title": "Droopy leaves",
+    "message": "If leaves are drooping but the soil is moist, it may be overwatering. Let it dry out."
+  },
+  "pale-leaves-light": {
+    "title": "Pale leaves",
+    "message": "Pale or stretched-out leaves indicate a lack of light. Move the plant to a brighter spot."
+  },
+  "check-drainage": {
+    "title": "Good drainage",
+    "message": "Make sure all your pots have drainage holes. Roots should not sit in water."
+  },
+  "rotate-pots": {
+    "title": "Rotate your pots",
+    "message": "Rotate your pots every 1-2 weeks so plants grow evenly and don't lean toward the light."
+  },
+  "clean-leaves": {
+    "title": "Clean the leaves",
+    "message": "Wipe the leaves with a damp cloth every 2 weeks. This helps them breathe and absorb more light."
+  },
+  "water-quality": {
+    "title": "Rested water",
+    "message": "Let tap water sit for 24 hours before watering. This allows the chlorine to evaporate."
+  },
+  "morning-routine": {
+    "title": "Morning routine",
+    "message": "Checking your plants every morning helps you spot problems early. A quick glance is enough."
+  },
+  "group-humidity": {
+    "title": "Group your plants",
+    "message": "Grouping plants creates a microclimate with more humidity. They help each other out."
+  },
+  "quarantine-new": {
+    "title": "Quarantine",
+    "message": "New plants should be kept separate for 2 weeks before placing them with the rest. This prevents pests."
+  },
+  "suculenta-propagation": {
+    "title": "Propagate your succulents",
+    "message": "You can propagate succulents with a healthy leaf: let it dry for 2-3 days and place it on moist substrate. Little roots will appear in a few weeks."
+  },
+  "suculenta-substrate": {
+    "title": "Succulent substrate",
+    "message": "Use a mix of regular soil and perlite or coarse sand (50/50). Succulents need excellent drainage to avoid rotting."
+  },
+  "suculenta-sunburn": {
+    "title": "Succulent sunburn",
+    "message": "If your succulents have white or brown spots, it might be sunburn. Move them to partial shade and gradually acclimate them to direct sun."
+  },
+  "suculenta-etiolation": {
+    "title": "Stretched-out succulents",
+    "message": "If your succulent is stretching and the leaves are spreading apart, it needs more light. Move it closer to a window or give it a few hours of direct sun each day."
+  },
+  "suculenta-watering-method": {
+    "title": "How to water succulents",
+    "message": "Water succulents thoroughly and then let them dry out completely. The 'deep watering' method is better than giving them little sips frequently."
+  },
+  "helecho-humidity": {
+    "title": "Humidity for ferns",
+    "message": "Ferns love humidity. Mist the leaves 2-3 times a week or place a tray with pebbles and water underneath."
+  },
+  "helecho-bathroom": {
+    "title": "Ferns in the bathroom",
+    "message": "The bathroom is an ideal spot for ferns: the shower steam gives them the humidity they need. Just make sure there's some natural light."
+  },
+  "helecho-no-direct-sun": {
+    "title": "Ferns and direct sun",
+    "message": "Never put a fern in direct sunlight -- the leaves will burn right away. Bright indirect light is the way to go."
+  },
+  "helecho-brown-fronds": {
+    "title": "Dry fern fronds",
+    "message": "If you see brown or dried fronds, cut them off at the base. They won't come back and they drain energy from the plant."
+  },
+  "cactus-dormancy": {
+    "title": "Winter cactus dormancy",
+    "message": "In winter, cacti go dormant. Water very little (once a month or less) and keep them in a cool spot. This helps them bloom better in spring."
+  },
+  "cactus-overwatering": {
+    "title": "Soft cactus = overwatering",
+    "message": "If your cactus is soft or translucent, it's getting too much water. Take it out of the pot, let the roots dry, and repot it in dry substrate."
+  },
+  "cactus-repotting": {
+    "title": "Repotting a cactus",
+    "message": "To repot a cactus, wrap it in several layers of newspaper or use thick leather gloves. After repotting, wait 5-7 days before watering."
+  },
+  "aromatica-harvest": {
+    "title": "Harvest herbs regularly",
+    "message": "Cutting herbs regularly makes them grow bushier. Never cut more than a third of the plant at once."
+  },
+  "aromatica-pinch": {
+    "title": "Pinch off flower tips",
+    "message": "When basil or mint start flowering, cut off the flower tips. This way the plant focuses its energy on leaves instead of seeds."
+  },
+  "aromatica-companion": {
+    "title": "Companion herbs",
+    "message": "Basil near tomatoes repels aphids. Rosemary and lavender attract pollinators. Use herbs as companion plants in your garden."
+  },
+  "aromatica-sun-needs": {
+    "title": "Sun for herbs",
+    "message": "Most herbs need at least 6 hours of direct sun. Without enough light, they lose flavor and aroma."
+  },
+  "trepa-support": {
+    "title": "Support for climbers",
+    "message": "Climbing plants need something to climb on: a moss pole, a trellis, or taut strings. Without support they grow sprawling and weaker."
+  },
+  "trepa-aerial-roots": {
+    "title": "Aerial roots",
+    "message": "Aerial roots on climbers aren't a problem -- they're normal and help the plant climb. You can guide them toward the moss pole for a better grip."
+  },
+  "trepa-propagation": {
+    "title": "Propagate climbers from cuttings",
+    "message": "In spring you can take cuttings from your climbers. Cut below a node, remove the lower leaves, and place it in water until roots appear."
+  },
+  "frutal-pollination": {
+    "title": "Fruit tree pollination",
+    "message": "In spring, make sure your fruit trees get pollinators. You can help by gently brushing a soft paintbrush from flower to flower if you don't see any bees."
+  },
+  "frutal-pruning-time": {
+    "title": "Winter pruning for fruit trees",
+    "message": "Winter is the time to prune deciduous fruit trees. Remove dead branches, crossed limbs, and suckers so they produce better in spring."
+  },
+  "frutal-fruit-set": {
+    "title": "Thinning fruit",
+    "message": "If your fruit tree has lots of small fruits, remove some. It sounds crazy, but thinning lets the remaining ones grow bigger and sweeter."
+  },
+  "floral-deadheading": {
+    "title": "Remove spent flowers",
+    "message": "Cut off flowers as they fade. This way the plant doesn't waste energy making seeds and gives you more new blooms."
+  },
+  "floral-bloom-cycle": {
+    "title": "Blooming cycle",
+    "message": "Flowering plants need more nutrients in spring. Add a fertilizer higher in phosphorus (the second NPK number) to boost blooming."
+  },
+  "floral-light-hours": {
+    "title": "Light and blooming",
+    "message": "Many flowers need a certain number of light hours to bloom. If your plant isn't flowering, check whether it's getting enough direct sun."
+  },
+  "early-spring-pests": {
+    "title": "Spring pests",
+    "message": "Warmer weather brings aphids and mealybugs. Check the undersides of leaves and new stems carefully. Early detection is key."
+  },
+  "late-spring-growth": {
+    "title": "Explosive growth",
+    "message": "At this point in spring, plants are growing like crazy. Make sure they have enough space, nutrients, and water to keep up the momentum."
+  },
+  "summer-heatwave": {
+    "title": "Heatwave",
+    "message": "Several days in a row above 35 degrees. Water more often, mist the leaves in the evening, and move pots to the shade if you can."
+  },
+  "summer-vacation-prep": {
+    "title": "Going on vacation?",
+    "message": "Before you leave: water thoroughly, group pots in partial shade, and set up inverted bottles for slow watering. Ask someone to check on them every 3-4 days."
+  },
+  "fall-bring-indoors": {
+    "title": "Bring the sensitive ones in",
+    "message": "Nights are starting to get chilly. Tropicals, succulents, and flowering plants that spent summer outdoors should come back inside now."
+  },
+  "fall-reduce-fertilizer": {
+    "title": "Ease off the fertilizer",
+    "message": "In fall, cut back on fertilizing. Plants are starting to go dormant and don't need as many nutrients. Pushing them now weakens them."
+  },
+  "winter-dormancy": {
+    "title": "Respect the rest period",
+    "message": "In winter many plants stop growing. Don't worry if you're not seeing new leaves -- it's normal. Water sparingly and skip the fertilizer."
+  },
+  "winter-indoor-humidity": {
+    "title": "Indoor humidity in winter",
+    "message": "Heating dries out the air. Mist your tropical plants, set up trays with water and pebbles, or group pots together to create humidity."
+  },
+  "spring-check-roots": {
+    "title": "Check the roots",
+    "message": "In early spring, check if roots are poking out of the drainage holes. That's a sign the plant needs a bigger pot."
+  },
+  "fall-last-pruning": {
+    "title": "Last pruning of the year",
+    "message": "Before the cold sets in, clean up dead leaves and dried branches. Avoid heavy pruning now because new growth won't survive the winter."
+  },
+  "winter-light-position": {
+    "title": "Make the most of the light",
+    "message": "Days are shorter in winter. Move plants close to bright windows. The winter sun is gentle and won't burn them."
+  },
+  "summer-bottom-watering": {
+    "title": "Bottom watering",
+    "message": "In summer, try watering from below: place the pot in a container of water for 15-20 minutes. The soil absorbs what it needs evenly."
+  },
+  "spring-seed-starting": {
+    "title": "Seed-starting season",
+    "message": "September is ideal for starting basil, tomato, and parsley seeds. Use seed trays with moist substrate and keep them in good light."
+  },
+  "fall-compost-leaves": {
+    "title": "Use those fallen leaves",
+    "message": "Dry fall leaves are gold for composting. Pile them up, keep them moist, and in a few months you'll have top-notch homemade fertilizer."
+  },
+  "uv-high-protect": {
+    "title": "Very high UV",
+    "message": "The UV index is extremely high. Indoor plants near windows can get burned. Move the pots back a bit or use a light curtain."
+  },
+  "dry-spell-alert": {
+    "title": "Dry spell ahead",
+    "message": "No rain is expected for the next 5 days. Outdoor plants will need extra manual watering. Pay special attention to the ones in full sun."
+  },
+  "temp-swing-stress": {
+    "title": "Sharp temperature swing",
+    "message": "There's a big gap between the high and low today. That temperature stress can affect sensitive plants. Bring them indoors at night if you can."
+  },
+  "consecutive-heat": {
+    "title": "Persistent heat",
+    "message": "It's been hot for several days straight. Double your watering frequency and check that the soil isn't pulling away from the pot walls."
+  },
+  "frost-risk": {
+    "title": "Frost risk",
+    "message": "Cold plus high humidity means possible frost. Cover outdoor plants with frost cloth or bring pots inside tonight."
+  },
+  "heavy-rain-drainage": {
+    "title": "Heavy rain",
+    "message": "Heavy rain is expected. Check that your outdoor pots aren't waterlogged. If they don't have good drainage, move them under cover."
+  },
+  "low-wind-mist": {
+    "title": "Dry and still air",
+    "message": "With little breeze and low humidity, plants transpire faster. A good time to mist the leaves and place a small dish of water nearby."
+  },
+  "uv-moderate-outdoor-time": {
+    "title": "Moderate UV: ideal for acclimating",
+    "message": "The UV is moderate -- perfect for giving indoor plants some outdoor sun time. Start with 1-2 hours in partial shade and gradually increase."
+  },
+  "post-rain-check": {
+    "title": "After the rain",
+    "message": "After heavy rain, check your pots: empty saucers if they filled up and make sure mud isn't blocking the drainage holes."
+  },
+  "extreme-wind": {
+    "title": "Very strong winds",
+    "message": "With winds over 50 km/h, bring lightweight pots inside and secure climbers to their supports. Weak branches can snap."
+  },
+  "pest-spider-mites": {
+    "title": "Watch out for spider mites",
+    "message": "Hot, dry conditions are paradise for spider mites. Look for tiny dots on leaves or fine webs. Spray with soapy water or neem oil."
+  },
+  "pest-mealybugs": {
+    "title": "Mealybugs",
+    "message": "If you see cottony white spots on stems or leaf axils, it's mealybugs. Remove them with a cotton swab dipped in rubbing alcohol or apply neem oil."
+  },
+  "pest-aphids": {
+    "title": "Aphid alert",
+    "message": "Aphids show up in spring and summer on tender new growth. Try a strong spray of water, potassium soap, or introducing ladybugs to your garden."
+  },
+  "pest-fungus-gnats": {
+    "title": "Fungus gnats",
+    "message": "Those tiny black flies come from moist soil. Let the top layer dry out between waterings and add a layer of coarse sand on top."
+  },
+  "pest-white-mold": {
+    "title": "White mold on the soil",
+    "message": "White mold on the substrate means too much moisture and poor airflow. Remove the moldy layer, let the soil dry out, and improve air circulation."
+  },
+  "pest-scale-insects": {
+    "title": "Scale insects",
+    "message": "Brown bumps stuck to stems and leaf veins are scale insects. Scrape them off with a fingernail and apply neem oil as a preventive."
+  },
+  "pest-leaf-spot": {
+    "title": "Leaf spots",
+    "message": "Humidity plus heat is a breeding ground for fungus. If you see brown or black spots with a yellow halo, remove the leaf and improve ventilation."
+  },
+  "pest-thrips": {
+    "title": "Thrips on your plants",
+    "message": "Thrips leave silvery marks on leaves. They're tiny and hard to see. Shake a leaf over white paper -- if you see little bugs moving around, treat with neem."
+  },
+  "pest-root-rot": {
+    "title": "Root rot",
+    "message": "Plants watered too frequently are prone to root rot. If the plant wilts even though the soil is moist, check the roots -- they should be white, not brown."
+  },
+  "pest-neem-preventive": {
+    "title": "Preventive neem in spring",
+    "message": "Applying neem oil every 2 weeks in spring prevents a ton of pests. Spray in the evening to avoid burning the leaves."
+  },
+  "fertilizer-npk-basics": {
+    "title": "What is NPK?",
+    "message": "Fertilizers list NPK: Nitrogen (leaves), Phosphorus (flowers and roots), Potassium (overall health). For green leaves use more N, for flowers use more P."
+  },
+  "fertilizer-spring-schedule": {
+    "title": "Fertilize every 2 weeks",
+    "message": "In spring and summer, fertilize every 2 weeks at half the recommended dose. Little and often beats a lot all at once."
+  },
+  "fertilizer-overfeeding-signs": {
+    "title": "Over-fertilizing signs",
+    "message": "White crust on the soil, burned leaf edges, or weak growth are signs of too much fertilizer. Water thoroughly to flush out built-up salts."
+  },
+  "fertilizer-organic-options": {
+    "title": "Organic fertilizers",
+    "message": "Worm castings, compost tea, or banana peels are great organic options. They release nutrients slowly and improve soil structure."
+  },
+  "fertilizer-winter-stop": {
+    "title": "Don't fertilize in winter",
+    "message": "Dormant plants don't absorb nutrients. Fertilizing in winter saturates the substrate with salts and can burn the roots. Wait until spring."
+  },
+  "fertilizer-succulents": {
+    "title": "Fertilizing succulents and cacti",
+    "message": "Succulents and cacti need very little feeding. Use a specific fertilizer diluted to 25% of the recommended dose, only in spring-summer, once a month at most."
+  },
+  "fertilizer-flowering": {
+    "title": "Fertilizer for blooming",
+    "message": "Flowering plants need more phosphorus and potassium. Look for a fertilizer with a formula like 10-30-20 when blooming season starts."
+  },
+  "fertilizer-banana-peel": {
+    "title": "Banana peel tea",
+    "message": "Soak banana peels in water for 48 hours and use that water for watering. It's rich in potassium and flowering and fruit plants love it."
+  },
+  "care-leggy-growth": {
+    "title": "Leggy growth",
+    "message": "If your plants are stretching with thin stems and spaced-out leaves, they need more light. It's common in winter. Move them to the brightest window."
+  },
+  "care-repot-signs": {
+    "title": "Signs it's time to repot",
+    "message": "Roots poking out the bottom, water draining straight through without wetting the soil, or stunted growth are signs it needs a bigger pot."
+  },
+  "care-bottom-leaves-normal": {
+    "title": "Lower leaves drying out",
+    "message": "Older leaves at the bottom drying up is normal for most plants. The plant reabsorbs the nutrients. Only worry if many are dropping at once."
+  },
+  "care-water-temperature": {
+    "title": "Water temperature",
+    "message": "In winter, don't water with ice-cold tap water. Let the water reach room temperature before watering so you don't stress the roots."
+  },
+  "care-soil-compaction": {
+    "title": "Compacted soil",
+    "message": "If water runs down the sides without soaking the soil, it's compacted. Gently poke it with a stick and loosen the top layer."
+  },
+  "general-consistent-routine": {
+    "title": "Consistency is key",
+    "message": "Plants prefer a steady routine over erratic care. Better to water a little late than to skip and then flood them."
+  },
+  "general-terracotta-vs-plastic": {
+    "title": "Terracotta vs. plastic pots",
+    "message": "Terracotta pots breathe and dry out faster (better for succulents). Plastic pots retain moisture (better for ferns and tropicals)."
+  },
+  "general-finger-test": {
+    "title": "The finger test",
+    "message": "Stick your finger 2-3 cm into the soil. If it's dry, water. If it's moist, wait. It's the simplest and most effective way to know when to water."
+  },
+  "general-patience": {
+    "title": "Be patient with new plants",
+    "message": "A new plant can take 2-4 weeks to acclimate. If it drops a few leaves at first, don't panic. Give it time and consistent care."
+  },
+  "general-watch-pets": {
+    "title": "Plants and pets",
+    "message": "Many common houseplants are toxic to dogs and cats. If you have pets, make sure plants are out of reach or choose pet-safe varieties."
+  }
+}

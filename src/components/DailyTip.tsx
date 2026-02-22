@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,15 @@ import {
   Animated,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
 import { Plant, Location, WeatherData } from '../types';
-import { TipContext, CareTip } from '../data/careTips';
+import { TipContext, CareTip, getTranslatedTip } from '../data/careTips';
 import { getCurrentSeason, selectRandomTip } from '../utils/tipSelector';
 import { formatDate } from '../utils/dates';
 import { usePremium } from '../hooks/usePremium';
+import { usePremiumGate } from '../config/premium';
+import { useStorage } from '../hooks/useStorage';
 
 const SEEN_TIPS_KEY = 'daily-tips-seen';
 
@@ -28,10 +31,13 @@ interface SeenTipsData {
 }
 
 export function DailyTip({ plants, location, weather }: DailyTipProps) {
+  const { t } = useTranslation();
   const { isPremium, showPaywall } = usePremium();
+  const premium = usePremiumGate();
+  const { installDate } = useStorage();
   const [currentTip, setCurrentTip] = useState<CareTip | null>(null);
   const [seenTipIds, setSeenTipIds] = useState<string[]>([]);
-  const [fadeAnim] = useState(new Animated.Value(1));
+  const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const todayStr = formatDate(new Date());
 
@@ -102,8 +108,8 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
 
   // Mostrar otro tip
   const handleNextTip = () => {
-    // Free users only get 1 tip per day (the initial one)
-    if (!isPremium && seenTipIds.length >= 1) {
+    // Check if user can see more tips (considers first-week trial)
+    if (!premium.canSeeTips(seenTipIds.length, installDate)) {
       showPaywall('daily_tip');
       return;
     }
@@ -134,6 +140,8 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
     return null;
   }
 
+  const translatedTip = getTranslatedTip(currentTip);
+
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.card, { opacity: fadeAnim }]}>
@@ -142,23 +150,23 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
             <Text style={styles.icon}>{currentTip.icon}</Text>
           </View>
           <View style={styles.labelContainer}>
-            <Text style={styles.label}>CONSEJO DEL DIA</Text>
+            <Text style={styles.label}>{t('dailyTip.label')}</Text>
             <Text style={styles.categoryBadge}>
-              {getCategoryLabel(currentTip.category)}
+              {getCategoryLabel(currentTip.category, t)}
             </Text>
           </View>
         </View>
 
-        <Text style={styles.title}>{currentTip.title}</Text>
-        <Text style={styles.message}>{currentTip.message}</Text>
+        <Text style={styles.title}>{translatedTip.title}</Text>
+        <Text style={styles.message}>{translatedTip.message}</Text>
 
         <TouchableOpacity
           style={styles.nextButton}
           onPress={handleNextTip}
           activeOpacity={0.7}
         >
-          <Text style={styles.nextButtonText}>Otro consejo</Text>
-          {!isPremium && seenTipIds.length >= 1 && (
+          <Text style={styles.nextButtonText}>{t('dailyTip.nextTip')}</Text>
+          {!premium.canSeeTips(seenTipIds.length + 1, installDate) && (
             <View style={styles.proBadge}>
               <Text style={styles.proBadgeText}>PRO</Text>
             </View>
@@ -170,16 +178,16 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
   );
 }
 
-function getCategoryLabel(category: string): string {
+function getCategoryLabel(category: string, t: (key: string) => string): string {
   switch (category) {
     case 'seasonal':
-      return 'Estacional';
+      return t('dailyTip.seasonal');
     case 'weather':
-      return 'Clima';
+      return t('dailyTip.weather');
     case 'care':
-      return 'Cuidado';
+      return t('dailyTip.care');
     case 'general':
-      return 'General';
+      return t('dailyTip.general');
     default:
       return '';
   }
@@ -191,12 +199,12 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   card: {
-    backgroundColor: '#f0f7f0',
+    backgroundColor: colors.successBg,
     borderRadius: borderRadius.xl,
     padding: spacing.lg,
     ...shadows.sm,
     borderWidth: 1,
-    borderColor: '#d4e8d4',
+    borderColor: colors.successBorder,
   },
   header: {
     flexDirection: 'row',
@@ -256,8 +264,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-end',
-    paddingVertical: spacing.xs,
-    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    minHeight: 44,
   },
   nextButtonText: {
     fontFamily: fonts.bodyMedium,
@@ -270,7 +279,7 @@ const styles = StyleSheet.create({
     color: colors.green,
   },
   proBadge: {
-    backgroundColor: '#4A5A40',
+    backgroundColor: colors.premiumDark,
     paddingHorizontal: 6,
     paddingVertical: 1,
     borderRadius: 4,
@@ -279,7 +288,7 @@ const styles = StyleSheet.create({
   proBadgeText: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 8,
-    color: '#fff',
+    color: colors.white,
     letterSpacing: 0.5,
   },
 });

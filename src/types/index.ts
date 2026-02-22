@@ -7,6 +7,13 @@ export interface PlantType {
   tip: string;
 }
 
+export interface PlantPhoto {
+  id: string;
+  uri: string;
+  date: string;
+  note?: string;
+}
+
 export interface Plant {
   id: string;
   name: string;
@@ -22,6 +29,7 @@ export interface Plant {
   lastWatered: string | null;
   sunDoneDate: string | null;
   outdoorDoneDate: string | null;
+  photos?: PlantPhoto[];
   // Optional overrides from database or user
   tempMin?: number;
   tempMax?: number;
@@ -65,6 +73,8 @@ export interface AppData {
   userName: string | null;
   notificationSettings: NotificationSettings | null;
   plantNetApiKey: string | null;
+  installDate: string | null;
+  identificationCount: number;
 }
 
 // Plant Database Types

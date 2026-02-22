@@ -1,0 +1,402 @@
+{
+  "winter-less-water": {
+    "title": "Riego invernal",
+    "message": "En invierno reduce el riego a la mitad. Las plantas crecen más lento y necesitan menos agua."
+  },
+  "spring-fertilize": {
+    "title": "Hora de fertilizar",
+    "message": "La primavera es el mejor momento para fertilizar. Las plantas están despertando y necesitan nutrientes."
+  },
+  "summer-early-water": {
+    "title": "Riega temprano",
+    "message": "En verano riega a primera hora de la mañana o al atardecer para evitar que el agua se evapore."
+  },
+  "fall-prepare": {
+    "title": "Prepárate para el invierno",
+    "message": "En otoño es buen momento para podar y preparar las plantas para el frío que viene."
+  },
+  "spring-repot": {
+    "title": "Trasplantes de primavera",
+    "message": "Si tus plantas ya no tienen espacio en su maceta, este es el mejor momento para trasplantarlas."
+  },
+  "summer-mulch": {
+    "title": "Protege la tierra",
+    "message": "Agrega mantillo o corteza sobre la tierra para mantener la humedad y proteger las raíces del calor."
+  },
+  "cloudy-less-evaporation": {
+    "title": "Día nublado",
+    "message": "Los días nublados tienen menos evaporación. Puedes espaciar un poco más el riego."
+  },
+  "high-humidity-fungus": {
+    "title": "Humedad alta",
+    "message": "Con humedad alta, cuidado con los hongos. Asegúrate de que haya buena ventilación entre las plantas."
+  },
+  "hot-day-shade": {
+    "title": "Mucho calor",
+    "message": "Con más de 30 grados, considera mover las plantas sensibles a un lugar con sombra parcial."
+  },
+  "rain-coming": {
+    "title": "Lluvia mañana",
+    "message": "Se esperan lluvias para mañana. Puedes saltear el riego de las plantas de exterior."
+  },
+  "windy-protect": {
+    "title": "Día ventoso",
+    "message": "Con viento fuerte, protege las plantas delicadas y revisa que las macetas estén estables."
+  },
+  "cold-night": {
+    "title": "Noche fría",
+    "message": "Se esperan temperaturas bajas esta noche. Considera entrar las plantas sensibles al frío."
+  },
+  "yellow-leaves-overwater": {
+    "title": "Hojas amarillas",
+    "message": "Si una planta tiene hojas amarillas, puede ser exceso de agua. Deja secar la tierra entre riegos."
+  },
+  "brown-tips-humidity": {
+    "title": "Puntas marrones",
+    "message": "Las hojas con puntas marrones suelen indicar falta de humedad. Prueba pulverizar con agua."
+  },
+  "droopy-leaves": {
+    "title": "Hojas caídas",
+    "message": "Si las hojas están decaídas pero la tierra está húmeda, puede ser exceso de riego. Deja secar."
+  },
+  "pale-leaves-light": {
+    "title": "Hojas pálidas",
+    "message": "Las hojas pálidas o estiradas indican falta de luz. Mueve la planta a un lugar más iluminado."
+  },
+  "check-drainage": {
+    "title": "Buen drenaje",
+    "message": "Asegúrate de que todas tus macetas tengan agujeros de drenaje. Las raíces no deben quedar en agua."
+  },
+  "rotate-pots": {
+    "title": "Rota las macetas",
+    "message": "Rota las macetas cada 1-2 semanas para que las plantas crezcan parejas y no se inclinen hacia la luz."
+  },
+  "clean-leaves": {
+    "title": "Limpia las hojas",
+    "message": "Limpia las hojas con un paño húmedo cada 2 semanas. Así respiran mejor y absorben más luz."
+  },
+  "water-quality": {
+    "title": "Agua reposada",
+    "message": "Deja reposar el agua del grifo 24 horas antes de regar. Así se evapora el cloro."
+  },
+  "morning-routine": {
+    "title": "Rutina matutina",
+    "message": "Revisar tus plantas cada mañana te ayuda a detectar problemas temprano. Una miradita rápida basta."
+  },
+  "group-humidity": {
+    "title": "Agrupa las plantas",
+    "message": "Agrupar las plantas crea un microclima con más humedad. Se ayudan entre ellas."
+  },
+  "quarantine-new": {
+    "title": "Cuarentena",
+    "message": "Las plantas nuevas deben estar separadas 2 semanas antes de juntarlas con las demás. Previene plagas."
+  },
+  "suculenta-propagation": {
+    "title": "Propagá tus suculentas",
+    "message": "Podés propagar suculentas con una hoja sana: dejala secar 2-3 días y apoyala sobre sustrato húmedo. En semanas aparecen raicitas."
+  },
+  "suculenta-substrate": {
+    "title": "Sustrato para suculentas",
+    "message": "Usá una mezcla de tierra común con perlita o arena gruesa (50/50). Las suculentas necesitan un drenaje excelente para no pudrirse."
+  },
+  "suculenta-sunburn": {
+    "title": "Quemaduras en suculentas",
+    "message": "Si tus suculentas tienen manchas blancas o marrones, puede ser quemadura solar. Movelas a semisombra y acostumbralas al sol gradualmente."
+  },
+  "suculenta-etiolation": {
+    "title": "Suculentas estiradas",
+    "message": "Si tu suculenta se estira y las hojas se separan, le falta luz. Acercala a una ventana o ponele unas horas de sol directo por día."
+  },
+  "suculenta-watering-method": {
+    "title": "Cómo regar suculentas",
+    "message": "Regá las suculentas a fondo y después dejá secar completamente. El método de \"riego profundo\" es mejor que poquitos de agua seguido."
+  },
+  "helecho-humidity": {
+    "title": "Humedad para helechos",
+    "message": "Los helechos aman la humedad. Pulverizá las hojas 2-3 veces por semana o poneles un plato con piedras y agua debajo."
+  },
+  "helecho-bathroom": {
+    "title": "Helechos en el baño",
+    "message": "El baño es un lugar ideal para helechos: el vapor de la ducha les da la humedad que necesitan. Eso sí, que tenga algo de luz natural."
+  },
+  "helecho-no-direct-sun": {
+    "title": "Helechos y sol directo",
+    "message": "Nunca pongas un helecho al sol directo, se queman las hojas al toque. Luz indirecta brillante es lo ideal."
+  },
+  "helecho-brown-fronds": {
+    "title": "Frondes secas del helecho",
+    "message": "Si ves frondes marrones o secas, cortalas desde la base. No van a revivir y le sacan energía a la planta."
+  },
+  "cactus-dormancy": {
+    "title": "Cactus en reposo invernal",
+    "message": "En invierno los cactus entran en dormancia. Regá muy poco (una vez al mes o menos) y ponelos en un lugar fresco. Así florecen mejor en primavera."
+  },
+  "cactus-overwatering": {
+    "title": "Cactus blando = exceso de agua",
+    "message": "Si tu cactus está blando o translúcido, tiene exceso de riego. Sacalo de la maceta, dejá secar las raíces y transplantalo a sustrato seco."
+  },
+  "cactus-repotting": {
+    "title": "Trasplantar cactus",
+    "message": "Para trasplantar un cactus, envolvelo en varias capas de diario o usá guantes gruesos de cuero. Después del transplante, esperá 5-7 días para regar."
+  },
+  "aromatica-harvest": {
+    "title": "Cosechá aromáticas seguido",
+    "message": "Cortar las aromáticas regularmente las hace crecer más tupidas. Nunca cortes más de un tercio de la planta de una vez."
+  },
+  "aromatica-pinch": {
+    "title": "Despuntá tus aromáticas",
+    "message": "Cuando la albahaca o la menta saquen flor, cortá las puntas florales. Así la planta concentra energía en las hojas y no en semillas."
+  },
+  "aromatica-companion": {
+    "title": "Aromáticas compañeras",
+    "message": "La albahaca cerca de los tomates repele pulgones. El romero y la lavanda atraen polinizadores. Aprovechá las aromáticas como compañeras del huerto."
+  },
+  "aromatica-sun-needs": {
+    "title": "Sol para aromáticas",
+    "message": "La mayoría de las aromáticas necesita mínimo 6 horas de sol directo. Si no tienen suficiente luz, pierden sabor y aroma."
+  },
+  "trepa-support": {
+    "title": "Soporte para trepadoras",
+    "message": "Las trepadoras necesitan por dónde trepar: un tutor de musgo, un enrejado o hilos tensados. Sin soporte crecen desparramadas y más débiles."
+  },
+  "trepa-aerial-roots": {
+    "title": "Raíces aéreas",
+    "message": "Las raíces aéreas de las trepadoras no son un problema: son normales y ayudan a trepar. Podés dirigirlas hacia el tutor de musgo para que se agarre mejor."
+  },
+  "trepa-propagation": {
+    "title": "Propagá trepadoras por esquejes",
+    "message": "En primavera podés sacar esquejes de tus trepadoras. Cortá debajo de un nudo, sacale las hojas de abajo y ponelo en agua hasta que saque raíces."
+  },
+  "frutal-pollination": {
+    "title": "Polinización de frutales",
+    "message": "En primavera asegurate de que los frutales reciban polinizadores. Podés ayudar pasando un pincel suave de flor en flor si no ves abejas."
+  },
+  "frutal-pruning-time": {
+    "title": "Poda invernal de frutales",
+    "message": "El invierno es el momento de podar frutales de hoja caduca. Sacales las ramas secas, cruzadas y chupones para que produzcan mejor en primavera."
+  },
+  "frutal-fruit-set": {
+    "title": "Cuidado con la fruta cuajada",
+    "message": "Si tu frutal tiene muchos frutos chiquitos, sacale algunos. Parece una locura, pero el raleo hace que los que quedan crezcan más grandes y dulces."
+  },
+  "floral-deadheading": {
+    "title": "Sacá las flores marchitas",
+    "message": "Cortá las flores que se van secando. Así la planta no gasta energía en hacer semillas y te da más flores nuevas."
+  },
+  "floral-bloom-cycle": {
+    "title": "Ciclo de floración",
+    "message": "Las florales necesitan más nutrientes en primavera. Agregá fertilizante con más fósforo (el segundo número del NPK) para estimular la floración."
+  },
+  "floral-light-hours": {
+    "title": "Luz y floración",
+    "message": "Muchas flores necesitan cierta cantidad de horas de luz para florecer. Si tu planta no da flores, fijate si le llega suficiente sol directo."
+  },
+  "early-spring-pests": {
+    "title": "Plagas de primavera",
+    "message": "Con el calorcito llegan los pulgones y cochinillas. Revisá bien el revés de las hojas y los tallos nuevos. Detectarlos temprano es clave."
+  },
+  "late-spring-growth": {
+    "title": "Crecimiento explosivo",
+    "message": "En esta parte de la primavera las plantas crecen a full. Asegurate de que tengan espacio, nutrientes y riego suficiente para bancar el envión."
+  },
+  "summer-heatwave": {
+    "title": "Ola de calor",
+    "message": "Varios días seguidos de +35 grados. Regá más seguido, pulverizá las hojas al atardecer y si podés mové las macetas a la sombra."
+  },
+  "summer-vacation-prep": {
+    "title": "¿Te vas de vacaciones?",
+    "message": "Antes de irte: regá bien, agrupá las macetas en sombra parcial y poné botellas invertidas como riego lento. Pedile a alguien que las revise cada 3-4 días."
+  },
+  "fall-bring-indoors": {
+    "title": "Entrá las sensibles",
+    "message": "Las noches empiezan a enfriar. Tropicales, suculentas y florales que estuvieron afuera en verano es hora de entrarlas adentro."
+  },
+  "fall-reduce-fertilizer": {
+    "title": "Frená el fertilizante",
+    "message": "En otoño reducí la fertilización. Las plantas empiezan a entrar en reposo y no necesitan tantos nutrientes. Forzarlas ahora las debilita."
+  },
+  "winter-dormancy": {
+    "title": "Respetá el descanso",
+    "message": "En invierno muchas plantas frenan su crecimiento. No te preocupes si no ves hojas nuevas, es normal. Regá poco y no fertilices."
+  },
+  "winter-indoor-humidity": {
+    "title": "Humedad interior en invierno",
+    "message": "La calefacción seca el aire. Pulverizá las plantas tropicales, poneles bandejas con agua y piedras o agrupá las macetas para crear humedad."
+  },
+  "spring-check-roots": {
+    "title": "Revisá las raíces",
+    "message": "A principio de primavera fijate si ves raíces saliendo por los agujeros de drenaje. Es señal de que la planta necesita una maceta más grande."
+  },
+  "fall-last-pruning": {
+    "title": "Última poda del año",
+    "message": "Antes de que llegue el frío, limpiá hojas secas y ramas muertas. No hagas podas fuertes ahora porque los brotes nuevos no van a aguantar el invierno."
+  },
+  "winter-light-position": {
+    "title": "Aprovechá la luz",
+    "message": "Los días son más cortos en invierno. Mové las plantas cerca de ventanas luminosas. El sol de invierno es suave y no las va a quemar."
+  },
+  "summer-bottom-watering": {
+    "title": "Riego por inmersión",
+    "message": "En verano probá regar por abajo: metí la maceta en un recipiente con agua 15-20 min. La tierra absorbe lo que necesita de forma pareja."
+  },
+  "spring-seed-starting": {
+    "title": "Época de siembra",
+    "message": "Septiembre es ideal para arrancar semillas de albahaca, tomate y perejil. Usá almacigueras con sustrato húmedo y mantenelas con luz."
+  },
+  "fall-compost-leaves": {
+    "title": "Aprovechá las hojas caídas",
+    "message": "Las hojas secas del otoño son oro para el compost. Apilalas, mantenelas húmedas y en unos meses tenés abono casero de primera."
+  },
+  "uv-high-protect": {
+    "title": "UV muy alto",
+    "message": "El índice UV está altísimo. Las plantas de interior cerca de ventanas pueden quemarse. Corré las macetas un poco o usá una cortina liviana."
+  },
+  "dry-spell-alert": {
+    "title": "Sequía a la vista",
+    "message": "No se esperan lluvias en los próximos 5 días. Las plantas de exterior van a necesitar riego manual extra. Prestá atención a las que están al sol."
+  },
+  "temp-swing-stress": {
+    "title": "Cambio brusco de temperatura",
+    "message": "Hay mucha diferencia entre la máxima y la mínima. Ese estrés térmico puede afectar a las plantas sensibles. Si podés, entralas de noche."
+  },
+  "consecutive-heat": {
+    "title": "Calor persistente",
+    "message": "Llevamos varios días de calor fuerte. Duplicá la frecuencia de riego y fijate que la tierra no se separe de las paredes de la maceta."
+  },
+  "frost-risk": {
+    "title": "Riesgo de helada",
+    "message": "Frío + humedad alta = posible helada. Cubrí las plantas de exterior con tela antihelada o metí las macetas adentro esta noche."
+  },
+  "heavy-rain-drainage": {
+    "title": "Lluvias fuertes",
+    "message": "Se esperan lluvias intensas. Revisá que tus macetas de exterior no se encharquen. Si no tienen buen drenaje, ponelas bajo techo."
+  },
+  "low-wind-mist": {
+    "title": "Aire seco y calmo",
+    "message": "Con poca brisa y baja humedad, las plantas transpiran más rápido. Buen momento para pulverizar las hojas y agregar un platito con agua cerca."
+  },
+  "uv-moderate-outdoor-time": {
+    "title": "UV moderado: ideal para aclimatar",
+    "message": "El UV está moderado, perfecto para sacar plantas de interior a tomar sol un rato. Empezá con 1-2 horas en semisombra y andá aumentando."
+  },
+  "post-rain-check": {
+    "title": "Después de la lluvia",
+    "message": "Después de lluvias fuertes, revisá las macetas: vaciá los platitos si se llenaron y fijate que no haya barro tapando los agujeros de drenaje."
+  },
+  "extreme-wind": {
+    "title": "Vientos muy fuertes",
+    "message": "Con vientos de más de 50 km/h, metí adentro las macetas livianas y asegurá las trepadoras al soporte. Las ramas débiles pueden romperse."
+  },
+  "pest-spider-mites": {
+    "title": "Ojo con la arañuela roja",
+    "message": "Calor seco es paraíso para la arañuela roja. Fijate si hay puntitos en las hojas o telarañas finas. Pulverizá con agua jabonosa o aceite de neem."
+  },
+  "pest-mealybugs": {
+    "title": "Cochinilla algodonosa",
+    "message": "Si ves motitas blancas algodonosas en tallos o axilas de hojas, es cochinilla. Sacalas con un hisopo mojado en alcohol o aplicá aceite de neem."
+  },
+  "pest-aphids": {
+    "title": "Pulgones a la vista",
+    "message": "Los pulgones aparecen en primavera-verano en brotes tiernos. Probá con agua a presión, jabón potásico o introduciendo mariquitas en tu jardín."
+  },
+  "pest-fungus-gnats": {
+    "title": "Mosquitas del sustrato",
+    "message": "Las mosquitas negras chiquitas salen de la tierra húmeda. Dejá secar la capa superior entre riegos y agregá una capa de arena gruesa arriba."
+  },
+  "pest-white-mold": {
+    "title": "Moho blanco en la tierra",
+    "message": "El moho blanco en el sustrato indica exceso de humedad y poca ventilación. Sacá la capa de moho, dejá secar la tierra y mejorá la circulación de aire."
+  },
+  "pest-scale-insects": {
+    "title": "Cochinilla parda (escama)",
+    "message": "Las escamas marrones pegadas a tallos y nervaduras de las hojas son cochinillas. Sacalas raspando con una uña y aplicá aceite de neem preventivo."
+  },
+  "pest-leaf-spot": {
+    "title": "Manchas en las hojas",
+    "message": "Humedad + calor = caldo de cultivo para hongos. Si ves manchas marrones o negras con halo amarillo, cortá la hoja y mejorá la ventilación."
+  },
+  "pest-thrips": {
+    "title": "Trips en tus plantas",
+    "message": "Los trips dejan marcas plateadas en las hojas. Son muy chiquitos y difíciles de ver. Sacudí una hoja sobre papel blanco: si ves bichitos moviéndose, tratá con neem."
+  },
+  "pest-root-rot": {
+    "title": "Podredumbre de raíz",
+    "message": "Las plantas que regás muy seguido son propensas a podredumbre. Si la planta se marchita aunque la tierra esté húmeda, revisá las raíces: deben ser blancas, no marrones."
+  },
+  "pest-neem-preventive": {
+    "title": "Neem preventivo en primavera",
+    "message": "Aplicar aceite de neem cada 15 días en primavera previene un montón de plagas. Pulverizá al atardecer para no quemar las hojas."
+  },
+  "fertilizer-npk-basics": {
+    "title": "¿Qué es NPK?",
+    "message": "Los fertilizantes dicen NPK: Nitrógeno (hojas), Fósforo (flores y raíces), Potasio (salud general). Para hojas verdes usá más N, para flores más P."
+  },
+  "fertilizer-spring-schedule": {
+    "title": "Fertilizá cada 2 semanas",
+    "message": "En primavera y verano fertilizá cada 15 días con la mitad de la dosis recomendada. Más vale poquito y seguido que mucho de golpe."
+  },
+  "fertilizer-overfeeding-signs": {
+    "title": "Exceso de fertilizante",
+    "message": "Costras blancas en la tierra, hojas quemadas en los bordes o crecimiento débil son señales de exceso. Regá abundante para lavar las sales acumuladas."
+  },
+  "fertilizer-organic-options": {
+    "title": "Fertilizantes orgánicos",
+    "message": "Humus de lombriz, té de compost o cáscara de banana son opciones orgánicas geniales. Liberan nutrientes lento y mejoran la estructura de la tierra."
+  },
+  "fertilizer-winter-stop": {
+    "title": "No fertilices en invierno",
+    "message": "Las plantas en reposo no absorben nutrientes. Fertilizar en invierno satura el sustrato de sales y puede quemar las raíces. Esperá a la primavera."
+  },
+  "fertilizer-succulents": {
+    "title": "Fertilizar suculentas y cactus",
+    "message": "Suculentas y cactus necesitan poca comida. Usá fertilizante específico diluido al 25% de lo indicado, solo en primavera-verano y una vez al mes como mucho."
+  },
+  "fertilizer-flowering": {
+    "title": "Fertilizante para floración",
+    "message": "Las plantas con flor necesitan más fósforo y potasio. Buscá un fertilizante con fórmula tipo 10-30-20 cuando arranque la temporada de floración."
+  },
+  "fertilizer-banana-peel": {
+    "title": "Té de cáscara de banana",
+    "message": "Remojá cáscaras de banana en agua 48 horas y usá esa agua para regar. Es rica en potasio y les encanta a las florales y frutales."
+  },
+  "care-leggy-growth": {
+    "title": "Crecimiento larguirucho",
+    "message": "Si tus plantas se estiran con tallos flacos y hojas separadas, necesitan más luz. En invierno es común. Acercalas a la ventana más luminosa."
+  },
+  "care-repot-signs": {
+    "title": "Señales de transplante",
+    "message": "Raíces saliendo por abajo, agua que drena al toque sin mojar la tierra o crecimiento frenado son señales de que necesita maceta más grande."
+  },
+  "care-bottom-leaves-normal": {
+    "title": "Hojas inferiores secas",
+    "message": "Que se sequen las hojas más viejas (de abajo) es normal en la mayoría de las plantas. La planta reabsorbe los nutrientes. Solo preocupate si son muchas a la vez."
+  },
+  "care-water-temperature": {
+    "title": "Temperatura del agua",
+    "message": "En invierno no regués con agua helada de la canilla. Dejá que el agua tome temperatura ambiente antes de regar, así no estresás las raíces."
+  },
+  "care-soil-compaction": {
+    "title": "Tierra compactada",
+    "message": "Si el agua corre por los bordes sin mojar bien la tierra, está compactada. Pinchalos suavemente con un palito y aflojá la capa superior."
+  },
+  "general-consistent-routine": {
+    "title": "La constancia es clave",
+    "message": "Las plantas prefieren una rutina constante que cuidados erráticos. Mejor regar un poquito tarde que saltear y después inundar."
+  },
+  "general-terracotta-vs-plastic": {
+    "title": "Maceta de barro vs plástico",
+    "message": "Las macetas de barro transpiran y secan más rápido (mejor para suculentas). Las de plástico retienen humedad (mejor para helechos y tropicales)."
+  },
+  "general-finger-test": {
+    "title": "El test del dedo",
+    "message": "Metí el dedo 2-3 cm en la tierra. Si está seca, regá. Si está húmeda, esperá. Es el método más simple y efectivo para saber cuándo regar."
+  },
+  "general-patience": {
+    "title": "Paciencia con las plantas nuevas",
+    "message": "Una planta nueva puede tardar 2-4 semanas en aclimatarse. Si pierde algunas hojas al principio, no te desesperes. Dale tiempo y cuidados constantes."
+  },
+  "general-watch-pets": {
+    "title": "Plantas y mascotas",
+    "message": "Muchas plantas comunes son tóxicas para perros y gatos. Si tenés mascotas, fijate que las plantas estén fuera de su alcance o elegí variedades seguras."
+  }
+}

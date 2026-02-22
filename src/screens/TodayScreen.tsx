@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
@@ -33,6 +34,7 @@ import {
   AddPlantModal,
   SettingsPanel,
   PlantIdentifierModal,
+  MyPlantDetailModal,
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
@@ -42,6 +44,7 @@ import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 
 export default function TodayScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const premium = usePremiumGate();
   const { showPaywall } = usePremium();
@@ -63,6 +66,11 @@ export default function TodayScreen() {
     updateLocation,
     updateNotificationSettings,
     updatePlantNetApiKey,
+    installDate,
+    identificationCount,
+    incrementIdentificationCount,
+    addPhotoToPlant,
+    removePhotoFromPlant,
   } = useStorage();
 
   const { weather, loading: weatherLoading, error: weatherError, refetch: refetchWeather } = useWeather(location);
@@ -94,6 +102,7 @@ export default function TodayScreen() {
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -162,9 +171,13 @@ export default function TodayScreen() {
     // Upload image if provided
     let imageUrl: string | undefined;
     if (imageUri) {
-      const uploadedUrl = await uploadPlantImage(imageUri, plantId);
-      if (uploadedUrl) {
-        imageUrl = uploadedUrl;
+      try {
+        const uploadedUrl = await uploadPlantImage(imageUri, plantId);
+        if (uploadedUrl) {
+          imageUrl = uploadedUrl;
+        }
+      } catch (e) {
+        console.error('Error uploading plant image:', e);
       }
     }
 
@@ -200,7 +213,7 @@ export default function TodayScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.green} />
-          <Text style={styles.loadingText}>Cargando...</Text>
+          <Text style={styles.loadingText}>{t('today.loading')}</Text>
         </View>
       </SafeAreaView>
     );
@@ -236,22 +249,22 @@ export default function TodayScreen() {
         <WeatherAlerts weather={weather} plants={plants} />
 
         {/* Premium banner for free users */}
-        {!premium.isPremium && plants.length >= 3 && (
+        {!premium.isPremium && plants.length >= 5 && (
           <TouchableOpacity
             style={styles.premiumBanner}
             onPress={() => showPaywall('premium_feature')}
             activeOpacity={0.8}
           >
             <LinearGradient
-              colors={['#4A5A40', '#5B6E4E']}
+              colors={[colors.premiumDark, colors.premiumLight]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.premiumBannerGradient}
             >
               <Text style={styles.premiumBannerIcon}>🌿</Text>
               <View style={styles.premiumBannerText}>
-                <Text style={styles.premiumBannerTitle}>Desbloquea tu jardin completo</Text>
-                <Text style={styles.premiumBannerSubtitle}>Plantas ilimitadas, alertas y mas</Text>
+                <Text style={styles.premiumBannerTitle}>{t('today.unlockGarden')}</Text>
+                <Text style={styles.premiumBannerSubtitle}>{t('today.unlimitedPlants')}</Text>
               </View>
               <View style={styles.premiumBannerArrow}>
                 <Text style={styles.premiumBannerArrowText}>→</Text>
@@ -276,7 +289,7 @@ export default function TodayScreen() {
         {/* Today's Reminders */}
         {todayReminders.length > 0 && (
           <View style={styles.section}>
-            <SectionHeader title="Recordatorios" count={todayReminders.length} />
+            <SectionHeader title={t('today.reminders')} count={todayReminders.length} />
             {todayReminders.map((reminder) => (
               <ReminderItem
                 key={reminder.id}
@@ -291,7 +304,7 @@ export default function TodayScreen() {
         {/* Today's Notes */}
         {todayNotes.length > 0 && (
           <View style={styles.section}>
-            <SectionHeader title="Notas" count={todayNotes.length} />
+            <SectionHeader title={t('today.notes')} count={todayNotes.length} />
             {todayNotes.map((note) => (
               <NoteItem
                 key={note.id}
@@ -305,7 +318,7 @@ export default function TodayScreen() {
         {/* Plants with tasks today */}
         {plantsWithTasks.length > 0 && (
           <View style={styles.section}>
-            <SectionHeader title="Con tareas hoy" count={plantsWithTasks.length} />
+            <SectionHeader title={t('today.withTasksToday')} count={plantsWithTasks.length} />
             {plantsWithTasks.map((plant) => (
               <PlantCard
                 key={plant.id}
@@ -316,6 +329,7 @@ export default function TodayScreen() {
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
                 onDelete={handleDeletePlant}
+                onPress={setDetailPlant}
               />
             ))}
           </View>
@@ -324,7 +338,7 @@ export default function TodayScreen() {
         {/* Plants without tasks today */}
         {plantsWithoutTasks.length > 0 && (
           <View style={styles.section}>
-            <SectionHeader title="Sin tareas hoy" count={plantsWithoutTasks.length} />
+            <SectionHeader title={t('today.noTasksToday')} count={plantsWithoutTasks.length} />
             {plantsWithoutTasks.map((plant) => (
               <PlantCard
                 key={plant.id}
@@ -335,6 +349,7 @@ export default function TodayScreen() {
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
                 onDelete={handleDeletePlant}
+                onPress={setDetailPlant}
               />
             ))}
           </View>
@@ -344,9 +359,9 @@ export default function TodayScreen() {
         {plants.length === 0 && (
           <View style={styles.emptyState}>
             <Text style={styles.emptyIcon}>🌱</Text>
-            <Text style={styles.emptyTitle}>Tu jardin esta vacio</Text>
+            <Text style={styles.emptyTitle}>{t('today.emptyGarden')}</Text>
             <Text style={styles.emptyText}>
-              Agrega tu primera planta para comenzar a recibir recordatorios de cuidado.
+              {t('today.emptyGardenText')}
             </Text>
           </View>
         )}
@@ -356,7 +371,14 @@ export default function TodayScreen() {
 
       <ExpandedFAB
         onAddManual={handleOpenAddPlant}
-        onIdentify={() => setShowIdentifier(true)}
+        onIdentify={() => {
+          if (!premium.canIdentify(identificationCount)) {
+            showPaywall('plant_identification');
+            return;
+          }
+          incrementIdentificationCount();
+          setShowIdentifier(true);
+        }}
         showIdentifyOption={Features.PLANT_IDENTIFICATION}
       />
 
@@ -375,6 +397,20 @@ export default function TodayScreen() {
           onAddPlant={handleAddPlant}
         />
       )}
+
+      {/* Plant Detail Modal with Photo Album */}
+      <MyPlantDetailModal
+        visible={!!detailPlant}
+        plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
+        weather={weather}
+        onClose={() => setDetailPlant(null)}
+        onDelete={(id) => {
+          handleDeletePlant(id);
+          setDetailPlant(null);
+        }}
+        onAddPhoto={addPhotoToPlant}
+        onDeletePhoto={removePhotoFromPlant}
+      />
     </SafeAreaView>
   );
 }
@@ -451,7 +487,7 @@ const styles = StyleSheet.create({
   premiumBannerTitle: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 14,
-    color: '#fff',
+    color: colors.white,
   },
   premiumBannerSubtitle: {
     fontFamily: fonts.body,
@@ -463,7 +499,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: colors.whiteOverlay,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: spacing.sm,
@@ -471,7 +507,7 @@ const styles = StyleSheet.create({
   premiumBannerArrowText: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 14,
-    color: '#fff',
+    color: colors.white,
   },
   bottomPadding: {
     height: 100,

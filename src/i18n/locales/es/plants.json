@@ -1,0 +1,1085 @@
+{
+  "potus": {
+    "name": "Potus",
+    "tip": "Ideal para principiantes. Tolera poca luz y olvidos de riego.",
+    "description": "Planta trepadora de interior, muy resistente y fácil de cuidar. Perfecta para purificar el aire.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar bien la tierra entre riegos."
+      },
+      {
+        "symptom": "Hojas pálidas",
+        "cause": "Falta de luz",
+        "solution": "Muévela a un lugar más iluminado."
+      },
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Aire muy seco",
+        "solution": "Pulveriza las hojas ocasionalmente."
+      }
+    ]
+  },
+  "monstera": {
+    "name": "Monstera",
+    "tip": "Las hojas fenestradas aparecen con buena luz. Limpia el polvo regularmente.",
+    "description": "Planta tropical de grandes hojas perforadas. Un clásico del interiorismo moderno.",
+    "problems": [
+      {
+        "symptom": "Sin agujeros en hojas nuevas",
+        "cause": "Poca luz",
+        "solution": "Acércala a una ventana con luz indirecta brillante."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Riega solo cuando los primeros cm de tierra estén secos."
+      },
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Baja humedad",
+        "solution": "Agrúpala con otras plantas o usa humidificador."
+      }
+    ]
+  },
+  "ficus": {
+    "name": "Ficus",
+    "tip": "No le gusta que la muevan. Una vez que encuentre su lugar, déjala ahí.",
+    "description": "Árbol de interior elegante y frondoso. Aporta un toque verde y sofisticado a cualquier espacio.",
+    "problems": [
+      {
+        "symptom": "Caída de hojas",
+        "cause": "Cambio de ubicación o corrientes de aire",
+        "solution": "Evita moverla y protégela de corrientes frías."
+      },
+      {
+        "symptom": "Hojas opacas",
+        "cause": "Acumulación de polvo",
+        "solution": "Limpia las hojas con un paño húmedo regularmente."
+      },
+      {
+        "symptom": "Crecimiento lento",
+        "cause": "Maceta pequeña o falta de nutrientes",
+        "solution": "Trasplanta a una maceta más grande en primavera."
+      }
+    ]
+  },
+  "sansevieria": {
+    "name": "Sansevieria",
+    "tip": "Casi indestructible. El error más común es regarla demasiado.",
+    "description": "Planta de hojas verticales muy resistente. Ideal para quienes se olvidan de regar.",
+    "problems": [
+      {
+        "symptom": "Hojas blandas",
+        "cause": "Exceso de riego o pudrición de raíces",
+        "solution": "Deja secar completamente entre riegos, revisa las raíces."
+      },
+      {
+        "symptom": "Puntas secas",
+        "cause": "Aire muy seco o calor excesivo",
+        "solution": "Aléjala de radiadores y fuentes de calor directo."
+      },
+      {
+        "symptom": "Sin crecimiento",
+        "cause": "Luz insuficiente o época fría",
+        "solution": "Crecen lento, especialmente con poca luz. Ten paciencia."
+      }
+    ]
+  },
+  "orquidea": {
+    "name": "Orquídea",
+    "tip": "Riega por inmersión 10 minutos y deja escurrir bien. Nunca agua estancada.",
+    "description": "Flor exótica y elegante que con los cuidados correctos florece varias veces al año.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Falta de contraste de temperatura",
+        "solution": "Exponla a noches más frescas para estimular la floración."
+      },
+      {
+        "symptom": "Raíces grises",
+        "cause": "Falta de riego",
+        "solution": "Sumerge la maceta en agua 10 minutos y deja escurrir."
+      },
+      {
+        "symptom": "Hojas arrugadas",
+        "cause": "Deshidratación",
+        "solution": "Riega más frecuentemente, verifica que las raíces estén sanas."
+      }
+    ]
+  },
+  "calathea": {
+    "name": "Calathea",
+    "tip": "Usa agua filtrada o de lluvia. El cloro del agua de grifo le afecta las hojas.",
+    "description": "Planta de interior con hojas decorativas que se mueven siguiendo la luz del día.",
+    "problems": [
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Agua con cloro o baja humedad",
+        "solution": "Usa agua filtrada y aumenta la humedad."
+      },
+      {
+        "symptom": "Hojas enrolladas",
+        "cause": "Falta de agua o humedad",
+        "solution": "Riega y pulveriza, considera un humidificador."
+      },
+      {
+        "symptom": "Colores apagados",
+        "cause": "Luz inadecuada",
+        "solution": "Muévela a luz indirecta filtrada."
+      }
+    ]
+  },
+  "cinta": {
+    "name": "Cinta",
+    "tip": "Produce hijuelos que cuelgan como una cascada. Ideal para macetas colgantes.",
+    "description": "Planta colgante muy popular que produce pequeñas plantitas. Fácil de propagar y cuidar.",
+    "problems": [
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Sensibilidad al cloro o flúor del agua",
+        "solution": "Usa agua reposada y corta las puntas secas."
+      },
+      {
+        "symptom": "Hojas pálidas",
+        "cause": "Exceso o falta de luz",
+        "solution": "Las variegadas necesitan menos luz que las verdes."
+      },
+      {
+        "symptom": "Sin hijuelos",
+        "cause": "Planta joven o maceta muy grande",
+        "solution": "Deja que madure y se quede algo ajustada en la maceta."
+      }
+    ]
+  },
+  "palmera-interior": {
+    "name": "Palmera de interior",
+    "tip": "Tolerante a poca luz. Ideal para rincones que necesitan verde.",
+    "description": "Palmera adaptada a interiores que aporta un toque tropical a cualquier ambiente.",
+    "problems": [
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Baja humedad o riego irregular",
+        "solution": "Mantén humedad constante, pulveriza en verano."
+      },
+      {
+        "symptom": "Hojas amarillas inferiores",
+        "cause": "Envejecimiento natural",
+        "solution": "Retira hojas viejas, es parte del crecimiento normal."
+      },
+      {
+        "symptom": "Crecimiento muy lento",
+        "cause": "Naturaleza de la planta",
+        "solution": "Las palmeras crecen despacio, paciencia."
+      }
+    ]
+  },
+  "aloe-vera": {
+    "name": "Aloe Vera",
+    "tip": "El gel de sus hojas sirve para quemaduras. Necesita buen drenaje.",
+    "description": "Suculenta medicinal muy popular. Fácil de cuidar y con múltiples usos para la piel.",
+    "problems": [
+      {
+        "symptom": "Hojas blandas y marrones",
+        "cause": "Exceso de riego o mal drenaje",
+        "solution": "Deja secar completamente, verifica que drene bien."
+      },
+      {
+        "symptom": "Hojas delgadas",
+        "cause": "Falta de luz solar",
+        "solution": "Necesita varias horas de sol, idealmente directo."
+      },
+      {
+        "symptom": "Hojas rojas o marrones",
+        "cause": "Quemadura solar repentina",
+        "solution": "Aclimata gradualmente al sol directo."
+      }
+    ]
+  },
+  "lavanda": {
+    "name": "Lavanda",
+    "tip": "Poda después de la floración para mantener la forma compacta y evitar que se vuelva leñosa.",
+    "description": "Aromática mediterránea con flores perfumadas. Atrae polinizadores y repele mosquitos.",
+    "problems": [
+      {
+        "symptom": "Planta leñosa sin flores",
+        "cause": "Falta de poda",
+        "solution": "Poda 1/3 después de florecer, nunca hasta madera vieja."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Suelo con mal drenaje",
+        "solution": "Necesita suelo que drene muy bien."
+      },
+      {
+        "symptom": "Muerte súbita",
+        "cause": "Exceso de humedad en raíces",
+        "solution": "Planta en suelo muy drenado, evita riego excesivo."
+      }
+    ]
+  },
+  "petunia": {
+    "name": "Petunia",
+    "tip": "Quita flores marchitas para prolongar la floración todo el verano.",
+    "description": "Flor colorida ideal para balcones y jardineras. Floración abundante durante todo el verano.",
+    "problems": [
+      {
+        "symptom": "Pocas flores",
+        "cause": "Falta de sol o nutrientes",
+        "solution": "Necesitan sol pleno y abono para floración cada 2 semanas."
+      },
+      {
+        "symptom": "Tallos largos y feos",
+        "cause": "Falta de poda",
+        "solution": "Pellizca las puntas para fomentar ramificación."
+      },
+      {
+        "symptom": "Hojas pegajosas",
+        "cause": "Pulgones u otra plaga",
+        "solution": "Trata con jabón potásico o agua con ajo."
+      }
+    ]
+  },
+  "hortensia": {
+    "name": "Hortensia",
+    "tip": "El color de las flores depende del pH del suelo. Ácido = azul, alcalino = rosa.",
+    "description": "Arbusto con grandes flores esféricas que cambian de color según la acidez del suelo.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Poda incorrecta",
+        "solution": "Solo poda flores viejas, los brotes tienen las flores del próximo año."
+      },
+      {
+        "symptom": "Hojas marchitas",
+        "cause": "Falta de agua",
+        "solution": "Necesitan riego abundante, especialmente en verano."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Clorosis férrica",
+        "solution": "Acidifica el suelo con sulfato de hierro."
+      }
+    ]
+  },
+  "jazmin": {
+    "name": "Jazmín",
+    "tip": "El perfume es más intenso de noche. Ideal cerca de ventanas o patios.",
+    "description": "Trepadora aromática con pequeñas flores blancas de perfume embriagador, especialmente al atardecer.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Poca luz o exceso de nitrógeno",
+        "solution": "Más sol y fertilizante bajo en nitrógeno."
+      },
+      {
+        "symptom": "Hojas amarillas y caen",
+        "cause": "Exceso de riego en época fría",
+        "solution": "Reduce el riego drásticamente en época fría."
+      },
+      {
+        "symptom": "Crecimiento descontrolado",
+        "cause": "Falta de poda",
+        "solution": "Poda después de la floración para controlar."
+      }
+    ]
+  },
+  "geranio": {
+    "name": "Geranio",
+    "tip": "Clásico de los balcones. Quita flores secas y pellizca para más flores.",
+    "description": "Planta de balcón por excelencia. Floración abundante y colorida durante meses.",
+    "problems": [
+      {
+        "symptom": "Pocas flores",
+        "cause": "Falta de sol",
+        "solution": "Necesitan mínimo 6 horas de sol directo."
+      },
+      {
+        "symptom": "Tallos negros",
+        "cause": "Exceso de riego o hongos",
+        "solution": "Deja secar entre riegos, buen drenaje."
+      },
+      {
+        "symptom": "Mariposa del geranio",
+        "cause": "Plaga de Cacyreus marshalli",
+        "solution": "Retira partes afectadas, trata con Bacillus thuringiensis."
+      }
+    ]
+  },
+  "albahaca": {
+    "name": "Albahaca",
+    "tip": "Pellizca las puntas antes de que florezca para mantenerla frondosa y productiva.",
+    "description": "Aromática esencial en la cocina. Fácil de cultivar en maceta junto a la ventana de la cocina.",
+    "problems": [
+      {
+        "symptom": "Floración prematura",
+        "cause": "Estrés por calor o falta de poda",
+        "solution": "Corta las flores apenas aparezcan."
+      },
+      {
+        "symptom": "Hojas negras",
+        "cause": "Frío o heladas",
+        "solution": "Protégela de temperaturas bajo 10°C."
+      },
+      {
+        "symptom": "Hojas pequeñas",
+        "cause": "Falta de nutrientes",
+        "solution": "Fertiliza cada 2 semanas con abono orgánico."
+      }
+    ]
+  },
+  "romero": {
+    "name": "Romero",
+    "tip": "Extremadamente resistente. Prefiere que lo ignores a que lo mimes demasiado.",
+    "description": "Aromática mediterránea muy resistente. Ideal para cocinar y con propiedades medicinales.",
+    "problems": [
+      {
+        "symptom": "Partes secas marrones",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar bien, suelo muy drenado."
+      },
+      {
+        "symptom": "Crecimiento débil",
+        "cause": "Suelo demasiado rico",
+        "solution": "Paradójicamente, prefiere suelos pobres."
+      },
+      {
+        "symptom": "Hongos blancos",
+        "cause": "Mala ventilación y exceso de humedad",
+        "solution": "Mejora la ventilación, reduce riego."
+      }
+    ]
+  },
+  "menta": {
+    "name": "Menta",
+    "tip": "Muy invasiva. Mejor en maceta aislada o se apoderará del jardín.",
+    "description": "Aromática vigorosa ideal para infusiones y cócteles. Crece rápido y es muy fácil de cultivar.",
+    "problems": [
+      {
+        "symptom": "Hojas pequeñas o amarillas",
+        "cause": "Falta de agua o nutrientes",
+        "solution": "Le gusta la humedad constante, fertiliza en verano."
+      },
+      {
+        "symptom": "Sabor débil",
+        "cause": "Poca luz",
+        "solution": "Más luz intensifica los aceites esenciales."
+      },
+      {
+        "symptom": "Invade todo",
+        "cause": "Naturaleza expansiva",
+        "solution": "Mantén siempre en maceta, corta estolones."
+      }
+    ]
+  },
+  "tomatera": {
+    "name": "Tomatera",
+    "tip": "Quita los chupones (brotes laterales) para tomates más grandes.",
+    "description": "La reina del huerto urbano. Con sol y cariño tendrás tomates deliciosos en tu balcón.",
+    "problems": [
+      {
+        "symptom": "Podredumbre apical",
+        "cause": "Riego irregular o falta de calcio",
+        "solution": "Riego constante, añade cáscaras de huevo al suelo."
+      },
+      {
+        "symptom": "Hojas amarillas abajo",
+        "cause": "Falta de nutrientes o envejecimiento",
+        "solution": "Fertiliza regularmente, retira hojas viejas."
+      },
+      {
+        "symptom": "Manchas en hojas",
+        "cause": "Hongos por humedad en follaje",
+        "solution": "No mojes las hojas, trata con fungicida de cobre."
+      }
+    ]
+  },
+  "pimiento": {
+    "name": "Pimiento",
+    "tip": "Espera a que maduren en la planta para mejor sabor. Necesitan calor.",
+    "description": "Fruto versátil del huerto. Necesita calor y paciencia, pero la recompensa vale la pena.",
+    "problems": [
+      {
+        "symptom": "Caída de flores",
+        "cause": "Estrés térmico o hídrico",
+        "solution": "Protege de calor excesivo (>35°C) y mantén riego regular."
+      },
+      {
+        "symptom": "Frutos pequeños",
+        "cause": "Falta de nutrientes",
+        "solution": "Fertiliza con abono rico en potasio cuando florezca."
+      },
+      {
+        "symptom": "Hojas enrolladas",
+        "cause": "Posible plaga",
+        "solution": "Revisa envés de hojas, trata si hay plagas."
+      }
+    ]
+  },
+  "frutilla": {
+    "name": "Frutilla",
+    "tip": "Pon paja debajo de los frutos para evitar que toquen la tierra húmeda.",
+    "description": "Fruta dulce que se puede cultivar en macetas y jardineras. Ideal para espacios pequeños.",
+    "problems": [
+      {
+        "symptom": "Frutos podridos",
+        "cause": "Contacto con tierra húmeda",
+        "solution": "Coloca mulch o paja bajo los frutos."
+      },
+      {
+        "symptom": "Pocas flores",
+        "cause": "Exceso de nitrógeno",
+        "solution": "Reduce fertilizante, o usa uno bajo en nitrógeno."
+      },
+      {
+        "symptom": "Hojas rojas",
+        "cause": "Cambio estacional o carencia",
+        "solution": "Normal en otoño, en verano puede ser falta de fósforo."
+      }
+    ]
+  },
+  "limonero": {
+    "name": "Limonero",
+    "tip": "Protégelo de heladas fuertes. En maceta, puedes entrarlo en invierno.",
+    "description": "Frutal cítrico que se adapta bien a macetas grandes. Da flores perfumadas y frutos útiles.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas con nervios verdes",
+        "cause": "Clorosis férrica",
+        "solution": "Aplica quelato de hierro, acidifica el riego."
+      },
+      {
+        "symptom": "Caída de frutos pequeños",
+        "cause": "Estrés hídrico o autorregulación",
+        "solution": "Riego regular, la planta autorregula la carga."
+      },
+      {
+        "symptom": "Cochinilla algodonosa",
+        "cause": "Plaga de cochinilla",
+        "solution": "Retira manualmente, trata con aceite de neem."
+      }
+    ]
+  },
+  "suculenta-generica": {
+    "name": "Suculenta",
+    "tip": "Menos es más. Tierra bien drenada y riego muy espaciado.",
+    "description": "Planta que almacena agua en sus hojas. Ideal para quienes viajan o se olvidan de regar.",
+    "problems": [
+      {
+        "symptom": "Hojas blandas y transparentes",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar completamente, revisa raíces por pudrición."
+      },
+      {
+        "symptom": "Estiramiento (etiolación)",
+        "cause": "Falta de luz",
+        "solution": "Acerca a ventana soleada gradualmente."
+      },
+      {
+        "symptom": "Hojas arrugadas",
+        "cause": "Falta de agua",
+        "solution": "Riega a fondo y espera, se recuperarán."
+      }
+    ]
+  },
+  "cactus": {
+    "name": "Cactus",
+    "tip": "En invierno casi no riegues. Necesitan período seco para florecer.",
+    "description": "Planta del desierto adaptada a la sequía. Muy decorativo y de mínimo mantenimiento.",
+    "problems": [
+      {
+        "symptom": "Base blanda y oscura",
+        "cause": "Pudrición por exceso de riego",
+        "solution": "Deja de regar, corta parte sana y deja cicatrizar."
+      },
+      {
+        "symptom": "Manchas corchosas",
+        "cause": "Quemadura solar o cicatrices",
+        "solution": "Cicatrices permanentes, evita sol abrupto."
+      },
+      {
+        "symptom": "No florece",
+        "cause": "Falta de descanso invernal",
+        "solution": "Invierno fresco (5-10°C) y seco induce floración."
+      }
+    ]
+  },
+  "echeveria": {
+    "name": "Echeveria",
+    "tip": "Evita mojar la roseta. Riega por abajo o directo a la tierra.",
+    "description": "Suculenta en forma de roseta con colores que van del verde al rosa. Muy decorativa.",
+    "problems": [
+      {
+        "symptom": "Roseta abierta y pálida",
+        "cause": "Falta de luz",
+        "solution": "Más sol intensificará colores y compactará forma."
+      },
+      {
+        "symptom": "Manchas negras",
+        "cause": "Agua en las hojas",
+        "solution": "Nunca mojes las hojas, riega solo la tierra."
+      },
+      {
+        "symptom": "Hojas inferiores secas",
+        "cause": "Proceso natural de reabsorción",
+        "solution": "Retíralas con cuidado, es proceso natural."
+      }
+    ]
+  },
+  "espatifilo": {
+    "name": "Espatifilo",
+    "tip": "Sus flores blancas indican que la planta está bien cuidada. Florece mejor con luz indirecta.",
+    "description": "Planta clásica de interior y oficina, muy valorada por purificar el aire. Tolerante a la sombra y fácil de mantener.",
+    "problems": [
+      {
+        "symptom": "Flores verdes en vez de blancas",
+        "cause": "Exceso de fertilizante o poca luz",
+        "solution": "Reduce el abono y acércala a una fuente de luz indirecta."
+      },
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Baja humedad o agua con cloro",
+        "solution": "Pulveriza las hojas y usa agua reposada o filtrada."
+      },
+      {
+        "symptom": "Hojas caídas",
+        "cause": "Falta de riego",
+        "solution": "Riega a fondo; se recupera rápido tras una buena hidratación."
+      }
+    ]
+  },
+  "dracaena": {
+    "name": "Dracaena",
+    "tip": "Tolera muy bien la poca luz, ideal para rincones oscuros del hogar.",
+    "description": "Planta tropical de porte arbóreo que se adapta bien a interiores. Sus hojas alargadas aportan un toque exótico.",
+    "problems": [
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Sensibilidad al flúor del agua",
+        "solution": "Usa agua filtrada o de lluvia para el riego."
+      },
+      {
+        "symptom": "Hojas inferiores amarillas",
+        "cause": "Envejecimiento natural",
+        "solution": "Retira las hojas viejas, es parte del ciclo normal."
+      },
+      {
+        "symptom": "Tallo blando",
+        "cause": "Exceso de riego y pudrición",
+        "solution": "Reduce el riego y asegura buen drenaje en la maceta."
+      }
+    ]
+  },
+  "filodendro": {
+    "name": "Filodendro",
+    "tip": "Puede trepar con soporte o colgar como planta colgante según la variedad.",
+    "description": "Planta tropical muy popular en decoración de interiores. Crece rápido y se adapta a diversas condiciones de luz.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar la capa superior del sustrato entre riegos."
+      },
+      {
+        "symptom": "Hojas pequeñas",
+        "cause": "Falta de luz o nutrientes",
+        "solution": "Acércala a más luz indirecta y fertiliza en primavera."
+      },
+      {
+        "symptom": "Tallos largos sin hojas",
+        "cause": "Etiolación por poca luz",
+        "solution": "Poda los tallos y reubica en un lugar más iluminado."
+      }
+    ]
+  },
+  "jade": {
+    "name": "Jade",
+    "tip": "Simboliza la prosperidad y la buena suerte. Es un regalo tradicional para nuevos hogares.",
+    "description": "Suculenta de hojas gruesas y carnosas, también conocida como planta del dinero. Puede vivir décadas con cuidados mínimos.",
+    "problems": [
+      {
+        "symptom": "Hojas arrugadas",
+        "cause": "Falta de riego prolongada",
+        "solution": "Riega a fondo y espera a que las hojas se rehidraten."
+      },
+      {
+        "symptom": "Hojas blandas que caen",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar completamente el sustrato entre riegos."
+      },
+      {
+        "symptom": "Manchas blancas en hojas",
+        "cause": "Depósitos de sales minerales",
+        "solution": "Limpia con un paño húmedo y usa agua filtrada."
+      }
+    ]
+  },
+  "peperomia": {
+    "name": "Peperomia",
+    "tip": "Su tamaño compacto la hace perfecta para escritorios y espacios reducidos.",
+    "description": "Género diverso con hojas de formas y texturas muy variadas. Planta pequeña ideal para coleccionar diferentes variedades.",
+    "problems": [
+      {
+        "symptom": "Tallos blandos y oscuros",
+        "cause": "Pudrición por exceso de riego",
+        "solution": "Reduce el riego drásticamente y mejora el drenaje."
+      },
+      {
+        "symptom": "Hojas que caen",
+        "cause": "Frío o corrientes de aire",
+        "solution": "Mantén alejada de ventanas frías y corrientes."
+      },
+      {
+        "symptom": "Crecimiento detenido",
+        "cause": "Maceta demasiado grande o falta de luz",
+        "solution": "Usa maceta ajustada y ubícala en luz indirecta brillante."
+      }
+    ]
+  },
+  "rosa": {
+    "name": "Rosa",
+    "tip": "Poda regularmente las flores marchitas para estimular una nueva floración.",
+    "description": "La planta ornamental más cultivada del mundo. Existe en miles de variedades con colores y fragancias únicas.",
+    "problems": [
+      {
+        "symptom": "Manchas negras en hojas",
+        "cause": "Hongo (mancha negra o Diplocarpon rosae)",
+        "solution": "Retira hojas afectadas y aplica fungicida. Mejora la ventilación."
+      },
+      {
+        "symptom": "Pulgones en brotes",
+        "cause": "Plaga de áfidos",
+        "solution": "Trata con jabón potásico o retíralos con agua a presión."
+      },
+      {
+        "symptom": "Pocas flores",
+        "cause": "Falta de sol o poda inadecuada",
+        "solution": "Necesita mínimo 6 horas de sol y poda anual en invierno."
+      }
+    ]
+  },
+  "bougainvillea": {
+    "name": "Bougainvillea",
+    "tip": "Necesita períodos de sequía para florecer; el riego excesivo produce solo hojas.",
+    "description": "Planta trepadora espectacular con brácteas de colores intensos. Ideal para muros, pérgolas y fachadas soleadas.",
+    "problems": [
+      {
+        "symptom": "Solo hojas, sin flores",
+        "cause": "Exceso de riego o nitrógeno",
+        "solution": "Reduce el riego y usa fertilizante bajo en nitrógeno."
+      },
+      {
+        "symptom": "Caída de brácteas",
+        "cause": "Cambio brusco de ubicación",
+        "solution": "Evita moverla una vez establecida en su lugar."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de agua o mal drenaje",
+        "solution": "Mejora el drenaje y deja secar entre riegos."
+      }
+    ]
+  },
+  "hibisco": {
+    "name": "Hibisco",
+    "tip": "Cada flor dura solo un día, pero la planta produce nuevas continuamente en temporada.",
+    "description": "Arbusto tropical con flores grandes y vistosas en diversos colores. Muy ornamental en jardines y terrazas.",
+    "problems": [
+      {
+        "symptom": "Caída de capullos",
+        "cause": "Estrés hídrico o cambio de temperatura",
+        "solution": "Mantén riego regular y protege de cambios bruscos."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Falta de hierro o exceso de riego",
+        "solution": "Aplica quelato de hierro y verifica el drenaje."
+      },
+      {
+        "symptom": "Hojas pegajosas",
+        "cause": "Cochinilla o mosca blanca",
+        "solution": "Trata con aceite de neem o jabón potásico."
+      }
+    ]
+  },
+  "margarita": {
+    "name": "Margarita",
+    "tip": "Corta las flores marchitas regularmente para estimular una floración continua.",
+    "description": "Flor clásica de jardín, alegre y fácil de cultivar. Ideal para bordes, macetas y ramos cortados.",
+    "problems": [
+      {
+        "symptom": "Floración escasa",
+        "cause": "Falta de sol",
+        "solution": "Necesita pleno sol para florecer abundantemente."
+      },
+      {
+        "symptom": "Hojas con manchas blancas",
+        "cause": "Oídio (hongo)",
+        "solution": "Mejora la ventilación y trata con fungicida."
+      },
+      {
+        "symptom": "Planta decaída",
+        "cause": "Riego excesivo o mal drenaje",
+        "solution": "Asegura buen drenaje y no riegues en exceso."
+      }
+    ]
+  },
+  "perejil": {
+    "name": "Perejil",
+    "tip": "Corta siempre los tallos exteriores primero para que siga produciendo desde el centro.",
+    "description": "Hierba esencial en la cocina, rica en vitaminas. Se cultiva fácilmente en maceta o en el huerto.",
+    "problems": [
+      {
+        "symptom": "Germinación lenta",
+        "cause": "Las semillas tardan naturalmente 2-4 semanas",
+        "solution": "Remoja las semillas en agua tibia la noche anterior a sembrar."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o falta de nutrientes",
+        "solution": "Mejora el drenaje y fertiliza con abono orgánico."
+      },
+      {
+        "symptom": "Planta que florece",
+        "cause": "Final del ciclo de vida (bianual)",
+        "solution": "Siembra nuevas semillas cada temporada para asegurar cosecha."
+      }
+    ]
+  },
+  "oregano": {
+    "name": "Orégano",
+    "tip": "Se seca muy bien y conserva su sabor. Cosecha antes de que florezca para mejor aroma.",
+    "description": "Hierba aromática mediterránea imprescindible en la cocina. Muy resistente y fácil de cultivar en maceta.",
+    "problems": [
+      {
+        "symptom": "Sabor y aroma débiles",
+        "cause": "Exceso de riego o fertilizante",
+        "solution": "Riega con moderación; el suelo pobre concentra los aceites."
+      },
+      {
+        "symptom": "Planta leñosa y sin hojas",
+        "cause": "Falta de poda",
+        "solution": "Poda regularmente para fomentar nuevo crecimiento tierno."
+      },
+      {
+        "symptom": "Raíces podridas",
+        "cause": "Mal drenaje",
+        "solution": "Trasplanta a sustrato arenoso con buen drenaje."
+      }
+    ]
+  },
+  "cilantro": {
+    "name": "Cilantro",
+    "tip": "Se espiga rápido con el calor; siembra en semisombra en verano para prolongar la cosecha.",
+    "description": "Hierba de doble uso: las hojas frescas son cilantro y las semillas secas son coriandro. Sabor esencial en muchas cocinas del mundo.",
+    "problems": [
+      {
+        "symptom": "Floración prematura",
+        "cause": "Calor excesivo o estrés hídrico",
+        "solution": "Siembra en semisombra y mantén el suelo húmedo."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar ligeramente entre riegos."
+      },
+      {
+        "symptom": "Crecimiento muy lento",
+        "cause": "Temperaturas demasiado bajas",
+        "solution": "Prefiere temperaturas entre 15°C y 25°C."
+      }
+    ]
+  },
+  "tomillo": {
+    "name": "Tomillo",
+    "tip": "Es normal que la base se vuelva leñosa con el tiempo; cosecha solo las puntas tiernas.",
+    "description": "Aromática mediterránea de bajo mantenimiento con hojas diminutas muy perfumadas. Excelente en la cocina y como planta medicinal.",
+    "problems": [
+      {
+        "symptom": "Planta leñosa sin hojas nuevas",
+        "cause": "Falta de poda o planta muy vieja",
+        "solution": "Poda las puntas regularmente; renueva la planta cada 3-4 años."
+      },
+      {
+        "symptom": "Pudrición de la base",
+        "cause": "Exceso de humedad",
+        "solution": "Asegura excelente drenaje y reduce el riego."
+      },
+      {
+        "symptom": "Hojas grises o con moho",
+        "cause": "Hongo por falta de ventilación",
+        "solution": "Mejora la circulación de aire y evita regar el follaje."
+      }
+    ]
+  },
+  "lechuga": {
+    "name": "Lechuga",
+    "tip": "Cosecha las hojas exteriores y deja el centro para que siga produciendo.",
+    "description": "La hortaliza más fácil de cultivar en casa. Crece rápido en macetas, jardineras o directamente en el huerto.",
+    "problems": [
+      {
+        "symptom": "Se espiga y florece",
+        "cause": "Calor excesivo o días largos",
+        "solution": "Cultiva en semisombra en verano y elige variedades resistentes."
+      },
+      {
+        "symptom": "Hojas amargas",
+        "cause": "Estrés por calor o falta de agua",
+        "solution": "Mantén el suelo húmedo y protege del sol intenso."
+      },
+      {
+        "symptom": "Babosas y caracoles",
+        "cause": "Plaga común en lechugas",
+        "solution": "Coloca trampas de cerveza o barreras de ceniza."
+      }
+    ]
+  },
+  "pepino": {
+    "name": "Pepino",
+    "tip": "Cosecha los frutos cuando aún son pequeños para obtener mejor sabor y textura.",
+    "description": "Planta trepadora de verano muy productiva. Con un par de plantas se obtiene cosecha para toda la temporada.",
+    "problems": [
+      {
+        "symptom": "Frutos amargos",
+        "cause": "Estrés hídrico o temperaturas irregulares",
+        "solution": "Riega de forma constante y regular."
+      },
+      {
+        "symptom": "Hojas con manchas blancas",
+        "cause": "Oídio",
+        "solution": "Mejora la ventilación y aplica fungicida preventivo."
+      },
+      {
+        "symptom": "Pocas flores femeninas",
+        "cause": "Exceso de nitrógeno",
+        "solution": "Usa fertilizante equilibrado, rico en fósforo y potasio."
+      }
+    ]
+  },
+  "zanahoria": {
+    "name": "Zanahoria",
+    "tip": "La tierra suelta y profunda es imprescindible para que las raíces crezcan rectas.",
+    "description": "Hortaliza de raíz que requiere paciencia, pero recompensa con sabor fresco incomparable. Ideal para huertos y macetas profundas.",
+    "problems": [
+      {
+        "symptom": "Raíces deformes o bifurcadas",
+        "cause": "Suelo compacto, piedras u obstáculos",
+        "solution": "Prepara tierra suelta y profunda, libre de piedras."
+      },
+      {
+        "symptom": "Raíces delgadas y cortas",
+        "cause": "Siembra demasiado densa",
+        "solution": "Aclara las plántulas dejando 3-5 cm entre cada una."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o plaga de mosca",
+        "solution": "Modera el riego y cubre con malla anti-insectos."
+      }
+    ]
+  },
+  "rucula": {
+    "name": "Rúcula",
+    "tip": "Crece muy rápido y es ideal para principiantes en el huerto urbano.",
+    "description": "Hoja verde de sabor picante y característico. Se cosecha en pocas semanas desde la siembra.",
+    "problems": [
+      {
+        "symptom": "Hojas muy picantes",
+        "cause": "Estrés por calor o falta de agua",
+        "solution": "Riega con frecuencia y cultiva en semisombra en verano."
+      },
+      {
+        "symptom": "Agujeros en las hojas",
+        "cause": "Pulguilla (escarabajo pequeño)",
+        "solution": "Cubre con malla fina o aplica tierra de diatomeas."
+      },
+      {
+        "symptom": "Floración rápida",
+        "cause": "Calor y días largos",
+        "solution": "Siembra escalonada cada 2-3 semanas para cosecha continua."
+      }
+    ]
+  },
+  "naranjo": {
+    "name": "Naranjo",
+    "tip": "Como el limonero, necesita protección contra las heladas en climas fríos.",
+    "description": "Árbol cítrico de flores blancas muy perfumadas y frutos jugosos. Se adapta a macetas grandes en terrazas y patios.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas con nervios verdes",
+        "cause": "Clorosis férrica",
+        "solution": "Aplica quelato de hierro y acidifica el agua de riego."
+      },
+      {
+        "symptom": "Frutos que caen antes de madurar",
+        "cause": "Estrés hídrico o exceso de carga",
+        "solution": "Mantén riego regular; la planta autorregula su producción."
+      },
+      {
+        "symptom": "Cochinilla en ramas",
+        "cause": "Plaga de cochinilla",
+        "solution": "Trata con aceite de neem o alcohol isopropílico."
+      }
+    ]
+  },
+  "aguacate": {
+    "name": "Aguacate",
+    "tip": "Germinar la semilla en agua es divertido, pero tardará años en dar frutos.",
+    "description": "Árbol tropical que se ha vuelto muy popular como planta de interior. Sus grandes hojas verdes aportan un toque exótico.",
+    "problems": [
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Acumulación de sales o baja humedad",
+        "solution": "Riega abundantemente para lavar sales y pulveriza las hojas."
+      },
+      {
+        "symptom": "Hojas caídas",
+        "cause": "Exceso o falta de riego",
+        "solution": "Verifica la humedad del sustrato antes de regar."
+      },
+      {
+        "symptom": "Crecimiento excesivo sin ramas",
+        "cause": "Falta de poda",
+        "solution": "Poda la punta cuando alcance 30 cm para fomentar ramificación."
+      }
+    ]
+  },
+  "higuera": {
+    "name": "Higuera",
+    "tip": "Es muy resistente una vez establecida; tolera sequía y suelos pobres.",
+    "description": "Árbol frutal ancestral, común en patios y jardines mediterráneos. Da sombra generosa y frutos deliciosos.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas que caen",
+        "cause": "Falta de agua en verano",
+        "solution": "Riega profundamente en época de calor, especialmente si está en maceta."
+      },
+      {
+        "symptom": "Frutos que no maduran",
+        "cause": "Falta de calor o exceso de carga",
+        "solution": "Necesita veranos cálidos; aclara frutos para mejor maduración."
+      },
+      {
+        "symptom": "Ramas con savia blanca pegajosa",
+        "cause": "Característica natural del árbol",
+        "solution": "Es normal; evita el contacto con la piel ya que puede irritar."
+      }
+    ]
+  },
+  "mandarino": {
+    "name": "Mandarino",
+    "tip": "Es el cítrico ideal para cultivar en macetas por su porte compacto.",
+    "description": "Cítrico de tamaño reducido con frutos dulces y fáciles de pelar. Perfecto para terrazas y balcones soleados.",
+    "problems": [
+      {
+        "symptom": "Hojas enrolladas",
+        "cause": "Minador de los cítricos",
+        "solution": "Retira hojas afectadas y trata con aceite de neem."
+      },
+      {
+        "symptom": "Frutos pequeños y secos",
+        "cause": "Falta de riego o exceso de frutos",
+        "solution": "Aclara frutos y mantén riego regular durante el verano."
+      },
+      {
+        "symptom": "Hojas pálidas",
+        "cause": "Falta de nutrientes",
+        "solution": "Fertiliza con abono específico para cítricos cada 2 meses."
+      }
+    ]
+  },
+  "zapallito": {
+    "name": "Zapallito",
+    "tip": "Cosecha los frutos jóvenes y tiernos para obtener el mejor sabor y textura.",
+    "description": "Calabaza de verano muy productiva y fácil de cultivar. Una sola planta puede dar abundante cosecha durante toda la temporada.",
+    "problems": [
+      {
+        "symptom": "Oídio en las hojas",
+        "cause": "Hongo favorecido por humedad y calor",
+        "solution": "Mejora la ventilación y aplica fungicida preventivo."
+      },
+      {
+        "symptom": "Flores que caen sin fruto",
+        "cause": "Falta de polinización",
+        "solution": "Poliniza manualmente con un pincel entre flores."
+      },
+      {
+        "symptom": "Frutos que se pudren",
+        "cause": "Contacto con tierra húmeda",
+        "solution": "Coloca un mulch o tabla bajo los frutos para aislarlos."
+      }
+    ]
+  },
+  "ciboulette": {
+    "name": "Ciboulette",
+    "tip": "Corta los tallos desde la base para estimular un rebrote vigoroso.",
+    "description": "Hierba perenne con suave sabor a cebolla, ideal para ensaladas y salsas. Fácil de cultivar en maceta durante todo el año.",
+    "problems": [
+      {
+        "symptom": "Tallos delgados y débiles",
+        "cause": "Falta de luz",
+        "solution": "Ubica en un lugar con al menos 4-6 horas de sol."
+      },
+      {
+        "symptom": "Puntas amarillas",
+        "cause": "Falta de riego o nutrientes",
+        "solution": "Mantén el suelo húmedo y fertiliza mensualmente."
+      },
+      {
+        "symptom": "Planta que no rebrota",
+        "cause": "Corte demasiado bajo o planta agotada",
+        "solution": "Deja al menos 5 cm al cortar y deja descansar antes de cosechar de nuevo."
+      }
+    ]
+  },
+  "haworthia": {
+    "name": "Haworthia",
+    "tip": "Tolera más sombra que otras suculentas, ideal para interiores con luz moderada.",
+    "description": "Suculenta miniatura con hojas rayadas o translúcidas muy decorativas. Perfecta para escritorios y estantes.",
+    "problems": [
+      {
+        "symptom": "Hojas marrones o rojizas",
+        "cause": "Exceso de sol directo",
+        "solution": "Muévela a luz indirecta; no necesita sol directo intenso."
+      },
+      {
+        "symptom": "Hojas blandas y translúcidas",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar completamente y reduce la frecuencia de riego."
+      },
+      {
+        "symptom": "Crecimiento muy lento",
+        "cause": "Naturaleza de la planta",
+        "solution": "Crece despacio de forma natural; no fertilices en exceso."
+      }
+    ]
+  },
+  "sedum": {
+    "name": "Sedum",
+    "tip": "Sus hojas son muy frágiles y se desprenden con facilidad; manipula con cuidado.",
+    "description": "Suculenta colgante con hojas redondeadas como cuentas. Ideal para macetas colgantes y arreglos de suculentas.",
+    "problems": [
+      {
+        "symptom": "Hojas que se caen al tocar",
+        "cause": "Característica natural de la planta",
+        "solution": "Manipula con mucho cuidado; las hojas caídas pueden enraizar."
+      },
+      {
+        "symptom": "Tallos alargados y pelados",
+        "cause": "Falta de luz",
+        "solution": "Acerca a una ventana soleada para crecimiento más compacto."
+      },
+      {
+        "symptom": "Hojas blandas y amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Deja secar bien entre riegos; necesita sustrato muy drenante."
+      }
+    ]
+  },
+  "humidity": {
+    "baja": "Baja",
+    "media": "Media",
+    "alta": "Alta"
+  }
+}

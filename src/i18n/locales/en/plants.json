@@ -1,0 +1,1085 @@
+{
+  "potus": {
+    "name": "Pothos",
+    "tip": "Great for beginners. Tolerates low light and missed waterings.",
+    "description": "A climbing indoor plant, very hardy and easy to care for. Perfect for purifying the air.",
+    "problems": [
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Let the soil dry out well between waterings."
+      },
+      {
+        "symptom": "Pale leaves",
+        "cause": "Lack of light",
+        "solution": "Move it to a brighter spot."
+      },
+      {
+        "symptom": "Brown tips",
+        "cause": "Very dry air",
+        "solution": "Mist the leaves occasionally."
+      }
+    ]
+  },
+  "monstera": {
+    "name": "Monstera",
+    "tip": "Fenestrated leaves appear with good light. Clean the dust off regularly.",
+    "description": "A tropical plant with large perforated leaves. A modern interior design classic.",
+    "problems": [
+      {
+        "symptom": "No holes in new leaves",
+        "cause": "Low light",
+        "solution": "Move it closer to a window with bright indirect light."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Only water when the top few cm of soil are dry."
+      },
+      {
+        "symptom": "Brown tips",
+        "cause": "Low humidity",
+        "solution": "Group it with other plants or use a humidifier."
+      }
+    ]
+  },
+  "ficus": {
+    "name": "Ficus",
+    "tip": "It doesn't like being moved. Once it finds its spot, leave it there.",
+    "description": "An elegant, leafy indoor tree. Adds a sophisticated green touch to any space.",
+    "problems": [
+      {
+        "symptom": "Leaf drop",
+        "cause": "Change of location or drafts",
+        "solution": "Avoid moving it and protect it from cold drafts."
+      },
+      {
+        "symptom": "Dull leaves",
+        "cause": "Dust buildup",
+        "solution": "Wipe the leaves with a damp cloth regularly."
+      },
+      {
+        "symptom": "Slow growth",
+        "cause": "Small pot or lack of nutrients",
+        "solution": "Repot into a larger container in spring."
+      }
+    ]
+  },
+  "sansevieria": {
+    "name": "Snake Plant",
+    "tip": "Nearly indestructible. The most common mistake is overwatering.",
+    "description": "A hardy plant with upright leaves. Perfect for those who forget to water.",
+    "problems": [
+      {
+        "symptom": "Soft leaves",
+        "cause": "Overwatering or root rot",
+        "solution": "Let it dry out completely between waterings, check the roots."
+      },
+      {
+        "symptom": "Dry tips",
+        "cause": "Very dry air or excessive heat",
+        "solution": "Keep it away from radiators and direct heat sources."
+      },
+      {
+        "symptom": "No growth",
+        "cause": "Insufficient light or cold season",
+        "solution": "They grow slowly, especially in low light. Be patient."
+      }
+    ]
+  },
+  "orquidea": {
+    "name": "Orchid",
+    "tip": "Water by soaking for 10 minutes and let it drain well. Never leave standing water.",
+    "description": "An exotic, elegant flower that blooms multiple times a year with proper care.",
+    "problems": [
+      {
+        "symptom": "Won't bloom",
+        "cause": "Lack of temperature contrast",
+        "solution": "Expose it to cooler nights to encourage blooming."
+      },
+      {
+        "symptom": "Grey roots",
+        "cause": "Underwatering",
+        "solution": "Soak the pot in water for 10 minutes and let it drain."
+      },
+      {
+        "symptom": "Wrinkled leaves",
+        "cause": "Dehydration",
+        "solution": "Water more frequently, check that the roots are healthy."
+      }
+    ]
+  },
+  "calathea": {
+    "name": "Calathea",
+    "tip": "Use filtered or rainwater. Tap water chlorine damages the leaves.",
+    "description": "An indoor plant with decorative leaves that move following the daylight.",
+    "problems": [
+      {
+        "symptom": "Brown edges",
+        "cause": "Chlorinated water or low humidity",
+        "solution": "Use filtered water and increase humidity."
+      },
+      {
+        "symptom": "Curling leaves",
+        "cause": "Lack of water or humidity",
+        "solution": "Water and mist it, consider a humidifier."
+      },
+      {
+        "symptom": "Faded colors",
+        "cause": "Inadequate light",
+        "solution": "Move it to filtered indirect light."
+      }
+    ]
+  },
+  "cinta": {
+    "name": "Spider Plant",
+    "tip": "Produces babies that hang like a cascade. Great for hanging pots.",
+    "description": "A very popular trailing plant that produces little plantlets. Easy to propagate and care for.",
+    "problems": [
+      {
+        "symptom": "Brown tips",
+        "cause": "Sensitivity to chlorine or fluoride in water",
+        "solution": "Use water that's been sitting out and trim dry tips."
+      },
+      {
+        "symptom": "Pale leaves",
+        "cause": "Too much or too little light",
+        "solution": "Variegated ones need less light than solid green ones."
+      },
+      {
+        "symptom": "No babies",
+        "cause": "Young plant or pot too large",
+        "solution": "Let it mature and become slightly root-bound."
+      }
+    ]
+  },
+  "palmera-interior": {
+    "name": "Indoor Palm",
+    "tip": "Tolerant of low light. Perfect for corners that need some green.",
+    "description": "An indoor-adapted palm that brings a tropical touch to any room.",
+    "problems": [
+      {
+        "symptom": "Brown tips",
+        "cause": "Low humidity or irregular watering",
+        "solution": "Keep consistent moisture, mist in summer."
+      },
+      {
+        "symptom": "Lower yellow leaves",
+        "cause": "Natural aging",
+        "solution": "Remove old leaves, it's a normal part of growth."
+      },
+      {
+        "symptom": "Very slow growth",
+        "cause": "Nature of the plant",
+        "solution": "Palms grow slowly, be patient."
+      }
+    ]
+  },
+  "aloe-vera": {
+    "name": "Aloe Vera",
+    "tip": "The gel in its leaves is great for burns. Needs good drainage.",
+    "description": "A popular medicinal succulent. Easy to care for with many uses for skin care.",
+    "problems": [
+      {
+        "symptom": "Soft, brown leaves",
+        "cause": "Overwatering or poor drainage",
+        "solution": "Let it dry out completely, make sure it drains well."
+      },
+      {
+        "symptom": "Thin leaves",
+        "cause": "Lack of sunlight",
+        "solution": "Needs several hours of sun, ideally direct."
+      },
+      {
+        "symptom": "Red or brown leaves",
+        "cause": "Sudden sunburn",
+        "solution": "Gradually acclimate it to direct sunlight."
+      }
+    ]
+  },
+  "lavanda": {
+    "name": "Lavender",
+    "tip": "Prune after flowering to keep it compact and prevent it from getting too woody.",
+    "description": "A Mediterranean aromatic with fragrant flowers. Attracts pollinators and repels mosquitoes.",
+    "problems": [
+      {
+        "symptom": "Woody plant with no flowers",
+        "cause": "Lack of pruning",
+        "solution": "Prune 1/3 after flowering, never cut into old wood."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Poor drainage",
+        "solution": "Needs very well-draining soil."
+      },
+      {
+        "symptom": "Sudden death",
+        "cause": "Root rot from excess moisture",
+        "solution": "Plant in very well-drained soil, avoid overwatering."
+      }
+    ]
+  },
+  "petunia": {
+    "name": "Petunia",
+    "tip": "Remove spent flowers to extend blooming all summer long.",
+    "description": "A colorful flower perfect for balconies and planters. Blooms abundantly all summer.",
+    "problems": [
+      {
+        "symptom": "Few flowers",
+        "cause": "Lack of sun or nutrients",
+        "solution": "They need full sun and bloom fertilizer every 2 weeks."
+      },
+      {
+        "symptom": "Long, leggy stems",
+        "cause": "Lack of pruning",
+        "solution": "Pinch the tips to encourage branching."
+      },
+      {
+        "symptom": "Sticky leaves",
+        "cause": "Aphids or other pests",
+        "solution": "Treat with potassium soap or garlic water."
+      }
+    ]
+  },
+  "hortensia": {
+    "name": "Hydrangea",
+    "tip": "Flower color depends on soil pH. Acidic = blue, alkaline = pink.",
+    "description": "A shrub with large spherical blooms that change color based on soil acidity.",
+    "problems": [
+      {
+        "symptom": "Won't bloom",
+        "cause": "Incorrect pruning",
+        "solution": "Only prune old flowers, the buds hold next year's blooms."
+      },
+      {
+        "symptom": "Wilted leaves",
+        "cause": "Lack of water",
+        "solution": "They need plenty of water, especially in summer."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Iron chlorosis",
+        "solution": "Acidify the soil with iron sulfate."
+      }
+    ]
+  },
+  "jazmin": {
+    "name": "Jasmine",
+    "tip": "The fragrance is stronger at night. Perfect near windows or patios.",
+    "description": "An aromatic climber with small white flowers and an intoxicating scent, especially at dusk.",
+    "problems": [
+      {
+        "symptom": "Won't bloom",
+        "cause": "Low light or excess nitrogen",
+        "solution": "More sun and low-nitrogen fertilizer."
+      },
+      {
+        "symptom": "Yellowing, falling leaves",
+        "cause": "Overwatering in cold season",
+        "solution": "Drastically reduce watering in cold weather."
+      },
+      {
+        "symptom": "Uncontrolled growth",
+        "cause": "Lack of pruning",
+        "solution": "Prune after flowering to keep it in check."
+      }
+    ]
+  },
+  "geranio": {
+    "name": "Geranium",
+    "tip": "A balcony classic. Remove dead flowers and pinch stems for more blooms.",
+    "description": "The quintessential balcony plant. Abundant, colorful blooms for months on end.",
+    "problems": [
+      {
+        "symptom": "Few flowers",
+        "cause": "Lack of sun",
+        "solution": "They need at least 6 hours of direct sun."
+      },
+      {
+        "symptom": "Black stems",
+        "cause": "Overwatering or fungus",
+        "solution": "Let it dry between waterings, ensure good drainage."
+      },
+      {
+        "symptom": "Geranium butterfly",
+        "cause": "Cacyreus marshalli pest",
+        "solution": "Remove affected parts, treat with Bacillus thuringiensis."
+      }
+    ]
+  },
+  "albahaca": {
+    "name": "Basil",
+    "tip": "Pinch the tips before it flowers to keep it bushy and productive.",
+    "description": "An essential kitchen herb. Easy to grow in a pot by the kitchen window.",
+    "problems": [
+      {
+        "symptom": "Premature flowering",
+        "cause": "Heat stress or lack of pruning",
+        "solution": "Cut off flowers as soon as they appear."
+      },
+      {
+        "symptom": "Black leaves",
+        "cause": "Cold or frost",
+        "solution": "Protect it from temperatures below 10°C (50°F)."
+      },
+      {
+        "symptom": "Small leaves",
+        "cause": "Lack of nutrients",
+        "solution": "Fertilize every 2 weeks with organic feed."
+      }
+    ]
+  },
+  "romero": {
+    "name": "Rosemary",
+    "tip": "Extremely hardy. It prefers being neglected over being pampered.",
+    "description": "A very hardy Mediterranean herb. Great for cooking and with medicinal properties.",
+    "problems": [
+      {
+        "symptom": "Brown, dry patches",
+        "cause": "Overwatering",
+        "solution": "Let it dry well, needs very well-drained soil."
+      },
+      {
+        "symptom": "Weak growth",
+        "cause": "Soil too rich",
+        "solution": "Paradoxically, it prefers poor soil."
+      },
+      {
+        "symptom": "White fungus",
+        "cause": "Poor ventilation and excess moisture",
+        "solution": "Improve air circulation, reduce watering."
+      }
+    ]
+  },
+  "menta": {
+    "name": "Mint",
+    "tip": "Very invasive. Best kept in an isolated pot or it'll take over the garden.",
+    "description": "A vigorous herb perfect for teas and cocktails. Grows fast and is very easy to cultivate.",
+    "problems": [
+      {
+        "symptom": "Small or yellow leaves",
+        "cause": "Lack of water or nutrients",
+        "solution": "It likes consistent moisture, fertilize in summer."
+      },
+      {
+        "symptom": "Weak flavor",
+        "cause": "Low light",
+        "solution": "More light intensifies the essential oils."
+      },
+      {
+        "symptom": "Spreads everywhere",
+        "cause": "Naturally expansive",
+        "solution": "Always keep it in a pot, trim runners."
+      }
+    ]
+  },
+  "tomatera": {
+    "name": "Tomato Plant",
+    "tip": "Remove suckers (side shoots) for bigger tomatoes.",
+    "description": "The queen of the urban garden. With sun and care, you'll have delicious tomatoes on your balcony.",
+    "problems": [
+      {
+        "symptom": "Blossom end rot",
+        "cause": "Irregular watering or calcium deficiency",
+        "solution": "Water consistently, add crushed eggshells to the soil."
+      },
+      {
+        "symptom": "Lower leaves turning yellow",
+        "cause": "Nutrient deficiency or aging",
+        "solution": "Fertilize regularly, remove old leaves."
+      },
+      {
+        "symptom": "Spots on leaves",
+        "cause": "Fungus from wet foliage",
+        "solution": "Don't wet the leaves, treat with copper fungicide."
+      }
+    ]
+  },
+  "pimiento": {
+    "name": "Pepper Plant",
+    "tip": "Wait for them to ripen on the plant for the best flavor. They need warmth.",
+    "description": "A versatile garden fruit. Needs warmth and patience, but the reward is worth it.",
+    "problems": [
+      {
+        "symptom": "Flower drop",
+        "cause": "Heat or water stress",
+        "solution": "Protect from extreme heat (>35°C/95°F) and keep watering regular."
+      },
+      {
+        "symptom": "Small fruits",
+        "cause": "Lack of nutrients",
+        "solution": "Fertilize with potassium-rich feed when it flowers."
+      },
+      {
+        "symptom": "Curling leaves",
+        "cause": "Possible pest",
+        "solution": "Check the underside of leaves, treat if pests are found."
+      }
+    ]
+  },
+  "frutilla": {
+    "name": "Strawberry",
+    "tip": "Place straw under the fruits to keep them off damp soil.",
+    "description": "A sweet fruit you can grow in pots and planters. Perfect for small spaces.",
+    "problems": [
+      {
+        "symptom": "Rotting fruits",
+        "cause": "Contact with damp soil",
+        "solution": "Place mulch or straw under the fruits."
+      },
+      {
+        "symptom": "Few flowers",
+        "cause": "Excess nitrogen",
+        "solution": "Reduce fertilizer, or use a low-nitrogen one."
+      },
+      {
+        "symptom": "Red leaves",
+        "cause": "Seasonal change or deficiency",
+        "solution": "Normal in autumn; in summer it may be phosphorus deficiency."
+      }
+    ]
+  },
+  "limonero": {
+    "name": "Lemon Tree",
+    "tip": "Protect it from hard frosts. In a pot, you can bring it indoors in winter.",
+    "description": "A citrus tree that adapts well to large pots. Produces fragrant flowers and useful fruit.",
+    "problems": [
+      {
+        "symptom": "Yellow leaves with green veins",
+        "cause": "Iron chlorosis",
+        "solution": "Apply iron chelate, acidify the water."
+      },
+      {
+        "symptom": "Small fruits dropping",
+        "cause": "Water stress or self-regulation",
+        "solution": "Water regularly, the plant self-regulates its fruit load."
+      },
+      {
+        "symptom": "Cottony mealybug",
+        "cause": "Mealybug pest",
+        "solution": "Remove manually, treat with neem oil."
+      }
+    ]
+  },
+  "suculenta-generica": {
+    "name": "Succulent",
+    "tip": "Less is more. Well-draining soil and very infrequent watering.",
+    "description": "A plant that stores water in its leaves. Perfect for travelers or forgetful waterers.",
+    "problems": [
+      {
+        "symptom": "Soft, translucent leaves",
+        "cause": "Overwatering",
+        "solution": "Let it dry out completely, check roots for rot."
+      },
+      {
+        "symptom": "Stretching (etiolation)",
+        "cause": "Lack of light",
+        "solution": "Gradually move it closer to a sunny window."
+      },
+      {
+        "symptom": "Wrinkled leaves",
+        "cause": "Underwatering",
+        "solution": "Give it a thorough watering and wait, it'll recover."
+      }
+    ]
+  },
+  "cactus": {
+    "name": "Cactus",
+    "tip": "Barely water in winter. They need a dry period to bloom.",
+    "description": "A desert plant adapted to drought. Very decorative and minimal maintenance.",
+    "problems": [
+      {
+        "symptom": "Soft, dark base",
+        "cause": "Rot from overwatering",
+        "solution": "Stop watering, cut the healthy part and let it callus over."
+      },
+      {
+        "symptom": "Corky patches",
+        "cause": "Sunburn or scarring",
+        "solution": "Permanent scars, avoid sudden sun exposure."
+      },
+      {
+        "symptom": "Won't bloom",
+        "cause": "Lack of winter dormancy",
+        "solution": "A cool (5-10°C/40-50°F) dry winter triggers blooming."
+      }
+    ]
+  },
+  "echeveria": {
+    "name": "Echeveria",
+    "tip": "Avoid wetting the rosette. Water from below or directly onto the soil.",
+    "description": "A rosette-shaped succulent with colors ranging from green to pink. Very decorative.",
+    "problems": [
+      {
+        "symptom": "Open, pale rosette",
+        "cause": "Lack of light",
+        "solution": "More sun will intensify colors and compact the shape."
+      },
+      {
+        "symptom": "Black spots",
+        "cause": "Water on the leaves",
+        "solution": "Never wet the leaves, only water the soil."
+      },
+      {
+        "symptom": "Dry lower leaves",
+        "cause": "Natural reabsorption process",
+        "solution": "Gently remove them, it's a natural process."
+      }
+    ]
+  },
+  "espatifilo": {
+    "name": "Peace Lily",
+    "tip": "Those white 'flowers' are actually modified leaves called spathes. They bloom more in bright indirect light.",
+    "description": "A classic office and home plant known for its elegant white blooms and air-purifying abilities. Thrives in low to medium light.",
+    "problems": [
+      {
+        "symptom": "Drooping leaves",
+        "cause": "Underwatering",
+        "solution": "Give it a good soak — it'll perk back up within hours."
+      },
+      {
+        "symptom": "Brown leaf tips",
+        "cause": "Low humidity or chemicals in tap water",
+        "solution": "Use filtered water and mist the leaves regularly."
+      },
+      {
+        "symptom": "No flowers",
+        "cause": "Not enough light",
+        "solution": "Move it to a brighter spot with indirect light."
+      }
+    ]
+  },
+  "dracaena": {
+    "name": "Dracaena",
+    "tip": "Tolerates low light surprisingly well, making it perfect for dim corners.",
+    "description": "A tree-like indoor plant with long, arching leaves. Comes in many varieties and adds a bold vertical accent to any room.",
+    "problems": [
+      {
+        "symptom": "Brown tips on leaves",
+        "cause": "Fluoride or chlorine in tap water",
+        "solution": "Switch to filtered or distilled water."
+      },
+      {
+        "symptom": "Yellowing lower leaves",
+        "cause": "Overwatering",
+        "solution": "Let the top half of the soil dry out before watering again."
+      },
+      {
+        "symptom": "Faded leaf color",
+        "cause": "Too much direct sunlight",
+        "solution": "Move it to a spot with bright indirect light."
+      }
+    ]
+  },
+  "filodendro": {
+    "name": "Philodendron",
+    "tip": "Give it something to climb or let it trail — either way, it'll look amazing.",
+    "description": "A trendy tropical plant that comes in climbing and trailing varieties. Easy to care for and fast-growing with gorgeous foliage.",
+    "problems": [
+      {
+        "symptom": "Leggy growth with small leaves",
+        "cause": "Insufficient light",
+        "solution": "Move it closer to a window with bright indirect light."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Let the top inch of soil dry out between waterings."
+      },
+      {
+        "symptom": "Brown patches on leaves",
+        "cause": "Direct sunlight burn",
+        "solution": "Keep it out of harsh direct sun — it prefers filtered light."
+      }
+    ]
+  },
+  "jade": {
+    "name": "Jade Plant",
+    "tip": "Traditionally thought to bring prosperity and good luck — that's why it's also called the money plant.",
+    "description": "A thick-leafed succulent with a tree-like growth habit. Also known as the money plant, it's long-lived and easy to care for.",
+    "problems": [
+      {
+        "symptom": "Dropping leaves",
+        "cause": "Overwatering or sudden temperature change",
+        "solution": "Water only when the soil is completely dry and avoid cold drafts."
+      },
+      {
+        "symptom": "Mushy stems",
+        "cause": "Root rot from excess water",
+        "solution": "Repot in fresh dry soil and cut away any rotted roots."
+      },
+      {
+        "symptom": "White spots on leaves",
+        "cause": "Salt deposits from water or fertilizer",
+        "solution": "Wipe leaves clean and flush the soil with distilled water."
+      }
+    ]
+  },
+  "peperomia": {
+    "name": "Peperomia",
+    "tip": "Its compact size makes it perfect for small spaces, desks, and shelves.",
+    "description": "A diverse genus of compact plants with fascinating leaf patterns and textures. Great for adding variety to your collection without taking up much room.",
+    "problems": [
+      {
+        "symptom": "Mushy, translucent leaves",
+        "cause": "Overwatering",
+        "solution": "Let the soil dry out well — these guys store water in their leaves."
+      },
+      {
+        "symptom": "Leaf drop",
+        "cause": "Cold temperatures or drafts",
+        "solution": "Keep it in a warm spot away from cold windows."
+      },
+      {
+        "symptom": "Dull, faded leaves",
+        "cause": "Too little light",
+        "solution": "Move to a brighter location with indirect light."
+      }
+    ]
+  },
+  "rosa": {
+    "name": "Rose",
+    "tip": "Prune regularly to encourage more blooms — cut just above an outward-facing bud.",
+    "description": "The most cultivated ornamental flower in the world. Comes in countless colors and varieties, from miniatures to climbers.",
+    "problems": [
+      {
+        "symptom": "Black spots on leaves",
+        "cause": "Fungal disease (black spot)",
+        "solution": "Remove affected leaves, improve air circulation, and treat with fungicide."
+      },
+      {
+        "symptom": "Powdery white coating on leaves",
+        "cause": "Powdery mildew",
+        "solution": "Spray with a baking soda solution and ensure good airflow."
+      },
+      {
+        "symptom": "Aphids on new growth",
+        "cause": "Aphid infestation",
+        "solution": "Blast them off with water or treat with insecticidal soap."
+      }
+    ]
+  },
+  "bougainvillea": {
+    "name": "Bougainvillea",
+    "tip": "It actually needs a bit of drought stress to bloom its best — don't baby it with water.",
+    "description": "A spectacular climbing plant covered in vibrant colorful bracts. Loves heat and full sun, and rewards neglect with stunning displays.",
+    "problems": [
+      {
+        "symptom": "No flowers, lots of green leaves",
+        "cause": "Too much water or fertilizer",
+        "solution": "Cut back on watering and use a low-nitrogen fertilizer."
+      },
+      {
+        "symptom": "Leaf drop",
+        "cause": "Sudden temperature change or relocation",
+        "solution": "Keep it in a stable warm spot — it hates being moved."
+      },
+      {
+        "symptom": "Thorns but no color",
+        "cause": "Insufficient sunlight",
+        "solution": "Needs at least 6 hours of direct sun to bloom properly."
+      }
+    ]
+  },
+  "hibisco": {
+    "name": "Hibiscus",
+    "tip": "Each flower only lasts about a day, but healthy plants keep producing new ones nonstop.",
+    "description": "A tropical shrub famous for its large, showy flowers in vivid colors. A real showstopper in any warm garden or sunny patio.",
+    "problems": [
+      {
+        "symptom": "Bud drop before opening",
+        "cause": "Temperature fluctuations or inconsistent watering",
+        "solution": "Keep watering regular and protect from sudden cold snaps."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or nutrient deficiency",
+        "solution": "Check drainage and feed with a balanced fertilizer."
+      },
+      {
+        "symptom": "Sticky residue on leaves",
+        "cause": "Aphids or whiteflies",
+        "solution": "Treat with neem oil or insecticidal soap."
+      }
+    ]
+  },
+  "margarita": {
+    "name": "Daisy",
+    "tip": "Deadhead spent flowers regularly to keep new blooms coming all season.",
+    "description": "A classic, cheerful garden flower that's easy to grow and brightens up any space. Great for borders, pots, and cutting gardens.",
+    "problems": [
+      {
+        "symptom": "Fewer blooms over time",
+        "cause": "Not deadheading spent flowers",
+        "solution": "Remove faded flowers to redirect energy into new blooms."
+      },
+      {
+        "symptom": "Leggy, floppy stems",
+        "cause": "Too much shade",
+        "solution": "Move to a sunnier spot — daisies love full sun."
+      },
+      {
+        "symptom": "Powdery mildew on leaves",
+        "cause": "Poor air circulation and damp conditions",
+        "solution": "Space plants out and avoid overhead watering."
+      }
+    ]
+  },
+  "perejil": {
+    "name": "Parsley",
+    "tip": "Always harvest the outer stems first — this lets the center keep producing new growth.",
+    "description": "An essential kitchen herb packed with flavor and nutrients. Easy to grow in pots on a windowsill or in the garden.",
+    "problems": [
+      {
+        "symptom": "Yellowing leaves",
+        "cause": "Overwatering or poor drainage",
+        "solution": "Make sure the pot drains well and let the top soil dry slightly."
+      },
+      {
+        "symptom": "Bolting (going to seed)",
+        "cause": "Heat stress",
+        "solution": "Provide some afternoon shade in hot weather and harvest frequently."
+      },
+      {
+        "symptom": "Caterpillars eating leaves",
+        "cause": "Swallowtail butterfly larvae",
+        "solution": "Pick them off by hand or plant extra to share with them."
+      }
+    ]
+  },
+  "oregano": {
+    "name": "Oregano",
+    "tip": "It actually dries really well — hang bunches upside down and store in jars for year-round flavor.",
+    "description": "A Mediterranean herb that's a must-have for any kitchen garden. Hardy, drought-tolerant, and packed with aromatic oils.",
+    "problems": [
+      {
+        "symptom": "Weak flavor",
+        "cause": "Too much water or fertilizer",
+        "solution": "Keep it on the dry side — stress actually boosts its essential oils."
+      },
+      {
+        "symptom": "Root rot",
+        "cause": "Waterlogged soil",
+        "solution": "Improve drainage and water only when the soil is dry."
+      },
+      {
+        "symptom": "Leggy, sprawling growth",
+        "cause": "Not enough light",
+        "solution": "Give it full sun and trim regularly to keep it bushy."
+      }
+    ]
+  },
+  "cilantro": {
+    "name": "Cilantro",
+    "tip": "It bolts fast in the heat — sow every few weeks for a continuous harvest.",
+    "description": "A dual-use herb where the leaves are cilantro and the seeds are coriander. A kitchen essential for countless cuisines around the world.",
+    "problems": [
+      {
+        "symptom": "Quick bolting to flower",
+        "cause": "Hot weather or long days",
+        "solution": "Grow in partial shade during summer and harvest leaves young."
+      },
+      {
+        "symptom": "Wilting despite wet soil",
+        "cause": "Root rot",
+        "solution": "Ensure good drainage — cilantro hates sitting in water."
+      },
+      {
+        "symptom": "Slow germination",
+        "cause": "Hard seed coat",
+        "solution": "Gently crush the seeds before sowing to speed things up."
+      }
+    ]
+  },
+  "tomillo": {
+    "name": "Thyme",
+    "tip": "Don't worry if the base gets woody — that's totally normal and actually a sign of a mature plant.",
+    "description": "An aromatic Mediterranean herb with tiny leaves and a big flavor. Great in the kitchen and beautiful as ground cover in the garden.",
+    "problems": [
+      {
+        "symptom": "Dying back in center",
+        "cause": "Age and woody growth",
+        "solution": "Divide the plant or take cuttings to start fresh."
+      },
+      {
+        "symptom": "Root rot",
+        "cause": "Poor drainage or overwatering",
+        "solution": "Plant in gritty, well-draining soil and water sparingly."
+      },
+      {
+        "symptom": "Sparse, weak growth",
+        "cause": "Soil too rich",
+        "solution": "Thyme prefers lean soil — skip the fertilizer."
+      }
+    ]
+  },
+  "lechuga": {
+    "name": "Lettuce",
+    "tip": "Pick the outer leaves and let the center keep growing — you'll harvest for weeks.",
+    "description": "The easiest vegetable to grow at home. Fast-growing, perfect for containers, and you can start eating it in just a few weeks.",
+    "problems": [
+      {
+        "symptom": "Bitter taste",
+        "cause": "Bolting due to heat or stress",
+        "solution": "Grow in cooler weather or provide afternoon shade."
+      },
+      {
+        "symptom": "Slugs eating the leaves",
+        "cause": "Slug infestation",
+        "solution": "Set up beer traps or sprinkle diatomaceous earth around the base."
+      },
+      {
+        "symptom": "Wilting in the afternoon",
+        "cause": "Heat stress",
+        "solution": "Provide shade cloth and water in the morning."
+      }
+    ]
+  },
+  "pepino": {
+    "name": "Cucumber",
+    "tip": "Pick them small for the best flavor and crunch — don't let them get too big on the vine.",
+    "description": "A productive summer vine that rewards you with fresh, crunchy fruits. Great for salads, pickling, or snacking straight from the garden.",
+    "problems": [
+      {
+        "symptom": "Bitter fruit",
+        "cause": "Inconsistent watering or heat stress",
+        "solution": "Water deeply and regularly, especially during hot spells."
+      },
+      {
+        "symptom": "Powdery mildew on leaves",
+        "cause": "Humid conditions with poor airflow",
+        "solution": "Space plants well, prune for airflow, and treat with neem oil."
+      },
+      {
+        "symptom": "Misshapen fruits",
+        "cause": "Poor pollination or uneven watering",
+        "solution": "Hand-pollinate if needed and keep moisture consistent."
+      }
+    ]
+  },
+  "zanahoria": {
+    "name": "Carrot",
+    "tip": "Loose, rock-free soil is the key to straight, beautiful carrots.",
+    "description": "A root vegetable that takes patience but delivers satisfying results. Nothing beats pulling a homegrown carrot out of the soil.",
+    "problems": [
+      {
+        "symptom": "Forked or twisted roots",
+        "cause": "Rocky or compacted soil",
+        "solution": "Work the soil deeply and remove stones before planting."
+      },
+      {
+        "symptom": "Green tops, tiny roots",
+        "cause": "Too much nitrogen",
+        "solution": "Avoid high-nitrogen fertilizer — it sends energy to the leaves."
+      },
+      {
+        "symptom": "Carrot fly damage",
+        "cause": "Carrot fly larvae",
+        "solution": "Cover with fine mesh netting and companion plant with onions."
+      }
+    ]
+  },
+  "rucula": {
+    "name": "Arugula",
+    "tip": "It grows crazy fast — you can start harvesting baby leaves in just 3 weeks. Great for beginners.",
+    "description": "A peppery salad green that's super easy to grow and adds a gourmet touch to any dish. Quick from seed to plate.",
+    "problems": [
+      {
+        "symptom": "Very spicy, tough leaves",
+        "cause": "Heat stress or bolting",
+        "solution": "Harvest young leaves and grow in cooler weather or partial shade."
+      },
+      {
+        "symptom": "Flea beetle holes in leaves",
+        "cause": "Flea beetle infestation",
+        "solution": "Cover with row cover fabric or use neem oil spray."
+      },
+      {
+        "symptom": "Quick bolting",
+        "cause": "Hot weather",
+        "solution": "Sow successively every 2 weeks and grow in light shade."
+      }
+    ]
+  },
+  "naranjo": {
+    "name": "Orange Tree",
+    "tip": "Protect it from frost — even a light freeze can damage flowers and young fruit.",
+    "description": "A beautiful citrus tree with incredibly fragrant blossoms and delicious fruit. Can be grown in large pots in cooler climates.",
+    "problems": [
+      {
+        "symptom": "Yellow leaves with green veins",
+        "cause": "Iron deficiency (chlorosis)",
+        "solution": "Apply iron chelate and make sure the soil isn't too alkaline."
+      },
+      {
+        "symptom": "Fruit dropping prematurely",
+        "cause": "Water stress or natural thinning",
+        "solution": "Water consistently — some drop is normal as the tree self-regulates."
+      },
+      {
+        "symptom": "Sooty mold on leaves",
+        "cause": "Honeydew from scale insects or aphids",
+        "solution": "Treat the pest first with neem oil, then wipe the mold off."
+      }
+    ]
+  },
+  "aguacate": {
+    "name": "Avocado",
+    "tip": "Growing one from a pit is a fun project, but don't expect fruit for 5-10 years — enjoy it as a houseplant.",
+    "description": "A tropical tree that's become wildly popular as a houseplant. Its large glossy leaves make a bold statement even without fruit.",
+    "problems": [
+      {
+        "symptom": "Brown, crispy leaf edges",
+        "cause": "Low humidity or salt buildup in soil",
+        "solution": "Mist regularly and flush the soil with clean water periodically."
+      },
+      {
+        "symptom": "Drooping leaves",
+        "cause": "Overwatering or root rot",
+        "solution": "Let the soil dry out between waterings and check root health."
+      },
+      {
+        "symptom": "No new growth",
+        "cause": "Insufficient light",
+        "solution": "Move to a bright spot — avocados need lots of light to thrive."
+      }
+    ]
+  },
+  "higuera": {
+    "name": "Fig Tree",
+    "tip": "Once it's established, it's incredibly hardy — figs are tough survivors.",
+    "description": "An ancient Mediterranean fruit tree prized for its sweet fruit and beautiful lobed leaves. Surprisingly adaptable to pots and smaller gardens.",
+    "problems": [
+      {
+        "symptom": "Fruit dropping before ripening",
+        "cause": "Water stress or temperature swings",
+        "solution": "Keep watering consistent, especially when fruit is forming."
+      },
+      {
+        "symptom": "Rust-colored spots on leaves",
+        "cause": "Fig rust fungus",
+        "solution": "Remove affected leaves and improve air circulation."
+      },
+      {
+        "symptom": "No fruit production",
+        "cause": "Young tree or wrong variety",
+        "solution": "Be patient — figs can take 2-3 years to fruit. Make sure you have a self-pollinating variety."
+      }
+    ]
+  },
+  "mandarino": {
+    "name": "Mandarin Tree",
+    "tip": "It's one of the best citrus trees for growing in pots — compact and generous with fruit.",
+    "description": "A compact citrus tree that produces sweet, easy-to-peel fruit. Perfect for container growing on a sunny patio or balcony.",
+    "problems": [
+      {
+        "symptom": "Leaf curling",
+        "cause": "Citrus leaf miner",
+        "solution": "Remove affected leaves and apply neem oil as prevention."
+      },
+      {
+        "symptom": "Pale yellow leaves",
+        "cause": "Nitrogen deficiency",
+        "solution": "Feed with a citrus-specific fertilizer in spring and summer."
+      },
+      {
+        "symptom": "Dry, splitting fruit",
+        "cause": "Irregular watering",
+        "solution": "Water consistently — sudden soaking after dry spells causes splitting."
+      }
+    ]
+  },
+  "zapallito": {
+    "name": "Summer Squash",
+    "tip": "Harvest them young and small — they taste way better and the plant keeps producing more.",
+    "description": "A super productive summer vegetable that practically grows itself. One plant can feed a whole family with tender, versatile squash.",
+    "problems": [
+      {
+        "symptom": "Powdery mildew on leaves",
+        "cause": "Humid conditions",
+        "solution": "Improve airflow, water at the base, and treat with a baking soda spray."
+      },
+      {
+        "symptom": "Rotting fruit on the vine",
+        "cause": "Blossom end rot or sitting on wet soil",
+        "solution": "Place a board under fruit and keep watering even."
+      },
+      {
+        "symptom": "Flowers but no fruit",
+        "cause": "Poor pollination",
+        "solution": "Hand-pollinate by transferring pollen from male to female flowers with a brush."
+      }
+    ]
+  },
+  "ciboulette": {
+    "name": "Chives",
+    "tip": "Cut them right at the base and they'll regrow quickly — like a haircut for your herbs.",
+    "description": "A mild onion-flavored herb that's dead simple to grow. Pretty purple flowers are edible too. Great in pots or garden borders.",
+    "problems": [
+      {
+        "symptom": "Thin, weak growth",
+        "cause": "Overcrowding",
+        "solution": "Divide clumps every 2-3 years to keep them vigorous."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or poor drainage",
+        "solution": "Let the soil dry slightly between waterings."
+      },
+      {
+        "symptom": "Rust-colored spots",
+        "cause": "Chive rust fungus",
+        "solution": "Cut all foliage to the ground — it'll regrow clean."
+      }
+    ]
+  },
+  "haworthia": {
+    "name": "Haworthia",
+    "tip": "Unlike most succulents, it actually tolerates more shade — perfect for spots other succulents can't handle.",
+    "description": "A mini succulent with gorgeous striped or windowed leaves. Slow-growing, low-maintenance, and adorable on any desk or shelf.",
+    "problems": [
+      {
+        "symptom": "Mushy, translucent leaves",
+        "cause": "Overwatering",
+        "solution": "Water sparingly — only when the soil is completely dry."
+      },
+      {
+        "symptom": "Brown or white patches",
+        "cause": "Sunburn from direct sun",
+        "solution": "Move to bright indirect light — it doesn't need direct sun."
+      },
+      {
+        "symptom": "Closed-up, stressed look",
+        "cause": "Too much light or heat",
+        "solution": "Provide some shade and keep it in a cooler spot."
+      }
+    ]
+  },
+  "sedum": {
+    "name": "Burro's Tail",
+    "tip": "Handle with extreme care — the plump little leaves fall off at the slightest touch.",
+    "description": "A trailing succulent with cascading stems covered in bead-like leaves. Stunning in hanging pots, but very delicate to handle.",
+    "problems": [
+      {
+        "symptom": "Leaves falling off easily",
+        "cause": "Physical contact or overwatering",
+        "solution": "Place it somewhere it won't be bumped and water sparingly."
+      },
+      {
+        "symptom": "Shriveled leaves",
+        "cause": "Underwatering",
+        "solution": "Give it a good drink — the leaves should plump back up."
+      },
+      {
+        "symptom": "Leggy, sparse stems",
+        "cause": "Not enough light",
+        "solution": "Move to a brighter spot with several hours of indirect sun."
+      }
+    ]
+  },
+  "humidity": {
+    "baja": "Low",
+    "media": "Medium",
+    "alta": "High"
+  }
+}
