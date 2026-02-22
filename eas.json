@@ -16,9 +16,10 @@
       }
     },
     "production": {
+      "distribution": "store",
       "android": {
         "buildType": "app-bundle",
-        "credentialsSource": "remote"
+        "credentialsSource": "local"
       }
     }
   },

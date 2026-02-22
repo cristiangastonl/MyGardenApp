@@ -18,7 +18,7 @@
       "bundleIdentifier": "com.cristianlopez.mijardin"
     },
     "android": {
-      "package": "com.cristianlopez.mijardin",
+      "package": "app.mygardencare.app",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -53,7 +53,8 @@
           "photosPermission": "Permitir acceso a tus fotos para identificar plantas",
           "cameraPermission": "Permitir acceso a la cámara para tomar fotos de plantas"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "extra": {
       "eas": {
