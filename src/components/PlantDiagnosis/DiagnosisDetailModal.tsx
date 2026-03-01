@@ -15,6 +15,7 @@ interface DiagnosisDetailModalProps {
   visible: boolean;
   diagnosis: SavedDiagnosis | null;
   onClose: () => void;
+  onResolve?: (plantId: string, diagnosisId: string) => void;
 }
 
 const STATUS_CONFIG: Record<DiagnosisSeverity, { icon: string; label: string; color: string; bg: string }> = {
@@ -34,7 +35,7 @@ function formatDate(dateStr: string): string {
   return `${day} de ${month}, ${hours}:${minutes}`;
 }
 
-export function DiagnosisDetailModal({ visible, diagnosis, onClose }: DiagnosisDetailModalProps) {
+export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }: DiagnosisDetailModalProps) {
   if (!diagnosis) return null;
 
   const result = diagnosis.result;
@@ -137,6 +138,23 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose }: DiagnosisD
                   ))}
                 </View>
               )}
+
+              {/* Resolve button / badge */}
+              {diagnosis.resolved ? (
+                <View style={styles.resolvedBadge}>
+                  <Text style={styles.resolvedBadgeIcon}>✅</Text>
+                  <Text style={styles.resolvedBadgeText}>
+                    Resuelto el {diagnosis.resolvedDate ? formatDate(diagnosis.resolvedDate) : ''}
+                  </Text>
+                </View>
+              ) : result.overallStatus !== 'healthy' && onResolve ? (
+                <TouchableOpacity
+                  style={styles.resolveAction}
+                  onPress={() => onResolve(diagnosis.plantId, diagnosis.id)}
+                >
+                  <Text style={styles.resolveActionText}>🩺 Marcar como resuelto</Text>
+                </TouchableOpacity>
+              ) : null}
 
               {/* Close button */}
               <TouchableOpacity style={styles.closeAction} onPress={onClose}>
@@ -350,6 +368,38 @@ const styles = StyleSheet.create({
   },
   chatBubbleTextAssistant: {
     color: colors.textPrimary,
+  },
+  // Resolve action
+  resolveAction: {
+    backgroundColor: colors.green,
+    paddingVertical: spacing.md,
+    borderRadius: borderRadius.lg,
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  resolveActionText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: colors.white,
+  },
+  resolvedBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.successBg,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing.sm,
+  },
+  resolvedBadgeIcon: {
+    fontSize: 16,
+    marginRight: spacing.sm,
+  },
+  resolvedBadgeText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.green,
   },
   // Close action
   closeAction: {

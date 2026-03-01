@@ -169,6 +169,8 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
           result: diagnosisResult,
           context: plantContext,
           chat: [],
+          resolved: false,
+          resolvedDate: null,
         };
         options.onDiagnosisComplete?.(saved);
       }

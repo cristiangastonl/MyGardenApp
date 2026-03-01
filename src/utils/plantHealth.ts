@@ -5,6 +5,7 @@ import {
   HealthIssue,
   HealthLevel,
   HealthIssueSeverity,
+  SavedDiagnosis,
 } from '../types';
 import { getNextWaterDate } from './plantLogic';
 import { daysBetween, formatDate } from './dates';
@@ -28,7 +29,8 @@ import { daysBetween, formatDate } from './dates';
 export function calculatePlantHealth(
   plant: Plant,
   today: Date,
-  weather: WeatherData | null
+  weather: WeatherData | null,
+  diagnoses?: SavedDiagnosis[]
 ): PlantHealthStatus {
   let score = 100;
   const issues: HealthIssue[] = [];
@@ -129,6 +131,33 @@ export function calculatePlantHealth(
     }
   }
 
+  // Check active diagnoses
+  if (diagnoses && diagnoses.length > 0) {
+    const activeDiagnoses = diagnoses.filter(d => !d.resolved && d.result.overallStatus !== 'healthy');
+    if (activeDiagnoses.length > 0) {
+      // Find worst severity
+      const severityPenalty: Record<string, number> = { severe: 25, moderate: 15, minor: 5 };
+      let worstPenalty = 0;
+      let worstLabel = '';
+      for (const d of activeDiagnoses) {
+        const penalty = severityPenalty[d.result.overallStatus] || 0;
+        if (penalty > worstPenalty) {
+          worstPenalty = penalty;
+          worstLabel = d.result.overallStatus;
+        }
+      }
+      score -= worstPenalty;
+      const severityMap: Record<string, HealthIssueSeverity> = { severe: 'high', moderate: 'medium', minor: 'low' };
+      issues.push({
+        type: 'active_diagnosis',
+        severity: severityMap[worstLabel] || 'low',
+        message: activeDiagnoses.length === 1
+          ? `Diagnostico activo: ${activeDiagnoses[0].result.summary}`
+          : `${activeDiagnoses.length} diagnosticos activos pendientes`,
+      });
+    }
+  }
+
   // Ensure score stays within bounds
   score = Math.max(0, Math.min(100, score));
 
@@ -207,7 +236,8 @@ export function getHealthMessage(level: HealthLevel): string {
 export function calculateGardenHealth(
   plants: Plant[],
   today: Date,
-  weather: WeatherData | null
+  weather: WeatherData | null,
+  diagnosisHistory?: Record<string, SavedDiagnosis[]>
 ): {
   averageScore: number;
   level: HealthLevel;
@@ -224,7 +254,7 @@ export function calculateGardenHealth(
   }
 
   const healthStatuses = plants.map((plant) =>
-    calculatePlantHealth(plant, today, weather)
+    calculatePlantHealth(plant, today, weather, diagnosisHistory?.[plant.id])
   );
 
   const totalScore = healthStatuses.reduce((sum, status) => sum + status.score, 0);

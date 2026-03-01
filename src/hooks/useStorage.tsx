@@ -44,6 +44,8 @@ interface StorageActions {
   saveDiagnosis: (diagnosis: SavedDiagnosis) => void;
   addChatMessage: (plantId: string, diagnosisId: string, message: DiagnosisChatMessage | DiagnosisChatMessage[]) => void;
   getDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
+  resolveDiagnosis: (plantId: string, diagnosisId: string) => void;
+  getActiveDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
 }
 
 type StorageContextType = StorageState & StorageActions;
@@ -275,10 +277,15 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const saveDiagnosis = useCallback((diagnosis: SavedDiagnosis) => {
-    const plantDiagnoses = diagnosisHistory[diagnosis.plantId] || [];
+    const withDefaults: SavedDiagnosis = {
+      ...diagnosis,
+      resolved: diagnosis.resolved ?? false,
+      resolvedDate: diagnosis.resolvedDate ?? null,
+    };
+    const plantDiagnoses = diagnosisHistory[withDefaults.plantId] || [];
     const newHistory = {
       ...diagnosisHistory,
-      [diagnosis.plantId]: [diagnosis, ...plantDiagnoses],
+      [withDefaults.plantId]: [withDefaults, ...plantDiagnoses],
     };
     setDiagnosisHistory(newHistory);
     saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, newHistory);
@@ -298,6 +305,22 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const getDiagnosesForPlant = useCallback((plantId: string): SavedDiagnosis[] => {
     return (diagnosisHistory[plantId] || []).sort((a, b) =>
       new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }, [diagnosisHistory]);
+
+  const resolveDiagnosis = useCallback((plantId: string, diagnosisId: string) => {
+    const plantDiagnoses = diagnosisHistory[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId ? { ...d, resolved: true, resolvedDate: formatDate(new Date()) } : d
+    );
+    const newHistory = { ...diagnosisHistory, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, newHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
+
+  const getActiveDiagnosesForPlant = useCallback((plantId: string): SavedDiagnosis[] => {
+    return (diagnosisHistory[plantId] || []).filter(d =>
+      !d.resolved && d.result.overallStatus !== 'healthy'
     );
   }, [diagnosisHistory]);
 
@@ -338,6 +361,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
     saveDiagnosis,
     addChatMessage,
     getDiagnosesForPlant,
+    resolveDiagnosis,
+    getActiveDiagnosesForPlant,
   };
 
   return (

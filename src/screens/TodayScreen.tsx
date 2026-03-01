@@ -19,7 +19,7 @@ import { useNotifications } from '../hooks/useNotifications';
 import { formatDate, isSameDay } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { generatePlantAlerts } from '../utils/plantAlerts';
-import { Plant } from '../types';
+import { Plant, SavedDiagnosis } from '../types';
 import {
   Header,
   WeatherWidget,
@@ -36,10 +36,12 @@ import {
   SettingsPanel,
   PlantIdentifierModal,
   MyPlantDetailModal,
+  DiagnosisFollowUp,
 } from '../components';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
 import { LinearGradient } from 'expo-linear-gradient';
+import { DiagnosisDetailModal } from '../components/PlantDiagnosis/DiagnosisDetailModal';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -72,6 +74,9 @@ export default function TodayScreen() {
     incrementIdentificationCount,
     addPhotoToPlant,
     removePhotoFromPlant,
+    diagnosisHistory,
+    resolveDiagnosis,
+    getActiveDiagnosesForPlant,
   } = useStorage();
 
   const { weather, loading: weatherLoading, error: weatherError, refetch: refetchWeather } = useWeather(location);
@@ -104,6 +109,7 @@ export default function TodayScreen() {
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
+  const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -278,7 +284,15 @@ export default function TodayScreen() {
         <WateringTips plants={plants} weather={weather} />
 
         {/* Garden Health Summary */}
-        <GardenHealth plants={plants} weather={weather} />
+        <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} />
+
+        {/* Diagnosis Follow-Up */}
+        <DiagnosisFollowUp
+          plants={plants}
+          diagnosisHistory={diagnosisHistory}
+          onResolve={resolveDiagnosis}
+          onPressDiagnosis={setSelectedDiagnosis}
+        />
 
         {/* Today's Reminders */}
         {todayReminders.length > 0 && (
@@ -324,6 +338,8 @@ export default function TodayScreen() {
                 onOutdoorDone={handleOutdoorDone}
                 onDelete={handleDeletePlant}
                 onPress={setDetailPlant}
+                diagnoses={diagnosisHistory[plant.id]}
+                hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
               />
             ))}
           </View>
@@ -344,6 +360,8 @@ export default function TodayScreen() {
                 onOutdoorDone={handleOutdoorDone}
                 onDelete={handleDeletePlant}
                 onPress={setDetailPlant}
+                diagnoses={diagnosisHistory[plant.id]}
+                hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
               />
             ))}
           </View>
@@ -391,6 +409,17 @@ export default function TodayScreen() {
           onAddPlant={handleAddPlant}
         />
       )}
+
+      {/* Diagnosis Detail from Follow-Up */}
+      <DiagnosisDetailModal
+        visible={!!selectedDiagnosis}
+        diagnosis={selectedDiagnosis}
+        onClose={() => setSelectedDiagnosis(null)}
+        onResolve={(plantId, diagnosisId) => {
+          resolveDiagnosis(plantId, diagnosisId);
+          setSelectedDiagnosis(null);
+        }}
+      />
 
       {/* Plant Detail Modal with Photo Album */}
       <MyPlantDetailModal

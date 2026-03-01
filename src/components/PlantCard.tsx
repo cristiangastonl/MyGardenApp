@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle, Alert } from 'react-native';
-import { Plant, WeatherData } from '../types';
+import { Plant, WeatherData, SavedDiagnosis } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { isSameDay, daysBetween, formatDate } from '../utils/dates';
@@ -20,6 +20,8 @@ interface PlantCardProps {
   onOutdoorDone: (plantId: string) => void;
   onDelete: (plantId: string) => void;
   onPress?: (plant: Plant) => void;
+  diagnoses?: SavedDiagnosis[];
+  hasActiveDiagnosis?: boolean;
 }
 
 export function PlantCard({
@@ -31,6 +33,8 @@ export function PlantCard({
   onOutdoorDone,
   onDelete,
   onPress,
+  diagnoses,
+  hasActiveDiagnosis,
 }: PlantCardProps) {
   const { t } = useTranslation();
   const [showHealthDetail, setShowHealthDetail] = useState(false);
@@ -55,8 +59,8 @@ export function PlantCard({
 
   // Calculate plant health
   const healthStatus = useMemo(
-    () => calculatePlantHealth(plant, today, weather ?? null),
-    [plant, today, weather]
+    () => calculatePlantHealth(plant, today, weather ?? null, diagnoses),
+    [plant, today, weather, diagnoses]
   );
 
   // Show health badge if health is not excellent (score < 80)
@@ -88,6 +92,11 @@ export function PlantCard({
           </View>
         </View>
         <View style={styles.headerRight}>
+          {hasActiveDiagnosis && (
+            <View style={styles.diagnosisBadge}>
+              <Text style={styles.diagnosisBadgeText}>🩺</Text>
+            </View>
+          )}
           {showHealthBadge && (
             <PlantHealthBadge
               healthStatus={healthStatus}
@@ -182,6 +191,8 @@ interface Styles {
   info: ViewStyle;
   name: TextStyle;
   type: TextStyle;
+  diagnosisBadge: ViewStyle;
+  diagnosisBadgeText: TextStyle;
   deleteButton: ViewStyle;
   deleteIcon: TextStyle;
   tip: TextStyle;
@@ -241,6 +252,17 @@ const styles = StyleSheet.create<Styles>({
     fontFamily: fonts.body,
     fontSize: 13,
     color: colors.textSecondary,
+  },
+  diagnosisBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: colors.dangerBg,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  diagnosisBadgeText: {
+    fontSize: 14,
   },
   deleteButton: {
     padding: spacing.xs,

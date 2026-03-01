@@ -8,7 +8,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Plant, PlantHealthStatus, WeatherData } from '../types';
+import { Plant, PlantHealthStatus, SavedDiagnosis, WeatherData } from '../types';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import {
   calculateGardenHealth,
@@ -22,12 +22,14 @@ interface GardenHealthProps {
   plants: Plant[];
   weather: WeatherData | null;
   onPlantPress?: (plantId: string) => void;
+  diagnosisHistory?: Record<string, SavedDiagnosis[]>;
 }
 
 export function GardenHealth({
   plants,
   weather,
   onPlantPress,
+  diagnosisHistory,
 }: GardenHealthProps) {
   const { t } = useTranslation();
   const today = new Date();
@@ -35,7 +37,7 @@ export function GardenHealth({
     averageScore,
     level,
     plantsNeedingAttention,
-  } = calculateGardenHealth(plants, today, weather);
+  } = calculateGardenHealth(plants, today, weather, diagnosisHistory);
 
   const healthColor = getHealthColor(level);
   const healthBgColor = getHealthBgColor(level);

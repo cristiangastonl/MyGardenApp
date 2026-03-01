@@ -155,7 +155,7 @@ export interface NotificationSettings {
 // Plant Health Types
 export type HealthLevel = 'excellent' | 'good' | 'warning' | 'danger';
 
-export type HealthIssueType = 'overdue_water' | 'overdue_sun' | 'no_care' | 'extreme_weather';
+export type HealthIssueType = 'overdue_water' | 'overdue_sun' | 'no_care' | 'extreme_weather' | 'active_diagnosis';
 
 export type HealthIssueSeverity = 'low' | 'medium' | 'high';
 
@@ -243,6 +243,8 @@ export interface SavedDiagnosis {
   result: DiagnosisResult;
   context: PlantDiagnosisContext;
   chat: DiagnosisChatMessage[];
+  resolved: boolean;
+  resolvedDate: string | null;
 }
 
 // Auth & Sync Types
