@@ -109,6 +109,16 @@ export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetail
               <Text style={styles.tip}>{plant.tip}</Text>
             </View>
 
+            {plant.nutrients && (
+              <View style={styles.nutrientsSection}>
+                <Text style={styles.nutrientsTitle}>NUTRIENTES</Text>
+                <View style={styles.nutrientsCard}>
+                  <Text style={styles.nutrientsType}>🧪 {plant.nutrients.type}</Text>
+                  <Text style={styles.nutrientsHomemade}>🏡 Receta casera: {plant.nutrients.homemade}</Text>
+                </View>
+              </View>
+            )}
+
             {plant.problems.length > 0 && (
               <View style={styles.problemsSection}>
                 <Text style={styles.problemsTitle}>PROBLEMAS COMUNES</Text>
@@ -157,6 +167,11 @@ interface Styles {
   tipSection: ViewStyle;
   tipLabel: TextStyle;
   tip: TextStyle;
+  nutrientsSection: ViewStyle;
+  nutrientsTitle: TextStyle;
+  nutrientsCard: ViewStyle;
+  nutrientsType: TextStyle;
+  nutrientsHomemade: TextStyle;
   problemsSection: ViewStyle;
   problemsTitle: TextStyle;
   problemCard: ViewStyle;
@@ -275,6 +290,34 @@ const styles = StyleSheet.create<Styles>({
     fontFamily: fonts.body,
     fontSize: 14,
     color: colors.infoText,
+    lineHeight: 20,
+  },
+  nutrientsSection: {
+    marginBottom: spacing.lg,
+  },
+  nutrientsTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.textMuted,
+    letterSpacing: 1,
+    marginBottom: spacing.md,
+  },
+  nutrientsCard: {
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    ...shadows.sm,
+  },
+  nutrientsType: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.textPrimary,
+    marginBottom: spacing.sm,
+  },
+  nutrientsHomemade: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.green,
     lineHeight: 20,
   },
   problemsSection: {

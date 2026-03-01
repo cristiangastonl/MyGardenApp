@@ -107,6 +107,10 @@ export interface PlantDBEntry {
   tip: string;
   description: string;
   problems: PlantProblem[];
+  nutrients?: {
+    type: string;
+    homemade: string;
+  };
 }
 
 // Weather types for Open-Meteo API integration

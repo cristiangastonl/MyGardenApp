@@ -57,12 +57,16 @@ export function MyPlantDetailModal({
     return getDiagnosesForPlant(plant.id).slice(0, 5);
   }, [plant, getDiagnosesForPlant]);
 
+  const dbEntry = useMemo(() => {
+    if (!plant) return null;
+    return findDatabaseEntry(plant);
+  }, [plant]);
+
   const resolvedImageUrl = useMemo(() => {
     if (!plant) return null;
     if (plant.imageUrl) return plant.imageUrl;
-    const dbEntry = findDatabaseEntry(plant);
     return dbEntry?.imageUrl || null;
-  }, [plant]);
+  }, [plant, dbEntry]);
 
   if (!plant) return null;
 
@@ -162,6 +166,19 @@ export function MyPlantDetailModal({
               <Text style={styles.diagnoseButtonIcon}>🔬</Text>
               <Text style={styles.diagnoseButtonText}>Diagnosticar salud</Text>
             </TouchableOpacity>
+
+            {/* Nutrients */}
+            {dbEntry?.nutrients && (
+              <View style={styles.nutrientsSection}>
+                <Text style={styles.nutrientsSectionTitle}>
+                  {t('plantDetail.nutrients')}
+                </Text>
+                <View style={styles.nutrientsCard}>
+                  <Text style={styles.nutrientsType}>🧪 {dbEntry.nutrients.type}</Text>
+                  <Text style={styles.nutrientsHomemade}>🏡 {t('plantDetail.homemadeRecipe')}: {dbEntry.nutrients.homemade}</Text>
+                </View>
+              </View>
+            )}
 
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
@@ -336,6 +353,37 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 14,
     color: colors.green,
+  },
+
+  // Nutrients
+  nutrientsSection: {
+    marginBottom: spacing.sm,
+  },
+  nutrientsSectionTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 11,
+    color: colors.textMuted,
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
+  },
+  nutrientsCard: {
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.sm,
+    ...shadows.sm,
+  },
+  nutrientsType: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.textPrimary,
+    marginBottom: spacing.sm,
+  },
+  nutrientsHomemade: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.green,
+    lineHeight: 20,
   },
 
   // History

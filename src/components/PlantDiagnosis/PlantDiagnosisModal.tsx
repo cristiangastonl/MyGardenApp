@@ -10,6 +10,7 @@ import {
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantDiagnosis } from '../../hooks/usePlantDiagnosis';
 import { usePremiumGate } from '../../config/premium';
+import { usePremium } from '../../hooks/usePremium';
 import { useStorage } from '../../hooks/useStorage';
 import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis } from '../../types';
 import { CameraCapture } from '../PlantIdentifier/CameraCapture';
@@ -29,8 +30,9 @@ export function PlantDiagnosisModal({
   weather,
   onClose,
 }: PlantDiagnosisModalProps) {
-  const { saveDiagnosis, addChatMessage } = useStorage();
-  const { canChatDiagnosis, isPremium } = usePremiumGate();
+  const { saveDiagnosis, addChatMessage, diagnosisCount } = useStorage();
+  const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
+  const { showPaywall } = usePremium();
 
   const handleDiagnosisComplete = useCallback((diagnosis: SavedDiagnosis) => {
     saveDiagnosis(diagnosis);
@@ -70,6 +72,11 @@ export function PlantDiagnosisModal({
   };
 
   const handleRetake = () => {
+    if (!canDiagnose(diagnosisCount)) {
+      showPaywall('plant_diagnosis');
+      handleClose();
+      return;
+    }
     reset();
   };
 
