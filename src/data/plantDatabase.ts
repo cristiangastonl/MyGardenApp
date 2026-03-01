@@ -1081,6 +1081,27 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas arrugadas", cause: "Falta de riego", solution: "Regá a fondo y esperá; se rehidratarán en unos días" },
     ],
   },
+  {
+    id: "yuca",
+    name: "Yuca",
+    scientificName: "Yucca elephantipes",
+    icon: "🌴",
+    imageUrl: `${CATALOG_BASE_URL}/yuca.jpg`,
+    category: "interior",
+    waterDays: 10,
+    sunHours: 6,
+    tempMin: 5,
+    tempMax: 38,
+    humidity: "baja",
+    outdoor: true,
+    tip: "La Yuca es una todoterreno: bancá sequía, sol directo y hasta algo de frío. No la riegues de más.",
+    description: "La Yuca elephantipes o Yuca de interior es una planta de tronco leñoso con hojas largas, rígidas y puntiagudas. Es extremadamente resistente y tolera condiciones de luz variadas, aunque prefiere sol directo. Ideal para quienes buscan una planta grande con poco mantenimiento.",
+    problems: [
+      { symptom: "Hojas inferiores amarillas", cause: "Envejecimiento natural o exceso de riego", solution: "Es normal que pierda las hojas viejas. Si son muchas, reducí el riego y dejá secar bien entre riegos." },
+      { symptom: "Tronco blando", cause: "Pudrición por exceso de riego", solution: "Dejá de regar inmediatamente. Si está muy afectado, cortá la parte sana del tronco y replantá." },
+      { symptom: "Puntas marrones", cause: "Aire muy seco o exceso de sol", solution: "Cortá las puntas secas y si está en sol directo muy fuerte, movela a luz brillante indirecta." },
+    ],
+  },
 ];
 
 // Get a translated version of a plant entry

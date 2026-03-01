@@ -14,6 +14,10 @@ interface CameraCaptureProps {
   onPickGallery: () => void;
   onAnalyze: () => void;
   onRetake: () => void;
+  analyzeLabel?: string;
+  title?: string;
+  subtitle?: string;
+  tips?: string[];
 }
 
 export function CameraCapture({
@@ -22,6 +26,10 @@ export function CameraCapture({
   onPickGallery,
   onAnalyze,
   onRetake,
+  analyzeLabel = 'Identificar',
+  title = 'Sacá una foto de tu planta',
+  subtitle = 'Enfocá las hojas o flores para una mejor identificación',
+  tips = ['Buena iluminación natural', 'Hojas o flores visibles', 'Fondo simple si es posible'],
 }: CameraCaptureProps) {
   if (imageUri) {
     // Show preview with analyze/retake options
@@ -40,7 +48,7 @@ export function CameraCapture({
             <Text style={styles.retakeButtonText}>Otra foto</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.analyzeButton} onPress={onAnalyze}>
-            <Text style={styles.analyzeButtonText}>Identificar</Text>
+            <Text style={styles.analyzeButtonText}>{analyzeLabel}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -54,10 +62,8 @@ export function CameraCapture({
         <Text style={styles.mainIcon}>📷</Text>
       </View>
 
-      <Text style={styles.title}>Sacá una foto de tu planta</Text>
-      <Text style={styles.subtitle}>
-        Enfocá las hojas o flores para una mejor identificación
-      </Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
 
       <View style={styles.optionsContainer}>
         <TouchableOpacity style={styles.optionButton} onPress={onPickCamera}>
@@ -75,9 +81,9 @@ export function CameraCapture({
 
       <View style={styles.tipsContainer}>
         <Text style={styles.tipsTitle}>CONSEJOS</Text>
-        <Text style={styles.tip}>• Buena iluminación natural</Text>
-        <Text style={styles.tip}>• Hojas o flores visibles</Text>
-        <Text style={styles.tip}>• Fondo simple si es posible</Text>
+        {tips.map((tip, i) => (
+          <Text key={i} style={styles.tip}>• {tip}</Text>
+        ))}
       </View>
     </View>
   );

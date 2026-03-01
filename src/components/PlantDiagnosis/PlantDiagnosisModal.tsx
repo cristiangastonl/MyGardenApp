@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
   View,
   Modal,
@@ -6,40 +6,63 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  Alert,
 } from 'react-native';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
-import { usePlantIdentification } from '../../hooks/usePlantIdentification';
-import { IdentifiedPlant, Plant } from '../../types';
-import { CameraCapture } from './CameraCapture';
-import { AnalyzingState } from './AnalyzingState';
-import { IdentificationResults } from './IdentificationResults';
+import { usePlantDiagnosis } from '../../hooks/usePlantDiagnosis';
+import { usePremiumGate } from '../../config/premium';
+import { useStorage } from '../../hooks/useStorage';
+import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis } from '../../types';
+import { CameraCapture } from '../PlantIdentifier/CameraCapture';
+import { DiagnosisAnalyzingState } from './DiagnosisAnalyzingState';
+import { DiagnosisResults } from './DiagnosisResults';
 
-interface PlantIdentifierModalProps {
+interface PlantDiagnosisModalProps {
   visible: boolean;
+  plant: Plant;
+  weather: WeatherData | null;
   onClose: () => void;
-  onAddPlant: (plant: Omit<Plant, 'id'>, imageUri?: string | null) => void;
 }
 
-export function PlantIdentifierModal({
+export function PlantDiagnosisModal({
   visible,
+  plant,
+  weather,
   onClose,
-  onAddPlant,
-}: PlantIdentifierModalProps) {
+}: PlantDiagnosisModalProps) {
+  const { saveDiagnosis, addChatMessage } = useStorage();
+  const { canChatDiagnosis, isPremium } = usePremiumGate();
+
+  const handleDiagnosisComplete = useCallback((diagnosis: SavedDiagnosis) => {
+    saveDiagnosis(diagnosis);
+  }, [saveDiagnosis]);
+
+  const plantContext: PlantDiagnosisContext = {
+    species: plant.typeName,
+    waterEvery: plant.waterEvery,
+    sunHours: plant.sunHours,
+    lastWatered: plant.lastWatered,
+    outdoorDays: plant.outdoorDays,
+  };
+
   const {
     state,
     imageUri,
     result,
     error,
-    enrichedData,
-    isEnriching,
+    savedDiagnosisId,
+    chatMessages,
+    chatLoading,
+    chatError,
     pickFromCamera,
     pickFromGallery,
     analyze,
+    sendChatMessage,
     reset,
-    selectResult,
-    selectedPlant,
-  } = usePlantIdentification();
+  } = usePlantDiagnosis({
+    plantId: plant.id,
+    plantContext,
+    onDiagnosisComplete: handleDiagnosisComplete,
+  });
 
   const handleClose = () => {
     reset();
@@ -50,58 +73,28 @@ export function PlantIdentifierModal({
     reset();
   };
 
-  const handleAddPlant = () => {
-    if (!selectedPlant) return;
-
-    // Use enriched data if available, otherwise fall back to identified data
-    const data = enrichedData;
-    const useEnriched = data && data.source !== 'default';
-
-    // Convert IdentifiedPlant to Plant format
-    const plantData: Omit<Plant, 'id'> = {
-      name: useEnriched ? data.name : selectedPlant.commonName,
-      typeId: selectedPlant.category,
-      typeName: getCategoryName(selectedPlant.category),
-      icon: selectedPlant.icon,
-      waterEvery: useEnriched ? data.waterEvery : selectedPlant.waterDays,
-      sunHours: useEnriched ? data.sunHours : selectedPlant.sunHours,
-      sunDays: [], // User can configure later
-      outdoorDays: (useEnriched ? !data.indoor : !selectedPlant.indoor) ? [0, 6] : [],
-      lastWatered: null,
-      sunDoneDate: null,
-      outdoorDoneDate: null,
-      // Add temperature info from enriched data
-      tempMin: useEnriched ? (data.tempMin ?? undefined) : selectedPlant.tempMin,
-      tempMax: useEnriched ? (data.tempMax ?? undefined) : selectedPlant.tempMax,
-    };
-
-    if (imageUri) {
-      Alert.alert(
-        'Foto de tu planta',
-        '¿Querés usar la foto que sacaste como imagen de tu planta?',
-        [
-          {
-            text: 'No, gracias',
-            style: 'cancel',
-            onPress: () => {
-              onAddPlant(plantData, null);
-              handleClose();
-            },
-          },
-          {
-            text: 'Usar esta foto',
-            onPress: () => {
-              onAddPlant(plantData, imageUri);
-              handleClose();
-            },
-          },
-        ],
-      );
-    } else {
-      onAddPlant(plantData, null);
-      handleClose();
-    }
+  const handleAnalyze = () => {
+    analyze(plantContext);
   };
+
+  const userMessageCount = chatMessages.filter(m => m.role === 'user').length;
+  const canChat = canChatDiagnosis(userMessageCount);
+  const persistedCountRef = useRef(0);
+
+  // Persist new chat messages to storage when assistant replies arrive
+  React.useEffect(() => {
+    if (!savedDiagnosisId || chatMessages.length === 0) return;
+    const lastMsg = chatMessages[chatMessages.length - 1];
+    if (lastMsg.role !== 'assistant') return;
+
+    // Persist both user + assistant messages in one batch
+    const newMessages = chatMessages.slice(persistedCountRef.current);
+    if (newMessages.length > 0) {
+      addChatMessage(plant.id, savedDiagnosisId, newMessages);
+    }
+    persistedCountRef.current = chatMessages.length;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatMessages.length]);
 
   const renderContent = () => {
     switch (state) {
@@ -112,25 +105,35 @@ export function PlantIdentifierModal({
             imageUri={imageUri}
             onPickCamera={pickFromCamera}
             onPickGallery={pickFromGallery}
-            onAnalyze={analyze}
+            onAnalyze={handleAnalyze}
             onRetake={handleRetake}
+            analyzeLabel="Diagnosticar"
+            title="Foto de la zona afectada"
+            subtitle="Enfocá las hojas, tallos o raíces que te preocupen"
+            tips={[
+              'Enfocá la zona con problemas',
+              'Buena iluminación natural',
+              'Mostrá hojas de cerca si están dañadas',
+            ]}
           />
         );
 
       case 'analyzing':
-        return <AnalyzingState imageUri={imageUri} />;
+        return <DiagnosisAnalyzingState imageUri={imageUri} />;
 
       case 'results':
         if (!result) return null;
         return (
-          <IdentificationResults
+          <DiagnosisResults
             result={result}
-            imageUri={imageUri}
-            selectedPlant={selectedPlant}
-            onSelectPlant={selectResult}
-            onAddPlant={handleAddPlant}
-            onRetry={handleRetake}
+            onRetake={handleRetake}
             onClose={handleClose}
+            chatMessages={chatMessages}
+            chatLoading={chatLoading}
+            chatError={chatError}
+            canSendChat={canChat}
+            onSendChat={sendChatMessage}
+            isPremium={isPremium}
           />
         );
 
@@ -166,7 +169,7 @@ export function PlantIdentifierModal({
               <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
                 <Text style={styles.closeButtonText}>✕</Text>
               </TouchableOpacity>
-              <Text style={styles.title}>Identificar planta</Text>
+              <Text style={styles.title}>Diagnóstico de salud</Text>
             </View>
 
             {renderContent()}
@@ -175,18 +178,6 @@ export function PlantIdentifierModal({
       </View>
     </Modal>
   );
-}
-
-function getCategoryName(category: string): string {
-  const names: Record<string, string> = {
-    interior: 'Interior',
-    exterior: 'Exterior',
-    aromaticas: 'Aromáticas',
-    huerta: 'Huerta',
-    frutales: 'Frutales',
-    suculentas: 'Suculentas',
-  };
-  return names[category] || 'Otra';
 }
 
 const styles = StyleSheet.create({
@@ -238,7 +229,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.textPrimary,
   },
-  // Error state
   errorContainer: {
     flex: 1,
     alignItems: 'center',

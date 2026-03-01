@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
+import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
@@ -209,14 +210,7 @@ export default function TodayScreen() {
   };
 
   if (storageLoading) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={colors.green} />
-          <Text style={styles.loadingText}>{t('today.loading')}</Text>
-        </View>
-      </SafeAreaView>
-    );
+    return <LoadingScreen message={t('today.loading')} />;
   }
 
   return (

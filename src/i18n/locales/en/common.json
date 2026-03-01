@@ -220,6 +220,7 @@
     "forWeatherAlerts": "To see weather and personalized alerts",
     "loadingWeather": "Loading weather...",
     "errorLoading": "Could not load weather",
+    "checkConnection": "Check your connection or set up your location",
     "retry": "Retry",
     "nextDays": "COMING DAYS",
     "todayLabel": "Today"

@@ -11,8 +11,12 @@ function getPlantDir(plantId: string): string {
 
 async function ensureDir(dirUri: string): Promise<void> {
   const dir = new Directory(dirUri);
-  if (!dir.exists) {
-    dir.create();
+  try {
+    if (!dir.exists) {
+      dir.create();
+    }
+  } catch {
+    // Directory may already exist from a race condition — safe to ignore
   }
 }
 

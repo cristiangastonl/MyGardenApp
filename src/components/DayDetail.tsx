@@ -358,7 +358,7 @@ export function DayDetail({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(45, 58, 46, 0.4)",
+    backgroundColor: colors.overlay,
     justifyContent: "flex-end",
   },
   keyboardView: {

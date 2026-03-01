@@ -3,6 +3,8 @@ import { usePremium } from '../hooks/usePremium';
 
 const FREE_PLANT_LIMIT = 5;
 const FREE_IDENTIFICATION_LIMIT = 2;
+const FREE_DIAGNOSIS_LIMIT = 1;
+const FREE_CHAT_MESSAGES_PER_DIAGNOSIS = 1;
 const FREE_TIPS_TRIAL_DAYS = 7;
 
 function daysSinceInstall(installDate: string | null): number {
@@ -47,6 +49,16 @@ export function usePremiumGate() {
     canIdentify(identificationCount: number): boolean {
       if (!Features.PLANT_IDENTIFICATION) return false;
       return isPremium || identificationCount < FREE_IDENTIFICATION_LIMIT;
+    },
+
+    canDiagnose(diagnosisCount: number): boolean {
+      if (!Features.DLC_PEST_DIAGNOSIS) return false;
+      return isPremium || diagnosisCount < FREE_DIAGNOSIS_LIMIT;
+    },
+
+    canChatDiagnosis(userMessageCount: number): boolean {
+      if (!Features.DLC_PEST_DIAGNOSIS) return false;
+      return isPremium || userMessageCount < FREE_CHAT_MESSAGES_PER_DIAGNOSIS;
     },
 
     canAccessDLC(dlcFlag: keyof typeof Features): boolean {

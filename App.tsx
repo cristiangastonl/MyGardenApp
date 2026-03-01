@@ -53,7 +53,7 @@ function MainTabs() {
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarLabelStyle: {
           fontFamily: 'DMSans_600SemiBold',
-          fontSize: 11,
+          fontSize: 12,
         },
       }}
     >

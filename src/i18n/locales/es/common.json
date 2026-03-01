@@ -220,6 +220,7 @@
     "forWeatherAlerts": "Para ver el clima y alertas personalizadas",
     "loadingWeather": "Cargando clima...",
     "errorLoading": "No se pudo cargar el clima",
+    "checkConnection": "Revisá tu conexión o configurá la ubicación",
     "retry": "Reintentar",
     "nextDays": "PRÓXIMOS DÍAS",
     "todayLabel": "Hoy"

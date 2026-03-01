@@ -9,6 +9,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius, fonts } from '../theme';
+import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
 import { formatDate } from '../utils/dates';
@@ -117,14 +118,7 @@ export default function PlantsScreen() {
   };
 
   if (loading) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={colors.green} />
-          <Text style={styles.loadingText}>{t('plants.loadingPlants')}</Text>
-        </View>
-      </SafeAreaView>
-    );
+    return <LoadingScreen message={t('plants.loadingPlants')} />;
   }
 
   const renderPlant = ({ item }: { item: Plant }) => (
@@ -248,7 +242,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: spacing.lg,
-    paddingBottom: 100,
+    paddingBottom: spacing.fabClearance,
   },
   header: {
     paddingVertical: spacing.lg,

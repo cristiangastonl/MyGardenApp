@@ -69,16 +69,17 @@ export function WeatherWidget({
   // Error state
   if (error || !weather) {
     return (
-      <View style={styles.container}>
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorIcon}>⚠️</Text>
+      <View style={styles.errorBanner}>
+        <Text style={styles.errorIcon}>⛅</Text>
+        <View style={styles.errorTextContainer}>
+          <Text style={styles.errorTitle}>{t('weatherWidget.errorLoading')}</Text>
           <Text style={styles.errorText}>
-            {error || t('weatherWidget.errorLoading')}
+            {error || t('weatherWidget.checkConnection')}
           </Text>
-          <TouchableOpacity onPress={onOpenSettings} style={styles.retryButton}>
-            <Text style={styles.retryText}>{t('weatherWidget.retry')}</Text>
-          </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={onOpenSettings} style={styles.retryButton} activeOpacity={0.7}>
+          <Text style={styles.retryText}>{t('weatherWidget.retry')}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -102,13 +103,13 @@ export function WeatherWidget({
 
         <View style={styles.currentDetails}>
           <View style={styles.detailItem}>
-            <Text style={styles.detailIcon}>💨</Text>
+            <Text style={styles.detailIcon} accessible={true} accessibilityLabel="Viento">💨</Text>
             <Text style={styles.detailValue}>
               {Math.round(weather.current.windSpeed)} km/h
             </Text>
           </View>
           <View style={styles.detailItem}>
-            <Text style={styles.detailIcon}>💧</Text>
+            <Text style={styles.detailIcon} accessible={true} accessibilityLabel="Humedad">💧</Text>
             <Text style={styles.detailValue}>
               {weather.current.humidity}%
             </Text>
@@ -236,32 +237,47 @@ const styles = StyleSheet.create({
   },
 
   // Error
-  errorContainer: {
+  errorBanner: {
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: spacing.xxl,
+    backgroundColor: colors.warningBg,
+    borderRadius: borderRadius.xl,
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.lg,
+    padding: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.warningBorder,
   },
   errorIcon: {
     fontSize: 28,
-    marginBottom: spacing.sm,
+    marginRight: spacing.md,
+  },
+  errorTextContainer: {
+    flex: 1,
+  },
+  errorTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.textPrimary,
+    marginBottom: 2,
   },
   errorText: {
     fontFamily: fonts.body,
-    fontSize: 14,
+    fontSize: 13,
     color: colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: spacing.md,
   },
   retryButton: {
     paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    backgroundColor: colors.bgSecondary,
+    paddingHorizontal: spacing.md,
+    backgroundColor: colors.white,
     borderRadius: borderRadius.md,
-    minHeight: 44,
+    minHeight: 36,
     justifyContent: 'center',
+    marginLeft: spacing.sm,
   },
   retryText: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 14,
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 13,
     color: colors.green,
   },
 
@@ -340,7 +356,7 @@ const styles = StyleSheet.create({
   },
   forecastTitle: {
     fontFamily: fonts.bodySemiBold,
-    fontSize: 11,
+    fontSize: 12,
     color: colors.textMuted,
     letterSpacing: 1,
     marginBottom: spacing.md,

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,15 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
-import { Plant, PlantPhoto, WeatherData } from '../types';
+import { Plant, PlantPhoto, WeatherData, SavedDiagnosis } from '../types';
 import { calculatePlantHealth } from '../utils/plantHealth';
+import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantPhotoAlbum } from './PlantPhotoAlbum';
+import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from './PlantDiagnosis';
+import { usePremiumGate } from '../config/premium';
+import { usePremium } from '../hooks/usePremium';
+import { useStorage } from '../hooks/useStorage';
 
 interface MyPlantDetailModalProps {
   visible: boolean;
@@ -36,13 +41,39 @@ export function MyPlantDetailModal({
   onDeletePhoto,
 }: MyPlantDetailModalProps) {
   const { t } = useTranslation();
+  const [showDiagnosis, setShowDiagnosis] = useState(false);
+  const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
+  const { canDiagnose } = usePremiumGate();
+  const { showPaywall } = usePremium();
+  const { diagnosisCount, incrementDiagnosisCount, getDiagnosesForPlant } = useStorage();
 
   const healthStatus = useMemo(() => {
     if (!plant) return null;
     return calculatePlantHealth(plant, new Date(), weather);
   }, [plant, weather]);
 
+  const plantDiagnoses = useMemo(() => {
+    if (!plant) return [];
+    return getDiagnosesForPlant(plant.id).slice(0, 5);
+  }, [plant, getDiagnosesForPlant]);
+
+  const resolvedImageUrl = useMemo(() => {
+    if (!plant) return null;
+    if (plant.imageUrl) return plant.imageUrl;
+    const dbEntry = findDatabaseEntry(plant);
+    return dbEntry?.imageUrl || null;
+  }, [plant]);
+
   if (!plant) return null;
+
+  const handleDiagnose = () => {
+    if (!canDiagnose(diagnosisCount)) {
+      showPaywall('plant_diagnosis');
+      return;
+    }
+    incrementDiagnosisCount();
+    setShowDiagnosis(true);
+  };
 
   const handleDelete = () => {
     Alert.alert(
@@ -63,6 +94,7 @@ export function MyPlantDetailModal({
   };
 
   return (
+    <>
     <Modal
       visible={visible}
       animationType="slide"
@@ -87,9 +119,9 @@ export function MyPlantDetailModal({
           >
             {/* Header */}
             <View style={styles.header}>
-              {plant.imageUrl ? (
+              {resolvedImageUrl ? (
                 <Image
-                  source={{ uri: plant.imageUrl }}
+                  source={{ uri: resolvedImageUrl }}
                   style={styles.plantImage}
                   resizeMode="cover"
                 />
@@ -121,6 +153,30 @@ export function MyPlantDetailModal({
               </View>
             </View>
 
+            {/* Diagnose button */}
+            <TouchableOpacity
+              style={styles.diagnoseButton}
+              onPress={handleDiagnose}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.diagnoseButtonIcon}>🔬</Text>
+              <Text style={styles.diagnoseButtonText}>Diagnosticar salud</Text>
+            </TouchableOpacity>
+
+            {/* Diagnosis History */}
+            {plantDiagnoses.length > 0 && (
+              <View style={styles.historySection}>
+                <Text style={styles.historySectionTitle}>HISTORIAL DE DIAGNÓSTICOS</Text>
+                {plantDiagnoses.map((diagnosis) => (
+                  <DiagnosisHistoryItem
+                    key={diagnosis.id}
+                    diagnosis={diagnosis}
+                    onPress={setSelectedDiagnosis}
+                  />
+                ))}
+              </View>
+            )}
+
             {/* Photo Album */}
             <PlantPhotoAlbum
               plantId={plant.id}
@@ -141,13 +197,29 @@ export function MyPlantDetailModal({
         </View>
       </View>
     </Modal>
+
+    {plant && (
+      <PlantDiagnosisModal
+        visible={showDiagnosis}
+        plant={plant}
+        weather={weather}
+        onClose={() => setShowDiagnosis(false)}
+      />
+    )}
+
+    <DiagnosisDetailModal
+      visible={!!selectedDiagnosis}
+      diagnosis={selectedDiagnosis}
+      onClose={() => setSelectedDiagnosis(null)}
+    />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(45, 58, 46, 0.4)',
+    backgroundColor: colors.overlay,
     justifyContent: 'flex-end',
   },
   container: {
@@ -243,6 +315,39 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
     flex: 1,
+  },
+
+  // Diagnose
+  diagnoseButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.sm,
+    ...shadows.sm,
+  },
+  diagnoseButtonIcon: {
+    fontSize: 18,
+    marginRight: spacing.sm,
+  },
+  diagnoseButtonText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.green,
+  },
+
+  // History
+  historySection: {
+    marginBottom: spacing.sm,
+  },
+  historySectionTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 11,
+    color: colors.textMuted,
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
   },
 
   // Delete

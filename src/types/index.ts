@@ -75,6 +75,8 @@ export interface AppData {
   plantNetApiKey: string | null;
   installDate: string | null;
   identificationCount: number;
+  diagnosisCount: number;
+  diagnosisHistory: Record<string, SavedDiagnosis[]>;
 }
 
 // Plant Database Types
@@ -197,6 +199,51 @@ export interface IdentificationResult {
 }
 
 export type IdentificationState = 'idle' | 'capturing' | 'analyzing' | 'results' | 'error';
+
+// Plant Diagnosis Types (Claude Vision)
+export type DiagnosisSeverity = 'healthy' | 'minor' | 'moderate' | 'severe';
+
+export interface DiagnosisIssue {
+  name: string;
+  confidence: number; // 0-100
+  severity: DiagnosisSeverity;
+  description: string;
+  treatment: string;
+}
+
+export interface DiagnosisResult {
+  overallStatus: DiagnosisSeverity;
+  summary: string;
+  issues: DiagnosisIssue[];
+  careTips: string[];
+}
+
+export type DiagnosisState = 'idle' | 'capturing' | 'analyzing' | 'results' | 'error';
+
+export interface PlantDiagnosisContext {
+  species: string;
+  waterEvery: number;
+  sunHours: number;
+  lastWatered: string | null;
+  outdoorDays: number[];
+}
+
+export interface DiagnosisChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  text: string;
+  timestamp: string;
+}
+
+export interface SavedDiagnosis {
+  id: string;
+  plantId: string;
+  date: string;
+  imageUri: string | null;
+  result: DiagnosisResult;
+  context: PlantDiagnosisContext;
+  chat: DiagnosisChatMessage[];
+}
 
 // Auth & Sync Types
 export type SyncStatus = 'idle' | 'syncing' | 'success' | 'error' | 'offline';

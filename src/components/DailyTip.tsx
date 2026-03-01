@@ -160,11 +160,13 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
         <Text style={styles.title}>{translatedTip.title}</Text>
         <Text style={styles.message}>{translatedTip.message}</Text>
 
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={handleNextTip}
-          activeOpacity={0.7}
-        >
+        <View style={styles.footer}>
+          <Text style={styles.tipCounter}>{seenTipIds.length} {seenTipIds.length === 1 ? 'tip visto' : 'tips vistos'} hoy</Text>
+          <TouchableOpacity
+            style={styles.nextButton}
+            onPress={handleNextTip}
+            activeOpacity={0.7}
+          >
           <Text style={styles.nextButtonText}>{t('dailyTip.nextTip')}</Text>
           {!premium.canSeeTips(seenTipIds.length + 1, installDate) && (
             <View style={styles.proBadge}>
@@ -173,6 +175,7 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
           )}
           <Text style={styles.nextButtonIcon}>→</Text>
         </TouchableOpacity>
+        </View>
       </Animated.View>
     </View>
   );
@@ -260,10 +263,19 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: spacing.md,
   },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  tipCounter: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textMuted,
+  },
   nextButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-end',
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.md,
     minHeight: 44,

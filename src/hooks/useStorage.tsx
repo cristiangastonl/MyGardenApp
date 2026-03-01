@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings } from '../types';
+import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage } from '../types';
 import { STORAGE_KEY } from '../data/constants';
 import { formatDate } from '../utils/dates';
 
@@ -15,6 +15,8 @@ interface StorageState {
   plantNetApiKey: string | null;
   installDate: string | null;
   identificationCount: number;
+  diagnosisCount: number;
+  diagnosisHistory: Record<string, SavedDiagnosis[]>;
   loading: boolean;
 }
 
@@ -36,8 +38,12 @@ interface StorageActions {
   updateNotificationSettings: (settings: NotificationSettings) => void;
   updatePlantNetApiKey: (key: string | null) => void;
   incrementIdentificationCount: () => void;
+  incrementDiagnosisCount: () => void;
   addPhotoToPlant: (plantId: string, photo: PlantPhoto) => void;
   removePhotoFromPlant: (plantId: string, photoId: string) => void;
+  saveDiagnosis: (diagnosis: SavedDiagnosis) => void;
+  addChatMessage: (plantId: string, diagnosisId: string, message: DiagnosisChatMessage | DiagnosisChatMessage[]) => void;
+  getDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
 }
 
 type StorageContextType = StorageState & StorageActions;
@@ -59,6 +65,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const [plantNetApiKey, setPlantNetApiKeyState] = useState<string | null>(null);
   const [installDate, setInstallDate] = useState<string | null>(null);
   const [identificationCount, setIdentificationCount] = useState(0);
+  const [diagnosisCount, setDiagnosisCount] = useState(0);
+  const [diagnosisHistory, setDiagnosisHistory] = useState<Record<string, SavedDiagnosis[]>>({});
   const [loading, setLoading] = useState(true);
 
   // Load data on mount
@@ -77,6 +85,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
           setNotificationSettings(data.notificationSettings || null);
           setPlantNetApiKeyState(data.plantNetApiKey || null);
           setIdentificationCount(data.identificationCount || 0);
+          setDiagnosisCount(data.diagnosisCount || 0);
+          setDiagnosisHistory(data.diagnosisHistory || {});
           // Use stored install date, or set today as install date for existing users
           const effectiveInstallDate = data.installDate || formatDate(new Date());
           setInstallDate(effectiveInstallDate);
@@ -104,7 +114,9 @@ export function StorageProvider({ children }: StorageProviderProps) {
     newNotificationSettings: NotificationSettings | null,
     newPlantNetApiKey: string | null,
     newInstallDate: string | null = null,
-    newIdentificationCount: number = 0
+    newIdentificationCount: number = 0,
+    newDiagnosisCount: number = 0,
+    newDiagnosisHistory: Record<string, SavedDiagnosis[]> = {}
   ) => {
     const data: AppData = {
       plants: newPlants,
@@ -117,6 +129,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
       plantNetApiKey: newPlantNetApiKey,
       installDate: newInstallDate,
       identificationCount: newIdentificationCount,
+      diagnosisCount: newDiagnosisCount,
+      diagnosisHistory: newDiagnosisHistory,
     };
 
     try {
@@ -128,56 +142,56 @@ export function StorageProvider({ children }: StorageProviderProps) {
 
   const handleSetPlants = useCallback((newPlants: Plant[]) => {
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const addPlant = useCallback((plant: Plant) => {
     const newPlants = [...plants, plant];
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const addPlants = useCallback((newPlantsToAdd: Plant[]) => {
     const newPlants = [...plants, ...newPlantsToAdd];
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const deletePlant = useCallback((id: string) => {
     const newPlants = plants.filter(p => p.id !== id);
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const updatePlant = useCallback((id: string, updates: Partial<Plant>) => {
     const newPlants = plants.map(p => p.id === id ? { ...p, ...updates } : p);
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const addNote = useCallback((dateStr: string, note: Note) => {
     const newNotes = { ...notes, [dateStr]: [...(notes[dateStr] || []), note] };
     setNotes(newNotes);
-    saveAll(plants, newNotes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, newNotes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const deleteNote = useCallback((dateStr: string, noteId: string) => {
     const newNotes = { ...notes, [dateStr]: (notes[dateStr] || []).filter(n => n.id !== noteId) };
     setNotes(newNotes);
-    saveAll(plants, newNotes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, newNotes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const addReminder = useCallback((dateStr: string, reminder: Reminder) => {
     const newReminders = { ...reminders, [dateStr]: [...(reminders[dateStr] || []), reminder] };
     setReminders(newReminders);
-    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const deleteReminder = useCallback((dateStr: string, reminderId: string) => {
     const newReminders = { ...reminders, [dateStr]: (reminders[dateStr] || []).filter(r => r.id !== reminderId) };
     setReminders(newReminders);
-    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const updateReminder = useCallback((dateStr: string, reminderId: string, updates: Partial<Reminder>) => {
     const dateReminders = reminders[dateStr] || [];
@@ -186,21 +200,21 @@ export function StorageProvider({ children }: StorageProviderProps) {
       [dateStr]: dateReminders.map(r => r.id === reminderId ? { ...r, ...updates } : r)
     };
     setReminders(newReminders);
-    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, newReminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const updateLocation = useCallback((newLocation: Location | null) => {
     setLocation(newLocation);
-    saveAll(plants, notes, reminders, newLocation, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, reminders, newLocation, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const completeOnboarding = useCallback(() => {
     console.log('[Storage] completeOnboarding called');
     setOnboardingCompleted(true);
-    saveAll(plants, notes, reminders, location, true, userName, notificationSettings, plantNetApiKey, installDate, identificationCount)
+    saveAll(plants, notes, reminders, location, true, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory)
       .then(() => console.log('[Storage] Onboarding saved successfully'))
       .catch(e => console.error('[Storage] Error saving onboarding:', e));
-  }, [plants, notes, reminders, location, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+  }, [plants, notes, reminders, location, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   // Atomic onboarding completion: saves plants, userName, and onboardingCompleted in one write
   const completeOnboardingWithData = useCallback((newPlants: Plant[], newUserName: string | null) => {
@@ -210,31 +224,37 @@ export function StorageProvider({ children }: StorageProviderProps) {
     setPlants(allPlants);
     setUserNameState(finalUserName);
     setOnboardingCompleted(true);
-    saveAll(allPlants, notes, reminders, location, true, finalUserName, notificationSettings, plantNetApiKey, installDate, identificationCount)
+    saveAll(allPlants, notes, reminders, location, true, finalUserName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory)
       .then(() => console.log('[Storage] Onboarding saved successfully'))
       .catch(e => console.error('[Storage] Error saving onboarding:', e));
-  }, [plants, notes, reminders, location, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+  }, [plants, notes, reminders, location, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const setUserName = useCallback((name: string | null) => {
     setUserNameState(name);
-    saveAll(plants, notes, reminders, location, onboardingCompleted, name, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, name, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const updateNotificationSettings = useCallback((settings: NotificationSettings) => {
     setNotificationSettings(settings);
-    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, settings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, plantNetApiKey, saveAll]);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, settings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const updatePlantNetApiKey = useCallback((key: string | null) => {
     setPlantNetApiKeyState(key);
-    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, key, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, saveAll]);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, key, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const incrementIdentificationCount = useCallback(() => {
     const newCount = identificationCount + 1;
     setIdentificationCount(newCount);
-    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, newCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, newCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
+
+  const incrementDiagnosisCount = useCallback(() => {
+    const newCount = diagnosisCount + 1;
+    setDiagnosisCount(newCount);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, newCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const addPhotoToPlant = useCallback((plantId: string, photo: PlantPhoto) => {
     const newPlants = plants.map(p => {
@@ -242,8 +262,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
       return { ...p, photos: [...(p.photos || []), photo] };
     });
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
 
   const removePhotoFromPlant = useCallback((plantId: string, photoId: string) => {
     const newPlants = plants.map(p => {
@@ -251,8 +271,35 @@ export function StorageProvider({ children }: StorageProviderProps) {
       return { ...p, photos: (p.photos || []).filter(ph => ph.id !== photoId) };
     });
     setPlants(newPlants);
-    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount);
-  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, saveAll]);
+    saveAll(newPlants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
+
+  const saveDiagnosis = useCallback((diagnosis: SavedDiagnosis) => {
+    const plantDiagnoses = diagnosisHistory[diagnosis.plantId] || [];
+    const newHistory = {
+      ...diagnosisHistory,
+      [diagnosis.plantId]: [diagnosis, ...plantDiagnoses],
+    };
+    setDiagnosisHistory(newHistory);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, newHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
+
+  const addChatMessage = useCallback((plantId: string, diagnosisId: string, message: DiagnosisChatMessage | DiagnosisChatMessage[]) => {
+    const messages = Array.isArray(message) ? message : [message];
+    const plantDiagnoses = diagnosisHistory[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId ? { ...d, chat: [...d.chat, ...messages] } : d
+    );
+    const newHistory = { ...diagnosisHistory, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    saveAll(plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, newHistory);
+  }, [plants, notes, reminders, location, onboardingCompleted, userName, notificationSettings, plantNetApiKey, installDate, identificationCount, diagnosisCount, diagnosisHistory, saveAll]);
+
+  const getDiagnosesForPlant = useCallback((plantId: string): SavedDiagnosis[] => {
+    return (diagnosisHistory[plantId] || []).sort((a, b) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }, [diagnosisHistory]);
 
   const value: StorageContextType = {
     plants,
@@ -265,6 +312,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
     plantNetApiKey,
     installDate,
     identificationCount,
+    diagnosisCount,
+    diagnosisHistory,
     loading,
     setPlants: handleSetPlants,
     addPlant,
@@ -283,8 +332,12 @@ export function StorageProvider({ children }: StorageProviderProps) {
     updateNotificationSettings,
     updatePlantNetApiKey,
     incrementIdentificationCount,
+    incrementDiagnosisCount,
     addPhotoToPlant,
     removePhotoFromPlant,
+    saveDiagnosis,
+    addChatMessage,
+    getDiagnosesForPlant,
   };
 
   return (

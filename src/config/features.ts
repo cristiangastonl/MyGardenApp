@@ -19,7 +19,7 @@ export const Features = {
 
   // V1.2 (disabled)
   DLC_KITCHEN_GARDEN: false,
-  DLC_PEST_DIAGNOSIS: false,
+  DLC_PEST_DIAGNOSIS: true,
   AFFILIATE_LINKS: false,
   REFERRAL_SYSTEM: false,
   HOME_WIDGETS: false,

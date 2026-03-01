@@ -67,6 +67,9 @@ export function PlantCard({
       style={[styles.card, needsWaterToday && !waterDone && styles.cardNeedsWater]}
       onPress={() => onPress?.(plant)}
       activeOpacity={onPress ? 0.7 : 1}
+      accessible={true}
+      accessibilityLabel={`${plant.name}, ${plant.typeName}${needsWaterToday ? ', necesita agua' : ''}${needsSunToday ? ', necesita sol' : ''}`}
+      accessibilityRole="button"
     >
       <View style={styles.header}>
         <View style={styles.headerLeft}>

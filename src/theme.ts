@@ -24,10 +24,10 @@ export const colors = {
 
   // Alerts
   dangerBg: '#fde8e8',
-  dangerText: '#8c3a3a',
+  dangerText: '#7a2d2d',
   dangerBorder: '#e8b4b4',
   warningBg: '#fef9e7',
-  warningText: '#8c7a3a',
+  warningText: '#7a6a2d',
   warningBorder: '#e8dbb4',
   warningHeaderBg: '#f5ecd0',
   infoBg: '#e8f4fb',
@@ -59,6 +59,7 @@ export const colors = {
   white: '#fff',
   whiteOverlay: 'rgba(255,255,255,0.2)',
   whiteSubdued: 'rgba(255,255,255,0.75)',
+  overlay: 'rgba(45, 58, 46, 0.4)',
 };
 
 export const fonts = {
@@ -78,7 +79,12 @@ export const spacing = {
   xl: 20,
   xxl: 24,
   xxxl: 32,
+  fabClearance: 100,
 };
+
+export const hitSlop = { top: 12, bottom: 12, left: 12, right: 12 };
+
+export const MIN_TOUCH_SIZE = 44;
 
 export const borderRadius = {
   sm: 8,
