@@ -11,7 +11,6 @@ import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
 import { generatePlantAlerts } from '../utils/plantAlerts';
 import { Location } from '../types';
-import { Features } from '../config/features';
 import i18n, { setLanguage } from '../i18n';
 
 interface GeocodingResult {
@@ -37,10 +36,8 @@ export default function SettingsScreen() {
     plants,
     location,
     notificationSettings,
-    plantNetApiKey,
     updateLocation,
     updateNotificationSettings,
-    updatePlantNetApiKey,
   } = useStorage();
 
   const { isPremium, showPaywall, toggleMockPremium } = usePremium();
@@ -70,8 +67,7 @@ export default function SettingsScreen() {
   const [isSearching, setIsSearching] = useState(false);
   const [isDetecting, setIsDetecting] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [apiKeyInput, setApiKeyInput] = useState(plantNetApiKey || '');
-  const [showApiKey, setShowApiKey] = useState(false);
+
 
   const detectLocation = async () => {
     setIsDetecting(true);
@@ -338,45 +334,6 @@ export default function SettingsScreen() {
             </View>
           )}
         </View>
-
-        {/* PlantNet API Section — only show when PLANT_IDENTIFICATION is enabled */}
-        {Features.PLANT_IDENTIFICATION && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{t('settings.plantId')}</Text>
-            <Text style={styles.sectionDescription}>{t('settings.plantIdDescription')}</Text>
-
-            <View style={styles.apiKeyContainer}>
-              <View style={styles.apiKeyInputContainer}>
-                <TextInput
-                  style={styles.apiKeyInput}
-                  value={apiKeyInput}
-                  onChangeText={setApiKeyInput}
-                  placeholder={t('settings.pasteApiKey')}
-                  placeholderTextColor={colors.textMuted}
-                  secureTextEntry={!showApiKey}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                />
-                <TouchableOpacity style={styles.showApiKeyButton} onPress={() => setShowApiKey(!showApiKey)}>
-                  <Text style={styles.showApiKeyText}>{showApiKey ? '🙈' : '👁️'}</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.apiKeyActions}>
-                {apiKeyInput !== (plantNetApiKey || '') && (
-                  <TouchableOpacity style={styles.saveApiKeyButton} onPress={() => { updatePlantNetApiKey(apiKeyInput || null); Alert.alert(t('settings.saved'), t('settings.savedMessage')); }}>
-                    <Text style={styles.saveApiKeyText}>{t('settings.save')}</Text>
-                  </TouchableOpacity>
-                )}
-                {plantNetApiKey && (
-                  <TouchableOpacity style={styles.clearApiKeyButton} onPress={() => { setApiKeyInput(''); updatePlantNetApiKey(null); }}>
-                    <Text style={styles.clearApiKeyText}>{t('settings.delete')}</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-            </View>
-          </View>
-        )}
 
         {/* Language Section */}
         <View style={styles.section}>
@@ -783,56 +740,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 14,
     color: colors.white,
-  },
-  apiKeyContainer: {
-    marginBottom: spacing.md,
-  },
-  apiKeyInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.card,
-    borderRadius: borderRadius.lg,
-    borderWidth: 1,
-    borderColor: colors.borderLight,
-  },
-  apiKeyInput: {
-    flex: 1,
-    fontFamily: fonts.body,
-    fontSize: 16,
-    color: colors.textPrimary,
-    padding: spacing.md,
-  },
-  showApiKeyButton: {
-    padding: spacing.md,
-  },
-  showApiKeyText: {
-    fontSize: 18,
-  },
-  apiKeyActions: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: spacing.sm,
-    marginTop: spacing.sm,
-  },
-  saveApiKeyButton: {
-    backgroundColor: colors.green,
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    borderRadius: borderRadius.md,
-  },
-  saveApiKeyText: {
-    fontFamily: fonts.bodySemiBold,
-    fontSize: 14,
-    color: colors.white,
-  },
-  clearApiKeyButton: {
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.md,
-  },
-  clearApiKeyText: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 14,
-    color: colors.dangerText,
   },
   premiumActiveCard: {
     backgroundColor: colors.successBg,

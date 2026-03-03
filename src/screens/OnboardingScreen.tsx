@@ -21,6 +21,9 @@ import { getPlantTypes } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { trackEvent } from '../services/analyticsService';
+import { PlantIdentifierModal } from '../components';
+import { Features } from '../config/features';
+import { uploadPlantImage } from '../services/imageService';
 
 // Optional: Try to use expo-linear-gradient if available
 let LinearGradient: React.ComponentType<any> | null = null;
@@ -180,6 +183,8 @@ export default function OnboardingScreen() {
   // Pre-select Pothos as a quick-start plant
   const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set(['potus']));
   const [selectedCategory, setSelectedCategory] = useState<PlantCategory | 'all'>('all');
+  const [identifiedPlants, setIdentifiedPlants] = useState<Plant[]>([]);
+  const [showIdentifier, setShowIdentifier] = useState(false);
 
   // Animation values
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -200,6 +205,24 @@ export default function OnboardingScreen() {
       }
       return next;
     });
+  }, []);
+
+  const handleIdentifiedPlant = useCallback(async (plantData: Omit<Plant, 'id'>, imageUri?: string | null) => {
+    const id = `identified-${Date.now()}`;
+    let finalImageUrl = plantData.imageUrl;
+
+    if (imageUri && Features.PHOTO_UPLOAD) {
+      const uploaded = await uploadPlantImage(imageUri, id);
+      if (uploaded) finalImageUrl = uploaded;
+    }
+
+    const newPlant: Plant = {
+      ...plantData,
+      id,
+      imageUrl: finalImageUrl,
+    };
+    setIdentifiedPlants(prev => [...prev, newPlant]);
+    setShowIdentifier(false);
   }, []);
 
   const animateTransition = useCallback((direction: 'next' | 'back') => {
@@ -248,19 +271,21 @@ export default function OnboardingScreen() {
   }, [currentStep, animateTransition]);
 
   const handleComplete = useCallback(() => {
+    const totalCount = selectedPlants.size + identifiedPlants.length;
     console.log('[Onboarding] Completing onboarding...');
-    trackEvent('onboarding_completed', { plants_selected: selectedPlants.size });
+    trackEvent('onboarding_completed', { plants_selected: totalCount });
 
     // Convert selected plants to Plant format
-    const plantsToAdd = selectedPlants.size > 0
+    const catalogPlants = selectedPlants.size > 0
       ? PLANT_DATABASE.filter(p => selectedPlants.has(p.id)).map(plantDBToPlant)
       : [];
 
+    const plantsToAdd = [...identifiedPlants, ...catalogPlants];
     const finalName = name.trim() || null;
 
     // Atomic save: plants + userName + onboardingCompleted in a single write
     completeOnboardingWithData(plantsToAdd, finalName);
-  }, [name, selectedPlants, completeOnboardingWithData]);
+  }, [name, selectedPlants, identifiedPlants, completeOnboardingWithData]);
 
   const renderStep0 = () => (
     <View style={styles.stepContent}>
@@ -327,6 +352,35 @@ export default function OnboardingScreen() {
         </Text>
       </View>
 
+      {/* Camera Identification */}
+      {Features.PLANT_IDENTIFICATION && (
+        <TouchableOpacity
+          style={[
+            styles.identifyCard,
+            identifiedPlants.length > 0 && styles.identifyCardUsed,
+          ]}
+          onPress={() => setShowIdentifier(true)}
+          activeOpacity={0.7}
+          disabled={identifiedPlants.length > 0}
+        >
+          <Text style={styles.identifyCardIcon}>
+            {identifiedPlants.length > 0 ? '✅' : '📸'}
+          </Text>
+          <View style={styles.identifyCardContent}>
+            <Text style={styles.identifyCardTitle}>
+              {identifiedPlants.length > 0
+                ? `Planta identificada: ${identifiedPlants[0].name}`
+                : 'Identificá tu planta con la cámara'}
+            </Text>
+            <Text style={styles.identifyCardSubtitle}>
+              {identifiedPlants.length > 0
+                ? 'Ya usaste tu identificación gratis'
+                : '1 identificación gratis incluida'}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      )}
+
       {/* Category Filter */}
       <ScrollView
         horizontal
@@ -388,10 +442,10 @@ export default function OnboardingScreen() {
         ))}
       </ScrollView>
 
-      {selectedPlants.size > 0 && (
+      {(selectedPlants.size + identifiedPlants.length) > 0 && (
         <View style={styles.selectionBadge}>
           <Text style={styles.selectionBadgeText}>
-            {t('onboarding.plantSelected', { count: selectedPlants.size })}
+            {t('onboarding.plantSelected', { count: selectedPlants.size + identifiedPlants.length })}
           </Text>
         </View>
       )}
@@ -411,13 +465,21 @@ export default function OnboardingScreen() {
       </View>
 
       <View style={styles.summarySection}>
-        {selectedPlants.size > 0 ? (
+        {(selectedPlants.size + identifiedPlants.length) > 0 ? (
           <>
             <Text style={styles.summaryLabel}>{t('onboarding.yourPlants')}</Text>
             <View style={styles.summaryPlants}>
+              {identifiedPlants.map(plant => (
+                <View key={plant.id} style={styles.summaryPlant}>
+                  <Text style={styles.summaryPlantIcon}>{plant.icon}</Text>
+                  <Text style={styles.summaryPlantName} numberOfLines={1}>
+                    {plant.name}
+                  </Text>
+                </View>
+              ))}
               {translatedDatabase
                 .filter(p => selectedPlants.has(p.id))
-                .slice(0, 6)
+                .slice(0, 6 - identifiedPlants.length)
                 .map(plant => (
                   <View key={plant.id} style={styles.summaryPlant}>
                     <Text style={styles.summaryPlantIcon}>{plant.icon}</Text>
@@ -426,10 +488,10 @@ export default function OnboardingScreen() {
                     </Text>
                   </View>
                 ))}
-              {selectedPlants.size > 6 && (
+              {(selectedPlants.size + identifiedPlants.length) > 6 && (
                 <View style={styles.summaryMore}>
                   <Text style={styles.summaryMoreText}>
-                    {t('onboarding.more', { count: selectedPlants.size - 6 })}
+                    {t('onboarding.more', { count: selectedPlants.size + identifiedPlants.length - 6 })}
                   </Text>
                 </View>
               )}
@@ -540,6 +602,14 @@ export default function OnboardingScreen() {
           </View>
         </View>
       </KeyboardAvoidingView>
+
+      {Features.PLANT_IDENTIFICATION && (
+        <PlantIdentifierModal
+          visible={showIdentifier}
+          onClose={() => setShowIdentifier(false)}
+          onAddPlant={handleIdentifiedPlant}
+        />
+      )}
     </MainContainer>
   );
 }
@@ -680,6 +750,39 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 15,
     color: colors.textSecondary,
+  },
+  identifyCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.md,
+    borderWidth: 2,
+    borderColor: colors.green,
+    ...shadows.sm,
+  },
+  identifyCardUsed: {
+    borderColor: colors.border,
+    opacity: 0.7,
+  },
+  identifyCardIcon: {
+    fontSize: 28,
+    marginRight: spacing.md,
+  },
+  identifyCardContent: {
+    flex: 1,
+  },
+  identifyCardTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 15,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  identifyCardSubtitle: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textMuted,
   },
   categoryScrollContainer: {
     flexGrow: 0,
