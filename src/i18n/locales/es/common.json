@@ -152,7 +152,9 @@
     "emptyGarden": "Tu jardín está vacío",
     "emptyGardenText": "Agrega tu primera planta para comenzar a recibir recordatorios de cuidado.",
     "unlockGarden": "Desbloquea tu jardín completo",
-    "unlimitedPlants": "Plantas ilimitadas, alertas y más"
+    "unlimitedPlants": "Plantas ilimitadas, alertas y más",
+    "allCaughtUp": "¡Todo al día!",
+    "allCaughtUpText": "No tenés tareas pendientes hoy. ¡Buen trabajo!"
   },
   "plants": {
     "title": "Mis Plantas",
@@ -163,7 +165,8 @@
     "tipText": "Usa el botón + para agregar nuevas plantas. Cada tarjeta muestra las tareas del día.",
     "emptyTitle": "Sin plantas todavía",
     "emptyText": "Toca el botón + para agregar tu primera planta y comenzar a cuidar tu jardín.",
-    "loadingPlants": "Cargando plantas..."
+    "loadingPlants": "Cargando plantas...",
+    "searchPlaceholder": "Buscar plantas..."
   },
   "explore": {
     "title": "Explorar plantas",

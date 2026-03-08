@@ -152,7 +152,9 @@
     "emptyGarden": "Your garden is empty",
     "emptyGardenText": "Add your first plant to start receiving care reminders.",
     "unlockGarden": "Unlock your full garden",
-    "unlimitedPlants": "Unlimited plants, alerts and more"
+    "unlimitedPlants": "Unlimited plants, alerts and more",
+    "allCaughtUp": "All caught up!",
+    "allCaughtUpText": "No pending tasks today. Great job!"
   },
   "plants": {
     "title": "My Plants",
@@ -163,7 +165,8 @@
     "tipText": "Use the + button to add new plants. Each card shows today's tasks.",
     "emptyTitle": "No plants yet",
     "emptyText": "Tap the + button to add your first plant and start caring for your garden.",
-    "loadingPlants": "Loading plants..."
+    "loadingPlants": "Loading plants...",
+    "searchPlaceholder": "Search plants..."
   },
   "explore": {
     "title": "Explore plants",

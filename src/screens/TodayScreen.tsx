@@ -138,10 +138,9 @@ export default function TodayScreen() {
   const todayReminders = reminders[todayStr] || [];
   const todayNotes = notes[todayStr] || [];
 
-  // Separate plants into those with tasks today and those without
-  const { plantsWithTasks, plantsWithoutTasks } = useMemo(() => {
+  // Get plants with tasks today
+  const plantsWithTasks = useMemo(() => {
     const withTasks: Plant[] = [];
-    const withoutTasks: Plant[] = [];
 
     plants.forEach((plant) => {
       const nextWater = getNextWaterDate(plant, today);
@@ -151,13 +150,11 @@ export default function TodayScreen() {
 
       if (needsWaterToday || needsSunToday || needsOutdoorToday) {
         withTasks.push(plant);
-      } else {
-        withoutTasks.push(plant);
       }
     });
 
     const favSort = (a: Plant, b: Plant) => (a.favorite ? -1 : 0) - (b.favorite ? -1 : 0);
-    return { plantsWithTasks: withTasks.sort(favSort), plantsWithoutTasks: withoutTasks.sort(favSort) };
+    return withTasks.sort(favSort);
   }, [plants, today]);
 
   const handleWater = (plantId: string) => {
@@ -372,25 +369,12 @@ export default function TodayScreen() {
           </View>
         )}
 
-        {/* Plants without tasks today */}
-        {plantsWithoutTasks.length > 0 && (
-          <View style={styles.section}>
-            <SectionHeader title={t('today.noTasksToday')} count={plantsWithoutTasks.length} />
-            {plantsWithoutTasks.map((plant) => (
-              <PlantCard
-                key={plant.id}
-                plant={plant}
-                today={today}
-                weather={weather}
-                onWater={handleWater}
-                onSunDone={handleSunDone}
-                onOutdoorDone={handleOutdoorDone}
-                onDelete={handleDeletePlant}
-                onPress={setDetailPlant}
-                diagnoses={diagnosisHistory[plant.id]}
-                hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
-              />
-            ))}
+        {/* All caught up message */}
+        {plants.length > 0 && plantsWithTasks.length === 0 && (
+          <View style={styles.allCaughtUp}>
+            <Text style={styles.allCaughtUpIcon}>🎉</Text>
+            <Text style={styles.allCaughtUpTitle}>{t('today.allCaughtUp')}</Text>
+            <Text style={styles.allCaughtUpText}>{t('today.allCaughtUpText')}</Text>
           </View>
         )}
 
@@ -648,6 +632,29 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
     color: colors.textPrimary,
+  },
+  allCaughtUp: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.xxxl,
+  },
+  allCaughtUpIcon: {
+    fontSize: 48,
+    marginBottom: spacing.md,
+  },
+  allCaughtUpTitle: {
+    fontFamily: fonts.heading,
+    fontSize: 20,
+    color: colors.textPrimary,
+    marginBottom: spacing.xs,
+    textAlign: 'center',
+  },
+  allCaughtUpText: {
+    fontFamily: fonts.body,
+    fontSize: 15,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 22,
   },
   bottomPadding: {
     height: 100,

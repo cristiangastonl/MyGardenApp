@@ -16,9 +16,10 @@ interface PlantCardProps {
   plant: Plant;
   today: Date;
   weather?: WeatherData | null;
-  onWater: (plantId: string) => void;
-  onSunDone: (plantId: string) => void;
-  onOutdoorDone: (plantId: string) => void;
+  mode?: 'tasks' | 'collection';
+  onWater?: (plantId: string) => void;
+  onSunDone?: (plantId: string) => void;
+  onOutdoorDone?: (plantId: string) => void;
   onDelete: (plantId: string) => void;
   onPress?: (plant: Plant) => void;
   onToggleFavorite?: (plantId: string) => void;
@@ -30,6 +31,7 @@ export function PlantCard({
   plant,
   today,
   weather,
+  mode = 'tasks',
   onWater,
   onSunDone,
   onOutdoorDone,
@@ -136,50 +138,52 @@ export function PlantCard({
 
       {tip ? <Text style={styles.tip}>{tip}</Text> : null}
 
-      {hasTasks ? (
-        <View style={styles.tasks}>
-          {needsWaterToday && (
-            <TaskButton
-              done={waterDone}
-              onPress={() => onWater(plant.id)}
-              icon="💧"
-              label={t('plantCard.water')}
-              bgColor={colors.waterLight}
-              textColor={colors.waterBlue}
-            />
-          )}
-          {needsSunToday && (
-            <TaskButton
-              done={sunDone}
-              onPress={() => onSunDone(plant.id)}
-              icon="☀️"
-              label={t('plantCard.sunLabel', { hours: plant.sunHours })}
-              bgColor={colors.warningBg}
-              textColor={colors.sunDark}
-            />
-          )}
-          {needsOutdoorToday && (
-            <TaskButton
-              done={outdoorDone}
-              onPress={() => onOutdoorDone(plant.id)}
-              icon="🌤️"
-              label={t('plantCard.outdoor')}
-              bgColor={colors.infoBg}
-              textColor={colors.infoText}
-            />
-          )}
-        </View>
-      ) : (
-        <View style={styles.nextWater}>
-          <Text style={styles.nextWaterLabel}>{t('plantCard.nextWater')}</Text>
-          <Text style={styles.nextWaterText}>
-            {daysUntilWater === 0
-              ? t('plantCard.today')
-              : daysUntilWater === 1
-              ? t('plantCard.tomorrow')
-              : t('plantCard.inDays', { count: daysUntilWater })}
-          </Text>
-        </View>
+      {mode === 'tasks' && (
+        hasTasks ? (
+          <View style={styles.tasks}>
+            {needsWaterToday && onWater && (
+              <TaskButton
+                done={waterDone}
+                onPress={() => onWater(plant.id)}
+                icon="💧"
+                label={t('plantCard.water')}
+                bgColor={colors.waterLight}
+                textColor={colors.waterBlue}
+              />
+            )}
+            {needsSunToday && onSunDone && (
+              <TaskButton
+                done={sunDone}
+                onPress={() => onSunDone(plant.id)}
+                icon="☀️"
+                label={t('plantCard.sunLabel', { hours: plant.sunHours })}
+                bgColor={colors.warningBg}
+                textColor={colors.sunDark}
+              />
+            )}
+            {needsOutdoorToday && onOutdoorDone && (
+              <TaskButton
+                done={outdoorDone}
+                onPress={() => onOutdoorDone(plant.id)}
+                icon="🌤️"
+                label={t('plantCard.outdoor')}
+                bgColor={colors.infoBg}
+                textColor={colors.infoText}
+              />
+            )}
+          </View>
+        ) : (
+          <View style={styles.nextWater}>
+            <Text style={styles.nextWaterLabel}>{t('plantCard.nextWater')}</Text>
+            <Text style={styles.nextWaterText}>
+              {daysUntilWater === 0
+                ? t('plantCard.today')
+                : daysUntilWater === 1
+                ? t('plantCard.tomorrow')
+                : t('plantCard.inDays', { count: daysUntilWater })}
+            </Text>
+          </View>
+        )
       )}
 
       {/* Health Detail Modal */}

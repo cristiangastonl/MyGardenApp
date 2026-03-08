@@ -4,15 +4,14 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  ActivityIndicator,
+  TextInput,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, spacing, borderRadius, fonts } from '../theme';
+import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
-import { formatDate } from '../utils/dates';
 import { Plant } from '../types';
 import {
   PlantCard,
@@ -44,6 +43,8 @@ export default function PlantsScreen() {
     addPlant,
     addPhotoToPlant,
     removePhotoFromPlant,
+    diagnosisHistory,
+    getActiveDiagnosesForPlant,
   } = useStorage();
 
   const { weather } = useWeather(location);
@@ -53,6 +54,7 @@ export default function PlantsScreen() {
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
   const [diagnosePlantState, setDiagnosePlantState] = useState<Plant | null>(null);
   const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -63,32 +65,6 @@ export default function PlantsScreen() {
   };
 
   const today = new Date();
-  const todayStr = formatDate(today);
-
-  const handleWater = (plantId: string) => {
-    updatePlant(plantId, { lastWatered: todayStr });
-    trackEvent('watering_logged', { plant_id: plantId });
-  };
-
-  const handleSunDone = (plantId: string) => {
-    const plant = plants.find(p => p.id === plantId);
-    if (plant) {
-      updatePlant(plantId, {
-        sunDoneDate: plant.sunDoneDate === todayStr ? null : todayStr
-      });
-      trackEvent('sun_logged', { plant_id: plantId });
-    }
-  };
-
-  const handleOutdoorDone = (plantId: string) => {
-    const plant = plants.find(p => p.id === plantId);
-    if (plant) {
-      updatePlant(plantId, {
-        outdoorDoneDate: plant.outdoorDoneDate === todayStr ? null : todayStr
-      });
-      trackEvent('outdoor_logged', { plant_id: plantId });
-    }
-  };
 
   const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
     const plantId = Date.now().toString();
@@ -128,12 +104,21 @@ export default function PlantsScreen() {
     }
   };
 
-  // Sort: favorites first, then by original order
-  const sortedPlants = [...plants].sort((a, b) => {
-    if (a.favorite && !b.favorite) return -1;
-    if (!a.favorite && b.favorite) return 1;
-    return 0;
-  });
+  // Filter by search query and sort: favorites first
+  const sortedPlants = [...plants]
+    .filter((plant) => {
+      if (!searchQuery.trim()) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        plant.name.toLowerCase().includes(query) ||
+        plant.typeName.toLowerCase().includes(query)
+      );
+    })
+    .sort((a, b) => {
+      if (a.favorite && !b.favorite) return -1;
+      if (!a.favorite && b.favorite) return 1;
+      return 0;
+    });
 
   if (loading) {
     return <LoadingScreen message={t('plants.loadingPlants')} />;
@@ -144,12 +129,12 @@ export default function PlantsScreen() {
       plant={item}
       today={today}
       weather={weather}
-      onWater={handleWater}
-      onSunDone={handleSunDone}
-      onOutdoorDone={handleOutdoorDone}
+      mode="collection"
       onDelete={handleDeletePlant}
       onPress={setDetailPlant}
       onToggleFavorite={handleToggleFavorite}
+      diagnoses={diagnosisHistory[item.id]}
+      hasActiveDiagnosis={getActiveDiagnosesForPlant(item.id).length > 0}
     />
   );
 
@@ -161,6 +146,20 @@ export default function PlantsScreen() {
           ? t('plants.noPlants')
           : t('plants.plantCount', { count: plants.length })}
       </Text>
+
+      {/* Search bar */}
+      {plants.length > 0 && (
+        <TextInput
+          style={styles.searchBar}
+          placeholder={t('plants.searchPlaceholder')}
+          placeholderTextColor={colors.textMuted}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          autoCapitalize="none"
+          autoCorrect={false}
+          clearButtonMode="while-editing"
+        />
+      )}
 
       {/* Tip card */}
       <View style={styles.tipCard}>
@@ -299,6 +298,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.textSecondary,
     marginBottom: spacing.lg,
+  },
+  searchBar: {
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.lg,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    fontFamily: fonts.body,
+    fontSize: 15,
+    color: colors.textPrimary,
+    marginBottom: spacing.lg,
+    ...shadows.sm,
   },
   tipCard: {
     flexDirection: 'row',
