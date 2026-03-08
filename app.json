@@ -54,7 +54,7 @@
     },
     "android": {
       "package": "app.mygardencare.app",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#f5f0e6"
@@ -93,7 +93,8 @@
           "cameraPermission": "Allow access to the camera to take photos of your plants"
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "./plugins/withDisableExtraTranslationLint"
     ],
     "extra": {
       "eas": {
