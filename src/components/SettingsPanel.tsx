@@ -761,7 +761,7 @@ export function SettingsPanel({
               </View>
 
               <Text style={styles.versionText}>
-                MyGarden v{Constants.expoConfig?.version || '2.0.0'}
+                My Garden Care v{Constants.expoConfig?.version || '2.0.0'}
               </Text>
 
               <TouchableOpacity
