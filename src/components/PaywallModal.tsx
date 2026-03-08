@@ -20,11 +20,11 @@ type PlanType = 'annual' | 'lifetime';
 
 const BENEFIT_CONFIGS = [
   { icon: '🌿', titleKey: 'paywall.unlimitedPlants', descKey: 'paywall.unlimitedPlantsDesc', bg: colors.premiumSageLight },
-  { icon: '🌦', titleKey: 'paywall.forecast7Days', descKey: 'paywall.forecast7DaysDesc', bg: colors.infoBg },
+  { icon: '🔬', titleKey: 'paywall.aiDiagnosis', descKey: 'paywall.aiDiagnosisDesc', bg: colors.dangerBg },
   { icon: '💡', titleKey: 'paywall.unlimitedTips', descKey: 'paywall.unlimitedTipsDesc', bg: colors.warningBg },
   { icon: '📸', titleKey: 'paywall.plantIdentification', descKey: 'paywall.plantIdentificationDesc', bg: colors.premiumSageLight },
   { icon: '🖼', titleKey: 'paywall.photoAlbum', descKey: 'paywall.photoAlbumDesc', bg: colors.premiumLavender },
-  { icon: '📊', titleKey: 'paywall.detailedHealth', descKey: 'paywall.detailedHealthDesc', bg: colors.dangerBg },
+  { icon: '🛒', titleKey: 'paywall.shoppingList', descKey: 'paywall.shoppingListDesc', bg: colors.infoBg },
 ] as const;
 
 // Paywall color aliases from theme
