@@ -474,7 +474,21 @@
     "photoYes": "Use this photo",
     "error": "Error",
     "retry": "Try again",
-    "title": "Identify plant"
+    "title": "Identify plant",
+    "cameraPermissionNeeded": "Camera access permission is needed",
+    "cameraError": "Error opening the camera",
+    "galleryPermissionNeeded": "Gallery access permission is needed",
+    "galleryError": "Error opening the gallery",
+    "noImageToAnalyze": "No image to analyze",
+    "identificationTimeout": "Identification took too long. Please try again.",
+    "identificationError": "Error identifying the plant",
+    "identificationCancelled": "Identification was cancelled",
+    "serviceConnectionError": "Error connecting to the identification service",
+    "noMatchesFound": "No matches found. Make sure the photo clearly shows the leaves or flowers.",
+    "lowConfidence": "Identification was not confident enough. Try another photo.",
+    "multiplePlantsFound": "We found several similar plants. Select the matching one.",
+    "genericFamilyTip": "Plant from the {{family}} family. Care may vary depending on the specific species.",
+    "unknownFamily": "unknown"
   },
   "diagnosis": {
     "addToShoppingList": "🛒 Add to list",

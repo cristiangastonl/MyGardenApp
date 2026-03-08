@@ -1,5 +1,6 @@
 import { IdentifiedPlant, IdentificationResult, PlantCategory, HumidityLevel, PlantDBEntry } from '../types';
 import { PLANT_DATABASE } from '../data/plantDatabase';
+import i18n from '../i18n';
 
 // ============================================================================
 // Plant Identification via Supabase Edge Function
@@ -221,7 +222,7 @@ function convertPlantNetResult(result: PlantNetResult): IdentifiedPlant {
     tempMax: 28,
     humidity: genericCare.humidity || 'media',
     indoor: genericCare.indoor ?? true,
-    tip: `Planta de la familia ${family || 'desconocida'}. Los cuidados pueden variar según la especie específica.`,
+    tip: i18n.t('identification.genericFamilyTip', { family: family || i18n.t('identification.unknownFamily') }),
     icon: genericCare.icon || '🌱',
   };
 }
@@ -262,7 +263,7 @@ export async function identifyPlant(
         success: false,
         type: 'none',
         results: [],
-        reason: 'La identificación fue cancelada',
+        reason: i18n.t('identification.identificationCancelled'),
       };
     }
 
@@ -271,7 +272,7 @@ export async function identifyPlant(
       console.error('[PlantID] Edge function error:', error);
 
       // FunctionsHttpError tiene el response en .context — extraer el mensaje real
-      let reason = 'Error al conectar con el servicio de identificación';
+      let reason = i18n.t('identification.serviceConnectionError');
       try {
         if (error.context && typeof error.context.json === 'function') {
           const errorBody = await error.context.json();
@@ -309,22 +310,35 @@ export async function identifyPlant(
         success: false,
         type: 'none',
         results: [],
-        reason: data?.message || 'No se encontraron coincidencias. Asegurate de que la foto muestre claramente las hojas o flores.',
+        reason: data?.message || i18n.t('identification.noMatchesFound'),
       };
     }
 
     // Filtrar resultados con confianza > 10%
-    const validResults = data.results
+    const rawResults = data.results
       .filter(r => r.score > 0.1)
-      .slice(0, 3)
+      .slice(0, 5)
       .map(convertPlantNetResult);
+
+    // Deduplicate by common name, keeping the result with the highest confidence
+    const deduped = new Map<string, IdentifiedPlant>();
+    for (const plant of rawResults) {
+      const key = plant.commonName.toLowerCase();
+      const existing = deduped.get(key);
+      if (!existing || plant.confidence > existing.confidence) {
+        deduped.set(key, plant);
+      }
+    }
+    const validResults = Array.from(deduped.values())
+      .sort((a, b) => b.confidence - a.confidence)
+      .slice(0, 3);
 
     if (validResults.length === 0) {
       return {
         success: false,
         type: 'none',
         results: [],
-        reason: 'La identificación no fue lo suficientemente confiable. Probá con otra foto.',
+        reason: i18n.t('identification.lowConfidence'),
       };
     }
 
@@ -341,7 +355,7 @@ export async function identifyPlant(
       success: true,
       type: 'multiple',
       results: validResults,
-      reason: 'Encontramos varias plantas similares. Seleccioná la que corresponda.',
+      reason: i18n.t('identification.multiplePlantsFound'),
     };
 
   } catch (error: any) {
@@ -350,7 +364,7 @@ export async function identifyPlant(
         success: false,
         type: 'none',
         results: [],
-        reason: 'La identificación fue cancelada',
+        reason: i18n.t('identification.identificationCancelled'),
       };
     }
 
@@ -359,7 +373,7 @@ export async function identifyPlant(
       success: false,
       type: 'none',
       results: [],
-      reason: error.message || 'Error al conectar con el servicio de identificación',
+      reason: error.message || i18n.t('identification.serviceConnectionError'),
     };
   }
 }

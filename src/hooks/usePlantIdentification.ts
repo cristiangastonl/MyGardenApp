@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 import { IdentificationState, IdentificationResult, IdentifiedPlant } from '../types';
 import { identifyPlant } from '../utils/plantIdentification';
 import { getEnrichedPlantData, EnrichedPlantData } from '../services/plantKnowledgeService';
@@ -26,6 +27,7 @@ interface UsePlantIdentificationReturn {
 }
 
 export function usePlantIdentification(): UsePlantIdentificationReturn {
+  const { t } = useTranslation();
   const [state, setState] = useState<IdentificationState>('idle');
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
@@ -73,7 +75,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (__DEV__) console.log('[PlantID] Camera permission status:', status);
       if (status !== 'granted') {
-        setError('Se necesita permiso para acceder a la cámara');
+        setError(t('identification.cameraPermissionNeeded'));
         setState('error');
         return;
       }
@@ -91,7 +93,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Camera error:', err);
-      setError('Error al abrir la cámara');
+      setError(t('identification.cameraError'));
       setState('error');
     }
   }, [handleImageResult]);
@@ -102,7 +104,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (__DEV__) console.log('[PlantID] Gallery permission status:', status);
       if (status !== 'granted') {
-        setError('Se necesita permiso para acceder a la galería');
+        setError(t('identification.galleryPermissionNeeded'));
         setState('error');
         return;
       }
@@ -120,14 +122,14 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Gallery error:', err);
-      setError('Error al abrir la galería');
+      setError(t('identification.galleryError'));
       setState('error');
     }
   }, [handleImageResult]);
 
   const analyze = useCallback(async () => {
     if (!imageBase64) {
-      setError('No hay imagen para analizar');
+      setError(t('identification.noImageToAnalyze'));
       setState('error');
       return;
     }
@@ -174,9 +176,9 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       console.error('[PlantID] Analysis threw error:', err.name, err.message, err);
 
       if (err.name === 'AbortError') {
-        setError('La identificación tardó demasiado. Intentá de nuevo.');
+        setError(t('identification.identificationTimeout'));
       } else {
-        setError(err.message || 'Error al identificar la planta');
+        setError(err.message || t('identification.identificationError'));
       }
       setState('error');
     } finally {
