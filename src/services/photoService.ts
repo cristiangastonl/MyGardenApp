@@ -47,7 +47,7 @@ export async function pickPhoto(source: 'camera' | 'gallery'): Promise<string | 
     if (status !== 'granted') return null;
     const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ['images'],
-      allowsEditing: true,
+      allowsEditing: false,
       aspect: [4, 3],
       quality: 0.8,
     });
@@ -56,7 +56,7 @@ export async function pickPhoto(source: 'camera' | 'gallery'): Promise<string | 
   } else {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
-      allowsEditing: true,
+      allowsEditing: false,
       aspect: [4, 3],
       quality: 0.8,
     });

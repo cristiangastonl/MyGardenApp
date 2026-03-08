@@ -83,7 +83,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       if (__DEV__) console.log('[PlantID] Launching camera...');
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: 'images',
-        allowsEditing: true,
+        allowsEditing: false,
         aspect: [4, 3],
         quality: 0.5,
         base64: true,
@@ -112,7 +112,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       if (__DEV__) console.log('[PlantID] Launching gallery...');
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: 'images',
-        allowsEditing: true,
+        allowsEditing: false,
         aspect: [4, 3],
         quality: 0.5,
         base64: true,
