@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## About
 
-Mi Jardín is a React Native (Expo) plant care app. Users track watering, sun, and outdoor activities for their plants, with weather integration and plant identification.
+My Garden Care is a React Native (Expo) plant care app. Users track watering, sun, and outdoor activities for their plants, with weather integration, AI plant identification, and AI health diagnosis.
 
 ## Commands
 
@@ -89,9 +89,26 @@ Use values from `src/theme.ts`. Do not introduce new colors, fonts, or shadow va
 - **Fonts**: Titles → `PlayfairDisplay_700Bold`, Body → `DMSans_400Regular` / `500Medium` / `600SemiBold`
 - **Spacing/radius/shadows**: Use `spacing.*`, `borderRadius.*`, `shadows.*` from theme.ts
 
-## Language
+## Internationalization (i18n)
 
-All UI text in **Spanish (Argentine)**: vos conjugation (regá, sacá, podés). Friendly, casual tone.
+The app supports **English** and **Spanish (Argentine)**. System language is auto-detected, user can override in Settings.
+
+- All UI text MUST use `t('key')` from `react-i18next` — **never hardcode user-facing strings**
+- Translation files: `src/i18n/locales/{en,es}/common.json` and `plants.json`
+- Plant database content (name, tip, description, problems, nutrients) is translated via `getTranslatedPlant()` in `plantDatabase.ts`
+- Category names are resolved dynamically via `getPlantCategories()` — never use stored `typeName` directly for display
+- Edge functions (diagnose-plant, chat-diagnosis, identify-plant) accept a `lang` parameter and respond in the user's language
+- Spanish uses vos conjugation (regá, sacá, podés). Friendly, casual tone.
+
+## App Store & Privacy
+
+- **App name**: My Garden Care
+- **Store listing**: `store-listing.md` in project root (EN/ES descriptions, keywords)
+- **Privacy manifest**: `privacyManifests` in `app.json` — declares APIs accessed and data collected
+- **Update privacy manifest when**: adding auth/email collection, adding analytics/tracking, adding cloud sync, or using new Apple-required APIs
+- **No update needed for**: UI changes, new screens, catalog additions, feature improvements that don't change data collection
+- **iOS config**: `usesNonExemptEncryption: false`, push notification entitlements configured
+- **iOS submit fields** (empty, fill when Apple Developer account is ready): `appleId`, `ascAppId`, `appleTeamId` in `eas.json`
 
 ## Security
 
