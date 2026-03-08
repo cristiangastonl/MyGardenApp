@@ -2,6 +2,7 @@ import { Plant, WeatherData } from '../types';
 import { isRainyWeather } from '../data/weatherCodes';
 import { getNextWaterDate } from './plantLogic';
 import { isSameDay, addDays } from './dates';
+import i18n from '../i18n';
 
 export interface WateringRecommendation {
   plantId: string;
@@ -23,6 +24,7 @@ export function getWateringRecommendations(
 ): WateringRecommendation[] {
   if (!weather || plants.length === 0) return [];
 
+  const t = i18n.t.bind(i18n);
   const recommendations: WateringRecommendation[] = [];
   const { current, daily } = weather;
   const todayForecast = daily[0];
@@ -59,8 +61,8 @@ export function getWateringRecommendations(
         type: 'skip',
         reason: 'rain',
         message: isRainingNow
-          ? 'Esta lloviendo, no necesitas regar'
-          : 'Va a llover hoy, podes saltear el riego',
+          ? t('wateringTips.rainingNow')
+          : t('wateringTips.willRainToday'),
       });
       return;
     }
@@ -73,7 +75,7 @@ export function getWateringRecommendations(
         icon: plant.icon,
         type: 'skip',
         reason: 'rain_tomorrow',
-        message: 'Manana se esperan lluvias, podes esperar',
+        message: t('wateringTips.rainTomorrow'),
       });
       return;
     }
@@ -86,7 +88,7 @@ export function getWateringRecommendations(
         icon: plant.icon,
         type: 'advance',
         reason: 'extreme_heat',
-        message: 'Hace mucho calor, rega temprano (antes de las 9am) o al atardecer',
+        message: t('wateringTips.extremeHeat'),
       });
       return;
     }
@@ -99,7 +101,7 @@ export function getWateringRecommendations(
         icon: plant.icon,
         type: 'extra',
         reason: 'heat',
-        message: 'Hace calor, considera regar un poco mas de lo habitual',
+        message: t('wateringTips.veryHot'),
       });
       return;
     }
@@ -112,7 +114,7 @@ export function getWateringRecommendations(
         icon: plant.icon,
         type: 'delay',
         reason: 'humidity',
-        message: 'Hay mucha humedad, podes esperar un dia',
+        message: t('wateringTips.highHumidity'),
       });
       return;
     }
@@ -125,7 +127,7 @@ export function getWateringRecommendations(
         icon: plant.icon,
         type: 'advance',
         reason: 'wind',
-        message: 'El viento seca rapido, no te olvides de regar',
+        message: t('wateringTips.windySunny'),
       });
       return;
     }
@@ -162,31 +164,32 @@ export function getRecommendationSummary(
   type: WateringRecommendation['type'],
   count: number
 ): { title: string; icon: string } {
+  const t = i18n.t.bind(i18n);
   switch (type) {
     case 'skip':
       return {
-        title: count === 1 ? 'Podes saltear el riego' : `Podes saltear ${count} riegos`,
+        title: t('wateringTips.summarySkip', { count }),
         icon: '💧',
       };
     case 'delay':
       return {
-        title: count === 1 ? 'Podes demorar el riego' : `Podes demorar ${count} riegos`,
+        title: t('wateringTips.summaryDelay', { count }),
         icon: '⏳',
       };
     case 'advance':
       return {
-        title: count === 1 ? 'Rega temprano o al atardecer' : `Rega temprano ${count} plantas`,
+        title: t('wateringTips.summaryAdvance', { count }),
         icon: '⏰',
       };
     case 'extra':
       return {
-        title: count === 1 ? 'Considera riego extra' : `Riego extra para ${count} plantas`,
+        title: t('wateringTips.summaryExtra', { count }),
         icon: '💦',
       };
     case 'normal':
     default:
       return {
-        title: 'Riego normal',
+        title: t('wateringTips.summaryNormal'),
         icon: '✅',
       };
   }

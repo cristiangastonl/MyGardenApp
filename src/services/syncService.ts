@@ -1,5 +1,5 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
-import { Plant, Note, Reminder, Location, NotificationSettings } from '../types';
+import { Plant, Note, Reminder, Location, NotificationSettings, PlantPhoto } from '../types';
 import {
   DbPlant,
   DbNote,
@@ -41,10 +41,26 @@ function plantToDb(plant: Plant, userId: string) {
     last_watered: plant.lastWatered,
     sun_done_date: plant.sunDoneDate,
     outdoor_done_date: plant.outdoorDoneDate,
+    temp_min: plant.tempMin,
+    temp_max: plant.tempMax,
+    humidity: plant.humidity,
+    favorite: plant.favorite,
+    image_url: plant.imageUrl,
+    database_id: plant.databaseId,
+    photos: plant.photos ? JSON.stringify(plant.photos) : null,
   };
 }
 
 function dbToPlant(dbPlant: DbPlant): Plant {
+  let photos: PlantPhoto[] | undefined;
+  if ((dbPlant as any).photos) {
+    try {
+      photos = JSON.parse((dbPlant as any).photos);
+    } catch {
+      photos = undefined;
+    }
+  }
+
   return {
     id: dbPlant.local_id,
     name: dbPlant.name,
@@ -58,6 +74,13 @@ function dbToPlant(dbPlant: DbPlant): Plant {
     lastWatered: dbPlant.last_watered,
     sunDoneDate: dbPlant.sun_done_date,
     outdoorDoneDate: dbPlant.outdoor_done_date,
+    tempMin: (dbPlant as any).temp_min,
+    tempMax: (dbPlant as any).temp_max,
+    humidity: (dbPlant as any).humidity,
+    favorite: (dbPlant as any).favorite,
+    imageUrl: (dbPlant as any).image_url,
+    databaseId: (dbPlant as any).database_id,
+    photos,
   };
 }
 

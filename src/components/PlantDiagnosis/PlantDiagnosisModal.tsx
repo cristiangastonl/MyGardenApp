@@ -7,6 +7,8 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantDiagnosis } from '../../hooks/usePlantDiagnosis';
 import { usePremiumGate } from '../../config/premium';
@@ -22,6 +24,10 @@ interface PlantDiagnosisModalProps {
   plant: Plant;
   weather: WeatherData | null;
   onClose: () => void;
+  initialImages?: string[] | Array<{ uri: string; base64: string }>;
+  resumeDiagnosis?: SavedDiagnosis | null;
+  onAddToShoppingList?: (treatment: string) => void;
+  canAddToShoppingList?: boolean;
 }
 
 export function PlantDiagnosisModal({
@@ -29,7 +35,12 @@ export function PlantDiagnosisModal({
   plant,
   weather,
   onClose,
+  initialImages,
+  resumeDiagnosis = null,
+  onAddToShoppingList,
+  canAddToShoppingList = false,
 }: PlantDiagnosisModalProps) {
+  const { t } = useTranslation();
   const { saveDiagnosis, addChatMessage, diagnosisCount } = useStorage();
   const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
@@ -48,15 +59,19 @@ export function PlantDiagnosisModal({
 
   const {
     state,
+    images,
     imageUri,
     result,
     error,
     savedDiagnosisId,
+    maxPhotos,
+    isResumedChat,
     chatMessages,
     chatLoading,
     chatError,
     pickFromCamera,
     pickFromGallery,
+    removeImage,
     analyze,
     sendChatMessage,
     reset,
@@ -64,6 +79,8 @@ export function PlantDiagnosisModal({
     plantId: plant.id,
     plantContext,
     onDiagnosisComplete: handleDiagnosisComplete,
+    initialImages,
+    resumeDiagnosis: resumeDiagnosis,
   });
 
   const handleClose = () => {
@@ -72,7 +89,8 @@ export function PlantDiagnosisModal({
   };
 
   const handleRetake = () => {
-    if (!canDiagnose(diagnosisCount)) {
+    // Only check paywall if a diagnosis was already completed (not on permission errors etc.)
+    if (result && !canDiagnose(diagnosisCount)) {
       showPaywall('plant_diagnosis');
       handleClose();
       return;
@@ -85,8 +103,28 @@ export function PlantDiagnosisModal({
   };
 
   const userMessageCount = chatMessages.filter(m => m.role === 'user').length;
-  const canChat = canChatDiagnosis(userMessageCount);
-  const persistedCountRef = useRef(0);
+  const totalUserMessages = isResumedChat
+    ? userMessageCount  // For resumed chats, count only new messages in this session
+    : userMessageCount;
+  const canChat = canChatDiagnosis(totalUserMessages);
+
+  const pickChatPhoto = useCallback(async (): Promise<{ base64: string; uri: string } | null> => {
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') return null;
+      const pickerResult = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: 'images',
+        allowsEditing: false,
+        quality: 0.5,
+        base64: true,
+      });
+      if (pickerResult.canceled || !pickerResult.assets?.[0]?.base64) return null;
+      return { base64: pickerResult.assets[0].base64!, uri: pickerResult.assets[0].uri };
+    } catch {
+      return null;
+    }
+  }, []);
+  const persistedCountRef = useRef(resumeDiagnosis?.chat?.length || 0);
 
   // Persist new chat messages to storage when assistant replies arrive
   React.useEffect(() => {
@@ -110,23 +148,26 @@ export function PlantDiagnosisModal({
         return (
           <CameraCapture
             imageUri={imageUri}
+            imageUris={images.map(img => img.uri)}
+            maxPhotos={maxPhotos}
             onPickCamera={pickFromCamera}
             onPickGallery={pickFromGallery}
             onAnalyze={handleAnalyze}
             onRetake={handleRetake}
-            analyzeLabel="Diagnosticar"
-            title="Foto de la zona afectada"
-            subtitle="Enfocá las hojas, tallos o raíces que te preocupen"
+            onRemoveImage={removeImage}
+            analyzeLabel={t('diagnosis.diagnoseButton')}
+            title={t('diagnosis.diagnoseCameraTitle')}
+            subtitle={t('diagnosis.diagnoseCameraSubtitle')}
             tips={[
-              'Enfocá la zona con problemas',
-              'Buena iluminación natural',
-              'Mostrá hojas de cerca si están dañadas',
+              t('diagnosis.diagnoseCameraTip1'),
+              t('diagnosis.diagnoseCameraTip2'),
+              t('diagnosis.diagnoseCameraTip3'),
             ]}
           />
         );
 
       case 'analyzing':
-        return <DiagnosisAnalyzingState imageUri={imageUri} />;
+        return <DiagnosisAnalyzingState imageUris={images.map(img => img.uri)} />;
 
       case 'results':
         if (!result) return null;
@@ -135,12 +176,16 @@ export function PlantDiagnosisModal({
             result={result}
             onRetake={handleRetake}
             onClose={handleClose}
+            isResumedChat={isResumedChat}
             chatMessages={chatMessages}
             chatLoading={chatLoading}
             chatError={chatError}
             canSendChat={canChat}
             onSendChat={sendChatMessage}
+            onPickChatPhoto={pickChatPhoto}
             isPremium={isPremium}
+            onAddToShoppingList={onAddToShoppingList}
+            canAddToShoppingList={canAddToShoppingList}
           />
         );
 
@@ -148,10 +193,10 @@ export function PlantDiagnosisModal({
         return (
           <View style={styles.errorContainer}>
             <Text style={styles.errorIcon}>⚠️</Text>
-            <Text style={styles.errorTitle}>Error</Text>
+            <Text style={styles.errorTitle}>{t('diagnosis.errorTitle')}</Text>
             <Text style={styles.errorMessage}>{error}</Text>
             <TouchableOpacity style={styles.retryButton} onPress={handleRetake}>
-              <Text style={styles.retryButtonText}>Intentar de nuevo</Text>
+              <Text style={styles.retryButtonText}>{t('diagnosis.retryButton')}</Text>
             </TouchableOpacity>
           </View>
         );
@@ -170,13 +215,13 @@ export function PlantDiagnosisModal({
     >
       <View style={styles.overlay}>
         <SafeAreaView style={styles.safeArea}>
-          <View style={styles.container}>
+          <View style={[styles.container, state === 'results' && styles.containerExpanded]}>
             <View style={styles.header}>
               <View style={styles.handle} />
               <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
                 <Text style={styles.closeButtonText}>✕</Text>
               </TouchableOpacity>
-              <Text style={styles.title}>Diagnóstico de salud</Text>
+              <Text style={styles.title}>{t('diagnosis.modalTitle')}</Text>
             </View>
 
             {renderContent()}
@@ -204,6 +249,9 @@ const styles = StyleSheet.create({
     minHeight: '70%',
     ...shadows.lg,
   },
+  containerExpanded: {
+    minHeight: '95%',
+  },
   header: {
     alignItems: 'center',
     paddingTop: spacing.md,
@@ -222,8 +270,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: spacing.lg,
     top: spacing.lg,
-    width: 32,
-    height: 32,
+    width: 44,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
   },

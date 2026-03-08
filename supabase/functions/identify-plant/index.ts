@@ -52,6 +52,21 @@ serve(async (req) => {
       );
     }
 
+    // Validate image size (max 5MB in base64)
+    const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB in base64 chars
+    if (body.imageBase64.length > MAX_IMAGE_SIZE) {
+      return new Response(
+        JSON.stringify({
+          error: 'La imagen es demasiado grande. El tamaño máximo es 5MB.',
+          code: 'IMAGE_TOO_LARGE'
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
     // Convert base64 to Uint8Array for the blob
     const binaryString = atob(body.imageBase64);
     const bytes = new Uint8Array(binaryString.length);

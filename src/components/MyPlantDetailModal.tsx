@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, PlantPhoto, WeatherData, SavedDiagnosis } from '../types';
+import { getPlantCategories } from '../data/plantDatabase';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
@@ -43,7 +44,8 @@ export function MyPlantDetailModal({
   const { t } = useTranslation();
   const [showDiagnosis, setShowDiagnosis] = useState(false);
   const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
-  const { canDiagnose } = usePremiumGate();
+  const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
+  const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
   const { diagnosisCount, incrementDiagnosisCount, getDiagnosesForPlant } = useStorage();
 
@@ -133,7 +135,7 @@ export function MyPlantDetailModal({
                 <Text style={styles.icon}>{plant.icon}</Text>
               )}
               <Text style={styles.name}>{plant.name}</Text>
-              <Text style={styles.typeName}>{plant.typeName}</Text>
+              <Text style={styles.typeName}>{getPlantCategories().find(c => c.id === plant.typeId)?.name || plant.typeName}</Text>
               {healthStatus && healthStatus.score < 100 && (
                 <View style={styles.healthRow}>
                   <PlantHealthBadge healthStatus={healthStatus} />
@@ -164,7 +166,7 @@ export function MyPlantDetailModal({
               activeOpacity={0.7}
             >
               <Text style={styles.diagnoseButtonIcon}>🔬</Text>
-              <Text style={styles.diagnoseButtonText}>Diagnosticar salud</Text>
+              <Text style={styles.diagnoseButtonText}>{t('diagnosis.diagnoseHealth')}</Text>
             </TouchableOpacity>
 
             {/* Nutrients */}
@@ -183,7 +185,7 @@ export function MyPlantDetailModal({
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
               <View style={styles.historySection}>
-                <Text style={styles.historySectionTitle}>HISTORIAL DE DIAGNÓSTICOS</Text>
+                <Text style={styles.historySectionTitle}>{t('diagnosis.diagnosisHistory')}</Text>
                 {plantDiagnoses.map((diagnosis) => (
                   <DiagnosisHistoryItem
                     key={diagnosis.id}
@@ -220,7 +222,11 @@ export function MyPlantDetailModal({
         visible={showDiagnosis}
         plant={plant}
         weather={weather}
-        onClose={() => setShowDiagnosis(false)}
+        onClose={() => {
+          setShowDiagnosis(false);
+          setResumeDiagnosis(null);
+        }}
+        resumeDiagnosis={resumeDiagnosis}
       />
     )}
 
@@ -228,6 +234,12 @@ export function MyPlantDetailModal({
       visible={!!selectedDiagnosis}
       diagnosis={selectedDiagnosis}
       onClose={() => setSelectedDiagnosis(null)}
+      isPremium={isPremium}
+      onContinueChat={(diag) => {
+        setSelectedDiagnosis(null);
+        setResumeDiagnosis(diag);
+        setShowDiagnosis(true);
+      }}
     />
     </>
   );

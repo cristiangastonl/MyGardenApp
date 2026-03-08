@@ -20,7 +20,7 @@ export function Header({ userName, onSettingsPress }: HeaderProps) {
     <View style={styles.container}>
       <View style={styles.left}>
         <Text style={styles.date}>
-          {dayName} {day} de {month}
+          {t('header.dateFormat', { dayName, day, month })}
         </Text>
         <Text style={styles.title}>
           {userName ? t('header.hello', { name: userName }) : t('header.appName')}

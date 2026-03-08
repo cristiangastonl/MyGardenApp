@@ -309,7 +309,7 @@ interface Styles {
 const styles = StyleSheet.create<Styles>({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: colors.overlay,
     justifyContent: 'flex-end',
   },
   container: {
@@ -346,8 +346,8 @@ const styles = StyleSheet.create<Styles>({
     marginTop: 2,
   },
   closeButton: {
-    width: 32,
-    height: 32,
+    width: 44,
+    height: 44,
     borderRadius: borderRadius.full,
     backgroundColor: 'rgba(0,0,0,0.1)',
     justifyContent: 'center',

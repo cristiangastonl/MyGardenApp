@@ -257,7 +257,7 @@ export function AddPlantModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: `${colors.textPrimary}66`,
+    backgroundColor: colors.overlay,
     justifyContent: "flex-end",
   },
   keyboardView: {

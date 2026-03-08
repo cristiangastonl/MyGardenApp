@@ -7,6 +7,7 @@ import {
   Animated,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius } from '../../theme';
 
 interface AnalyzingStateProps {
@@ -14,6 +15,7 @@ interface AnalyzingStateProps {
 }
 
 export function AnalyzingState({ imageUri }: AnalyzingStateProps) {
+  const { t } = useTranslation();
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -53,24 +55,24 @@ export function AnalyzingState({ imageUri }: AnalyzingStateProps) {
 
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.green} />
-        <Text style={styles.loadingTitle}>Analizando...</Text>
+        <Text style={styles.loadingTitle}>{t('analyzing.title')}</Text>
         <Text style={styles.loadingSubtitle}>
-          Identificando tu planta con inteligencia artificial
+          {t('analyzing.subtitle')}
         </Text>
       </View>
 
       <View style={styles.stepsContainer}>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>🔍</Text>
-          <Text style={styles.stepText}>Analizando forma de las hojas</Text>
+          <Text style={styles.stepText}>{t('analyzing.stepLeaves')}</Text>
         </View>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>🎨</Text>
-          <Text style={styles.stepText}>Detectando colores y patrones</Text>
+          <Text style={styles.stepText}>{t('analyzing.stepColors')}</Text>
         </View>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>📚</Text>
-          <Text style={styles.stepText}>Buscando en base de datos</Text>
+          <Text style={styles.stepText}>{t('analyzing.stepDatabase')}</Text>
         </View>
       </View>
     </View>

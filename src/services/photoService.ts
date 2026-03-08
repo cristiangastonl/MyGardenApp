@@ -10,13 +10,25 @@ function getPlantDir(plantId: string): string {
 }
 
 async function ensureDir(dirUri: string): Promise<void> {
+  // Ensure parent directory (plant-photos/) exists first
+  const parentUri = `${Paths.document.uri}${PHOTOS_DIR_NAME}/`;
+  const parentDir = new Directory(parentUri);
+  try {
+    if (!parentDir.exists) {
+      parentDir.create();
+    }
+  } catch {
+    // May already exist from a race condition
+  }
+
+  // Then ensure the plant-specific subdirectory
   const dir = new Directory(dirUri);
   try {
     if (!dir.exists) {
       dir.create();
     }
   } catch {
-    // Directory may already exist from a race condition — safe to ignore
+    // May already exist from a race condition
   }
 }
 
@@ -35,6 +47,8 @@ export async function pickPhoto(source: 'camera' | 'gallery'): Promise<string | 
     if (status !== 'granted') return null;
     const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
       quality: 0.8,
     });
     if (result.canceled || !result.assets[0]) return null;
@@ -42,6 +56,8 @@ export async function pickPhoto(source: 'camera' | 'gallery'): Promise<string | 
   } else {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
       quality: 0.8,
     });
     if (result.canceled || !result.assets[0]) return null;

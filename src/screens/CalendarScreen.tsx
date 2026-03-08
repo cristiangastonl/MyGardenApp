@@ -31,6 +31,7 @@ export default function CalendarScreen() {
     deleteNote,
     addReminder,
     deleteReminder,
+    updateReminder,
   } = useStorage();
 
   const today = new Date();
@@ -138,8 +139,10 @@ export default function CalendarScreen() {
   };
 
   const handleToggleReminder = (reminderId: string, done: boolean) => {
-    // For now we don't have update reminder functionality
-    console.log('Toggle reminder', reminderId, done);
+    if (selectedDate) {
+      const dateStr = formatDate(selectedDate);
+      updateReminder(dateStr, reminderId, { done });
+    }
   };
 
   const handleDeleteReminder = (reminderId: string) => {

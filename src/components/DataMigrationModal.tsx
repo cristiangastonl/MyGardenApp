@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 
 interface DataMigrationModalProps {
@@ -24,6 +25,7 @@ export function DataMigrationModal({
   onStartFresh,
   onCancel,
 }: DataMigrationModalProps) {
+  const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
 
   const handleUpload = async () => {
@@ -42,10 +44,9 @@ export function DataMigrationModal({
       <View style={styles.overlay}>
         <View style={styles.content}>
           <Text style={styles.icon}>🌱</Text>
-          <Text style={styles.title}>Tenes plantas guardadas</Text>
+          <Text style={styles.title}>{t('dataMigration.title')}</Text>
           <Text style={styles.description}>
-            Encontramos {plantCount} {plantCount === 1 ? 'planta' : 'plantas'} guardadas
-            en este dispositivo. Que queres hacer?
+            {t('dataMigration.description', { count: plantCount })}
           </Text>
 
           <View style={styles.buttons}>
@@ -59,7 +60,7 @@ export function DataMigrationModal({
               ) : (
                 <>
                   <Text style={styles.buttonIcon}>☁️</Text>
-                  <Text style={styles.primaryButtonText}>Subir a la nube</Text>
+                  <Text style={styles.primaryButtonText}>{t('dataMigration.uploadToCloud')}</Text>
                 </>
               )}
             </TouchableOpacity>
@@ -70,7 +71,7 @@ export function DataMigrationModal({
               disabled={isUploading}
             >
               <Text style={styles.buttonIcon}>✨</Text>
-              <Text style={styles.secondaryButtonText}>Empezar de cero</Text>
+              <Text style={styles.secondaryButtonText}>{t('dataMigration.startFresh')}</Text>
             </TouchableOpacity>
           </View>
 
@@ -79,11 +80,11 @@ export function DataMigrationModal({
             onPress={onCancel}
             disabled={isUploading}
           >
-            <Text style={styles.cancelButtonText}>Cancelar</Text>
+            <Text style={styles.cancelButtonText}>{t('dataMigration.cancel')}</Text>
           </TouchableOpacity>
 
           <Text style={styles.hint}>
-            Si subis a la nube, tus plantas estaran disponibles en todos tus dispositivos.
+            {t('dataMigration.hint')}
           </Text>
         </View>
       </View>

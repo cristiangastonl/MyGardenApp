@@ -69,16 +69,16 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
   const pickFromCamera = useCallback(async () => {
     try {
-      console.log('[PlantID] Requesting camera permission...');
+      if (__DEV__) console.log('[PlantID] Requesting camera permission...');
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
-      console.log('[PlantID] Camera permission status:', status);
+      if (__DEV__) console.log('[PlantID] Camera permission status:', status);
       if (status !== 'granted') {
         setError('Se necesita permiso para acceder a la cámara');
         setState('error');
         return;
       }
 
-      console.log('[PlantID] Launching camera...');
+      if (__DEV__) console.log('[PlantID] Launching camera...');
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: 'images',
         allowsEditing: true,
@@ -87,7 +87,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
         base64: true,
       });
 
-      console.log('[PlantID] Camera result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
+      if (__DEV__) console.log('[PlantID] Camera result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
       handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Camera error:', err);
@@ -98,16 +98,16 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
   const pickFromGallery = useCallback(async () => {
     try {
-      console.log('[PlantID] Requesting gallery permission...');
+      if (__DEV__) console.log('[PlantID] Requesting gallery permission...');
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      console.log('[PlantID] Gallery permission status:', status);
+      if (__DEV__) console.log('[PlantID] Gallery permission status:', status);
       if (status !== 'granted') {
         setError('Se necesita permiso para acceder a la galería');
         setState('error');
         return;
       }
 
-      console.log('[PlantID] Launching gallery...');
+      if (__DEV__) console.log('[PlantID] Launching gallery...');
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: 'images',
         allowsEditing: true,
@@ -116,7 +116,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
         base64: true,
       });
 
-      console.log('[PlantID] Gallery result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
+      if (__DEV__) console.log('[PlantID] Gallery result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
       handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Gallery error:', err);
@@ -132,7 +132,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       return;
     }
 
-    console.log('[PlantID] Starting analysis, base64 length:', imageBase64.length);
+    if (__DEV__) console.log('[PlantID] Starting analysis, base64 length:', imageBase64.length);
     setState('analyzing');
     setError(null);
     setResult(null);
@@ -140,7 +140,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
     // Create abort controller for timeout
     abortControllerRef.current = new AbortController();
     const timeoutId = setTimeout(() => {
-      console.log('[PlantID] Request timed out after', TIMEOUT_MS, 'ms');
+      if (__DEV__) console.log('[PlantID] Request timed out after', TIMEOUT_MS, 'ms');
       abortControllerRef.current?.abort();
     }, TIMEOUT_MS);
 
@@ -153,7 +153,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
       clearTimeout(timeoutId);
 
-      console.log('[PlantID] Result:', JSON.stringify({ success: identificationResult.success, type: identificationResult.type, resultsCount: identificationResult.results.length, reason: identificationResult.reason }));
+      if (__DEV__) console.log('[PlantID] Result:', JSON.stringify({ success: identificationResult.success, type: identificationResult.type, resultsCount: identificationResult.results.length, reason: identificationResult.reason }));
       setResult(identificationResult);
 
       if (identificationResult.success) {
@@ -203,10 +203,10 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
 
       // If we got better data, log it
       if (enriched.source !== 'default') {
-        console.log(`[PlantID] Enriched ${plant.commonName} from ${enriched.source}`);
+        if (__DEV__) console.log(`[PlantID] Enriched ${plant.commonName} from ${enriched.source}`);
       }
     } catch (err) {
-      console.log('[PlantID] Could not enrich plant data:', err);
+      if (__DEV__) console.log('[PlantID] Could not enrich plant data:', err);
       // Keep using the original identified data
     } finally {
       setIsEnriching(false);

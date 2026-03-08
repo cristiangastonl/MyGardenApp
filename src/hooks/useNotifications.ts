@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { Platform } from "react-native";
-import { Plant, WeatherData, NotificationSettings } from "../types";
+import { Plant, WeatherData, NotificationSettings, SavedDiagnosis } from "../types";
 import { PlantAlert } from "../utils/plantAlerts";
+import { calculateGardenHealth } from "../utils/plantHealth";
 import {
   scheduleMorningReminder,
   cancelMorningReminder,
@@ -57,6 +58,7 @@ interface UseNotificationsOptions {
   plants: Plant[];
   weather: WeatherData | null;
   alerts: PlantAlert[];
+  diagnosisHistory?: Record<string, SavedDiagnosis[]>;
 }
 
 interface UseNotificationsReturn {
@@ -81,6 +83,7 @@ export function useNotifications({
   plants,
   weather,
   alerts,
+  diagnosisHistory,
 }: UseNotificationsOptions): UseNotificationsReturn {
   const [permissionStatus, setPermissionStatus] =
     useState<PermissionStatus>("undetermined");
@@ -148,7 +151,8 @@ export function useNotifications({
   // Reschedule morning reminder when settings or plants change
   useEffect(() => {
     if (settings.enabled && settings.morningReminder && plants.length > 0) {
-      scheduleMorningReminder(settings.morningTime, plants, weather);
+      const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory);
+      scheduleMorningReminder(settings.morningTime, plants, weather, healthStatuses);
       refreshScheduled();
     }
   }, [
@@ -213,7 +217,7 @@ export function useNotifications({
         // Configure notification channel for Android
         if (Platform.OS === "android") {
           await Notifications.setNotificationChannelAsync("default", {
-            name: "Mi Jardin",
+            name: "MyGarden",
             importance: Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
             lightColor: "#5b9a6a",
@@ -265,7 +269,8 @@ export function useNotifications({
 
       // Schedule morning reminder if enabled
       if (settings.morningReminder && plants.length > 0) {
-        await scheduleMorningReminder(settings.morningTime, plants, weather);
+        const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory);
+        await scheduleMorningReminder(settings.morningTime, plants, weather, healthStatuses);
       }
 
       // Schedule weather alerts if enabled

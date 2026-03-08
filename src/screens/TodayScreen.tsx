@@ -19,7 +19,7 @@ import { useNotifications } from '../hooks/useNotifications';
 import { formatDate, isSameDay } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { generatePlantAlerts } from '../utils/plantAlerts';
-import { Plant, SavedDiagnosis } from '../types';
+import { Plant, SavedDiagnosis, ShoppingItem } from '../types';
 import {
   Header,
   WeatherWidget,
@@ -42,6 +42,8 @@ import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
 import { LinearGradient } from 'expo-linear-gradient';
 import { DiagnosisDetailModal } from '../components/PlantDiagnosis/DiagnosisDetailModal';
+import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
+import { ShoppingListModal } from '../components/ShoppingListModal';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -77,6 +79,11 @@ export default function TodayScreen() {
     diagnosisHistory,
     resolveDiagnosis,
     getActiveDiagnosesForPlant,
+    shoppingList,
+    addShoppingItem,
+    removeShoppingItem,
+    toggleShoppingItem,
+    clearCheckedShoppingItems,
   } = useStorage();
 
   const { weather, loading: weatherLoading, error: weatherError, refetch: refetchWeather } = useWeather(location);
@@ -103,6 +110,7 @@ export default function TodayScreen() {
     plants,
     weather,
     alerts: plantAlerts,
+    diagnosisHistory,
   });
 
   const [showAddPlant, setShowAddPlant] = useState(false);
@@ -110,6 +118,10 @@ export default function TodayScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
   const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
+  const [showShoppingList, setShowShoppingList] = useState(false);
+  const [diagnosePlant, setDiagnosePlant] = useState<Plant | null>(null);
+  const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
+  const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -144,7 +156,8 @@ export default function TodayScreen() {
       }
     });
 
-    return { plantsWithTasks: withTasks, plantsWithoutTasks: withoutTasks };
+    const favSort = (a: Plant, b: Plant) => (a.favorite ? -1 : 0) - (b.favorite ? -1 : 0);
+    return { plantsWithTasks: withTasks.sort(favSort), plantsWithoutTasks: withoutTasks.sort(favSort) };
   }, [plants, today]);
 
   const handleWater = (plantId: string) => {
@@ -172,7 +185,7 @@ export default function TodayScreen() {
     }
   };
 
-  const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null) => {
+  const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
     const plantId = Date.now().toString();
 
     // Upload image if provided
@@ -195,6 +208,7 @@ export default function TodayScreen() {
     };
     addPlant(newPlant);
     trackEvent('plant_added', { plant_name: plantData.name, source: 'today' });
+    return newPlant;
   };
 
   const handleDeletePlant = (plantId: string) => {
@@ -285,6 +299,19 @@ export default function TodayScreen() {
 
         {/* Garden Health Summary */}
         <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} />
+
+        {/* Shopping List button */}
+        {premium.canUseShoppingList() && shoppingList.length > 0 && (
+          <TouchableOpacity
+            style={styles.shoppingListButton}
+            onPress={() => setShowShoppingList(true)}
+          >
+            <Text style={styles.shoppingListButtonIcon}>🛒</Text>
+            <Text style={styles.shoppingListButtonText}>
+              {t('shoppingList.title')} ({shoppingList.filter(i => !i.checked).length})
+            </Text>
+          </TouchableOpacity>
+        )}
 
         {/* Diagnosis Follow-Up */}
         <DiagnosisFollowUp
@@ -388,7 +415,6 @@ export default function TodayScreen() {
             showPaywall('plant_identification');
             return;
           }
-          incrementIdentificationCount();
           setShowIdentifier(true);
         }}
         showIdentifyOption={Features.PLANT_IDENTIFICATION}
@@ -406,7 +432,46 @@ export default function TodayScreen() {
         <PlantIdentifierModal
           visible={showIdentifier}
           onClose={() => setShowIdentifier(false)}
-          onAddPlant={handleAddPlant}
+          onAddPlant={async (plantData, imageUri) => {
+            incrementIdentificationCount();
+            return handleAddPlant(plantData, imageUri);
+          }}
+          isPremium={premium.isPremium}
+          diagnosisCount={diagnosisHistory ? Object.values(diagnosisHistory).flat().length : 0}
+          onDiagnoseAfterIdentify={(plant, reusePhotos, capturedUri, capturedBase64) => {
+            setShowIdentifier(false);
+            setDiagnosePlant(plant);
+            setDiagnosisInitialImages(reusePhotos && capturedUri && capturedBase64 ? [{ uri: capturedUri, base64: capturedBase64 }] : undefined);
+          }}
+        />
+      )}
+
+      {/* Diagnosis Modal from Identify flow */}
+      {diagnosePlant && (
+        <PlantDiagnosisModal
+          visible={!!diagnosePlant}
+          plant={diagnosePlant}
+          weather={weather}
+          initialImages={diagnosisInitialImages}
+          resumeDiagnosis={resumeDiagnosis}
+          onClose={() => {
+            setDiagnosePlant(null);
+            setDiagnosisInitialImages(undefined);
+            setResumeDiagnosis(null);
+          }}
+          canAddToShoppingList={premium.canUseShoppingList()}
+          onAddToShoppingList={(treatment) => {
+            if (!diagnosePlant) return;
+            addShoppingItem({
+              id: `shop_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+              text: treatment,
+              diagnosisId: '',
+              plantId: diagnosePlant.id,
+              plantName: diagnosePlant.name,
+              checked: false,
+              createdAt: new Date().toISOString(),
+            });
+          }}
         />
       )}
 
@@ -415,10 +480,42 @@ export default function TodayScreen() {
         visible={!!selectedDiagnosis}
         diagnosis={selectedDiagnosis}
         onClose={() => setSelectedDiagnosis(null)}
+        isPremium={premium.isPremium}
+        onContinueChat={(diag) => {
+          setSelectedDiagnosis(null);
+          const plant = plants.find(p => p.id === diag.plantId);
+          if (plant) {
+            setResumeDiagnosis(diag);
+            setDiagnosePlant(plant);
+          }
+        }}
         onResolve={(plantId, diagnosisId) => {
           resolveDiagnosis(plantId, diagnosisId);
           setSelectedDiagnosis(null);
         }}
+        canAddToShoppingList={premium.canUseShoppingList()}
+        onAddToShoppingList={selectedDiagnosis ? (treatment: string) => {
+          const plant = plants.find(p => p.id === selectedDiagnosis.plantId);
+          addShoppingItem({
+            id: `shop_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+            text: treatment,
+            diagnosisId: selectedDiagnosis.id,
+            plantId: selectedDiagnosis.plantId,
+            plantName: plant?.name || '',
+            checked: false,
+            createdAt: new Date().toISOString(),
+          });
+        } : undefined}
+      />
+
+      {/* Shopping List Modal */}
+      <ShoppingListModal
+        visible={showShoppingList}
+        items={shoppingList}
+        onClose={() => setShowShoppingList(false)}
+        onToggle={toggleShoppingItem}
+        onRemove={removeShoppingItem}
+        onClearChecked={clearCheckedShoppingItems}
       />
 
       {/* Plant Detail Modal with Photo Album */}
@@ -531,6 +628,26 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 14,
     color: colors.white,
+  },
+  shoppingListButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.xl,
+    ...shadows.sm,
+  },
+  shoppingListButtonIcon: {
+    fontSize: 20,
+    marginRight: spacing.sm,
+  },
+  shoppingListButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.textPrimary,
   },
   bottomPadding: {
     height: 100,

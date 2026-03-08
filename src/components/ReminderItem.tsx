@@ -12,7 +12,7 @@ interface ReminderItemProps {
 export function ReminderItem({ reminder, onToggle, onDelete }: ReminderItemProps) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.checkbox} onPress={onToggle}>
+      <TouchableOpacity style={styles.checkbox} onPress={onToggle} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
         <Text style={styles.checkIcon}>{reminder.done ? '✓' : ''}</Text>
       </TouchableOpacity>
       <View style={styles.content}>
@@ -23,7 +23,7 @@ export function ReminderItem({ reminder, onToggle, onDelete }: ReminderItemProps
           <Text style={styles.time}>{reminder.time}</Text>
         )}
       </View>
-      <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
+      <TouchableOpacity onPress={onDelete} style={styles.deleteButton} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
         <Text style={styles.deleteIcon}>×</Text>
       </TouchableOpacity>
     </View>
@@ -86,6 +86,10 @@ const styles = StyleSheet.create<Styles>({
   },
   deleteButton: {
     padding: spacing.xs,
+    minHeight: 44,
+    minWidth: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   deleteIcon: {
     fontSize: 20,

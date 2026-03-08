@@ -10,6 +10,7 @@ import { TaskButton } from './TaskButton';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantHealthDetail } from './PlantHealthDetail';
 import { getPlantTypes } from '../data/constants';
+import { getPlantCategories } from '../data/plantDatabase';
 
 interface PlantCardProps {
   plant: Plant;
@@ -20,6 +21,7 @@ interface PlantCardProps {
   onOutdoorDone: (plantId: string) => void;
   onDelete: (plantId: string) => void;
   onPress?: (plant: Plant) => void;
+  onToggleFavorite?: (plantId: string) => void;
   diagnoses?: SavedDiagnosis[];
   hasActiveDiagnosis?: boolean;
 }
@@ -33,6 +35,7 @@ export function PlantCard({
   onOutdoorDone,
   onDelete,
   onPress,
+  onToggleFavorite,
   diagnoses,
   hasActiveDiagnosis,
 }: PlantCardProps) {
@@ -87,8 +90,18 @@ export function PlantCard({
             <Text style={styles.icon}>{plant.icon}</Text>
           )}
           <View style={styles.info}>
-            <Text style={styles.name} numberOfLines={1}>{plant.name}</Text>
-            <Text style={styles.type} numberOfLines={1}>{plant.typeName}</Text>
+            <View style={styles.nameRow}>
+              <Text style={styles.name} numberOfLines={1}>{plant.name}</Text>
+              {onToggleFavorite && (
+                <TouchableOpacity
+                  onPress={() => onToggleFavorite(plant.id)}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                >
+                  <Text style={styles.favoriteIcon}>{plant.favorite ? '❤️' : '🤍'}</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <Text style={styles.type} numberOfLines={1}>{getPlantCategories().find(c => c.id === plant.typeId)?.name || plant.typeName}</Text>
           </View>
         </View>
         <View style={styles.headerRight}>
@@ -189,7 +202,9 @@ interface Styles {
   icon: TextStyle;
   plantImage: ImageStyle;
   info: ViewStyle;
+  nameRow: ViewStyle;
   name: TextStyle;
+  favoriteIcon: TextStyle;
   type: TextStyle;
   diagnosisBadge: ViewStyle;
   diagnosisBadgeText: TextStyle;
@@ -243,10 +258,19 @@ const styles = StyleSheet.create<Styles>({
   info: {
     flex: 1,
   },
+  nameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
   name: {
     fontFamily: fonts.heading,
     fontSize: 18,
     color: colors.textPrimary,
+    flex: 1,
+  },
+  favoriteIcon: {
+    fontSize: 18,
   },
   type: {
     fontFamily: fonts.body,

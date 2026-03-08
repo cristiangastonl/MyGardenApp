@@ -34,6 +34,7 @@ export interface Plant {
   tempMin?: number;
   tempMax?: number;
   humidity?: HumidityLevel;
+  favorite?: boolean;
 }
 
 export interface Note {
@@ -64,6 +65,16 @@ export interface Task {
   plantId: string;
 }
 
+export interface ShoppingItem {
+  id: string;
+  text: string;
+  diagnosisId: string;
+  plantId: string;
+  plantName: string;
+  checked: boolean;
+  createdAt: string;
+}
+
 export interface AppData {
   plants: Plant[];
   notes: Record<string, Note[]>;
@@ -77,6 +88,7 @@ export interface AppData {
   identificationCount: number;
   diagnosisCount: number;
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
+  shoppingList: ShoppingItem[];
 }
 
 // Plant Database Types
@@ -237,13 +249,15 @@ export interface DiagnosisChatMessage {
   role: 'user' | 'assistant';
   text: string;
   timestamp: string;
+  imageUri?: string | null;
 }
 
 export interface SavedDiagnosis {
   id: string;
   plantId: string;
   date: string;
-  imageUri: string | null;
+  imageUri: string | null; // Kept for backward compat with single-photo diagnoses
+  imageUris?: string[]; // Multiple photos (up to 3)
   result: DiagnosisResult;
   context: PlantDiagnosisContext;
   chat: DiagnosisChatMessage[];

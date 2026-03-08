@@ -12,6 +12,7 @@ import {
   ImageStyle,
   Dimensions,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { PlantDBEntry } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 
@@ -24,13 +25,14 @@ interface PlantDetailModalProps {
   onAdd: (plant: PlantDBEntry) => void;
 }
 
-const HUMIDITY_LABELS = {
-  baja: 'Baja',
-  media: 'Media',
-  alta: 'Alta',
+const HUMIDITY_KEYS: Record<string, string> = {
+  baja: 'identification.humidityLow',
+  media: 'identification.humidityMedium',
+  alta: 'identification.humidityHigh',
 };
 
 export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetailModalProps) {
+  const { t } = useTranslation();
   if (!plant) return null;
 
   return (
@@ -84,49 +86,49 @@ export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetail
             <View style={styles.infoGrid}>
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>💧</Text>
-                <Text style={styles.infoLabel}>Riego</Text>
-                <Text style={styles.infoValue}>Cada {plant.waterDays} dias</Text>
+                <Text style={styles.infoLabel}>{t('plantDetailModal.watering')}</Text>
+                <Text style={styles.infoValue}>{t('plantDetailModal.everyDays', { days: plant.waterDays })}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>☀️</Text>
-                <Text style={styles.infoLabel}>Sol</Text>
-                <Text style={styles.infoValue}>{plant.sunHours}h por dia</Text>
+                <Text style={styles.infoLabel}>{t('plantDetailModal.sun')}</Text>
+                <Text style={styles.infoValue}>{t('plantDetailModal.hoursPerDay', { hours: plant.sunHours })}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>🌡️</Text>
-                <Text style={styles.infoLabel}>Temperatura</Text>
+                <Text style={styles.infoLabel}>{t('plantDetailModal.temperature')}</Text>
                 <Text style={styles.infoValue}>{plant.tempMin}° - {plant.tempMax}°</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>💨</Text>
-                <Text style={styles.infoLabel}>Humedad</Text>
-                <Text style={styles.infoValue}>{HUMIDITY_LABELS[plant.humidity]}</Text>
+                <Text style={styles.infoLabel}>{t('plantDetailModal.humidity')}</Text>
+                <Text style={styles.infoValue}>{t(HUMIDITY_KEYS[plant.humidity])}</Text>
               </View>
             </View>
 
             <View style={styles.tipSection}>
-              <Text style={styles.tipLabel}>CONSEJO</Text>
+              <Text style={styles.tipLabel}>{t('plantDetailModal.tip')}</Text>
               <Text style={styles.tip}>{plant.tip}</Text>
             </View>
 
             {plant.nutrients && (
               <View style={styles.nutrientsSection}>
-                <Text style={styles.nutrientsTitle}>NUTRIENTES</Text>
+                <Text style={styles.nutrientsTitle}>{t('plantDetail.nutrients')}</Text>
                 <View style={styles.nutrientsCard}>
                   <Text style={styles.nutrientsType}>🧪 {plant.nutrients.type}</Text>
-                  <Text style={styles.nutrientsHomemade}>🏡 Receta casera: {plant.nutrients.homemade}</Text>
+                  <Text style={styles.nutrientsHomemade}>🏡 {t('plantDetail.homemadeRecipe')}: {plant.nutrients.homemade}</Text>
                 </View>
               </View>
             )}
 
             {plant.problems.length > 0 && (
               <View style={styles.problemsSection}>
-                <Text style={styles.problemsTitle}>PROBLEMAS COMUNES</Text>
+                <Text style={styles.problemsTitle}>{t('plantDetailModal.commonProblems')}</Text>
                 {plant.problems.map((problem, index) => (
                   <View key={index} style={styles.problemCard}>
                     <Text style={styles.symptom}>{problem.symptom}</Text>
-                    <Text style={styles.cause}>Causa: {problem.cause}</Text>
-                    <Text style={styles.solution}>Solucion: {problem.solution}</Text>
+                    <Text style={styles.cause}>{t('plantDetailModal.cause')}: {problem.cause}</Text>
+                    <Text style={styles.solution}>{t('plantDetailModal.solution')}: {problem.solution}</Text>
                   </View>
                 ))}
               </View>
@@ -134,10 +136,10 @@ export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetail
 
             <View style={styles.actions}>
               <TouchableOpacity style={styles.addButton} onPress={() => onAdd(plant)}>
-                <Text style={styles.addButtonText}>Agregar a mis plantas</Text>
+                <Text style={styles.addButtonText}>{t('plantDetailModal.addToMyPlants')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                <Text style={styles.closeButtonText}>Cerrar</Text>
+                <Text style={styles.closeButtonText}>{t('plantDetailModal.close')}</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -188,7 +190,7 @@ interface Styles {
 const styles = StyleSheet.create<Styles>({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: colors.overlay,
     justifyContent: 'flex-end',
   },
   container: {

@@ -1,0 +1,7 @@
+{
+  "CFBundleDisplayName": "MyGarden",
+  "NSCameraUsageDescription": "Allow access to the camera to take photos of your plants",
+  "NSPhotoLibraryUsageDescription": "Allow access to your photos to identify plants",
+  "NSLocationWhenInUseUsageDescription": "Allow access to your location to get local weather data",
+  "NSUserNotificationsUsageDescription": "Send watering and care reminders for your plants"
+}

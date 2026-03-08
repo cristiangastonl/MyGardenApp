@@ -1,9 +1,10 @@
 import * as Notifications from "expo-notifications";
-import { Plant, WeatherData, NotificationSettings } from "../types";
+import { Plant, WeatherData, NotificationSettings, PlantHealthStatus } from "../types";
 import { getTasksForDay } from "./plantLogic";
 import { PlantAlert } from "./plantAlerts";
 import { formatDate } from "./dates";
 import { getPlantFullInfo, getPlantsAtTempRisk, PlantFullInfo } from "./plantInfo";
+import i18n from "../i18n";
 
 // Constants for smart scheduling
 const SUNRISE_OFFSET_MINUTES = 30; // Notify 30 min after sunrise
@@ -43,20 +44,46 @@ function parseTime(time: string): { hours: number; minutes: number } {
  */
 function createMorningContent(
   plants: Plant[],
-  weather: WeatherData | null
+  weather: WeatherData | null,
+  healthStatuses?: PlantHealthStatus[]
 ): { title: string; body: string } {
   const today = new Date();
   const tasks = getTasksForDay(plants, today);
+
+  // Check health statuses for danger/warning plants
+  const dangerPlants = healthStatuses?.filter((h) => h.score < 40) || [];
+  const warningPlants = healthStatuses?.filter((h) => h.score >= 40 && h.score < 60) || [];
+
+  let title: string;
+  let body = "";
+
+  if (dangerPlants.length > 0) {
+    title = i18n.t('notifications.morningDanger');
+    const status = dangerPlants[0];
+    const plant = plants.find((p) => p.id === status.plantId);
+    const topIssue = status.issues[0]?.message || '';
+    if (plant) {
+      body = i18n.t('notifications.dangerBody', { name: plant.name, issue: topIssue }) + ' ';
+    }
+  } else if (warningPlants.length > 0) {
+    title = i18n.t('notifications.morningWarning');
+    const status = warningPlants[0];
+    const plant = plants.find((p) => p.id === status.plantId);
+    const topIssue = status.issues[0]?.message || '';
+    if (plant) {
+      body = i18n.t('notifications.warningBody', { name: plant.name, issue: topIssue }) + ' ';
+    }
+  } else {
+    title = i18n.t('notifications.morningTitle');
+  }
 
   const waterTasks = tasks.filter((t) => t.type === "water");
   const sunTasks = tasks.filter((t) => t.type === "sun");
   const outdoorTasks = tasks.filter((t) => t.type === "outdoor");
 
-  let body = "";
-
-  if (tasks.length === 0) {
-    body = "Tus plantas estan bien por hoy. Disfrutá el dia!";
-  } else {
+  if (tasks.length === 0 && !body) {
+    body = i18n.t('notifications.allGood');
+  } else if (tasks.length > 0) {
     const parts: string[] = [];
 
     if (waterTasks.length > 0) {
@@ -67,9 +94,9 @@ function createMorningContent(
         })
         .filter(Boolean);
       if (plantNames.length <= 2) {
-        parts.push(`regar ${plantNames.join(" y ")}`);
+        parts.push(`${i18n.t('notifications.water')} ${plantNames.join(` ${i18n.t('notifications.and')} `)}`);
       } else {
-        parts.push(`regar ${plantNames.length} plantas`);
+        parts.push(`${i18n.t('notifications.water')} ${plantNames.length} ${i18n.t('notifications.plantsWord')}`);
       }
     }
 
@@ -81,33 +108,28 @@ function createMorningContent(
         })
         .filter(Boolean);
       if (plantNames.length <= 2) {
-        parts.push(`sol para ${plantNames.join(" y ")}`);
+        parts.push(`${i18n.t('notifications.sun')} ${plantNames.join(` ${i18n.t('notifications.and')} `)}`);
       } else {
-        parts.push(`sol para ${plantNames.length} plantas`);
+        parts.push(`${i18n.t('notifications.sun')} ${plantNames.length} ${i18n.t('notifications.plantsWord')}`);
       }
     }
 
     if (outdoorTasks.length > 0) {
       parts.push(
-        outdoorTasks.length === 1
-          ? `sacar 1 planta`
-          : `sacar ${outdoorTasks.length} plantas`
+        `${i18n.t('notifications.outdoor')} ${outdoorTasks.length} ${outdoorTasks.length === 1 ? i18n.t('notifications.plantWord') : i18n.t('notifications.plantsWord')}`
       );
     }
 
-    body = `Hoy: ${parts.join(", ")}.`;
+    body += i18n.t('notifications.todayTasks', { tasks: parts.join(", ") });
   }
 
   // Add weather info if available
   if (weather && weather.current) {
     const temp = Math.round(weather.current.temperature);
-    body += ` Ahora hace ${temp}°C.`;
+    body += ` ${i18n.t('notifications.currentTemp', { temp })}`;
   }
 
-  return {
-    title: "Buenos dias!",
-    body,
-  };
+  return { title, body };
 }
 
 /**
@@ -116,7 +138,8 @@ function createMorningContent(
 export async function scheduleMorningReminder(
   time: string,
   plants: Plant[],
-  weather: WeatherData | null
+  weather: WeatherData | null,
+  healthStatuses?: PlantHealthStatus[]
 ): Promise<string | null> {
   if (!notificationsAvailable) return null;
 
@@ -125,7 +148,7 @@ export async function scheduleMorningReminder(
     await cancelMorningReminder();
 
     const { hours, minutes } = parseTime(time);
-    const { title, body } = createMorningContent(plants, weather);
+    const { title, body } = createMorningContent(plants, weather, healthStatuses);
 
     const identifier = await Notifications.scheduleNotificationAsync({
       content: {
@@ -236,8 +259,8 @@ export async function scheduleCareReminder(
 
     const identifier = await Notifications.scheduleNotificationAsync({
       content: {
-        title: `${plant.icon} Recordatorio de riego`,
-        body: `No te olvides de regar tu ${plant.name} (lleva ${lastWateredDaysAgo} dias).`,
+        title: `${plant.icon} ${i18n.t('notifications.careTitle')}`,
+        body: i18n.t('notifications.careBody', { name: plant.name, days: lastWateredDaysAgo }),
         sound: true,
         priority: Notifications.AndroidNotificationPriority.DEFAULT,
         data: {
@@ -361,8 +384,8 @@ export async function sendTestNotification(): Promise<void> {
   try {
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "Mi Jardin",
-        body: "Las notificaciones estan funcionando correctamente!",
+        title: i18n.t('notifications.testTitle'),
+        body: i18n.t('notifications.testBody'),
         sound: true,
       },
       trigger: null, // Immediate

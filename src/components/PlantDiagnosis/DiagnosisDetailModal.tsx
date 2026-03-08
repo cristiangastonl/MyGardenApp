@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -7,39 +7,134 @@ import {
   ScrollView,
   StyleSheet,
   SafeAreaView,
+  Animated,
+  PanResponder,
+  Dimensions,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { SavedDiagnosis, DiagnosisSeverity } from '../../types';
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const COLLAPSED_HEIGHT = SCREEN_HEIGHT * 0.5;
+const EXPANDED_HEIGHT = SCREEN_HEIGHT * 0.95;
+const DISMISS_THRESHOLD = SCREEN_HEIGHT * 0.35;
 
 interface DiagnosisDetailModalProps {
   visible: boolean;
   diagnosis: SavedDiagnosis | null;
   onClose: () => void;
   onResolve?: (plantId: string, diagnosisId: string) => void;
+  onContinueChat?: (diagnosis: SavedDiagnosis) => void;
+  onAddToShoppingList?: (treatment: string) => void;
+  canAddToShoppingList?: boolean;
+  isPremium?: boolean;
 }
 
-const STATUS_CONFIG: Record<DiagnosisSeverity, { icon: string; label: string; color: string; bg: string }> = {
-  healthy: { icon: '✅', label: 'Saludable', color: colors.green, bg: colors.successBg },
-  minor: { icon: '💛', label: 'Leve', color: colors.warningText, bg: colors.warningBg },
-  moderate: { icon: '🟠', label: 'Moderado', color: '#c47a20', bg: '#fef3e0' },
-  severe: { icon: '🔴', label: 'Grave', color: colors.dangerText, bg: colors.dangerBg },
+const STATUS_STYLE: Record<DiagnosisSeverity, { icon: string; color: string; bg: string }> = {
+  healthy: { icon: '✅', color: colors.green, bg: colors.successBg },
+  minor: { icon: '💛', color: colors.warningText, bg: colors.warningBg },
+  moderate: { icon: '🟠', color: '#c47a20', bg: '#fef3e0' },
+  severe: { icon: '🔴', color: colors.dangerText, bg: colors.dangerBg },
 };
 
-function formatDate(dateStr: string): string {
+function formatDate(dateStr: string, monthNames: string[]): string {
   const date = new Date(dateStr);
   const day = date.getDate();
-  const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const month = months[date.getMonth()];
+  const month = monthNames[date.getMonth()];
   const hours = date.getHours().toString().padStart(2, '0');
   const minutes = date.getMinutes().toString().padStart(2, '0');
-  return `${day} de ${month}, ${hours}:${minutes}`;
+  return `${day} ${month}, ${hours}:${minutes}`;
 }
 
-export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }: DiagnosisDetailModalProps) {
+export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, onContinueChat, onAddToShoppingList, canAddToShoppingList = false, isPremium = false }: DiagnosisDetailModalProps) {
+  const { t } = useTranslation();
+  const modalHeight = useRef(new Animated.Value(COLLAPSED_HEIGHT)).current;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const currentHeight = useRef(COLLAPSED_HEIGHT);
+
+  // Reset to collapsed when modal opens
+  useEffect(() => {
+    if (visible) {
+      modalHeight.setValue(COLLAPSED_HEIGHT);
+      currentHeight.current = COLLAPSED_HEIGHT;
+      setIsExpanded(false);
+    }
+  }, [visible, modalHeight]);
+
+  const snapTo = (target: number) => {
+    currentHeight.current = target;
+    setIsExpanded(target === EXPANDED_HEIGHT);
+    Animated.spring(modalHeight, {
+      toValue: target,
+      useNativeDriver: false,
+      damping: 20,
+      stiffness: 200,
+    }).start();
+  };
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dy) > 5,
+      onPanResponderMove: (_, gestureState) => {
+        // Dragging up = negative dy = increase height
+        const newHeight = currentHeight.current - gestureState.dy;
+        const clamped = Math.min(Math.max(newHeight, DISMISS_THRESHOLD * 0.8), EXPANDED_HEIGHT);
+        modalHeight.setValue(clamped);
+      },
+      onPanResponderRelease: (_, gestureState) => {
+        const newHeight = currentHeight.current - gestureState.dy;
+        const velocity = gestureState.vy;
+
+        // Fast flick down → dismiss
+        if (velocity > 1.5 && newHeight < COLLAPSED_HEIGHT) {
+          onClose();
+          return;
+        }
+
+        // Fast flick up → expand
+        if (velocity < -1.0) {
+          snapTo(EXPANDED_HEIGHT);
+          return;
+        }
+
+        // Below dismiss threshold → dismiss
+        if (newHeight < DISMISS_THRESHOLD) {
+          onClose();
+          return;
+        }
+
+        // Snap to nearest
+        const midpoint = (COLLAPSED_HEIGHT + EXPANDED_HEIGHT) / 2;
+        if (newHeight < midpoint) {
+          snapTo(COLLAPSED_HEIGHT);
+        } else {
+          snapTo(EXPANDED_HEIGHT);
+        }
+      },
+    })
+  ).current;
+
   if (!diagnosis) return null;
 
+  const monthNames = [
+    t('diagnosis.monthJan'), t('diagnosis.monthFeb'), t('diagnosis.monthMar'),
+    t('diagnosis.monthApr'), t('diagnosis.monthMay'), t('diagnosis.monthJun'),
+    t('diagnosis.monthJul'), t('diagnosis.monthAug'), t('diagnosis.monthSep'),
+    t('diagnosis.monthOct'), t('diagnosis.monthNov'), t('diagnosis.monthDec'),
+  ];
+
+  const STATUS_LABELS: Record<DiagnosisSeverity, string> = {
+    healthy: t('diagnosis.statusHealthy'),
+    minor: t('diagnosis.statusMinor'),
+    moderate: t('diagnosis.statusModerate'),
+    severe: t('diagnosis.statusSevere'),
+  };
+
   const result = diagnosis.result;
-  const statusConfig = STATUS_CONFIG[result.overallStatus];
+  const statusStyle = STATUS_STYLE[result.overallStatus];
+  const statusLabel = STATUS_LABELS[result.overallStatus];
 
   return (
     <Modal
@@ -50,22 +145,24 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
     >
       <View style={styles.overlay}>
         <SafeAreaView style={styles.safeArea}>
-          <View style={styles.container}>
-            <View style={styles.header}>
+          <Animated.View style={[styles.container, { height: modalHeight }]}>
+            {/* Draggable handle area */}
+            <View {...panResponder.panHandlers} style={styles.header}>
               <View style={styles.handle} />
+              <Text style={styles.dragIndicator}>{isExpanded ? '▼' : '▲'}</Text>
               <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                 <Text style={styles.closeButtonText}>✕</Text>
               </TouchableOpacity>
-              <Text style={styles.title}>Diagnóstico</Text>
-              <Text style={styles.dateText}>{formatDate(diagnosis.date)}</Text>
+              <Text style={styles.title}>{t('diagnosis.detailTitle')}</Text>
+              <Text style={styles.dateText}>{formatDate(diagnosis.date, monthNames)}</Text>
             </View>
 
             <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
               {/* Status badge */}
-              <View style={[styles.statusBadge, { backgroundColor: statusConfig.bg }]}>
-                <Text style={styles.statusIcon}>{statusConfig.icon}</Text>
-                <Text style={[styles.statusLabel, { color: statusConfig.color }]}>
-                  {statusConfig.label}
+              <View style={[styles.statusBadge, { backgroundColor: statusStyle.bg }]}>
+                <Text style={styles.statusIcon}>{statusStyle.icon}</Text>
+                <Text style={[styles.statusLabel, { color: statusStyle.color }]}>
+                  {statusLabel}
                 </Text>
               </View>
 
@@ -75,9 +172,9 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
               {/* Issues */}
               {result.issues.length > 0 && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>PROBLEMAS DETECTADOS</Text>
+                  <Text style={styles.sectionTitle}>{t('diagnosis.problemsDetected')}</Text>
                   {result.issues.map((issue, index) => {
-                    const issueConfig = STATUS_CONFIG[issue.severity];
+                    const issueConfig = STATUS_STYLE[issue.severity];
                     return (
                       <View key={index} style={styles.issueCard}>
                         <View style={styles.issueHeader}>
@@ -90,8 +187,16 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
                         </View>
                         <Text style={styles.issueDescription}>{issue.description}</Text>
                         <View style={styles.treatmentContainer}>
-                          <Text style={styles.treatmentLabel}>TRATAMIENTO</Text>
+                          <Text style={styles.treatmentLabel}>{t('diagnosis.treatment')}</Text>
                           <Text style={styles.treatmentText}>{issue.treatment}</Text>
+                          {canAddToShoppingList && onAddToShoppingList && (
+                            <TouchableOpacity
+                              style={styles.shoppingButton}
+                              onPress={() => onAddToShoppingList(issue.treatment)}
+                            >
+                              <Text style={styles.shoppingButtonText}>{t('diagnosis.addToShoppingList')}</Text>
+                            </TouchableOpacity>
+                          )}
                         </View>
                       </View>
                     );
@@ -102,7 +207,7 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
               {/* Care tips */}
               {result.careTips.length > 0 && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>CONSEJOS</Text>
+                  <Text style={styles.sectionTitle}>{t('diagnosis.tips')}</Text>
                   <View style={styles.tipsContainer}>
                     {result.careTips.map((tip, index) => (
                       <View key={index} style={styles.tipRow}>
@@ -117,7 +222,7 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
               {/* Chat history */}
               {diagnosis.chat.length > 0 && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>CONSULTAS DE SEGUIMIENTO</Text>
+                  <Text style={styles.sectionTitle}>{t('diagnosis.followUpQueries')}</Text>
                   {diagnosis.chat.map((msg) => (
                     <View
                       key={msg.id}
@@ -139,12 +244,22 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
                 </View>
               )}
 
+              {/* Continue chat button (premium) */}
+              {isPremium && !diagnosis.resolved && onContinueChat && (
+                <TouchableOpacity
+                  style={styles.continueChatAction}
+                  onPress={() => onContinueChat(diagnosis)}
+                >
+                  <Text style={styles.continueChatActionText}>{t('diagnosis.continueChat')}</Text>
+                </TouchableOpacity>
+              )}
+
               {/* Resolve button / badge */}
               {diagnosis.resolved ? (
                 <View style={styles.resolvedBadge}>
                   <Text style={styles.resolvedBadgeIcon}>✅</Text>
                   <Text style={styles.resolvedBadgeText}>
-                    Resuelto el {diagnosis.resolvedDate ? formatDate(diagnosis.resolvedDate) : ''}
+                    {t('diagnosis.resolvedOn', { date: diagnosis.resolvedDate ? formatDate(diagnosis.resolvedDate, monthNames) : '' })}
                   </Text>
                 </View>
               ) : result.overallStatus !== 'healthy' && onResolve ? (
@@ -152,16 +267,16 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve }:
                   style={styles.resolveAction}
                   onPress={() => onResolve(diagnosis.plantId, diagnosis.id)}
                 >
-                  <Text style={styles.resolveActionText}>🩺 Marcar como resuelto</Text>
+                  <Text style={styles.resolveActionText}>{t('diagnosis.markAsResolved')}</Text>
                 </TouchableOpacity>
               ) : null}
 
               {/* Close button */}
               <TouchableOpacity style={styles.closeAction} onPress={onClose}>
-                <Text style={styles.closeActionText}>Cerrar</Text>
+                <Text style={styles.closeActionText}>{t('diagnosis.close')}</Text>
               </TouchableOpacity>
             </ScrollView>
-          </View>
+          </Animated.View>
         </SafeAreaView>
       </View>
     </Modal>
@@ -181,13 +296,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgPrimary,
     borderTopLeftRadius: borderRadius.xxl,
     borderTopRightRadius: borderRadius.xxl,
-    maxHeight: '95%',
-    minHeight: '50%',
     ...shadows.lg,
+    overflow: 'hidden',
   },
   header: {
     alignItems: 'center',
-    paddingTop: spacing.md,
+    paddingTop: spacing.sm,
     paddingBottom: spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
@@ -197,14 +311,19 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: colors.border,
     borderRadius: 2,
-    marginBottom: spacing.md,
+    marginBottom: spacing.xs,
+  },
+  dragIndicator: {
+    fontSize: 10,
+    color: colors.textMuted,
+    marginBottom: spacing.sm,
   },
   closeButton: {
     position: 'absolute',
     right: spacing.lg,
     top: spacing.lg,
-    width: 32,
-    height: 32,
+    width: 44,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -319,6 +438,19 @@ const styles = StyleSheet.create({
     color: colors.infoText,
     lineHeight: 19,
   },
+  shoppingButton: {
+    marginTop: spacing.sm,
+    alignSelf: 'flex-start',
+    backgroundColor: colors.card,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+  },
+  shoppingButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.green,
+  },
   // Tips
   tipsContainer: {
     backgroundColor: colors.card,
@@ -368,6 +500,22 @@ const styles = StyleSheet.create({
   },
   chatBubbleTextAssistant: {
     color: colors.textPrimary,
+  },
+  // Continue chat
+  continueChatAction: {
+    backgroundColor: colors.green,
+    paddingVertical: spacing.md,
+    borderRadius: borderRadius.lg,
+    alignItems: 'center',
+    marginBottom: spacing.md,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.sm,
+  },
+  continueChatActionText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.white,
   },
   // Resolve action
   resolveAction: {

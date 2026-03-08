@@ -1,14 +1,20 @@
 import { DiagnosisResult, DiagnosisChatMessage, PlantDiagnosisContext } from '../types';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import i18n from '../i18n';
 
 /**
- * Diagnostica la salud de una planta usando Claude Vision via Edge Function
+ * Diagnostica la salud de una planta usando Gemini Vision via Edge Function
+ * Soporta múltiples imágenes (hasta 3) para mejor diagnóstico
  */
 export async function diagnosePlant(
-  imageBase64: string,
+  imagesBase64: string[] | string,
   plantContext: PlantDiagnosisContext,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  lang?: string
 ): Promise<DiagnosisResult> {
+  // Normalize to array for backward compat
+  const images = Array.isArray(imagesBase64) ? imagesBase64 : [imagesBase64];
+
   // Si Supabase no está configurado, usar mock para desarrollo
   if (!isSupabaseConfigured()) {
     console.log('[Diagnosis] Supabase no configurado, usando modo mock');
@@ -17,10 +23,11 @@ export async function diagnosePlant(
   }
 
   try {
-    console.log('[Diagnosis] Calling edge function, image size:', Math.round(imageBase64.length / 1024), 'KB');
+    const totalKB = images.reduce((sum, img) => sum + Math.round(img.length / 1024), 0);
+    console.log(`[Diagnosis] Calling edge function, ${images.length} image(s), total size: ${totalKB} KB`);
 
     const { data, error } = await supabase.functions.invoke<DiagnosisResult>('diagnose-plant', {
-      body: { imageBase64, plantContext },
+      body: { imagesBase64: images, plantContext, lang: lang || 'en' },
       headers: {
         Authorization: `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY}`,
       },
@@ -32,7 +39,7 @@ export async function diagnosePlant(
 
     if (error) {
       console.error('[Diagnosis] Edge function error:', error);
-      let reason = 'Error al conectar con el servicio de diagnóstico';
+      let reason = i18n.t('diagnosis.serviceConnectionError');
       try {
         if (error.context && typeof error.context.json === 'function') {
           const errorBody = await error.context.json();
@@ -47,7 +54,7 @@ export async function diagnosePlant(
     }
 
     if (!data) {
-      throw new Error('No se recibió respuesta del diagnóstico');
+      throw new Error(i18n.t('diagnosis.noResponseReceived'));
     }
 
     console.log('[Diagnosis] Result:', data.overallStatus, 'issues:', data.issues?.length);
@@ -58,7 +65,7 @@ export async function diagnosePlant(
       throw error;
     }
     console.error('[Diagnosis] Error:', error);
-    throw new Error(error.message || 'Error al diagnosticar la planta');
+    throw new Error(error.message || i18n.t('diagnosis.diagnosisError'));
   }
 }
 
@@ -143,7 +150,9 @@ export async function chatDiagnosis(
   plantContext: PlantDiagnosisContext,
   chatHistory: DiagnosisChatMessage[],
   userMessage: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  imageBase64?: string,
+  lang?: string,
 ): Promise<ChatDiagnosisResponse> {
   if (!isSupabaseConfigured()) {
     console.log('[ChatDiagnosis] Supabase no configurado, usando modo mock');
@@ -152,7 +161,7 @@ export async function chatDiagnosis(
   }
 
   try {
-    console.log('[ChatDiagnosis] Calling edge function, message:', userMessage.substring(0, 50));
+    console.log('[ChatDiagnosis] Calling edge function, message:', userMessage.substring(0, 50), imageBase64 ? '(with photo)' : '');
 
     const { data, error } = await supabase.functions.invoke<ChatDiagnosisResponse>('chat-diagnosis', {
       body: {
@@ -160,6 +169,8 @@ export async function chatDiagnosis(
         plantContext,
         chatHistory: chatHistory.map(m => ({ role: m.role, text: m.text })),
         userMessage,
+        lang: lang || 'en',
+        ...(imageBase64 ? { imageBase64 } : {}),
       },
       headers: {
         Authorization: `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY}`,
@@ -172,7 +183,7 @@ export async function chatDiagnosis(
 
     if (error) {
       console.error('[ChatDiagnosis] Edge function error:', error);
-      let reason = 'Error al conectar con el servicio';
+      let reason = i18n.t('diagnosis.chatServiceError');
       try {
         if (error.context && typeof error.context.json === 'function') {
           const errorBody = await error.context.json();
@@ -187,7 +198,7 @@ export async function chatDiagnosis(
     }
 
     if (!data) {
-      throw new Error('No se recibió respuesta');
+      throw new Error(i18n.t('diagnosis.noChatResponse'));
     }
 
     console.log('[ChatDiagnosis] Reply received, updatedTips:', data.updatedTips?.length || 0);
@@ -195,7 +206,7 @@ export async function chatDiagnosis(
   } catch (error: any) {
     if (error.name === 'AbortError') throw error;
     console.error('[ChatDiagnosis] Error:', error);
-    throw new Error(error.message || 'Error al enviar consulta');
+    throw new Error(error.message || i18n.t('diagnosis.chatError'));
   }
 }
 

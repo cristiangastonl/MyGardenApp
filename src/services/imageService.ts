@@ -1,5 +1,5 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
-import { readAsStringAsync } from 'expo-file-system';
+import { File } from 'expo-file-system';
 import { decode } from 'base64-arraybuffer';
 
 const BUCKET_NAME = 'plant-images';
@@ -24,10 +24,8 @@ export async function uploadPlantImage(
 
     // Si es una URI de archivo, leer como base64
     if (imageUri.startsWith('file://') || imageUri.startsWith('content://')) {
-      const base64 = await readAsStringAsync(imageUri, {
-        encoding: 'base64',
-      });
-      base64Data = base64;
+      const file = new File(imageUri);
+      base64Data = await file.base64();
     } else if (imageUri.startsWith('data:image')) {
       // Si ya es data URL, extraer el base64
       base64Data = imageUri.split(',')[1];

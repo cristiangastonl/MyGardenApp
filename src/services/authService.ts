@@ -11,7 +11,7 @@ WebBrowser.maybeCompleteAuthSession();
 const redirectUri = Linking.createURL('auth/callback');
 
 // Log redirect URI for debugging
-console.log('[Auth] Redirect URI:', redirectUri);
+if (__DEV__) console.log('[Auth] Redirect URI:', redirectUri);
 
 export interface AuthResult {
   success: boolean;

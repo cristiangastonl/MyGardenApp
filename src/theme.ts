@@ -1,4 +1,4 @@
-// Design System - Mi Jardín
+// Design System - MyGarden
 export const colors = {
   // Backgrounds
   bgPrimary: '#f5f0e6',

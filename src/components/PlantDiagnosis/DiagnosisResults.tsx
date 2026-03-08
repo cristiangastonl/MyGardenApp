@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,12 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
+  Image,
   StyleSheet,
+  Platform,
+  Keyboard,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { DiagnosisResult, DiagnosisSeverity, DiagnosisChatMessage } from '../../types';
 
@@ -15,50 +19,124 @@ interface DiagnosisResultsProps {
   result: DiagnosisResult;
   onRetake: () => void;
   onClose: () => void;
+  isResumedChat?: boolean;
   // Chat props
   chatMessages?: DiagnosisChatMessage[];
   chatLoading?: boolean;
   chatError?: string | null;
   canSendChat?: boolean;
-  onSendChat?: (message: string) => void;
+  onSendChat?: (message: string, imageBase64?: string, imageUri?: string) => void;
+  onPickChatPhoto?: () => Promise<{ base64: string; uri: string } | null>;
   isPremium?: boolean;
+  // Shopping list
+  onAddToShoppingList?: (treatment: string) => void;
+  canAddToShoppingList?: boolean;
 }
 
-const STATUS_CONFIG: Record<DiagnosisSeverity, { icon: string; label: string; color: string; bg: string }> = {
-  healthy: { icon: '✅', label: 'Saludable', color: colors.green, bg: colors.successBg },
-  minor: { icon: '💛', label: 'Leve', color: colors.warningText, bg: colors.warningBg },
-  moderate: { icon: '🟠', label: 'Moderado', color: '#c47a20', bg: '#fef3e0' },
-  severe: { icon: '🔴', label: 'Grave', color: colors.dangerText, bg: colors.dangerBg },
+const STATUS_STYLE: Record<DiagnosisSeverity, { icon: string; color: string; bg: string }> = {
+  healthy: { icon: '✅', color: colors.green, bg: colors.successBg },
+  minor: { icon: '💛', color: colors.warningText, bg: colors.warningBg },
+  moderate: { icon: '🟠', color: '#c47a20', bg: '#fef3e0' },
+  severe: { icon: '🔴', color: colors.dangerText, bg: colors.dangerBg },
 };
 
 export function DiagnosisResults({
   result,
   onRetake,
   onClose,
+  isResumedChat = false,
   chatMessages = [],
   chatLoading = false,
   chatError = null,
   canSendChat = false,
   onSendChat,
+  onPickChatPhoto,
   isPremium = false,
+  onAddToShoppingList,
+  canAddToShoppingList = false,
 }: DiagnosisResultsProps) {
-  const statusConfig = STATUS_CONFIG[result.overallStatus];
+  const { t } = useTranslation();
+
+  const STATUS_LABELS: Record<DiagnosisSeverity, string> = {
+    healthy: t('diagnosis.statusHealthy'),
+    minor: t('diagnosis.statusMinor'),
+    moderate: t('diagnosis.statusModerate'),
+    severe: t('diagnosis.statusSevere'),
+  };
+
+  const statusStyle = STATUS_STYLE[result.overallStatus];
+  const statusLabel = STATUS_LABELS[result.overallStatus];
   const [chatInput, setChatInput] = useState('');
+  const [pendingPhoto, setPendingPhoto] = useState<{ base64: string; uri: string } | null>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const scrollRef = useRef<ScrollView>(null);
 
   const handleSendChat = () => {
     const trimmed = chatInput.trim();
-    if (!trimmed || !onSendChat) return;
-    onSendChat(trimmed);
+    if ((!trimmed && !pendingPhoto) || !onSendChat) return;
+    onSendChat(trimmed || t('diagnosis.photoSent'), pendingPhoto?.base64, pendingPhoto?.uri);
     setChatInput('');
+    setPendingPhoto(null);
   };
 
+  const handlePickPhoto = async () => {
+    if (!onPickChatPhoto) return;
+    const photo = await onPickChatPhoto();
+    if (photo) {
+      setPendingPhoto(photo);
+      scrollToEnd();
+    }
+  };
+
+  const scrollToEnd = () => {
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 100);
+    // Second scroll after layout settles (fixes first-time keyboard open)
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 400);
+  };
+
+  // Listen to keyboard events to add bottom padding
+  useEffect(() => {
+    const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+
+    const showSub = Keyboard.addListener(showEvent, (e) => {
+      setKeyboardHeight(e.endCoordinates.height);
+      scrollToEnd();
+    });
+    const hideSub = Keyboard.addListener(hideEvent, () => {
+      setKeyboardHeight(0);
+    });
+
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
+
+  // Auto-scroll when new messages arrive or loading starts
+  useEffect(() => {
+    if (chatMessages.length > 0 || chatLoading) {
+      scrollToEnd();
+    }
+  }, [chatMessages.length, chatLoading]);
+
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      ref={scrollRef}
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ paddingBottom: keyboardHeight > 0 ? keyboardHeight : spacing.xxl }}
+    >
       {/* Status badge */}
-      <View style={[styles.statusBadge, { backgroundColor: statusConfig.bg }]}>
-        <Text style={styles.statusIcon}>{statusConfig.icon}</Text>
-        <Text style={[styles.statusLabel, { color: statusConfig.color }]}>
-          {statusConfig.label}
+      <View style={[styles.statusBadge, { backgroundColor: statusStyle.bg }]}>
+        <Text style={styles.statusIcon}>{statusStyle.icon}</Text>
+        <Text style={[styles.statusLabel, { color: statusStyle.color }]}>
+          {statusLabel}
         </Text>
       </View>
 
@@ -68,9 +146,9 @@ export function DiagnosisResults({
       {/* Issues */}
       {result.issues.length > 0 && (
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>PROBLEMAS DETECTADOS</Text>
+          <Text style={styles.sectionTitle}>{t('diagnosis.problemsDetected')}</Text>
           {result.issues.map((issue, index) => {
-            const issueConfig = STATUS_CONFIG[issue.severity];
+            const issueConfig = STATUS_STYLE[issue.severity];
             return (
               <View key={index} style={styles.issueCard}>
                 <View style={styles.issueHeader}>
@@ -83,8 +161,16 @@ export function DiagnosisResults({
                 </View>
                 <Text style={styles.issueDescription}>{issue.description}</Text>
                 <View style={styles.treatmentContainer}>
-                  <Text style={styles.treatmentLabel}>TRATAMIENTO</Text>
+                  <Text style={styles.treatmentLabel}>{t('diagnosis.treatment')}</Text>
                   <Text style={styles.treatmentText}>{issue.treatment}</Text>
+                  {canAddToShoppingList && onAddToShoppingList && (
+                    <TouchableOpacity
+                      style={styles.shoppingButton}
+                      onPress={() => onAddToShoppingList(issue.treatment)}
+                    >
+                      <Text style={styles.shoppingButtonText}>{t('diagnosis.addToShoppingList')}</Text>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             );
@@ -95,7 +181,7 @@ export function DiagnosisResults({
       {/* Care tips */}
       {result.careTips.length > 0 && (
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>CONSEJOS</Text>
+          <Text style={styles.sectionTitle}>{t('diagnosis.tips')}</Text>
           <View style={styles.tipsContainer}>
             {result.careTips.map((tip, index) => (
               <View key={index} style={styles.tipRow}>
@@ -110,7 +196,7 @@ export function DiagnosisResults({
       {/* Chat section */}
       {onSendChat && (
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>CONSULTA DE SEGUIMIENTO</Text>
+          <Text style={styles.sectionTitle}>{t('diagnosis.followUpConsultation')}</Text>
 
           {/* Chat messages */}
           {chatMessages.map((msg) => (
@@ -121,6 +207,9 @@ export function DiagnosisResults({
                 msg.role === 'user' ? styles.chatBubbleUser : styles.chatBubbleAssistant,
               ]}
             >
+              {msg.imageUri && (
+                <Image source={{ uri: msg.imageUri }} style={styles.chatImage} />
+              )}
               <Text
                 style={[
                   styles.chatBubbleText,
@@ -136,7 +225,7 @@ export function DiagnosisResults({
           {chatLoading && (
             <View style={styles.chatLoadingContainer}>
               <ActivityIndicator size="small" color={colors.green} />
-              <Text style={styles.chatLoadingText}>Analizando tu consulta...</Text>
+              <Text style={styles.chatLoadingText}>{t('diagnosis.analyzingQuery')}</Text>
             </View>
           )}
 
@@ -147,28 +236,44 @@ export function DiagnosisResults({
 
           {/* Input or upsell */}
           {canSendChat && !chatLoading ? (
-            <View style={styles.chatInputContainer}>
-              <TextInput
-                style={styles.chatInput}
-                placeholder="Ej: eso es tierra, no plaga..."
-                placeholderTextColor={colors.textMuted}
-                value={chatInput}
-                onChangeText={setChatInput}
-                multiline
-                maxLength={500}
-              />
-              <TouchableOpacity
-                style={[styles.chatSendButton, !chatInput.trim() && styles.chatSendButtonDisabled]}
-                onPress={handleSendChat}
-                disabled={!chatInput.trim()}
-              >
-                <Text style={styles.chatSendButtonText}>Enviar</Text>
-              </TouchableOpacity>
+            <View>
+              {pendingPhoto && (
+                <View style={styles.pendingPhotoContainer}>
+                  <Image source={{ uri: pendingPhoto.uri }} style={styles.pendingPhotoPreview} />
+                  <TouchableOpacity style={styles.pendingPhotoRemove} onPress={() => setPendingPhoto(null)}>
+                    <Text style={styles.pendingPhotoRemoveText}>✕</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              <View style={styles.chatInputContainer}>
+                {onPickChatPhoto && isPremium && (
+                  <TouchableOpacity style={styles.chatPhotoButton} onPress={handlePickPhoto}>
+                    <Text style={styles.chatPhotoButtonText}>📷</Text>
+                  </TouchableOpacity>
+                )}
+                <TextInput
+                  style={styles.chatInput}
+                  placeholder={t('diagnosis.chatPlaceholder')}
+                  placeholderTextColor={colors.textMuted}
+                  value={chatInput}
+                  onChangeText={setChatInput}
+                  onFocus={scrollToEnd}
+                  multiline
+                  maxLength={500}
+                />
+                <TouchableOpacity
+                  style={[styles.chatSendButton, (!chatInput.trim() && !pendingPhoto) && styles.chatSendButtonDisabled]}
+                  onPress={handleSendChat}
+                  disabled={!chatInput.trim() && !pendingPhoto}
+                >
+                  <Text style={styles.chatSendButtonText}>{t('diagnosis.send')}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           ) : !canSendChat && !isPremium && chatMessages.length > 0 ? (
             <View style={styles.upsellContainer}>
               <Text style={styles.upsellText}>
-                Querés seguir consultando? Pasate a Premium
+                {t('diagnosis.upsellChat')}
               </Text>
             </View>
           ) : null}
@@ -177,11 +282,13 @@ export function DiagnosisResults({
 
       {/* Actions */}
       <View style={styles.actions}>
-        <TouchableOpacity style={styles.retakeButton} onPress={onRetake}>
-          <Text style={styles.retakeButtonText}>Tomar otra foto</Text>
-        </TouchableOpacity>
+        {!isResumedChat && (
+          <TouchableOpacity style={styles.retakeButton} onPress={onRetake}>
+            <Text style={styles.retakeButtonText}>{t('diagnosis.retakePhoto')}</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Text style={styles.closeButtonText}>Cerrar</Text>
+          <Text style={styles.closeButtonText}>{t('diagnosis.close')}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -282,6 +389,19 @@ const styles = StyleSheet.create({
     color: colors.infoText,
     lineHeight: 19,
   },
+  shoppingButton: {
+    marginTop: spacing.sm,
+    alignSelf: 'flex-start',
+    backgroundColor: colors.card,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+  },
+  shoppingButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.green,
+  },
   tipsContainer: {
     backgroundColor: colors.card,
     borderRadius: borderRadius.xl,
@@ -352,6 +472,49 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.dangerText,
     marginBottom: spacing.sm,
+  },
+  chatImage: {
+    width: 160,
+    height: 160,
+    borderRadius: borderRadius.md,
+    marginBottom: spacing.xs,
+  },
+  pendingPhotoContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: spacing.sm,
+  },
+  pendingPhotoPreview: {
+    width: 80,
+    height: 80,
+    borderRadius: borderRadius.md,
+  },
+  pendingPhotoRemove: {
+    backgroundColor: colors.dangerBg,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: -12,
+    marginTop: -4,
+  },
+  pendingPhotoRemoveText: {
+    fontSize: 12,
+    color: colors.dangerText,
+    fontFamily: fonts.bodySemiBold,
+  },
+  chatPhotoButton: {
+    width: 44,
+    height: 44,
+    borderRadius: borderRadius.lg,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...shadows.sm,
+  },
+  chatPhotoButtonText: {
+    fontSize: 20,
   },
   chatInputContainer: {
     flexDirection: 'row',

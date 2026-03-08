@@ -1,0 +1,7 @@
+{
+  "CFBundleDisplayName": "MyGarden",
+  "NSCameraUsageDescription": "Permitir acceso a la camara para tomar fotos de plantas",
+  "NSPhotoLibraryUsageDescription": "Permitir acceso a tus fotos para identificar plantas",
+  "NSLocationWhenInUseUsageDescription": "Permitir acceso a tu ubicacion para obtener el clima de tu zona",
+  "NSUserNotificationsUsageDescription": "Enviar recordatorios de riego y cuidado de tus plantas"
+}

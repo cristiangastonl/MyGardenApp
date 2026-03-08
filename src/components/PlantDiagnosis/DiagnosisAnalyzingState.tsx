@@ -7,13 +7,15 @@ import {
   Animated,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius } from '../../theme';
 
 interface DiagnosisAnalyzingStateProps {
-  imageUri: string | null;
+  imageUris?: string[];
 }
 
-export function DiagnosisAnalyzingState({ imageUri }: DiagnosisAnalyzingStateProps) {
+export function DiagnosisAnalyzingState({ imageUris = [] }: DiagnosisAnalyzingStateProps) {
+  const { t } = useTranslation();
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -35,42 +37,62 @@ export function DiagnosisAnalyzingState({ imageUri }: DiagnosisAnalyzingStatePro
     return () => animation.stop();
   }, [pulseAnim]);
 
+  const showMultiple = imageUris.length > 1;
+
   return (
     <View style={styles.container}>
-      {imageUri && (
+      {imageUris.length > 0 && (
         <View style={styles.imageContainer}>
-          <Animated.View
-            style={[
-              styles.imageWrapper,
-              { transform: [{ scale: pulseAnim }] },
-            ]}
-          >
-            <Image source={{ uri: imageUri }} style={styles.image} />
-            <View style={styles.imageOverlay} />
-          </Animated.View>
+          {showMultiple ? (
+            <Animated.View
+              style={[
+                styles.multiImageRow,
+                { transform: [{ scale: pulseAnim }] },
+              ]}
+            >
+              {imageUris.map((uri, index) => (
+                <View key={index} style={styles.multiImageWrapper}>
+                  <Image source={{ uri }} style={styles.multiImage} />
+                  <View style={styles.imageOverlay} />
+                </View>
+              ))}
+            </Animated.View>
+          ) : (
+            <Animated.View
+              style={[
+                styles.imageWrapper,
+                { transform: [{ scale: pulseAnim }] },
+              ]}
+            >
+              <Image source={{ uri: imageUris[0] }} style={styles.image} />
+              <View style={styles.imageOverlay} />
+            </Animated.View>
+          )}
         </View>
       )}
 
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.green} />
-        <Text style={styles.loadingTitle}>Diagnosticando...</Text>
+        <Text style={styles.loadingTitle}>{t('diagnosis.diagnosing')}</Text>
         <Text style={styles.loadingSubtitle}>
-          Analizando el estado de salud con inteligencia artificial
+          {imageUris.length > 1
+            ? t('diagnosis.analyzingPhotos', { count: imageUris.length })
+            : t('diagnosis.analyzingPhoto')}
         </Text>
       </View>
 
       <View style={styles.stepsContainer}>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>🔬</Text>
-          <Text style={styles.stepText}>Detectando problemas visibles</Text>
+          <Text style={styles.stepText}>{t('diagnosis.stepDetecting')}</Text>
         </View>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>🎨</Text>
-          <Text style={styles.stepText}>Analizando coloración y textura</Text>
+          <Text style={styles.stepText}>{t('diagnosis.stepAnalyzing')}</Text>
         </View>
         <View style={styles.step}>
           <Text style={styles.stepIcon}>💊</Text>
-          <Text style={styles.stepText}>Preparando diagnóstico y tratamiento</Text>
+          <Text style={styles.stepText}>{t('diagnosis.stepPreparing')}</Text>
         </View>
       </View>
     </View>
@@ -100,6 +122,20 @@ const styles = StyleSheet.create({
   imageOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(91, 154, 106, 0.2)',
+  },
+  multiImageRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  multiImageWrapper: {
+    width: 100,
+    height: 100,
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
+  },
+  multiImage: {
+    width: '100%',
+    height: '100%',
   },
   loadingContainer: {
     alignItems: 'center',

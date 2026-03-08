@@ -15,7 +15,7 @@ export function NoteItem({ note, onDelete }: NoteItemProps) {
       <Text style={styles.text} numberOfLines={2}>
         {note.text}
       </Text>
-      <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
+      <TouchableOpacity onPress={onDelete} style={styles.deleteButton} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
         <Text style={styles.deleteIcon}>×</Text>
       </TouchableOpacity>
     </View>
@@ -51,6 +51,10 @@ const styles = StyleSheet.create<Styles>({
   },
   deleteButton: {
     padding: spacing.xs,
+    minHeight: 44,
+    minWidth: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   deleteIcon: {
     fontSize: 20,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -32,6 +32,7 @@ export function GardenHealth({
   diagnosisHistory,
 }: GardenHealthProps) {
   const { t } = useTranslation();
+  const [showInfo, setShowInfo] = useState(false);
   const today = new Date();
   const {
     averageScore,
@@ -98,8 +99,37 @@ export function GardenHealth({
         />
       </View>
 
-      {/* Message */}
-      <Text style={styles.message}>{getGardenMessage()}</Text>
+      {/* Message + Info toggle */}
+      <View style={styles.messageRow}>
+        <Text style={[styles.message, { flex: 1 }]}>{getGardenMessage()}</Text>
+        <TouchableOpacity
+          onPress={() => setShowInfo(!showInfo)}
+          style={styles.infoButton}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <Text style={styles.infoButtonText}>{showInfo ? '✕' : 'ℹ️'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* How it's calculated */}
+      {showInfo && (
+        <View style={styles.infoSection}>
+          <Text style={styles.infoTitle}>{t('gardenHealth.howTitle')}</Text>
+          <Text style={styles.infoText}>{t('gardenHealth.howDescription')}</Text>
+          <View style={styles.infoItems}>
+            <Text style={styles.infoItem}>💧 {t('gardenHealth.howWater')}</Text>
+            <Text style={styles.infoItem}>☀️ {t('gardenHealth.howSun')}</Text>
+            <Text style={styles.infoItem}>🌡️ {t('gardenHealth.howWeather')}</Text>
+            <Text style={styles.infoItem}>🔬 {t('gardenHealth.howDiagnosis')}</Text>
+          </View>
+          <View style={styles.infoLevels}>
+            <Text style={[styles.infoLevel, { color: getHealthColor('excellent') }]}>🌿 80-100 {t('gardenHealth.levelExcellent')}</Text>
+            <Text style={[styles.infoLevel, { color: getHealthColor('good') }]}>🌱 60-79 {t('gardenHealth.levelGood')}</Text>
+            <Text style={[styles.infoLevel, { color: getHealthColor('warning') }]}>🍂 40-59 {t('gardenHealth.levelWarning')}</Text>
+            <Text style={[styles.infoLevel, { color: getHealthColor('danger') }]}>🥀 0-39 {t('gardenHealth.levelDanger')}</Text>
+          </View>
+        </View>
+      )}
 
       {/* Plants needing attention */}
       {plantsNeedingAttention.length > 0 && (
@@ -181,7 +211,17 @@ interface Styles {
   scoreCircle: ViewStyle;
   scoreNumber: TextStyle;
   progressSection: ViewStyle;
+  messageRow: ViewStyle;
   message: TextStyle;
+  infoButton: ViewStyle;
+  infoButtonText: TextStyle;
+  infoSection: ViewStyle;
+  infoTitle: TextStyle;
+  infoText: TextStyle;
+  infoItems: ViewStyle;
+  infoItem: TextStyle;
+  infoLevels: ViewStyle;
+  infoLevel: TextStyle;
   attentionSection: ViewStyle;
   attentionLabel: TextStyle;
   attentionPlants: ViewStyle;
@@ -247,12 +287,63 @@ const styles = StyleSheet.create<Styles>({
   progressSection: {
     marginTop: spacing.md,
   },
+  messageRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: spacing.md,
+  },
   message: {
     fontFamily: fonts.body,
     fontSize: 14,
     color: colors.textSecondary,
-    marginTop: spacing.md,
     lineHeight: 20,
+  },
+  infoButton: {
+    marginLeft: spacing.sm,
+    marginTop: 1,
+  },
+  infoButtonText: {
+    fontSize: 16,
+  },
+  infoSection: {
+    marginTop: spacing.md,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+  },
+  infoTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 13,
+    color: colors.textPrimary,
+    marginBottom: spacing.xs,
+  },
+  infoText: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textSecondary,
+    lineHeight: 18,
+    marginBottom: spacing.sm,
+  },
+  infoItems: {
+    gap: 4,
+    marginBottom: spacing.sm,
+  },
+  infoItem: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textSecondary,
+    lineHeight: 18,
+  },
+  infoLevels: {
+    borderTopWidth: 1,
+    borderTopColor: colors.borderSeparator,
+    paddingTop: spacing.sm,
+    gap: 2,
+  },
+  infoLevel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    lineHeight: 18,
   },
   attentionSection: {
     marginTop: spacing.md,

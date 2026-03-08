@@ -1164,6 +1164,10 @@ export function getTranslatedPlant(plant: PlantDBEntry): PlantDBEntry {
     tip: t(`${key}.tip`, { ns: 'plants', defaultValue: plant.tip }),
     description: t(`${key}.description`, { ns: 'plants', defaultValue: plant.description }),
     problems: (t(`${key}.problems`, { ns: 'plants', returnObjects: true, defaultValue: plant.problems }) as typeof plant.problems),
+    nutrients: plant.nutrients ? {
+      type: t(`${key}.nutrients.type`, { ns: 'plants', defaultValue: plant.nutrients.type }),
+      homemade: t(`${key}.nutrients.homemade`, { ns: 'plants', defaultValue: plant.nutrients.homemade }),
+    } : undefined,
   };
 }
 

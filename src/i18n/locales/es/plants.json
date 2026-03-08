@@ -19,7 +19,11 @@
         "cause": "Aire muy seco",
         "solution": "Pulveriza las hojas ocasionalmente."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Agua de arroz cada 15 días"
+    }
   },
   "monstera": {
     "name": "Monstera",
@@ -41,7 +45,11 @@
         "cause": "Baja humedad",
         "solution": "Agrúpala con otras plantas o usa humidificador."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno y potasio",
+      "homemade": "Té de banana cada 15 días"
+    }
   },
   "ficus": {
     "name": "Ficus",
@@ -63,7 +71,11 @@
         "cause": "Maceta pequeña o falta de nutrientes",
         "solution": "Trasplanta a una maceta más grande en primavera."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno equilibrado",
+      "homemade": "Compost de lombrices cada 2 meses"
+    }
   },
   "sansevieria": {
     "name": "Sansevieria",
@@ -85,7 +97,11 @@
         "cause": "Luz insuficiente o época fría",
         "solution": "Crecen lento, especialmente con poca luz. Ten paciencia."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo",
+      "homemade": "Agua de cáscara de huevo 1 vez al mes"
+    }
   },
   "orquidea": {
     "name": "Orquídea",
@@ -107,7 +123,11 @@
         "cause": "Deshidratación",
         "solution": "Riega más frecuentemente, verifica que las raíces estén sanas."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno, fósforo y potasio",
+      "homemade": "Agua de arroz y cáscara de banana mensual"
+    }
   },
   "calathea": {
     "name": "Calathea",
@@ -129,7 +149,11 @@
         "cause": "Luz inadecuada",
         "solution": "Muévela a luz indirecta filtrada."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz cada 10 días"
+    }
   },
   "cinta": {
     "name": "Cinta",
@@ -151,7 +175,11 @@
         "cause": "Planta joven o maceta muy grande",
         "solution": "Deja que madure y se quede algo ajustada en la maceta."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Agua de arroz quincenal"
+    }
   },
   "palmera-interior": {
     "name": "Palmera de interior",
@@ -173,7 +201,11 @@
         "cause": "Naturaleza de la planta",
         "solution": "Las palmeras crecen despacio, paciencia."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno y magnesio",
+      "homemade": "Agua de verduras hervidas cada 15 días"
+    }
   },
   "aloe-vera": {
     "name": "Aloe Vera",
@@ -195,7 +227,11 @@
         "cause": "Quemadura solar repentina",
         "solution": "Aclimata gradualmente al sol directo."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo, fósforo y potasio",
+      "homemade": "Agua de cáscara de huevo 1 vez al mes"
+    }
   },
   "lavanda": {
     "name": "Lavanda",
@@ -217,7 +253,11 @@
         "cause": "Exceso de humedad en raíces",
         "solution": "Planta en suelo muy drenado, evita riego excesivo."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, prefiere suelo pobre",
+      "homemade": "No necesita; compost liviano 1 vez al año"
+    }
   },
   "petunia": {
     "name": "Petunia",
@@ -239,7 +279,11 @@
         "cause": "Pulgones u otra plaga",
         "solution": "Trata con jabón potásico o agua con ajo."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en fósforo y potasio",
+      "homemade": "Té de banana semanal durante floración"
+    }
   },
   "hortensia": {
     "name": "Hortensia",
@@ -261,7 +305,11 @@
         "cause": "Clorosis férrica",
         "solution": "Acidifica el suelo con sulfato de hierro."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Hierro y potasio",
+      "homemade": "Clavos oxidados en el agua de riego + té de banana"
+    }
   },
   "jazmin": {
     "name": "Jazmín",
@@ -283,7 +331,11 @@
         "cause": "Falta de poda",
         "solution": "Poda después de la floración para controlar."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo y potasio",
+      "homemade": "Té de cáscara de banana cada 15 días"
+    }
   },
   "geranio": {
     "name": "Geranio",
@@ -305,7 +357,11 @@
         "cause": "Plaga de Cacyreus marshalli",
         "solution": "Retira partes afectadas, trata con Bacillus thuringiensis."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo y potasio",
+      "homemade": "Té de banana semanal en temporada de flores"
+    }
   },
   "albahaca": {
     "name": "Albahaca",
@@ -327,7 +383,11 @@
         "cause": "Falta de nutrientes",
         "solution": "Fertiliza cada 2 semanas con abono orgánico."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz semanal + compost"
+    }
   },
   "romero": {
     "name": "Romero",
@@ -349,7 +409,11 @@
         "cause": "Mala ventilación y exceso de humedad",
         "solution": "Mejora la ventilación, reduce riego."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, prefiere suelo pobre",
+      "homemade": "No necesita; un poco de compost anual"
+    }
   },
   "menta": {
     "name": "Menta",
@@ -371,7 +435,11 @@
         "cause": "Naturaleza expansiva",
         "solution": "Mantén siempre en maceta, corta estolones."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz cada 10 días"
+    }
   },
   "tomatera": {
     "name": "Tomatera",
@@ -393,7 +461,11 @@
         "cause": "Hongos por humedad en follaje",
         "solution": "No mojes las hojas, trata con fungicida de cobre."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en potasio y fósforo",
+      "homemade": "Té de cáscara de banana semanal"
+    }
   },
   "pimiento": {
     "name": "Pimiento",
@@ -415,7 +487,11 @@
         "cause": "Posible plaga",
         "solution": "Revisa envés de hojas, trata si hay plagas."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en potasio y fósforo",
+      "homemade": "Té de banana + cáscara de huevo triturada"
+    }
   },
   "frutilla": {
     "name": "Frutilla",
@@ -437,7 +513,11 @@
         "cause": "Cambio estacional o carencia",
         "solution": "Normal en otoño, en verano puede ser falta de fósforo."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo y potasio",
+      "homemade": "Té de banana quincenal + compost"
+    }
   },
   "limonero": {
     "name": "Limonero",
@@ -459,7 +539,11 @@
         "cause": "Plaga de cochinilla",
         "solution": "Retira manualmente, trata con aceite de neem."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno, hierro y zinc",
+      "homemade": "Vinagre diluido en riego + clavos oxidados mensual"
+    }
   },
   "suculenta-generica": {
     "name": "Suculenta",
@@ -481,7 +565,11 @@
         "cause": "Falta de agua",
         "solution": "Riega a fondo y espera, se recuperarán."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo y potasio",
+      "homemade": "Agua de cáscara de huevo 1 vez al mes"
+    }
   },
   "cactus": {
     "name": "Cactus",
@@ -503,7 +591,11 @@
         "cause": "Falta de descanso invernal",
         "solution": "Invierno fresco (5-10°C) y seco induce floración."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo, fósforo y potasio",
+      "homemade": "Agua de cáscara de huevo 1 vez al mes"
+    }
   },
   "echeveria": {
     "name": "Echeveria",
@@ -525,7 +617,11 @@
         "cause": "Proceso natural de reabsorción",
         "solution": "Retíralas con cuidado, es proceso natural."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo",
+      "homemade": "Agua de cáscara de huevo cada 2 meses"
+    }
   },
   "espatifilo": {
     "name": "Espatifilo",
@@ -547,7 +643,11 @@
         "cause": "Falta de riego",
         "solution": "Riega a fondo; se recupera rápido tras una buena hidratación."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno equilibrado",
+      "homemade": "Agua de arroz cada 15 días"
+    }
   },
   "dracaena": {
     "name": "Dracaena",
@@ -569,7 +669,11 @@
         "cause": "Exceso de riego y pudrición",
         "solution": "Reduce el riego y asegura buen drenaje en la maceta."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Agua de arroz quincenal"
+    }
   },
   "filodendro": {
     "name": "Filodendro",
@@ -591,7 +695,11 @@
         "cause": "Etiolación por poca luz",
         "solution": "Poda los tallos y reubica en un lugar más iluminado."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz + compost de lombrices"
+    }
   },
   "jade": {
     "name": "Jade",
@@ -613,7 +721,11 @@
         "cause": "Depósitos de sales minerales",
         "solution": "Limpia con un paño húmedo y usa agua filtrada."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo y potasio",
+      "homemade": "Agua de cáscara de huevo cada 2 meses"
+    }
   },
   "peperomia": {
     "name": "Peperomia",
@@ -635,7 +747,11 @@
         "cause": "Maceta demasiado grande o falta de luz",
         "solution": "Usa maceta ajustada y ubícala en luz indirecta brillante."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Agua de arroz cada 20 días"
+    }
   },
   "rosa": {
     "name": "Rosa",
@@ -657,7 +773,11 @@
         "cause": "Falta de sol o poda inadecuada",
         "solution": "Necesita mínimo 6 horas de sol y poda anual en invierno."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en fósforo y potasio",
+      "homemade": "Té de banana semanal + cáscara de huevo"
+    }
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -679,7 +799,11 @@
         "cause": "Exceso de agua o mal drenaje",
         "solution": "Mejora el drenaje y deja secar entre riegos."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno, alto en fósforo",
+      "homemade": "Té de banana quincenal"
+    }
   },
   "hibisco": {
     "name": "Hibisco",
@@ -701,7 +825,11 @@
         "cause": "Cochinilla o mosca blanca",
         "solution": "Trata con aceite de neem o jabón potásico."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo y potasio",
+      "homemade": "Té de banana + borra de café mensual"
+    }
   },
   "margarita": {
     "name": "Margarita",
@@ -723,7 +851,11 @@
         "cause": "Riego excesivo o mal drenaje",
         "solution": "Asegura buen drenaje y no riegues en exceso."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo moderado",
+      "homemade": "Té de banana cada 15 días"
+    }
   },
   "perejil": {
     "name": "Perejil",
@@ -745,7 +877,11 @@
         "cause": "Final del ciclo de vida (bianual)",
         "solution": "Siembra nuevas semillas cada temporada para asegurar cosecha."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz semanal"
+    }
   },
   "oregano": {
     "name": "Orégano",
@@ -767,7 +903,11 @@
         "cause": "Mal drenaje",
         "solution": "Trasplanta a sustrato arenoso con buen drenaje."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, prefiere suelo pobre",
+      "homemade": "No necesita; compost ligero 1 vez al año"
+    }
   },
   "cilantro": {
     "name": "Cilantro",
@@ -789,7 +929,11 @@
         "cause": "Temperaturas demasiado bajas",
         "solution": "Prefiere temperaturas entre 15°C y 25°C."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno bajo",
+      "homemade": "Agua de arroz cada 15 días"
+    }
   },
   "tomillo": {
     "name": "Tomillo",
@@ -811,7 +955,11 @@
         "cause": "Hongo por falta de ventilación",
         "solution": "Mejora la circulación de aire y evita regar el follaje."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, prefiere suelo pobre",
+      "homemade": "No necesita; compost ligero anual"
+    }
   },
   "lechuga": {
     "name": "Lechuga",
@@ -833,7 +981,11 @@
         "cause": "Plaga común en lechugas",
         "solution": "Coloca trampas de cerveza o barreras de ceniza."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno alto",
+      "homemade": "Agua de arroz semanal + compost de lombrices"
+    }
   },
   "pepino": {
     "name": "Pepino",
@@ -855,7 +1007,11 @@
         "cause": "Exceso de nitrógeno",
         "solution": "Usa fertilizante equilibrado, rico en fósforo y potasio."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en potasio y nitrógeno",
+      "homemade": "Té de banana semanal + agua de arroz"
+    }
   },
   "zanahoria": {
     "name": "Zanahoria",
@@ -877,7 +1033,11 @@
         "cause": "Exceso de riego o plaga de mosca",
         "solution": "Modera el riego y cubre con malla anti-insectos."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Fósforo y potasio, bajo nitrógeno",
+      "homemade": "Ceniza de madera + cáscara de huevo"
+    }
   },
   "rucula": {
     "name": "Rúcula",
@@ -899,7 +1059,11 @@
         "cause": "Calor y días largos",
         "solution": "Siembra escalonada cada 2-3 semanas para cosecha continua."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz semanal"
+    }
   },
   "naranjo": {
     "name": "Naranjo",
@@ -921,7 +1085,11 @@
         "cause": "Plaga de cochinilla",
         "solution": "Trata con aceite de neem o alcohol isopropílico."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno, hierro y zinc",
+      "homemade": "Vinagre diluido en riego + cáscara de huevo"
+    }
   },
   "aguacate": {
     "name": "Aguacate",
@@ -943,7 +1111,11 @@
         "cause": "Falta de poda",
         "solution": "Poda la punta cuando alcance 30 cm para fomentar ramificación."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno y potasio",
+      "homemade": "Compost de lombrices + té de banana mensual"
+    }
   },
   "higuera": {
     "name": "Higuera",
@@ -965,7 +1137,11 @@
         "cause": "Característica natural del árbol",
         "solution": "Es normal; evita el contacto con la piel ya que puede irritar."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Potasio y fósforo",
+      "homemade": "Té de banana + ceniza de madera quincenal"
+    }
   },
   "mandarino": {
     "name": "Mandarino",
@@ -987,7 +1163,11 @@
         "cause": "Falta de nutrientes",
         "solution": "Fertiliza con abono específico para cítricos cada 2 meses."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno, hierro y zinc",
+      "homemade": "Vinagre diluido + clavos oxidados mensual"
+    }
   },
   "zapallito": {
     "name": "Zapallito",
@@ -1009,7 +1189,11 @@
         "cause": "Contacto con tierra húmeda",
         "solution": "Coloca un mulch o tabla bajo los frutos para aislarlos."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Alto en potasio y fósforo",
+      "homemade": "Té de banana semanal + compost"
+    }
   },
   "ciboulette": {
     "name": "Ciboulette",
@@ -1031,7 +1215,11 @@
         "cause": "Corte demasiado bajo o planta agotada",
         "solution": "Deja al menos 5 cm al cortar y deja descansar antes de cosechar de nuevo."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrógeno moderado",
+      "homemade": "Agua de arroz cada 10 días"
+    }
   },
   "haworthia": {
     "name": "Haworthia",
@@ -1053,7 +1241,11 @@
         "cause": "Naturaleza de la planta",
         "solution": "Crece despacio de forma natural; no fertilices en exceso."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo",
+      "homemade": "Agua de cáscara de huevo cada 2 meses"
+    }
   },
   "sedum": {
     "name": "Sedum",
@@ -1075,7 +1267,37 @@
         "cause": "Exceso de riego",
         "solution": "Deja secar bien entre riegos; necesita sustrato muy drenante."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Muy bajo, fósforo",
+      "homemade": "Agua de cáscara de huevo cada 2 meses"
+    }
+  },
+  "yuca": {
+    "name": "Yuca",
+    "tip": "La Yuca es una todoterreno: bancá sequía, sol directo y hasta algo de frío. No la riegues de más.",
+    "description": "La Yuca elephantipes o Yuca de interior es una planta de tronco leñoso con hojas largas, rígidas y puntiagudas. Es extremadamente resistente y tolera condiciones de luz variadas, aunque prefiere sol directo. Ideal para quienes buscan una planta grande con poco mantenimiento.",
+    "problems": [
+      {
+        "symptom": "Hojas inferiores amarillas",
+        "cause": "Envejecimiento natural o exceso de riego",
+        "solution": "Es normal que pierda las hojas viejas. Si son muchas, reducí el riego y dejá secar bien entre riegos."
+      },
+      {
+        "symptom": "Tronco blando",
+        "cause": "Pudrición por exceso de riego",
+        "solution": "Dejá de regar inmediatamente. Si está muy afectado, cortá la parte sana del tronco y replantá."
+      },
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Aire muy seco o exceso de sol",
+        "solution": "Cortá las puntas secas y si está en sol directo muy fuerte, movela a luz brillante indirecta."
+      }
+    ],
+    "nutrients": {
+      "type": "Bajo, nitrógeno equilibrado",
+      "homemade": "Agua de arroz 1 vez al mes"
+    }
   },
   "humidity": {
     "baja": "Baja",

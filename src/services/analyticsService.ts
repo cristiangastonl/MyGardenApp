@@ -9,6 +9,7 @@ const QUEUE_KEY = 'analytics_queue';
 const APP_VERSION = '1.0.0';
 const FLUSH_INTERVAL_MS = 30_000; // 30 seconds
 const MAX_BATCH_SIZE = 50;
+const MAX_QUEUE_SIZE = 500;
 
 let deviceId: string | null = null;
 let queue: DbAnalyticsEventInsert[] = [];
@@ -54,7 +55,7 @@ async function loadPersistedQueue(): Promise<void> {
     if (stored) {
       const parsed = JSON.parse(stored) as DbAnalyticsEventInsert[];
       queue = [...parsed, ...queue];
-      console.log(`[Analytics] Loaded ${parsed.length} persisted events`);
+      if (__DEV__) console.log(`[Analytics] Loaded ${parsed.length} persisted events`);
     }
   } catch {
     // Silent fail
@@ -74,7 +75,7 @@ export async function initAnalytics(): Promise<void> {
       flushEvents();
     }, FLUSH_INTERVAL_MS);
 
-    console.log('[Analytics] Initialized');
+    if (__DEV__) console.log('[Analytics] Initialized');
   } catch {
     // Silent fail
   }
@@ -96,7 +97,10 @@ export async function trackEvent(
     };
 
     queue.push(event);
-    console.log(`[Analytics] Queued: ${eventName}`);
+    if (queue.length > MAX_QUEUE_SIZE) {
+      queue.splice(0, queue.length - MAX_QUEUE_SIZE);
+    }
+    if (__DEV__) console.log(`[Analytics] Queued: ${eventName}`);
   } catch {
     // Silent fail
   }
@@ -105,7 +109,7 @@ export async function trackEvent(
 export async function flushEvents(): Promise<void> {
   if (queue.length === 0) return;
   if (!isSupabaseConfigured()) {
-    console.log('[Analytics] Supabase not configured, persisting queue');
+    if (__DEV__) console.log('[Analytics] Supabase not configured, persisting queue');
     await persistQueue();
     return;
   }
@@ -120,10 +124,10 @@ export async function flushEvents(): Promise<void> {
     if (error) {
       // Put events back in queue for retry
       queue.unshift(...batch);
-      console.log('[Analytics] Flush failed, will retry:', error.message);
+      if (__DEV__) console.log('[Analytics] Flush failed, will retry:', error.message);
       await persistQueue();
     } else {
-      console.log(`[Analytics] Flushed ${batch.length} events`);
+      if (__DEV__) console.log(`[Analytics] Flushed ${batch.length} events`);
       await persistQueue();
     }
   } catch {

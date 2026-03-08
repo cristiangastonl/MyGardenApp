@@ -3,6 +3,14 @@ import { DbPlantKnowledge, DbPlantKnowledgeInsert } from '../types/database';
 
 const PERENUAL_API_BASE = 'https://perenual.com/api';
 
+/**
+ * Escape special characters that have meaning in PostgREST filter strings
+ * to prevent injection via ilike/or filters.
+ */
+function escapePostgrestFilter(str: string): string {
+  return str.replace(/[%_,.()"'\\]/g, '');
+}
+
 // Get API key from environment variable or allow runtime override
 let perenualApiKey: string | null = process.env.EXPO_PUBLIC_PERENUAL_API_KEY || null;
 
@@ -106,7 +114,7 @@ async function searchLocalCache(
   if (!isSupabaseConfigured()) return null;
 
   try {
-    const nameLower = plantName.toLowerCase().trim();
+    const nameLower = escapePostgrestFilter(plantName.toLowerCase().trim());
 
     // Search by common name, scientific name, or other names
     const { data, error } = await supabase
@@ -350,11 +358,12 @@ export async function searchCachedPlants(
   if (!isSupabaseConfigured()) return [];
 
   try {
+    const sanitizedQuery = escapePostgrestFilter(query);
     const { data, error } = await supabase
       .from('plant_knowledge')
       .select('*')
       .or(
-        `common_name.ilike.%${query}%,scientific_name.ilike.%${query}%`
+        `common_name.ilike.%${sanitizedQuery}%,scientific_name.ilike.%${sanitizedQuery}%`
       )
       .limit(10);
 

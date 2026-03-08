@@ -21,6 +21,7 @@ import {
   PlantIdentifierModal,
   MyPlantDetailModal,
 } from '../components';
+import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
 import { Features } from '../config/features';
@@ -50,6 +51,8 @@ export default function PlantsScreen() {
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
+  const [diagnosePlantState, setDiagnosePlantState] = useState<Plant | null>(null);
+  const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -87,7 +90,7 @@ export default function PlantsScreen() {
     }
   };
 
-  const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null) => {
+  const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
     const plantId = Date.now().toString();
 
     // Upload image if provided
@@ -110,12 +113,27 @@ export default function PlantsScreen() {
     };
     addPlant(newPlant);
     trackEvent('plant_added', { plant_name: plantData.name, source: 'plants' });
+    return newPlant;
   };
 
   const handleDeletePlant = (plantId: string) => {
     deletePlant(plantId);
     trackEvent('plant_deleted', { plant_id: plantId });
   };
+
+  const handleToggleFavorite = (plantId: string) => {
+    const plant = plants.find(p => p.id === plantId);
+    if (plant) {
+      updatePlant(plantId, { favorite: !plant.favorite });
+    }
+  };
+
+  // Sort: favorites first, then by original order
+  const sortedPlants = [...plants].sort((a, b) => {
+    if (a.favorite && !b.favorite) return -1;
+    if (!a.favorite && b.favorite) return 1;
+    return 0;
+  });
 
   if (loading) {
     return <LoadingScreen message={t('plants.loadingPlants')} />;
@@ -131,6 +149,7 @@ export default function PlantsScreen() {
       onOutdoorDone={handleOutdoorDone}
       onDelete={handleDeletePlant}
       onPress={setDetailPlant}
+      onToggleFavorite={handleToggleFavorite}
     />
   );
 
@@ -169,7 +188,7 @@ export default function PlantsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={plants}
+        data={sortedPlants}
         renderItem={renderPlant}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
@@ -185,7 +204,6 @@ export default function PlantsScreen() {
             showPaywall('plant_identification');
             return;
           }
-          incrementIdentificationCount();
           setShowIdentifier(true);
         }}
         showIdentifyOption={Features.PLANT_IDENTIFICATION}
@@ -203,7 +221,30 @@ export default function PlantsScreen() {
         <PlantIdentifierModal
           visible={showIdentifier}
           onClose={() => setShowIdentifier(false)}
-          onAddPlant={handleAddPlant}
+          onAddPlant={async (plantData, imageUri) => {
+            incrementIdentificationCount();
+            return handleAddPlant(plantData, imageUri);
+          }}
+          isPremium={premium.isPremium}
+          onDiagnoseAfterIdentify={(plant, reusePhotos, capturedUri, capturedBase64) => {
+            setShowIdentifier(false);
+            setDiagnosePlantState(plant);
+            setDiagnosisInitialImages(reusePhotos && capturedUri && capturedBase64 ? [{ uri: capturedUri, base64: capturedBase64 }] : undefined);
+          }}
+        />
+      )}
+
+      {/* Diagnosis Modal from Identify flow */}
+      {diagnosePlantState && (
+        <PlantDiagnosisModal
+          visible={!!diagnosePlantState}
+          plant={diagnosePlantState}
+          weather={weather}
+          initialImages={diagnosisInitialImages}
+          onClose={() => {
+            setDiagnosePlantState(null);
+            setDiagnosisInitialImages(undefined);
+          }}
         />
       )}
 

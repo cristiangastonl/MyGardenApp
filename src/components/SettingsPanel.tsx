@@ -14,7 +14,11 @@ import {
   Switch,
   Image,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 import * as ExpoLocation from "expo-location";
+import { useTranslation } from 'react-i18next';
+import { setLanguage } from '../i18n';
 import { colors, fonts, spacing, borderRadius, shadows } from "../theme";
 import { Location, NotificationSettings, SyncStatus } from "../types";
 import { SyncStatusBadge } from "./SyncStatusBadge";
@@ -96,6 +100,7 @@ export function SettingsPanel({
   onSignOut,
   onSyncNow,
 }: SettingsPanelProps) {
+  const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -111,8 +116,8 @@ export function SettingsPanel({
       const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         Alert.alert(
-          "Permiso denegado",
-          "Necesitamos acceso a tu ubicacion para mostrar el clima local."
+          t('settings.permissionDenied'),
+          t('settings.permissionDeniedMessage'),
         );
         setIsDetecting(false);
         return;
@@ -131,7 +136,7 @@ export function SettingsPanel({
       const newLocation: Location = {
         lat: latitude,
         lon: longitude,
-        name: place?.city || place?.subregion || "Tu ubicacion",
+        name: place?.city || place?.subregion || t('settingsPanel.yourLocation'),
         country: place?.country || "",
         admin1: place?.region || undefined,
       };
@@ -140,8 +145,8 @@ export function SettingsPanel({
       setShowSearch(false);
     } catch (error) {
       Alert.alert(
-        "Error",
-        "No se pudo detectar tu ubicacion. Intenta buscar tu ciudad manualmente."
+        t('settings.error'),
+        t('settings.locationError'),
       );
     } finally {
       setIsDetecting(false);
@@ -199,8 +204,8 @@ export function SettingsPanel({
       const granted = await onEnableNotifications();
       if (!granted) {
         Alert.alert(
-          "Permisos necesarios",
-          "Para recibir notificaciones, necesitas permitir el acceso en la configuracion de tu dispositivo."
+          t('settings.permissionsNeeded'),
+          t('settings.permissionsNeededMessage'),
         );
       }
     } else {
@@ -210,7 +215,7 @@ export function SettingsPanel({
 
   const handleSendTest = async () => {
     await onSendTestNotification();
-    Alert.alert("Listo!", "Se envio una notificacion de prueba.");
+    Alert.alert(t('settings.testSent'), t('settings.testSentMessage'));
   };
 
   const formatTime = (time: string): string => {
@@ -221,11 +226,11 @@ export function SettingsPanel({
   const getPermissionStatusText = (): string => {
     switch (notificationPermission) {
       case "granted":
-        return "Permitidas";
+        return t('settings.granted');
       case "denied":
-        return "Bloqueadas";
+        return t('settings.denied');
       default:
-        return "No configuradas";
+        return t('settings.notConfigured');
     }
   };
 
@@ -256,9 +261,9 @@ export function SettingsPanel({
             <View style={styles.handle} />
 
             <View style={styles.header}>
-              <Text style={styles.title}>Configuracion</Text>
+              <Text style={styles.title}>{t('settings.title')}</Text>
               <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                <Text style={styles.closeButtonText}>Listo</Text>
+                <Text style={styles.closeButtonText}>{t('settingsPanel.done')}</Text>
               </TouchableOpacity>
             </View>
 
@@ -270,7 +275,7 @@ export function SettingsPanel({
               {/* Account Section */}
               {user && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>Cuenta</Text>
+                  <Text style={styles.sectionTitle}>{t('settingsPanel.account')}</Text>
 
                   <View style={styles.accountCard}>
                     <View style={styles.accountInfo}>
@@ -288,7 +293,7 @@ export function SettingsPanel({
                       )}
                       <View style={styles.accountText}>
                         <Text style={styles.accountName}>
-                          {user.displayName || "Usuario"}
+                          {user.displayName || t('settingsPanel.user')}
                         </Text>
                         {user.email && (
                           <Text style={styles.accountEmail}>{user.email}</Text>
@@ -315,7 +320,7 @@ export function SettingsPanel({
                         ) : (
                           <>
                             <Text style={styles.syncButtonIcon}>☁️</Text>
-                            <Text style={styles.syncButtonText}>Sincronizar ahora</Text>
+                            <Text style={styles.syncButtonText}>{t('settingsPanel.syncNow')}</Text>
                           </>
                         )}
                       </TouchableOpacity>
@@ -326,12 +331,12 @@ export function SettingsPanel({
                         style={styles.signOutButton}
                         onPress={() => {
                           Alert.alert(
-                            "Cerrar sesion",
-                            "Tus datos seguiran guardados en la nube. Podes volver a iniciar sesion cuando quieras.",
+                            t('settingsPanel.signOut'),
+                            t('settingsPanel.signOutMessage'),
                             [
-                              { text: "Cancelar", style: "cancel" },
+                              { text: t('settings.cancel'), style: "cancel" },
                               {
-                                text: "Cerrar sesion",
+                                text: t('settingsPanel.signOut'),
                                 style: "destructive",
                                 onPress: onSignOut,
                               },
@@ -339,7 +344,7 @@ export function SettingsPanel({
                           );
                         }}
                       >
-                        <Text style={styles.signOutButtonText}>Cerrar sesion</Text>
+                        <Text style={styles.signOutButtonText}>{t('settingsPanel.signOut')}</Text>
                       </TouchableOpacity>
                     )}
                   </View>
@@ -348,10 +353,9 @@ export function SettingsPanel({
 
               {/* Location Section */}
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Ubicacion</Text>
+                <Text style={styles.sectionTitle}>{t('settings.location')}</Text>
                 <Text style={styles.sectionDescription}>
-                  Tu ubicacion se usa para mostrar el clima y alertas relevantes
-                  para tus plantas.
+                  {t('settings.locationDescription')}
                 </Text>
 
                 {location && !showSearch ? (
@@ -370,7 +374,7 @@ export function SettingsPanel({
                       style={styles.changeButton}
                       onPress={() => setShowSearch(true)}
                     >
-                      <Text style={styles.changeButtonText}>Cambiar</Text>
+                      <Text style={styles.changeButtonText}>{t('settings.change')}</Text>
                     </TouchableOpacity>
                   </View>
                 ) : (
@@ -387,7 +391,7 @@ export function SettingsPanel({
                         <>
                           <Text style={styles.detectButtonIcon}>📍</Text>
                           <Text style={styles.detectButtonText}>
-                            Detectar ubicacion
+                            {t('settings.detectLocation')}
                           </Text>
                         </>
                       )}
@@ -395,7 +399,7 @@ export function SettingsPanel({
 
                     <View style={styles.divider}>
                       <View style={styles.dividerLine} />
-                      <Text style={styles.dividerText}>o buscar ciudad</Text>
+                      <Text style={styles.dividerText}>{t('settings.orSearchCity')}</Text>
                       <View style={styles.dividerLine} />
                     </View>
 
@@ -405,7 +409,7 @@ export function SettingsPanel({
                         style={styles.searchInput}
                         value={searchQuery}
                         onChangeText={handleSearchChange}
-                        placeholder="Buscar ciudad..."
+                        placeholder={t('settings.searchCity')}
                         placeholderTextColor={colors.textMuted}
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -444,7 +448,7 @@ export function SettingsPanel({
                       !isSearching &&
                       searchResults.length === 0 && (
                         <Text style={styles.noResults}>
-                          No se encontraron resultados
+                          {t('settings.noResults')}
                         </Text>
                       )}
 
@@ -453,7 +457,7 @@ export function SettingsPanel({
                         style={styles.cancelSearchButton}
                         onPress={() => setShowSearch(false)}
                       >
-                        <Text style={styles.cancelSearchText}>Cancelar</Text>
+                        <Text style={styles.cancelSearchText}>{t('settings.cancel')}</Text>
                       </TouchableOpacity>
                     )}
                   </View>
@@ -462,14 +466,14 @@ export function SettingsPanel({
 
               {/* Notifications Section */}
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Notificaciones</Text>
+                <Text style={styles.sectionTitle}>{t('settings.notifications')}</Text>
                 <Text style={styles.sectionDescription}>
-                  Recibe recordatorios para cuidar tus plantas y alertas de clima.
+                  {t('settings.notificationsDescription')}
                 </Text>
 
                 {/* Permission Status */}
                 <View style={styles.permissionRow}>
-                  <Text style={styles.permissionLabel}>Estado:</Text>
+                  <Text style={styles.permissionLabel}>{t('settings.status')}</Text>
                   <Text
                     style={[
                       styles.permissionStatus,
@@ -486,12 +490,12 @@ export function SettingsPanel({
                     <Text style={styles.settingIcon}>🔔</Text>
                     <View style={styles.settingText}>
                       <Text style={styles.settingTitle}>
-                        Activar notificaciones
+                        {t('settings.enableNotifications')}
                       </Text>
                       <Text style={styles.settingSubtitle}>
                         {notificationCounts.total > 0
-                          ? `${notificationCounts.total} programadas`
-                          : "Ninguna programada"}
+                          ? t('settings.scheduled', { count: notificationCounts.total })
+                          : t('settings.noneScheduled')}
                       </Text>
                     </View>
                   </View>
@@ -515,10 +519,10 @@ export function SettingsPanel({
                         <Text style={styles.settingIcon}>🌅</Text>
                         <View style={styles.settingText}>
                           <Text style={styles.settingTitle}>
-                            Resumen matutino
+                            {t('settings.morningSummary')}
                           </Text>
                           <Text style={styles.settingSubtitle}>
-                            Tareas del dia cada manana
+                            {t('settings.dailyTasks')}
                           </Text>
                         </View>
                       </View>
@@ -536,7 +540,7 @@ export function SettingsPanel({
                     {notificationSettings.morningReminder && (
                       <View style={styles.timeSelector}>
                         <Text style={styles.timeSelectorLabel}>
-                          Hora del recordatorio:
+                          {t('settings.reminderTime')}
                         </Text>
                         <View style={styles.timeOptions}>
                           {TIME_OPTIONS.map((option) => (
@@ -574,10 +578,10 @@ export function SettingsPanel({
                         <Text style={styles.settingIcon}>⚠️</Text>
                         <View style={styles.settingText}>
                           <Text style={styles.settingTitle}>
-                            Alertas de clima
+                            {t('settings.weatherAlerts')}
                           </Text>
                           <Text style={styles.settingSubtitle}>
-                            Heladas, calor extremo, etc.
+                            {t('settings.weatherAlertsSubtitle')}
                           </Text>
                         </View>
                       </View>
@@ -597,10 +601,10 @@ export function SettingsPanel({
                         <Text style={styles.settingIcon}>💧</Text>
                         <View style={styles.settingText}>
                           <Text style={styles.settingTitle}>
-                            Recordatorios de cuidado
+                            {t('settings.careReminders')}
                           </Text>
                           <Text style={styles.settingSubtitle}>
-                            Cuando se atrasa el riego
+                            {t('settings.careRemindersSubtitle')}
                           </Text>
                         </View>
                       </View>
@@ -620,7 +624,7 @@ export function SettingsPanel({
                       onPress={handleSendTest}
                     >
                       <Text style={styles.testButtonText}>
-                        Enviar notificacion de prueba
+                        {t('settings.sendTest')}
                       </Text>
                     </TouchableOpacity>
                   </>
@@ -629,9 +633,7 @@ export function SettingsPanel({
                 {notificationPermission === "denied" && (
                   <View style={styles.warningBox}>
                     <Text style={styles.warningText}>
-                      Las notificaciones estan bloqueadas. Para activarlas, ve a
-                      Configuracion {">"} Mi Jardin {">"} Notificaciones en tu
-                      dispositivo.
+                      {t('settings.notificationsBlocked')}
                     </Text>
                   </View>
                 )}
@@ -639,10 +641,9 @@ export function SettingsPanel({
 
               {/* PlantNet API Section */}
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Identificacion de plantas</Text>
+                <Text style={styles.sectionTitle}>{t('settings.plantId')}</Text>
                 <Text style={styles.sectionDescription}>
-                  Configura tu API key de PlantNet para identificar plantas con fotos.
-                  Obtene una gratis en my.plantnet.org
+                  {t('settings.plantIdDescription')}
                 </Text>
 
                 <View style={styles.apiKeyContainer}>
@@ -651,7 +652,7 @@ export function SettingsPanel({
                       style={styles.apiKeyInput}
                       value={apiKeyInput}
                       onChangeText={setApiKeyInput}
-                      placeholder="Pegar API key aqui..."
+                      placeholder={t('settings.pasteApiKey')}
                       placeholderTextColor={colors.textMuted}
                       secureTextEntry={!showApiKey}
                       autoCapitalize="none"
@@ -673,10 +674,10 @@ export function SettingsPanel({
                         style={styles.saveApiKeyButton}
                         onPress={() => {
                           onUpdatePlantNetApiKey(apiKeyInput || null);
-                          Alert.alert("Guardado", "API key guardada correctamente.");
+                          Alert.alert(t('settings.saved'), t('settings.savedMessage'));
                         }}
                       >
-                        <Text style={styles.saveApiKeyText}>Guardar</Text>
+                        <Text style={styles.saveApiKeyText}>{t('settings.save')}</Text>
                       </TouchableOpacity>
                     )}
                     {plantNetApiKey && (
@@ -687,7 +688,7 @@ export function SettingsPanel({
                           onUpdatePlantNetApiKey(null);
                         }}
                       >
-                        <Text style={styles.clearApiKeyText}>Borrar</Text>
+                        <Text style={styles.clearApiKeyText}>{t('settings.delete')}</Text>
                       </TouchableOpacity>
                     )}
                   </View>
@@ -696,21 +697,96 @@ export function SettingsPanel({
                 {plantNetApiKey ? (
                   <View style={styles.apiKeyStatus}>
                     <Text style={styles.apiKeyStatusIcon}>✓</Text>
-                    <Text style={styles.apiKeyStatusText}>API key configurada</Text>
+                    <Text style={styles.apiKeyStatusText}>{t('settingsPanel.apiKeyConfigured')}</Text>
                   </View>
                 ) : (
                   <View style={styles.apiKeyInfo}>
                     <Text style={styles.apiKeyInfoText}>
-                      Sin API key, la identificacion usara datos de ejemplo.
+                      {t('settingsPanel.noApiKeyWarning')}
                     </Text>
                   </View>
                 )}
               </View>
 
+              {/* Language Section */}
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Apariencia</Text>
-                <Text style={styles.comingSoon}>Proximamente</Text>
+                <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
+                <Text style={styles.sectionDescription}>
+                  {t('settings.languageDescription')}
+                </Text>
+
+                <View style={styles.languageOptions}>
+                  <TouchableOpacity
+                    style={[
+                      styles.languageOption,
+                      i18n.language === 'es' && styles.languageOptionSelected,
+                    ]}
+                    onPress={() => setLanguage('es')}
+                  >
+                    <Text style={styles.languageOptionFlag}>🇪🇸</Text>
+                    <Text
+                      style={[
+                        styles.languageOptionText,
+                        i18n.language === 'es' && styles.languageOptionTextSelected,
+                      ]}
+                    >
+                      {t('settings.spanish')}
+                    </Text>
+                    {i18n.language === 'es' && (
+                      <Text style={styles.languageCheck}>✓</Text>
+                    )}
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={[
+                      styles.languageOption,
+                      i18n.language === 'en' && styles.languageOptionSelected,
+                    ]}
+                    onPress={() => setLanguage('en')}
+                  >
+                    <Text style={styles.languageOptionFlag}>🇺🇸</Text>
+                    <Text
+                      style={[
+                        styles.languageOptionText,
+                        i18n.language === 'en' && styles.languageOptionTextSelected,
+                      ]}
+                    >
+                      {t('settings.english')}
+                    </Text>
+                    {i18n.language === 'en' && (
+                      <Text style={styles.languageCheck}>✓</Text>
+                    )}
+                  </TouchableOpacity>
+                </View>
               </View>
+
+              <Text style={styles.versionText}>
+                MyGarden v{Constants.expoConfig?.version || '2.0.0'}
+              </Text>
+
+              <TouchableOpacity
+                style={styles.resetButton}
+                onPress={() => {
+                  Alert.alert(
+                    'Reset App',
+                    'This will delete all data and restart the app. Are you sure?',
+                    [
+                      { text: 'Cancel', style: 'cancel' },
+                      {
+                        text: 'Reset',
+                        style: 'destructive',
+                        onPress: async () => {
+                          await AsyncStorage.clear();
+                          const { DevSettings } = require('react-native');
+                          DevSettings?.reload?.();
+                        },
+                      },
+                    ]
+                  );
+                }}
+              >
+                <Text style={styles.resetButtonText}>🗑️ Reset App</Text>
+              </TouchableOpacity>
 
               <View style={styles.bottomPadding} />
             </ScrollView>
@@ -921,11 +997,60 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textSecondary,
   },
-  comingSoon: {
+  languageOptions: {
+    gap: spacing.sm,
+  },
+  languageOption: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: colors.bgPrimary,
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    borderWidth: 2,
+    borderColor: "transparent",
+  },
+  languageOptionSelected: {
+    borderColor: colors.green,
+    backgroundColor: colors.successBg,
+  },
+  languageOptionFlag: {
+    fontSize: 24,
+    marginRight: spacing.md,
+  },
+  languageOptionText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: colors.textPrimary,
+    flex: 1,
+  },
+  languageOptionTextSelected: {
+    fontFamily: fonts.bodySemiBold,
+    color: colors.green,
+  },
+  languageCheck: {
+    fontSize: 18,
+    color: colors.green,
+    fontWeight: "bold",
+  },
+  versionText: {
     fontFamily: fonts.body,
-    fontSize: 14,
+    fontSize: 12,
     color: colors.textMuted,
-    fontStyle: "italic",
+    textAlign: "center",
+    marginBottom: spacing.md,
+  },
+  resetButton: {
+    backgroundColor: colors.dangerBg,
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    alignItems: "center",
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  resetButtonText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.dangerText,
   },
   bottomPadding: {
     height: spacing.xxxl,

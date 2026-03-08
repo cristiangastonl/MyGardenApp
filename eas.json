@@ -6,7 +6,10 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
       "distribution": "internal",
@@ -19,7 +22,11 @@
       "distribution": "store",
       "android": {
         "buildType": "app-bundle",
-        "credentialsSource": "local"
+        "credentialsSource": "remote"
+      },
+      "ios": {
+        "credentialsSource": "remote",
+        "autoIncrement": true
       }
     }
   },
@@ -28,6 +35,11 @@
       "android": {
         "serviceAccountKeyPath": "./pc-api-key.json",
         "track": "internal"
+      },
+      "ios": {
+        "appleId": "",
+        "ascAppId": "",
+        "appleTeamId": ""
       }
     }
   }

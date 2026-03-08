@@ -22,7 +22,9 @@ import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { trackEvent } from '../services/analyticsService';
 import { PlantIdentifierModal } from '../components';
+import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
 import { Features } from '../config/features';
+import { usePremiumGate } from '../config/premium';
 import { uploadPlantImage } from '../services/imageService';
 
 // Optional: Try to use expo-linear-gradient if available
@@ -180,11 +182,16 @@ export default function OnboardingScreen() {
   const [currentStep, setCurrentStep] = useState(0);
   // Pre-fill name from auth if available
   const [name, setName] = useState(displayName || '');
-  // Pre-select Pothos as a quick-start plant
-  const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set(['potus']));
+  const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState<PlantCategory | 'all'>('all');
   const [identifiedPlants, setIdentifiedPlants] = useState<Plant[]>([]);
   const [showIdentifier, setShowIdentifier] = useState(false);
+  const [showDiagnosis, setShowDiagnosis] = useState(false);
+  const [diagnosePlant, setDiagnosePlant] = useState<Plant | null>(null);
+  const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
+  const [showEmptyWarning, setShowEmptyWarning] = useState(false);
+  const { isPremium, canDiagnose } = usePremiumGate();
+  const { diagnosisCount } = useStorage();
 
   // Animation values
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -207,7 +214,17 @@ export default function OnboardingScreen() {
     });
   }, []);
 
-  const handleIdentifiedPlant = useCallback(async (plantData: Omit<Plant, 'id'>, imageUri?: string | null) => {
+  const handleDiagnoseAfterIdentify = useCallback((plant: Plant, reusePhotos: boolean, imageUri: string | null, imageBase64: string | null) => {
+    setDiagnosePlant(plant);
+    if (reusePhotos && imageUri && imageBase64) {
+      setDiagnosisInitialImages([{ uri: imageUri, base64: imageBase64 }]);
+    } else {
+      setDiagnosisInitialImages(undefined);
+    }
+    setShowDiagnosis(true);
+  }, []);
+
+  const handleIdentifiedPlant = useCallback(async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
     const id = `identified-${Date.now()}`;
     let finalImageUrl = plantData.imageUrl;
 
@@ -222,7 +239,9 @@ export default function OnboardingScreen() {
       imageUrl: finalImageUrl,
     };
     setIdentifiedPlants(prev => [...prev, newPlant]);
-    setShowIdentifier(false);
+    // Don't close identifier here - let the modal show the diagnosis prompt first
+    // It will close itself via onClose when done
+    return newPlant;
   }, []);
 
   const animateTransition = useCallback((direction: 'next' | 'back') => {
@@ -259,13 +278,25 @@ export default function OnboardingScreen() {
   }, [fadeAnim, slideAnim]);
 
   const handleNext = useCallback(() => {
+    if (currentStep === 0 && !name.trim()) return;
+    if (currentStep === 1 && selectedPlants.size + identifiedPlants.length === 0) {
+      if (!showEmptyWarning) {
+        setShowEmptyWarning(true);
+        return;
+      }
+    }
     if (currentStep < 2) {
+      setShowEmptyWarning(false);
       animateTransition('next');
     }
-  }, [currentStep, animateTransition]);
+  }, [currentStep, name, selectedPlants.size, identifiedPlants.length, showEmptyWarning, animateTransition]);
 
   const handleBack = useCallback(() => {
     if (currentStep > 0) {
+      // Reset identified plants when going back from step 1 so user can re-identify
+      if (currentStep === 1) {
+        setIdentifiedPlants([]);
+      }
       animateTransition('back');
     }
   }, [currentStep, animateTransition]);
@@ -333,10 +364,31 @@ export default function OnboardingScreen() {
           </View>
         </View>
         <View style={styles.featureItem}>
+          <Text style={styles.featureIcon}>📸</Text>
+          <View style={styles.featureText}>
+            <Text style={styles.featureTitle}>{t('onboarding.featurePlantId')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.featurePlantIdDesc')}</Text>
+          </View>
+        </View>
+        <View style={styles.featureItem}>
+          <Text style={styles.featureIcon}>🩺</Text>
+          <View style={styles.featureText}>
+            <Text style={styles.featureTitle}>{t('onboarding.featureDiagnosis')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.featureDiagnosisDesc')}</Text>
+          </View>
+        </View>
+        <View style={styles.featureItem}>
           <Text style={styles.featureIcon}>🌤️</Text>
           <View style={styles.featureText}>
             <Text style={styles.featureTitle}>{t('onboarding.weatherAlerts')}</Text>
             <Text style={styles.featureDesc}>{t('onboarding.protectPlants')}</Text>
+          </View>
+        </View>
+        <View style={styles.featureItem}>
+          <Text style={styles.featureIcon}>🔔</Text>
+          <View style={styles.featureText}>
+            <Text style={styles.featureTitle}>{t('onboarding.featureNotifications')}</Text>
+            <Text style={styles.featureDesc}>{t('onboarding.featureNotificationsDesc')}</Text>
           </View>
         </View>
       </View>
@@ -369,13 +421,13 @@ export default function OnboardingScreen() {
           <View style={styles.identifyCardContent}>
             <Text style={styles.identifyCardTitle}>
               {identifiedPlants.length > 0
-                ? `Planta identificada: ${identifiedPlants[0].name}`
-                : 'Identificá tu planta con la cámara'}
+                ? t('onboarding.plantIdentified', { name: identifiedPlants[0].name })
+                : t('onboarding.identifyWithCamera')}
             </Text>
             <Text style={styles.identifyCardSubtitle}>
               {identifiedPlants.length > 0
-                ? 'Ya usaste tu identificación gratis'
-                : '1 identificación gratis incluida'}
+                ? t('onboarding.freeIdUsed')
+                : t('onboarding.freeIdIncluded')}
             </Text>
           </View>
         </TouchableOpacity>
@@ -446,6 +498,17 @@ export default function OnboardingScreen() {
         <View style={styles.selectionBadge}>
           <Text style={styles.selectionBadgeText}>
             {t('onboarding.plantSelected', { count: selectedPlants.size + identifiedPlants.length })}
+          </Text>
+        </View>
+      )}
+
+      {showEmptyWarning && (selectedPlants.size + identifiedPlants.length) === 0 && (
+        <View style={styles.emptyWarning}>
+          <Text style={styles.emptyWarningText}>
+            {t('onboarding.emptyWarning')}
+          </Text>
+          <Text style={styles.emptyWarningHint}>
+            {t('onboarding.emptyWarningHint')}
           </Text>
         </View>
       )}
@@ -595,10 +658,19 @@ export default function OnboardingScreen() {
               <View style={styles.backButton} />
             )}
 
-            {currentStep < 2
-              ? renderPrimaryButton(currentStep === 0 ? t('onboarding.start') : t('onboarding.continue'), handleNext)
-              : renderPrimaryButton(t('onboarding.begin'), handleComplete)
-            }
+            <View style={currentStep === 0 && !name.trim() ? { opacity: 0.4 } : undefined}>
+              {currentStep < 2
+                ? renderPrimaryButton(
+                    currentStep === 0
+                      ? t('onboarding.start')
+                      : showEmptyWarning && (selectedPlants.size + identifiedPlants.length) === 0
+                        ? t('onboarding.continueAnyway')
+                        : t('onboarding.continue'),
+                    handleNext,
+                  )
+                : renderPrimaryButton(t('onboarding.begin'), handleComplete)
+              }
+            </View>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -608,6 +680,23 @@ export default function OnboardingScreen() {
           visible={showIdentifier}
           onClose={() => setShowIdentifier(false)}
           onAddPlant={handleIdentifiedPlant}
+          onDiagnoseAfterIdentify={handleDiagnoseAfterIdentify}
+          isPremium={isPremium}
+          diagnosisCount={diagnosisCount}
+        />
+      )}
+
+      {diagnosePlant && (
+        <PlantDiagnosisModal
+          visible={showDiagnosis}
+          plant={diagnosePlant}
+          weather={null}
+          initialImages={diagnosisInitialImages}
+          onClose={() => {
+            setShowDiagnosis(false);
+            setDiagnosePlant(null);
+            setDiagnosisInitialImages(undefined);
+          }}
         />
       )}
     </MainContainer>
@@ -900,6 +989,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     borderRadius: borderRadius.full,
     ...shadows.md,
+  },
+
+  emptyWarning: {
+    backgroundColor: colors.warningBg,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginTop: spacing.md,
+  },
+  emptyWarningText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.warningText,
+    textAlign: 'center',
+  },
+  emptyWarningHint: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.warningText,
+    textAlign: 'center',
+    marginTop: spacing.xs,
+    opacity: 0.8,
   },
 
   // Step 2: Confirmation

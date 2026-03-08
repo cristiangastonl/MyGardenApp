@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Mi Jardín",
+    "name": "MyGarden",
     "slug": "MiJardinApp",
     "scheme": "mijardin",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,11 +15,19 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cristianlopez.mijardin"
+      "bundleIdentifier": "com.cristianlopez.mijardin",
+      "buildNumber": "1",
+      "infoPlist": {
+        "CFBundleDisplayName": "MyGarden",
+        "NSCameraUsageDescription": "Allow access to the camera to take photos of your plants",
+        "NSPhotoLibraryUsageDescription": "Allow access to your photos to identify plants",
+        "NSLocationWhenInUseUsageDescription": "Allow access to your location to get local weather data",
+        "NSUserNotificationsUsageDescription": "Send watering and care reminders for your plants"
+      }
     },
     "android": {
       "package": "app.mygardencare.app",
-      "versionCode": 1,
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#f5f0e6"
@@ -34,6 +42,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "locales": {
+      "es": "./locales/ios/es.json",
+      "en": "./locales/ios/en.json"
     },
     "plugins": [
       "expo-font",
@@ -50,8 +62,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Permitir acceso a tus fotos para identificar plantas",
-          "cameraPermission": "Permitir acceso a la cámara para tomar fotos de plantas"
+          "photosPermission": "Allow access to your photos to identify plants",
+          "cameraPermission": "Allow access to the camera to take photos of your plants"
         }
       ],
       "expo-localization"

@@ -19,7 +19,11 @@
         "cause": "Very dry air",
         "solution": "Mist the leaves occasionally."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Rice water every 15 days"
+    }
   },
   "monstera": {
     "name": "Monstera",
@@ -41,7 +45,11 @@
         "cause": "Low humidity",
         "solution": "Group it with other plants or use a humidifier."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen and potassium",
+      "homemade": "Banana peel tea every 15 days"
+    }
   },
   "ficus": {
     "name": "Ficus",
@@ -63,7 +71,11 @@
         "cause": "Small pot or lack of nutrients",
         "solution": "Repot into a larger container in spring."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Balanced nitrogen",
+      "homemade": "Worm castings every 2 months"
+    }
   },
   "sansevieria": {
     "name": "Snake Plant",
@@ -85,7 +97,11 @@
         "cause": "Insufficient light or cold season",
         "solution": "They grow slowly, especially in low light. Be patient."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus",
+      "homemade": "Eggshell water once a month"
+    }
   },
   "orquidea": {
     "name": "Orchid",
@@ -107,7 +123,11 @@
         "cause": "Dehydration",
         "solution": "Water more frequently, check that the roots are healthy."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen, phosphorus and potassium",
+      "homemade": "Rice water and banana peel monthly"
+    }
   },
   "calathea": {
     "name": "Calathea",
@@ -129,7 +149,11 @@
         "cause": "Inadequate light",
         "solution": "Move it to filtered indirect light."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water every 10 days"
+    }
   },
   "cinta": {
     "name": "Spider Plant",
@@ -151,7 +175,11 @@
         "cause": "Young plant or pot too large",
         "solution": "Let it mature and become slightly root-bound."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Rice water biweekly"
+    }
   },
   "palmera-interior": {
     "name": "Indoor Palm",
@@ -173,7 +201,11 @@
         "cause": "Nature of the plant",
         "solution": "Palms grow slowly, be patient."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen and magnesium",
+      "homemade": "Boiled vegetable water every 15 days"
+    }
   },
   "aloe-vera": {
     "name": "Aloe Vera",
@@ -195,7 +227,11 @@
         "cause": "Sudden sunburn",
         "solution": "Gradually acclimate it to direct sunlight."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low, phosphorus and potassium",
+      "homemade": "Eggshell water once a month"
+    }
   },
   "lavanda": {
     "name": "Lavender",
@@ -217,7 +253,11 @@
         "cause": "Root rot from excess moisture",
         "solution": "Plant in very well-drained soil, avoid overwatering."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, prefers poor soil",
+      "homemade": "Not needed; light compost once a year"
+    }
   },
   "petunia": {
     "name": "Petunia",
@@ -239,7 +279,11 @@
         "cause": "Aphids or other pests",
         "solution": "Treat with potassium soap or garlic water."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in phosphorus and potassium",
+      "homemade": "Banana peel tea weekly during blooming"
+    }
   },
   "hortensia": {
     "name": "Hydrangea",
@@ -261,7 +305,11 @@
         "cause": "Iron chlorosis",
         "solution": "Acidify the soil with iron sulfate."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Iron and potassium",
+      "homemade": "Rusty nails in watering water + banana peel tea"
+    }
   },
   "jazmin": {
     "name": "Jasmine",
@@ -283,7 +331,11 @@
         "cause": "Lack of pruning",
         "solution": "Prune after flowering to keep it in check."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Phosphorus and potassium",
+      "homemade": "Banana peel tea every 15 days"
+    }
   },
   "geranio": {
     "name": "Geranium",
@@ -305,7 +357,11 @@
         "cause": "Cacyreus marshalli pest",
         "solution": "Remove affected parts, treat with Bacillus thuringiensis."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Phosphorus and potassium",
+      "homemade": "Banana peel tea weekly during blooming season"
+    }
   },
   "albahaca": {
     "name": "Basil",
@@ -327,7 +383,11 @@
         "cause": "Lack of nutrients",
         "solution": "Fertilize every 2 weeks with organic feed."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water weekly + compost"
+    }
   },
   "romero": {
     "name": "Rosemary",
@@ -349,7 +409,11 @@
         "cause": "Poor ventilation and excess moisture",
         "solution": "Improve air circulation, reduce watering."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, prefers poor soil",
+      "homemade": "Not needed; a bit of compost yearly"
+    }
   },
   "menta": {
     "name": "Mint",
@@ -371,7 +435,11 @@
         "cause": "Naturally expansive",
         "solution": "Always keep it in a pot, trim runners."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water every 10 days"
+    }
   },
   "tomatera": {
     "name": "Tomato Plant",
@@ -393,7 +461,11 @@
         "cause": "Fungus from wet foliage",
         "solution": "Don't wet the leaves, treat with copper fungicide."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in potassium and phosphorus",
+      "homemade": "Banana peel tea weekly"
+    }
   },
   "pimiento": {
     "name": "Pepper Plant",
@@ -415,7 +487,11 @@
         "cause": "Possible pest",
         "solution": "Check the underside of leaves, treat if pests are found."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in potassium and phosphorus",
+      "homemade": "Banana peel tea + crushed eggshell"
+    }
   },
   "frutilla": {
     "name": "Strawberry",
@@ -437,7 +513,11 @@
         "cause": "Seasonal change or deficiency",
         "solution": "Normal in autumn; in summer it may be phosphorus deficiency."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Phosphorus and potassium",
+      "homemade": "Banana peel tea biweekly + compost"
+    }
   },
   "limonero": {
     "name": "Lemon Tree",
@@ -459,7 +539,11 @@
         "cause": "Mealybug pest",
         "solution": "Remove manually, treat with neem oil."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen, iron and zinc",
+      "homemade": "Diluted vinegar in watering + rusty nails monthly"
+    }
   },
   "suculenta-generica": {
     "name": "Succulent",
@@ -481,7 +565,11 @@
         "cause": "Underwatering",
         "solution": "Give it a thorough watering and wait, it'll recover."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus and potassium",
+      "homemade": "Eggshell water once a month"
+    }
   },
   "cactus": {
     "name": "Cactus",
@@ -503,7 +591,11 @@
         "cause": "Lack of winter dormancy",
         "solution": "A cool (5-10°C/40-50°F) dry winter triggers blooming."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low, phosphorus and potassium",
+      "homemade": "Eggshell water once a month"
+    }
   },
   "echeveria": {
     "name": "Echeveria",
@@ -525,7 +617,11 @@
         "cause": "Natural reabsorption process",
         "solution": "Gently remove them, it's a natural process."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus",
+      "homemade": "Eggshell water every 2 months"
+    }
   },
   "espatifilo": {
     "name": "Peace Lily",
@@ -547,7 +643,11 @@
         "cause": "Not enough light",
         "solution": "Move it to a brighter spot with indirect light."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Balanced nitrogen",
+      "homemade": "Rice water every 15 days"
+    }
   },
   "dracaena": {
     "name": "Dracaena",
@@ -569,7 +669,11 @@
         "cause": "Too much direct sunlight",
         "solution": "Move it to a spot with bright indirect light."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Rice water biweekly"
+    }
   },
   "filodendro": {
     "name": "Philodendron",
@@ -591,7 +695,11 @@
         "cause": "Direct sunlight burn",
         "solution": "Keep it out of harsh direct sun — it prefers filtered light."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water + worm castings"
+    }
   },
   "jade": {
     "name": "Jade Plant",
@@ -613,7 +721,11 @@
         "cause": "Salt deposits from water or fertilizer",
         "solution": "Wipe leaves clean and flush the soil with distilled water."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus and potassium",
+      "homemade": "Eggshell water every 2 months"
+    }
   },
   "peperomia": {
     "name": "Peperomia",
@@ -635,7 +747,11 @@
         "cause": "Too little light",
         "solution": "Move to a brighter location with indirect light."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Rice water every 20 days"
+    }
   },
   "rosa": {
     "name": "Rose",
@@ -657,7 +773,11 @@
         "cause": "Aphid infestation",
         "solution": "Blast them off with water or treat with insecticidal soap."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in phosphorus and potassium",
+      "homemade": "Banana peel tea weekly + eggshell"
+    }
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -679,7 +799,11 @@
         "cause": "Insufficient sunlight",
         "solution": "Needs at least 6 hours of direct sun to bloom properly."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen, high in phosphorus",
+      "homemade": "Banana peel tea biweekly"
+    }
   },
   "hibisco": {
     "name": "Hibiscus",
@@ -701,7 +825,11 @@
         "cause": "Aphids or whiteflies",
         "solution": "Treat with neem oil or insecticidal soap."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Phosphorus and potassium",
+      "homemade": "Banana peel tea + coffee grounds monthly"
+    }
   },
   "margarita": {
     "name": "Daisy",
@@ -723,7 +851,11 @@
         "cause": "Poor air circulation and damp conditions",
         "solution": "Space plants out and avoid overhead watering."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate phosphorus",
+      "homemade": "Banana peel tea every 15 days"
+    }
   },
   "perejil": {
     "name": "Parsley",
@@ -745,7 +877,11 @@
         "cause": "Swallowtail butterfly larvae",
         "solution": "Pick them off by hand or plant extra to share with them."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water weekly"
+    }
   },
   "oregano": {
     "name": "Oregano",
@@ -767,7 +903,11 @@
         "cause": "Not enough light",
         "solution": "Give it full sun and trim regularly to keep it bushy."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, prefers poor soil",
+      "homemade": "Not needed; light compost once a year"
+    }
   },
   "cilantro": {
     "name": "Cilantro",
@@ -789,7 +929,11 @@
         "cause": "Hard seed coat",
         "solution": "Gently crush the seeds before sowing to speed things up."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Rice water every 15 days"
+    }
   },
   "tomillo": {
     "name": "Thyme",
@@ -811,7 +955,11 @@
         "cause": "Soil too rich",
         "solution": "Thyme prefers lean soil — skip the fertilizer."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, prefers poor soil",
+      "homemade": "Not needed; light compost yearly"
+    }
   },
   "lechuga": {
     "name": "Lettuce",
@@ -833,7 +981,11 @@
         "cause": "Heat stress",
         "solution": "Provide shade cloth and water in the morning."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High nitrogen",
+      "homemade": "Rice water weekly + worm castings"
+    }
   },
   "pepino": {
     "name": "Cucumber",
@@ -855,7 +1007,11 @@
         "cause": "Poor pollination or uneven watering",
         "solution": "Hand-pollinate if needed and keep moisture consistent."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in potassium and nitrogen",
+      "homemade": "Banana peel tea weekly + rice water"
+    }
   },
   "zanahoria": {
     "name": "Carrot",
@@ -877,7 +1033,11 @@
         "cause": "Carrot fly larvae",
         "solution": "Cover with fine mesh netting and companion plant with onions."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Phosphorus and potassium, low nitrogen",
+      "homemade": "Wood ash + eggshell"
+    }
   },
   "rucula": {
     "name": "Arugula",
@@ -899,7 +1059,11 @@
         "cause": "Hot weather",
         "solution": "Sow successively every 2 weeks and grow in light shade."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water weekly"
+    }
   },
   "naranjo": {
     "name": "Orange Tree",
@@ -921,7 +1085,11 @@
         "cause": "Honeydew from scale insects or aphids",
         "solution": "Treat the pest first with neem oil, then wipe the mold off."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen, iron and zinc",
+      "homemade": "Diluted vinegar in watering + eggshell"
+    }
   },
   "aguacate": {
     "name": "Avocado",
@@ -943,7 +1111,11 @@
         "cause": "Insufficient light",
         "solution": "Move to a bright spot — avocados need lots of light to thrive."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen and potassium",
+      "homemade": "Worm castings + banana peel tea monthly"
+    }
   },
   "higuera": {
     "name": "Fig Tree",
@@ -965,7 +1137,11 @@
         "cause": "Young tree or wrong variety",
         "solution": "Be patient — figs can take 2-3 years to fruit. Make sure you have a self-pollinating variety."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Potassium and phosphorus",
+      "homemade": "Banana peel tea + wood ash biweekly"
+    }
   },
   "mandarino": {
     "name": "Mandarin Tree",
@@ -987,7 +1163,11 @@
         "cause": "Irregular watering",
         "solution": "Water consistently — sudden soaking after dry spells causes splitting."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Nitrogen, iron and zinc",
+      "homemade": "Diluted vinegar + rusty nails monthly"
+    }
   },
   "zapallito": {
     "name": "Summer Squash",
@@ -1009,7 +1189,11 @@
         "cause": "Poor pollination",
         "solution": "Hand-pollinate by transferring pollen from male to female flowers with a brush."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "High in potassium and phosphorus",
+      "homemade": "Banana peel tea weekly + compost"
+    }
   },
   "ciboulette": {
     "name": "Chives",
@@ -1031,7 +1215,11 @@
         "cause": "Chive rust fungus",
         "solution": "Cut all foliage to the ground — it'll regrow clean."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Moderate nitrogen",
+      "homemade": "Rice water every 10 days"
+    }
   },
   "haworthia": {
     "name": "Haworthia",
@@ -1053,7 +1241,11 @@
         "cause": "Too much light or heat",
         "solution": "Provide some shade and keep it in a cooler spot."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus",
+      "homemade": "Eggshell water every 2 months"
+    }
   },
   "sedum": {
     "name": "Burro's Tail",
@@ -1075,7 +1267,37 @@
         "cause": "Not enough light",
         "solution": "Move to a brighter spot with several hours of indirect sun."
       }
-    ]
+    ],
+    "nutrients": {
+      "type": "Very low, phosphorus",
+      "homemade": "Eggshell water every 2 months"
+    }
+  },
+  "yuca": {
+    "name": "Yucca",
+    "tip": "Yucca is an all-rounder: it handles drought, direct sun, and even some cold. Don't overwater it.",
+    "description": "The Yucca elephantipes or indoor Yucca is a woody-trunked plant with long, stiff, pointed leaves. Extremely hardy and tolerant of varied light conditions, though it prefers direct sun. Ideal for those seeking a large, low-maintenance plant.",
+    "problems": [
+      {
+        "symptom": "Lower yellow leaves",
+        "cause": "Natural aging or overwatering",
+        "solution": "It's normal to lose old leaves. If there are many, reduce watering and let it dry well between waterings."
+      },
+      {
+        "symptom": "Soft trunk",
+        "cause": "Rot from overwatering",
+        "solution": "Stop watering immediately. If severely affected, cut the healthy part of the trunk and replant."
+      },
+      {
+        "symptom": "Brown tips",
+        "cause": "Very dry air or too much sun",
+        "solution": "Trim the dry tips and if it's in very strong direct sun, move it to bright indirect light."
+      }
+    ],
+    "nutrients": {
+      "type": "Low, balanced nitrogen",
+      "homemade": "Rice water once a month"
+    }
   },
   "humidity": {
     "baja": "Low",

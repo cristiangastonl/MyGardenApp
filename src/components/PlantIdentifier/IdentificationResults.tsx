@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { IdentificationResult, IdentifiedPlant } from '../../types';
 
@@ -20,10 +21,10 @@ interface IdentificationResultsProps {
   onClose: () => void;
 }
 
-const HUMIDITY_LABELS = {
-  baja: 'Baja',
-  media: 'Media',
-  alta: 'Alta',
+const HUMIDITY_KEYS: Record<string, string> = {
+  baja: 'identification.humidityLow',
+  media: 'identification.humidityMedium',
+  alta: 'identification.humidityHigh',
 };
 
 export function IdentificationResults({
@@ -35,24 +36,26 @@ export function IdentificationResults({
   onRetry,
   onClose,
 }: IdentificationResultsProps) {
+  const { t } = useTranslation();
+
   // Case C: No result / error
   if (!result.success || result.type === 'none') {
     return (
       <View style={styles.container}>
         <View style={styles.errorContainer}>
           <Text style={styles.errorIcon}>🤔</Text>
-          <Text style={styles.errorTitle}>No pudimos identificarla</Text>
+          <Text style={styles.errorTitle}>{t('identification.couldNotIdentify')}</Text>
           <Text style={styles.errorMessage}>
-            {result.reason || 'No se reconoció la planta en la imagen. Probá con otra foto con mejor iluminación.'}
+            {result.reason || t('identification.couldNotIdentifyMessage')}
           </Text>
         </View>
 
         <View style={styles.actions}>
           <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-            <Text style={styles.retryButtonText}>Intentar con otra foto</Text>
+            <Text style={styles.retryButtonText}>{t('identification.tryAnotherPhoto')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.manualButton} onPress={onClose}>
-            <Text style={styles.manualButtonText}>Agregar manualmente</Text>
+            <Text style={styles.manualButtonText}>{t('identification.addManually')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -66,7 +69,7 @@ export function IdentificationResults({
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.successHeader}>
           <Text style={styles.successIcon}>✨</Text>
-          <Text style={styles.successTitle}>¡Planta identificada!</Text>
+          <Text style={styles.successTitle}>{t('identification.plantIdentified')}</Text>
         </View>
 
         <PlantResultCard
@@ -78,10 +81,10 @@ export function IdentificationResults({
 
         <View style={styles.actions}>
           <TouchableOpacity style={styles.addButton} onPress={onAddPlant}>
-            <Text style={styles.addButtonText}>Agregar a mi jardín</Text>
+            <Text style={styles.addButtonText}>{t('identification.addToGarden')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-            <Text style={styles.retryButtonText}>No es esta, intentar de nuevo</Text>
+            <Text style={styles.retryButtonText}>{t('identification.notThisOneTryAgain')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -93,9 +96,9 @@ export function IdentificationResults({
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.multipleHeader}>
         <Text style={styles.multipleIcon}>🌿</Text>
-        <Text style={styles.multipleTitle}>Posibles coincidencias</Text>
+        <Text style={styles.multipleTitle}>{t('identification.possibleMatches')}</Text>
         <Text style={styles.multipleSubtitle}>
-          {result.reason || 'Encontramos varias opciones. Seleccioná la que corresponda.'}
+          {result.reason || t('identification.possibleMatchesMessage')}
         </Text>
       </View>
 
@@ -116,11 +119,11 @@ export function IdentificationResults({
           disabled={!selectedPlant}
         >
           <Text style={styles.addButtonText}>
-            {selectedPlant ? 'Agregar a mi jardín' : 'Seleccioná una opción'}
+            {selectedPlant ? t('identification.addToGarden') : t('identification.selectAnOption')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-          <Text style={styles.retryButtonText}>Ninguna es correcta</Text>
+          <Text style={styles.retryButtonText}>{t('identification.noneCorrect')}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -135,6 +138,7 @@ interface PlantResultCardProps {
 }
 
 function PlantResultCard({ plant, isSelected, showDetails, onSelect }: PlantResultCardProps) {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       style={[styles.resultCard, isSelected && styles.resultCardSelected]}
@@ -157,29 +161,29 @@ function PlantResultCard({ plant, isSelected, showDetails, onSelect }: PlantResu
           <View style={styles.infoGrid}>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}>💧</Text>
-              <Text style={styles.infoLabel}>Riego</Text>
-              <Text style={styles.infoValue}>Cada {plant.waterDays} días</Text>
+              <Text style={styles.infoLabel}>{t('identification.watering')}</Text>
+              <Text style={styles.infoValue}>{t('identification.everyDays', { days: plant.waterDays })}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}>☀️</Text>
-              <Text style={styles.infoLabel}>Sol</Text>
-              <Text style={styles.infoValue}>{plant.sunHours}h/día</Text>
+              <Text style={styles.infoLabel}>{t('identification.sun')}</Text>
+              <Text style={styles.infoValue}>{t('identification.hoursPerDay', { hours: plant.sunHours })}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}>🌡️</Text>
-              <Text style={styles.infoLabel}>Temp</Text>
+              <Text style={styles.infoLabel}>{t('identification.temp')}</Text>
               <Text style={styles.infoValue}>{plant.tempMin}° - {plant.tempMax}°</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}>💨</Text>
-              <Text style={styles.infoLabel}>Humedad</Text>
-              <Text style={styles.infoValue}>{HUMIDITY_LABELS[plant.humidity]}</Text>
+              <Text style={styles.infoLabel}>{t('identification.humidity')}</Text>
+              <Text style={styles.infoValue}>{t(HUMIDITY_KEYS[plant.humidity])}</Text>
             </View>
           </View>
 
           {plant.tip && (
             <View style={styles.tipContainer}>
-              <Text style={styles.tipLabel}>CONSEJO</Text>
+              <Text style={styles.tipLabel}>{t('identification.tip')}</Text>
               <Text style={styles.tipText}>{plant.tip}</Text>
             </View>
           )}

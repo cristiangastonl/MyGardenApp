@@ -2,6 +2,7 @@ import { Plant, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
 
 export function getNextWaterDate(plant: Plant, today: Date): Date {
+  if (plant.waterEvery <= 0) return today;
   if (!plant.lastWatered) return today;
   const last = parseDate(plant.lastWatered);
   let next = addDays(last, plant.waterEvery);

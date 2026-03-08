@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Modal,
@@ -8,9 +8,12 @@ import {
   SafeAreaView,
   Alert,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantIdentification } from '../../hooks/usePlantIdentification';
 import { IdentifiedPlant, Plant } from '../../types';
+import { Features } from '../../config/features';
+import { getPlantCategories } from '../../data/plantDatabase';
 import { CameraCapture } from './CameraCapture';
 import { AnalyzingState } from './AnalyzingState';
 import { IdentificationResults } from './IdentificationResults';
@@ -18,17 +21,27 @@ import { IdentificationResults } from './IdentificationResults';
 interface PlantIdentifierModalProps {
   visible: boolean;
   onClose: () => void;
-  onAddPlant: (plant: Omit<Plant, 'id'>, imageUri?: string | null) => void;
+  onAddPlant: (plant: Omit<Plant, 'id'>, imageUri?: string | null) => Promise<Plant>;
+  onDiagnoseAfterIdentify?: (plant: Plant, reusePhotos: boolean, imageUri: string | null, imageBase64: string | null) => void;
+  isPremium?: boolean;
+  diagnosisCount?: number;
 }
 
 export function PlantIdentifierModal({
   visible,
   onClose,
   onAddPlant,
+  onDiagnoseAfterIdentify,
+  isPremium = false,
+  diagnosisCount = 0,
 }: PlantIdentifierModalProps) {
+  const { t } = useTranslation();
+  const [showDiagnosisPrompt, setShowDiagnosisPrompt] = useState(false);
+  const [addedPlant, setAddedPlant] = useState<Plant | null>(null);
   const {
     state,
     imageUri,
+    imageBase64,
     result,
     error,
     enrichedData,
@@ -43,11 +56,24 @@ export function PlantIdentifierModal({
 
   const handleClose = () => {
     reset();
+    setShowDiagnosisPrompt(false);
+    setAddedPlant(null);
     onClose();
   };
 
   const handleRetake = () => {
     reset();
+    setShowDiagnosisPrompt(false);
+    setAddedPlant(null);
+  };
+
+  const handleDiagnose = (reusePhotos: boolean) => {
+    if (addedPlant && onDiagnoseAfterIdentify) {
+      const capturedUri = imageUri;
+      const capturedBase64 = imageBase64;
+      handleClose();
+      onDiagnoseAfterIdentify(addedPlant, reusePhotos, capturedUri, capturedBase64);
+    }
   };
 
   const handleAddPlant = () => {
@@ -75,35 +101,73 @@ export function PlantIdentifierModal({
       tempMax: useEnriched ? (data.tempMax ?? undefined) : selectedPlant.tempMax,
     };
 
+    const doAdd = async (usePhoto: boolean) => {
+      const createdPlant = await onAddPlant(plantData, usePhoto ? imageUri : null);
+      // Show diagnosis prompt if feature is enabled
+      if (Features.DLC_PEST_DIAGNOSIS && onDiagnoseAfterIdentify) {
+        setAddedPlant(createdPlant);
+        setShowDiagnosisPrompt(true);
+      } else {
+        handleClose();
+      }
+    };
+
     if (imageUri) {
       Alert.alert(
-        'Foto de tu planta',
-        '¿Querés usar la foto que sacaste como imagen de tu planta?',
+        t('identification.photoTitle'),
+        t('identification.photoQuestion'),
         [
           {
-            text: 'No, gracias',
+            text: t('identification.photoNo'),
             style: 'cancel',
-            onPress: () => {
-              onAddPlant(plantData, null);
-              handleClose();
-            },
+            onPress: () => doAdd(false),
           },
           {
-            text: 'Usar esta foto',
-            onPress: () => {
-              onAddPlant(plantData, imageUri);
-              handleClose();
-            },
+            text: t('identification.photoYes'),
+            onPress: () => doAdd(true),
           },
         ],
       );
     } else {
-      onAddPlant(plantData, null);
-      handleClose();
+      doAdd(false);
     }
   };
 
   const renderContent = () => {
+    // Show diagnosis prompt after plant added
+    if (showDiagnosisPrompt && addedPlant) {
+      return (
+        <View style={styles.diagnosisPrompt}>
+          <Text style={styles.diagnosisPromptIcon}>🩺</Text>
+          <Text style={styles.diagnosisPromptTitle}>{t('identification.plantAdded')}</Text>
+          <Text style={styles.diagnosisPromptQuestion}>{t('identification.wantToDiagnose')}</Text>
+          {!isPremium && diagnosisCount < 1 && (
+            <View style={styles.freeNoteContainer}>
+              <Text style={styles.freeNoteText}>{t('identification.freeDiagnosisNote')}</Text>
+            </View>
+          )}
+          <TouchableOpacity
+            style={styles.diagnosisOptionButton}
+            onPress={() => handleDiagnose(true)}
+          >
+            <Text style={styles.diagnosisOptionButtonText}>{t('identification.useThesePhotos')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.diagnosisOptionButtonSecondary}
+            onPress={() => handleDiagnose(false)}
+          >
+            <Text style={styles.diagnosisOptionButtonSecondaryText}>{t('identification.takeNewPhotos')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.diagnosisSkipButton}
+            onPress={handleClose}
+          >
+            <Text style={styles.diagnosisSkipButtonText}>{t('identification.skipDiagnosis')}</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
     switch (state) {
       case 'idle':
       case 'capturing':
@@ -138,10 +202,10 @@ export function PlantIdentifierModal({
         return (
           <View style={styles.errorContainer}>
             <Text style={styles.errorIcon}>⚠️</Text>
-            <Text style={styles.errorTitle}>Error</Text>
+            <Text style={styles.errorTitle}>{t('identification.error')}</Text>
             <Text style={styles.errorMessage}>{error}</Text>
             <TouchableOpacity style={styles.retryButton} onPress={handleRetake}>
-              <Text style={styles.retryButtonText}>Intentar de nuevo</Text>
+              <Text style={styles.retryButtonText}>{t('identification.retry')}</Text>
             </TouchableOpacity>
           </View>
         );
@@ -166,7 +230,7 @@ export function PlantIdentifierModal({
               <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
                 <Text style={styles.closeButtonText}>✕</Text>
               </TouchableOpacity>
-              <Text style={styles.title}>Identificar planta</Text>
+              <Text style={styles.title}>{t('identification.title')}</Text>
             </View>
 
             {renderContent()}
@@ -178,15 +242,8 @@ export function PlantIdentifierModal({
 }
 
 function getCategoryName(category: string): string {
-  const names: Record<string, string> = {
-    interior: 'Interior',
-    exterior: 'Exterior',
-    aromaticas: 'Aromáticas',
-    huerta: 'Huerta',
-    frutales: 'Frutales',
-    suculentas: 'Suculentas',
-  };
-  return names[category] || 'Otra';
+  const cat = getPlantCategories().find(c => c.id === category);
+  return cat?.name || category;
 }
 
 const styles = StyleSheet.create({
@@ -224,8 +281,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: spacing.lg,
     top: spacing.lg,
-    width: 32,
-    height: 32,
+    width: 44,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -272,5 +329,78 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 16,
     color: colors.white,
+  },
+  // Diagnosis prompt styles
+  diagnosisPrompt: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.xl,
+  },
+  diagnosisPromptIcon: {
+    fontSize: 48,
+    marginBottom: spacing.lg,
+  },
+  diagnosisPromptTitle: {
+    fontFamily: fonts.heading,
+    fontSize: 24,
+    color: colors.textPrimary,
+    marginBottom: spacing.sm,
+  },
+  diagnosisPromptQuestion: {
+    fontFamily: fonts.body,
+    fontSize: 15,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: spacing.lg,
+  },
+  freeNoteContainer: {
+    backgroundColor: colors.infoBg,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+  },
+  freeNoteText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.infoText,
+    textAlign: 'center',
+  },
+  diagnosisOptionButton: {
+    backgroundColor: colors.green,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.xxl,
+    borderRadius: borderRadius.lg,
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: spacing.md,
+  },
+  diagnosisOptionButtonText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.white,
+  },
+  diagnosisOptionButtonSecondary: {
+    backgroundColor: colors.bgSecondary,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.xxl,
+    borderRadius: borderRadius.lg,
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: spacing.md,
+  },
+  diagnosisOptionButtonSecondaryText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: colors.textPrimary,
+  },
+  diagnosisSkipButton: {
+    paddingVertical: spacing.md,
+    alignItems: 'center',
+  },
+  diagnosisSkipButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: colors.textMuted,
   },
 });

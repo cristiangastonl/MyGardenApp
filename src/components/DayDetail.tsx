@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from "../theme";
 import { Plant, Note, Reminder, Task } from "../types";
 import { DAYS_FULL, MONTHS_ES } from "../data/constants";
@@ -43,6 +44,7 @@ export function DayDetail({
   onDeleteReminder,
   onToggleReminder,
 }: DayDetailProps) {
+  const { t } = useTranslation();
   const [newNoteText, setNewNoteText] = useState("");
   const [newReminderText, setNewReminderText] = useState("");
   const [newReminderTime, setNewReminderTime] = useState("09:00");
@@ -89,11 +91,11 @@ export function DayDetail({
   const getTaskTypeLabel = (type: string): string => {
     switch (type) {
       case "water":
-        return "Riego";
+        return t('dayDetail.taskWater');
       case "sun":
-        return "Sol";
+        return t('dayDetail.taskSun');
       case "outdoor":
-        return "Exterior";
+        return t('dayDetail.taskOutdoor');
       default:
         return "";
     }
@@ -137,7 +139,7 @@ export function DayDetail({
             >
               {/* Tasks section */}
               <View style={styles.section}>
-                <Text style={styles.sectionLabel}>TAREAS DEL DIA</Text>
+                <Text style={styles.sectionLabel}>{t('dayDetail.tasksOfDay')}</Text>
                 {tasks.length > 0 ? (
                   <View style={styles.tasksList}>
                     {tasks.map((task, index) => {
@@ -171,7 +173,7 @@ export function DayDetail({
                   </View>
                 ) : (
                   <Text style={styles.emptyText}>
-                    No hay tareas programadas para este dia
+                    {t('dayDetail.noTasksScheduled')}
                   </Text>
                 )}
               </View>
@@ -179,13 +181,13 @@ export function DayDetail({
               {/* Reminders section */}
               <View style={styles.section}>
                 <View style={styles.sectionHeader}>
-                  <Text style={styles.sectionLabel}>RECORDATORIOS</Text>
+                  <Text style={styles.sectionLabel}>{t('dayDetail.reminders')}</Text>
                   {!showReminderForm && (
                     <TouchableOpacity
                       style={styles.addButton}
                       onPress={() => setShowReminderForm(true)}
                     >
-                      <Text style={styles.addButtonText}>+ Agregar</Text>
+                      <Text style={styles.addButtonText}>{t('dayDetail.add')}</Text>
                     </TouchableOpacity>
                   )}
                 </View>
@@ -196,12 +198,12 @@ export function DayDetail({
                       style={styles.formInput}
                       value={newReminderText}
                       onChangeText={setNewReminderText}
-                      placeholder="Recordatorio..."
+                      placeholder={t('dayDetail.reminderPlaceholder')}
                       placeholderTextColor={colors.textMuted}
                       autoFocus
                     />
                     <View style={styles.timeRow}>
-                      <Text style={styles.timeLabel}>Hora:</Text>
+                      <Text style={styles.timeLabel}>{t('dayDetail.time')}:</Text>
                       <TextInput
                         style={styles.timeInput}
                         value={newReminderTime}
@@ -219,7 +221,7 @@ export function DayDetail({
                           setNewReminderText("");
                         }}
                       >
-                        <Text style={styles.formCancelText}>Cancelar</Text>
+                        <Text style={styles.formCancelText}>{t('dayDetail.cancel')}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[
@@ -229,7 +231,7 @@ export function DayDetail({
                         onPress={handleAddReminder}
                         disabled={!newReminderText.trim()}
                       >
-                        <Text style={styles.formSaveText}>Guardar</Text>
+                        <Text style={styles.formSaveText}>{t('dayDetail.save')}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -273,20 +275,20 @@ export function DayDetail({
                     ))}
                   </View>
                 ) : !showReminderForm ? (
-                  <Text style={styles.emptyText}>Sin recordatorios</Text>
+                  <Text style={styles.emptyText}>{t('dayDetail.noReminders')}</Text>
                 ) : null}
               </View>
 
               {/* Notes section */}
               <View style={styles.section}>
                 <View style={styles.sectionHeader}>
-                  <Text style={styles.sectionLabel}>NOTAS</Text>
+                  <Text style={styles.sectionLabel}>{t('dayDetail.notes')}</Text>
                   {!showNoteForm && (
                     <TouchableOpacity
                       style={styles.addButton}
                       onPress={() => setShowNoteForm(true)}
                     >
-                      <Text style={styles.addButtonText}>+ Agregar</Text>
+                      <Text style={styles.addButtonText}>{t('dayDetail.add')}</Text>
                     </TouchableOpacity>
                   )}
                 </View>
@@ -297,7 +299,7 @@ export function DayDetail({
                       style={[styles.formInput, styles.noteInput]}
                       value={newNoteText}
                       onChangeText={setNewNoteText}
-                      placeholder="Escribi tu nota..."
+                      placeholder={t('dayDetail.notePlaceholder')}
                       placeholderTextColor={colors.textMuted}
                       multiline
                       numberOfLines={3}
@@ -311,7 +313,7 @@ export function DayDetail({
                           setNewNoteText("");
                         }}
                       >
-                        <Text style={styles.formCancelText}>Cancelar</Text>
+                        <Text style={styles.formCancelText}>{t('dayDetail.cancel')}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[
@@ -321,7 +323,7 @@ export function DayDetail({
                         onPress={handleAddNote}
                         disabled={!newNoteText.trim()}
                       >
-                        <Text style={styles.formSaveText}>Guardar</Text>
+                        <Text style={styles.formSaveText}>{t('dayDetail.save')}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -342,7 +344,7 @@ export function DayDetail({
                     ))}
                   </View>
                 ) : !showNoteForm ? (
-                  <Text style={styles.emptyText}>Sin notas</Text>
+                  <Text style={styles.emptyText}>{t('dayDetail.noNotes')}</Text>
                 ) : null}
               </View>
 

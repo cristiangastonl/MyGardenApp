@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
   },
   planRecommendedText: {
     fontFamily: fonts.bodySemiBold,
-    fontSize: 8,
+    fontSize: 11,
     color: colors.white,
     letterSpacing: 1,
   },
@@ -583,7 +583,7 @@ const styles = StyleSheet.create({
   },
   planBadgeText: {
     fontFamily: fonts.bodySemiBold,
-    fontSize: 9,
+    fontSize: 11,
     color: colors.white,
     letterSpacing: 0.5,
   },
@@ -620,7 +620,7 @@ const styles = StyleSheet.create({
   },
   planSavingsText: {
     fontFamily: fonts.bodySemiBold,
-    fontSize: 10,
+    fontSize: 11,
     color: colors.sunDark,
     letterSpacing: 0.3,
   },

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Plant, SavedDiagnosis, DiagnosisSeverity } from '../types';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import { Features } from '../config/features';
@@ -16,19 +17,19 @@ interface DiagnosisFollowUpProps {
   onPressDiagnosis: (diagnosis: SavedDiagnosis) => void;
 }
 
-const SEVERITY_CONFIG: Record<DiagnosisSeverity, { icon: string; label: string; color: string; bg: string; border: string }> = {
-  healthy: { icon: '✅', label: 'Saludable', color: colors.green, bg: colors.successBg, border: colors.green },
-  minor: { icon: '💛', label: 'Leve', color: colors.warningText, bg: colors.warningBg, border: colors.sunGold },
-  moderate: { icon: '🟠', label: 'Moderado', color: '#c47a20', bg: '#fef3e0', border: '#c47a20' },
-  severe: { icon: '🔴', label: 'Grave', color: colors.dangerText, bg: colors.dangerBg, border: colors.dangerText },
+const SEVERITY_CONFIG: Record<DiagnosisSeverity, { icon: string; labelKey: string; color: string; bg: string; border: string }> = {
+  healthy: { icon: '✅', labelKey: 'diagnosis.severityHealthy', color: colors.green, bg: colors.successBg, border: colors.green },
+  minor: { icon: '💛', labelKey: 'diagnosis.severityMinor', color: colors.warningText, bg: colors.warningBg, border: colors.sunGold },
+  moderate: { icon: '🟠', labelKey: 'diagnosis.severityModerate', color: '#c47a20', bg: '#fef3e0', border: '#c47a20' },
+  severe: { icon: '🔴', labelKey: 'diagnosis.severitySevere', color: colors.dangerText, bg: colors.dangerBg, border: colors.dangerText },
 };
 
-function formatDiagnosisDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  const day = date.getDate();
-  const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-  return `${day} ${months[date.getMonth()]}`;
-}
+const MONTH_ABBREV_KEYS = [
+  'diagnosis.monthJan', 'diagnosis.monthFeb', 'diagnosis.monthMar',
+  'diagnosis.monthApr', 'diagnosis.monthMay', 'diagnosis.monthJun',
+  'diagnosis.monthJul', 'diagnosis.monthAug', 'diagnosis.monthSep',
+  'diagnosis.monthOct', 'diagnosis.monthNov', 'diagnosis.monthDec',
+];
 
 export function DiagnosisFollowUp({
   plants,
@@ -36,7 +37,14 @@ export function DiagnosisFollowUp({
   onResolve,
   onPressDiagnosis,
 }: DiagnosisFollowUpProps) {
+  const { t } = useTranslation();
   if (!Features.DLC_PEST_DIAGNOSIS) return null;
+
+  const formatDiagnosisDate = (dateStr: string): string => {
+    const date = new Date(dateStr);
+    const day = date.getDate();
+    return `${day} ${t(MONTH_ABBREV_KEYS[date.getMonth()])}`;
+  };
 
   // Collect all active diagnoses across all plants
   const activeDiagnoses: { plant: Plant; diagnosis: SavedDiagnosis }[] = [];
@@ -55,7 +63,7 @@ export function DiagnosisFollowUp({
     <View style={styles.container}>
       <View style={styles.headerRow}>
         <Text style={styles.sectionIcon}>🩺</Text>
-        <Text style={styles.sectionTitle}>Seguimiento de diagnosticos</Text>
+        <Text style={styles.sectionTitle}>{t('diagnosis.followUpTitle')}</Text>
         <View style={styles.countBadge}>
           <Text style={styles.countText}>{activeDiagnoses.length}</Text>
         </View>
@@ -79,7 +87,7 @@ export function DiagnosisFollowUp({
               </View>
               <View style={[styles.severityBadge, { backgroundColor: config.bg }]}>
                 <Text style={styles.severityIcon}>{config.icon}</Text>
-                <Text style={[styles.severityLabel, { color: config.color }]}>{config.label}</Text>
+                <Text style={[styles.severityLabel, { color: config.color }]}>{t(config.labelKey)}</Text>
               </View>
             </View>
 
@@ -96,7 +104,7 @@ export function DiagnosisFollowUp({
               style={styles.resolveButton}
               onPress={() => onResolve(plant.id, diagnosis.id)}
             >
-              <Text style={styles.resolveButtonText}>✅ Marcar como resuelto</Text>
+              <Text style={styles.resolveButtonText}>{t('diagnosis.markResolved')}</Text>
             </TouchableOpacity>
           </TouchableOpacity>
         );

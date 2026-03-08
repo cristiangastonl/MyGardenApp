@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform, DevSettings } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
@@ -440,6 +441,29 @@ export default function SettingsScreen() {
               onPress={() => showPaywall('dev_test')}
             >
               <Text style={styles.devButtonText}>{t('settings.showPaywall')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.devButton, { backgroundColor: colors.dangerBg }]}
+              onPress={() => {
+                Alert.alert(
+                  'Reset App',
+                  'This will delete all data and restart the app. Are you sure?',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Reset',
+                      style: 'destructive',
+                      onPress: async () => {
+                        await AsyncStorage.clear();
+                        DevSettings?.reload?.();
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={[styles.devButtonText, { color: colors.dangerText }]}>🗑️ Reset App</Text>
             </TouchableOpacity>
           </View>
         )}
