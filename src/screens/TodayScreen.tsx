@@ -47,6 +47,9 @@ import { ShoppingListModal } from '../components/ShoppingListModal';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
+import { useSeason } from '../hooks/useSeason';
+import { SeasonDevSelector } from '../components/SeasonDevSelector';
+import { SeasonalBackground } from '../components/SeasonalBackground';
 
 export default function TodayScreen() {
   const { t } = useTranslation();
@@ -87,6 +90,7 @@ export default function TodayScreen() {
   } = useStorage();
 
   const { weather, loading: weatherLoading, error: weatherError, refetch: refetchWeather } = useWeather(location);
+  const { season, palette: seasonalPalette } = useSeason(location);
 
   // Generate plant alerts for notifications
   const plantAlerts = useMemo(() => {
@@ -231,8 +235,15 @@ export default function TodayScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header userName={userName} onSettingsPress={() => navigation.navigate('Ajustes')} />
+    <SafeAreaView style={[styles.container, { backgroundColor: seasonalPalette.bgTint }]}>
+      <SeasonalBackground season={season} palette={seasonalPalette}>
+        <Header
+          userName={userName}
+          onSettingsPress={() => navigation.navigate('Ajustes')}
+          seasonIcon={seasonalPalette.icon}
+          seasonLabel={t(`seasons.${season}`)}
+        />
+      </SeasonalBackground>
 
       <ScrollView
         style={styles.content}
@@ -501,6 +512,9 @@ export default function TodayScreen() {
         onRemove={removeShoppingItem}
         onClearChecked={clearCheckedShoppingItems}
       />
+
+      {/* Dev: Season selector */}
+      <SeasonDevSelector />
 
       {/* Plant Detail Modal with Photo Album */}
       <MyPlantDetailModal

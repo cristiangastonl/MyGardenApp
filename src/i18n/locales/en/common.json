@@ -11,6 +11,12 @@
     "appName": "My Garden",
     "dateFormat": "{{dayName}}, {{month}} {{day}}"
   },
+  "seasons": {
+    "spring": "Spring",
+    "summer": "Summer",
+    "fall": "Fall",
+    "winter": "Winter"
+  },
   "days": {
     "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     "full": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]

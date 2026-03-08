@@ -11,6 +11,12 @@
     "appName": "Mi Jardín",
     "dateFormat": "{{dayName}} {{day}} de {{month}}"
   },
+  "seasons": {
+    "spring": "Primavera",
+    "summer": "Verano",
+    "fall": "Otoño",
+    "winter": "Invierno"
+  },
   "days": {
     "short": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
     "full": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]

@@ -62,6 +62,43 @@ export const colors = {
   overlay: 'rgba(45, 58, 46, 0.4)',
 };
 
+// Seasonal theme palettes — subtle background shifts like Google Weather
+export type SeasonKey = 'spring' | 'summer' | 'fall' | 'winter';
+
+export interface SeasonalPalette {
+  gradient: [string, string];      // Header/top gradient
+  bgTint: string;                  // Subtle tint for the main background
+  accent: string;                  // Seasonal accent color
+  icon: string;                    // Emoji representing the season
+}
+
+export const seasonalThemes: Record<SeasonKey, SeasonalPalette> = {
+  spring: {
+    gradient: ['#d4edda', '#e8f5e9'],  // Fresh green, more visible
+    bgTint: '#eef5e6',
+    accent: '#66bb6a',
+    icon: '🌸',
+  },
+  summer: {
+    gradient: ['#fff0c2', '#ffe8a8'],  // Warm golden, stronger
+    bgTint: '#f7f0dc',
+    accent: '#ffa726',
+    icon: '☀️',
+  },
+  fall: {
+    gradient: ['#f5d6c6', '#edddd0'],  // Terracotta, warmer
+    bgTint: '#f3ebe2',
+    accent: '#bf6830',
+    icon: '🍂',
+  },
+  winter: {
+    gradient: ['#d6dff0', '#dde4ef'],  // Cool blue, more visible
+    bgTint: '#e8eaef',
+    accent: '#78909c',
+    icon: '❄️',
+  },
+};
+
 export const fonts = {
   heading: 'PlayfairDisplay_700Bold',
   headingMedium: 'PlayfairDisplay_600SemiBold',
