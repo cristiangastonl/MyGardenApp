@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
-import { DiagnosisResult, DiagnosisSeverity, DiagnosisChatMessage } from '../../types';
+import { DiagnosisResult, DiagnosisSeverity, DiagnosisChatMessage, TrackingStatus } from '../../types';
+import { shouldShowTrackButton, isTrackingOptional, TRACKING_STATUS_CONFIG } from '../../services/problemTrackingService';
 
 interface DiagnosisResultsProps {
   result: DiagnosisResult;
@@ -34,6 +35,14 @@ interface DiagnosisResultsProps {
   // Shopping list
   onAddToShoppingList?: (treatment: string) => void;
   canAddToShoppingList?: boolean;
+  // Problem tracking (Phase 2)
+  onTrackProblem?: () => void;
+  isAlreadyTracked?: boolean;
+  trackingStatus?: TrackingStatus;
+  // Resolution suggestion (PROB-05)
+  showResolutionSuggestion?: boolean;
+  onConfirmResolution?: () => void;
+  onDismissResolution?: () => void;
 }
 
 const STATUS_STYLE: Record<DiagnosisSeverity, { icon: string; color: string; bg: string }> = {
@@ -59,6 +68,12 @@ export function DiagnosisResults({
   onPaywall,
   onAddToShoppingList,
   canAddToShoppingList = false,
+  onTrackProblem,
+  isAlreadyTracked = false,
+  trackingStatus,
+  showResolutionSuggestion = false,
+  onConfirmResolution,
+  onDismissResolution,
 }: DiagnosisResultsProps) {
   const { t } = useTranslation();
 
@@ -198,6 +213,35 @@ export function DiagnosisResults({
         </View>
       )}
 
+      {/* Track this problem button - premium only, non-healthy only */}
+      {onTrackProblem && !isAlreadyTracked && shouldShowTrackButton(result.overallStatus, isPremium ?? false) && (
+        <TouchableOpacity
+          style={[
+            styles.trackButton,
+            isTrackingOptional(result.overallStatus) && styles.trackButtonOptional,
+          ]}
+          onPress={onTrackProblem}
+        >
+          <Text style={[
+            styles.trackButtonText,
+            isTrackingOptional(result.overallStatus) && styles.trackButtonTextOptional,
+          ]}>
+            {isTrackingOptional(result.overallStatus)
+              ? t('diagnosis.tracking.trackButtonOptional')
+              : t('diagnosis.tracking.trackButton')}
+          </Text>
+        </TouchableOpacity>
+      )}
+
+      {/* Already tracked indicator */}
+      {isAlreadyTracked && trackingStatus && (
+        <View style={styles.trackedIndicator}>
+          <Text style={styles.trackedIndicatorText}>
+            {TRACKING_STATUS_CONFIG[trackingStatus].emoji} {t(TRACKING_STATUS_CONFIG[trackingStatus].labelKey)}
+          </Text>
+        </View>
+      )}
+
       {/* Chat section */}
       {onSendChat && (
         <View style={styles.section}>
@@ -225,6 +269,33 @@ export function DiagnosisResults({
               </Text>
             </View>
           ))}
+
+          {/* Resolution suggestion card - shown when AI detects improvement (PROB-05) */}
+          {showResolutionSuggestion && (
+            <View style={styles.resolutionCard}>
+              <Text style={styles.resolutionCardTitle}>
+                {t('diagnosis.tracking.improvementDetected')}
+              </Text>
+              <View style={styles.resolutionCardActions}>
+                <TouchableOpacity
+                  style={styles.resolveButton}
+                  onPress={onConfirmResolution}
+                >
+                  <Text style={styles.resolveButtonText}>
+                    {t('diagnosis.tracking.markResolved')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.keepTrackingButton}
+                  onPress={onDismissResolution}
+                >
+                  <Text style={styles.keepTrackingButtonText}>
+                    {t('diagnosis.tracking.keepTracking')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
 
           {/* Loading indicator */}
           {chatLoading && (
@@ -613,6 +684,87 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.warningText,
     textAlign: 'center',
+  },
+  // Problem tracking styles
+  trackButton: {
+    backgroundColor: colors.green,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.lg,
+    alignItems: 'center',
+    marginTop: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  trackButtonOptional: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: colors.green,
+  },
+  trackButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: '#fff',
+  },
+  trackButtonTextOptional: {
+    color: colors.green,
+  },
+  trackedIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    backgroundColor: colors.successBg,
+    borderRadius: borderRadius.md,
+    marginTop: spacing.md,
+  },
+  trackedIndicatorText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.green,
+  },
+  resolutionCard: {
+    backgroundColor: colors.successBg,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginVertical: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.green,
+  },
+  resolutionCardTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 16,
+    color: colors.green,
+    marginBottom: spacing.sm,
+  },
+  resolutionCardActions: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  resolveButton: {
+    flex: 1,
+    backgroundColor: colors.green,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    alignItems: 'center',
+  },
+  resolveButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: '#fff',
+  },
+  keepTrackingButton: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    alignItems: 'center',
+  },
+  keepTrackingButtonText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.textSecondary,
   },
   actions: {
     marginTop: spacing.lg,

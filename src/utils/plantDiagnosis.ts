@@ -140,6 +140,7 @@ export function getMockDiagnosisResult(): DiagnosisResult {
 export interface ChatDiagnosisResponse {
   reply: string;
   updatedTips: string[];
+  improvementDetected?: boolean; // true when AI detects plant improvement (PROB-05)
 }
 
 /**

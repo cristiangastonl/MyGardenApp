@@ -108,8 +108,9 @@ El usuario te va a dar información adicional o hacer preguntas sobre el diagnó
 
 Respondé ÚNICAMENTE con un JSON válido (sin markdown, sin backticks):
 {
-  "reply": "Tu respuesta en español argentino, usando vos/voseo. Sé conciso pero útil.",
-  "updatedTips": ["Consejo actualizado 1", "Consejo actualizado 2"]
+  "reply": "Tu respuesta en espanol argentino, usando vos/voseo. Se conciso pero util.",
+  "updatedTips": ["Consejo actualizado 1", "Consejo actualizado 2"],
+  "improvementDetected": false
 }
 
 Reglas:
@@ -117,7 +118,8 @@ Reglas:
 - Si el usuario corrige algo del diagnóstico (ej: "eso es tierra, no plaga"), aceptá la corrección y ajustá tus consejos
 - updatedTips solo si cambiaron respecto a los originales, sino devolvé array vacío
 - Usá español argentino (vos, regá, sacá, poné)
-- Sé empático y práctico`
+- Sé empático y práctico
+- "improvementDetected": true SOLO si observas una mejora clara comparando la foto/info nueva con el diagnostico previo. No lo pongas en true solo porque el usuario dice que mejoro — evalualo vos.`
       : `You are an expert in plant pathology and plant care, following up on a previous diagnosis.
 
 Plant context:
@@ -139,7 +141,8 @@ The user will provide additional information or ask questions about the diagnosi
 Respond ONLY with valid JSON (no markdown, no backticks):
 {
   "reply": "Your response in clear, friendly English. Be concise but helpful.",
-  "updatedTips": ["Updated tip 1", "Updated tip 2"]
+  "updatedTips": ["Updated tip 1", "Updated tip 2"],
+  "improvementDetected": false
 }
 
 Rules:
@@ -147,7 +150,8 @@ Rules:
 - If the user corrects something in the diagnosis (e.g., "that's soil, not a pest"), accept the correction and adjust your tips
 - updatedTips only if they changed from the originals, otherwise return empty array
 - Use clear, friendly English
-- Be empathetic and practical`;
+- Be empathetic and practical
+- "improvementDetected": true ONLY if you observe clear improvement comparing the new photo/info with the previous diagnosis. Do not set true just because the user claims improvement — evaluate it yourself.`;
 
     // Build conversation history for Gemini
     const contents = [];
