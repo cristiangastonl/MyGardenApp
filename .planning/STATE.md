@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-19T14:55:45.894Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-03-19T15:08:51.701Z"
 last_activity: "2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields"
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 20
 ---
 
@@ -52,6 +52,7 @@ Progress: [██░░░░░░░░] 20%
 
 *Updated after each plan completion*
 | Phase 02-problem-tracking-core P02 | 6 | 2 tasks | 3 files |
+| Phase 02-problem-tracking-core P03 | 7 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - All SavedDiagnosis tracking fields are optional to ensure zero migration cost for existing stored data
 - [Phase 02-problem-tracking-core]: persistDiagnosisPhoto is synchronous (returns string not Promise) using expo-file-system File.copy matching photoService.ts pattern
 - [Phase 02-problem-tracking-core]: startTracking cancel-before-schedule order prevents duplicate notifications on re-tracking
+- [Phase 02-problem-tracking-core]: onFollowUpEntry passed as inline arrow to usePlantDiagnosis options — closure over stable savedDiagnosisId after diagnosis completes
+- [Phase 02-problem-tracking-core]: Resolution card rendered inside chat section (contextually tied to AI chat detection) not after care tips
+- [Phase 02-problem-tracking-core]: PROB-08 satisfied by existing architecture: new diagnosis = new diagId, no merge path exists
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T14:55:45.892Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-19T15:08:51.699Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None

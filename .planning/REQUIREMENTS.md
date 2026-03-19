@@ -16,14 +16,14 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Problem Tracking
 
-- [ ] **PROB-01**: When AI diagnoses a problem, user can create a tracked problem record for that plant (premium only)
+- [x] **PROB-01**: When AI diagnoses a problem, user can create a tracked problem record for that plant (premium only)
 - [x] **PROB-02**: Problem record stores: plant ID, problem summary, severity label, photo URI, AI notes, creation date, follow-up date, status
 - [x] **PROB-03**: AI determines follow-up frequency based on problem severity (e.g., fungus=3 days, yellowing=7 days)
 - [x] **PROB-04**: User can manually resolve/close a tracked problem at any time
-- [ ] **PROB-05**: When a follow-up diagnosis shows improvement, AI suggests resolution and user confirms with one tap
+- [x] **PROB-05**: When a follow-up diagnosis shows improvement, AI suggests resolution and user confirms with one tap
 - [x] **PROB-06**: User can reopen a previously resolved problem
 - [x] **PROB-07**: Each follow-up adds an entry to the problem record (photo, AI notes, date, status change)
-- [ ] **PROB-08**: Follow-up re-diagnosis opens a new chat session (not same thread)
+- [x] **PROB-08**: Follow-up re-diagnosis opens a new chat session (not same thread)
 - [x] **PROB-09**: Problem uses descriptive severity labels (Watch closely / Needs attention / Recovering / Resolved) not numeric scores
 - [x] **PROB-10**: Photos are copied from cache to persistent document directory immediately after capture (prevents URI invalidation)
 
@@ -80,14 +80,14 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | CAM-02 | Phase 1 | Complete |
 | CAM-03 | Phase 1 | Complete |
 | CAM-04 | Phase 1 | Complete |
-| PROB-01 | Phase 2 | Pending |
+| PROB-01 | Phase 2 | Complete |
 | PROB-02 | Phase 2 | Complete |
 | PROB-03 | Phase 2 | Complete |
 | PROB-04 | Phase 2 | Complete |
-| PROB-05 | Phase 2 | Pending |
+| PROB-05 | Phase 2 | Complete |
 | PROB-06 | Phase 2 | Complete |
 | PROB-07 | Phase 2 | Complete |
-| PROB-08 | Phase 2 | Pending |
+| PROB-08 | Phase 2 | Complete |
 | PROB-09 | Phase 2 | Complete |
 | PROB-10 | Phase 2 | Complete |
 | NOTF-01 | Phase 2 | Complete |
