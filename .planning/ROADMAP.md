@@ -27,7 +27,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User selects camera, takes a photo, and it appears as an inline thumbnail preview before sending (identical to gallery flow)
   3. User denies camera permission and sees a contextual explanation with a link that opens device Settings
   4. Camera option respects the existing free-tier message limit — no separate gate is introduced
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 01-01-PLAN.md — Action sheet + camera path + permission UI + free-tier button behavior
 
 ### Phase 2: Problem Tracking Core
 **Goal**: Premium users can create a tracked problem record from a diagnosis, with AI-determined follow-up scheduling, persistent storage, push notifications, and full i18n coverage for all new strings
@@ -62,6 +64,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Camera in Chat | 0/? | Not started | - |
+| 1. Camera in Chat | 0/1 | Not started | - |
 | 2. Problem Tracking Core | 0/? | Not started | - |
 | 3. Reminders, Tasks & Plant Detail UI | 0/? | Not started | - |
