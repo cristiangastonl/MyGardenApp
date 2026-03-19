@@ -18,6 +18,7 @@ import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantPhotoAlbum } from './PlantPhotoAlbum';
 import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from './PlantDiagnosis';
+import { ActiveProblemsSection } from './ActiveProblemsSection';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useStorage } from '../hooks/useStorage';
@@ -54,10 +55,14 @@ export function MyPlantDetailModal({
     return calculatePlantHealth(plant, new Date(), weather);
   }, [plant, weather]);
 
-  const plantDiagnoses = useMemo(() => {
+  const allPlantDiagnoses = useMemo(() => {
     if (!plant) return [];
-    return getDiagnosesForPlant(plant.id).slice(0, 5);
+    return getDiagnosesForPlant(plant.id);
   }, [plant, getDiagnosesForPlant]);
+
+  const plantDiagnoses = useMemo(() => {
+    return allPlantDiagnoses.slice(0, 5);
+  }, [allPlantDiagnoses]);
 
   const dbEntry = useMemo(() => {
     if (!plant) return null;
@@ -181,6 +186,16 @@ export function MyPlantDetailModal({
                 </View>
               </View>
             )}
+
+            {/* Active Problems */}
+            <ActiveProblemsSection
+              diagnoses={allPlantDiagnoses}
+              plantIcon={plant.icon}
+              onPressDiagnosis={(d) => {
+                setResumeDiagnosis(d);
+                setShowDiagnosis(true);
+              }}
+            />
 
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
