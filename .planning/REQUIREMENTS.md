@@ -30,7 +30,7 @@ Requirements for this milestone. Each maps to roadmap phases.
 ### Notifications & Reminders
 
 - [x] **NOTF-01**: Push notification sent at AI-determined follow-up date reminding user to check on the plant (premium only)
-- [ ] **NOTF-02**: Follow-up task appears in "Hoy" screen on the follow-up date (premium only)
+- [x] **NOTF-02**: Follow-up task appears in "Hoy" screen on the follow-up date (premium only)
 - [ ] **NOTF-03**: Tapping the push notification navigates to the plant's detail or diagnosis flow
 - [x] **NOTF-04**: Notification IDs are persisted so they survive app restart without duplication
 
@@ -38,7 +38,7 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 - [ ] **UI-01**: Active problems shown as a section/card in the plant detail screen
 - [ ] **UI-02**: Problem timeline shows chronological photo history with AI notes per entry
-- [ ] **UI-03**: Status indicator (dot or badge) on plant card in plant list when plant has active problem
+- [x] **UI-03**: Status indicator (dot or badge) on plant card in plant list when plant has active problem
 - [ ] **UI-04**: Problem card shows current status, severity label, last check date, and next follow-up date
 
 ### Internationalization
@@ -91,12 +91,12 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | PROB-09 | Phase 2 | Complete |
 | PROB-10 | Phase 2 | Complete |
 | NOTF-01 | Phase 2 | Complete |
-| NOTF-02 | Phase 3 | Pending |
+| NOTF-02 | Phase 3 | Complete |
 | NOTF-03 | Phase 3 | Pending |
 | NOTF-04 | Phase 2 | Complete |
 | UI-01 | Phase 3 | Pending |
 | UI-02 | Phase 3 | Pending |
-| UI-03 | Phase 3 | Pending |
+| UI-03 | Phase 3 | Complete |
 | UI-04 | Phase 3 | Pending |
 | I18N-01 | Phase 2 | Complete |
 | I18N-02 | Phase 2 | Complete |

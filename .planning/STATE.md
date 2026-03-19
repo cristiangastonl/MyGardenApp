@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-19T15:14:30.092Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-19T16:01:29.380Z"
 last_activity: "2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields"
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 7
+  completed_plans: 6
   percent: 20
 ---
 
@@ -53,6 +53,8 @@ Progress: [██░░░░░░░░] 20%
 *Updated after each plan completion*
 | Phase 02-problem-tracking-core P02 | 6 | 2 tasks | 3 files |
 | Phase 02-problem-tracking-core P03 | 7 | 2 tasks | 5 files |
+| Phase 03-reminders-tasks-plant-detail-ui P01 | 15 | 2 tasks | 6 files |
+| Phase 03-reminders-tasks-plant-detail-ui P02 | 7 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -78,6 +80,10 @@ Recent decisions affecting current work:
 - [Phase 02-problem-tracking-core]: onFollowUpEntry passed as inline arrow to usePlantDiagnosis options — closure over stable savedDiagnosisId after diagnosis completes
 - [Phase 02-problem-tracking-core]: Resolution card rendered inside chat section (contextually tied to AI chat detection) not after care tips
 - [Phase 02-problem-tracking-core]: PROB-08 satisfied by existing architecture: new diagnosis = new diagId, no merge path exists
+- [Phase 03-reminders-tasks-plant-detail-ui]: Filtered tracked diagnoses out of DiagnosisFollowUp to prevent duplicate cards when FollowUpTaskSection also renders them
+- [Phase 03-reminders-tasks-plant-detail-ui]: activeTrackingStatus overrides 🩺 emoji in PlantCard badge; falls back to 🩺 when only hasActiveDiagnosis is true
+- [Phase 03-reminders-tasks-plant-detail-ui]: ProblemTimeline rendered inside ActiveProblemsSection (collapsed by default) — not in MyPlantDetailModal — keeps timeline logic colocated with problem cards
+- [Phase 03-reminders-tasks-plant-detail-ui]: allPlantDiagnoses (full list) passed to ActiveProblemsSection; plantDiagnoses.slice(0,5) still used for history display to avoid hiding old tracked problems
 
 ### Pending Todos
 
@@ -93,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T15:08:51.699Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-19T16:01:29.378Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
