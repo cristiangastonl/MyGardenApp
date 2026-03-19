@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: "Completed 02-01-PLAN.md"
-last_updated: "2026-03-19T16:42:00.000Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-19T14:55:45.894Z"
 last_activity: "2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields"
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
   percent: 20
 ---
 
@@ -51,6 +51,7 @@ Progress: [██░░░░░░░░] 20%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 02-problem-tracking-core P02 | 6 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - TRACKING_STATUS_CONFIG.emoji is separate from i18n label keys — UI combines them at render time to allow emoji-free reuse
 - minor severity maps to needs_attention status but gets 14-day follow-up interval (not 7d) per locked CONTEXT.md decision
 - All SavedDiagnosis tracking fields are optional to ensure zero migration cost for existing stored data
+- [Phase 02-problem-tracking-core]: persistDiagnosisPhoto is synchronous (returns string not Promise) using expo-file-system File.copy matching photoService.ts pattern
+- [Phase 02-problem-tracking-core]: startTracking cancel-before-schedule order prevents duplicate notifications on re-tracking
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T16:42:00Z
-Stopped at: Completed 02-01-PLAN.md
-Resume file: .planning/phases/02-problem-tracking-core/02-02-PLAN.md
+Last session: 2026-03-19T14:55:45.892Z
+Stopped at: Completed 02-02-PLAN.md
+Resume file: None
