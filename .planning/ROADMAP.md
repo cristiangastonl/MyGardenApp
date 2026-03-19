@@ -43,7 +43,11 @@ Plans:
   5. When a follow-up re-diagnosis returns improvement, the app prompts the user to confirm resolution with one tap
   6. Photos captured for follow-up are immediately copied to the persistent document directory — not left in cache — so the timeline does not break after OS cache clears
   7. All new UI strings appear in both English and Argentine Spanish (vos); the diagnosis edge function receives the lang parameter for follow-up descriptions
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — Types, service logic, i18n keys, edge function severity+problemSummary
+- [ ] 02-02-PLAN.md — Storage actions, notification scheduling, photo persistence, startTracking orchestrator
+- [ ] 02-03-PLAN.md — Track button in DiagnosisResults, resolution card, modal wiring, photo persistence on capture
 
 ### Phase 3: Reminders, Tasks & Plant Detail UI
 **Goal**: Follow-up reminders reach users through both push notifications and Hoy screen tasks, and the complete problem history is visible in the plant detail screen
@@ -65,5 +69,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Camera in Chat | 1/1 | Complete | 2026-03-19 |
-| 2. Problem Tracking Core | 0/? | Not started | - |
+| 2. Problem Tracking Core | 0/3 | Not started | - |
 | 3. Reminders, Tasks & Plant Detail UI | 0/? | Not started | - |
