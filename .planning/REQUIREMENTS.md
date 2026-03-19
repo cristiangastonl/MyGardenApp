@@ -17,14 +17,14 @@ Requirements for this milestone. Each maps to roadmap phases.
 ### Problem Tracking
 
 - [ ] **PROB-01**: When AI diagnoses a problem, user can create a tracked problem record for that plant (premium only)
-- [ ] **PROB-02**: Problem record stores: plant ID, problem summary, severity label, photo URI, AI notes, creation date, follow-up date, status
-- [ ] **PROB-03**: AI determines follow-up frequency based on problem severity (e.g., fungus=3 days, yellowing=7 days)
+- [x] **PROB-02**: Problem record stores: plant ID, problem summary, severity label, photo URI, AI notes, creation date, follow-up date, status
+- [x] **PROB-03**: AI determines follow-up frequency based on problem severity (e.g., fungus=3 days, yellowing=7 days)
 - [ ] **PROB-04**: User can manually resolve/close a tracked problem at any time
 - [ ] **PROB-05**: When a follow-up diagnosis shows improvement, AI suggests resolution and user confirms with one tap
 - [ ] **PROB-06**: User can reopen a previously resolved problem
 - [ ] **PROB-07**: Each follow-up adds an entry to the problem record (photo, AI notes, date, status change)
 - [ ] **PROB-08**: Follow-up re-diagnosis opens a new chat session (not same thread)
-- [ ] **PROB-09**: Problem uses descriptive severity labels (Watch closely / Needs attention / Recovering / Resolved) not numeric scores
+- [x] **PROB-09**: Problem uses descriptive severity labels (Watch closely / Needs attention / Recovering / Resolved) not numeric scores
 - [ ] **PROB-10**: Photos are copied from cache to persistent document directory immediately after capture (prevents URI invalidation)
 
 ### Notifications & Reminders
@@ -43,8 +43,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Internationalization
 
-- [ ] **I18N-01**: All new UI strings use `t('key')` with translations in both EN and ES (Argentine Spanish with vos)
-- [ ] **I18N-02**: AI diagnosis edge function receives `lang` parameter for follow-up interval descriptions
+- [x] **I18N-01**: All new UI strings use `t('key')` with translations in both EN and ES (Argentine Spanish with vos)
+- [x] **I18N-02**: AI diagnosis edge function receives `lang` parameter for follow-up interval descriptions
 
 ## v2 Requirements
 
@@ -81,14 +81,14 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | CAM-03 | Phase 1 | Complete |
 | CAM-04 | Phase 1 | Complete |
 | PROB-01 | Phase 2 | Pending |
-| PROB-02 | Phase 2 | Pending |
-| PROB-03 | Phase 2 | Pending |
+| PROB-02 | Phase 2 | Complete |
+| PROB-03 | Phase 2 | Complete |
 | PROB-04 | Phase 2 | Pending |
 | PROB-05 | Phase 2 | Pending |
 | PROB-06 | Phase 2 | Pending |
 | PROB-07 | Phase 2 | Pending |
 | PROB-08 | Phase 2 | Pending |
-| PROB-09 | Phase 2 | Pending |
+| PROB-09 | Phase 2 | Complete |
 | PROB-10 | Phase 2 | Pending |
 | NOTF-01 | Phase 2 | Pending |
 | NOTF-02 | Phase 3 | Pending |
@@ -98,8 +98,8 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | UI-02 | Phase 3 | Pending |
 | UI-03 | Phase 3 | Pending |
 | UI-04 | Phase 3 | Pending |
-| I18N-01 | Phase 2 | Pending |
-| I18N-02 | Phase 2 | Pending |
+| I18N-01 | Phase 2 | Complete |
+| I18N-02 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 24 total

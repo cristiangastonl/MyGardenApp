@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-19T13:53:40.658Z"
-last_activity: "2026-03-19 — Completed plan 01-01: camera action sheet, permission denial UI, free-tier button gating"
+stopped_at: "Completed 02-01-PLAN.md"
+last_updated: "2026-03-19T16:42:00.000Z"
+last_activity: "2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields"
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
-  percent: 10
+  total_plans: 4
+  completed_plans: 2
+  percent: 20
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-19)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** Phase 1 — Camera in Chat
+**Current focus:** Phase 2 — Problem Tracking Core
 
 ## Current Position
 
-Phase: 1 of 3 (Camera in Chat)
-Plan: 1 of ? in current phase
+Phase: 2 of 3 (Problem Tracking Core)
+Plan: 1 of 3 in current phase
 Status: In progress
-Last activity: 2026-03-19 — Completed plan 01-01: camera action sheet, permission denial UI, free-tier button gating
+Last activity: 2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
@@ -44,9 +44,10 @@ Progress: [█░░░░░░░░░] 10%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-camera-in-chat | 1 | 25 min | 25 min |
+| 02-problem-tracking-core | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (25 min)
+- Last 5 plans: 01-01 (25 min), 02-01 (4 min)
 - Trend: —
 
 *Updated after each plan completion*
@@ -67,6 +68,9 @@ Recent decisions affecting current work:
 - Used settings.cancel for Android cancel row instead of a new common.cancel key — no top-level cancel key exists in common.json
 - pickChatPhotoFromCamera is separate from usePlantDiagnosis.pickFromCamera to avoid mutating diagnosis hook state during chat
 - Camera permission denial surfaces as React boolean prop (chatCameraPermissionDenied) not as an alert or toast
+- TRACKING_STATUS_CONFIG.emoji is separate from i18n label keys — UI combines them at render time to allow emoji-free reuse
+- minor severity maps to needs_attention status but gets 14-day follow-up interval (not 7d) per locked CONTEXT.md decision
+- All SavedDiagnosis tracking fields are optional to ensure zero migration cost for existing stored data
 
 ### Pending Todos
 
@@ -82,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T13:53:40.656Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-problem-tracking-core/02-CONTEXT.md
+Last session: 2026-03-19T16:42:00Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: .planning/phases/02-problem-tracking-core/02-02-PLAN.md

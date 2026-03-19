@@ -43,7 +43,7 @@ Plans:
   5. When a follow-up re-diagnosis returns improvement, the app prompts the user to confirm resolution with one tap
   6. Photos captured for follow-up are immediately copied to the persistent document directory — not left in cache — so the timeline does not break after OS cache clears
   7. All new UI strings appear in both English and Argentine Spanish (vos); the diagnosis edge function receives the lang parameter for follow-up descriptions
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 Plans:
 - [ ] 02-01-PLAN.md — Types, service logic, i18n keys, edge function severity+problemSummary
 - [ ] 02-02-PLAN.md — Storage actions, notification scheduling, photo persistence, startTracking orchestrator
@@ -69,5 +69,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Camera in Chat | 1/1 | Complete | 2026-03-19 |
-| 2. Problem Tracking Core | 0/3 | Not started | - |
+| 2. Problem Tracking Core | 1/3 | In Progress|  |
 | 3. Reminders, Tasks & Plant Detail UI | 0/? | Not started | - |
