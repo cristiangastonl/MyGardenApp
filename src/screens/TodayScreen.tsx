@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext, useEffect } from 'react';
 import {
   View,
   Text,
@@ -46,6 +46,7 @@ import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosis
 import { ShoppingListModal } from '../components/ShoppingListModal';
 import { FollowUpTaskSection } from '../components/FollowUpTaskSection';
 import { Features } from '../config/features';
+import { NotificationContext } from '../../App';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useSeason } from '../hooks/useSeason';
@@ -118,10 +119,22 @@ export default function TodayScreen() {
     diagnosisHistory,
   });
 
+  const { pendingPlantId, clearPendingPlantId } = useContext(NotificationContext);
+
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
+
+  useEffect(() => {
+    if (pendingPlantId && plants.length > 0) {
+      const plant = plants.find(p => p.id === pendingPlantId);
+      if (plant) {
+        setDetailPlant(plant);
+      }
+      clearPendingPlantId();
+    }
+  }, [pendingPlantId, plants]);
   const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
   const [showShoppingList, setShowShoppingList] = useState(false);
   const [diagnosePlant, setDiagnosePlant] = useState<Plant | null>(null);

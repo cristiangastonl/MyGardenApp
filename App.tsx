@@ -1,10 +1,11 @@
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as Notifications from 'expo-notifications';
 import {
   useFonts,
   PlayfairDisplay_400Regular,
@@ -35,6 +36,11 @@ import OnboardingScreen from './src/screens/OnboardingScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
+
+export const NotificationContext = React.createContext<{
+  pendingPlantId: string | null;
+  clearPendingPlantId: () => void;
+}>({ pendingPlantId: null, clearPendingPlantId: () => {} });
 
 function MainTabs() {
   const { t } = useTranslation();
@@ -109,6 +115,31 @@ function AppContentMVP() {
     plants,
   } = useStorage();
 
+  const navigationRef = useRef<NavigationContainerRef<any>>(null);
+  const [navReady, setNavReady] = useState(false);
+  const [pendingNotificationPlantId, setPendingNotificationPlantId] = useState<string | null>(null);
+
+  const handleNotificationResponse = useCallback((response: Notifications.NotificationResponse) => {
+    const data = response.notification.request.content.data;
+    if (data?.type === 'followup-reminder' && data?.plantId) {
+      navigationRef.current?.navigate('Hoy' as never);
+      setPendingNotificationPlantId(data.plantId as string);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (storageLoading || !navReady) return;
+
+    // Cold-start: check if app was opened via notification tap
+    Notifications.getLastNotificationResponseAsync().then((response) => {
+      if (response) handleNotificationResponse(response);
+    });
+
+    // Foreground/background: listen for notification taps
+    const sub = Notifications.addNotificationResponseReceivedListener(handleNotificationResponse);
+    return () => sub.remove();
+  }, [storageLoading, navReady, handleNotificationResponse]);
+
   useEffect(() => {
     initAnalytics().then(() => trackEvent('app_opened'));
   }, []);
@@ -125,13 +156,13 @@ function AppContentMVP() {
   const showOnboarding = !onboardingCompleted && plants.length === 0;
 
   return (
-    <>
-      <NavigationContainer>
+    <NotificationContext.Provider value={{ pendingPlantId: pendingNotificationPlantId, clearPendingPlantId: () => setPendingNotificationPlantId(null) }}>
+      <NavigationContainer ref={navigationRef} onReady={() => setNavReady(true)}>
         <StatusBar style="dark" />
         {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
       </NavigationContainer>
       <PaywallModal />
-    </>
+    </NotificationContext.Provider>
   );
 }
 
