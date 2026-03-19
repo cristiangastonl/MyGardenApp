@@ -587,7 +587,18 @@
       "followUpIn": "Follow-up in {{days}} days",
       "nextCheckDate": "Next check: {{date}}",
       "reopenProblem": "Reopen problem",
-      "manualResolve": "Resolve problem"
+      "manualResolve": "Resolve problem",
+      "followUpDueToday": "Follow-up Due Today",
+      "checkNow": "Check now",
+      "overdueFollowUp": "Overdue",
+      "activeProblems": "Active Problems",
+      "reDiagnose": "Re-diagnose",
+      "noEntriesYet": "No follow-up entries yet",
+      "lastCheck": "Last check",
+      "nextFollowUp": "Next follow-up",
+      "overdue": "Overdue",
+      "showTimeline": "Show timeline",
+      "hideTimeline": "Hide timeline"
     }
   },
   "camera": {

@@ -587,7 +587,18 @@
       "followUpIn": "Seguimiento en {{days}} dias",
       "nextCheckDate": "Proximo control: {{date}}",
       "reopenProblem": "Reabrir problema",
-      "manualResolve": "Resolver problema"
+      "manualResolve": "Resolver problema",
+      "followUpDueToday": "Seguimiento para hoy",
+      "checkNow": "Revisar ahora",
+      "overdueFollowUp": "Atrasado",
+      "activeProblems": "Problemas activos",
+      "reDiagnose": "Re-diagnosticar",
+      "noEntriesYet": "Todavia no hay entradas de seguimiento",
+      "lastCheck": "Ultimo chequeo",
+      "nextFollowUp": "Proximo seguimiento",
+      "overdue": "Atrasado",
+      "showTimeline": "Ver historial",
+      "hideTimeline": "Ocultar historial"
     }
   },
   "camera": {

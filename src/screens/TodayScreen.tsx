@@ -44,6 +44,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { DiagnosisDetailModal } from '../components/PlantDiagnosis/DiagnosisDetailModal';
 import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
 import { ShoppingListModal } from '../components/ShoppingListModal';
+import { FollowUpTaskSection } from '../components/FollowUpTaskSection';
 import { Features } from '../config/features';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -321,10 +322,24 @@ export default function TodayScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Diagnosis Follow-Up */}
-        <DiagnosisFollowUp
+        {/* Follow-Up Tasks Due Today (premium only) */}
+        <FollowUpTaskSection
           plants={plants}
           diagnosisHistory={diagnosisHistory}
+          isPremium={premium.isPremium}
+          onPressPlant={(plant) => setDetailPlant(plant)}
+          onPressDiagnosis={setSelectedDiagnosis}
+        />
+
+        {/* Diagnosis Follow-Up — only untracked diagnoses (tracked ones are handled above) */}
+        <DiagnosisFollowUp
+          plants={plants}
+          diagnosisHistory={Object.fromEntries(
+            Object.entries(diagnosisHistory).map(([plantId, diagnoses]) => [
+              plantId,
+              diagnoses.filter(d => !d.isTracked),
+            ])
+          )}
           onResolve={resolveDiagnosis}
           onPressDiagnosis={setSelectedDiagnosis}
         />
