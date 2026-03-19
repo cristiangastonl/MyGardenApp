@@ -568,7 +568,11 @@
     "serviceConnectionError": "Error al conectar con el servicio de diagnóstico",
     "noResponseReceived": "No se recibió respuesta del diagnóstico",
     "chatServiceError": "Error al conectar con el servicio",
-    "noChatResponse": "No se recibió respuesta"
+    "noChatResponse": "No se recibió respuesta",
+    "chatTakePhoto": "Sacar foto",
+    "chatChooseGallery": "Elegir de galería",
+    "chatCameraPermissionDenied": "No tenés permiso para usar la cámara. Para sacar fotos en el chat, habilitá el acceso a la cámara en la configuración del dispositivo.",
+    "chatOpenSettings": "Abrir configuración"
   },
   "camera": {
     "identify": "Identificar",

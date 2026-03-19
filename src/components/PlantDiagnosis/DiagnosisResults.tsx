@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Platform,
   Keyboard,
+  Linking,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
@@ -28,6 +29,8 @@ interface DiagnosisResultsProps {
   onSendChat?: (message: string, imageBase64?: string, imageUri?: string) => void;
   onPickChatPhoto?: () => Promise<{ base64: string; uri: string } | null>;
   isPremium?: boolean;
+  chatCameraPermissionDenied?: boolean;
+  onPaywall?: () => void;
   // Shopping list
   onAddToShoppingList?: (treatment: string) => void;
   canAddToShoppingList?: boolean;
@@ -52,6 +55,8 @@ export function DiagnosisResults({
   onSendChat,
   onPickChatPhoto,
   isPremium = false,
+  chatCameraPermissionDenied = false,
+  onPaywall,
   onAddToShoppingList,
   canAddToShoppingList = false,
 }: DiagnosisResultsProps) {
@@ -234,6 +239,20 @@ export function DiagnosisResults({
             <Text style={styles.chatErrorText}>{chatError}</Text>
           )}
 
+          {/* Camera permission denial inline message */}
+          {chatCameraPermissionDenied && (
+            <View style={styles.cameraPermissionDenied}>
+              <Text style={styles.cameraPermissionDeniedText}>
+                {t('diagnosis.chatCameraPermissionDenied')}
+              </Text>
+              <TouchableOpacity onPress={() => Linking.openSettings()} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+                <Text style={styles.cameraPermissionDeniedLink}>
+                  {t('diagnosis.chatOpenSettings')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
           {/* Input or upsell */}
           {canSendChat && !chatLoading ? (
             <View>
@@ -246,8 +265,11 @@ export function DiagnosisResults({
                 </View>
               )}
               <View style={styles.chatInputContainer}>
-                {onPickChatPhoto && isPremium && (
-                  <TouchableOpacity style={styles.chatPhotoButton} onPress={handlePickPhoto}>
+                {onPickChatPhoto && (
+                  <TouchableOpacity
+                    style={[styles.chatPhotoButton, !canSendChat && styles.chatPhotoButtonDisabled]}
+                    onPress={canSendChat ? handlePickPhoto : onPaywall}
+                  >
                     <Text style={styles.chatPhotoButtonText}>📷</Text>
                   </TouchableOpacity>
                 )}
@@ -272,6 +294,14 @@ export function DiagnosisResults({
             </View>
           ) : !canSendChat && !isPremium && chatMessages.length > 0 ? (
             <View style={styles.upsellContainer}>
+              {onPickChatPhoto && (
+                <TouchableOpacity
+                  style={[styles.chatPhotoButton, styles.chatPhotoButtonDisabled]}
+                  onPress={onPaywall}
+                >
+                  <Text style={styles.chatPhotoButtonText}>📷</Text>
+                </TouchableOpacity>
+              )}
               <Text style={styles.upsellText}>
                 {t('diagnosis.upsellChat')}
               </Text>
@@ -513,8 +543,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...shadows.sm,
   },
+  chatPhotoButtonDisabled: {
+    opacity: 0.4,
+  },
   chatPhotoButtonText: {
     fontSize: 20,
+  },
+  cameraPermissionDenied: {
+    backgroundColor: colors.infoBg,
+    borderWidth: 1,
+    borderColor: colors.infoBorder,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  cameraPermissionDeniedText: {
+    fontSize: 13,
+    fontFamily: fonts.body,
+    color: colors.infoText,
+    lineHeight: 18,
+  },
+  cameraPermissionDeniedLink: {
+    fontSize: 13,
+    fontFamily: fonts.bodySemiBold,
+    color: colors.infoText,
+    textDecorationLine: 'underline',
+    marginTop: 4,
   },
   chatInputContainer: {
     flexDirection: 'row',

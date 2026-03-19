@@ -568,7 +568,11 @@
     "serviceConnectionError": "Error connecting to the diagnosis service",
     "noResponseReceived": "No response received from the diagnosis",
     "chatServiceError": "Error connecting to the service",
-    "noChatResponse": "No response received"
+    "noChatResponse": "No response received",
+    "chatTakePhoto": "Take a photo",
+    "chatChooseGallery": "Choose from gallery",
+    "chatCameraPermissionDenied": "Camera access was denied. To take photos in chat, enable camera access in your device settings.",
+    "chatOpenSettings": "Open Settings"
   },
   "camera": {
     "identify": "Identify",
