@@ -59,7 +59,11 @@ Plans:
   3. The plant detail screen shows a section for active problems with current status, severity label, last check date, and next follow-up date
   4. The plant detail screen shows a chronological photo timeline of all diagnosis entries (photo, AI notes, date) for each tracked problem
   5. Plant list cards display a status indicator when a plant has at least one active (unresolved) problem
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 03-01-PLAN.md — Hoy follow-up task cards + PlantCard tracking badge
+- [ ] 03-02-PLAN.md — Plant detail active problems section + problem timeline
+- [ ] 03-03-PLAN.md — Notification deep-link navigation (tap-to-plant-detail)
 
 ## Progress
 
@@ -70,4 +74,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Camera in Chat | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | 3/3 | Complete   | 2026-03-19 |
-| 3. Reminders, Tasks & Plant Detail UI | 0/? | Not started | - |
+| 3. Reminders, Tasks & Plant Detail UI | 0/3 | Not started | - |
