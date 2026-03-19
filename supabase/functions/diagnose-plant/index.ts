@@ -136,7 +136,9 @@ Respondé ÚNICAMENTE con un JSON válido (sin markdown, sin backticks) con esta
       "treatment": "Tratamiento recomendado"
     }
   ],
-  "careTips": ["Consejo general 1", "Consejo general 2"]
+  "careTips": ["Consejo general 1", "Consejo general 2"],
+  "severity": "healthy" | "minor" | "moderate" | "severe",
+  "problemSummary": "Resumen corto del problema principal para la tarjeta de seguimiento (1-2 oraciones)"
 }
 
 Reglas:
@@ -145,7 +147,8 @@ Reglas:
 - Confidence es tu nivel de certeza sobre cada diagnóstico (0-100)
 - ${langInstruction}
 - Si no podés ver bien la planta, mencionalo en el summary
-- Si hay múltiples fotos, considerá la información de TODAS para el diagnóstico`
+- Si hay múltiples fotos, considerá la información de TODAS para el diagnóstico
+- "severity" es el mismo valor que "overallStatus" (para seguimiento). "problemSummary" es una descripcion corta del problema principal en el idioma del usuario.`
       : `You are an expert in plant pathology and plant care. Analyze the images of this plant and diagnose its health status.
 ${contextInfo}
 ${photoContext}
@@ -163,7 +166,9 @@ Respond ONLY with valid JSON (no markdown, no backticks) with this exact structu
       "treatment": "Recommended treatment"
     }
   ],
-  "careTips": ["General tip 1", "General tip 2"]
+  "careTips": ["General tip 1", "General tip 2"],
+  "severity": "healthy" | "minor" | "moderate" | "severe",
+  "problemSummary": "Short problem description for tracking card display (1-2 sentences)"
 }
 
 Rules:
@@ -172,7 +177,8 @@ Rules:
 - Confidence is your certainty level for each diagnosis (0-100)
 - ${langInstruction}
 - If you can't see the plant clearly, mention it in the summary
-- If there are multiple photos, consider ALL of them for the diagnosis`;
+- If there are multiple photos, consider ALL of them for the diagnosis
+- "severity" is the same value as "overallStatus" (for tracking). "problemSummary" is a short description of the main problem in the user's language.`;
 
     console.log(`Calling Gemini Flash API with ${images.length} image(s), lang: ${lang}...`);
 

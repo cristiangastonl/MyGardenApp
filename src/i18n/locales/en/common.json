@@ -572,7 +572,23 @@
     "chatTakePhoto": "Take a photo",
     "chatChooseGallery": "Choose from gallery",
     "chatCameraPermissionDenied": "Camera access was denied. To take photos in chat, enable camera access in your device settings.",
-    "chatOpenSettings": "Open Settings"
+    "chatOpenSettings": "Open Settings",
+    "tracking": {
+      "trackButton": "Track this problem",
+      "trackButtonOptional": "Track this problem (optional)",
+      "statusWatching": "Watch closely",
+      "statusNeedsAttention": "Needs attention",
+      "statusRecovering": "Recovering",
+      "statusResolved": "Resolved",
+      "improvementDetected": "Your plant improved!",
+      "markResolved": "Mark as resolved",
+      "keepTracking": "Keep tracking",
+      "resolvedSuccess": "Problem marked as resolved",
+      "followUpIn": "Follow-up in {{days}} days",
+      "nextCheckDate": "Next check: {{date}}",
+      "reopenProblem": "Reopen problem",
+      "manualResolve": "Resolve problem"
+    }
   },
   "camera": {
     "identify": "Identify",
@@ -658,7 +674,9 @@
     "careTitle": "Watering reminder",
     "careBody": "Don't forget to water your {{name}} ({{days}} days overdue).",
     "testTitle": "My Garden",
-    "testBody": "Notifications are working correctly!"
+    "testBody": "Notifications are working correctly!",
+    "followUpTitle": "Time to check on {{name}}",
+    "followUpBody": "{{summary}} -- do a follow-up diagnosis to track recovery."
   },
   "shoppingList": {
     "title": "Shopping list",

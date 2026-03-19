@@ -572,7 +572,23 @@
     "chatTakePhoto": "Sacar foto",
     "chatChooseGallery": "Elegir de galería",
     "chatCameraPermissionDenied": "No tenés permiso para usar la cámara. Para sacar fotos en el chat, habilitá el acceso a la cámara en la configuración del dispositivo.",
-    "chatOpenSettings": "Abrir configuración"
+    "chatOpenSettings": "Abrir configuración",
+    "tracking": {
+      "trackButton": "Seguir este problema",
+      "trackButtonOptional": "Seguir este problema (opcional)",
+      "statusWatching": "Vigila de cerca",
+      "statusNeedsAttention": "Necesita atencion",
+      "statusRecovering": "Recuperandose",
+      "statusResolved": "Resuelto",
+      "improvementDetected": "Tu planta mejoro!",
+      "markResolved": "Marca como resuelto",
+      "keepTracking": "Segui monitoreando",
+      "resolvedSuccess": "Problema marcado como resuelto",
+      "followUpIn": "Seguimiento en {{days}} dias",
+      "nextCheckDate": "Proximo control: {{date}}",
+      "reopenProblem": "Reabrir problema",
+      "manualResolve": "Resolver problema"
+    }
   },
   "camera": {
     "identify": "Identificar",
@@ -658,7 +674,9 @@
     "careTitle": "Recordatorio de riego",
     "careBody": "No te olvides de regar tu {{name}} (lleva {{days}} días).",
     "testTitle": "Mi Jardín",
-    "testBody": "¡Las notificaciones están funcionando correctamente!"
+    "testBody": "¡Las notificaciones están funcionando correctamente!",
+    "followUpTitle": "Es hora de revisar {{name}}",
+    "followUpBody": "{{summary}} -- hace un diagnostico de seguimiento para ver como va."
   },
   "shoppingList": {
     "title": "Lista de compras",
