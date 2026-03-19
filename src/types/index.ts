@@ -252,6 +252,16 @@ export interface DiagnosisChatMessage {
   imageUri?: string | null;
 }
 
+export type TrackingStatus = 'watching' | 'needs_attention' | 'recovering' | 'resolved';
+
+export interface ProblemEntry {
+  id: string;
+  date: string;
+  photoUri: string | null;
+  aiNotes: string;
+  statusChange: TrackingStatus | null;
+}
+
 export interface SavedDiagnosis {
   id: string;
   plantId: string;
@@ -263,6 +273,15 @@ export interface SavedDiagnosis {
   chat: DiagnosisChatMessage[];
   resolved: boolean;
   resolvedDate: string | null;
+  // Problem tracking (Phase 2)
+  isTracked?: boolean;
+  trackingStatus?: TrackingStatus;
+  previousStatus?: TrackingStatus;
+  followUpDate?: string;
+  followUpNotificationId?: string | null;
+  problemSummary?: string;
+  severity?: DiagnosisSeverity;
+  entries?: ProblemEntry[];
 }
 
 // Auth & Sync Types
