@@ -19,7 +19,7 @@ import { useNotifications } from '../hooks/useNotifications';
 import { formatDate, isSameDay } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { generatePlantAlerts } from '../utils/plantAlerts';
-import { Plant, SavedDiagnosis, ShoppingItem } from '../types';
+import { Plant, SavedDiagnosis, ShoppingItem, TrackingStatus } from '../types';
 import {
   Header,
   WeatherWidget,
@@ -231,6 +231,12 @@ export default function TodayScreen() {
     setTimeout(() => setRefreshing(false), 500);
   };
 
+  const getActiveTrackingStatus = (plantId: string): TrackingStatus | undefined => {
+    const diagnoses = diagnosisHistory[plantId] || [];
+    const tracked = diagnoses.find(d => d.isTracked && d.trackingStatus && d.trackingStatus !== 'resolved');
+    return tracked?.trackingStatus;
+  };
+
   if (storageLoading) {
     return <LoadingScreen message={t('today.loading')} />;
   }
@@ -390,6 +396,7 @@ export default function TodayScreen() {
                 onPress={setDetailPlant}
                 diagnoses={diagnosisHistory[plant.id]}
                 hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
+                activeTrackingStatus={getActiveTrackingStatus(plant.id)}
               />
             ))}
           </View>

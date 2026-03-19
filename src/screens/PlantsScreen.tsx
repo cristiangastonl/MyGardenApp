@@ -12,7 +12,7 @@ import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
-import { Plant } from '../types';
+import { Plant, TrackingStatus } from '../types';
 import {
   PlantCard,
   ExpandedFAB,
@@ -65,6 +65,12 @@ export default function PlantsScreen() {
   };
 
   const today = new Date();
+
+  const getActiveTrackingStatus = (plantId: string): TrackingStatus | undefined => {
+    const diagnoses = diagnosisHistory[plantId] || [];
+    const tracked = diagnoses.find(d => d.isTracked && d.trackingStatus && d.trackingStatus !== 'resolved');
+    return tracked?.trackingStatus;
+  };
 
   const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
     const plantId = Date.now().toString();
@@ -135,6 +141,7 @@ export default function PlantsScreen() {
       onToggleFavorite={handleToggleFavorite}
       diagnoses={diagnosisHistory[item.id]}
       hasActiveDiagnosis={getActiveDiagnosesForPlant(item.id).length > 0}
+      activeTrackingStatus={getActiveTrackingStatus(item.id)}
     />
   );
 

@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle, Alert } from 'react-native';
-import { Plant, WeatherData, SavedDiagnosis } from '../types';
+import { Plant, WeatherData, SavedDiagnosis, TrackingStatus } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
+import { TRACKING_STATUS_CONFIG } from '../services/problemTrackingService';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { isSameDay, daysBetween, formatDate } from '../utils/dates';
 import { calculatePlantHealth } from '../utils/plantHealth';
@@ -25,6 +26,7 @@ interface PlantCardProps {
   onToggleFavorite?: (plantId: string) => void;
   diagnoses?: SavedDiagnosis[];
   hasActiveDiagnosis?: boolean;
+  activeTrackingStatus?: TrackingStatus;
 }
 
 export function PlantCard({
@@ -40,6 +42,7 @@ export function PlantCard({
   onToggleFavorite,
   diagnoses,
   hasActiveDiagnosis,
+  activeTrackingStatus,
 }: PlantCardProps) {
   const { t } = useTranslation();
   const [showHealthDetail, setShowHealthDetail] = useState(false);
@@ -107,9 +110,13 @@ export function PlantCard({
           </View>
         </View>
         <View style={styles.headerRight}>
-          {hasActiveDiagnosis && (
+          {(hasActiveDiagnosis || (activeTrackingStatus && activeTrackingStatus !== 'resolved')) && (
             <View style={styles.diagnosisBadge}>
-              <Text style={styles.diagnosisBadgeText}>🩺</Text>
+              <Text style={styles.diagnosisBadgeText}>
+                {activeTrackingStatus && activeTrackingStatus !== 'resolved'
+                  ? TRACKING_STATUS_CONFIG[activeTrackingStatus].emoji
+                  : '🩺'}
+              </Text>
             </View>
           )}
           {showHealthBadge && (
