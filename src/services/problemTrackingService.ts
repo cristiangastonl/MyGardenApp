@@ -1,4 +1,6 @@
-import { DiagnosisSeverity, TrackingStatus } from '../types';
+import { Paths, File, Directory } from 'expo-file-system';
+import { DiagnosisSeverity, TrackingStatus, Plant, SavedDiagnosis } from '../types';
+import { scheduleFollowUpReminder, cancelFollowUpReminder } from '../utils/notificationScheduler';
 
 // Severity label config for UI display (PROB-09)
 // Emoji are stored HERE in TRACKING_STATUS_CONFIG.emoji — NOT in i18n translation strings.
@@ -59,4 +61,75 @@ export function shouldShowTrackButton(overallStatus: DiagnosisSeverity, isPremiu
 // Determine if track button should show as "optional" (less prominent) -- per CONTEXT.md
 export function isTrackingOptional(overallStatus: DiagnosisSeverity): boolean {
   return overallStatus === 'minor';
+}
+
+/**
+ * Copy a diagnosis photo from cache to persistent storage (PROB-10).
+ *
+ * IMPORTANT: This function is SYNCHRONOUS. It uses expo-file-system's
+ * File.copy() which is a synchronous operation (matching the pattern in
+ * photoService.ts). It returns a string, NOT a Promise<string>.
+ * Callers MUST NOT await it.
+ *
+ * Scope: Called for follow-up chat photos when the diagnosis is tracked
+ * (isTracked === true). Initial diagnosis photos do not need persistence
+ * because they are base64-encoded and sent to the edge function, not stored
+ * long-term by URI. Follow-up photos are stored by URI in ProblemEntry.photoUri
+ * and must survive cache clears.
+ *
+ * Call site: usePlantDiagnosis.sendChatMessage, when imageUri is provided
+ * and the current diagnosis isTracked.
+ */
+export function persistDiagnosisPhoto(
+  diagnosisId: string,
+  cacheUri: string
+): string {
+  const dirPath = `${Paths.document.uri}diagnosis-photos/${diagnosisId}/`;
+  const dir = new Directory(dirPath);
+  if (!dir.exists) dir.create();
+
+  const filename = `${Date.now()}.jpg`;
+  const dest = new File(`${dirPath}${filename}`);
+  const source = new File(cacheUri);
+  source.copy(dest);
+  return dest.uri;
+}
+
+/**
+ * Orchestrate the full "Track this problem" flow (PROB-01, NOTF-01, NOTF-04)
+ * Called when user taps the Track button in DiagnosisResults.
+ */
+export async function startTracking(
+  plant: Plant,
+  diagnosis: SavedDiagnosis,
+  trackProblemAction: (
+    plantId: string,
+    diagnosisId: string,
+    trackingStatus: TrackingStatus,
+    followUpDate: string,
+    notificationId: string | null,
+    problemSummary: string
+  ) => void
+): Promise<void> {
+  const severity = diagnosis.severity || diagnosis.result.overallStatus;
+  const trackingStatus = severityToTrackingStatus(severity);
+  const followUpDate = calculateFollowUpDate(severity);
+
+  // Cancel existing notification if re-tracking (NOTF-04 dedup)
+  if (diagnosis.followUpNotificationId) {
+    await cancelFollowUpReminder(diagnosis.followUpNotificationId);
+  }
+
+  // Schedule follow-up notification (NOTF-01)
+  const notificationId = await scheduleFollowUpReminder(plant, diagnosis, followUpDate);
+
+  // Persist tracking data to storage
+  trackProblemAction(
+    plant.id,
+    diagnosis.id,
+    trackingStatus,
+    followUpDate.toISOString(),
+    notificationId,
+    diagnosis.problemSummary || diagnosis.result.summary
+  );
 }

@@ -1,5 +1,5 @@
 import * as Notifications from "expo-notifications";
-import { Plant, WeatherData, NotificationSettings, PlantHealthStatus } from "../types";
+import { Plant, WeatherData, NotificationSettings, PlantHealthStatus, SavedDiagnosis } from "../types";
 import { getTasksForDay } from "./plantLogic";
 import { PlantAlert } from "./plantAlerts";
 import { formatDate } from "./dates";
@@ -278,6 +278,59 @@ export async function scheduleCareReminder(
   } catch (error) {
     markNotificationsUnavailable(error);
     return null;
+  }
+}
+
+/**
+ * Schedules a follow-up reminder for a tracked plant problem (NOTF-01)
+ */
+export async function scheduleFollowUpReminder(
+  plant: Plant,
+  diagnosis: SavedDiagnosis,
+  followUpDate: Date
+): Promise<string | null> {
+  if (!notificationsAvailable) return null;
+
+  const now = new Date();
+  const timeDiff = followUpDate.getTime() - now.getTime();
+  if (timeDiff <= 0) return null;
+
+  const seconds = Math.floor(timeDiff / 1000);
+
+  try {
+    const identifier = await Notifications.scheduleNotificationAsync({
+      content: {
+        title: `${plant.icon} ${i18n.t('notifications.followUpTitle', { name: plant.name })}`,
+        body: i18n.t('notifications.followUpBody', { summary: diagnosis.problemSummary || '' }),
+        sound: true,
+        priority: Notifications.AndroidNotificationPriority.HIGH,
+        data: {
+          type: 'followup-reminder',
+          plantId: plant.id,
+          diagnosisId: diagnosis.id,
+        },
+      },
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+        seconds,
+      },
+    });
+    return identifier;
+  } catch (error) {
+    markNotificationsUnavailable(error);
+    return null;
+  }
+}
+
+/**
+ * Cancels a specific follow-up reminder notification (NOTF-04)
+ */
+export async function cancelFollowUpReminder(notificationId: string): Promise<void> {
+  if (!notificationsAvailable) return;
+  try {
+    await Notifications.cancelScheduledNotificationAsync(notificationId);
+  } catch (error) {
+    markNotificationsUnavailable(error);
   }
 }
 
