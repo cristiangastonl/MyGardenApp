@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Camera in Chat** - Wire camera capture into the diagnosis chat alongside the existing gallery picker (1/1 plans complete)
 - [x] **Phase 2: Problem Tracking Core** - Extend data model, build problemTrackingService, schedule notifications, and wire i18n (completed 2026-03-19)
-- [ ] **Phase 3: Reminders, Tasks & Plant Detail UI** - Hoy follow-up tasks, notification deep-links, and problem timeline in plant detail
+- [x] **Phase 3: Reminders, Tasks & Plant Detail UI** - Hoy follow-up tasks, notification deep-links, and problem timeline in plant detail (completed 2026-03-19)
 
 ## Phase Details
 
@@ -59,7 +59,7 @@ Plans:
   3. The plant detail screen shows a section for active problems with current status, severity label, last check date, and next follow-up date
   4. The plant detail screen shows a chronological photo timeline of all diagnosis entries (photo, AI notes, date) for each tracked problem
   5. Plant list cards display a status indicator when a plant has at least one active (unresolved) problem
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 Plans:
 - [ ] 03-01-PLAN.md — Hoy follow-up task cards + PlantCard tracking badge
 - [ ] 03-02-PLAN.md — Plant detail active problems section + problem timeline
@@ -74,4 +74,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Camera in Chat | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | 3/3 | Complete   | 2026-03-19 |
-| 3. Reminders, Tasks & Plant Detail UI | 2/3 | In Progress|  |
+| 3. Reminders, Tasks & Plant Detail UI | 3/3 | Complete   | 2026-03-19 |

@@ -31,7 +31,7 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 - [x] **NOTF-01**: Push notification sent at AI-determined follow-up date reminding user to check on the plant (premium only)
 - [x] **NOTF-02**: Follow-up task appears in "Hoy" screen on the follow-up date (premium only)
-- [ ] **NOTF-03**: Tapping the push notification navigates to the plant's detail or diagnosis flow
+- [x] **NOTF-03**: Tapping the push notification navigates to the plant's detail or diagnosis flow
 - [x] **NOTF-04**: Notification IDs are persisted so they survive app restart without duplication
 
 ### Plant Detail UI
@@ -92,7 +92,7 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | PROB-10 | Phase 2 | Complete |
 | NOTF-01 | Phase 2 | Complete |
 | NOTF-02 | Phase 3 | Complete |
-| NOTF-03 | Phase 3 | Pending |
+| NOTF-03 | Phase 3 | Complete |
 | NOTF-04 | Phase 2 | Complete |
 | UI-01 | Phase 3 | Complete |
 | UI-02 | Phase 3 | Complete |
