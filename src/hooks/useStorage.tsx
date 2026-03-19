@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem } from '../types';
+import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry } from '../types';
 import { STORAGE_KEY } from '../data/constants';
 import { formatDate } from '../utils/dates';
+import { severityToTrackingStatus } from '../services/problemTrackingService';
 
 interface StorageState {
   plants: Plant[];
@@ -47,6 +48,10 @@ interface StorageActions {
   getDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
   resolveDiagnosis: (plantId: string, diagnosisId: string) => void;
   getActiveDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
+  trackProblem: (plantId: string, diagnosisId: string, trackingStatus: TrackingStatus, followUpDate: string, notificationId: string | null, problemSummary: string) => void;
+  resolveTrackedProblem: (plantId: string, diagnosisId: string) => void;
+  reopenTrackedProblem: (plantId: string, diagnosisId: string) => void;
+  addFollowUpEntry: (plantId: string, diagnosisId: string, entry: ProblemEntry) => void;
   addShoppingItem: (item: ShoppingItem) => void;
   removeShoppingItem: (itemId: string) => void;
   toggleShoppingItem: (itemId: string) => void;
@@ -420,7 +425,14 @@ export function StorageProvider({ children }: StorageProviderProps) {
     const cur = dataRef.current.diagnosisHistory;
     const plantDiagnoses = cur[plantId] || [];
     const updatedDiagnoses = plantDiagnoses.map(d =>
-      d.id === diagnosisId ? { ...d, resolved: true, resolvedDate: formatDate(new Date()) } : d
+      d.id === diagnosisId
+        ? {
+            ...d,
+            resolved: true,
+            resolvedDate: formatDate(new Date()),
+            ...(d.isTracked ? { previousStatus: d.trackingStatus, trackingStatus: 'resolved' as TrackingStatus } : {}),
+          }
+        : d
     );
     const newHistory = { ...cur, [plantId]: updatedDiagnoses };
     setDiagnosisHistory(newHistory);
@@ -433,6 +445,80 @@ export function StorageProvider({ children }: StorageProviderProps) {
       !d.resolved && d.result.overallStatus !== 'healthy'
     );
   }, []);
+
+  const trackProblem = useCallback((plantId: string, diagnosisId: string, trackingStatus: TrackingStatus, followUpDate: string, notificationId: string | null, problemSummary: string) => {
+    const cur = dataRef.current.diagnosisHistory;
+    const plantDiagnoses = cur[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId
+        ? {
+            ...d,
+            isTracked: true,
+            trackingStatus,
+            followUpDate,
+            followUpNotificationId: notificationId,
+            problemSummary,
+          }
+        : d
+    );
+    const newHistory = { ...cur, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    dataRef.current.diagnosisHistory = newHistory;
+    scheduleSave();
+  }, [scheduleSave]);
+
+  const resolveTrackedProblem = useCallback((plantId: string, diagnosisId: string) => {
+    const cur = dataRef.current.diagnosisHistory;
+    const plantDiagnoses = cur[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId
+        ? {
+            ...d,
+            resolved: true,
+            resolvedDate: formatDate(new Date()),
+            previousStatus: d.trackingStatus,
+            trackingStatus: 'resolved' as TrackingStatus,
+          }
+        : d
+    );
+    const newHistory = { ...cur, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    dataRef.current.diagnosisHistory = newHistory;
+    scheduleSave();
+  }, [scheduleSave]);
+
+  const reopenTrackedProblem = useCallback((plantId: string, diagnosisId: string) => {
+    const cur = dataRef.current.diagnosisHistory;
+    const plantDiagnoses = cur[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId
+        ? {
+            ...d,
+            resolved: false,
+            resolvedDate: null,
+            trackingStatus: d.previousStatus || 'needs_attention' as TrackingStatus,
+          }
+        : d
+    );
+    const newHistory = { ...cur, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    dataRef.current.diagnosisHistory = newHistory;
+    scheduleSave();
+  }, [scheduleSave]);
+
+  const addFollowUpEntry = useCallback((plantId: string, diagnosisId: string, entry: ProblemEntry) => {
+    const cur = dataRef.current.diagnosisHistory;
+    const plantDiagnoses = cur[plantId] || [];
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId
+        ? { ...d, entries: [...(d.entries || []), entry] }
+        : d
+    );
+    const newHistory = { ...cur, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    dataRef.current.diagnosisHistory = newHistory;
+    scheduleSave();
+  }, [scheduleSave]);
 
   const addShoppingItem = useCallback((item: ShoppingItem) => {
     const newList = [...dataRef.current.shoppingList, item];
@@ -504,6 +590,10 @@ export function StorageProvider({ children }: StorageProviderProps) {
     getDiagnosesForPlant,
     resolveDiagnosis,
     getActiveDiagnosesForPlant,
+    trackProblem,
+    resolveTrackedProblem,
+    reopenTrackedProblem,
+    addFollowUpEntry,
     addShoppingItem,
     removeShoppingItem,
     toggleShoppingItem,
@@ -518,6 +608,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     updatePlantNetApiKey, incrementIdentificationCount, incrementDiagnosisCount,
     addPhotoToPlant, removePhotoFromPlant, saveDiagnosis, addChatMessage,
     getDiagnosesForPlant, resolveDiagnosis, getActiveDiagnosesForPlant,
+    trackProblem, resolveTrackedProblem, reopenTrackedProblem, addFollowUpEntry,
     addShoppingItem, removeShoppingItem, toggleShoppingItem, clearCheckedShoppingItems,
   ]);
 
