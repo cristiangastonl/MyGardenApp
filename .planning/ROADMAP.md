@@ -34,7 +34,7 @@ Plans:
 ### Phase 2: Problem Tracking Core
 **Goal**: Premium users can create a tracked problem record from a diagnosis, with AI-determined follow-up scheduling, persistent storage, push notifications, and full i18n coverage for all new strings
 **Depends on**: Phase 1
-**Requirements**: PROB-01, PROB-02, PROB-03, PROB-04, PROB-05, PROB-06, PROB-07, PROB-08, PROB-09, PROB-10, I18N-01, I18N-02
+**Requirements**: PROB-01, PROB-02, PROB-03, PROB-04, PROB-05, PROB-06, PROB-07, PROB-08, PROB-09, PROB-10, NOTF-01, NOTF-04, I18N-01, I18N-02
 **Success Criteria** (what must be TRUE):
   1. After an AI diagnosis, a premium user can tap to create a tracked problem record; free users do not see the option
   2. The problem record is saved with plant ID, summary, severity label (Watch closely / Needs attention / Recovering / Resolved), photo, AI notes, creation date, follow-up date, and status — and persists across app restarts
@@ -52,7 +52,7 @@ Plans:
 ### Phase 3: Reminders, Tasks & Plant Detail UI
 **Goal**: Follow-up reminders reach users through both push notifications and Hoy screen tasks, and the complete problem history is visible in the plant detail screen
 **Depends on**: Phase 2
-**Requirements**: NOTF-01, NOTF-02, NOTF-03, NOTF-04, UI-01, UI-02, UI-03, UI-04
+**Requirements**: NOTF-02, NOTF-03, UI-01, UI-02, UI-03, UI-04
 **Success Criteria** (what must be TRUE):
   1. On the follow-up date, a "Follow-up due today" task card appears in the Hoy screen for premium users alongside regular care tasks; free users never see the card
   2. Tapping the push notification — whether the app is in foreground, background, or cold-started — navigates the user to the correct plant detail or diagnosis flow
@@ -64,7 +64,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3
+Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
