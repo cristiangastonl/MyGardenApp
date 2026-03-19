@@ -2,9 +2,10 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { useTranslation } from 'react-i18next';
-import { DiagnosisState, DiagnosisResult, DiagnosisChatMessage, PlantDiagnosisContext, SavedDiagnosis } from '../types';
+import { DiagnosisState, DiagnosisResult, DiagnosisChatMessage, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry, TrackingStatus } from '../types';
 import { diagnosePlant, chatDiagnosis, ChatDiagnosisResponse } from '../utils/plantDiagnosis';
 import { trackEvent } from '../services/analyticsService';
+import { persistDiagnosisPhoto } from '../services/problemTrackingService';
 
 const TIMEOUT_MS = 45000; // More time for multiple images
 const CHAT_TIMEOUT_MS = 15000;
@@ -16,6 +17,8 @@ interface UsePlantDiagnosisOptions {
   onDiagnosisComplete?: (diagnosis: SavedDiagnosis) => void;
   initialImages?: string[] | Array<{ uri: string; base64: string }>;
   resumeDiagnosis?: SavedDiagnosis | null;
+  onImprovementDetected?: () => void;  // Called when AI detects improvement in chat
+  onFollowUpEntry?: (entry: ProblemEntry) => void;  // Called to record a follow-up entry for tracked problems (PROB-07)
 }
 
 interface ImageEntry {
@@ -269,12 +272,19 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
   const sendChatMessage = useCallback(async (message: string, imageBase64?: string, imageUri?: string) => {
     if (!result || !plantContextRef.current) return;
 
+    // Persist photo if this is for a tracked diagnosis (PROB-10)
+    // persistDiagnosisPhoto is SYNCHRONOUS (File.copy sync API) — no await needed
+    let persistedImageUri = imageUri || null;
+    if (imageUri && resumeDiag?.isTracked && savedDiagnosisId) {
+      persistedImageUri = persistDiagnosisPhoto(savedDiagnosisId, imageUri);
+    }
+
     const userMsg: DiagnosisChatMessage = {
       id: `msg_${Date.now()}_user`,
       role: 'user',
       text: message,
       timestamp: new Date().toISOString(),
-      imageUri: imageUri || null,
+      imageUri: persistedImageUri,  // Use persistent URI instead of cache URI
     };
 
     setChatMessages(prev => [...prev, userMsg]);
@@ -311,6 +321,24 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
         setResult(prev => prev ? { ...prev, careTips: response.updatedTips } : prev);
       }
 
+      // Check for improvement detection (PROB-05)
+      if (response.improvementDetected && options?.onImprovementDetected) {
+        options.onImprovementDetected();
+      }
+
+      // Create follow-up entry for tracked diagnoses (PROB-07)
+      // Each follow-up chat response records: photo URI, AI notes, date, status change
+      if (resumeDiag?.isTracked && options?.onFollowUpEntry) {
+        const entry: ProblemEntry = {
+          id: `entry_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+          date: new Date().toISOString(),
+          photoUri: persistedImageUri,
+          aiNotes: response.reply,
+          statusChange: response.improvementDetected ? 'recovering' as TrackingStatus : null,
+        };
+        options.onFollowUpEntry(entry);
+      }
+
       trackEvent('diagnosis_chat_sent', {
         has_updated_tips: response.updatedTips.length > 0,
       });
@@ -324,7 +352,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
     } finally {
       setChatLoading(false);
     }
-  }, [result, chatMessages, t, i18n.language]);
+  }, [result, chatMessages, resumeDiag, savedDiagnosisId, options, t, i18n.language]);
 
   return {
     state,

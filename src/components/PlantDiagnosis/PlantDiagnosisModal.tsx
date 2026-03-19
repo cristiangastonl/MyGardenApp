@@ -16,7 +16,8 @@ import { usePlantDiagnosis } from '../../hooks/usePlantDiagnosis';
 import { usePremiumGate } from '../../config/premium';
 import { usePremium } from '../../hooks/usePremium';
 import { useStorage } from '../../hooks/useStorage';
-import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis } from '../../types';
+import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry } from '../../types';
+import { startTracking } from '../../services/problemTrackingService';
 import { CameraCapture } from '../PlantIdentifier/CameraCapture';
 import { DiagnosisAnalyzingState } from './DiagnosisAnalyzingState';
 import { DiagnosisResults } from './DiagnosisResults';
@@ -43,7 +44,7 @@ export function PlantDiagnosisModal({
   canAddToShoppingList = false,
 }: PlantDiagnosisModalProps) {
   const { t } = useTranslation();
-  const { saveDiagnosis, addChatMessage, diagnosisCount } = useStorage();
+  const { saveDiagnosis, addChatMessage, diagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry } = useStorage();
   const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
 
@@ -51,7 +52,16 @@ export function PlantDiagnosisModal({
   const [showPhotoSourceModal, setShowPhotoSourceModal] = useState(false);
   const photoSourceResolveRef = useRef<((value: { base64: string; uri: string } | null) => void) | null>(null);
 
+  // Ref to hold the current SavedDiagnosis for tracking (updated on completion)
+  const currentDiagnosisRef = useRef<SavedDiagnosis | null>(resumeDiagnosis);
+
+  // Resolution suggestion state
+  const [showResolutionSuggestion, setShowResolutionSuggestion] = useState(false);
+  const [dismissedResolution, setDismissedResolution] = useState(false);
+  const [resolvedAnimation, setResolvedAnimation] = useState(false);
+
   const handleDiagnosisComplete = useCallback((diagnosis: SavedDiagnosis) => {
+    currentDiagnosisRef.current = diagnosis;
     saveDiagnosis(diagnosis);
   }, [saveDiagnosis]);
 
@@ -87,7 +97,34 @@ export function PlantDiagnosisModal({
     onDiagnosisComplete: handleDiagnosisComplete,
     initialImages,
     resumeDiagnosis: resumeDiagnosis,
+    onImprovementDetected: () => setShowResolutionSuggestion(true),
+    onFollowUpEntry: (entry: ProblemEntry) => {
+      if (!plant || !savedDiagnosisId) return;
+      addFollowUpEntry(plant.id, savedDiagnosisId, entry);
+    },
   });
+
+  // Handler for "Track this problem" button
+  const handleTrackProblem = useCallback(async () => {
+    const diagnosis = currentDiagnosisRef.current;
+    if (!plant || !diagnosis) return;
+    await startTracking(plant, diagnosis, trackProblem);
+  }, [plant, trackProblem]);
+
+  // Handler for resolution confirmation
+  const handleConfirmResolution = useCallback(() => {
+    const diagnosis = currentDiagnosisRef.current;
+    if (!plant || !diagnosis) return;
+    resolveTrackedProblem(plant.id, diagnosis.id);
+    setShowResolutionSuggestion(false);
+    setResolvedAnimation(true);
+    setTimeout(() => setResolvedAnimation(false), 1500);
+  }, [plant, resolveTrackedProblem]);
+
+  const handleDismissResolution = useCallback(() => {
+    setDismissedResolution(true);
+    setShowResolutionSuggestion(false);
+  }, []);
 
   const handleClose = () => {
     reset();
@@ -257,6 +294,12 @@ export function PlantDiagnosisModal({
             onPaywall={() => showPaywall('plant_diagnosis')}
             onAddToShoppingList={onAddToShoppingList}
             canAddToShoppingList={canAddToShoppingList}
+            onTrackProblem={handleTrackProblem}
+            isAlreadyTracked={currentDiagnosisRef.current?.isTracked ?? false}
+            trackingStatus={currentDiagnosisRef.current?.trackingStatus}
+            showResolutionSuggestion={showResolutionSuggestion && !dismissedResolution}
+            onConfirmResolution={handleConfirmResolution}
+            onDismissResolution={handleDismissResolution}
           />
         );
 
