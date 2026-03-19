@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-03-19T12:40:33.267Z"
-last_activity: 2026-03-19 — Roadmap created; phases derived from 24 v1 requirements
+status: in_progress
+stopped_at: "Completed 01-camera-in-chat-01-01-PLAN.md"
+last_updated: "2026-03-19T13:10:00.000Z"
+last_activity: 2026-03-19 — Completed plan 01-01 (camera in chat MVP)
 progress:
   total_phases: 3
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_plans: 1
+  completed_plans: 1
+  percent: 10
 ---
 
 # Project State
@@ -26,27 +26,27 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 ## Current Position
 
 Phase: 1 of 3 (Camera in Chat)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-03-19 — Roadmap created; phases derived from 24 v1 requirements
+Plan: 1 of ? in current phase
+Status: In progress
+Last activity: 2026-03-19 — Completed plan 01-01: camera action sheet, permission denial UI, free-tier button gating
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 25 min
+- Total execution time: 0.4 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-camera-in-chat | 1 | 25 min | 25 min |
 
 **Recent Trend:**
-- Last 5 plans: —
+- Last 5 plans: 01-01 (25 min)
 - Trend: —
 
 *Updated after each plan completion*
@@ -64,6 +64,9 @@ Recent decisions affecting current work:
 - Auto-resolve requires user confirmation tap — not silent
 - Problem timeline in plant detail, not in chat history
 - Push + Hoy tasks for dual delivery of reminders
+- Used settings.cancel for Android cancel row instead of a new common.cancel key — no top-level cancel key exists in common.json
+- pickChatPhotoFromCamera is separate from usePlantDiagnosis.pickFromCamera to avoid mutating diagnosis hook state during chat
+- Camera permission denial surfaces as React boolean prop (chatCameraPermissionDenied) not as an alert or toast
 
 ### Pending Todos
 
@@ -79,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T12:40:33.265Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-camera-in-chat/01-UI-SPEC.md
+Last session: 2026-03-19T13:10:00.000Z
+Stopped at: Completed 01-camera-in-chat-01-01-PLAN.md
+Resume file: .planning/phases/01-camera-in-chat/01-01-SUMMARY.md

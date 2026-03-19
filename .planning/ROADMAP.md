@@ -12,7 +12,7 @@ This milestone extends the existing diagnosis chat with camera capture, then bui
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Camera in Chat** - Wire camera capture into the diagnosis chat alongside the existing gallery picker
+- [x] **Phase 1: Camera in Chat** - Wire camera capture into the diagnosis chat alongside the existing gallery picker (1/1 plans complete)
 - [ ] **Phase 2: Problem Tracking Core** - Extend data model, build problemTrackingService, schedule notifications, and wire i18n
 - [ ] **Phase 3: Reminders, Tasks & Plant Detail UI** - Hoy follow-up tasks, notification deep-links, and problem timeline in plant detail
 
@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Camera option respects the existing free-tier message limit — no separate gate is introduced
 **Plans:** 1 plan
 Plans:
-- [ ] 01-01-PLAN.md — Action sheet + camera path + permission UI + free-tier button behavior
+- [x] 01-01-PLAN.md — Action sheet + camera path + permission UI + free-tier button behavior
 
 ### Phase 2: Problem Tracking Core
 **Goal**: Premium users can create a tracked problem record from a diagnosis, with AI-determined follow-up scheduling, persistent storage, push notifications, and full i18n coverage for all new strings
@@ -64,6 +64,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Camera in Chat | 0/1 | Not started | - |
+| 1. Camera in Chat | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | 0/? | Not started | - |
 | 3. Reminders, Tasks & Plant Detail UI | 0/? | Not started | - |

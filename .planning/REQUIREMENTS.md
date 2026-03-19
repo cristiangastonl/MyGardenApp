@@ -9,10 +9,10 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Camera in Chat
 
-- [ ] **CAM-01**: User can take a photo with the device camera directly from the diagnosis chat
-- [ ] **CAM-02**: User sees an action sheet (camera vs gallery) when tapping the attachment button in diagnosis chat
-- [ ] **CAM-03**: Camera permission denial shows a contextual explanation and links to device Settings
-- [ ] **CAM-04**: Photo taken from camera shows as inline thumbnail preview before sending (same as gallery photos)
+- [x] **CAM-01**: User can take a photo with the device camera directly from the diagnosis chat
+- [x] **CAM-02**: User sees an action sheet (camera vs gallery) when tapping the attachment button in diagnosis chat
+- [x] **CAM-03**: Camera permission denial shows a contextual explanation and links to device Settings
+- [x] **CAM-04**: Photo taken from camera shows as inline thumbnail preview before sending (same as gallery photos)
 
 ### Problem Tracking
 
@@ -76,10 +76,10 @@ Deferred to future milestone. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CAM-01 | Phase 1 | Pending |
-| CAM-02 | Phase 1 | Pending |
-| CAM-03 | Phase 1 | Pending |
-| CAM-04 | Phase 1 | Pending |
+| CAM-01 | Phase 1 | Complete |
+| CAM-02 | Phase 1 | Complete |
+| CAM-03 | Phase 1 | Complete |
+| CAM-04 | Phase 1 | Complete |
 | PROB-01 | Phase 2 | Pending |
 | PROB-02 | Phase 2 | Pending |
 | PROB-03 | Phase 2 | Pending |
