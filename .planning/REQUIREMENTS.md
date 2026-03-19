@@ -76,36 +76,36 @@ Deferred to future milestone. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CAM-01 | — | Pending |
-| CAM-02 | — | Pending |
-| CAM-03 | — | Pending |
-| CAM-04 | — | Pending |
-| PROB-01 | — | Pending |
-| PROB-02 | — | Pending |
-| PROB-03 | — | Pending |
-| PROB-04 | — | Pending |
-| PROB-05 | — | Pending |
-| PROB-06 | — | Pending |
-| PROB-07 | — | Pending |
-| PROB-08 | — | Pending |
-| PROB-09 | — | Pending |
-| PROB-10 | — | Pending |
-| NOTF-01 | — | Pending |
-| NOTF-02 | — | Pending |
-| NOTF-03 | — | Pending |
-| NOTF-04 | — | Pending |
-| UI-01 | — | Pending |
-| UI-02 | — | Pending |
-| UI-03 | — | Pending |
-| UI-04 | — | Pending |
-| I18N-01 | — | Pending |
-| I18N-02 | — | Pending |
+| CAM-01 | Phase 1 | Pending |
+| CAM-02 | Phase 1 | Pending |
+| CAM-03 | Phase 1 | Pending |
+| CAM-04 | Phase 1 | Pending |
+| PROB-01 | Phase 2 | Pending |
+| PROB-02 | Phase 2 | Pending |
+| PROB-03 | Phase 2 | Pending |
+| PROB-04 | Phase 2 | Pending |
+| PROB-05 | Phase 2 | Pending |
+| PROB-06 | Phase 2 | Pending |
+| PROB-07 | Phase 2 | Pending |
+| PROB-08 | Phase 2 | Pending |
+| PROB-09 | Phase 2 | Pending |
+| PROB-10 | Phase 2 | Pending |
+| NOTF-01 | Phase 2 | Pending |
+| NOTF-02 | Phase 3 | Pending |
+| NOTF-03 | Phase 3 | Pending |
+| NOTF-04 | Phase 2 | Pending |
+| UI-01 | Phase 3 | Pending |
+| UI-02 | Phase 3 | Pending |
+| UI-03 | Phase 3 | Pending |
+| UI-04 | Phase 3 | Pending |
+| I18N-01 | Phase 2 | Pending |
+| I18N-02 | Phase 2 | Pending |
 
 **Coverage:**
 - v1 requirements: 24 total
-- Mapped to phases: 0
-- Unmapped: 24 ⚠️
+- Mapped to phases: 24
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-19*
-*Last updated: 2026-03-19 after initial definition*
+*Last updated: 2026-03-19 after roadmap creation*
