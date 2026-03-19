@@ -36,10 +36,10 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Plant Detail UI
 
-- [ ] **UI-01**: Active problems shown as a section/card in the plant detail screen
-- [ ] **UI-02**: Problem timeline shows chronological photo history with AI notes per entry
+- [x] **UI-01**: Active problems shown as a section/card in the plant detail screen
+- [x] **UI-02**: Problem timeline shows chronological photo history with AI notes per entry
 - [x] **UI-03**: Status indicator (dot or badge) on plant card in plant list when plant has active problem
-- [ ] **UI-04**: Problem card shows current status, severity label, last check date, and next follow-up date
+- [x] **UI-04**: Problem card shows current status, severity label, last check date, and next follow-up date
 
 ### Internationalization
 
@@ -94,10 +94,10 @@ Deferred to future milestone. Tracked but not in current roadmap.
 | NOTF-02 | Phase 3 | Complete |
 | NOTF-03 | Phase 3 | Pending |
 | NOTF-04 | Phase 2 | Complete |
-| UI-01 | Phase 3 | Pending |
-| UI-02 | Phase 3 | Pending |
+| UI-01 | Phase 3 | Complete |
+| UI-02 | Phase 3 | Complete |
 | UI-03 | Phase 3 | Complete |
-| UI-04 | Phase 3 | Pending |
+| UI-04 | Phase 3 | Complete |
 | I18N-01 | Phase 2 | Complete |
 | I18N-02 | Phase 2 | Complete |
 
