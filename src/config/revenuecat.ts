@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 
 // RevenueCat API keys per platform
 const REVENUECAT_IOS_KEY = 'appl_NSBzjMYEBnDMKZnZznHlvFRqwFS';
-const REVENUECAT_ANDROID_KEY = 'test_vVUlWrAkGlnisOSgTZBKHXODZDV';
+const REVENUECAT_ANDROID_KEY = 'goog_LdRPduDNmtqmeEvyDSTuhPLPPeq';
 
 export const REVENUECAT_API_KEY =
   Platform.OS === 'ios' ? REVENUECAT_IOS_KEY : REVENUECAT_ANDROID_KEY;
