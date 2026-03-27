@@ -8,7 +8,7 @@
   },
   "header": {
     "hello": "¡Hola {{name}}!",
-    "appName": "Mi Jardín",
+    "appName": "My Happy Garden",
     "dateFormat": "{{dayName}} {{day}} de {{month}}"
   },
   "seasons": {
@@ -41,7 +41,7 @@
     "suculentas": "Suculentas"
   },
   "onboarding": {
-    "welcome": "Bienvenido a Mi Jardín",
+    "welcome": "Bienvenido a My Happy Garden",
     "subtitle": "Tu asistente personal para el cuidado de plantas",
     "yourName": "TU NOMBRE",
     "whatsYourName": "¿CÓMO TE LLAMAS? (OPCIONAL)",
@@ -118,7 +118,7 @@
     "sendTest": "Enviar notificación de prueba",
     "testSent": "¡Listo!",
     "testSentMessage": "Se envió una notificación de prueba.",
-    "notificationsBlocked": "Las notificaciones están bloqueadas. Para activarlas, ve a Configuración > Mi Jardín > Notificaciones en tu dispositivo.",
+    "notificationsBlocked": "Las notificaciones están bloqueadas. Para activarlas, andá a Configuración > My Happy Garden > Notificaciones en tu dispositivo.",
     "openSettings": "Abrir configuración",
     "permissionDenied": "Permiso denegado",
     "permissionDeniedMessage": "Necesitamos acceso a tu ubicación para mostrar el clima local.",
@@ -200,7 +200,7 @@
     "loadingCalendar": "Cargando calendario..."
   },
   "login": {
-    "appName": "Mi Jardín",
+    "appName": "My Happy Garden",
     "tagline": "Cuida tus plantas con amor",
     "syncNotConfigured": "La sincronización en la nube no está configurada. Podés usar la app sin cuenta.",
     "continueWithGoogle": "Continuar con Google",
@@ -684,7 +684,7 @@
     "currentTemp": "Ahora hace {{temp}}°C.",
     "careTitle": "Recordatorio de riego",
     "careBody": "No te olvides de regar tu {{name}} (lleva {{days}} días).",
-    "testTitle": "Mi Jardín",
+    "testTitle": "My Happy Garden",
     "testBody": "¡Las notificaciones están funcionando correctamente!",
     "followUpTitle": "Es hora de revisar {{name}}",
     "followUpBody": "{{summary}} -- hace un diagnostico de seguimiento para ver como va."

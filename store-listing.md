@@ -1,7 +1,7 @@
-# My Garden Care — App Store Listing
+# My Happy Garden — App Store Listing
 
 ## App Name
-My Garden Care
+My Happy Garden
 
 ## Subtitle
 Plant Care & Garden Tracker
@@ -10,9 +10,9 @@ Plant Care & Garden Tracker
 
 ## Description (English)
 
-Keep your plants thriving with My Garden Care — the smart, simple way to care for every plant in your home and garden.
+Keep your plants thriving with My Happy Garden — the smart, simple way to care for every plant in your home and garden.
 
-Whether you have a single succulent on your windowsill or a full garden, My Garden Care helps you stay on top of every plant's needs with personalized reminders, AI-powered diagnosis, and local weather-aware scheduling.
+Whether you have a single succulent on your windowsill or a full garden, My Happy Garden helps you stay on top of every plant's needs with personalized reminders, AI-powered diagnosis, and local weather-aware scheduling.
 
 **FEATURES**
 - Watering and care reminders tailored to each plant
@@ -28,7 +28,7 @@ Whether you have a single succulent on your windowsill or a full garden, My Gard
 - Clean, intuitive design built for everyday use
 
 **PREMIUM**
-Unlock unlimited plants, diagnoses, identifications, and diagnosis chat with My Garden Care Premium.
+Unlock unlimited plants, diagnoses, identifications, and diagnosis chat with My Happy Garden Premium.
 
 Your garden deserves the best care. Start today.
 
@@ -36,9 +36,9 @@ Your garden deserves the best care. Start today.
 
 ## Description (Español)
 
-Mantené tus plantas sanas con My Garden Care — la forma inteligente y sencilla de cuidar cada planta de tu hogar y jardín.
+Mantené tus plantas sanas con My Happy Garden — la forma inteligente y sencilla de cuidar cada planta de tu hogar y jardín.
 
-Tanto si tenés una sola planta en tu ventana como un jardín completo, My Garden Care te ayuda con recordatorios personalizados, diagnóstico inteligente con IA y programación adaptada al clima local.
+Tanto si tenés una sola planta en tu ventana como un jardín completo, My Happy Garden te ayuda con recordatorios personalizados, diagnóstico inteligente con IA y programación adaptada al clima local.
 
 **FUNCIONES**
 - Recordatorios de riego y cuidado según cada planta
@@ -54,7 +54,7 @@ Tanto si tenés una sola planta en tu ventana como un jardín completo, My Garde
 - Diseño limpio e intuitivo para el uso diario
 
 **PREMIUM**
-Desbloqueá plantas, diagnósticos, identificaciones y chat ilimitados con My Garden Care Premium.
+Desbloqueá plantas, diagnósticos, identificaciones y chat ilimitados con My Happy Garden Premium.
 
 Tu jardín merece el mejor cuidado. Empezá hoy.
 

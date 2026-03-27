@@ -217,7 +217,7 @@ export function useNotifications({
         // Configure notification channel for Android
         if (Platform.OS === "android") {
           await Notifications.setNotificationChannelAsync("default", {
-            name: "My Garden Care",
+            name: "My Happy Garden",
             importance: Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
             lightColor: "#5b9a6a",

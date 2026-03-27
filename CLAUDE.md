@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## About
 
-My Garden Care is a React Native (Expo) plant care app. Users track watering, sun, and outdoor activities for their plants, with weather integration, AI plant identification, and AI health diagnosis.
+My Happy Garden is a React Native (Expo) plant care app. Users track watering, sun, and outdoor activities for their plants, with weather integration, AI plant identification, and AI health diagnosis.
 
 ## Commands
 
@@ -38,8 +38,9 @@ The app uses a **two-axis gating model**: version flags × premium gate.
 | Version | Flags enabled |
 |---------|--------------|
 | MVP | WEATHER_ALERTS, HEALTH_SCORE, DAILY_TIPS, NOTIFICATIONS_BASIC, PLANT_CATALOG, PREMIUM_GATE |
-| V1.1 | AUTH, CLOUD_SYNC, CALENDAR_TAB, EXPLORE_TAB, PLANT_IDENTIFICATION, PHOTO_UPLOAD, FULL_CATALOG, NOTIFICATIONS_ADVANCED |
-| V1.2 | DLC_KITCHEN_GARDEN, DLC_PEST_DIAGNOSIS, AFFILIATE_LINKS, REFERRAL_SYSTEM, HOME_WIDGETS |
+| Adelantados (already enabled) | PLANT_IDENTIFICATION, PHOTO_UPLOAD (from V1.1), DLC_PEST_DIAGNOSIS (from V1.2) |
+| V1.1 (pending) | AUTH, CLOUD_SYNC, CALENDAR_TAB, EXPLORE_TAB, FULL_CATALOG, NOTIFICATIONS_ADVANCED |
+| V1.2 (pending) | DLC_KITCHEN_GARDEN, AFFILIATE_LINKS, REFERRAL_SYSTEM, HOME_WIDGETS |
 | V2.0 | DLC_SEASONAL_PREP, DLC_ADVANCED_DIAGNOSTICS, PLANT_COMPATIBILITY, CARE_STREAKS, SPONSORED_TIPS, MULTIPLE_GARDENS |
 
 To enable V1.1 features, flip the V1.1 flags to `true` in `features.ts`. All existing code (auth, sync, calendar, explore) is preserved but not rendered.
@@ -78,8 +79,8 @@ When `Features.AUTH` is `false`, AuthProvider is skipped entirely. AppContent go
 - Client in `src/lib/supabase.ts` — Uses `expo-secure-store` for session (localStorage on web)
 - Env vars: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY` in `.env`
 - RLS enabled on all tables — users only access their own data (`auth.uid() = user_id`)
-- Edge functions in `supabase/functions/`
-- Secret: `PLANTNET_API_KEY` configured in Supabase dashboard
+- Edge functions in `supabase/functions/`: `identify-plant`, `diagnose-plant`, `chat-diagnosis`, `waitlist`
+- Secrets: `PLANTNET_API_KEY`, `GEMINI_API_KEY` configured in Supabase dashboard
 
 ## Design System (MUST follow)
 
@@ -102,13 +103,70 @@ The app supports **English** and **Spanish (Argentine)**. System language is aut
 
 ## App Store & Privacy
 
-- **App name**: My Garden Care
+- **App name**: My Happy Garden
 - **Store listing**: `store-listing.md` in project root (EN/ES descriptions, keywords)
 - **Privacy manifest**: `privacyManifests` in `app.json` — declares APIs accessed and data collected
 - **Update privacy manifest when**: adding auth/email collection, adding analytics/tracking, adding cloud sync, or using new Apple-required APIs
 - **No update needed for**: UI changes, new screens, catalog additions, feature improvements that don't change data collection
 - **iOS config**: `usesNonExemptEncryption: false`, push notification entitlements configured
-- **iOS submit fields** (empty, fill when Apple Developer account is ready): `appleId`, `ascAppId`, `appleTeamId` in `eas.json`
+- **iOS bundle**: `com.mygardencare.app`
+- **iOS submit fields** in `eas.json`: `appleId: cristiangastonl@gmail.com`, `ascAppId: 6760934404`, `appleTeamId: N3K92QGR4U`
+- **PrivacyInfo.xcprivacy** included in project root
+
+## Android Build & Submit
+
+### Build
+```bash
+eas build --platform android --profile production   # Generates .aab for Google Play
+```
+- **Do NOT create a new build if one already exists** — check first with `eas build:list --platform android --status finished --limit 5`
+- Credentials source: `remote` (keystore stored on EAS servers)
+- Keystore alias: `b357e57c403e45a4772fcdb168129f18`
+
+### Submit
+```bash
+eas submit --platform android --profile production --id <BUILD_ID>
+```
+- Service account key: `./pc-api-key.json` (Google Play API access — **requires permissions configured in Google Play Console**)
+- Track: `internal` (promote to production from Google Play Console)
+- **Manual alternative**: Download `.aab` from EAS build URL → upload in Google Play Console → Versiones → Pruebas → Prueba cerrada → Crear nueva versión
+
+### Signing (Google Play App Signing)
+- Google manages the **app signing key** — the developer uploads with an **upload key**
+- EAS keystore SHA1: `86:F5:51:D5:84:4C:88:F3:52:44:DC:03:F0:A7:FC:17:DC:1A:39:D8`
+- The upload key in Google Play **must match** the EAS keystore. If they don't match, reset the upload key via: Google Play Console → Integridad de la app → Firma de apps → "Solicitar restablecimiento de la clave de carga" → upload `upload_key.pem` generated from EAS keystore
+- To export EAS upload cert: `keytool -exportcert -alias <alias> -keystore <file>.jks -rfc -file upload_key.pem -storepass <password>`
+- Google Play API access ("Acceso a la API") is configured at **account level** in Google Play Console (not per-app), under Configuración
+
+## iOS Build & Submit
+
+### Build
+```bash
+eas build --platform ios --profile production   # Generates .ipa for App Store
+```
+- Credentials source: `remote` (managed by EAS)
+- `autoIncrement: true` for build numbers
+- Bundle ID: `com.mygardencare.app`
+
+### Submit
+```bash
+eas submit --platform ios --profile production --id <BUILD_ID>
+```
+- Apple ID: `cristiangastonl@gmail.com`
+- App Store Connect App ID: `6760934404`
+- Team ID: `N3K92QGR4U`
+
+### Pre-submit Checklist
+- RevenueCat iOS key must be set (currently placeholder in `revenuecat.ts`)
+- In-app purchase products must be created in App Store Connect (yearly + lifetime)
+- Privacy Policy URL required
+- Screenshots required (6.7" iPhone, 5.5" iPhone minimum)
+
+## Landing Page & Waitlist
+
+- Landing page in `landing/` — static HTML deployed via Cloudflare Workers (`wrangler.toml`)
+- Waitlist edge function in `supabase/functions/waitlist/`
+- Waitlist migration: `supabase/migrations/004_waitlist.sql`
 
 ## Security
 

@@ -8,7 +8,7 @@
   },
   "header": {
     "hello": "Hello {{name}}!",
-    "appName": "My Garden",
+    "appName": "My Happy Garden",
     "dateFormat": "{{dayName}}, {{month}} {{day}}"
   },
   "seasons": {
@@ -41,7 +41,7 @@
     "suculentas": "Succulents"
   },
   "onboarding": {
-    "welcome": "Welcome to My Garden",
+    "welcome": "Welcome to My Happy Garden",
     "subtitle": "Your personal plant care assistant",
     "yourName": "YOUR NAME",
     "whatsYourName": "WHAT'S YOUR NAME? (OPTIONAL)",
@@ -118,7 +118,7 @@
     "sendTest": "Send test notification",
     "testSent": "Done!",
     "testSentMessage": "A test notification was sent.",
-    "notificationsBlocked": "Notifications are blocked. To enable them, go to Settings > My Garden > Notifications on your device.",
+    "notificationsBlocked": "Notifications are blocked. To enable them, go to Settings > My Happy Garden > Notifications on your device.",
     "openSettings": "Open settings",
     "permissionDenied": "Permission denied",
     "permissionDeniedMessage": "We need access to your location to show local weather.",
@@ -200,7 +200,7 @@
     "loadingCalendar": "Loading calendar..."
   },
   "login": {
-    "appName": "My Garden",
+    "appName": "My Happy Garden",
     "tagline": "Care for your plants with love",
     "syncNotConfigured": "Cloud sync is not configured. You can use the app without an account.",
     "continueWithGoogle": "Continue with Google",
@@ -684,7 +684,7 @@
     "currentTemp": "Currently {{temp}}°C.",
     "careTitle": "Watering reminder",
     "careBody": "Don't forget to water your {{name}} ({{days}} days overdue).",
-    "testTitle": "My Garden",
+    "testTitle": "My Happy Garden",
     "testBody": "Notifications are working correctly!",
     "followUpTitle": "Time to check on {{name}}",
     "followUpBody": "{{summary}} -- do a follow-up diagnosis to track recovery."

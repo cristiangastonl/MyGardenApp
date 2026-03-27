@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mygardencare.app/sitemap.xml

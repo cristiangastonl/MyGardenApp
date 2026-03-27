@@ -13,6 +13,7 @@ const corsHeaders = {
 interface RequestBody {
   imageBase64: string;
   organ?: string; // 'leaf', 'flower', 'fruit', 'bark', 'auto'
+  lang?: string;  // 'en', 'es', etc. — defaults to 'en'
 }
 
 serve(async (req) => {
@@ -81,7 +82,8 @@ serve(async (req) => {
     formData.append('organs', body.organ || 'auto');
 
     // Call PlantNet API
-    const url = `${PLANTNET_API_URL}?api-key=${plantnetApiKey}&include-related-images=false&no-reject=false&lang=es`;
+    const lang = body.lang || 'en';
+    const url = `${PLANTNET_API_URL}?api-key=${plantnetApiKey}&include-related-images=false&no-reject=false&lang=${lang}`;
 
     console.log('Calling PlantNet API...');
 

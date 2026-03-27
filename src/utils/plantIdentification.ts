@@ -1,5 +1,5 @@
 import { IdentifiedPlant, IdentificationResult, PlantCategory, HumidityLevel, PlantDBEntry } from '../types';
-import { PLANT_DATABASE } from '../data/plantDatabase';
+import { PLANT_DATABASE, getTranslatedPlant } from '../data/plantDatabase';
 import i18n from '../i18n';
 
 // ============================================================================
@@ -190,20 +190,21 @@ function convertPlantNetResult(result: PlantNetResult): IdentifiedPlant {
   const dbPlant = findPlantInDatabase(scientificName);
 
   if (dbPlant) {
-    // Tenemos datos verificados de esta planta
+    // Tenemos datos verificados de esta planta — usar traducción
+    const translated = getTranslatedPlant(dbPlant);
     return {
-      commonName: dbPlant.name,
-      scientificName: dbPlant.scientificName,
+      commonName: translated.name,
+      scientificName: translated.scientificName,
       confidence: Math.round(result.score * 100),
-      category: dbPlant.category,
-      waterDays: dbPlant.waterDays,
-      sunHours: dbPlant.sunHours,
-      tempMin: dbPlant.tempMin,
-      tempMax: dbPlant.tempMax,
-      humidity: dbPlant.humidity,
-      indoor: !dbPlant.outdoor,
-      tip: dbPlant.tip,
-      icon: dbPlant.icon,
+      category: translated.category,
+      waterDays: translated.waterDays,
+      sunHours: translated.sunHours,
+      tempMin: translated.tempMin,
+      tempMax: translated.tempMax,
+      humidity: translated.humidity,
+      indoor: !translated.outdoor,
+      tip: translated.tip,
+      icon: translated.icon,
     };
   }
 
@@ -249,7 +250,7 @@ export async function identifyPlant(
     // Llamar a la Edge Function
     // Usamos la anon key explícitamente para que funcione sin usuario logueado
     const { data, error } = await supabase.functions.invoke<PlantNetResponse>('identify-plant', {
-      body: { imageBase64, organ: 'auto' },
+      body: { imageBase64, organ: 'auto', lang: i18n.language },
       headers: {
         Authorization: `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY}`,
       },

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "My Garden Care",
+    "name": "My Happy Garden",
     "slug": "MiJardinApp",
     "scheme": "mijardin",
     "version": "2.0.0",
@@ -15,13 +15,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cristianlopez.mijardin",
+      "bundleIdentifier": "com.mygardencare.app",
       "buildNumber": "1",
       "config": {
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "CFBundleDisplayName": "My Garden Care",
+        "CFBundleDisplayName": "My Happy Garden",
         "CFBundleDevelopmentRegion": "en",
         "NSCameraUsageDescription": "Allow access to the camera to take photos of your plants",
         "NSPhotoLibraryUsageDescription": "Allow access to your photos to identify plants",

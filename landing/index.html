@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Happy Garden — Weather-Smart Plant Care</title>
+    <meta name="description" content="The plant care app that adapts to your weather. AI plant identification, pest diagnosis, frost alerts, and daily tasks — all based on real forecasts.">
+    <meta property="og:title" content="My Happy Garden — Weather-Smart Plant Care">
+    <meta property="og:description" content="AI-powered plant care adapted to your local weather. Identify plants, diagnose pests, and get daily tasks based on real forecasts.">
+    <meta property="og:url" content="https://mygardencare.app">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mygardencare.app/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_AR">
+    <meta property="og:site_name" content="My Happy Garden">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Happy Garden — Weather-Smart Plant Care">
+    <meta name="twitter:description" content="AI-powered plant care adapted to your local weather. Identify plants, diagnose pests, and get daily tasks.">
+    <meta name="twitter:image" content="https://mygardencare.app/images/og-image.png">
+    <meta name="keywords" content="plant care app, AI plant identification, plant diagnosis, weather garden, frost alerts, plant health, watering reminders, garden app, identify plants, pest diagnosis">
+    <meta name="author" content="Cristian Gaston Lopez">
+    <meta name="theme-color" content="#4A5A40">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="canonical" href="https://mygardencare.app">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "My Happy Garden",
+      "description": "Weather-smart plant care app with AI plant identification and pest diagnosis. Daily tasks adapted to real weather forecasts.",
+      "url": "https://mygardencare.app",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Android, iOS",
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free — up to 5 plants"
+        },
+        {
+          "@type": "Offer",
+          "price": "29.99",
+          "priceCurrency": "USD",
+          "description": "Premium — yearly subscription"
+        },
+        {
+          "@type": "Offer",
+          "price": "69.99",
+          "priceCurrency": "USD",
+          "description": "Lifetime — one-time purchase"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Cristian Gaston Lopez",
+        "url": "https://cristianlopez.dev"
+      },
+      "inLanguage": ["en", "es"],
+      "image": "https://mygardencare.app/images/og-image.png"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7A8B6F;
+            --sage-light: #A8B89E;
+            --sage-dark: #4A5A40;
+            --cream: #F7F4ED;
+            --cream-dark: #EDE8DB;
+            --bark: #3D3229;
+            --bark-light: #6B5D52;
+            --terracotta: #C4745A;
+            --moss: #2D4A2D;
+            --water: #6BA3BE;
+            --sun: #E8C547;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--bark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(247, 244, 237, 0.92);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(61, 50, 41, 0.08);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display); font-size: 1.35rem;
+            color: var(--bark); text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .nav-logo .leaf {
+            font-size: 1.5rem; display: inline-block;
+            animation: sway 3s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--bark-light);
+            text-decoration: none; letter-spacing: 0.02em; transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--bark); }
+
+        .nav-cta {
+            background: var(--sage-dark) !important; color: var(--cream) !important;
+            padding: 0.6rem 1.4rem; border-radius: 100px;
+            font-size: 0.85rem !important; font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+        .nav-cta:hover { background: var(--moss) !important; transform: translateY(-1px); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
+        }
+
+        .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+
+        .hero-bg .circle { position: absolute; border-radius: 50%; opacity: 0.08; }
+
+        .hero-bg .circle-1 {
+            width: 800px; height: 800px; background: var(--sage);
+            top: -200px; right: -200px; animation: float 20s ease-in-out infinite;
+        }
+        .hero-bg .circle-2 {
+            width: 500px; height: 500px; background: var(--terracotta);
+            bottom: -100px; left: -100px; animation: float 15s ease-in-out infinite reverse;
+        }
+        .hero-bg .circle-3 {
+            width: 300px; height: 300px; background: var(--water);
+            top: 40%; left: 60%; animation: float 18s ease-in-out infinite 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.02); }
+            66% { transform: translate(-20px, 15px) scale(0.98); }
+        }
+
+        .hero-content {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center; position: relative; z-index: 2;
+        }
+
+        .hero-text { animation: fadeUp 1s ease-out; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(196, 116, 90, 0.12); padding: 0.45rem 1rem;
+            border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+            color: var(--terracotta); margin-bottom: 1.5rem; letter-spacing: 0.04em;
+        }
+
+        .hero-badge .dot {
+            width: 6px; height: 6px; background: var(--terracotta);
+            border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            line-height: 1.1; color: var(--bark);
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        h1 em { color: var(--sage-dark); font-style: italic; }
+
+        .hero-desc {
+            font-size: 1.15rem; line-height: 1.7; color: var(--bark-light);
+            margin-bottom: 2rem; max-width: 480px; font-weight: 300;
+        }
+
+        .waitlist-form {
+            display: flex; gap: 0.5rem; max-width: 440px; margin-bottom: 0.8rem;
+        }
+
+        .waitlist-form input[type="email"] {
+            flex: 1; padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(61, 50, 41, 0.1); border-radius: 100px;
+            font-family: var(--font-body); font-size: 0.95rem;
+            background: white; color: var(--bark); outline: none;
+            transition: border-color 0.3s;
+        }
+        .waitlist-form input[type="email"]:focus { border-color: var(--sage); }
+        .waitlist-form input[type="email"]::placeholder { color: var(--bark-light); opacity: 0.5; }
+
+        .waitlist-form button {
+            padding: 0.9rem 1.8rem; background: var(--sage-dark); color: var(--cream);
+            border: none; border-radius: 100px; font-family: var(--font-body);
+            font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; white-space: nowrap;
+        }
+        .waitlist-form button:hover {
+            background: var(--moss); transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(45, 74, 45, 0.2);
+        }
+
+        .store-buttons { display: flex; gap: 0.75rem; max-width: 440px; margin-bottom: 0.8rem; }
+
+        .store-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.5rem; background: var(--sage-dark); color: var(--cream);
+            border-radius: 100px; font-family: var(--font-body); font-size: 0.95rem;
+            font-weight: 600; text-decoration: none; transition: all 0.3s ease;
+        }
+        .store-btn:hover {
+            background: var(--moss); transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(45, 74, 45, 0.2);
+        }
+        .store-btn svg { flex-shrink: 0; }
+        .store-btn span { display: flex; flex-direction: column; line-height: 1.2; }
+        .store-btn small { font-size: 0.65rem; font-weight: 400; opacity: 0.7; }
+        .store-btn.coming-soon { opacity: 0.7; cursor: default; }
+        .store-btn.coming-soon:hover { transform: none; box-shadow: none; }
+
+        .waitlist-note { font-size: 0.8rem; color: var(--bark-light); opacity: 0.7; max-width: 440px; }
+
+        .waitlist-success {
+            display: none; background: rgba(122, 139, 111, 0.1);
+            border-radius: 16px; padding: 1.2rem 1.5rem; max-width: 440px;
+        }
+        .waitlist-success.show { display: block; animation: fadeUp 0.5s ease-out; }
+        .waitlist-success .check { font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .waitlist-success strong { color: var(--sage-dark); font-size: 1rem; }
+        .waitlist-success p { font-size: 0.85rem; color: var(--bark-light); margin-top: 0.2rem; }
+
+        .social-proof {
+            display: flex; align-items: center; gap: 0.8rem;
+            margin-top: 1.5rem; max-width: 440px;
+        }
+
+        .avatar-stack { display: flex; }
+        .avatar-stack .avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            border: 2px solid var(--cream); margin-left: -8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+        }
+        .avatar-stack .avatar:first-child { margin-left: 0; }
+        .avatar-stack .a1 { background: #E8D5C4; }
+        .avatar-stack .a2 { background: #C4D8E8; }
+        .avatar-stack .a3 { background: #D4E8C4; }
+        .avatar-stack .a4 { background: #E8C4D5; }
+
+        .social-proof-text { font-size: 0.82rem; color: var(--bark-light); }
+        .social-proof-text strong { color: var(--bark); }
+
+        /* Phone */
+        .hero-visual { display: flex; justify-content: center; animation: fadeUp 1s ease-out 0.3s both; }
+
+        .phone-frame {
+            width: 280px; height: 560px; background: var(--bark);
+            border-radius: 40px; padding: 12px;
+            box-shadow: 0 40px 80px rgba(61, 50, 41, 0.15), 0 20px 40px rgba(61, 50, 41, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .phone-screen {
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, #E8F0E4 0%, var(--cream) 40%, var(--cream) 100%);
+            border-radius: 30px; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+
+        .phone-header { padding: 2.5rem 1.2rem 1rem; }
+        .phone-greeting { font-family: var(--font-display); font-size: 1.3rem; color: var(--bark); margin-bottom: 0.3rem; }
+        .phone-weather { font-size: 0.72rem; color: var(--bark-light); display: flex; align-items: center; gap: 0.3rem; }
+
+        .phone-tasks { padding: 0.8rem 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+
+        .phone-task {
+            background: white; border-radius: 14px; padding: 0.8rem 1rem;
+            display: flex; align-items: center; gap: 0.7rem;
+            box-shadow: 0 2px 8px rgba(61, 50, 41, 0.04);
+            animation: slideIn 0.5s ease-out both;
+        }
+        .phone-task:nth-child(2) { animation-delay: 0.15s; }
+        .phone-task:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+
+        .task-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        .task-icon.water { background: rgba(107, 163, 190, 0.15); }
+        .task-icon.sun { background: rgba(232, 197, 71, 0.15); }
+        .task-icon.alert { background: rgba(196, 116, 90, 0.15); }
+
+        .task-info { flex: 1; }
+        .task-name { font-size: 0.72rem; font-weight: 600; color: var(--bark); }
+        .task-detail { font-size: 0.6rem; color: var(--bark-light); margin-top: 0.1rem; }
+
+        .phone-tab-bar {
+            display: flex; justify-content: space-around; padding: 0.8rem 1rem;
+            border-top: 1px solid rgba(61, 50, 41, 0.06); background: rgba(255, 255, 255, 0.5);
+        }
+        .tab-item { font-size: 0.6rem; color: var(--bark-light); text-align: center; }
+        .tab-item.active { color: var(--sage-dark); }
+        .tab-item span { font-size: 1.1rem; display: block; margin-bottom: 0.15rem; }
+
+        /* FEATURES */
+        .features { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--sage); margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            line-height: 1.15; color: var(--bark);
+            margin-bottom: 1rem; letter-spacing: -0.01em;
+        }
+
+        .section-desc {
+            font-size: 1.05rem; line-height: 1.7; color: var(--bark-light);
+            max-width: 520px; margin-bottom: 3.5rem; font-weight: 300;
+        }
+
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+        .feature-card {
+            background: white; border-radius: 20px; padding: 2rem;
+            transition: all 0.4s ease; border: 1px solid rgba(61, 50, 41, 0.04);
+            position: relative; overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; border-radius: 20px 20px 0 0; opacity: 0; transition: opacity 0.4s;
+        }
+        .feature-card:hover::before { opacity: 1; }
+        .feature-card:nth-child(1)::before { background: var(--sage); }
+        .feature-card:nth-child(2)::before { background: var(--terracotta); }
+        .feature-card:nth-child(3)::before { background: var(--water); }
+        .feature-card:nth-child(4)::before { background: var(--sun); }
+        .feature-card:nth-child(5)::before { background: var(--terracotta); }
+        .feature-card:nth-child(6)::before { background: var(--sage); }
+
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(61, 50, 41, 0.08); }
+
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 1.25rem;
+        }
+
+        .feature-card:nth-child(1) .feature-icon { background: rgba(122, 139, 111, 0.12); }
+        .feature-card:nth-child(2) .feature-icon { background: rgba(196, 116, 90, 0.12); }
+        .feature-card:nth-child(3) .feature-icon { background: rgba(107, 163, 190, 0.12); }
+        .feature-card:nth-child(4) .feature-icon { background: rgba(232, 197, 71, 0.12); }
+        .feature-card:nth-child(5) .feature-icon { background: rgba(196, 116, 90, 0.12); }
+        .feature-card:nth-child(6) .feature-icon { background: rgba(122, 139, 111, 0.12); }
+
+        .feature-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--bark); margin-bottom: 0.6rem; }
+        .feature-card p { font-size: 0.9rem; line-height: 1.6; color: var(--bark-light); font-weight: 300; }
+
+        /* HOW IT WORKS */
+        .how-it-works { padding: 6rem 2rem; background: var(--cream-dark); }
+        .how-content { max-width: 1200px; margin: 0 auto; }
+
+        .steps {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 3rem; margin-top: 3.5rem; position: relative;
+        }
+
+        .steps::before {
+            content: ''; position: absolute; top: 40px; left: 15%; right: 15%;
+            height: 2px; background: linear-gradient(to right, var(--sage-light), var(--sage), var(--sage-light));
+            opacity: 0.3;
+        }
+
+        .step { text-align: center; position: relative; }
+
+        .step-number {
+            width: 80px; height: 80px; border-radius: 50%; background: white;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem; font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(61, 50, 41, 0.06); position: relative; z-index: 2;
+        }
+
+        .step h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--bark); }
+        .step p { font-size: 0.9rem; line-height: 1.6; color: var(--bark-light); font-weight: 300; max-width: 280px; margin: 0 auto; }
+
+        /* PRICING */
+        .pricing { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; }
+
+        .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+
+        .price-card {
+            background: white; border-radius: 24px; padding: 2.5rem;
+            border: 1px solid rgba(61, 50, 41, 0.06); transition: all 0.3s ease;
+        }
+
+        .price-card.featured {
+            background: var(--moss); color: var(--cream);
+            position: relative; overflow: hidden;
+        }
+        .price-card.featured::after {
+            content: ''; position: absolute; top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+        }
+
+        .price-tier {
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.5rem;
+        }
+        .price-card.featured .price-tier { color: var(--sage-light); }
+
+        .price-amount { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 0.25rem; }
+        .price-period { font-size: 0.85rem; color: var(--bark-light); margin-bottom: 1.5rem; }
+        .price-card.featured .price-period { color: rgba(247, 244, 237, 0.6); }
+
+        .price-features { list-style: none; margin-bottom: 2rem; }
+        .price-features li {
+            padding: 0.5rem 0; font-size: 0.9rem; font-weight: 300;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .price-features li::before { content: '✓'; font-weight: 600; color: var(--sage); font-size: 0.85rem; }
+        .price-card.featured .price-features li::before { color: var(--sage-light); }
+
+        .price-btn {
+            display: block; text-align: center; padding: 0.9rem; border-radius: 100px;
+            font-weight: 500; font-size: 0.95rem; text-decoration: none;
+            transition: all 0.3s ease; cursor: pointer;
+        }
+        .price-btn.outline { border: 2px solid var(--sage-dark); color: var(--sage-dark); background: none; }
+        .price-btn.outline:hover { background: var(--sage-dark); color: var(--cream); }
+        .price-btn.filled { background: var(--cream); color: var(--moss); border: none; }
+        .price-btn.filled:hover { background: white; transform: translateY(-1px); }
+
+        /* CTA */
+        .cta { padding: 6rem 2rem; text-align: center; background: var(--cream-dark); }
+        .cta-content { position: relative; z-index: 2; }
+        .cta h2 { margin-bottom: 1rem; }
+        .cta p { font-size: 1.1rem; color: var(--bark-light); font-weight: 300; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+        .cta-form { display: flex; gap: 0.5rem; max-width: 440px; margin: 0 auto 0.8rem; }
+
+        .cta-form input[type="email"] {
+            flex: 1; padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(61, 50, 41, 0.1); border-radius: 100px;
+            font-family: var(--font-body); font-size: 0.95rem;
+            background: white; color: var(--bark); outline: none; transition: border-color 0.3s;
+        }
+        .cta-form input[type="email"]:focus { border-color: var(--sage); }
+        .cta-form input[type="email"]::placeholder { color: var(--bark-light); opacity: 0.5; }
+
+        .cta-form button {
+            padding: 0.9rem 1.8rem; background: var(--sage-dark); color: var(--cream);
+            border: none; border-radius: 100px; font-family: var(--font-body);
+            font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; white-space: nowrap;
+        }
+        .cta-form button:hover { background: var(--moss); transform: translateY(-1px); }
+
+        .cta-note { font-size: 0.8rem; color: var(--bark-light); opacity: 0.6; }
+
+        .cta-success {
+            display: none; background: rgba(122, 139, 111, 0.1);
+            border-radius: 16px; padding: 1.2rem 1.5rem; max-width: 440px; margin: 0 auto;
+        }
+        .cta-success.show { display: block; animation: fadeUp 0.5s ease-out; }
+
+        /* SHOWCASE */
+        .showcase { padding: 6rem 2rem; background: var(--cream-dark); }
+        .showcase-content { max-width: 1200px; margin: 0 auto; }
+
+        .showcase-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            margin-top: 3.5rem; align-items: center;
+        }
+        .showcase-grid.reverse { direction: rtl; }
+        .showcase-grid.reverse > * { direction: ltr; }
+
+        .showcase-phone {
+            display: flex; justify-content: center;
+        }
+
+        .showcase-phone .phone-frame {
+            width: 260px; height: 520px; background: var(--bark);
+            border-radius: 36px; padding: 10px;
+            box-shadow: 0 30px 60px rgba(61, 50, 41, 0.12), 0 15px 30px rgba(61, 50, 41, 0.08);
+        }
+
+        .showcase-phone .phone-screen {
+            width: 100%; height: 100%; border-radius: 28px;
+            overflow: hidden; background: var(--cream);
+        }
+
+        .showcase-phone .phone-screen img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top;
+        }
+
+        .showcase-text h3 {
+            font-family: var(--font-display); font-size: 1.8rem;
+            color: var(--bark); margin-bottom: 1rem; line-height: 1.2;
+        }
+        .showcase-text p {
+            font-size: 1rem; line-height: 1.7; color: var(--bark-light);
+            font-weight: 300; margin-bottom: 1.5rem; max-width: 440px;
+        }
+        .showcase-text .highlight-list { list-style: none; }
+        .showcase-text .highlight-list li {
+            padding: 0.4rem 0; font-size: 0.95rem; color: var(--bark);
+            display: flex; align-items: center; gap: 0.6rem; font-weight: 400;
+        }
+
+        .showcase-divider { margin: 4rem 0; }
+
+        @media (max-width: 768px) {
+            .showcase-grid, .showcase-grid.reverse { grid-template-columns: 1fr; direction: ltr; text-align: center; gap: 2rem; }
+            .showcase-grid.reverse > * { direction: ltr; }
+            .showcase-text { order: 2; }
+            .showcase-text .highlight-list { display: inline-block; text-align: left; }
+            .showcase-phone .phone-frame { width: 220px; height: 440px; }
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 3rem 2rem; max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(61, 50, 41, 0.08);
+        }
+        .footer-brand { font-family: var(--font-display); font-size: 1.1rem; color: var(--bark); }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { font-size: 0.85rem; color: var(--bark-light); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--bark); }
+        .footer-copy { font-size: 0.8rem; color: var(--bark-light); opacity: 0.7; }
+
+        /* PRIVACY */
+        .privacy-section { display: none; padding: 8rem 2rem 4rem; max-width: 720px; margin: 0 auto; }
+        .privacy-section.active { display: block; }
+        .privacy-section h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .privacy-section .updated { color: var(--bark-light); font-size: 0.9rem; margin-bottom: 3rem; }
+        .privacy-section h2 { font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 0.8rem; }
+        .privacy-section p, .privacy-section li { font-size: 0.95rem; line-height: 1.8; color: var(--bark-light); font-weight: 300; }
+        .privacy-section ul { margin: 0.5rem 0 1rem 1.5rem; }
+        .privacy-section li { margin-bottom: 0.3rem; }
+        .privacy-section a { color: var(--sage-dark); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-desc, .waitlist-form, .waitlist-note, .social-proof { margin-left: auto; margin-right: auto; }
+            .social-proof { justify-content: center; }
+            .waitlist-form, .cta-form { flex-direction: column; align-items: stretch; }
+            .nav-links { display: none; }
+            .features-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+            .steps { grid-template-columns: 1fr; gap: 2rem; }
+            .steps::before { display: none; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .store-buttons { flex-direction: column; align-items: stretch; }
+            footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .phone-frame { width: 240px; height: 480px; }
+        }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <a href="#" class="nav-logo" onclick="showHome(event)"><span class="leaf">🌿</span> My Happy Garden</a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section class="hero" id="waitlist">
+            <div class="hero-bg">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge"><span class="dot"></span> Coming soon to Android & iOS</div>
+                    <h1>Your plants deserve <em>smarter</em> care</h1>
+                    <p class="hero-desc">Snap a photo to identify any plant. Get AI pest diagnosis. Daily care tasks adapted to real weather. Frost alert tonight? We'll remind you. Rainy week? Skip the watering.</p>
+                    <div class="store-buttons">
+                        <a href="javascript:void(0)" class="store-btn coming-soon" aria-label="Coming soon on the App Store">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            <span>App Store <small>Coming soon</small></span>
+                        </a>
+                        <a href="javascript:void(0)" class="store-btn coming-soon" aria-label="Coming soon on Google Play">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.49c-.38-.21-.68-.64-.68-1.18V1.69c0-.54.3-.97.68-1.18l11.6 11.49L3.18 23.49zm1.39-22.7L16.73 12 4.57 23.21 15.45 13.4l-10.88-12.61zm13.43 10.18l-2.33 2.33 2.33 2.33 3.18-1.83c.55-.32.88-.84.88-1.33s-.33-1.01-.88-1.33l-3.18-1.17zM5.67 1.49L15.45 12 5.67 22.51l10.34-10.34L5.67 1.49z"/></svg>
+                            <span>Google Play <small>Coming soon</small></span>
+                        </a>
+                    </div>
+                    <form class="waitlist-form" id="heroForm" onsubmit="handleWaitlist(event, 'hero')">
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                        <button type="submit">Notify me at launch 🌱</button>
+                    </form>
+                    <p class="waitlist-note">We'll only email you when the app is live. No spam.</p>
+                    <div class="waitlist-success" id="heroSuccess">
+                        <div class="check">🎉</div>
+                        <strong>You're on the list!</strong>
+                        <p>We'll email you when My Happy Garden is ready to download.</p>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-header">
+                                <div class="phone-greeting">Good morning! 🌤</div>
+                                <div class="phone-weather">☀️ 18°C — Perfect day for your garden</div>
+                            </div>
+                            <div class="phone-tasks">
+                                <div class="phone-task">
+                                    <div class="task-icon water">💧</div>
+                                    <div class="task-info"><div class="task-name">Water Monstera</div><div class="task-detail">Soil is dry · No rain forecast</div></div>
+                                </div>
+                                <div class="phone-task">
+                                    <div class="task-icon sun">☀️</div>
+                                    <div class="task-info"><div class="task-name">Move Succulent outdoors</div><div class="task-detail">UV index optimal today</div></div>
+                                </div>
+                                <div class="phone-task">
+                                    <div class="task-icon alert">🥶</div>
+                                    <div class="task-info"><div class="task-name">Frost alert tomorrow</div><div class="task-detail">3°C expected · Protect basil</div></div>
+                                </div>
+                            </div>
+                            <div class="phone-tab-bar">
+                                <div class="tab-item active"><span>🌱</span>Today</div>
+                                <div class="tab-item"><span>🪴</span>Plants</div>
+                                <div class="tab-item"><span>⚙️</span>Settings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="reveal">
+                <div class="section-label">Features</div>
+                <h2>Care that adapts to<br>your real world</h2>
+                <p class="section-desc">Not another generic watering schedule. My Happy Garden uses your actual weather forecast to tell you exactly what your plants need today.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal"><div class="feature-icon">📸</div><h3>AI Plant Identification</h3><p>Snap a photo of any plant and instantly know its species, care needs, and growing tips. Powered by PlantNet AI.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🔬</div><h3>AI Pest Diagnosis</h3><p>Something wrong with your plant? Take a photo and get an instant diagnosis with treatment recommendations and a shopping list.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🌦</div><h3>Weather-First Tasks</h3><p>Daily care tasks generated from real weather data. Rain coming? We'll skip the watering. Heatwave? Extra hydration reminders.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🥶</div><h3>Frost & Heat Alerts</h3><p>Get notified before dangerous temperatures hit. Move sensitive plants inside or cover them before it's too late.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🌡</div><h3>Plant Health Score</h3><p>A 0-100 score tracking care quality per plant — factoring in watering, sunlight, outdoor time, and active diagnoses.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🌍</div><h3>English & Spanish</h3><p>Fully bilingual app with auto-detection. Available in English and Argentine Spanish. Your garden, your language.</p></div>
+            </div>
+        </section>
+
+        <section class="showcase" id="showcase">
+            <div class="showcase-content">
+                <div class="reveal">
+                    <div class="section-label">See it in action</div>
+                    <h2>AI that actually helps<br>your plants</h2>
+                </div>
+
+                <div class="showcase-grid reveal">
+                    <div class="showcase-phone">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <img src="images/identify-result.jpeg" alt="Plant identification result showing Yuca with 83% confidence" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-text">
+                        <h3>Snap a photo,<br>know your plant</h3>
+                        <p>Point your camera at any plant and get an instant identification powered by AI. Species name, care requirements, and tips — all in seconds.</p>
+                        <ul class="highlight-list">
+                            <li>📸 Identify from camera or gallery</li>
+                            <li>🎯 Species match with confidence score</li>
+                            <li>💧 Instant watering & sunlight info</li>
+                            <li>➕ Add to your garden in one tap</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="showcase-divider"></div>
+
+                <div class="showcase-grid reverse reveal">
+                    <div class="showcase-phone">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <img src="images/diagnosis-result.jpeg" alt="AI diagnosis showing plant health problems with treatment recommendations" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-text">
+                        <h3>Something wrong?<br>Get an AI diagnosis</h3>
+                        <p>Take a photo of a sick plant and get a detailed diagnosis with problems detected, severity scores, and step-by-step treatment plans.</p>
+                        <ul class="highlight-list">
+                            <li>🔬 Detects pests, diseases & deficiencies</li>
+                            <li>📊 Severity score per problem</li>
+                            <li>💊 Treatment recommendations</li>
+                            <li>💬 Follow-up chat for questions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="how-content">
+                <div class="reveal"><div class="section-label">How it works</div><h2>Three steps to a<br>happier garden</h2></div>
+                <div class="steps">
+                    <div class="step reveal"><div class="step-number">📸</div><h3>Snap or pick a plant</h3><p>Take a photo to identify any plant instantly, or choose from our catalog of 49 species with detailed care profiles.</p></div>
+                    <div class="step reveal"><div class="step-number">📍</div><h3>Set your location</h3><p>We fetch your local weather forecast automatically. Everything adapts to your climate zone.</p></div>
+                    <div class="step reveal"><div class="step-number">✅</div><h3>Follow daily tasks</h3><p>Each morning, see exactly what your plants need — watering, sunlight, and protection — based on today's weather.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="reveal">
+                <div class="section-label">Pricing</div>
+                <h2>Start free,<br>grow when ready</h2>
+                <p class="section-desc">Everything you need to care for a small garden is free. Premium unlocks the full experience for serious plant parents.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="price-card reveal">
+                    <div class="price-tier">Free</div>
+                    <div class="price-amount">$0</div>
+                    <div class="price-period">forever</div>
+                    <ul class="price-features">
+                        <li>Up to 5 plants</li>
+                        <li>Weather-adapted daily tasks</li>
+                        <li>1 AI plant identification / month</li>
+                        <li>1 AI pest diagnosis / month</li>
+                        <li>Health score tracking</li>
+                        <li>Works fully offline</li>
+                    </ul>
+                    <a href="#waitlist" class="price-btn outline">Join Waitlist</a>
+                </div>
+                <div class="price-card featured reveal">
+                    <div class="price-tier">Premium</div>
+                    <div class="price-amount">$29.99</div>
+                    <div class="price-period">per year · 7-day free trial</div>
+                    <ul class="price-features">
+                        <li>Unlimited plants</li>
+                        <li>Unlimited AI identification</li>
+                        <li>Unlimited AI pest diagnosis</li>
+                        <li>Diagnosis chat follow-up</li>
+                        <li>Treatment shopping lists</li>
+                        <li>Unlimited daily tips</li>
+                    </ul>
+                    <a href="#waitlist" class="price-btn filled">Join Waitlist</a>
+                </div>
+                <div class="price-card reveal">
+                    <div class="price-tier">Lifetime</div>
+                    <div class="price-amount">$69.99</div>
+                    <div class="price-period">one-time · limited to first 1,000 users</div>
+                    <ul class="price-features">
+                        <li>Everything in Premium</li>
+                        <li>Pay once, yours forever</li>
+                        <li>All future features included</li>
+                        <li>All future DLC packs included</li>
+                        <li>Early access to new features</li>
+                        <li>Support indie development</li>
+                    </ul>
+                    <a href="#waitlist" class="price-btn outline">Join Waitlist</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" id="cta">
+            <div class="cta-content reveal">
+                <h2>Don't let another plant<br>suffer from bad timing</h2>
+                <p>Be the first to give your garden the weather-smart, AI-powered care it deserves.</p>
+                <form class="cta-form" id="ctaForm" onsubmit="handleWaitlist(event, 'cta')">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit">Notify me at launch</button>
+                </form>
+                <p class="cta-note">We'll only email you when the app is live. No spam, ever.</p>
+                <div class="cta-success" id="ctaSuccess">
+                    <div class="check">🎉</div>
+                    <strong>You're on the list!</strong>
+                    <p>We'll email you when My Happy Garden is ready to download.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="privacy-section" id="privacy">
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: March 11, 2026</p>
+
+        <h2>Introduction</h2>
+        <p>My Happy Garden ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our mobile application ("the App") and website.</p>
+
+        <h2>Information We Collect</h2>
+        <p>My Happy Garden is designed with a privacy-first approach. We collect minimal data:</p>
+        <ul>
+            <li><strong>Email address (waitlist only):</strong> If you sign up for our waitlist, we store your email address securely in our database solely to notify you when the app launches. We do not share this with third parties.</li>
+            <li><strong>Location data (approximate):</strong> Used solely to fetch local weather forecasts via Open-Meteo. Not stored on our servers.</li>
+            <li><strong>Plant data:</strong> All plant information is stored locally on your device. We do not have access to this data.</li>
+            <li><strong>Plant photos:</strong> When using AI identification or pest diagnosis, your photos are sent to third-party services (PlantNet, Google Gemini) for processing. Photos are not stored on our servers.</li>
+            <li><strong>Anonymous analytics:</strong> We collect basic, anonymous usage statistics (device type, feature usage) to improve the app. No personal information is included.</li>
+        </ul>
+
+        <h2>Data Storage</h2>
+        <p>My Happy Garden operates on a local-first architecture. Your plant data, care history, and preferences are stored on your device. We do not operate user accounts or cloud databases for the free tier.</p>
+
+        <h2>Third-Party Services</h2>
+        <ul>
+            <li><strong>Open-Meteo:</strong> Weather forecasts. <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Privacy policy</a>.</li>
+            <li><strong>PlantNet:</strong> Plant identification from photos. Images are sent to PlantNet servers for identification only and are not stored. <a href="https://plantnet.org/en/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a>.</li>
+            <li><strong>Google Gemini:</strong> AI pest diagnosis. Plant photos are sent to Google's API for analysis only. Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</li>
+            <li><strong>RevenueCat:</strong> Subscription management. <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">Privacy policy</a>.</li>
+            <li><strong>Google Play / Apple App Store:</strong> Payment processing. Subject to respective platform privacy policies.</li>
+        </ul>
+
+        <h2>Subscriptions & Payments</h2>
+        <p>Premium subscriptions are processed through Google Play and Apple App Store. We do not collect or store your payment information.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>My Happy Garden is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+        <h2>Data Sharing</h2>
+        <p>We do not sell, trade, or transfer your personal information to third parties.</p>
+
+        <h2>Your Rights (GDPR)</h2>
+        <p>Under GDPR and applicable privacy regulations, you have the right to access, correct, or delete your personal data. App data can be deleted by uninstalling the app. For waitlist or other data requests, contact <a href="mailto:hello@mygardencare.app">hello@mygardencare.app</a>.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on our website and within the App.</p>
+
+        <h2>Contact Us</h2>
+        <p><strong>My Happy Garden</strong><br>Cristian Gaston Lopez<br>Buitenveldertselaan 77, 1082VB Amsterdam, Netherlands<br>Email: <a href="mailto:hello@mygardencare.app">hello@mygardencare.app</a><br>KVK: 90883772</p>
+    </section>
+
+    <footer>
+        <div class="footer-brand">🌿 My Happy Garden</div>
+        <div class="footer-links">
+            <a href="#" onclick="showPrivacy(event)">Privacy Policy</a>
+            <a href="mailto:hello@mygardencare.app">Contact</a>
+        </div>
+        <div class="footer-copy">© 2026 Cristian Gaston Lopez. All rights reserved. · Designed by <a href="https://cristianlopez.dev" target="_blank" rel="noopener" style="color: var(--sage); text-decoration: none;">CGL</a></div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        const SUPABASE_URL = 'https://xibriencutmxkrzluzse.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpYnJpZW5jdXRteGtyemx1enNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTUwNTksImV4cCI6MjA4NjAzMTA1OX0.nFQ5s79N3MH0t7tRITy1SrXLzhbBDytl4F1sCoFx-5w';
+
+        function handleWaitlist(e, source) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('input[name="email"]').value;
+            const btn = form.querySelector('button');
+            btn.textContent = 'Joining...';
+            btn.disabled = true;
+
+            fetch(`${SUPABASE_URL}/functions/v1/waitlist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                },
+                body: JSON.stringify({ email, source })
+            }).then(() => showSuccess(form, source)).catch(() => showSuccess(form, source));
+        }
+
+        function showSuccess(form, source) {
+            form.style.display = 'none';
+            const next = form.nextElementSibling;
+            if (next && (next.classList.contains('waitlist-note') || next.classList.contains('cta-note'))) next.style.display = 'none';
+            document.getElementById(source === 'hero' ? 'heroSuccess' : 'ctaSuccess').classList.add('show');
+        }
+
+        function showPrivacy(e) {
+            e.preventDefault();
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('privacy').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showHome(e) {
+            e.preventDefault();
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('privacy').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
