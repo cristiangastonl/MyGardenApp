@@ -138,7 +138,7 @@ export function PaywallModal() {
   const ctaText = loading
     ? t('paywall.processing')
     : selectedPlan === 'annual'
-    ? t('paywall.startFreeTrial')
+    ? t('paywall.startTrial')
     : t('paywall.unlockForever');
 
   const animatedStyle = (index: number) => ({

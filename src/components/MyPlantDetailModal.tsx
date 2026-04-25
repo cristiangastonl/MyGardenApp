@@ -166,11 +166,11 @@ export function MyPlantDetailModal({
 
             {/* Diagnose button */}
             <TouchableOpacity
-              style={styles.diagnoseButton}
+              style={[styles.diagnoseButton, !canDiagnose(diagnosisCount) && styles.diagnoseButtonDisabled]}
               onPress={handleDiagnose}
               activeOpacity={0.7}
             >
-              <Text style={styles.diagnoseButtonIcon}>🔬</Text>
+              <Text style={styles.diagnoseButtonIcon}>{canDiagnose(diagnosisCount) ? '🔬' : '🔒'}</Text>
               <Text style={styles.diagnoseButtonText}>{t('diagnosis.diagnoseHealth')}</Text>
             </TouchableOpacity>
 
@@ -371,6 +371,9 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     marginBottom: spacing.sm,
     ...shadows.sm,
+  },
+  diagnoseButtonDisabled: {
+    opacity: 0.5,
   },
   diagnoseButtonIcon: {
     fontSize: 18,

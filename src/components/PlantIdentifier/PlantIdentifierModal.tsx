@@ -13,6 +13,8 @@ import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantIdentification } from '../../hooks/usePlantIdentification';
 import { IdentifiedPlant, Plant } from '../../types';
 import { Features } from '../../config/features';
+import { usePremiumGate } from '../../config/premium';
+import { usePremium } from '../../hooks/usePremium';
 import { getPlantCategories } from '../../data/plantDatabase';
 import { CameraCapture } from './CameraCapture';
 import { AnalyzingState } from './AnalyzingState';
@@ -36,6 +38,8 @@ export function PlantIdentifierModal({
   diagnosisCount = 0,
 }: PlantIdentifierModalProps) {
   const { t } = useTranslation();
+  const { canDiagnose } = usePremiumGate();
+  const { showPaywall } = usePremium();
   const [showDiagnosisPrompt, setShowDiagnosisPrompt] = useState(false);
   const [addedPlant, setAddedPlant] = useState<Plant | null>(null);
   const {
@@ -68,6 +72,10 @@ export function PlantIdentifierModal({
   };
 
   const handleDiagnose = (reusePhotos: boolean) => {
+    if (!canDiagnose(diagnosisCount)) {
+      showPaywall('plant_diagnosis');
+      return;
+    }
     if (addedPlant && onDiagnoseAfterIdentify) {
       const capturedUri = imageUri;
       const capturedBase64 = imageBase64;
@@ -141,22 +149,31 @@ export function PlantIdentifierModal({
           <Text style={styles.diagnosisPromptIcon}>🩺</Text>
           <Text style={styles.diagnosisPromptTitle}>{t('identification.plantAdded')}</Text>
           <Text style={styles.diagnosisPromptQuestion}>{t('identification.wantToDiagnose')}</Text>
-          {!isPremium && diagnosisCount < 1 && (
+          {!isPremium && canDiagnose(diagnosisCount) && (
             <View style={styles.freeNoteContainer}>
               <Text style={styles.freeNoteText}>{t('identification.freeDiagnosisNote')}</Text>
             </View>
           )}
+          {!isPremium && !canDiagnose(diagnosisCount) && (
+            <View style={styles.freeNoteContainer}>
+              <Text style={styles.freeNoteText}>🔒 {t('diagnosis.upsellDiagnosis')}</Text>
+            </View>
+          )}
           <TouchableOpacity
-            style={styles.diagnosisOptionButton}
+            style={[styles.diagnosisOptionButton, !canDiagnose(diagnosisCount) && styles.diagnosisOptionButtonDisabled]}
             onPress={() => handleDiagnose(true)}
           >
-            <Text style={styles.diagnosisOptionButtonText}>{t('identification.useThesePhotos')}</Text>
+            <Text style={[styles.diagnosisOptionButtonText, !canDiagnose(diagnosisCount) && styles.diagnosisOptionButtonTextDisabled]}>
+              {t('identification.useThesePhotos')}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.diagnosisOptionButtonSecondary}
+            style={[styles.diagnosisOptionButtonSecondary, !canDiagnose(diagnosisCount) && styles.diagnosisOptionButtonDisabled]}
             onPress={() => handleDiagnose(false)}
           >
-            <Text style={styles.diagnosisOptionButtonSecondaryText}>{t('identification.takeNewPhotos')}</Text>
+            <Text style={[styles.diagnosisOptionButtonSecondaryText, !canDiagnose(diagnosisCount) && styles.diagnosisOptionButtonTextDisabled]}>
+              {t('identification.takeNewPhotos')}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.diagnosisSkipButton}
@@ -393,6 +410,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 16,
     color: colors.textPrimary,
+  },
+  diagnosisOptionButtonDisabled: {
+    opacity: 0.5,
+  },
+  diagnosisOptionButtonTextDisabled: {
+    opacity: 0.7,
   },
   diagnosisSkipButton: {
     paddingVertical: spacing.md,

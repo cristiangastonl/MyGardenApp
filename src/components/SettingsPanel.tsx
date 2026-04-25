@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   View,
@@ -22,6 +22,7 @@ import { setLanguage } from '../i18n';
 import { colors, fonts, spacing, borderRadius, shadows } from "../theme";
 import { Location, NotificationSettings, SyncStatus } from "../types";
 import { SyncStatusBadge } from "./SyncStatusBadge";
+import { paymentService } from "../services/payments";
 
 // Types defined locally to avoid importing notification module in Expo Go
 type PermissionStatus = "granted" | "denied" | "undetermined";
@@ -109,6 +110,12 @@ export function SettingsPanel({
   const [showTimeSelector, setShowTimeSelector] = useState(false);
   const [apiKeyInput, setApiKeyInput] = useState(plantNetApiKey || "");
   const [showApiKey, setShowApiKey] = useState(false);
+  const [appUserId, setAppUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!visible) return;
+    paymentService.getAppUserID().then(setAppUserId);
+  }, [visible]);
 
   const detectLocation = async () => {
     setIsDetecting(true);
@@ -760,6 +767,19 @@ export function SettingsPanel({
                 </View>
               </View>
 
+              {/* Support ID Section */}
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>{t('settings.supportId')}</Text>
+                <Text style={styles.sectionDescription}>
+                  {t('settings.supportIdDescription')}
+                </Text>
+                <View style={styles.supportIdCard}>
+                  <Text style={styles.supportIdValue} selectable>
+                    {appUserId || t('settings.supportIdLoading')}
+                  </Text>
+                </View>
+              </View>
+
               <Text style={styles.versionText}>
                 My Happy Garden v{Constants.expoConfig?.version || '2.0.0'}
               </Text>
@@ -1031,6 +1051,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.green,
     fontWeight: "bold",
+  },
+  supportIdCard: {
+    backgroundColor: colors.bgPrimary,
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+  },
+  supportIdValue: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textSecondary,
   },
   versionText: {
     fontFamily: fonts.body,

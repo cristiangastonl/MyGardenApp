@@ -151,11 +151,13 @@ export async function scheduleMorningReminder(
     const { title, body } = createMorningContent(plants, weather, healthStatuses);
 
     const identifier = await Notifications.scheduleNotificationAsync({
+      identifier: MORNING_REMINDER_ID,
       content: {
         title,
         body,
         sound: true,
         priority: Notifications.AndroidNotificationPriority.HIGH,
+        data: { type: "morning-reminder" },
       },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.DAILY,
@@ -178,12 +180,28 @@ export async function cancelMorningReminder(): Promise<void> {
   if (!notificationsAvailable) return;
 
   try {
-    const scheduled = await Notifications.getAllScheduledNotificationsAsync();
-    const morningNotifications = scheduled.filter(
-      (n) => n.identifier === MORNING_REMINDER_ID || n.content.title === "Buenos dias!"
-    );
+    // Idempotent direct cancel by stable ID
+    try {
+      await Notifications.cancelScheduledNotificationAsync(MORNING_REMINDER_ID);
+    } catch {
+      // No-op if not found
+    }
 
-    for (const notification of morningNotifications) {
+    // Clean up any orphans from earlier versions (random IDs, no data.type)
+    const scheduled = await Notifications.getAllScheduledNotificationsAsync();
+    const orphans = scheduled.filter((n) => {
+      if (n.identifier === MORNING_REMINDER_ID) return true;
+      if (n.content.data?.type === "morning-reminder") return true;
+      const title = n.content.title || "";
+      // Match legacy notifications by their visible title (any locale variant)
+      return (
+        title.includes("Buenos días") ||
+        title.includes("Buenos dias") ||
+        title.includes("Good morning")
+      );
+    });
+
+    for (const notification of orphans) {
       await Notifications.cancelScheduledNotificationAsync(notification.identifier);
     }
   } catch (error) {
@@ -404,7 +422,9 @@ export async function getScheduledNotificationCounts(): Promise<{
     const scheduled = await Notifications.getAllScheduledNotificationsAsync();
 
     const morning = scheduled.filter(
-      (n) => n.content.title === "Buenos dias!"
+      (n) =>
+        n.identifier === MORNING_REMINDER_ID ||
+        n.content.data?.type === "morning-reminder"
     ).length;
     const weatherAlerts = scheduled.filter(
       (n) => n.content.data?.type === "weather-alert"

@@ -24,6 +24,8 @@ export interface PaymentService {
   purchaseLifetime(): Promise<boolean>;
   restorePurchases(): Promise<boolean>;
   checkPremiumStatus(): Promise<boolean>;
+  /** RevenueCat App User ID — used by support to grant entitlements */
+  getAppUserID(): Promise<string | null>;
   /** Dev only — directly set/unset premium (mock mode) */
   mockSetPremium?(value: boolean): Promise<void>;
 }
@@ -103,6 +105,10 @@ const MockPaymentService: PaymentService = {
     const isPremium = stored === 'true';
     notifyPremiumChange(isPremium);
     return isPremium;
+  },
+
+  async getAppUserID(): Promise<string | null> {
+    return 'mock-user-id';
   },
 
   async mockSetPremium(value: boolean) {
@@ -265,6 +271,16 @@ function createRealPaymentService(): PaymentService {
       } catch (e) {
         console.error('[Payments] checkPremiumStatus error:', e);
         return false;
+      }
+    },
+
+    async getAppUserID(): Promise<string | null> {
+      if (!Purchases) return null;
+      try {
+        return await Purchases.getAppUserID();
+      } catch (e) {
+        console.error('[Payments] getAppUserID error:', e);
+        return null;
       }
     },
   };
