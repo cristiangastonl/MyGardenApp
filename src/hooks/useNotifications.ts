@@ -41,6 +41,7 @@ export interface NotificationCounts {
   morning: number;
   weatherAlerts: number;
   careReminders: number;
+  sun: number;
   total: number;
 }
 
@@ -92,6 +93,7 @@ export function useNotifications({
     morning: 0,
     weatherAlerts: 0,
     careReminders: 0,
+    sun: 0,
     total: 0,
   });
 
@@ -248,6 +250,7 @@ export function useNotifications({
           morning: 0,
           weatherAlerts: 0,
           careReminders: 0,
+          sun: 0,
           total: 0,
         });
       } else if (updates.morningReminder === false) {
@@ -292,6 +295,7 @@ export function useNotifications({
       morning: 0,
       weatherAlerts: 0,
       careReminders: 0,
+      sun: 0,
       total: 0,
     });
   };

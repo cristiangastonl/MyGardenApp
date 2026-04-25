@@ -30,6 +30,7 @@ interface NotificationCounts {
   morning: number;
   weatherAlerts: number;
   careReminders: number;
+  sun: number;
   total: number;
 }
 
@@ -228,6 +229,20 @@ export function SettingsPanel({
   const formatTime = (time: string): string => {
     const [hours] = time.split(":");
     return `${hours}:00`;
+  };
+
+  const buildScheduledSubtitle = (): string => {
+    const parts: string[] = [];
+    if (notificationCounts.morning > 0) {
+      parts.push(t('settings.summaryMorning', { count: notificationCounts.morning }));
+    }
+    if (notificationCounts.weatherAlerts > 0) {
+      parts.push(t('settings.summaryWeather', { count: notificationCounts.weatherAlerts }));
+    }
+    if (notificationCounts.sun > 0) {
+      parts.push(t('settings.summarySun', { count: notificationCounts.sun }));
+    }
+    return parts.length > 0 ? parts.join(', ') : t('settings.noneScheduled');
   };
 
   const getPermissionStatusText = (): string => {
@@ -500,9 +515,7 @@ export function SettingsPanel({
                         {t('settings.enableNotifications')}
                       </Text>
                       <Text style={styles.settingSubtitle}>
-                        {notificationCounts.total > 0
-                          ? t('settings.scheduled', { count: notificationCounts.total })
-                          : t('settings.noneScheduled')}
+                        {buildScheduledSubtitle()}
                       </Text>
                     </View>
                   </View>
@@ -596,29 +609,6 @@ export function SettingsPanel({
                         value={!!notificationSettings.weatherAlerts}
                         onValueChange={(value) =>
                           onUpdateNotificationSettings({ weatherAlerts: value })
-                        }
-                        trackColor={{ false: colors.border, true: colors.green }}
-                        thumbColor={colors.white}
-                      />
-                    </View>
-
-                    {/* Care Reminders Toggle */}
-                    <View style={styles.settingRow}>
-                      <View style={styles.settingInfo}>
-                        <Text style={styles.settingIcon}>💧</Text>
-                        <View style={styles.settingText}>
-                          <Text style={styles.settingTitle}>
-                            {t('settings.careReminders')}
-                          </Text>
-                          <Text style={styles.settingSubtitle}>
-                            {t('settings.careRemindersSubtitle')}
-                          </Text>
-                        </View>
-                      </View>
-                      <Switch
-                        value={!!notificationSettings.careReminders}
-                        onValueChange={(value) =>
-                          onUpdateNotificationSettings({ careReminders: value })
                         }
                         trackColor={{ false: colors.border, true: colors.green }}
                         thumbColor={colors.white}

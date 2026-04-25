@@ -412,10 +412,11 @@ export async function getScheduledNotificationCounts(): Promise<{
   morning: number;
   weatherAlerts: number;
   careReminders: number;
+  sun: number;
   total: number;
 }> {
   if (!notificationsAvailable) {
-    return { morning: 0, weatherAlerts: 0, careReminders: 0, total: 0 };
+    return { morning: 0, weatherAlerts: 0, careReminders: 0, sun: 0, total: 0 };
   }
 
   try {
@@ -432,16 +433,26 @@ export async function getScheduledNotificationCounts(): Promise<{
     const careReminders = scheduled.filter(
       (n) => n.content.data?.type === "care-reminder"
     ).length;
+    const sun = scheduled.filter((n) => {
+      const t = n.content.data?.type;
+      return (
+        t === "sunrise-reminder" ||
+        t === "sunset-reminder" ||
+        t === "uv-warning" ||
+        t === "temp-warning"
+      );
+    }).length;
 
     return {
       morning,
       weatherAlerts,
       careReminders,
+      sun,
       total: scheduled.length,
     };
   } catch (error) {
     markNotificationsUnavailable(error);
-    return { morning: 0, weatherAlerts: 0, careReminders: 0, total: 0 };
+    return { morning: 0, weatherAlerts: 0, careReminders: 0, sun: 0, total: 0 };
   }
 }
 
