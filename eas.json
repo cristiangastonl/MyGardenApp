@@ -25,7 +25,8 @@
       "distribution": "store",
       "android": {
         "buildType": "app-bundle",
-        "credentialsSource": "remote"
+        "credentialsSource": "remote",
+        "autoIncrement": true
       },
       "ios": {
         "credentialsSource": "remote",
@@ -40,6 +41,9 @@
         "track": "internal"
       },
       "ios": {
+        "appleId": "cristiangastonl@gmail.com",
+        "ascAppId": "6760934404",
+        "appleTeamId": "N3K92QGR4U"
       }
     }
   }
