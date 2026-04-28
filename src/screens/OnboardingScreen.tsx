@@ -13,6 +13,7 @@ import {
   Image,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import i18n, { setLanguage } from '../i18n';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { PlantDBEntry, PlantCategory, Plant } from '../types';
@@ -320,6 +321,24 @@ export default function OnboardingScreen() {
 
   const renderStep0 = () => (
     <View style={styles.stepContent}>
+      {/* Language selector */}
+      <View style={styles.languageSection}>
+        <TouchableOpacity
+          style={[styles.languageOption, i18n.language === 'es' && styles.languageOptionActive]}
+          onPress={() => setLanguage('es')}
+        >
+          <Text style={styles.languageFlag}>🇪🇸</Text>
+          <Text style={[styles.languageLabel, i18n.language === 'es' && styles.languageLabelActive]}>Español</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.languageOption, i18n.language === 'en' && styles.languageOptionActive]}
+          onPress={() => setLanguage('en')}
+        >
+          <Text style={styles.languageFlag}>🇺🇸</Text>
+          <Text style={[styles.languageLabel, i18n.language === 'en' && styles.languageLabelActive]}>English</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.welcomeSection}>
         <Text style={styles.welcomeEmoji}>🌱</Text>
         <Text style={styles.welcomeTitle}>{t('onboarding.welcome')}</Text>
@@ -745,10 +764,43 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  // Language selector
+  languageSection: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.md,
+    marginBottom: spacing.md,
+  },
+  languageOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.card,
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  languageOptionActive: {
+    borderColor: colors.green,
+  },
+  languageFlag: {
+    fontSize: 18,
+    marginRight: spacing.sm,
+  },
+  languageLabel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  languageLabelActive: {
+    color: colors.green,
+  },
+
   // Step 0: Welcome
   welcomeSection: {
     alignItems: 'center',
-    marginTop: spacing.xxxl,
+    marginTop: spacing.xl,
     marginBottom: spacing.xxxl,
   },
   welcomeEmoji: {

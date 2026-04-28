@@ -263,6 +263,7 @@ export interface SavedDiagnosis {
   chat: DiagnosisChatMessage[];
   resolved: boolean;
   resolvedDate: string | null;
+  lang?: string; // Language used when diagnosis was made
 }
 
 // Auth & Sync Types

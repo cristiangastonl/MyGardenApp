@@ -561,6 +561,7 @@
     "galleryPermissionNeeded": "Se necesita permiso para acceder a la galería",
     "galleryError": "Error al abrir la galería",
     "noImageToAnalyze": "No hay imagen para analizar",
+    "langMismatch": "Este diagnóstico fue realizado en {{lang}}",
     "diagnosisTimeout": "El diagnóstico tardó demasiado. Intentá de nuevo.",
     "diagnosisError": "Error al diagnosticar la planta",
     "chatTimeout": "La consulta tardó demasiado. Intentá de nuevo.",

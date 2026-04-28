@@ -12,6 +12,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { SavedDiagnosis, DiagnosisSeverity } from '../../types';
 
@@ -165,6 +166,15 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, o
                   {statusLabel}
                 </Text>
               </View>
+
+              {/* Language mismatch warning */}
+              {diagnosis.lang && diagnosis.lang !== i18n.language && (
+                <View style={styles.langWarning}>
+                  <Text style={styles.langWarningText}>
+                    {t('diagnosis.langMismatch', { lang: diagnosis.lang === 'es' ? 'Español' : 'English' })}
+                  </Text>
+                </View>
+              )}
 
               {/* Summary */}
               <Text style={styles.summary}>{result.summary}</Text>
@@ -363,6 +373,19 @@ const styles = StyleSheet.create({
   statusLabel: {
     fontFamily: fonts.bodySemiBold,
     fontSize: 16,
+  },
+  langWarning: {
+    backgroundColor: colors.infoBg,
+    borderRadius: borderRadius.md,
+    padding: spacing.sm,
+    marginBottom: spacing.md,
+    alignItems: 'center',
+  },
+  langWarningText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.infoText,
+    textAlign: 'center',
   },
   summary: {
     fontFamily: fonts.body,

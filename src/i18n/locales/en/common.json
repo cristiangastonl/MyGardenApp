@@ -561,6 +561,7 @@
     "galleryPermissionNeeded": "Gallery access permission is needed",
     "galleryError": "Error opening the gallery",
     "noImageToAnalyze": "No image to analyze",
+    "langMismatch": "This diagnosis was made in {{lang}}",
     "diagnosisTimeout": "The diagnosis took too long. Try again.",
     "diagnosisError": "Error diagnosing the plant",
     "chatTimeout": "The query took too long. Try again.",

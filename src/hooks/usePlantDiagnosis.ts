@@ -250,6 +250,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
           chat: [],
           resolved: false,
           resolvedDate: null,
+          lang: i18n.language,
         };
         options.onDiagnosisComplete?.(saved);
       }
