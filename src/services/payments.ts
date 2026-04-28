@@ -270,6 +270,29 @@ function createRealPaymentService(): PaymentService {
   };
 }
 
+// ─── Disabled Implementation (production fallback — never grants premium) ────
+
+const DisabledPaymentService: PaymentService = {
+  async initialize() {
+    console.error('[Payments] Payment service is disabled — RevenueCat failed to load');
+  },
+  async getOfferings(): Promise<Offerings | null> {
+    return null;
+  },
+  async purchaseAnnual(): Promise<boolean> {
+    return false;
+  },
+  async purchaseLifetime(): Promise<boolean> {
+    return false;
+  },
+  async restorePurchases(): Promise<boolean> {
+    return false;
+  },
+  async checkPremiumStatus(): Promise<boolean> {
+    return false;
+  },
+};
+
 // ─── Auto-detect and export ─────────────────────────────────────
 
 function detectEnvironment(): boolean {
@@ -279,16 +302,21 @@ function detectEnvironment(): boolean {
 
 function createPaymentService(): PaymentService {
   if (detectEnvironment()) {
+    console.log('[Payments] Expo Go detected — using mock payment service');
     return MockPaymentService;
   }
 
-  // In EAS build, try real implementation, fall back to mock if native module missing
+  // EAS build — require real RevenueCat, never fall back to mock
   try {
     require('react-native-purchases');
     return createRealPaymentService();
-  } catch {
-    console.log('[Payments] react-native-purchases not available, using mock');
-    return MockPaymentService;
+  } catch (e) {
+    console.error(
+      '[Payments] CRITICAL: react-native-purchases not available in production build. ' +
+      'Payments will NOT work. Install the package and rebuild.',
+      e
+    );
+    return DisabledPaymentService;
   }
 }
 
