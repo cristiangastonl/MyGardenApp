@@ -66,8 +66,12 @@ export function getPlantFullInfo(plant: Plant): PlantFullInfo {
   const humidity = plant.humidity ?? dbEntry?.humidity ?? DEFAULTS.humidity;
 
   // Calculate sensitivities
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  const isSensitiveToSun = plant.sunHours <= 3; // Needs little sun
+  // v1.1: 'low' and 'medium_indirect' light levels = UV-sensitive plants.
+  // Defensive fallback to legacy sunHours <= 3 when lightLevel is undefined
+  // (covers migration-failure code path where plant kept its v1.0 shape).
+  const isSensitiveToSun: boolean = plant.lightLevel
+    ? (plant.lightLevel === 'low' || plant.lightLevel === 'medium_indirect')
+    : (typeof plant.sunHours === 'number' ? plant.sunHours <= 3 : false);
   const isSensitiveToHeat = tempMax <= 28;
   const isSensitiveToCold = tempMin >= 10;
   const needsHighHumidity = humidity === "alta";
