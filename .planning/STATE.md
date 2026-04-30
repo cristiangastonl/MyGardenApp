@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: Completed 04-02-PLAN.md (Wave 1 type system + pure mappers)
-last_updated: "2026-04-30T16:28:18Z"
-last_activity: 2026-04-30 — Phase 4 Plan 02 complete (Wave 1 type system + pure migration mappers; smoke runner 63/63 PASS)
+stopped_at: "Completed 04-03-PLAN.md (Wave 2 storage envelope + migration wiring; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0)"
+last_updated: "2026-04-30T17:54:26.298Z"
+last_activity: "2026-04-30 — Plan 04-03 complete (Wave 2 storage envelope wiring in useStorage.tsx: backup-then-write, single 'load' stage failure analytics per B2, envelope-emitting save path; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 7
-  completed_plans: 2
-  percent: 28
+  completed_plans: 3
+  percent: 43
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1 complete (test infrastructure + type system + pure mappers); Wave 2 (storage envelope + notification refactor) unblocked and parallelizable
+**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1 complete and Wave 2 storage-side complete (Plan 03); sibling Wave 2 plan 04-04 (notificationScheduler.ts lightLevel refactor) in progress (commit 87bc085 in, more pending). Wave 3 (catalog + UX banner + reschedule trigger) blocked on 04-04.
 
 ## Current Position
 
 Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: 02 of 7 (Wave 1: Type system + pure mappers) — COMPLETE
-Status: In progress (2/7 plans complete in Phase 4)
-Last activity: 2026-04-30 — Plan 04-02 complete (LightLevel/WaterMode/WaterSchedule/PersistedAppData types, src/utils/migration.ts with mappers + idempotent runMigrations; npm run smoke:migration 63/63 PASS)
+Plan: 03 of 7 (Wave 2: Storage envelope + migration wiring) — COMPLETE
+Status: In progress (3/7 plans complete in Phase 4; sibling 04-04 in progress)
+Last activity: 2026-04-30 — Plan 04-03 complete (Wave 2 useStorage envelope-aware migration; backup-then-write, B2 single-stage 'load' failure analytics, envelope-emitting save path; tsc + check:legacy-fields + smoke:migration 63/63 all green)
 
-Progress: [██░░░░░░░░] 28% (v1.1 milestone, 2/7 phase 4 plans)
+Progress: [████░░░░░░] 43% (v1.1 milestone, 3/7 phase 4 plans)
 
 ## Performance Metrics
 
@@ -49,7 +49,7 @@ Progress: [██░░░░░░░░] 28% (v1.1 milestone, 2/7 phase 4 plan
 
 **Recent Trend:**
 - v1.0 shipped 2026-03-19 across 7 plans
-- v1.1 in progress: Phase 4 Plans 01+02 complete (Wave 0 test infra + Wave 1 types/mappers, ~9 min total)
+- v1.1 in progress: Phase 4 Plans 01+02+03 complete (Wave 0 test infra + Wave 1 types/mappers + Wave 2 storage wiring, ~26 min total — Plan 03 included a cross-session resume due to rate limit)
 
 **v1.1 Plan Metrics:**
 
@@ -57,6 +57,7 @@ Progress: [██░░░░░░░░] 28% (v1.1 milestone, 2/7 phase 4 plan
 |--------------|----------|-------|-------|
 | Phase 04 / Plan 01 (Wave 0 test infra) | 5 min | 3 | 5 |
 | Phase 04 / Plan 02 (Wave 1 types + mappers) | 4 min | 2 | 8 |
+| Phase 04 / Plan 03 (Wave 2 storage envelope) | ~17 min | 2 | 1 |
 
 *Updated after each plan completion*
 
@@ -78,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 04-schema-foundation-migration-core / Plan 02]: SOIL_CHECK_DB_IDS includes both 'aloe' (legacy/fixture) and 'aloe-vera' (canonical catalog id) — 7 entries vs planner's 6, additive deviation to satisfy two simultaneous contracts
 - [Phase 04-schema-foundation-migration-core / Plan 02]: 9 transitional consumer reads of plant.sunHours / plant.waterEvery shimmed with per-line `// @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04` markers — built-in cleanup signal when 04-04 migrates each read
 - [Phase 04-schema-foundation-migration-core / Plan 02]: migration.ts is runtime-pure — bare `require('./plantInfo')` inside try/catch works in both Metro (static analysis) and Node ESM (ReferenceError caught), enabling the smoke runner without conditional-require helpers
+- [Phase 04]: [Plan 03]: B2 simplified stage contract honored — single migration_failed emission with stage: 'load' covers any pre-write throw (read/parse/migrate/backup-write/envelope-write). Plan 07 owns separate stage: 'reschedule' emission.
+- [Phase 04]: [Plan 03]: On migration throw, best-effort legacy parse runs in catch block so user keeps their plants on screen while migrationFailed flag drives banner. migration_failed event fires AFTER fallback parse so plantCount payload reflects what hydrated, not 0.
+- [Phase 04]: [Plan 03]: Three-flag context surface (migrationFailed, migrationJustHappened, acknowledgeMigrationReschedule) enables Plan 06 banner and Plan 07 reschedule trigger to wire independently. Failure during migration sets migrationFailed=true AND didMigrate=false so reschedule effect won't fire on a failed migration.
 
 ### Pending Todos
 
@@ -93,6 +97,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T16:28:18Z
-Stopped at: Completed 04-02-PLAN.md (Wave 1 type system + pure mappers; smoke runner 63/63 PASS)
-Resume file: .planning/phases/04-schema-foundation-migration-core/04-03-PLAN.md (Wave 2 — storage envelope + backup write; can run parallel with 04-04 notification refactor)
+Last session: 2026-04-30T17:54:26.296Z
+Stopped at: Completed 04-03-PLAN.md (Wave 2 storage envelope + migration wiring; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0)
+Resume file: None

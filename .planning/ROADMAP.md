@@ -43,8 +43,8 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   5. Migration completes inside the existing `loadData` window on a low-end Android device with 50 plants — no extra splash, no white screen, no perceptible launch lag.
 **Plans**: 7 plans
 - [x] 04-01-PLAN.md — Wave 0: Test infrastructure (CI grep guard, smoke runner, fixture, SMOKE-TEST.md) — completed 2026-04-30
-- [ ] 04-02-PLAN.md — Wave 1: Type system + pure mappers (LightLevel/WaterMode/WaterSchedule + migration.ts)
-- [ ] 04-03-PLAN.md — Wave 2: Storage envelope + migration call in useStorage
+- [x] 04-02-PLAN.md — Wave 1: Type system + pure mappers (LightLevel/WaterMode/WaterSchedule + migration.ts) — completed 2026-04-30
+- [x] 04-03-PLAN.md — Wave 2: Storage envelope + migration call in useStorage — completed 2026-04-30
 - [ ] 04-04-PLAN.md — Wave 2: Notification scheduler refactor to consume lightLevel
 - [ ] 04-05-PLAN.md — Wave 3: Catalog mechanical update via codemod
 - [ ] 04-06-PLAN.md — Wave 3: MigrationBanner + per-plant MigrationTooltip + i18n

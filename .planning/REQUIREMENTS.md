@@ -8,13 +8,13 @@
 
 ### Schema Migration (SCHEMA)
 
-- [ ] **SCHEMA-01**: User's existing plant data migrates automatically on first launch of v1.1 without data loss
-- [ ] **SCHEMA-02**: Migration writes a one-time backup blob (`plant-agenda-v2.backup-pre-v1.1`) before mutating live data, kept for one release as rollback safety net
+- [x] **SCHEMA-01**: User's existing plant data migrates automatically on first launch of v1.1 without data loss
+- [x] **SCHEMA-02**: Migration writes a one-time backup blob (`plant-agenda-v2.backup-pre-v1.1`) before mutating live data, kept for one release as rollback safety net
 - [x] **SCHEMA-03**: Migration is idempotent — re-running on already-migrated data is a no-op
-- [ ] **SCHEMA-04**: Migration completes in <200ms on a low-end Android device with 50 plants (synchronous inside existing `loadData` window — no extra splash)
-- [ ] **SCHEMA-05**: Migration emits analytics events (`migration_started`, `migration_completed`, `migration_failed`) with plant count and duration
+- [x] **SCHEMA-04**: Migration completes in <200ms on a low-end Android device with 50 plants (synchronous inside existing `loadData` window — no extra splash)
+- [x] **SCHEMA-05**: Migration emits analytics events (`migration_started`, `migration_completed`, `migration_failed`) with plant count and duration
 - [ ] **SCHEMA-06**: Migration cancels and reschedules all OS-level notifications so they fire against the new schema, not the old one
-- [ ] **SCHEMA-07**: If migration throws, the app surfaces a non-blocking banner ("Tu jardín está cargando con datos antiguos") and does NOT overwrite AsyncStorage — original data preserved
+- [x] **SCHEMA-07**: If migration throws, the app surfaces a non-blocking banner ("Tu jardín está cargando con datos antiguos") and does NOT overwrite AsyncStorage — original data preserved
 - [x] **SCHEMA-08**: Legacy fields `sunHours` and `waterEvery` remain on `Plant` type as `@deprecated` optional for v1.1 only; CI grep guard rejects new code that reads them
 - [x] **SCHEMA-09**: Storage payload uses versioned envelope `{ schemaVersion, data }`; storage key remains `'plant-agenda-v2'`
 
@@ -127,13 +127,13 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SCHEMA-01 | Phase 4 | Pending |
-| SCHEMA-02 | Phase 4 | Pending |
+| SCHEMA-01 | Phase 4 | Complete |
+| SCHEMA-02 | Phase 4 | Complete |
 | SCHEMA-03 | Phase 4 | Complete |
-| SCHEMA-04 | Phase 4 | Pending |
-| SCHEMA-05 | Phase 4 | Pending |
+| SCHEMA-04 | Phase 4 | Complete |
+| SCHEMA-05 | Phase 4 | Complete |
 | SCHEMA-06 | Phase 4 | Pending |
-| SCHEMA-07 | Phase 4 | Pending |
+| SCHEMA-07 | Phase 4 | Complete |
 | SCHEMA-08 | Phase 4 | Complete |
 | SCHEMA-09 | Phase 4 | Complete |
 | LIGHT-01 | Phase 7 | Pending |
