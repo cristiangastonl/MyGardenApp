@@ -25,7 +25,11 @@ import { useStorage, StorageProvider } from './src/hooks/useStorage';
 import { PremiumProvider } from './src/hooks/usePremium';
 import { Features } from './src/config/features';
 import { initAnalytics, trackEvent } from './src/services/analyticsService';
-import { PaywallModal } from './src/components';
+import { PaywallModal, MigrationBanner } from './src/components';
+import {
+  cancelAllNotifications,
+  scheduleMorningReminder,
+} from './src/utils/notificationScheduler';
 
 // Screens
 import TodayScreen from './src/screens/TodayScreen';
@@ -113,11 +117,16 @@ function AppContentMVP() {
     loading: storageLoading,
     onboardingCompleted,
     plants,
+    notificationSettings,
+    migrationFailed,
+    migrationJustHappened,
+    acknowledgeMigrationReschedule,
   } = useStorage();
 
   const navigationRef = useRef<NavigationContainerRef<any>>(null);
   const [navReady, setNavReady] = useState(false);
   const [pendingNotificationPlantId, setPendingNotificationPlantId] = useState<string | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   const handleNotificationResponse = useCallback((response: Notifications.NotificationResponse) => {
     const data = response.notification.request.content.data;
@@ -144,6 +153,49 @@ function AppContentMVP() {
     initAnalytics().then(() => trackEvent('app_opened'));
   }, []);
 
+  // Post-migration morning-reminder reschedule (SCHEMA-06; B1).
+  // Triggered when useStorage flips migrationJustHappened=true after the v0→v1 migration.
+  // Lifted to App-level (not inside useStorage) to keep the storage layer pure of side effects.
+  //
+  // SCOPE LIMIT: morning reminder ONLY. Sun notifications are weather-gated —
+  // the smart-sun scheduler short-circuits on !weather (notificationScheduler.ts).
+  // Sun reminders are rescheduled by TodayScreen's existing useNotifications hook
+  // once weather loads (the existing flow; lightLevel-aware after Plan 04).
+  useEffect(() => {
+    if (storageLoading) return;
+    if (!migrationJustHappened) return;
+
+    let cancelled = false;
+    const reschedule = async () => {
+      try {
+        await cancelAllNotifications();
+        const morningTime = notificationSettings?.morningTime ?? '08:00';
+        await scheduleMorningReminder(morningTime, plants, null, []);
+        // NOTE (B1): the smart-sun scheduler is intentionally NOT called here —
+        // it requires weather data and would be a no-op at App-level. TodayScreen's
+        // existing useNotifications hook handles it once weather loads.
+        // Banner dismiss state lives in bannerDismissed; reschedule path does not affect it.
+      } catch (rescheduleError) {
+        trackEvent('migration_failed', {
+          error: String(rescheduleError),
+          stage: 'reschedule',
+          plantCount: plants.length,
+        });
+        // Partial reschedule acceptable per CONTEXT.md — do not surface banner from this path.
+      } finally {
+        if (!cancelled) {
+          // Always clear the flag — one-shot reschedule, no retry loop
+          acknowledgeMigrationReschedule();
+        }
+      }
+    };
+    reschedule();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [storageLoading, migrationJustHappened, notificationSettings, plants, acknowledgeMigrationReschedule]);
+
   if (!fontsLoaded || storageLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -157,10 +209,17 @@ function AppContentMVP() {
 
   return (
     <NotificationContext.Provider value={{ pendingPlantId: pendingNotificationPlantId, clearPendingPlantId: () => setPendingNotificationPlantId(null) }}>
-      <NavigationContainer ref={navigationRef} onReady={() => setNavReady(true)}>
-        <StatusBar style="dark" />
-        {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
-      </NavigationContainer>
+      <View style={{ flex: 1 }}>
+        {migrationFailed && !bannerDismissed && (
+          <MigrationBanner onDismiss={() => setBannerDismissed(true)} />
+        )}
+        <View style={{ flex: 1 }}>
+          <NavigationContainer ref={navigationRef} onReady={() => setNavReady(true)}>
+            <StatusBar style="dark" />
+            {showOnboarding ? <OnboardingScreen /> : <MainTabs />}
+          </NavigationContainer>
+        </View>
+      </View>
       <PaywallModal />
     </NotificationContext.Provider>
   );
