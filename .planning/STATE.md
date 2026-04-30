@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: "Completed 04-04-PLAN.md (Wave 2 notificationScheduler + plantInfo lightLevel refactor + sibling shim cleanup; B4 null-guard parity holds; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0; zero @ts-expect-error legacy-field shims remain)"
-last_updated: "2026-04-30T21:44:48.636Z"
-last_activity: "2026-04-30 — Plan 04-04 complete (Wave 2 notificationScheduler + plantInfo lightLevel refactor; cross-session resume after rate-limit; commits 87bc085+2b2829f+1a2a293 chain; all 9 Plan-02 ts-expect-error shims removed; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
+stopped_at: "Completed 04-05-PLAN.md (Wave 3 catalog mechanical mapping; PlantDBEntry extended with lightLevel/waterSchedule/waterMode; codemod scripts/migrate-catalog.mjs idempotent on 50/50 entries; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0)"
+last_updated: "2026-04-30T21:58:57.811Z"
+last_activity: "2026-04-30 — Plan 04-05 complete (Wave 3 catalog mechanical mapping; PlantDBEntry gains optional v1.1 fields, waterDays/sunHours marked @deprecated; scripts/migrate-catalog.mjs codemod compiles migration.ts on-the-fly and brace-walks plantDatabase.ts to inject lightLevel/waterSchedule/waterMode using the SAME mappers as user-data migration; 50/50 entries mapped; idempotent; plantIdentification.convertPlantNetResult bridges optional→required IdentifiedPlant fields with safe defaults; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 7
-  completed_plans: 4
-  percent: 57
+  completed_plans: 5
+  percent: 71
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1+2 complete (Plans 01-04). Wave 3 (catalog mechanical update + UX banner + reschedule trigger — Plans 05/06/07) UNBLOCKED.
+**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1+2 complete (Plans 01-04) + Plan 05 catalog side. Plans 06 (UX banner/tooltip/i18n) and 07 (reschedule trigger) remain — both UNBLOCKED and parallel-safe.
 
 ## Current Position
 
 Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: 04 of 7 (Wave 2: notificationScheduler + plantInfo lightLevel refactor) — COMPLETE
-Status: In progress (4/7 plans complete in Phase 4; Wave 2 fully done; Wave 3 unblocked)
-Last activity: 2026-04-30 — Plan 04-04 complete (Wave 2 notificationScheduler.calculateSunWindow + groupPlantsByLightLevel + scheduleUVWarning all consume lightLevel with B4 null-guard parity; plantInfo.isSensitiveToSun consumes lightLevel; cross-session resume cleaned up the remaining 5 @ts-expect-error shims across plantLogic + careTips + PlantHealthDetail + PlantDiagnosisModal; tsc + check:legacy-fields + smoke:migration 63/63 all green)
+Plan: 05 of 7 (Wave 3: catalog mechanical mapping via codemod) — COMPLETE
+Status: In progress (5/7 plans complete in Phase 4; Wave 3 catalog side done; Plans 06+07 still open)
+Last activity: 2026-04-30 — Plan 04-05 complete (catalog codemod + PlantDBEntry v1.1 fields; scripts/migrate-catalog.mjs idempotent on 50/50 entries using canonical Plan 02 mappers; tsc + check:legacy-fields + smoke:migration 63/63 all green)
 
-Progress: [██████░░░░] 57% (v1.1 milestone, 4/7 phase 4 plans)
+Progress: [███████░░░] 71% (v1.1 milestone, 5/7 phase 4 plans)
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [██████░░░░] 57% (v1.1 milestone, 4/7 phase 4 plan
 | Phase 04 / Plan 02 (Wave 1 types + mappers) | 4 min | 2 | 8 |
 | Phase 04 / Plan 03 (Wave 2 storage envelope) | ~17 min | 2 | 1 |
 | Phase 04 / Plan 04 (Wave 2 notificationScheduler + plantInfo lightLevel) | ~28 min | 2 (+1 deviation cleanup) | 6 |
+| Phase 04 / Plan 05 (Wave 3 catalog codemod) | ~9 min | 2 (+1 blocking-bridge cleanup) | 4 |
 
 *Updated after each plan completion*
 
@@ -88,6 +89,10 @@ Recent decisions affecting current work:
 - [Phase 04]: [Plan 04]: Defensive fallback ladder applied uniformly across 5 consumers — v1.1 field → legacy field → safe default. Same pattern in scheduler (UV sensitivity), plantInfo (isSensitiveToSun), plantLogic (water interval), careTips (root-rot predicate), PlantHealthDetail/PlantDiagnosisModal (display values). Migration-failure code path (where Plan 03's catch block falls back to legacy parse) gets coherent behavior without crashing.
 - [Phase 04]: [Plan 04]: PlantDiagnosisContext shape preserved — Phase 7 will rewrite edge-function prompts to consume waterSchedule + lightLevel directly. Until then, PlantDiagnosisModal derives waterEvery + sunHours from v1.1 fields so prompts stay stable. Decouples Phase 7 cadence from Phase 4 schema migration.
 - [Phase 04]: [Plan 04]: All 9 transitional @ts-expect-error legacy-field shims (Plan 02) removed. v1.2 ALLOWLIST target (0 entries) one step closer — files still in allowlist now contain only defensive fallbacks, not primary reads.
+- [Phase 04]: [Plan 05]: Catalog codemod compiles src/utils/migration.ts via typescript.transpileModule on-the-fly to reuse the canonical Plan-02 mappers (sunHoursToLightLevel / applyColdFactor / inferWaterMode) — guarantees zero drift between user-data migration and catalog seeding. One source of truth across both axes.
+- [Phase 04]: [Plan 05]: Brace-depth-aware line walker (per-character string/comment state tracking + reverse-iteration injection) chosen over flat regex for catalog mass-edit. Pattern reusable for Phase 8 catalog rebalance.
+- [Phase 04]: [Plan 05]: Catalog actually has 50 entries (not the 56 the planner expected). Stale count from a pre-Phase-4 commit titled "expand plant catalog to 49"; threshold satisfied in spirit (every entry mapped, no skips).
+- [Phase 04]: [Plan 05]: Safe-default fallback (??) chosen over @ts-expect-error in plantIdentification.convertPlantNetResult because the bridge is a real value coercion (PlantDBEntry → IdentifiedPlant required-field gap), not a type assertion. @ts-expect-error would itself become unused and error.
 
 ### Pending Todos
 
@@ -103,6 +108,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:44:48.636Z
-Stopped at: Completed 04-04-PLAN.md (Wave 2 notificationScheduler + plantInfo lightLevel refactor + sibling shim cleanup; B4 null-guard parity holds; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0; zero @ts-expect-error legacy-field shims remain)
+Last session: 2026-04-30T21:58:57.811Z
+Stopped at: Completed 04-05-PLAN.md (Wave 3 catalog mechanical mapping; scripts/migrate-catalog.mjs codemod + 50/50 PLANT_DATABASE entries gain v1.1 fields; PlantDBEntry deprecates legacy fields; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0; idempotency verified)
 Resume file: None
