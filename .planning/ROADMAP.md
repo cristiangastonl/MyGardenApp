@@ -22,7 +22,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 
 **Milestone Goal:** Replace fixed-value plant care with precision-aware schedules tied to user location, light quality, and seasonal context — and surface diagnosis chat continuity so users can resume conversations instead of staring at frozen summaries.
 
-- [ ] **Phase 4: Schema Foundation + Migration Core** — Versioned envelope, runMigrations infrastructure, deterministic mappers, cancel-and-reschedule notifications, post-migration explainer
+- [x] **Phase 4: Schema Foundation + Migration Core** — Versioned envelope, runMigrations infrastructure, deterministic mappers, cancel-and-reschedule notifications, post-migration explainer
 - [ ] **Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover** — 3-zone seasonality utility, soil-check task type, health/logic/notifications consume new fields
 - [ ] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges
 - [ ] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload
@@ -119,7 +119,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 1. Camera in Chat | v1.0 | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 4. Schema Foundation + Migration Core | v1.1 | 6/7 | In Progress | - |
+| 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 0/TBD | Not started | - |
 | 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |

@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: executing
-stopped_at: "Completed 04-06-PLAN.md (Wave 3 UX surfaces — MigrationBanner non-modal failure banner + per-plant MigrationTooltip with separate AsyncStorage seen-state key, integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo verified scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
-last_updated: "2026-04-30T22:06:08.381Z"
-last_activity: "2026-04-30 — Plan 04-06 complete (Wave 3 UX surfaces: MigrationBanner non-modal failure banner + MigrationTooltip per-plant first-open overlay with separate AsyncStorage seen-state key 'migration-tooltip-seen-v1.1'; integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
+status: completed
+stopped_at: "Completed 04-07-PLAN.md (Wave 4 App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule effect; B1 invariant honored: scheduleSmartSunNotifications NOT imported/called; sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green; Phase 4 COMPLETE — all 7 plans shipped)"
+last_updated: "2026-04-30T22:17:03.471Z"
+last_activity: "2026-04-30 — Plan 04-07 complete (Wave 4 App.tsx wiring: MigrationBanner rendered as sibling-to-NavigationContainer above MainTabs when migrationFailed; post-migration morning-reminder reschedule useEffect triggers cancelAllNotifications + scheduleMorningReminder when migrationJustHappened flips true; B1 invariant honored — scheduleSmartSunNotifications NOT imported/called, sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 7
-  completed_plans: 6
-  percent: 86
+  completed_plans: 7
+  percent: 100
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-29)
 
 ## Current Position
 
-Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: 06 of 7 (Wave 3: UX surfaces — MigrationBanner + MigrationTooltip + i18n voseo) — COMPLETE
-Status: In progress (6/7 plans complete in Phase 4; Wave 3 fully done; Plan 07 unblocked)
-Last activity: 2026-04-30 — Plan 04-06 complete (Wave 3 UX surfaces: non-modal MigrationBanner using warningBg palette + per-plant MigrationTooltip overlay with AsyncStorage 'migration-tooltip-seen-v1.1' seen-state key; integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)
+Phase: 4 of 9 (Schema Foundation + Migration Core) — COMPLETE
+Plan: 07 of 7 (Wave 4: App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule trigger) — COMPLETE
+Status: Phase 4 done (7/7 plans complete; all 12 requirement IDs implemented). Phase 5 (UI propagation) unblocked.
+Last activity: 2026-04-30 — Plan 04-07 complete (Wave 4 App.tsx wiring: MigrationBanner rendered as sibling-to-NavigationContainer above MainTabs when migrationFailed; post-migration morning-reminder reschedule useEffect triggers cancelAllNotifications + scheduleMorningReminder when migrationJustHappened flips true; B1 invariant honored — scheduleSmartSunNotifications NOT imported/called, sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green)
 
-Progress: [█████████░] 86% (v1.1 milestone, 6/7 phase 4 plans)
+Progress: [██████████] 100% (Phase 4 complete — 7/7 plans)
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [█████████░] 86% (v1.1 milestone, 6/7 phase 4 plan
 | Phase 04 / Plan 06 (Wave 3 UX banner + tooltip + i18n) | ~9 min | 3 | 6 |
 
 *Updated after each plan completion*
+| Phase 04 P07 | 5min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,9 @@ Recent decisions affecting current work:
 - [Phase 04-schema-foundation-migration-core]: [Plan 06]: Migration tooltip placed sibling-to-ScrollView (inside container View, not overlay) so absolute backdrop overlays only the modal card content, not the dimmed full-screen backdrop. W3 line guard satisfied (tip > </ScrollView> AND < </Modal>).
 - [Phase 04-schema-foundation-migration-core]: [Plan 06]: Tooltip seen-state in separate AsyncStorage key 'migration-tooltip-seen-v1.1' (Record<plantId, true>) — keeps domain model clean; v1.2 cleanup is a single removeItem paired with cleanupBackup_v1_1().
 - [Phase 04-schema-foundation-migration-core]: [Plan 06]: ES voseo verification scoped via JSON.parse(.migration) subtree, NOT file-wide grep — prevents false positives from voseo verbs elsewhere in es/common.json (W5 contract).
+- [Phase 04]: [Plan 07]: B1 invariant — scheduleSmartSunNotifications NOT imported or called in App.tsx (grep -c == 0). Sun reschedule continues via TodayScreen's existing useNotifications hook once weather loads (lightLevel-aware after Plan 04). App-level reschedule is morning-only because the smart-sun scheduler short-circuits on !weather and would no-op at App-level.
+- [Phase 04]: [Plan 07]: One-shot reschedule with finally-acknowledge — useEffect calls acknowledgeMigrationReschedule() in finally regardless of success/failure. Failure path emits trackEvent('migration_failed', { stage: 'reschedule' }) per Plan 03's separation-of-stages contract. No retry loop — partial reschedule acceptable per CONTEXT.md.
+- [Phase 04]: [Plan 07]: MigrationBanner placed sibling-to-NavigationContainer (above MainTabs) inside NotificationContext.Provider — visible on every tab, not just Hoy. bannerDismissed is local React state only (not persisted), so banner reappears next launch if migration still fails (matches CONTEXT.md idempotent-retry stance).
 
 ### Pending Todos
 
@@ -112,6 +116,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T22:05:57.730Z
-Stopped at: Completed 04-06-PLAN.md (Wave 3 UX surfaces — MigrationBanner non-modal failure banner + per-plant MigrationTooltip with separate AsyncStorage seen-state key, integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo verified scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)
+Last session: 2026-04-30T22:16:28.148Z
+Stopped at: Completed 04-07-PLAN.md (Wave 4 App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule effect; B1 invariant honored: scheduleSmartSunNotifications NOT imported/called; sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green; Phase 4 COMPLETE — all 7 plans shipped)
 Resume file: None
