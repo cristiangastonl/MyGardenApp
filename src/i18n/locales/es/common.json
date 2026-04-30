@@ -6,6 +6,17 @@
     "explore": "Explorar",
     "settings": "Ajustes"
   },
+  "migration": {
+    "banner": {
+      "title": "Datos antiguos",
+      "body": "Tu jardín está cargando con datos antiguos. Tocá para reintentar.",
+      "dismiss": "Cerrar"
+    },
+    "tooltip": {
+      "body": "Cambiamos cómo medimos luz y agua — revisá si querés ajustar.",
+      "cta": "Entendido"
+    }
+  },
   "header": {
     "hello": "¡Hola {{name}}!",
     "appName": "My Happy Garden",

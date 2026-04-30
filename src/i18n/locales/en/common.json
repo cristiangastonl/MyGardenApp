@@ -6,6 +6,17 @@
     "explore": "Explore",
     "settings": "Settings"
   },
+  "migration": {
+    "banner": {
+      "title": "Older data",
+      "body": "Your garden is loading with older data. Tap to retry.",
+      "dismiss": "Dismiss"
+    },
+    "tooltip": {
+      "body": "We changed how light and water are measured — tap to review.",
+      "cta": "Got it"
+    }
+  },
   "header": {
     "hello": "Hello {{name}}!",
     "appName": "My Happy Garden",
