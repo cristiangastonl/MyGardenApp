@@ -858,8 +858,13 @@ export const CARE_TIPS: CareTip[] = [
   {
     id: 'pest-root-rot',
     category: 'pest',
-    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-    condition: (ctx) => ctx.plants.some((p) => p.waterEvery <= 3),
+    // v1.1: prefer waterSchedule.warm; defensive fallback to legacy waterEvery
+    // when waterSchedule is undefined (covers migration-failure code path).
+    condition: (ctx) => ctx.plants.some((p) => {
+      const interval = p.waterSchedule?.warm
+        ?? (typeof p.waterEvery === 'number' ? p.waterEvery : Infinity);
+      return interval <= 3;
+    }),
     icon: '🤒',
     title: 'Podredumbre de raiz',
     message: 'Las plantas que regas muy seguido son propensas a podredumbre. Si la planta se marchita aunque la tierra este humeda, revisa las raices: deben ser blancas, no marrones.',

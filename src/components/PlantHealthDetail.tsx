@@ -39,6 +39,24 @@ export function PlantHealthDetail({
   const healthBgColor = getHealthBgColor(healthStatus.level);
   const healthMessage = getHealthMessage(healthStatus.level);
 
+  // v1.1: prefer waterSchedule.warm; defensive fallback to legacy waterEvery
+  const waterDaysForDisplay: number =
+    plant.waterSchedule?.warm ?? (typeof plant.waterEvery === 'number' ? plant.waterEvery : 7);
+
+  // v1.1: derive approximate display hours from lightLevel; fall back to legacy sunHours
+  // Mapping for display only — keeps existing translation key `needsSunHours` ({{hours}}).
+  const sunHoursForDisplay: number = (() => {
+    if (plant.lightLevel) {
+      switch (plant.lightLevel) {
+        case 'direct':           return 6;
+        case 'bright_indirect':  return 4;
+        case 'medium_indirect':  return 2;
+        case 'low':              return 0;
+      }
+    }
+    return typeof plant.sunHours === 'number' ? plant.sunHours : 0;
+  })();
+
   const getSeverityColor = (severity: HealthIssueSeverity): string => {
     switch (severity) {
       case 'high':
@@ -210,12 +228,11 @@ export function PlantHealthDetail({
               <Text style={styles.sectionTitle}>{t('health.tipsLabel')}</Text>
               <View style={styles.tipsCard}>
                 <Text style={styles.tipItem}>
-                  {t('health.waterEvery', { days: plant.waterEvery })}
+                  {t('health.waterEvery', { days: waterDaysForDisplay })}
                 </Text>
-                {/* @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04 */}
-                {plant.sunHours > 0 && (
+                {sunHoursForDisplay > 0 && (
                   <Text style={styles.tipItem}>
-                    {t('health.needsSunHours', { hours: plant.sunHours })}
+                    {t('health.needsSunHours', { hours: sunHoursForDisplay })}
                   </Text>
                 )}
                 {plant.sunDays.length > 0 && (

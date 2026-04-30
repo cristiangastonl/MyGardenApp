@@ -1,15 +1,30 @@
 import { Plant, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
 
+/**
+ * Resolves the warm-season watering interval (days) for a plant.
+ * v1.1: prefers `waterSchedule.warm`. Defensive fallback to legacy `waterEvery`
+ * when `waterSchedule` is undefined (covers migration-failure code path where
+ * the plant kept its v1.0 shape). Phase 5 will introduce season-aware selection
+ * (warm vs. cold) — this helper currently always returns warm-season cadence.
+ */
+function getWaterIntervalDays(plant: Plant): number {
+  if (plant.waterSchedule?.warm && plant.waterSchedule.warm > 0) {
+    return plant.waterSchedule.warm;
+  }
+  if (typeof plant.waterEvery === 'number' && plant.waterEvery > 0) {
+    return plant.waterEvery;
+  }
+  return 7; // safe default — weekly
+}
+
 export function getNextWaterDate(plant: Plant, today: Date): Date {
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  if (plant.waterEvery <= 0) return today;
+  const intervalDays = getWaterIntervalDays(plant);
+  if (intervalDays <= 0) return today;
   if (!plant.lastWatered) return today;
   const last = parseDate(plant.lastWatered);
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  let next = addDays(last, plant.waterEvery);
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  while (next < today) next = addDays(next, plant.waterEvery);
+  let next = addDays(last, intervalDays);
+  while (next < today) next = addDays(next, intervalDays);
   return next;
 }
 

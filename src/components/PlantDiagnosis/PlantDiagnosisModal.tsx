@@ -65,12 +65,28 @@ export function PlantDiagnosisModal({
     saveDiagnosis(diagnosis);
   }, [saveDiagnosis]);
 
+  // v1.1: derive legacy diagnosis-context fields from new schema with defensive fallback.
+  // The PlantDiagnosisContext shape is consumed downstream by edge-function prompts that
+  // were trained on the v1.0 fields (waterEvery, sunHours); keep them populated until
+  // Phase 7 updates the edge functions to consume waterSchedule / lightLevel directly.
+  const waterEveryForContext: number =
+    plant.waterSchedule?.warm ?? (typeof plant.waterEvery === 'number' ? plant.waterEvery : 7);
+  const sunHoursForContext: number = (() => {
+    if (plant.lightLevel) {
+      switch (plant.lightLevel) {
+        case 'direct':           return 6;
+        case 'bright_indirect':  return 4;
+        case 'medium_indirect':  return 2;
+        case 'low':              return 1;
+      }
+    }
+    return typeof plant.sunHours === 'number' ? plant.sunHours : 3;
+  })();
+
   const plantContext: PlantDiagnosisContext = {
     species: plant.typeName,
-    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-    waterEvery: plant.waterEvery,
-    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-    sunHours: plant.sunHours,
+    waterEvery: waterEveryForContext,
+    sunHours: sunHoursForContext,
     lastWatered: plant.lastWatered,
     outdoorDays: plant.outdoorDays,
   };
