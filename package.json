@@ -7,6 +7,7 @@
     "android": "expo run:android",
     "check:legacy-fields": "node scripts/check-no-legacy-reads.js",
     "ios": "expo run:ios",
+    "smoke:migration": "node scripts/migration-smoke-test.mjs",
     "typecheck": "tsc --noEmit",
     "web": "expo start --web"
   },
