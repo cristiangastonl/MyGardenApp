@@ -1,9 +1,18 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry } from '../types';
+import type { PersistedAppData } from '../types';
 import { STORAGE_KEY } from '../data/constants';
 import { formatDate } from '../utils/dates';
 import { severityToTrackingStatus } from '../services/problemTrackingService';
+import { trackEvent } from '../services/analyticsService';
+import {
+  runMigrations,
+  isVersioned,
+  toPersisted,
+  BACKUP_KEY,
+  CURRENT_SCHEMA_VERSION,
+} from '../utils/migration';
 
 interface StorageState {
   plants: Plant[];
@@ -130,6 +139,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Persist the current ref snapshot to AsyncStorage (debounced)
+  // Always emits the v1.1 versioned envelope { schemaVersion, data } (SCHEMA-09).
   const scheduleSave = useCallback(() => {
     if (saveTimerRef.current !== null) {
       clearTimeout(saveTimerRef.current);
@@ -138,7 +148,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
       saveTimerRef.current = null;
       try {
         const data = snapshotFromRef(dataRef);
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        const persisted: PersistedAppData = { schemaVersion: CURRENT_SCHEMA_VERSION, data };
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(persisted));
       } catch (e) {
         console.error('Save error:', e);
       }
@@ -146,65 +157,156 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }, []);
 
   // Load data on mount
+  // Envelope-aware migration sequence (SCHEMA-01..09 / B2 simplified stage contract).
+  // Single outer try/catch — ANY throw from getItem, JSON.parse, runMigrations, or
+  // backup/envelope writes during migration is treated as a 'load' stage failure
+  // that emits one `migration_failed` analytics event with the load-stage marker.
+  // Plan 07 owns the separate `stage: 'reschedule'` emission.
   useEffect(() => {
     const loadData = async () => {
+      const startTime = Date.now();
+      let stored: string | null = null;
+      let data: AppData | null = null;
+      let didMigrate = false;
+      let loadFailed = false;
+      let loadFailureError: unknown = null;
+
       try {
-        const stored = await AsyncStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          const data: AppData = JSON.parse(stored);
-          const p = data.plants || [];
-          const n = data.notes || {};
-          const r = data.reminders || {};
-          const loc = data.location || null;
-          const ob = data.onboardingCompleted || false;
-          const un = data.userName || null;
-          const ns = data.notificationSettings || null;
-          const pnk = data.plantNetApiKey || null;
-          const ic = data.identificationCount || 0;
-          const dc = data.diagnosisCount || 0;
-          const dh = data.diagnosisHistory || {};
-          const sl = data.shoppingList || [];
-          const effectiveInstallDate = data.installDate || formatDate(new Date());
+        stored = await AsyncStorage.getItem(STORAGE_KEY);
 
-          setPlants(p);
-          setNotes(n);
-          setReminders(r);
-          setLocation(loc);
-          setOnboardingCompleted(ob);
-          setUserNameState(un);
-          setNotificationSettings(ns);
-          setPlantNetApiKeyState(pnk);
-          setIdentificationCount(ic);
-          setDiagnosisCount(dc);
-          setDiagnosisHistory(dh);
-          setShoppingList(sl);
-          setInstallDate(effectiveInstallDate);
-
-          // Sync ref
-          dataRef.current = {
-            plants: p,
-            notes: n,
-            reminders: r,
-            location: loc,
-            onboardingCompleted: ob,
-            userName: un,
-            notificationSettings: ns,
-            plantNetApiKey: pnk,
-            installDate: effectiveInstallDate,
-            identificationCount: ic,
-            diagnosisCount: dc,
-            diagnosisHistory: dh,
-            shoppingList: sl,
-          };
-        } else {
-          // Brand new user — set install date now
+        if (!stored) {
+          // Brand new user — no migration needed; do not throw, do not emit failure
           const id = formatDate(new Date());
           setInstallDate(id);
           dataRef.current.installDate = id;
+          setLoading(false);
+          return;
         }
-      } catch (e) {
-        if (__DEV__) console.log('No saved data:', e);
+
+        const parsed = JSON.parse(stored);
+
+        // Envelope short-circuit (SCHEMA-03 + SCHEMA-09)
+        if (isVersioned(parsed) && parsed.schemaVersion >= CURRENT_SCHEMA_VERSION) {
+          data = parsed.data as AppData;
+        } else {
+          // Run migration v0 → v1 (SCHEMA-01)
+          const persisted = toPersisted(parsed);
+          const plantCount = persisted.data?.plants?.length ?? 0;
+
+          trackEvent('migration_started', { plantCount });
+
+          // Synthetic-failure hook for SMOKE-TEST.md Scenario 5
+          if (__DEV__ && (global as { FORCE_MIGRATION_FAIL?: boolean }).FORCE_MIGRATION_FAIL) {
+            throw new Error('FORCE_MIGRATION_FAIL (dev-only synthetic failure)');
+          }
+
+          // Backup BEFORE mutating live data (SCHEMA-02) — write raw original verbatim
+          await AsyncStorage.setItem(BACKUP_KEY, stored);
+
+          // Pure transform
+          data = runMigrations(persisted);
+
+          // Persist envelope (SCHEMA-09) — direct setItem, NOT debounced
+          await AsyncStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ schemaVersion: CURRENT_SCHEMA_VERSION, data })
+          );
+
+          trackEvent('migration_completed', {
+            plantCount: data.plants?.length ?? 0,
+            durationMs: Date.now() - startTime,
+            schemaVersionFrom: persisted.schemaVersion,
+            schemaVersionTo: CURRENT_SCHEMA_VERSION,
+          });
+
+          didMigrate = true;
+        }
+      } catch (loadError) {
+        // SCHEMA-07: any pre-write failure — read, parse, or migration throw.
+        // Do NOT overwrite live data; fall back to legacy reads if possible.
+        if (__DEV__) console.log('[Storage] load failed:', loadError);
+        loadFailed = true;
+        loadFailureError = loadError;
+
+        // Best-effort legacy parse so the user sees their data
+        if (stored) {
+          try {
+            const legacyParsed = JSON.parse(stored);
+            data = isVersioned(legacyParsed)
+              ? (legacyParsed.data as AppData)
+              : (legacyParsed as AppData);
+          } catch {
+            data = null;
+          }
+        }
       }
+
+      // Emit single load-stage failure event AFTER fallback parse so plantCount is accurate
+      if (loadFailed) {
+        trackEvent('migration_failed', {
+          error: String(loadFailureError),
+          stage: 'load',
+          plantCount: data?.plants?.length ?? 0,
+        });
+        setMigrationFailed(true);
+      }
+
+      // Hydrate React state from `data` (migrated OR legacy fallback OR null)
+      if (data) {
+        const p = data.plants || [];
+        const n = data.notes || {};
+        const r = data.reminders || {};
+        const loc = data.location || null;
+        const ob = data.onboardingCompleted || false;
+        const un = data.userName || null;
+        const ns = data.notificationSettings || null;
+        const pnk = data.plantNetApiKey || null;
+        const ic = data.identificationCount || 0;
+        const dc = data.diagnosisCount || 0;
+        const dh = data.diagnosisHistory || {};
+        const sl = data.shoppingList || [];
+        const effectiveInstallDate = data.installDate || formatDate(new Date());
+
+        setPlants(p);
+        setNotes(n);
+        setReminders(r);
+        setLocation(loc);
+        setOnboardingCompleted(ob);
+        setUserNameState(un);
+        setNotificationSettings(ns);
+        setPlantNetApiKeyState(pnk);
+        setIdentificationCount(ic);
+        setDiagnosisCount(dc);
+        setDiagnosisHistory(dh);
+        setShoppingList(sl);
+        setInstallDate(effectiveInstallDate);
+
+        dataRef.current = {
+          plants: p,
+          notes: n,
+          reminders: r,
+          location: loc,
+          onboardingCompleted: ob,
+          userName: un,
+          notificationSettings: ns,
+          plantNetApiKey: pnk,
+          installDate: effectiveInstallDate,
+          identificationCount: ic,
+          diagnosisCount: dc,
+          diagnosisHistory: dh,
+          shoppingList: sl,
+        };
+      } else {
+        // Both migration AND legacy parse failed — treat as brand-new user
+        const id = formatDate(new Date());
+        setInstallDate(id);
+        dataRef.current.installDate = id;
+      }
+
+      if (didMigrate) {
+        setMigrationJustHappened(true);
+      }
+
       setLoading(false);
     };
 
@@ -212,13 +314,15 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }, []);
 
   // Cleanup debounce timer on unmount — flush pending save
+  // Always emits the v1.1 versioned envelope { schemaVersion, data } (SCHEMA-09).
   useEffect(() => {
     return () => {
       if (saveTimerRef.current !== null) {
         clearTimeout(saveTimerRef.current);
         // Flush synchronously on unmount
         const data = snapshotFromRef(dataRef);
-        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data)).catch(e =>
+        const persisted: PersistedAppData = { schemaVersion: CURRENT_SCHEMA_VERSION, data };
+        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(persisted)).catch(e =>
           console.error('Save error on unmount:', e)
         );
       }
