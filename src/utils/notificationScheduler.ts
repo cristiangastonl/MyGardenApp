@@ -1,5 +1,5 @@
 import * as Notifications from "expo-notifications";
-import { Plant, WeatherData, NotificationSettings, PlantHealthStatus, SavedDiagnosis } from "../types";
+import { Plant, WeatherData, NotificationSettings, PlantHealthStatus, SavedDiagnosis, LightLevel } from "../types";
 import { getTasksForDay } from "./plantLogic";
 import { PlantAlert } from "./plantAlerts";
 import { formatDate } from "./dates";
@@ -519,45 +519,59 @@ function getPlantsNeedingSun(plants: Plant[]): Plant[] {
 }
 
 /**
- * Calculates optimal sun window based on plant's sunHours needs
+ * Maps Plant.lightLevel → recommended outdoor direct-sun hours per day.
+ * Only 'direct'-level plants need scheduled sunrise/sunset reminders;
+ * other levels return 0 (no scheduled outdoor window).
+ * Reference: 04-RESEARCH.md §Pitfall 1 light-band table.
+ */
+function lightLevelToSunHours(level: LightLevel | undefined): number {
+  switch (level) {
+    case 'direct':           return 5; // midpoint of 4-6h band
+    case 'bright_indirect':  return 0;
+    case 'medium_indirect':  return 0;
+    case 'low':              return 0;
+    default:                 return 0; // undefined (legacy fallback) → no scheduled window
+  }
+}
+
+/**
+ * Calculates the optimal direct-sun window for a plant based on its lightLevel.
+ * Returns null when the plant does not need a scheduled outdoor window
+ * (i.e., not 'direct' level, or lightLevel undefined post-migration-failure).
+ *
+ * IMPORTANT: every caller MUST null-guard the result (B4).
  */
 function calculateSunWindow(
   plant: Plant,
   sunrise: Date,
   sunset: Date
-): { start: Date; end: Date } {
-  // Start 30 min after sunrise
-  const start = new Date(sunrise.getTime() + SUNRISE_OFFSET_MINUTES * 60 * 1000);
+): { start: Date; end: Date } | null {
+  const hours = lightLevelToSunHours(plant.lightLevel);
+  if (hours <= 0) return null;
 
-  // End after plant gets its required sun hours
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  const sunHoursMs = plant.sunHours * 60 * 60 * 1000;
+  const start = new Date(sunrise.getTime() + SUNRISE_OFFSET_MINUTES * 60 * 1000);
+  const sunHoursMs = hours * 60 * 60 * 1000;
   let end = new Date(start.getTime() + sunHoursMs);
 
-  // But don't go past sunset
-  const maxEnd = new Date(sunset.getTime() - 30 * 60 * 1000); // 30 min before sunset
+  const maxEnd = new Date(sunset.getTime() - 30 * 60 * 1000);
   if (end > maxEnd) {
     end = maxEnd;
   }
-
   return { start, end };
 }
 
 /**
- * Groups plants by similar sun hour requirements
+ * Groups plants by lightLevel. Sunrise/sunset reminders only apply to 'direct'.
  */
-function groupPlantsBySunHours(plants: Plant[]): Map<number, Plant[]> {
-  const groups = new Map<number, Plant[]>();
-
+function groupPlantsByLightLevel(plants: Plant[]): Map<LightLevel, Plant[]> {
+  const groups = new Map<LightLevel, Plant[]>();
   plants.forEach((plant) => {
-    // Round to nearest hour for grouping
-    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-    const hours = Math.round(plant.sunHours);
-    const group = groups.get(hours) || [];
+    // Treat undefined as 'bright_indirect' (safe default — no outdoor reminder)
+    const level: LightLevel = plant.lightLevel ?? 'bright_indirect';
+    const group = groups.get(level) || [];
     group.push(plant);
-    groups.set(hours, group);
+    groups.set(level, group);
   });
-
   return groups;
 }
 
@@ -590,20 +604,20 @@ export async function scheduleSunriseNotification(
     const timeDiff = notifyTime.getTime() - Date.now();
     const seconds = Math.floor(timeDiff / 1000);
 
-    // Group plants by sun hour needs to give specific advice
-    const groups = groupPlantsBySunHours(outdoorPlants);
+    // Group plants by lightLevel — only 'direct' plants need a scheduled outdoor window
+    const groups = groupPlantsByLightLevel(outdoorPlants);
+    const directPlants = groups.get('direct') || [];
+    if (directPlants.length === 0) return null; // no plants need outdoor sunrise reminder
     let bodyParts: string[] = [];
 
-    groups.forEach((groupPlants, hours) => {
-      const names = groupPlants.length <= 2
-        ? groupPlants.map(p => p.name).join(" y ")
-        : `${groupPlants.length} plantas`;
-
-      const window = calculateSunWindow(groupPlants[0], sunriseTime, sunsetTime);
-      const endTime = window.end.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
-
-      bodyParts.push(`${names} (${hours}hs sol, hasta ~${endTime})`);
-    });
+    const window = calculateSunWindow(directPlants[0], sunriseTime, sunsetTime);
+    if (!window) return null; // B4 null-guard — safety net for the lightLevel === 'direct' invariant
+    const endTime = window.end.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+    const names = directPlants.length <= 2
+      ? directPlants.map(p => p.name).join(" y ")
+      : `${directPlants.length} plantas`;
+    const hours = lightLevelToSunHours('direct');
+    bodyParts.push(`${names} (${hours}hs sol, hasta ~${endTime})`);
 
     const sunriseHour = sunriseTime.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
     const body = `Sol desde ${sunriseHour}. Sacá: ${bodyParts.join("; ")}`;
@@ -614,7 +628,7 @@ export async function scheduleSunriseNotification(
         body,
         sound: true,
         priority: Notifications.AndroidNotificationPriority.HIGH,
-        data: { type: "sunrise-reminder", plantIds: outdoorPlants.map(p => p.id) },
+        data: { type: "sunrise-reminder", plantIds: directPlants.map(p => p.id) },
       },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
@@ -654,7 +668,7 @@ export async function scheduleSunsetNotification(
 
     outdoorPlants.forEach((plant) => {
       const window = calculateSunWindow(plant, sunriseTime, sunsetTime);
-      // Round to 15-minute intervals for grouping
+      if (!window) return; // B4 null-guard — skip plants without an outdoor window (non-direct levels)
       const endTimeKey = Math.round(window.end.getTime() / (15 * 60 * 1000));
       const group = plantsByEndTime.get(endTimeKey) || [];
       group.push(plant);
@@ -730,11 +744,15 @@ export async function scheduleUVWarning(
   const sunPlants = getPlantsNeedingSun(plants);
   if (sunPlants.length === 0) return null;
 
-  // Find plants that need few sun hours (more sensitive)
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  const sensitivePlants = sunPlants.filter(p => p.sunHours <= 3);
-  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
-  const hardyPlants = sunPlants.filter(p => p.sunHours > 3);
+  // v1.1: 'low' and 'medium_indirect' plants are UV-sensitive.
+  // Defensive fallback to legacy sunHours <= 3 when lightLevel is undefined
+  // (covers the migration-failure path where a plant kept its v1.0 shape).
+  const isSensitive = (p: Plant): boolean => {
+    if (p.lightLevel) return p.lightLevel === 'low' || p.lightLevel === 'medium_indirect';
+    return typeof p.sunHours === 'number' && p.sunHours <= 3;
+  };
+  const sensitivePlants = sunPlants.filter(isSensitive);
+  const hardyPlants = sunPlants.filter(p => !isSensitive(p));
 
   try {
     // Schedule for 11:00 AM (when UV is typically starting to peak)
