@@ -19,6 +19,7 @@ import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantPhotoAlbum } from './PlantPhotoAlbum';
 import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from './PlantDiagnosis';
 import { ActiveProblemsSection } from './ActiveProblemsSection';
+import { MigrationTooltip } from './MigrationTooltip';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useStorage } from '../hooks/useStorage';
@@ -236,6 +237,11 @@ export function MyPlantDetailModal({
               <Text style={styles.deleteButtonText}>{t('plantDetail.deletePlant')}</Text>
             </TouchableOpacity>
           </ScrollView>
+          {/* W3: tooltip is a sibling of ScrollView (NOT inside it) so its
+              absolute-fill backdrop overlays the entire modal card. UX-01. */}
+          {plant._migratedFromV0 && visible ? (
+            <MigrationTooltip plantId={plant.id} />
+          ) : null}
         </View>
       </View>
     </Modal>
