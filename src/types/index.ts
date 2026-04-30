@@ -154,8 +154,12 @@ export interface PlantDBEntry {
   imageUrl?: string; // URL de foto real de la planta
   galleryUrls?: string[]; // URLs adicionales para galería en detalle
   category: PlantCategory;
-  waterDays: number;
-  sunHours: number;
+
+  /** @deprecated Removed in v1.2. Use `waterSchedule.warm` instead. */
+  waterDays?: number;
+  /** @deprecated Removed in v1.2. Use `lightLevel` instead. */
+  sunHours?: number;
+
   tempMin: number;
   tempMax: number;
   humidity: HumidityLevel;
@@ -167,6 +171,14 @@ export interface PlantDBEntry {
     type: string;
     homemade: string;
   };
+
+  // ─── v1.1 Precision Care fields (Phase 4 mechanical mapping; Phase 8 expert override) ───
+  /** Light level (v1.1). Auto-mapped from sunHours by scripts/migrate-catalog.mjs. */
+  lightLevel?: LightLevel;
+  /** Warm/cold watering schedule (v1.1). Auto-mapped from waterDays. */
+  waterSchedule?: WaterSchedule;
+  /** Watering mode (v1.1). Inferred from category + dbId allowlist. */
+  waterMode?: WaterMode;
 }
 
 // Weather types for Open-Meteo API integration

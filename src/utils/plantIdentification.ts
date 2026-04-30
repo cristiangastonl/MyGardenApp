@@ -197,8 +197,12 @@ function convertPlantNetResult(result: PlantNetResult): IdentifiedPlant {
       scientificName: translated.scientificName,
       confidence: Math.round(result.score * 100),
       category: translated.category,
-      waterDays: translated.waterDays,
-      sunHours: translated.sunHours,
+      // PlantDBEntry.waterDays/.sunHours made optional in v1.1 (Plan 04-05);
+      // IdentifiedPlant still requires number for v1.0 callers — bridged with
+      // safe defaults (7d / 3h = bright_indirect) until Phase 7 rewrites the
+      // identification flow to v1.1 fields.
+      waterDays: translated.waterDays ?? 7,
+      sunHours: translated.sunHours ?? 3,
       tempMin: translated.tempMin,
       tempMax: translated.tempMax,
       humidity: translated.humidity,
