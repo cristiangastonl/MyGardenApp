@@ -41,7 +41,14 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   3. The user sees a one-time in-app message explaining the change ("Cambiamos cómo medimos la luz. Tu Monstera ahora está marcada como Luz brillante indirecta.") on first post-migration launch.
   4. After migration, no scheduled OS notification fires with stale "Xh sol" copy or pre-migration intervals — every reminder reflects the new schema.
   5. Migration completes inside the existing `loadData` window on a low-end Android device with 50 plants — no extra splash, no white screen, no perceptible launch lag.
-**Plans**: TBD
+**Plans**: 7 plans
+- [ ] 04-01-PLAN.md — Wave 0: Test infrastructure (CI grep guard, smoke runner, fixture, SMOKE-TEST.md)
+- [ ] 04-02-PLAN.md — Wave 1: Type system + pure mappers (LightLevel/WaterMode/WaterSchedule + migration.ts)
+- [ ] 04-03-PLAN.md — Wave 2: Storage envelope + migration call in useStorage
+- [ ] 04-04-PLAN.md — Wave 2: Notification scheduler refactor to consume lightLevel
+- [ ] 04-05-PLAN.md — Wave 3: Catalog mechanical update via codemod
+- [ ] 04-06-PLAN.md — Wave 3: MigrationBanner + per-plant MigrationTooltip + i18n
+- [ ] 04-07-PLAN.md — Wave 4: App-level reschedule trigger + banner integration
 
 ### Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover
 **Goal**: Pure-utility layer (`plantLogic`, `plantHealth`, `notificationScheduler`) consumes `lightLevel` + `waterSchedule` + season — soil-check plants get a new task type, never penalized for "overdue" watering, and three-zone seasonality (Northern temperate / Southern temperate / Tropical) drives every interval calculation.
@@ -112,7 +119,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 1. Camera in Chat | v1.0 | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 4. Schema Foundation + Migration Core | v1.1 | 0/TBD | Not started | - |
+| 4. Schema Foundation + Migration Core | v1.1 | 0/7 | Planned | - |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 0/TBD | Not started | - |
 | 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
