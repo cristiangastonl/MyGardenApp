@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: Completed 04-01-PLAN.md (Wave 0 test infrastructure)
-last_updated: "2026-04-30T16:21:24.345Z"
-last_activity: 2026-04-30 — Phase 4 Plan 01 complete (Wave 0 test infrastructure)
+stopped_at: Completed 04-02-PLAN.md (Wave 1 type system + pure mappers)
+last_updated: "2026-04-30T16:28:18Z"
+last_activity: 2026-04-30 — Phase 4 Plan 02 complete (Wave 1 type system + pure migration mappers; smoke runner 63/63 PASS)
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 7
-  completed_plans: 1
-  percent: 14
+  completed_plans: 2
+  percent: 28
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Wave 0 complete (test infrastructure landed); Wave 1 (type system + pure mappers) is the next plan
+**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1 complete (test infrastructure + type system + pure mappers); Wave 2 (storage envelope + notification refactor) unblocked and parallelizable
 
 ## Current Position
 
 Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: 01 of 7 (Wave 0: Test Infrastructure) — COMPLETE
-Status: In progress (1/7 plans complete in Phase 4)
-Last activity: 2026-04-30 — Plan 04-01 complete (CI grep guard, smoke runner, fixture, SMOKE-TEST.md)
+Plan: 02 of 7 (Wave 1: Type system + pure mappers) — COMPLETE
+Status: In progress (2/7 plans complete in Phase 4)
+Last activity: 2026-04-30 — Plan 04-02 complete (LightLevel/WaterMode/WaterSchedule/PersistedAppData types, src/utils/migration.ts with mappers + idempotent runMigrations; npm run smoke:migration 63/63 PASS)
 
-Progress: [█░░░░░░░░░] 14% (v1.1 milestone, 1/7 phase 4 plans)
+Progress: [██░░░░░░░░] 28% (v1.1 milestone, 2/7 phase 4 plans)
 
 ## Performance Metrics
 
@@ -49,13 +49,14 @@ Progress: [█░░░░░░░░░] 14% (v1.1 milestone, 1/7 phase 4 plan
 
 **Recent Trend:**
 - v1.0 shipped 2026-03-19 across 7 plans
-- v1.1 in progress: Phase 4 Plan 01 complete (Wave 0 test infrastructure, ~5 min)
+- v1.1 in progress: Phase 4 Plans 01+02 complete (Wave 0 test infra + Wave 1 types/mappers, ~9 min total)
 
 **v1.1 Plan Metrics:**
 
 | Phase / Plan | Duration | Tasks | Files |
 |--------------|----------|-------|-------|
 | Phase 04 / Plan 01 (Wave 0 test infra) | 5 min | 3 | 5 |
+| Phase 04 / Plan 02 (Wave 1 types + mappers) | 4 min | 2 | 8 |
 
 *Updated after each plan completion*
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - Diagnosis resume is text-only by design; explicit copy + system-message context summary; message-count limit per diagnosis lifetime, not per session (MOD-4 + MOD-5 + DIAG-04..06)
 - [Phase 04-schema-foundation-migration-core]: Wave 0 ALLOWLIST extended from planner's 24 entries to 27 to keep grep guard exit 0 today (3 transitional readers found in baseline scan); v1.2 target remains 0 entries
 - [Phase 04-schema-foundation-migration-core]: Migration smoke runner uses single locked compile path (typescript.transpileModule) with no fallback by policy — fallbacks hide real source-level problems
+- [Phase 04-schema-foundation-migration-core / Plan 02]: SOIL_CHECK_DB_IDS includes both 'aloe' (legacy/fixture) and 'aloe-vera' (canonical catalog id) — 7 entries vs planner's 6, additive deviation to satisfy two simultaneous contracts
+- [Phase 04-schema-foundation-migration-core / Plan 02]: 9 transitional consumer reads of plant.sunHours / plant.waterEvery shimmed with per-line `// @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04` markers — built-in cleanup signal when 04-04 migrates each read
+- [Phase 04-schema-foundation-migration-core / Plan 02]: migration.ts is runtime-pure — bare `require('./plantInfo')` inside try/catch works in both Metro (static analysis) and Node ESM (ReferenceError caught), enabling the smoke runner without conditional-require helpers
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T16:21:24.344Z
-Stopped at: Completed 04-01-PLAN.md (Wave 0 test infrastructure)
-Resume file: .planning/phases/04-schema-foundation-migration-core/04-02-PLAN.md (Wave 1: Type system + pure mappers)
+Last session: 2026-04-30T16:28:18Z
+Stopped at: Completed 04-02-PLAN.md (Wave 1 type system + pure mappers; smoke runner 63/63 PASS)
+Resume file: .planning/phases/04-schema-foundation-migration-core/04-03-PLAN.md (Wave 2 — storage envelope + backup write; can run parallel with 04-04 notification refactor)

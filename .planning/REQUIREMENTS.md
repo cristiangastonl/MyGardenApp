@@ -10,19 +10,19 @@
 
 - [ ] **SCHEMA-01**: User's existing plant data migrates automatically on first launch of v1.1 without data loss
 - [ ] **SCHEMA-02**: Migration writes a one-time backup blob (`plant-agenda-v2.backup-pre-v1.1`) before mutating live data, kept for one release as rollback safety net
-- [ ] **SCHEMA-03**: Migration is idempotent — re-running on already-migrated data is a no-op
+- [x] **SCHEMA-03**: Migration is idempotent — re-running on already-migrated data is a no-op
 - [ ] **SCHEMA-04**: Migration completes in <200ms on a low-end Android device with 50 plants (synchronous inside existing `loadData` window — no extra splash)
 - [ ] **SCHEMA-05**: Migration emits analytics events (`migration_started`, `migration_completed`, `migration_failed`) with plant count and duration
 - [ ] **SCHEMA-06**: Migration cancels and reschedules all OS-level notifications so they fire against the new schema, not the old one
 - [ ] **SCHEMA-07**: If migration throws, the app surfaces a non-blocking banner ("Tu jardín está cargando con datos antiguos") and does NOT overwrite AsyncStorage — original data preserved
 - [x] **SCHEMA-08**: Legacy fields `sunHours` and `waterEvery` remain on `Plant` type as `@deprecated` optional for v1.1 only; CI grep guard rejects new code that reads them
-- [ ] **SCHEMA-09**: Storage payload uses versioned envelope `{ schemaVersion, data }`; storage key remains `'plant-agenda-v2'`
+- [x] **SCHEMA-09**: Storage payload uses versioned envelope `{ schemaVersion, data }`; storage key remains `'plant-agenda-v2'`
 
 ### Light Model (LIGHT)
 
 - [ ] **LIGHT-01**: User can set a plant's light level via a 4-card picker showing icon + level name + real-world placement description ("Junto a ventana sur" / "A 2m de ventana clara" / "Pasillo sin sol directo")
 - [ ] **LIGHT-02**: Light levels are `direct`, `bright_indirect`, `medium_indirect`, `low` — translated to user locale (en + es-AR with voseo)
-- [ ] **LIGHT-03**: Existing user plants are auto-mapped from `sunHours` to `lightLevel` deterministically (≥5h direct, ≥3h bright_indirect, ≥2h medium_indirect, <2h low)
+- [x] **LIGHT-03**: Existing user plants are auto-mapped from `sunHours` to `lightLevel` deterministically (≥5h direct, ≥3h bright_indirect, ≥2h medium_indirect, <2h low)
 - [ ] **LIGHT-04**: Plant catalog (60+ entries) is updated with `lightLevel` using same deterministic mapper; horticultural review pass corrects edge cases (orquídea, calathea, etc.)
 - [ ] **LIGHT-05**: Plant identification flow returns plants with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust)
 - [ ] **LIGHT-06**: All plant cards, detail modals, and diagnosis context display `lightLevel` translated label instead of `${sunHours}h sol`
@@ -33,7 +33,7 @@
 - [ ] **WATER-01**: Each plant has `waterSchedule: { warm: number, cold: number }` replacing `waterEvery: number`
 - [ ] **WATER-02**: Each plant has `waterMode: 'fixed' | 'soil_check'`; cacti, succulents, echeveria, haworthia, sedum, aloe, jade default to `soil_check`
 - [ ] **WATER-03**: User can edit warm/cold intervals separately in plant edit form; `soil_check` plants show no interval inputs but a toggle to switch to `fixed` mode
-- [ ] **WATER-04**: Existing plants migrate `waterEvery` → `warm`; `cold` is computed by per-category factor (suculentas 2.0, interior 1.5, exterior 1.7, aromaticas 1.5, huerta 1.3, frutales 1.5)
+- [x] **WATER-04**: Existing plants migrate `waterEvery` → `warm`; `cold` is computed by per-category factor (suculentas 2.0, interior 1.5, exterior 1.7, aromaticas 1.5, huerta 1.3, frutales 1.5)
 - [ ] **WATER-05**: `soil_check` plants generate a new `'check_soil'` task type instead of `'water'` — copy reads "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
 - [ ] **WATER-06**: `soil_check` plants do NOT incur health-score penalty for "overdue watering"
 - [ ] **WATER-07**: Catalog rebalance phase replaces `applyColdFactor` heuristic values with explicit per-`PlantDBEntry` warm/cold defaults from the watering-ratio reference table
@@ -129,16 +129,16 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 |-------------|-------|--------|
 | SCHEMA-01 | Phase 4 | Pending |
 | SCHEMA-02 | Phase 4 | Pending |
-| SCHEMA-03 | Phase 4 | Pending |
+| SCHEMA-03 | Phase 4 | Complete |
 | SCHEMA-04 | Phase 4 | Pending |
 | SCHEMA-05 | Phase 4 | Pending |
 | SCHEMA-06 | Phase 4 | Pending |
 | SCHEMA-07 | Phase 4 | Pending |
 | SCHEMA-08 | Phase 4 | Complete |
-| SCHEMA-09 | Phase 4 | Pending |
+| SCHEMA-09 | Phase 4 | Complete |
 | LIGHT-01 | Phase 7 | Pending |
 | LIGHT-02 | Phase 7 | Pending |
-| LIGHT-03 | Phase 4 | Pending |
+| LIGHT-03 | Phase 4 | Complete |
 | LIGHT-04 | Phase 8 | Pending |
 | LIGHT-05 | Phase 7 | Pending |
 | LIGHT-06 | Phase 6 | Pending |
@@ -146,7 +146,7 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | WATER-01 | Phase 7 | Pending |
 | WATER-02 | Phase 7 | Pending |
 | WATER-03 | Phase 7 | Pending |
-| WATER-04 | Phase 4 | Pending |
+| WATER-04 | Phase 4 | Complete |
 | WATER-05 | Phase 5 | Pending |
 | WATER-06 | Phase 5 | Pending |
 | WATER-07 | Phase 8 | Pending |
