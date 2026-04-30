@@ -1,130 +1,148 @@
-# Feature Landscape
+# FEATURES — v1.1 Precision Care
 
-**Domain:** Plant care app — AI diagnosis with follow-up tracking
-**Researched:** 2026-03-19
-**Milestone scope:** Camera-in-chat + AI-powered problem tracking
+**Researched:** 2026-04-29
+**Confidence:** HIGH (Planta/PictureThis/RHS terminology, seasonal ratios); MEDIUM (catalog gaps for LATAM)
 
----
+## Executive Summary
 
-## Context
+The plant-care market has converged on a **4-level light system** (full sun / bright indirect / medium indirect / low). The proposed enum `direct / bright_indirect / medium_indirect / low` matches Greg, Planta, PictureThis and RHS exactly. Outdoor uses parallel "full sun / partial sun / partial shade" vocabulary that maps cleanly to the same enum.
 
-This research covers two interrelated feature clusters for the V1.1 milestone:
+For watering, dominant pattern is **seasonal warm/cold ratios driven by hemisphere + month**. The 2x interval rule (7d→14d in winter) is broadly accurate for tropical houseplants. For cacti/succulents the standard is **NOT a fixed schedule but a soil-check prompt** — proposed `waterMode: 'fixed' | 'soil_check'` is a genuine differentiator.
 
-1. **In-chat camera capture** — allowing users to take a photo directly inside the diagnosis chat instead of only picking from the gallery.
-2. **AI-powered problem tracking** — a premium flow where the AI creates a follow-up schedule, sends reminders, re-diagnoses via new photos, and marks problems as resolved.
-
-Competitor apps analyzed: Planta (Dr. Planta), PictureThis, PlantIn, Agrio, GrowMate, AI Plant Doctor, Blossom, ChatPlant.
+**Lux measurement via camera is a gimmick** — smartphone sensors measure illuminance for human eyes, not PPFD/PAR for photosynthesis. Skip this; visual-card picker with location descriptions is higher-value, lower-complexity.
 
 ---
 
-## Table Stakes
+## Table Stakes (Must ship)
 
-Features users expect. Missing = product feels incomplete or broken compared to peers.
-
-| Feature | Why Expected | Complexity | Notes |
-|---------|--------------|------------|-------|
-| Camera access from diagnosis chat | Every competing chat-based AI app (ChatPlant, PictureThis, PlantAI) offers camera + gallery in the same picker. Gallery-only feels unfinished. | Low | `expo-image-picker` is already installed; just add `launchCameraAsync` behind an action sheet alongside existing gallery path. |
-| Action sheet / bottom sheet to choose camera vs. gallery | Standard iOS/Android UX pattern. Users expect a "take photo" vs "choose from library" choice, not to be sent to a different screen. | Low | Present a two-option bottom sheet on the attachment button tap. Apple HIG recommends fewer than 5 options. |
-| Camera permission handled gracefully | If the user denies camera permission, the app must explain why and deep-link to Settings rather than silently failing. | Low | Expo image picker returns a status; show a contextual alert. |
-| Thumbnail preview before sending in chat | Every chat UI with photo attachments shows a preview thumbnail inline before the message is submitted. | Low | Already pattern-matched by gallery path; extend to camera path. |
-| Follow-up reminder push notification | All diagnosis-oriented apps (Planta, Blossom, AI Plant Doctor, Agrio) send a notification after diagnosis to remind users to check on the plant. Users have learned to expect this. | Medium | `expo-notifications` already configured. Requires scheduling a notification with a future trigger after AI determines follow-up date. |
-| Problem visible in plant detail | Users expect to see the active problem when they navigate to the plant. Burying it only in chat history is not acceptable. | Medium | A "Problem" section or card in the plant detail screen listing active issues. |
-| Manual close / resolve of a problem | Users must be able to dismiss a problem themselves. Apps that lock users into an AI-only resolution loop feel controlling and lose trust. | Low | A "Mark as resolved" button on the problem detail. |
-| Status indicator on the plant card | A visual signal (color, badge, or icon) on the plant card in the plant list when a plant has an active problem. Users need to see at a glance which plants need attention without opening each one. | Low | Small dot or warning emoji on the plant card; driven by active problem state. |
-
----
+| Feature | Complexity | Dependencies |
+|---------|------------|--------------|
+| **4-level light enum** | Medium | Catalog migration; PlantNet→enum mapping; PlantDiagnosisContext.sunHours→lightLevel |
+| **Visual light picker with location descriptions** | Small | Light enum |
+| **Seasonal watering split (warm/cold)** | Medium | DEPENDS ON LOCATION for hemisphere→month→season |
+| **Hemisphere + season detection from latitude** | Small | `lat >= 0 ? 'north' : 'south'`; cold months: north=Nov-Mar, south=May-Sep |
+| **Soil-check watering mode** | Medium | Light enum + season; notification copy variant |
+| **Location-skip fallback with non-blocking banner** | Small | Hoy screen banner slot (existing weather alert UI as model) |
+| **Diagnosis "Continue chat" always visible (paywall on tap)** | Small | Existing paywall flow + RevenueCat — just remove `isPremium &&` gate |
+| **"Reabrir consulta" rename for resolved diagnoses** | Small | New i18n key `t('diagnosis.reopen')` |
+| **Catalog migration of 60+ existing entries** | Medium | Light enum + watering schema. Scriptable mapping: sunHours <2→low, 2-3→medium, 3-5→bright, >5→direct |
 
 ## Differentiators
 
-Features that set My Garden Care apart from competitors. Not universally expected, but meaningfully valuable.
+| Feature | Value |
+|---------|-------|
+| **Argentine Spanish-first location descriptions** | "Junto a la ventana sur" + voseo. Real es-AR voice |
+| **Soil-check mode** | Most apps force a calendar; honest "go check the soil" is rare and aligns with succulent expert consensus |
+| **10-15 outdoor plants tuned for LATAM** | Catalogs are northern-hemisphere-biased. Adding jacarandá, ceibo, glicina speaks to audience |
+| **Hemisphere-aware seasonal copy** | "En invierno regá menos" is wrong if user is in São Paulo entering autumn |
+| **Diagnosis "Reabrir" with prior context summary** | When reopening: prepend "Hace 14 días marcaste esta consulta como resuelta. ¿Qué cambió?" |
 
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| AI-determined follow-up frequency (not user-configurable) | Competing apps (Planta, Blossom) let the user set reminder intervals manually — which means users have to know how urgent their problem is. Having the AI decide interval based on severity (e.g., fungus = every 3 days, yellowing = every 7 days) removes cognitive burden and feels more expert. | Medium | AI response from edge function includes a recommended follow-up day count alongside diagnosis. Store this in the problem record. |
-| Follow-up task in "Hoy" screen | No competitor integrates diagnosis follow-ups into the daily task list alongside watering and sun care. This is a unique "plant doctor appointment" task type. | Medium | Requires `plantLogic.ts` `getTasksForDay()` to generate tasks from active problem records in addition to care schedules. |
-| AI auto-resolve with confidence threshold | GrowMate tracks recovery scores but does not auto-resolve. Having the re-diagnosis step automatically close the problem when the AI detects improvement (with a user confirmation prompt) eliminates the "I forgot to close this" problem. | High | Edge function needs to return a resolution signal alongside re-diagnosis. Requires prompt engineering on the backend. |
-| Problem timeline with photo history | GrowMate offers before/after comparisons. Making this a chronological timeline of photos and AI notes in the plant detail view creates a personal health journal for each plant — sticky, emotionally engaging, premium-feeling. | Medium | Store each diagnosis entry (photo URI, AI summary, timestamp, status) in the problem record's `entries` array in AsyncStorage. |
-| Dual delivery of follow-up reminders (push + Hoy task) | Competitors send either a notification or an in-app reminder — not both. The dual path ensures users who ignore notifications still see the task in-app, and vice versa. | Low (given both systems already exist) | Push notification scheduling + a derived task from the problem record's `nextFollowUpDate` field. |
-| Re-diagnosis in same chat context | When the user responds to a follow-up reminder and takes a new photo, they continue in the same diagnostic chat thread rather than starting a new one. This gives the AI continuity ("last time we saw X, now compare with Y"). | High | Requires the edge function to receive prior diagnosis context (or a summary) alongside the new photo. Chat session must be resumable from the problem record. |
+## Anti-Features (DO NOT build)
 
----
+| Anti-Feature | Why Avoid |
+|--------------|-----------|
+| **Lux/light-meter via phone camera** | Phone sensors measure lux for human eyes, not PPFD for photosynthesis. Documented accuracy issues in Photone/PictureThis |
+| **5-level or 6-level light system** | Adds cognitive load; RHS/Planta/Greg all use 4 |
+| **Humidity/temperature sensor adjustments (in-app)** | Phone sensors unreliable for ambient humidity. Hardware play, defer |
+| **Per-month (12-bucket) watering schedule** | Explodes catalog migration cost (60×12=720 cells) for marginal benefit |
+| **Auto-rescheduling watering based on weather forecast** | Breaks user trust when forecast wrong |
+| **Multi-pot tracking** | Massive scope creep. One Plant = one row |
+| **User-configurable seasonal ratio per plant** | Most users don't want to answer this |
+| **PPFD/DLI numeric readouts** | Horticulturist-grade; 99% of users don't know what PPFD is |
+| **Auto-detect light from room photo** | Visual picker handles in 5 seconds; LLM/Vision call is overkill |
+| **Fully automatic season transitions without explanation** | Show seasonal context explicitly: "Estás en época fría — riego cada 14 días" |
 
-## Anti-Features
-
-Features to deliberately NOT build in this milestone.
-
-| Anti-Feature | Why Avoid | What to Do Instead |
-|--------------|-----------|-------------------|
-| User-configurable follow-up interval | Adds UI complexity, puts burden on user to know plant medicine, and contradicts the core value prop ("AI decides"). If user can override, they blame themselves when it goes wrong. | AI sets the interval; only allow "check in early" as an override (manual re-diagnosis). |
-| Problem severity score displayed as a number | Numeric severity (e.g., "7/10") creates anxiety and is not clinically meaningful in a consumer gardening context. GrowMate does this and it is confusing. | Use descriptive labels: "Watch closely", "Needs attention", "Recovering" — mapped to color states. |
-| Push notification opt-in prompt at problem creation | Asking for push notification permission mid-diagnosis interrupts the flow and is rejected at higher rates. | Request notification permission at onboarding or first care reminder setup, which is already done. Problem tracking reuses the existing permission. |
-| Multiple concurrent open problems per plant, each with their own full chat thread | This creates chat management complexity and confuses users. Every app that tries to have multiple parallel chat threads per subject eventually consolidates. | Allow multiple active problems (e.g., pests AND root rot) but render them as separate cards, not separate full chat sessions. Re-diagnosis funnels through one shared chat. |
-| Social or sharing features for the problem timeline | Sharing plant disease photos to a feed or community (like PlantIn's social features) is a separate feature vector requiring moderation infrastructure. It is out of scope for this milestone. | Keep problem timeline private; add sharing as a future DLC feature if validated. |
-| Photo editing / crop before sending in chat | Competing apps sometimes add crop/rotate steps for diagnosis photos, which adds friction. Users want to send the photo and get an answer fast. | Disable `allowsEditing` in the image picker config for diagnosis. Let AI work with the raw capture. |
-| Offline diagnosis | This requires on-device model hosting (gigabytes of storage) and is not viable in this stack. | Show a clear "No connection" message rather than attempting degraded offline diagnosis. |
-
----
-
-## Feature Dependencies
+## Feature Dependency Graph
 
 ```
-Camera in chat
-└── Action sheet (camera vs. gallery choice)
-    └── Camera permission handling
-    └── Thumbnail preview in chat (already exists for gallery)
+Location (lat/lon, optional)
+  ├── Hemisphere (north/south)
+  │     └── Season (warm/cold)
+  │           └── Watering interval
+  │                 └── Notifications
 
-Problem Tracking
-├── AI diagnosis (already exists)
-├── Problem created from diagnosis
-│   ├── AI determines follow-up date (edge function change)
-│   └── Problem record stored in AsyncStorage
-│       ├── Status indicator on plant card  <-- reads active problem state
-│       ├── Problem section in plant detail <-- reads problem record
-│       ├── Problem timeline in plant detail <-- reads problem.entries[]
-│       ├── Follow-up push notification scheduled  <-- reads nextFollowUpDate
-│       └── Follow-up task in "Hoy" screen  <-- reads nextFollowUpDate via plantLogic.ts
-│
-└── Re-diagnosis (follow-up photo)
-    ├── Camera in chat (dependency on cluster 1)
-    ├── Prior context sent to edge function
-    └── AI auto-resolve signal
-        └── Auto-resolve with user confirmation
-            └── Manual reopen option
+Light level enum
+  ├── Plant create/edit form (visual picker)
+  ├── Plant catalog (every entry needs lightLevel)
+  ├── Plant identification result mapping (PlantNet → lightLevel)
+  └── Diagnosis context
+
+Watering mode (fixed | soil_check)
+  ├── Notification copy ("regar" vs "revisá el sustrato")
+  ├── Hoy task generation
+  └── Catalog defaults (cactus, suculenta, echeveria, haworthia, sedum → soil_check)
+
+Diagnosis continuity (no new dep)
+  ├── Continue button always visible
+  ├── Resolved → "Reabrir consulta"
+  └── (optional) Reopen-context summary
 ```
 
----
+**Critical path:** Location → Season → Seasonal watering. If location skipped, fall back to warm-season schedule with banner explaining "configurá ubicación para precisión estacional".
 
-## MVP Recommendation for This Milestone
+## Catalog Gaps (Argentina/LATAM Outdoor)
 
-Prioritize (ship in this milestone):
+Currently in catalog: rosa, bougainvillea, hibisco, hortensia, jazmín, lavanda (angustifolia), petunia, geranio, margarita.
 
-1. **Camera in chat** — low complexity, high user frustration when missing, unblocks re-diagnosis flow.
-2. **Action sheet (camera vs. gallery)** — required to deliver camera in chat gracefully.
-3. **Problem record data model** — everything downstream depends on this; define it early.
-4. **Problem card in plant detail + status dot on plant list card** — minimal UI surface, establishes the problem as a first-class entity.
-5. **Follow-up push notification** — leverages existing `expo-notifications` infrastructure; core of the premium value prop.
-6. **Follow-up task in "Hoy" screen** — leverages existing `getTasksForDay()` pattern; gives in-app visibility without push dependency.
-7. **Manual resolve** — table stakes for user control; low complexity.
-8. **Problem timeline (photo + AI note per entry)** — the visual payoff that makes tracking feel worthwhile.
+**Suggested 10-15 additions (priority order):**
 
-Defer (later milestone or future DLC):
+| Plant | Scientific | Why |
+|-------|------------|-----|
+| Jacarandá | Jacaranda mimosifolia | Iconic to BA (November bloom) |
+| Gardenia | Gardenia jasminoides | Commonly requested; tricky care = high catalog value |
+| Azalea | Rhododendron simsii | Classic patio plant |
+| Camelia | Camellia japonica | Popular winter bloomer in BA |
+| Dalia | Dahlia spp. | Summer staple, tuber storage tips |
+| Glicina | Wisteria sinensis | Iconic trepadora |
+| Salvia ornamental | Salvia splendens | Pollinator garden trend, drought-tolerant |
+| Ceibo | Erythrina crista-galli | Argentina's national flower |
+| Cala | Zantedeschia aethiopica | Semi-shade preference fills category gap |
+| Copete (Tagetes) | Tagetes patula | Companion planting with huerta |
+| Verbena | Verbena bonariensis | Native, pollinator-friendly |
+| Lavanda francesa | Lavandula stoechas | **Variety split** (cold tolerance differs by 3 zones) |
+| Lavanda dentada | Lavandula dentata | **Variety split** |
+| Romero rastrero | Rosmarinus officinalis 'Prostratus' | Popular balcony variety |
+| Tomate cherry | Solanum lycopersicum cerasiforme | Differs from "tomatera" enough (smaller pots, indeterminate) |
 
-- **Re-diagnosis in same chat thread with prior context**: High complexity edge function change. Deliver re-diagnosis as a new chat session for now; add continuity when cloud sync is ready.
-- **AI auto-resolve with confidence signal**: Requires prompt engineering iteration and testing. Manual resolve covers the MVP need; auto-resolve is a V1.2 enhancement.
-- **Severity labels beyond "active/resolved"**: Can be added incrementally once the problem model is stable.
+**Lavender variety split — YES, worth separate entries:** angustifolia (cold-hardy zones 5-8) vs stoechas (zones 8-9, drought-tolerant) vs dentata (zones 8-10). Cold tolerance differs by 3 zones → heat/frost alert thresholds genuinely change.
 
----
+## Watering Ratio Reference (warm:cold)
+
+Defensible defaults per category for catalog migration.
+
+| Category | Warm | Cold | Ratio | Mode |
+|----------|------|------|-------|------|
+| Tropical houseplant (Monstera, Filodendro, Potus) | 7d | 14d | 1:2 | fixed |
+| Sensitive tropical (Calathea, Espatifilo) | 4-5d | 7d | 1:1.5 | fixed |
+| Sturdy houseplant (Sansevieria, Dracaena) | 14d | 21d | 1:1.5 | fixed |
+| Mediterranean aromatic (Romero, Tomillo, Orégano) | 7-10d | 14d | 1:1.5 | fixed |
+| Tender herb (Albahaca, Cilantro, Perejil) | 2d | 4d | 1:2 | fixed |
+| Garden flower (Rosa, Hortensia, Petunia) | 2-3d | 5-7d | 1:2 | fixed |
+| Drought-tolerant outdoor (Lavanda, Bougainvillea) | 7-10d | 14-21d | 1:2 | fixed |
+| Citrus (Limonero, Naranjo) | 5d | 10d | 1:2 | fixed |
+| Suculenta/Echeveria/Haworthia/Sedum | n/a | n/a | — | **soil_check** |
+| Cactus | n/a | n/a | — | **soil_check** |
+| Aloe Vera | 14d | 30d | 1:2 | soil_check (more honest) |
+| Jade (Crassula) | 14d | 30+d | 1:2+ | soil_check |
+
+## Implications for Roadmap
+
+1. **Schema + types** (small) — Foundation
+2. **Hemisphere/season utility + location skip** (small) — No catalog dependency
+3. **Watering logic refactor** (medium) — Must continue to render correctly
+4. **Light picker UI** (small-medium)
+5. **Catalog migration** (medium, parallelizable with #4) — Largest by line count, mostly mechanical
+6. **Diagnosis continuity** (small) — Independent, could ship as quick win
+
+**Phases 1-3 critical path. Phase 6 (diagnosis) small + independent — could ship first.**
 
 ## Sources
 
-- [Best Plant Care Apps in 2026 — MyPlantIn](https://myplantin.com/blog/best-plant-care-apps) — MEDIUM confidence (blog, cross-referenced with app listings)
-- [Agrio: An app that identifies plant diseases](https://agrio.app/An-app-that-identifies-plant-diseases-and-pests/) — MEDIUM confidence (official product page)
-- [GrowMate — AI Plant Doctor](https://growmate.pro/) — LOW confidence (marketing page only; no independent review)
-- [Planta App Store listing](https://apps.apple.com/us/app/planta-ai-plant-garden-care/id1410126781) — HIGH confidence (official store listing)
-- [Planta App features review — gardening.alibaba.com](https://gardening.alibaba.com/plant-care/planta-app) — MEDIUM confidence
-- [AI Plant Doctor App](https://theaiplantdoctor.com/) — LOW confidence (small app, limited reviews)
-- [Expo ImagePicker documentation](https://docs.expo.dev/versions/latest/sdk/imagepicker/) — HIGH confidence (official Expo docs)
-- [Action sheets — Apple HIG](https://developer.apple.com/design/human-interface-guidelines/components/presentation/action-sheets) — HIGH confidence (official Apple documentation)
-- [Stream React Native Native Image Picker guide](https://getstream.io/chat/docs/sdk/react-native/guides/native-image-picker/) — HIGH confidence (official SDK docs)
-- [Timeline UX Pattern](https://uxpatterns.dev/patterns/data-display/timeline) — MEDIUM confidence (community UX reference)
-- [Healthcare UX Design Trends 2025 — Webstacks](https://www.webstacks.com/blog/healthcare-ux-design) — MEDIUM confidence (applicable patterns for follow-up scheduling)
+- Planta: getplanta.com (watering algorithm, seasonal adjustment)
+- Soltech, Greenery Unlimited, Patch — 4-level light nomenclature
+- Photone (growlightmeter.com), Greg.app community — lux camera accuracy critique
+- Cactus Outlet, Succulent Plant Care, Planet Desert — soil-check consensus
+- Gardener's Path, Gardenia.net, UC Master Gardener — lavender variety split
+- Argentina.travel, Garden Travel Hub — LATAM catalog gaps
+- UserOnboard, Appcues, AppSamurai 2025 — location-skip patterns
+- PatternFly, aiuxdesign.guide — chatbot conversation history patterns

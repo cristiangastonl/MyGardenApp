@@ -1,329 +1,287 @@
-# Architecture Patterns
+# ARCHITECTURE — v1.1 Precision Care
 
-**Domain:** AI-driven plant problem tracking + camera-in-chat for local-first React Native app
-**Researched:** 2026-03-19
-**Confidence:** HIGH (analysis based on actual codebase, not speculation)
+**Researched:** 2026-04-29
+**Mode:** Project Architecture (subsequent milestone)
+**Confidence:** HIGH (all findings grounded in current source files)
 
----
+## Executive Recommendation
 
-## Context: What Already Exists
+This is a **schema-evolution milestone**, not a feature-addition milestone. Three concentric rings:
 
-Before describing what to build, it is important to record what the codebase already provides, because this milestone is additive — not a rewrite.
+1. **Core schema + migration** (Plant types, AppData versioning, runtime migration on load)
+2. **Derived helpers** (season/lightLevel/effective-water-interval) consumed by `plantHealth`/`plantLogic`
+3. **UI propagation** (every screen reading `waterEvery`/`sunHours` reads new fields, every plant-creating flow writes new fields)
 
-**Already working (do not touch):**
+The **existing `useStorage` shape is the bottleneck**: a single AsyncStorage key (`'plant-agenda-v2'`) holds everything. Schema change is "all-or-nothing" on app boot. Recommend **eager migration on load** with versioned envelope. Keep `waterEvery` and `sunHours` as `@deprecated` optional for one release as safety net.
 
-- `usePlantDiagnosis` hook already has `pickFromCamera()` wired with full permission handling. The gap is that `PlantDiagnosisModal` delegates to `CameraCapture` but the **chat phase** inside `DiagnosisResults` only calls `pickChatPhoto()` which uses gallery-only `launchImageLibraryAsync`. Camera in chat is a one-function swap.
-- `SavedDiagnosis` type already has `resolved` and `resolvedDate` fields.
-- `diagnosisHistory: Record<plantId, SavedDiagnosis[]>` already lives in `AppData` and persists to AsyncStorage.
-- `DiagnosisFollowUp` component already renders active (unresolved) diagnoses in the "Hoy" screen as cards with a "Mark resolved" button.
-- `resolveDiagnosis(plantId, diagnosisId)` already exists in `useStorage`.
-- Notification infrastructure (`expo-notifications`, `notificationScheduler.ts`) is fully operational for scheduling future-dated one-shot and daily notifications.
+**Diagnosis chat continuity fix is fully isolated** (one file: `DiagnosisDetailModal.tsx:248`) — bundle as the **last small phase**.
 
-**What is missing:**
+**Catalog rebalance is data-only** (no user migration — references catalog by `databaseId`), but must ship in same release as user-data migration so backfill mappings stay consistent.
 
-- Camera option in the chat photo picker (inside `DiagnosisResults`).
-- A `followUpSchedule` on `SavedDiagnosis` — AI-decided date for when to re-diagnose.
-- Scheduling a push notification for that follow-up date.
-- A follow-up task surfacing in the "Hoy" screen on the scheduled date.
-- Auto-resolve detection: when a follow-up diagnosis comes back healthy/minor, offer to close the tracked problem.
-- A problem timeline view on the plant detail screen showing all diagnoses for that plant in chronological order.
-- Premium gate for the scheduling / tracking features.
+## Data Flow
 
----
-
-## Recommended Architecture
-
-### Overview
-
-Three concerns map cleanly to three build areas:
+### Warm/Cold Derivation Chain
 
 ```
-1. Camera-in-chat       — One component change, no data model change
-2. Problem tracking     — Data model extension + notification scheduling
-3. Problem timeline     — New UI component, reads existing diagnosisHistory
+Location (AppData.location.lat) ───┐
+                                   │
+Date (new Date() at render time) ──┤
+                                   ▼
+                         getSeason(lat, date)            ← src/utils/seasonality.ts (NEW)
+                         returns 'warm' | 'cold'
+                                   │
+                                   ▼
+                  getEffectiveWaterEvery(plant, season)  ← src/utils/plantLogic.ts (modified)
+                                   │
+                  ┌────────────────┴────────────────┐
+                  ▼                                 ▼
+        getNextWaterDate()                 calculatePlantHealth()
+        (plantLogic.ts — modified)          (plantHealth.ts — modified)
 ```
 
-These are independent. Camera-in-chat has zero dependencies on the other two. Problem timeline has zero dependencies on tracking (it reads data that already exists). Tracking is the only one that touches the data model.
+**Single derivation point:** new hook `useWarmCold(location)` in `src/hooks/useSeason.ts`.
 
----
-
-### Component Boundaries
-
-| Component | Responsibility | Communicates With |
-|-----------|---------------|-------------------|
-| `DiagnosisResults` (existing) | Chat UI, send message, show photo | `usePlantDiagnosis` hook for sendChatMessage |
-| `pickChatPhoto` (inline in `PlantDiagnosisModal`) | Provides photo to chat | `ImagePicker` (currently gallery-only) |
-| `usePlantDiagnosis` (existing hook) | Diagnosis state machine, camera/gallery pick, AI calls | `diagnosePlant` util, `chatDiagnosis` util, `SavedDiagnosis` |
-| `SavedDiagnosis` type (extend) | Persisted diagnosis record | `AppData` in AsyncStorage via `useStorage` |
-| `problemTrackingService.ts` (new) | Schedule follow-up notification, cancel on resolve | `notificationScheduler.ts`, `useStorage` |
-| `DiagnosisFollowUp` (existing component) | Surface active diagnoses in Hoy screen with follow-up date | `diagnosisHistory` from `useStorage`, plants array |
-| `getFollowUpTasksForDay` (new util) | Generate follow-up tasks like `getTasksForDay` does for care | `diagnosisHistory`, plant list, current date |
-| `ProblemTimeline` (new component) | Chronological photo+diagnosis history per plant | `diagnosisHistory` for one plant, opens `PlantDiagnosisModal` with `resumeDiagnosis` |
-| `MyPlantDetailModal` (existing) | Plant detail including problem timeline section | `ProblemTimeline`, `diagnosisHistory` |
-
----
-
-### Data Model Extension
-
-Extend `SavedDiagnosis` (in `src/types/index.ts`) with one new optional field:
-
-```typescript
-export interface SavedDiagnosis {
-  // ... existing fields unchanged ...
-  followUpDate: string | null;       // ISO date string — AI-decided re-check date
-  followUpNotificationId: string | null;  // Expo notification identifier for cancellation
+```ts
+export function useWarmCold(location: Location | null): 'warm' | 'cold' {
+  const { season } = useSeason(location);   // 'spring' | 'summer' | 'fall' | 'winter'
+  return season === 'summer' || season === 'spring' ? 'warm' : 'cold';
 }
 ```
 
-Extend `AppData` in `src/types/index.ts`:
+**CRITICAL:** `plantLogic.ts` and `plantHealth.ts` are pure utilities (no React) — pass `season: 'warm' | 'cold'` (or `location: Location | null`) as argument. Screens get it via `useWarmCold(location)`; tests/notification scheduler call `getSeason(lat, date)` directly.
 
-```typescript
-export interface AppData {
-  // ... all existing fields unchanged ...
-  problemTracking: ProblemTracking;  // new
-}
+This matches existing pattern: `calculatePlantHealth(plant, today, weather, diagnoses)` already takes `today`/`weather` as args, not context.
 
-export interface ProblemTracking {
-  enabled: boolean;  // user opted in (premium gate enforced at enable time)
-}
-```
+## Schema Migration Strategy
 
-The `problemTracking` field is a slim envelope. Individual follow-up dates live on each `SavedDiagnosis` — not in a parallel structure — so timeline queries are `O(diagnosesForPlant)` without cross-joining two collections.
+### Versioned Envelope
 
-**Storage key stays the same** (`plant-agenda-v2`). Both new fields are optional (`| null`) so existing persisted data deserializes without migration code.
-
----
-
-### Data Flow
-
-#### Camera-in-Chat Flow
-
-```
-DiagnosisResults (chat phase)
-  → user taps camera icon in chat input
-  → pickChatPhoto() [currently: launchImageLibraryAsync only]
-  → ADD: show action sheet "Camera / Gallery"
-  → Camera branch: ImagePicker.launchCameraAsync({ base64: true })
-  → Gallery branch: ImagePicker.launchImageLibraryAsync({ base64: true })  [unchanged]
-  → { base64, uri } returned to DiagnosisResults
-  → setPendingPhoto(result)
-  → user sends → onSendChat(text, base64, uri)
-  → usePlantDiagnosis.sendChatMessage() → chat-diagnosis edge function
-```
-
-This is entirely in `PlantDiagnosisModal.tsx`, one function (`pickChatPhoto`). No hook changes, no data model changes.
-
-#### Problem Tracking Flow (Premium)
-
-```
-usePlantDiagnosis.analyze() completes
-  → DiagnosisResult.overallStatus is 'moderate' | 'severe'
-  → SavedDiagnosis created with followUpDate: null (as today)
-  → onDiagnosisComplete(saved) → PlantDiagnosisModal → saveDiagnosis()
-                                                         → AsyncStorage write
-
-  [After save, if isPremium && overallStatus !== 'healthy']
-  → problemTrackingService.scheduleFollowUp(diagnosis, plant)
-      → determines followUpDate from severity:
-          severe   → today + 3 days
-          moderate → today + 7 days
-          minor    → today + 14 days
-      → scheduleFollowUpNotification(plant, followUpDate)
-          → Notifications.scheduleNotificationAsync (TIME_INTERVAL trigger)
-          → returns notificationId
-      → updateDiagnosis(plantId, diagnosisId, { followUpDate, followUpNotificationId })
-          → AsyncStorage write
-```
-
-The service receives severity from the `DiagnosisResult`; the AI does not need a new API field. Severity already encodes urgency. Follow-up intervals are hardcoded constants in the service, not AI-generated, which avoids the complexity of parsing a free-text AI response for a date.
-
-**Note on "AI decides follow-up interval":** The PROJECT.md says "follow-up interval decided by AI." However, the existing `DiagnosisResult` type has `overallStatus: DiagnosisSeverity` which already represents the AI's severity assessment. Mapping severity to intervals (3/7/14 days) on the client is clean, deterministic, and does not require changing the edge function API contract. This is the recommended approach. If the product later needs per-issue-type intervals (e.g., fungus vs. overwatering recover differently), the edge function can be extended to return a `suggestedFollowUpDays` field — but that is a V2 concern.
-
-#### Follow-up Reminder in Hoy Screen
-
-```
-TodayScreen renders
-  → getFollowUpTasksForDay(plants, diagnosisHistory, today)
-      → for each plant, for each unresolved diagnosis:
-          if followUpDate matches today → emit FollowUpTask
-  → DiagnosisFollowUp component receives activeDiagnoses
-  → [EXTEND] show "Follow-up due today" badge when followUpDate === today
-  → user taps → opens PlantDiagnosisModal with resumeDiagnosis=existing
-  → user takes new photo → analyze() runs → new SavedDiagnosis created
-  → if new result is 'healthy': auto-resolve prompt shown
-      → user confirms → resolveDiagnosis() → problemTrackingService.cancelFollowUp()
-```
-
-`getFollowUpTasksForDay` is a new pure utility function in `src/utils/plantLogic.ts` (or a sibling file). It is stateless, just like `getTasksForDay`. It reads `diagnosisHistory` and returns an array of `FollowUpTask` items. `TodayScreen` renders these through the existing `DiagnosisFollowUp` component extended with a date-awareness prop.
-
-#### Problem Timeline Flow
-
-```
-MyPlantDetailModal opens for a plant
-  → reads diagnosisHistory[plant.id] from useStorage
-  → ProblemTimeline component receives sorted array (newest first)
-  → renders each diagnosis as a timeline entry:
-      - photo thumbnail (imageUris[0])
-      - severity badge
-      - date
-      - first issue name
-      - status: active / resolved
-  → tapping entry → opens DiagnosisDetailModal (already exists) OR
-                     opens PlantDiagnosisModal with resumeDiagnosis=entry
-```
-
-`ProblemTimeline` is a pure presentational component. It receives diagnoses as props and calls back with `onPressDiagnosis(diagnosis)`. No direct storage access.
-
----
-
-### Anti-Patterns to Avoid
-
-#### Anti-Pattern 1: Parallel Follow-Up Collection
-
-**What:** Creating `followUpSchedule: Record<diagnosisId, FollowUpEntry>` as a separate collection in `AppData`.
-
-**Why bad:** Every place that reads a `SavedDiagnosis` now needs to cross-join with a second collection to know if it has a follow-up. This creates stale-reference bugs (delete a diagnosis, orphan its follow-up entry) and forces every consumer to know about two tables.
-
-**Instead:** Put `followUpDate` and `followUpNotificationId` directly on `SavedDiagnosis`. Data lives with the record it describes.
-
-#### Anti-Pattern 2: Storing Follow-Up Tasks Like Care Tasks
-
-**What:** Persisting follow-up task completion state in its own structure (e.g., `completedFollowUps: string[]` in `AppData`).
-
-**Why bad:** The existing pattern for care tasks (`getTasksForDay`) is intentionally stateless — tasks regenerate fresh every render from plant data. Following the same pattern for follow-up tasks keeps them consistent with the rest of the task system and avoids a synchronization problem between "task done" state and "diagnosis resolved" state.
-
-**Instead:** A follow-up task for today is present if `followUpDate === today && !diagnosis.resolved`. Completing it means opening the diagnosis and either resolving it or setting a new `followUpDate`. No separate completion state needed.
-
-#### Anti-Pattern 3: Edge Function Change for Follow-Up Scheduling
-
-**What:** Adding `suggestedFollowUpDays` to the `diagnose-plant` edge function response to let the AI decide the interval.
-
-**Why bad:** This requires deploying a new edge function version, changing the `DiagnosisResult` type, and handling cases where the field is absent (old edge function versions). The severity field already encodes the AI's urgency signal. Mapping severity to intervals on the client is equivalent in practice and requires no deployment.
-
-**Instead:** Map `DiagnosisSeverity` to a constant interval table on the client. Only revisit this if product needs truly per-issue intervals.
-
-#### Anti-Pattern 4: Re-Architecting the Camera Flow
-
-**What:** Creating a shared `CameraOrGalleryPicker` service or wrapping `usePlantDiagnosis` to expose a unified picker.
-
-**Why bad:** Camera-in-chat is a single-location change (the `pickChatPhoto` closure in `PlantDiagnosisModal`). The diagnosis capture phase already has camera working. Over-engineering the picker into a shared service adds abstraction with no reuse benefit at this scope.
-
-**Instead:** Add an `ActionSheetIOS` / `Alert.alert` two-option prompt directly in `pickChatPhoto`. One function, one file.
-
----
-
-### Premium Gating Integration
-
-The existing `usePremiumGate()` pattern handles this cleanly. Add one new method:
-
-```typescript
-canTrackProblems(): boolean {
-  return isPremium && Features.DLC_PEST_DIAGNOSIS;
+```ts
+// src/types/index.ts
+export interface PersistedAppData {
+  schemaVersion: number;   // 0 = legacy unwrapped, 1 = post-v1.1 wrapped
+  data: AppData;
 }
 ```
 
-Call sites:
-- After `saveDiagnosis()` in `PlantDiagnosisModal`: gate `problemTrackingService.scheduleFollowUp()` behind `canTrackProblems()`.
-- In `DiagnosisFollowUp`: show follow-up date badge only when `canTrackProblems()`.
-- No gate on the timeline itself (all users should be able to see their diagnosis history).
+**Loading in `useStorage.tsx` (lines 144-207):**
 
-Feature flag: no new flag needed. `DLC_PEST_DIAGNOSIS` already gates the diagnosis feature. Problem tracking is a premium layer on top of diagnosis.
-
----
-
-### New Service: `problemTrackingService.ts`
-
-Location: `src/services/problemTrackingService.ts`
-
-Responsibilities:
-- `scheduleFollowUp(diagnosis: SavedDiagnosis, plant: Plant): Promise<void>` — determines interval from severity, schedules notification, updates diagnosis record in storage
-- `cancelFollowUp(diagnosisId: string, notificationId: string | null): Promise<void>` — cancels scheduled notification when problem resolved
-- `rescheduleFollowUp(diagnosis: SavedDiagnosis, plant: Plant, newDate: string): Promise<void>` — if user wants to snooze (V2 concern, scaffold only)
-
-This service is the only component that bridges `notificationScheduler.ts` and `useStorage`. It keeps notification scheduling out of hooks and out of UI components.
-
-Notification data payload (for deep-link on tap):
-
-```typescript
-data: {
-  type: "followup-reminder",
-  plantId: plant.id,
-  diagnosisId: diagnosis.id,
+```ts
+const stored = await AsyncStorage.getItem(STORAGE_KEY);
+if (stored) {
+  const raw = JSON.parse(stored);
+  const persisted: PersistedAppData = isVersioned(raw)
+    ? raw
+    : { schemaVersion: 0, data: raw };
+  const data = runMigrations(persisted);
 }
 ```
 
-This matches the existing pattern in `notificationScheduler.ts` where `type` is the discriminant.
+`runMigrations(persisted)` runs ordered array of migration functions — easy to extend in v1.2.
 
----
+### The 0 → 1 Migration
 
-### Suggested Build Order
+```ts
+// src/utils/migration.ts (NEW)
+function migratePlant_0to1(plant: LegacyPlant): Plant {
+  const lightLevel = sunHoursToLightLevel(plant.sunHours);
+  const dbEntry = findDatabaseEntry({ ...plant } as Plant);
+  const category = dbEntry?.category;
 
-**Phase 1 — Camera in chat** (zero dependencies, lowest risk)
-- Modify `pickChatPhoto` in `PlantDiagnosisModal.tsx`
-- Test on device (camera permissions are a known edge case on iOS simulator)
-- No data model changes, no storage changes
+  const warmDays = plant.waterEvery;
+  const coldDays = applyColdFactor(warmDays, category);
 
-**Phase 2 — Data model + types** (prerequisite for tracking features)
-- Add `followUpDate` and `followUpNotificationId` to `SavedDiagnosis`
-- Add `problemTracking` to `AppData`
-- Add `updateDiagnosisFollowUp(plantId, diagnosisId, updates)` action to `useStorage`
-- Verify existing persisted data deserializes cleanly (both fields optional/null)
+  const waterMode = isSoilCheckCategory(plant.typeId, dbEntry)
+    ? 'soil_check'
+    : 'fixed';
 
-**Phase 3 — Problem tracking service** (depends on Phase 2)
-- Implement `problemTrackingService.ts`
-- Integrate into `PlantDiagnosisModal` after `saveDiagnosis()` call
-- Add `canTrackProblems()` to `usePremiumGate()`
-- Wire notification tap handler in App.tsx for deep-link (open plant + diagnosis)
-
-**Phase 4 — Hoy screen follow-up tasks** (depends on Phase 2)
-- Implement `getFollowUpTasksForDay(plants, diagnosisHistory, today)` in `plantLogic.ts`
-- Extend `DiagnosisFollowUp` to show follow-up due date and "due today" highlight
-- Wire in TodayScreen
-
-**Phase 5 — Problem timeline** (depends only on existing data in diagnosisHistory)
-- Implement `ProblemTimeline` component
-- Integrate into `MyPlantDetailModal`
-- No new data, reads `diagnosisHistory[plant.id]`
-
-**Phase 6 — Auto-resolve on improvement** (depends on Phase 3 + 4)
-- After `analyze()` completes on a follow-up, compare new severity vs. original
-- If improved to 'healthy' or 'minor' from 'moderate'/'severe': show "Plant looks better — mark resolved?"
-- On confirm: `resolveDiagnosis()` + `cancelFollowUp()`
-
----
-
-### Notification Deep-Link Pattern
-
-When user taps the follow-up notification, the app should open to the relevant plant's diagnosis. The pattern used for existing notifications is a `data` payload with `type` discriminant. The handler lives in `App.tsx`.
-
-Add to the notification response handler in `App.tsx`:
-
-```typescript
-if (data?.type === 'followup-reminder') {
-  // Navigate to TodayScreen with plantId and diagnosisId highlighted
-  // OR open PlantDiagnosisModal for that plant with resumeDiagnosis=diagnosisId
+  return {
+    ...plant,
+    lightLevel,
+    waterSchedule: { warm: warmDays, cold: coldDays },
+    waterMode,
+    // Keep legacy fields for one release as @deprecated
+    waterEvery: plant.waterEvery,
+    sunHours: plant.sunHours,
+  };
 }
 ```
 
-Deep navigation into a modal from a notification is a known complexity in React Navigation. The recommended pattern here is: navigate to the plant's tab, then use a local state flag on `TodayScreen` or `PlantsScreen` to auto-open the correct detail modal. This avoids the nested navigator anti-pattern.
+**Mapping tables:**
 
----
+```ts
+function sunHoursToLightLevel(h: number): LightLevel {
+  if (h >= 5) return 'direct';            // lavanda 6, petunia 6, cactus 6
+  if (h >= 3) return 'bright_indirect';   // ficus 4, monstera 3, jazmin 5
+  if (h >= 2) return 'medium_indirect';   // potus 2, sansevieria 2, calathea 2
+  return 'low';                           // helecho 1
+}
 
-### Scalability Considerations
+function applyColdFactor(warmDays: number, category?: PlantCategory): number {
+  const factor: Record<PlantCategory, number> = {
+    suculentas: 2.0,
+    interior:   1.5,
+    exterior:   1.7,
+    aromaticas: 1.5,
+    huerta:     1.3,
+    frutales:   1.5,
+  };
+  return Math.round(warmDays * (factor[category ?? 'interior'] ?? 1.5));
+}
+```
 
-| Concern | Current Scale | Implication |
-|---------|--------------|-------------|
-| diagnosisHistory size | A few diagnoses per plant | AsyncStorage handles easily; no pagination needed |
-| Notification limit | iOS: 64 scheduled max | Problem tracking adds at most 1 notification per active diagnosis. With typical 5-20 plants, this is safe |
-| Timeline rendering | < 50 diagnoses per plant lifetime | Flat list, no virtualization needed |
-| Photo storage | Local URIs only (no cloud in this milestone) | URIs become stale if app is reinstalled; acceptable for MVP. Cloud photo storage deferred to V1.1 auth milestone |
+**Guard rails:**
+- Idempotency: if `plant.waterSchedule` exists, return as-is
+- Validation: clamp `coldDays ∈ [1, 30]`
+- Logging: `if (__DEV__) console.log('[Migration] migrated', plants.length, 'plants from v0 to v1')`
 
----
+### Catalog Migration (No User Migration Needed)
 
-## Sources
+`PLANT_DATABASE` is static TS. Three reference paths:
+1. `plant.databaseId` → exact id match
+2. `plant.name` ↔ `db.name` fuzzy match
+3. `plant.typeId` ↔ `db.id` fallback
 
-- Direct codebase analysis: `src/types/index.ts`, `src/hooks/useStorage.tsx`, `src/hooks/usePlantDiagnosis.ts`, `src/utils/notificationScheduler.ts`, `src/components/PlantDiagnosis/PlantDiagnosisModal.tsx`, `src/components/DiagnosisFollowUp.tsx`, `src/config/premium.ts`, `src/config/features.ts`
-- Architecture documentation: `.planning/codebase/ARCHITECTURE.md`
-- Project scope: `.planning/PROJECT.md`
+**None break when adding fields to `PlantDBEntry`.** Catalog rebalance is purely additive. User plants either:
+- Were created from catalog → migrated via `migratePlant_0to1`
+- Lookup catalog at render time → automatically gets new fields
 
-*Analysis date: 2026-03-19*
+**Action:** every existing 60+ entry in `PLANT_DATABASE` gains `lightLevel`, `waterSchedule`, `waterMode`. Use same deterministic mapping as user migration so behavior matches.
+
+### Rollback / Failure Mode
+
+If migration throws:
+1. Catch in `loadData()` (currently swallows errors silently, line 200-202)
+2. **DON'T overwrite** AsyncStorage; surface error via non-blocking banner
+3. Log to analytics
+
+Prevents single bad plant from nuking save.
+
+## File Inventory
+
+### NEW Files
+
+| File | Purpose | LOC |
+|------|---------|-----|
+| `src/utils/seasonality.ts` | `getSeason(lat, date) → 'warm' \| 'cold'` | ~30 |
+| `src/utils/migration.ts` | `runMigrations`, `migratePlant_0to1`, mapping helpers | ~120 |
+
+### MODIFIED Files
+
+| File | Change | Risk |
+|------|--------|------|
+| `src/types/index.ts` | Add `LightLevel`, `WaterMode`, `WaterSchedule`, `PersistedAppData`; add fields to `Plant`/`PlantDBEntry`; mark `waterEvery`/`sunHours` `@deprecated` optional | Low (additive) |
+| `src/hooks/useStorage.tsx` | Detect legacy envelope on load (lines 144-207), call `runMigrations`, persist with new envelope on save | **High** — entire app loads through this |
+| `src/hooks/useSeason.ts` | Add `useWarmCold(location)` exported helper | Low |
+| `src/utils/plantLogic.ts` | `getNextWaterDate(plant, today, season)`, `getTasksForDay(plants, day, season)`, handle `waterMode === 'soil_check'` | Medium — many callers |
+| `src/utils/plantHealth.ts` | Accept `season` param; replace `plant.waterEvery` lookup with seasonal. Suppress overdue penalty for soil_check | High — central UX |
+| `src/utils/plantInfo.ts` | `isSensitiveToSun` (line 70) uses `plant.sunHours <= 3` → switch to `lightLevel`. Add `getEffectiveWaterEvery(plant, season)` | Medium |
+| `src/utils/notificationScheduler.ts` | Reads `waterEvery` → seasonal lookup; computes season via `getSeason(location.lat, new Date())` | Medium |
+| `src/components/AddPlantModal.tsx` | Replace `sunHours` text input with `lightLevel` picker (4 buttons); `waterEvery` → conditional warm/cold inputs | Medium — UX |
+| `src/components/MyPlantDetailModal.tsx` | Display `lightLevel` (translated) instead of `${sunHours}h sol`; show effective interval with season badge ("Cada 5 días — temporada cálida") | Medium |
+| `src/components/PlantCard.tsx`, `PlantDetailModal.tsx`, `PlantDatabaseCard.tsx`, `PlantHealthDetail.tsx` | Render `lightLevel` instead of `sunHours` | Low |
+| `src/components/DayDetail.tsx`, `MonthCalendar` | Pass `season` through to `getTasksForDay` | Low |
+| `src/components/PlantIdentifier/IdentificationResults.tsx`, `usePlantIdentification.ts`, `plantIdentification.ts` | `IdentifiedPlant` type emits `waterDays`/`sunHours` → extend to emit `lightLevel`/`waterSchedule`. Edge function `identify-plant` may need update | Medium — touches edge function |
+| `src/components/PlantDiagnosis/PlantDiagnosisModal.tsx`, `plantDiagnosis.ts` | `PlantDiagnosisContext` has `waterEvery: number; sunHours: number` → migrate. `chat-diagnosis` and `diagnose-plant` edge functions update payload | Medium — server contract |
+| `src/screens/OnboardingScreen.tsx` | Plant creation emits new shape. **Also: location prompt + non-blocking banner** | High — error-prone surface |
+| `src/data/plantDatabase.ts` | Every entry gains new fields. Add 10-15 outdoor plants | Medium — data volume |
+| `src/data/constants.ts` | `PLANT_TYPES` (lines 21-44) declare `waterDays`/`sunHours` per type — add new fields | Low |
+| `src/services/plantKnowledgeService.ts` | If returns `waterDays`/`sunHours`, must emit new fields | Medium |
+| `src/components/PlantDiagnosis/DiagnosisDetailModal.tsx` | Line 248: remove `isPremium &&` from Continue chat button | **Low — fully isolated** |
+| `src/i18n/locales/{en,es}/{common,plants}.json` | New keys: `lightLevel.{direct,bright_indirect,medium_indirect,low}`, `waterMode.soil_check`, `season.{warm,cold}`, location-missing banner copy | Low (mechanical) |
+
+### NOT to touch
+
+- `src/services/syncService.ts` deeper changes — `Features.CLOUD_SYNC` is false; defer
+- `src/services/authService.ts`, `useAuth.ts`, `LoginScreen.tsx` — V1.1 auth flag stays off
+
+## Build Order (Phase Decomposition)
+
+### Phase A — Schema + Migration Foundation (must ship first)
+
+**Goal:** App loads, migrates user data, stores new shape, UI behavior unchanged.
+
+1. Add new types in `src/types/index.ts` (additive)
+2. Create `src/utils/migration.ts` with `runMigrations`, `migratePlant_0to1`, mapping helpers
+3. Modify `src/hooks/useStorage.tsx` load path to detect envelope, run migrations, persist envelope on save
+4. Update `PLANT_DATABASE` (all 60+ entries) with new fields using same mapping
+
+**Acceptance:** App boots, AsyncStorage now contains envelope-wrapped data with new fields populated. Health/tasks still work because legacy fields still exist.
+
+### Phase B — Helpers + Pure-utility Switch-over
+
+**Goal:** `plantLogic`/`plantHealth` consume new fields; legacy fields no longer read.
+
+5. Create `src/utils/seasonality.ts`
+6. Add `useWarmCold` to `src/hooks/useSeason.ts`
+7. Modify `plantLogic.ts`: new `season` param. `soil_check` plants → different task type
+8. Modify `plantHealth.ts`: new `season` param. Suppress overdue for `soil_check`
+9. Modify `plantInfo.ts` sensitivity logic
+10. Modify `notificationScheduler.ts`
+
+### Phase C — UI Propagation (Read Side)
+
+11. Every display component shows new model
+12. New i18n keys
+
+### Phase D — UI Propagation (Write Side)
+
+13. `AddPlantModal` form rewrite
+14. `OnboardingScreen` — location prompt + banner
+15. `PlantIdentifier` flow + edge function
+16. `PlantDiagnosisContext` updated
+
+### Phase E — Catalog Rebalance
+
+17. Add 10-15 outdoor entries
+18. Audit existing entries for category-appropriate `lightLevel`
+19. New i18n keys for new plants
+
+### Phase F — Diagnosis Chat Continuity
+
+20. `DiagnosisDetailModal.tsx:248` — remove `isPremium &&` gate
+21. Verify continuation flow end-to-end
+22. Surface paywall on tap for free users at message limit
+
+**Why this order:**
+- A before everything: anything else without migration corrupts user data
+- B before C/D: UI consumes new fields, utilities must be ready
+- C before D: read-side lower risk, shake out display bugs first
+- D before E: new catalog uses same emit shape as new-plant flows
+- F last: zero coupling to schema work; can be hotfix patch
+
+## Patterns to Follow
+
+1. **Pass derived season as argument to pure utilities** — never import hooks into utils
+2. **Versioned envelope, ordered migrations**
+3. **Deterministic mapping functions reused across migrations and catalog** — guarantees user plants and catalog reference start aligned
+4. **Premium gate on tap, not on render** — show CTAs to all users, paywall on action
+
+## Anti-Patterns
+
+1. **Lazy per-plant migration on read** — pollutes consumers, prevents dropping legacy fields
+2. **Reading `useStorage` from inside `plantHealth.ts`** — breaks testability + notification scheduler
+3. **Hard-cut legacy fields this release** — zero safety net if migration ships with bug
+4. **Migrating PLANT_DATABASE with different mapping than user plants** — UX inconsistency
+5. **Forgetting i18n on new strings** — project rule: never hardcode user-facing strings; Spanish uses vos
+
+## Open Questions for Planners
+
+1. **`waterMode === 'soil_check'` task UX.** What does Hoy show? Options: (a) `'water_check'` task type with own icon, (b) passive tip, (c) nothing. Current `Task` type only has `'water' | 'sun' | 'outdoor'`. Decide before Phase B.
+2. **Edge function compatibility window.** When edge functions accept `lightLevel`/`waterSchedule`, in-flight chats from older app versions send legacy fields. Either accept both shapes server-side for one release, or version the edge function.
+3. **Migration analytics.** Recommend yes — `migration_v0_v1` event with `plantCount`.
+4. **iOS submit timing.** Onboarding location prompt is **not** new collection — already declared. No manifest update needed.
+5. **`PlantType` constants** in `constants.ts` — extend the 8 hardcoded plant types or deprecate in favor of catalog. For this milestone just extend.
+
+## Confidence Summary
+
+| Area | Confidence | Reason |
+|------|------------|--------|
+| Data flow design | HIGH | Existing patterns make recommendation idiomatic |
+| Migration strategy | HIGH | AsyncStorage shape and load path inspected directly |
+| File-by-file impact | HIGH | Grep across all `.ts/.tsx` confirmed every reference |
+| Build order | HIGH | Driven by dependency analysis |
+| Cold-factor table values | MEDIUM | Reasonable defaults; horticultural review recommended |
+| `lightLevel` mapping thresholds | MEDIUM | Some entries (orquídea, calathea) may need hand-correction |
+| Edge function impact | MEDIUM | Inferred from types; edge function implementations not read |
+| Diagnosis chat fix scope | HIGH | Single-line change; isolation confirmed |
