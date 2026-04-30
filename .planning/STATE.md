@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: "Completed 04-05-PLAN.md (Wave 3 catalog mechanical mapping; PlantDBEntry extended with lightLevel/waterSchedule/waterMode; codemod scripts/migrate-catalog.mjs idempotent on 50/50 entries; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0)"
-last_updated: "2026-04-30T21:58:57.811Z"
-last_activity: "2026-04-30 — Plan 04-05 complete (Wave 3 catalog mechanical mapping; PlantDBEntry gains optional v1.1 fields, waterDays/sunHours marked @deprecated; scripts/migrate-catalog.mjs codemod compiles migration.ts on-the-fly and brace-walks plantDatabase.ts to inject lightLevel/waterSchedule/waterMode using the SAME mappers as user-data migration; 50/50 entries mapped; idempotent; plantIdentification.convertPlantNetResult bridges optional→required IdentifiedPlant fields with safe defaults; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
+stopped_at: "Completed 04-06-PLAN.md (Wave 3 UX surfaces — MigrationBanner non-modal failure banner + per-plant MigrationTooltip with separate AsyncStorage seen-state key, integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo verified scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
+last_updated: "2026-04-30T22:06:08.381Z"
+last_activity: "2026-04-30 — Plan 04-06 complete (Wave 3 UX surfaces: MigrationBanner non-modal failure banner + MigrationTooltip per-plant first-open overlay with separate AsyncStorage seen-state key 'migration-tooltip-seen-v1.1'; integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 7
-  completed_plans: 5
-  percent: 71
+  completed_plans: 6
+  percent: 86
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1+2 complete (Plans 01-04) + Plan 05 catalog side. Plans 06 (UX banner/tooltip/i18n) and 07 (reschedule trigger) remain — both UNBLOCKED and parallel-safe.
+**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1+2+3 complete (Plans 01-06). Plan 07 (Wave 4: App.tsx wiring + reschedule trigger) is the only remaining plan in Phase 4 — UNBLOCKED, ready to ship.
 
 ## Current Position
 
 Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: 05 of 7 (Wave 3: catalog mechanical mapping via codemod) — COMPLETE
-Status: In progress (5/7 plans complete in Phase 4; Wave 3 catalog side done; Plans 06+07 still open)
-Last activity: 2026-04-30 — Plan 04-05 complete (catalog codemod + PlantDBEntry v1.1 fields; scripts/migrate-catalog.mjs idempotent on 50/50 entries using canonical Plan 02 mappers; tsc + check:legacy-fields + smoke:migration 63/63 all green)
+Plan: 06 of 7 (Wave 3: UX surfaces — MigrationBanner + MigrationTooltip + i18n voseo) — COMPLETE
+Status: In progress (6/7 plans complete in Phase 4; Wave 3 fully done; Plan 07 unblocked)
+Last activity: 2026-04-30 — Plan 04-06 complete (Wave 3 UX surfaces: non-modal MigrationBanner using warningBg palette + per-plant MigrationTooltip overlay with AsyncStorage 'migration-tooltip-seen-v1.1' seen-state key; integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)
 
-Progress: [███████░░░] 71% (v1.1 milestone, 5/7 phase 4 plans)
+Progress: [█████████░] 86% (v1.1 milestone, 6/7 phase 4 plans)
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [███████░░░] 71% (v1.1 milestone, 5/7 phase 4 plan
 | Phase 04 / Plan 03 (Wave 2 storage envelope) | ~17 min | 2 | 1 |
 | Phase 04 / Plan 04 (Wave 2 notificationScheduler + plantInfo lightLevel) | ~28 min | 2 (+1 deviation cleanup) | 6 |
 | Phase 04 / Plan 05 (Wave 3 catalog codemod) | ~9 min | 2 (+1 blocking-bridge cleanup) | 4 |
+| Phase 04 / Plan 06 (Wave 3 UX banner + tooltip + i18n) | ~9 min | 3 | 6 |
 
 *Updated after each plan completion*
 
@@ -93,6 +94,9 @@ Recent decisions affecting current work:
 - [Phase 04]: [Plan 05]: Brace-depth-aware line walker (per-character string/comment state tracking + reverse-iteration injection) chosen over flat regex for catalog mass-edit. Pattern reusable for Phase 8 catalog rebalance.
 - [Phase 04]: [Plan 05]: Catalog actually has 50 entries (not the 56 the planner expected). Stale count from a pre-Phase-4 commit titled "expand plant catalog to 49"; threshold satisfied in spirit (every entry mapped, no skips).
 - [Phase 04]: [Plan 05]: Safe-default fallback (??) chosen over @ts-expect-error in plantIdentification.convertPlantNetResult because the bridge is a real value coercion (PlantDBEntry → IdentifiedPlant required-field gap), not a type assertion. @ts-expect-error would itself become unused and error.
+- [Phase 04-schema-foundation-migration-core]: [Plan 06]: Migration tooltip placed sibling-to-ScrollView (inside container View, not overlay) so absolute backdrop overlays only the modal card content, not the dimmed full-screen backdrop. W3 line guard satisfied (tip > </ScrollView> AND < </Modal>).
+- [Phase 04-schema-foundation-migration-core]: [Plan 06]: Tooltip seen-state in separate AsyncStorage key 'migration-tooltip-seen-v1.1' (Record<plantId, true>) — keeps domain model clean; v1.2 cleanup is a single removeItem paired with cleanupBackup_v1_1().
+- [Phase 04-schema-foundation-migration-core]: [Plan 06]: ES voseo verification scoped via JSON.parse(.migration) subtree, NOT file-wide grep — prevents false positives from voseo verbs elsewhere in es/common.json (W5 contract).
 
 ### Pending Todos
 
@@ -108,6 +112,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:58:57.811Z
-Stopped at: Completed 04-05-PLAN.md (Wave 3 catalog mechanical mapping; scripts/migrate-catalog.mjs codemod + 50/50 PLANT_DATABASE entries gain v1.1 fields; PlantDBEntry deprecates legacy fields; tsc green, smoke 63/63 PASS, check:legacy-fields exit 0; idempotency verified)
+Last session: 2026-04-30T22:05:57.730Z
+Stopped at: Completed 04-06-PLAN.md (Wave 3 UX surfaces — MigrationBanner non-modal failure banner + per-plant MigrationTooltip with separate AsyncStorage seen-state key, integrated at W3 JSX position in MyPlantDetailModal; EN+ES i18n with voseo verified scoped to migration subtree; tsc + check:legacy-fields + smoke:migration 63/63 all green)
 Resume file: None

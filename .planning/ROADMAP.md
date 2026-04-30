@@ -45,9 +45,9 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 - [x] 04-01-PLAN.md — Wave 0: Test infrastructure (CI grep guard, smoke runner, fixture, SMOKE-TEST.md) — completed 2026-04-30
 - [x] 04-02-PLAN.md — Wave 1: Type system + pure mappers (LightLevel/WaterMode/WaterSchedule + migration.ts) — completed 2026-04-30
 - [x] 04-03-PLAN.md — Wave 2: Storage envelope + migration call in useStorage — completed 2026-04-30
-- [ ] 04-04-PLAN.md — Wave 2: Notification scheduler refactor to consume lightLevel
-- [ ] 04-05-PLAN.md — Wave 3: Catalog mechanical update via codemod
-- [ ] 04-06-PLAN.md — Wave 3: MigrationBanner + per-plant MigrationTooltip + i18n
+- [x] 04-04-PLAN.md — Wave 2: Notification scheduler refactor to consume lightLevel — completed 2026-04-30
+- [x] 04-05-PLAN.md — Wave 3: Catalog mechanical update via codemod — completed 2026-04-30
+- [x] 04-06-PLAN.md — Wave 3: MigrationBanner + per-plant MigrationTooltip + i18n — completed 2026-04-30
 - [ ] 04-07-PLAN.md — Wave 4: App-level reschedule trigger + banner integration
 
 ### Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover
@@ -119,7 +119,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 1. Camera in Chat | v1.0 | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 4. Schema Foundation + Migration Core | v1.1 | 5/7 | In Progress | - |
+| 4. Schema Foundation + Migration Core | v1.1 | 6/7 | In Progress | - |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 0/TBD | Not started | - |
 | 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
