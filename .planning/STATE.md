@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: planning
-stopped_at: Phase 4 context gathered
-last_updated: "2026-04-30T03:24:48.327Z"
-last_activity: 2026-04-29 — Roadmap created for v1.1 Precision Care (Phases 4-9)
+status: executing
+stopped_at: Completed 04-01-PLAN.md (Wave 0 test infrastructure)
+last_updated: "2026-04-30T16:21:24.345Z"
+last_activity: 2026-04-30 — Phase 4 Plan 01 complete (Wave 0 test infrastructure)
 progress:
   total_phases: 6
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_plans: 7
+  completed_plans: 1
+  percent: 14
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, defining phase context
+**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Wave 0 complete (test infrastructure landed); Wave 1 (type system + pure mappers) is the next plan
 
 ## Current Position
 
 Phase: 4 of 9 (Schema Foundation + Migration Core)
-Plan: — (phase not yet planned)
-Status: Ready to plan
-Last activity: 2026-04-29 — Roadmap created for v1.1 Precision Care (Phases 4-9)
+Plan: 01 of 7 (Wave 0: Test Infrastructure) — COMPLETE
+Status: In progress (1/7 plans complete in Phase 4)
+Last activity: 2026-04-30 — Plan 04-01 complete (CI grep guard, smoke runner, fixture, SMOKE-TEST.md)
 
-Progress: [░░░░░░░░░░] 0% (v1.1 milestone)
+Progress: [█░░░░░░░░░] 14% (v1.1 milestone, 1/7 phase 4 plans)
 
 ## Performance Metrics
 
@@ -49,7 +49,13 @@ Progress: [░░░░░░░░░░] 0% (v1.1 milestone)
 
 **Recent Trend:**
 - v1.0 shipped 2026-03-19 across 7 plans
-- v1.1 not yet started
+- v1.1 in progress: Phase 4 Plan 01 complete (Wave 0 test infrastructure, ~5 min)
+
+**v1.1 Plan Metrics:**
+
+| Phase / Plan | Duration | Tasks | Files |
+|--------------|----------|-------|-------|
+| Phase 04 / Plan 01 (Wave 0 test infra) | 5 min | 3 | 5 |
 
 *Updated after each plan completion*
 
@@ -66,6 +72,8 @@ Recent decisions affecting current work:
 - Soil-check plants get a new `'check_soil'` task type, no health-score penalty for overdue watering, low-frequency check-in notification (CRIT-5)
 - Paywall lifts to App-level context (mirrors NotificationContext pattern); deferred callback after purchase, no modal stacking (CRIT-4 + PAY-01..03)
 - Diagnosis resume is text-only by design; explicit copy + system-message context summary; message-count limit per diagnosis lifetime, not per session (MOD-4 + MOD-5 + DIAG-04..06)
+- [Phase 04-schema-foundation-migration-core]: Wave 0 ALLOWLIST extended from planner's 24 entries to 27 to keep grep guard exit 0 today (3 transitional readers found in baseline scan); v1.2 target remains 0 entries
+- [Phase 04-schema-foundation-migration-core]: Migration smoke runner uses single locked compile path (typescript.transpileModule) with no fallback by policy — fallbacks hide real source-level problems
 
 ### Pending Todos
 
@@ -81,6 +89,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T03:24:48.325Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-schema-foundation-migration-core/04-CONTEXT.md
+Last session: 2026-04-30T16:21:24.344Z
+Stopped at: Completed 04-01-PLAN.md (Wave 0 test infrastructure)
+Resume file: .planning/phases/04-schema-foundation-migration-core/04-02-PLAN.md (Wave 1: Type system + pure mappers)

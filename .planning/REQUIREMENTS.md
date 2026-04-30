@@ -15,7 +15,7 @@
 - [ ] **SCHEMA-05**: Migration emits analytics events (`migration_started`, `migration_completed`, `migration_failed`) with plant count and duration
 - [ ] **SCHEMA-06**: Migration cancels and reschedules all OS-level notifications so they fire against the new schema, not the old one
 - [ ] **SCHEMA-07**: If migration throws, the app surfaces a non-blocking banner ("Tu jardín está cargando con datos antiguos") and does NOT overwrite AsyncStorage — original data preserved
-- [ ] **SCHEMA-08**: Legacy fields `sunHours` and `waterEvery` remain on `Plant` type as `@deprecated` optional for v1.1 only; CI grep guard rejects new code that reads them
+- [x] **SCHEMA-08**: Legacy fields `sunHours` and `waterEvery` remain on `Plant` type as `@deprecated` optional for v1.1 only; CI grep guard rejects new code that reads them
 - [ ] **SCHEMA-09**: Storage payload uses versioned envelope `{ schemaVersion, data }`; storage key remains `'plant-agenda-v2'`
 
 ### Light Model (LIGHT)
@@ -134,7 +134,7 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | SCHEMA-05 | Phase 4 | Pending |
 | SCHEMA-06 | Phase 4 | Pending |
 | SCHEMA-07 | Phase 4 | Pending |
-| SCHEMA-08 | Phase 4 | Pending |
+| SCHEMA-08 | Phase 4 | Complete |
 | SCHEMA-09 | Phase 4 | Pending |
 | LIGHT-01 | Phase 7 | Pending |
 | LIGHT-02 | Phase 7 | Pending |

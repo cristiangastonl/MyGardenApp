@@ -42,7 +42,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   4. After migration, no scheduled OS notification fires with stale "Xh sol" copy or pre-migration intervals — every reminder reflects the new schema.
   5. Migration completes inside the existing `loadData` window on a low-end Android device with 50 plants — no extra splash, no white screen, no perceptible launch lag.
 **Plans**: 7 plans
-- [ ] 04-01-PLAN.md — Wave 0: Test infrastructure (CI grep guard, smoke runner, fixture, SMOKE-TEST.md)
+- [x] 04-01-PLAN.md — Wave 0: Test infrastructure (CI grep guard, smoke runner, fixture, SMOKE-TEST.md) — completed 2026-04-30
 - [ ] 04-02-PLAN.md — Wave 1: Type system + pure mappers (LightLevel/WaterMode/WaterSchedule + migration.ts)
 - [ ] 04-03-PLAN.md — Wave 2: Storage envelope + migration call in useStorage
 - [ ] 04-04-PLAN.md — Wave 2: Notification scheduler refactor to consume lightLevel
@@ -119,7 +119,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 1. Camera in Chat | v1.0 | 1/1 | Complete | 2026-03-19 |
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 4. Schema Foundation + Migration Core | v1.1 | 0/7 | Planned | - |
+| 4. Schema Foundation + Migration Core | v1.1 | 1/7 | In Progress | - |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 0/TBD | Not started | - |
 | 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
