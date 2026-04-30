@@ -123,17 +123,72 @@ Explicitly excluded.
 
 ## Traceability
 
-Updated during roadmap creation.
+Populated during roadmap creation. Every v1.1 requirement maps to exactly one phase.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be populated by roadmapper) | | |
+| SCHEMA-01 | Phase 4 | Pending |
+| SCHEMA-02 | Phase 4 | Pending |
+| SCHEMA-03 | Phase 4 | Pending |
+| SCHEMA-04 | Phase 4 | Pending |
+| SCHEMA-05 | Phase 4 | Pending |
+| SCHEMA-06 | Phase 4 | Pending |
+| SCHEMA-07 | Phase 4 | Pending |
+| SCHEMA-08 | Phase 4 | Pending |
+| SCHEMA-09 | Phase 4 | Pending |
+| LIGHT-01 | Phase 7 | Pending |
+| LIGHT-02 | Phase 7 | Pending |
+| LIGHT-03 | Phase 4 | Pending |
+| LIGHT-04 | Phase 8 | Pending |
+| LIGHT-05 | Phase 7 | Pending |
+| LIGHT-06 | Phase 6 | Pending |
+| LIGHT-07 | Phase 6 | Pending |
+| WATER-01 | Phase 7 | Pending |
+| WATER-02 | Phase 7 | Pending |
+| WATER-03 | Phase 7 | Pending |
+| WATER-04 | Phase 4 | Pending |
+| WATER-05 | Phase 5 | Pending |
+| WATER-06 | Phase 5 | Pending |
+| WATER-07 | Phase 8 | Pending |
+| SEASON-01 | Phase 5 | Pending |
+| SEASON-02 | Phase 5 | Pending |
+| SEASON-03 | Phase 5 | Pending |
+| SEASON-04 | Phase 5 | Pending |
+| SEASON-05 | Phase 6 | Pending |
+| LOC-01 | Phase 7 | Pending |
+| LOC-02 | Phase 7 | Pending |
+| LOC-03 | Phase 7 | Pending |
+| LOC-04 | Phase 7 | Pending |
+| LOC-05 | Phase 7 | Pending |
+| LOC-06 | Phase 7 | Pending |
+| DIAG-01 | Phase 9 | Pending |
+| DIAG-02 | Phase 9 | Pending |
+| DIAG-03 | Phase 9 | Pending |
+| DIAG-04 | Phase 9 | Pending |
+| DIAG-05 | Phase 9 | Pending |
+| DIAG-06 | Phase 9 | Pending |
+| DIAG-07 | Phase 9 | Pending |
+| PAY-01 | Phase 9 | Pending |
+| PAY-02 | Phase 9 | Pending |
+| PAY-03 | Phase 9 | Pending |
+| CAT-01 | Phase 8 | Pending |
+| CAT-02 | Phase 8 | Pending |
+| CAT-03 | Phase 8 | Pending |
+| CAT-04 | Phase 8 | Pending |
+| CAT-05 | Phase 8 | Pending |
+| CAT-06 | Phase 8 | Pending |
+| CAT-07 | Phase 8 | Pending |
+| CAT-08 | Phase 8 | Pending |
+| UX-01 | Phase 4 | Pending |
+| UX-02 | Phase 6 | Pending |
+| UX-03 | Phase 6 | Pending |
 
 **Coverage:**
-- v1.1 requirements: 47 total
-- Mapped to phases: TBD by roadmapper
-- Unmapped: TBD
+- v1.1 requirements: 55 total (9 SCHEMA + 7 LIGHT + 7 WATER + 5 SEASON + 6 LOC + 7 DIAG + 3 PAY + 8 CAT + 3 UX)
+- Mapped to phases: 55/55 (100%)
+- Unmapped: 0
+- Phase distribution: P4=12, P5=6, P6=5, P7=12, P8=10, P9=10
 
 ---
 *Requirements defined: 2026-04-29*
-*Last updated: 2026-04-29 after research synthesis*
+*Last updated: 2026-04-29 — traceability populated by roadmapper*
