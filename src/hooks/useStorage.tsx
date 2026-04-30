@@ -20,6 +20,8 @@ interface StorageState {
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
   shoppingList: ShoppingItem[];
   loading: boolean;
+  migrationFailed: boolean;       // SCHEMA-07: drives MigrationBanner render (Plan 06)
+  migrationJustHappened: boolean; // SCHEMA-06: drives App-level reschedule trigger (Plan 07)
 }
 
 interface StorageActions {
@@ -56,6 +58,7 @@ interface StorageActions {
   removeShoppingItem: (itemId: string) => void;
   toggleShoppingItem: (itemId: string) => void;
   clearCheckedShoppingItems: () => void;
+  acknowledgeMigrationReschedule: () => void; // App.tsx (Plan 07) calls this once it has rescheduled notifications
 }
 
 type StorageContextType = StorageState & StorageActions;
@@ -66,8 +69,8 @@ interface StorageProviderProps {
   children: ReactNode;
 }
 
-// Helper to get AppData snapshot from the ref (excludes `loading`)
-function snapshotFromRef(ref: React.MutableRefObject<Omit<StorageState, 'loading'>>): AppData {
+// Helper to get AppData snapshot from the ref (excludes runtime-only state fields)
+function snapshotFromRef(ref: React.MutableRefObject<Omit<StorageState, 'loading' | 'migrationFailed' | 'migrationJustHappened'>>): AppData {
   const d = ref.current;
   return {
     plants: d.plants,
@@ -103,9 +106,11 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const [diagnosisHistory, setDiagnosisHistory] = useState<Record<string, SavedDiagnosis[]>>({});
   const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [migrationFailed, setMigrationFailed] = useState(false);
+  const [migrationJustHappened, setMigrationJustHappened] = useState(false);
 
   // Ref that always holds the latest data — updated synchronously on every mutation
-  const dataRef = useRef<Omit<StorageState, 'loading'>>({
+  const dataRef = useRef<Omit<StorageState, 'loading' | 'migrationFailed' | 'migrationJustHappened'>>({
     plants: [],
     notes: {},
     reminders: {},
@@ -550,6 +555,10 @@ export function StorageProvider({ children }: StorageProviderProps) {
     scheduleSave();
   }, [scheduleSave]);
 
+  const acknowledgeMigrationReschedule = useCallback(() => {
+    setMigrationJustHappened(false);
+  }, []);
+
   const value: StorageContextType = useMemo(() => ({
     plants,
     notes,
@@ -565,6 +574,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisHistory,
     shoppingList,
     loading,
+    migrationFailed,
+    migrationJustHappened,
     setPlants: handleSetPlants,
     addPlant,
     addPlants,
@@ -598,10 +609,13 @@ export function StorageProvider({ children }: StorageProviderProps) {
     removeShoppingItem,
     toggleShoppingItem,
     clearCheckedShoppingItems,
+    acknowledgeMigrationReschedule,
   }), [
     plants, notes, reminders, location, onboardingCompleted, userName,
     notificationSettings, plantNetApiKey, installDate, identificationCount,
-    diagnosisCount, diagnosisHistory, shoppingList, loading, handleSetPlants, addPlant,
+    diagnosisCount, diagnosisHistory, shoppingList, loading,
+    migrationFailed, migrationJustHappened,
+    handleSetPlants, addPlant,
     addPlants, deletePlant, updatePlant, addNote, deleteNote, addReminder,
     deleteReminder, updateReminder, updateLocation, completeOnboarding,
     completeOnboardingWithData, setUserName, updateNotificationSettings,
@@ -610,6 +624,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     getDiagnosesForPlant, resolveDiagnosis, getActiveDiagnosesForPlant,
     trackProblem, resolveTrackedProblem, reopenTrackedProblem, addFollowUpEntry,
     addShoppingItem, removeShoppingItem, toggleShoppingItem, clearCheckedShoppingItems,
+    acknowledgeMigrationReschedule,
   ]);
 
   return (
