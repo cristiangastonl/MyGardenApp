@@ -530,6 +530,7 @@ function calculateSunWindow(
   const start = new Date(sunrise.getTime() + SUNRISE_OFFSET_MINUTES * 60 * 1000);
 
   // End after plant gets its required sun hours
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   const sunHoursMs = plant.sunHours * 60 * 60 * 1000;
   let end = new Date(start.getTime() + sunHoursMs);
 
@@ -550,6 +551,7 @@ function groupPlantsBySunHours(plants: Plant[]): Map<number, Plant[]> {
 
   plants.forEach((plant) => {
     // Round to nearest hour for grouping
+    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
     const hours = Math.round(plant.sunHours);
     const group = groups.get(hours) || [];
     group.push(plant);
@@ -729,7 +731,9 @@ export async function scheduleUVWarning(
   if (sunPlants.length === 0) return null;
 
   // Find plants that need few sun hours (more sensitive)
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   const sensitivePlants = sunPlants.filter(p => p.sunHours <= 3);
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   const hardyPlants = sunPlants.filter(p => p.sunHours > 3);
 
   try {

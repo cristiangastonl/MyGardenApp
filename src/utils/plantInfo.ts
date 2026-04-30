@@ -66,6 +66,7 @@ export function getPlantFullInfo(plant: Plant): PlantFullInfo {
   const humidity = plant.humidity ?? dbEntry?.humidity ?? DEFAULTS.humidity;
 
   // Calculate sensitivities
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   const isSensitiveToSun = plant.sunHours <= 3; // Needs little sun
   const isSensitiveToHeat = tempMax <= 28;
   const isSensitiveToCold = tempMin >= 10;

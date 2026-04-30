@@ -212,6 +212,7 @@ export function PlantHealthDetail({
                 <Text style={styles.tipItem}>
                   {t('health.waterEvery', { days: plant.waterEvery })}
                 </Text>
+                {/* @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04 */}
                 {plant.sunHours > 0 && (
                   <Text style={styles.tipItem}>
                     {t('health.needsSunHours', { hours: plant.sunHours })}

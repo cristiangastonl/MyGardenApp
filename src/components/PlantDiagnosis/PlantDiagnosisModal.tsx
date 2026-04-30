@@ -67,7 +67,9 @@ export function PlantDiagnosisModal({
 
   const plantContext: PlantDiagnosisContext = {
     species: plant.typeName,
+    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
     waterEvery: plant.waterEvery,
+    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
     sunHours: plant.sunHours,
     lastWatered: plant.lastWatered,
     outdoorDays: plant.outdoorDays,

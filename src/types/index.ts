@@ -14,6 +14,27 @@ export interface PlantPhoto {
   note?: string;
 }
 
+/**
+ * Light level taxonomy (v1.1). Replaces the numeric `sunHours` field.
+ * Mapping: see src/utils/migration.ts > sunHoursToLightLevel.
+ */
+export type LightLevel = 'direct' | 'bright_indirect' | 'medium_indirect' | 'low';
+
+/**
+ * Watering mode (v1.1). `soil_check` plants generate a 'check_soil' task instead of 'water'
+ * and do not incur health-score penalties for "overdue" watering (Phase 5).
+ */
+export type WaterMode = 'fixed' | 'soil_check';
+
+/**
+ * Per-plant warm/cold watering schedule (v1.1). Replaces the single `waterEvery` field.
+ * Cold interval is typically warm × per-category factor (see applyColdFactor in migration.ts).
+ */
+export interface WaterSchedule {
+  warm: number; // days between waterings during warm season
+  cold: number; // days between waterings during cold season
+}
+
 export interface Plant {
   id: string;
   name: string;
@@ -22,8 +43,12 @@ export interface Plant {
   icon: string;
   imageUrl?: string; // URL de foto real de la planta
   databaseId?: string; // Link to PLANT_DATABASE entry for detailed info
-  waterEvery: number;
-  sunHours: number;
+
+  /** @deprecated Removed in v1.2. Use `waterSchedule.warm` (and `.cold`) instead. */
+  waterEvery?: number;
+  /** @deprecated Removed in v1.2. Use `lightLevel` instead. */
+  sunHours?: number;
+
   sunDays: number[];
   outdoorDays: number[];
   lastWatered: string | null;
@@ -35,6 +60,16 @@ export interface Plant {
   tempMax?: number;
   humidity?: HumidityLevel;
   favorite?: boolean;
+
+  // ─── v1.1 Precision Care fields (Phase 4) ───
+  /** Light level (v1.1). Replaces sunHours. */
+  lightLevel?: LightLevel;
+  /** Warm/cold watering schedule (v1.1). Replaces waterEvery. */
+  waterSchedule?: WaterSchedule;
+  /** Watering mode (v1.1). soil_check plants are not penalized for overdue water. */
+  waterMode?: WaterMode;
+  /** Internal: set by migration to flag plants that existed pre-v1.1; powers per-plant tooltip eligibility. Removed in v1.2. */
+  _migratedFromV0?: true;
 }
 
 export interface Note {
@@ -89,6 +124,15 @@ export interface AppData {
   diagnosisCount: number;
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
   shoppingList: ShoppingItem[];
+}
+
+/**
+ * Versioned envelope for AsyncStorage persistence (v1.1+).
+ * v0 (pre-v1.1) wrote the unwrapped `AppData` directly.
+ */
+export interface PersistedAppData {
+  schemaVersion: number;
+  data: AppData;
 }
 
 // Plant Database Types

@@ -2,10 +2,13 @@ import { Plant, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
 
 export function getNextWaterDate(plant: Plant, today: Date): Date {
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   if (plant.waterEvery <= 0) return today;
   if (!plant.lastWatered) return today;
   const last = parseDate(plant.lastWatered);
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   let next = addDays(last, plant.waterEvery);
+  // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
   while (next < today) next = addDays(next, plant.waterEvery);
   return next;
 }

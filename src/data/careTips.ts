@@ -858,6 +858,7 @@ export const CARE_TIPS: CareTip[] = [
   {
     id: 'pest-root-rot',
     category: 'pest',
+    // @ts-expect-error: legacy field made optional in v1.1; consumer migration in plan 04-04
     condition: (ctx) => ctx.plants.some((p) => p.waterEvery <= 3),
     icon: '🤒',
     title: 'Podredumbre de raiz',
