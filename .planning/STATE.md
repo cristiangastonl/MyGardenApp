@@ -1,36 +1,36 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: milestone_complete
-stopped_at: v1.0 Diagnosis & Tracking shipped
-last_updated: "2026-03-19T16:40:06.401Z"
-last_activity: "2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields"
+milestone: v1.1
+milestone_name: Precision Care
+status: defining_requirements
+stopped_at: null
+last_updated: "2026-04-29T00:00:00.000Z"
+last_activity: "2026-04-29 — Milestone v1.1 Precision Care started"
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
-  percent: 20
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-19)
+See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** Phase 2 — Problem Tracking Core
+**Current focus:** v1.1 Precision Care — defining requirements
 
 ## Current Position
 
-Phase: 2 of 3 (Problem Tracking Core)
-Plan: 1 of 3 in current phase
-Status: In progress
-Last activity: 2026-03-19 — Completed plan 02-01: TrackingStatus types, problemTrackingService, i18n keys, edge function severity fields
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-04-29 — Milestone v1.1 Precision Care started
 
-Progress: [██░░░░░░░░] 20%
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 

@@ -39,7 +39,16 @@ Users can diagnose their plants' problems through photos and AI, and the app pro
 
 <!-- Current scope. Building toward these. -->
 
-(None yet — start next milestone to define)
+## Current Milestone: v1.1 Precision Care
+
+**Goal:** Replace fixed-value plant care model with precision-aware schedules tied to user location, light quality, and seasonal context — and surface diagnosis chat continuity so users can resume conversations instead of staring at frozen summaries.
+
+**Target features:**
+- Light model with 4 quality levels (direct / bright indirect / medium indirect / low) replacing flat sun-hours
+- Watering schedule with seasonal warm/cold split + optional soil-check mode for cacti & succulents
+- Location-driven precision (hemisphere → season) with onboarding prompt + non-blocking banner when missing
+- Diagnosis conversation continuity (continue/reopen past diagnoses) with paywall coordination for free users
+- Catalog rebalance: 10-15 outdoor plants added with full new-model fields, existing 60+ entries migrated
 
 ### Out of Scope
 
@@ -84,4 +93,4 @@ Shipped v1.0 Diagnosis & Tracking milestone with +1,545 LOC across 20 files. The
 | Emoji + text severity labels | Fits app's emoji-throughout convention, avoids anxiety of numeric scores | ✓ Good |
 
 ---
-*Last updated: 2026-03-19 after v1.0 milestone*
+*Last updated: 2026-04-29 after starting v1.1 Precision Care milestone*
