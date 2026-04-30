@@ -77,9 +77,16 @@ export function MyPlantDetailModal({
 
   if (!plant) return null;
 
+  // iOS can't stack two top-level Modals — close this one first, then open the paywall after the
+  // slide-down animation finishes
+  const requestPaywall = (trigger: string) => {
+    onClose();
+    setTimeout(() => showPaywall(trigger), 350);
+  };
+
   const handleDiagnose = () => {
     if (!canDiagnose(diagnosisCount)) {
-      showPaywall('plant_diagnosis');
+      requestPaywall('plant_diagnosis');
       return;
     }
     incrementDiagnosisCount();
@@ -217,6 +224,7 @@ export function MyPlantDetailModal({
               photos={plant.photos || []}
               onAddPhoto={(photo) => onAddPhoto(plant.id, photo)}
               onDeletePhoto={(photoId) => onDeletePhoto(plant.id, photoId)}
+              onRequestPremium={() => requestPaywall('photo_album')}
             />
 
             {/* Delete */}

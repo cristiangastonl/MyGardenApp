@@ -26,6 +26,9 @@ interface PlantPhotoAlbumProps {
   photos: PlantPhoto[];
   onAddPhoto: (photo: PlantPhoto) => void;
   onDeletePhoto: (photoId: string) => void;
+  /** Provided when the album is rendered inside another Modal — parent must close itself
+   * before opening the paywall (iOS blocks stacked top-level modals). */
+  onRequestPremium?: () => void;
 }
 
 export function PlantPhotoAlbum({
@@ -33,9 +36,11 @@ export function PlantPhotoAlbum({
   photos,
   onAddPhoto,
   onDeletePhoto,
+  onRequestPremium,
 }: PlantPhotoAlbumProps) {
   const { t } = useTranslation();
   const { isPremium, showPaywall } = usePremium();
+  const handleUnlock = onRequestPremium ?? (() => showPaywall('photo_album'));
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PlantPhoto | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -51,7 +56,7 @@ export function PlantPhotoAlbum({
             <Text style={styles.lockedText}>{t('photoAlbum.premiumText')}</Text>
             <TouchableOpacity
               style={styles.unlockButton}
-              onPress={() => showPaywall('photo_album')}
+              onPress={handleUnlock}
               activeOpacity={0.8}
             >
               <Text style={styles.unlockButtonText}>{t('photoAlbum.unlock')}</Text>

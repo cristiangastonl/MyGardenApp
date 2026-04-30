@@ -319,7 +319,13 @@ export default function OnboardingScreen() {
   }, [name, selectedPlants, identifiedPlants, completeOnboardingWithData]);
 
   const renderStep0 = () => (
-    <View style={styles.stepContent}>
+    <ScrollView
+      style={styles.stepContent}
+      contentContainerStyle={styles.step0ScrollContent}
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="interactive"
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.welcomeSection}>
         <Text style={styles.welcomeEmoji}>🌱</Text>
         <Text style={styles.welcomeTitle}>{t('onboarding.welcome')}</Text>
@@ -392,7 +398,7 @@ export default function OnboardingScreen() {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 
   const renderStep1 = () => (
@@ -743,6 +749,9 @@ const styles = StyleSheet.create({
   },
   stepContent: {
     flex: 1,
+  },
+  step0ScrollContent: {
+    paddingBottom: spacing.xl,
   },
 
   // Step 0: Welcome

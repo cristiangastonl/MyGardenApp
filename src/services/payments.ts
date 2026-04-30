@@ -130,7 +130,14 @@ function createRealPaymentService(): PaymentService {
   return {
     async initialize() {
       try {
-        Purchases = require('react-native-purchases').default;
+        const RNP = require('react-native-purchases');
+        Purchases = RNP.default;
+
+        // Verbose logs surface offering/product/entitlement misconfig in TestFlight & Play internal
+        if (RNP.LOG_LEVEL?.VERBOSE != null) {
+          Purchases.setLogLevel(RNP.LOG_LEVEL.VERBOSE);
+        }
+
         Purchases.configure({ apiKey: REVENUECAT_API_KEY });
 
         // Listen for external changes (cancel/renew from outside the app)
@@ -139,7 +146,12 @@ function createRealPaymentService(): PaymentService {
           notifyPremiumChange(hasPremium);
         });
 
-        console.log('[Payments] RevenueCat initialized');
+        try {
+          const appUserId = await Purchases.getAppUserID();
+          console.log('[Payments] RevenueCat initialized — appUserID:', appUserId);
+        } catch {
+          console.log('[Payments] RevenueCat initialized');
+        }
       } catch (e) {
         console.error('[Payments] Failed to initialize RevenueCat:', e);
         // Fall back — we'll check on each call
@@ -151,7 +163,24 @@ function createRealPaymentService(): PaymentService {
       try {
         const offerings = await Purchases.getOfferings();
         const current = offerings.current;
-        if (!current) return null;
+        if (!current) {
+          console.warn(
+            '[Payments] No current offering. all offerings =',
+            Object.keys(offerings.all || {})
+          );
+          return null;
+        }
+
+        console.log(
+          '[Payments] Current offering:',
+          current.identifier,
+          'packages:',
+          current.availablePackages.map((p: any) => ({
+            id: p.identifier,
+            productId: p.product?.identifier,
+            price: p.product?.priceString,
+          }))
+        );
 
         const annualPkg = current.availablePackages.find(
           (p: any) => p.product.identifier === PRODUCT_IDS.ANNUAL
@@ -159,6 +188,13 @@ function createRealPaymentService(): PaymentService {
         const lifetimePkg = current.availablePackages.find(
           (p: any) => p.product.identifier === PRODUCT_IDS.LIFETIME
         );
+
+        if (!annualPkg) {
+          console.warn('[Payments] Annual product not in offering. Expected:', PRODUCT_IDS.ANNUAL);
+        }
+        if (!lifetimePkg) {
+          console.warn('[Payments] Lifetime product not in offering. Expected:', PRODUCT_IDS.LIFETIME);
+        }
 
         return {
           annual: annualPkg
@@ -199,10 +235,19 @@ function createRealPaymentService(): PaymentService {
       trackEvent('purchase_started', { product: PRODUCT_IDS.ANNUAL });
       try {
         const offerings = await Purchases.getOfferings();
-        const pkg = offerings.current?.availablePackages.find(
+        const available = offerings.current?.availablePackages ?? [];
+        const pkg = available.find(
           (p: any) => p.product.identifier === PRODUCT_IDS.ANNUAL
         );
-        if (!pkg) throw new Error('Annual package not found');
+        if (!pkg) {
+          console.error(
+            '[Payments] Annual package not found. Expected productId =',
+            PRODUCT_IDS.ANNUAL,
+            '. Available:',
+            available.map((p: any) => p.product?.identifier)
+          );
+          throw new Error('Annual package not found');
+        }
 
         const { customerInfo } = await Purchases.purchasePackage(pkg);
         const hasPremium = !!customerInfo.entitlements.active[ENTITLEMENT_ID];
@@ -214,7 +259,16 @@ function createRealPaymentService(): PaymentService {
       } catch (e: any) {
         if (!e.userCancelled) {
           trackEvent('purchase_failed', { product: PRODUCT_IDS.ANNUAL, error: e.message });
-          console.error('[Payments] purchaseAnnual error:', e);
+          console.error(
+            '[Payments] purchaseAnnual error — code:',
+            e.code,
+            'underlyingErrorMessage:',
+            e.underlyingErrorMessage,
+            'message:',
+            e.message,
+            'full:',
+            e
+          );
         }
         return false;
       }
@@ -225,10 +279,19 @@ function createRealPaymentService(): PaymentService {
       trackEvent('purchase_started', { product: PRODUCT_IDS.LIFETIME });
       try {
         const offerings = await Purchases.getOfferings();
-        const pkg = offerings.current?.availablePackages.find(
+        const available = offerings.current?.availablePackages ?? [];
+        const pkg = available.find(
           (p: any) => p.product.identifier === PRODUCT_IDS.LIFETIME
         );
-        if (!pkg) throw new Error('Lifetime package not found');
+        if (!pkg) {
+          console.error(
+            '[Payments] Lifetime package not found. Expected productId =',
+            PRODUCT_IDS.LIFETIME,
+            '. Available:',
+            available.map((p: any) => p.product?.identifier)
+          );
+          throw new Error('Lifetime package not found');
+        }
 
         const { customerInfo } = await Purchases.purchasePackage(pkg);
         const hasPremium = !!customerInfo.entitlements.active[ENTITLEMENT_ID];
@@ -240,7 +303,16 @@ function createRealPaymentService(): PaymentService {
       } catch (e: any) {
         if (!e.userCancelled) {
           trackEvent('purchase_failed', { product: PRODUCT_IDS.LIFETIME, error: e.message });
-          console.error('[Payments] purchaseLifetime error:', e);
+          console.error(
+            '[Payments] purchaseLifetime error — code:',
+            e.code,
+            'underlyingErrorMessage:',
+            e.underlyingErrorMessage,
+            'message:',
+            e.message,
+            'full:',
+            e
+          );
         }
         return false;
       }
