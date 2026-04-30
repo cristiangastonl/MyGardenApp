@@ -47,6 +47,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Puntas marrones", cause: "Aire muy seco", solution: "Pulverizá las hojas ocasionalmente" },
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz cada 15 días" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "monstera",
@@ -69,6 +72,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Puntas marrones", cause: "Baja humedad", solution: "Agrupala con otras plantas o usá humidificador" },
     ],
     nutrients: { type: "Nitrógeno y potasio", homemade: "Té de banana cada 15 días" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "ficus",
@@ -91,6 +97,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento lento", cause: "Maceta pequeña", solution: "Trasplantá a una maceta más grande en primavera" },
     ],
     nutrients: { type: "Nitrógeno equilibrado", homemade: "Compost de lombrices cada 2 meses" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
   {
     id: "sansevieria",
@@ -113,6 +122,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Sin crecimiento", cause: "Normal en invierno", solution: "Crecen lento, especialmente con poca luz" },
     ],
     nutrients: { type: "Muy bajo, fósforo", homemade: "Agua de cáscara de huevo 1 vez al mes" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 14, cold: 21 },
+    waterMode: "fixed",
   },
   {
     id: "orquidea",
@@ -135,6 +147,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas arrugadas", cause: "Deshidratación", solution: "Regá más frecuentemente, verificá que las raíces estén sanas" },
     ],
     nutrients: { type: "Bajo en nitrógeno, fósforo y potasio", homemade: "Agua de arroz y cáscara de banana mensual" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "calathea",
@@ -157,6 +172,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Colores apagados", cause: "Demasiada luz directa", solution: "Movela a luz indirecta filtrada" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz cada 10 días" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 4, cold: 6 },
+    waterMode: "fixed",
   },
   {
     id: "cinta",
@@ -179,6 +197,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Sin hijuelos", cause: "Planta joven o maceta muy grande", solution: "Dejá que madure, les gusta estar algo apretadas" },
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz quincenal" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
   {
     id: "palmera-interior",
@@ -201,6 +222,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento muy lento", cause: "Normal", solution: "Las palmeras crecen despacio, paciencia" },
     ],
     nutrients: { type: "Nitrógeno y magnesio", homemade: "Agua de verduras hervidas cada 15 días" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "aloe-vera",
@@ -223,6 +247,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas rojas o marrones", cause: "Estrés por sol intenso", solution: "Aclimatá gradualmente al sol directo" },
     ],
     nutrients: { type: "Bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo 1 vez al mes" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 14, cold: 21 },
+    waterMode: "soil_check",
   },
 
   // ─── EXTERIOR ───
@@ -247,6 +274,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Muerte súbita", cause: "Pudrición de raíz", solution: "Plantá en suelo muy drenado, evitá riego excesivo" },
     ],
     nutrients: { type: "Muy bajo, prefiere suelo pobre", homemade: "No necesita; compost liviano 1 vez al año" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 10, cold: 17 },
+    waterMode: "fixed",
   },
   {
     id: "petunia",
@@ -269,6 +299,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas pegajosas", cause: "Pulgones", solution: "Tratá con jabón potásico o agua con ajo" },
     ],
     nutrients: { type: "Alto en fósforo y potasio", homemade: "Té de banana semanal durante floración" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "hortensia",
@@ -291,6 +324,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas amarillas", cause: "Clorosis por pH alto", solution: "Acidificá el suelo con sulfato de hierro" },
     ],
     nutrients: { type: "Hierro y potasio", homemade: "Clavos oxidados en el agua de riego + té de banana" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
   {
     id: "jazmin",
@@ -313,6 +349,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento descontrolado", cause: "Es vigoroso naturalmente", solution: "Podá después de la floración para controlar" },
     ],
     nutrients: { type: "Fósforo y potasio", homemade: "Té de cáscara de banana cada 15 días" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 4, cold: 7 },
+    waterMode: "fixed",
   },
   {
     id: "geranio",
@@ -335,6 +374,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Mariposa del geranio", cause: "Plaga común", solution: "Retirá partes afectadas, tratá con Bacillus thuringiensis" },
     ],
     nutrients: { type: "Fósforo y potasio", homemade: "Té de banana semanal en temporada de flores" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
 
   // ─── AROMÁTICAS ───
@@ -359,6 +401,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas pequeñas", cause: "Falta de nutrientes", solution: "Fertilizá cada 2 semanas con abono orgánico" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz semanal + compost" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "romero",
@@ -381,6 +426,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hongos blancos", cause: "Humedad excesiva", solution: "Mejorá la ventilación, reducí riego" },
     ],
     nutrients: { type: "Muy bajo, prefiere suelo pobre", homemade: "No necesita; un poco de compost anual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
   {
     id: "menta",
@@ -403,6 +451,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Invade todo", cause: "Es su naturaleza", solution: "Mantené siempre en maceta, cortá estolones" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz cada 10 días" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
 
   // ─── HUERTA ───
@@ -427,6 +478,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Manchas en hojas", cause: "Hongos (mildiu, oidio)", solution: "No mojes las hojas, tratá con fungicida de cobre" },
     ],
     nutrients: { type: "Alto en potasio y fósforo", homemade: "Té de cáscara de banana semanal" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "pimiento",
@@ -449,6 +503,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas enrolladas", cause: "Pulgones o calor excesivo", solution: "Revisá envés de hojas, tratá si hay plagas" },
     ],
     nutrients: { type: "Alto en potasio y fósforo", homemade: "Té de banana + cáscara de huevo triturada" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "frutilla",
@@ -471,6 +528,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas rojas", cause: "Estrés por frío o carencia", solution: "Normal en otoño, en verano puede ser falta de fósforo" },
     ],
     nutrients: { type: "Fósforo y potasio", homemade: "Té de banana quincenal + compost" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
 
   // ─── FRUTALES ───
@@ -495,6 +555,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Cochinilla algodonosa", cause: "Plaga común", solution: "Retirá manualmente, tratá con aceite de neem" },
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido en riego + clavos oxidados mensual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
 
   // ─── SUCULENTAS ───
@@ -519,6 +582,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas arrugadas", cause: "Falta de agua (raro)", solution: "Regá a fondo y esperá, se recuperarán" },
     ],
     nutrients: { type: "Muy bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo 1 vez al mes" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 12, cold: 24 },
+    waterMode: "soil_check",
   },
   {
     id: "cactus",
@@ -541,6 +607,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "No florece", cause: "Falta de reposo invernal", solution: "Invierno fresco (5-10°C) y seco induce floración" },
     ],
     nutrients: { type: "Bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo 1 vez al mes" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 21, cold: 30 },
+    waterMode: "soil_check",
   },
   {
     id: "echeveria",
@@ -563,6 +632,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas inferiores secas", cause: "Normal, reabsorción", solution: "Retiralas con cuidado, es proceso natural" },
     ],
     nutrients: { type: "Muy bajo, fósforo", homemade: "Agua de cáscara de huevo cada 2 meses" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 10, cold: 20 },
+    waterMode: "soil_check",
   },
 
   // ─── INTERIOR (nuevas) ───
@@ -587,6 +659,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "No florece", cause: "Poca luz o falta de nutrientes", solution: "Acercala un poco más a la ventana y fertilizá en primavera" },
     ],
     nutrients: { type: "Nitrógeno equilibrado", homemade: "Agua de arroz cada 15 días" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
   {
     id: "dracaena",
@@ -609,6 +684,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Manchas blancas en hojas", cause: "Cochinilla algodonosa", solution: "Limpiá con algodón y alcohol, o tratá con aceite de neem" },
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz quincenal" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
   {
     id: "filodendro",
@@ -631,6 +709,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas pequeñas", cause: "Falta de humedad o soporte", solution: "Aumentá la humedad ambiental y dale un tutor para trepar" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz + compost de lombrices" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "jade",
@@ -653,6 +734,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Manchas blancas en hojas", cause: "Depósitos de sales minerales del agua", solution: "Es normal, limpiá con un paño húmedo" },
     ],
     nutrients: { type: "Muy bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo cada 2 meses" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 14, cold: 21 },
+    waterMode: "soil_check",
   },
   {
     id: "peperomia",
@@ -675,6 +759,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Tallo negro en la base", cause: "Pudrición por encharcamiento", solution: "Cortá la parte sana y propagá en agua limpia" },
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz cada 20 días" },
+    lightLevel: "medium_indirect",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
 
   // ─── EXTERIOR (nuevas) ───
@@ -699,6 +786,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Pocas flores", cause: "Falta de poda o nutrientes", solution: "Podá en invierno y fertilizá con abono para rosales en primavera" },
     ],
     nutrients: { type: "Alto en fósforo y potasio", homemade: "Té de banana semanal + cáscara de huevo" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
   {
     id: "bougainvillea",
@@ -721,6 +811,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Espinas muy agresivas", cause: "Es su naturaleza", solution: "Usá guantes al podar, podá después de la floración" },
     ],
     nutrients: { type: "Bajo en nitrógeno, alto en fósforo", homemade: "Té de banana quincenal" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 7, cold: 12 },
+    waterMode: "fixed",
   },
   {
     id: "hibisco",
@@ -743,6 +836,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Mosca blanca", cause: "Plaga común en hibiscos", solution: "Tratá con aceite de neem o jabón potásico" },
     ],
     nutrients: { type: "Fósforo y potasio", homemade: "Té de banana + borra de café mensual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
   {
     id: "margarita",
@@ -765,6 +861,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Planta caída", cause: "Tallos débiles por falta de sol", solution: "Reubicá a pleno sol y usá tutores si es necesario" },
     ],
     nutrients: { type: "Fósforo moderado", homemade: "Té de banana cada 15 días" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
 
   // ─── AROMÁTICAS (nuevas) ───
@@ -789,6 +888,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Orugas verdes", cause: "Larva de mariposa del perejil", solution: "Retiralas a mano; son futuras mariposas, reubicalas si podés" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz semanal" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "oregano",
@@ -811,6 +913,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Manchas en hojas", cause: "Hongos por exceso de humedad", solution: "Mejorá la ventilación y evitá mojar las hojas" },
     ],
     nutrients: { type: "Muy bajo, prefiere suelo pobre", homemade: "No necesita; compost ligero 1 vez al año" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "cilantro",
@@ -833,6 +938,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento débil", cause: "Suelo pobre", solution: "Enriquecé el sustrato con compost antes de sembrar" },
     ],
     nutrients: { type: "Nitrógeno bajo", homemade: "Agua de arroz cada 15 días" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "tomillo",
@@ -855,6 +963,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento lento", cause: "Normal; es una planta de crecimiento lento", solution: "Paciencia, no abuses del fertilizante" },
     ],
     nutrients: { type: "Muy bajo, prefiere suelo pobre", homemade: "No necesita; compost ligero anual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
 
   // ─── HUERTA (nuevas) ───
@@ -879,6 +990,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Babosas y caracoles", cause: "Plaga muy común en lechugas", solution: "Poné trampas de cerveza o barreras de ceniza alrededor" },
     ],
     nutrients: { type: "Nitrógeno alto", homemade: "Agua de arroz semanal + compost de lombrices" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "pepino",
@@ -901,6 +1015,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Pocos frutos", cause: "Falta de polinización", solution: "Atraé polinizadores con flores cercanas o polinizá a mano" },
     ],
     nutrients: { type: "Alto en potasio y nitrógeno", homemade: "Té de banana semanal + agua de arroz" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
   {
     id: "zanahoria",
@@ -923,6 +1040,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas rojas o moradas", cause: "Estrés por frío o falta de fósforo", solution: "Protegé de heladas fuertes y fertilizá con compost" },
     ],
     nutrients: { type: "Fósforo y potasio, bajo nitrógeno", homemade: "Ceniza de madera + cáscara de huevo" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 3, cold: 4 },
+    waterMode: "fixed",
   },
   {
     id: "rucula",
@@ -945,6 +1065,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Agujeros en hojas", cause: "Pulguilla o babosas", solution: "Usá ceniza de madera como barrera o trampa de cerveza" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz semanal" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
 
   // ─── FRUTALES (nuevos) ───
@@ -969,6 +1092,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Pulgones en brotes nuevos", cause: "Plaga frecuente en primavera", solution: "Tratá con jabón potásico o aceite de neem" },
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido en riego + cáscara de huevo" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
   {
     id: "aguacate",
@@ -991,6 +1117,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "No da frutos", cause: "Necesita polinización cruzada o es de semilla", solution: "Plantá dos variedades distintas (tipo A y B) para polinización" },
     ],
     nutrients: { type: "Nitrógeno y potasio", homemade: "Compost de lombrices + té de banana mensual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
   {
     id: "higuera",
@@ -1013,6 +1142,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Ramas secas", cause: "Barrenador del tronco o helada fuerte", solution: "Podá lo seco hasta madera sana y sellá los cortes" },
     ],
     nutrients: { type: "Potasio y fósforo", homemade: "Té de banana + ceniza de madera quincenal" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 7, cold: 11 },
+    waterMode: "fixed",
   },
   {
     id: "mandarino",
@@ -1035,6 +1167,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Cochinilla en ramas", cause: "Plaga frecuente en cítricos", solution: "Limpiá con cepillo y tratá con aceite de neem" },
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido + clavos oxidados mensual" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 5, cold: 8 },
+    waterMode: "fixed",
   },
 
   // ─── HUERTA (extra) ───
@@ -1059,6 +1194,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Frutos que se pudren en la punta", cause: "Exceso de humedad en el suelo", solution: "Poné mulch debajo de los frutos para aislarlos del suelo húmedo" },
     ],
     nutrients: { type: "Alto en potasio y fósforo", homemade: "Té de banana semanal + compost" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 2, cold: 3 },
+    waterMode: "fixed",
   },
 
   // ─── AROMÁTICAS (extra) ───
@@ -1083,6 +1221,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Plaga de trips", cause: "Insectos diminutos que raspan las hojas", solution: "Tratá con jabón potásico y mejorar la ventilación" },
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz cada 10 días" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 3, cold: 5 },
+    waterMode: "fixed",
   },
 
   // ─── SUCULENTAS (nuevas) ───
@@ -1107,6 +1248,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Crecimiento estancado", cause: "Normal; crece muy lento", solution: "Es su ritmo natural, no abuses del riego ni el fertilizante" },
     ],
     nutrients: { type: "Muy bajo, fósforo", homemade: "Agua de cáscara de huevo cada 2 meses" },
+    lightLevel: "bright_indirect",
+    waterSchedule: { warm: 14, cold: 28 },
+    waterMode: "soil_check",
   },
   {
     id: "sedum",
@@ -1129,6 +1273,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Hojas arrugadas", cause: "Falta de riego", solution: "Regá a fondo y esperá; se rehidratarán en unos días" },
     ],
     nutrients: { type: "Muy bajo, fósforo", homemade: "Agua de cáscara de huevo cada 2 meses" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 14, cold: 28 },
+    waterMode: "soil_check",
   },
   {
     id: "yuca",
@@ -1151,6 +1298,9 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
       { symptom: "Puntas marrones", cause: "Aire muy seco o exceso de sol", solution: "Cortá las puntas secas y si está en sol directo muy fuerte, movela a luz brillante indirecta." },
     ],
     nutrients: { type: "Bajo, nitrógeno equilibrado", homemade: "Agua de arroz 1 vez al mes" },
+    lightLevel: "direct",
+    waterSchedule: { warm: 10, cold: 15 },
+    waterMode: "fixed",
   },
 ];
 
