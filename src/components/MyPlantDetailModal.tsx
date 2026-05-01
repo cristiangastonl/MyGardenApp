@@ -28,6 +28,7 @@ interface MyPlantDetailModalProps {
   visible: boolean;
   plant: Plant | null;
   weather: WeatherData | null;
+  latitude: number | null;
   onClose: () => void;
   onDelete: (plantId: string) => void;
   onAddPhoto: (plantId: string, photo: PlantPhoto) => void;
@@ -38,6 +39,7 @@ export function MyPlantDetailModal({
   visible,
   plant,
   weather,
+  latitude,
   onClose,
   onDelete,
   onAddPhoto,
@@ -53,8 +55,8 @@ export function MyPlantDetailModal({
 
   const healthStatus = useMemo(() => {
     if (!plant) return null;
-    return calculatePlantHealth(plant, new Date(), weather);
-  }, [plant, weather]);
+    return calculatePlantHealth(plant, new Date(), weather, undefined, latitude);
+  }, [plant, weather, latitude]);
 
   const allPlantDiagnoses = useMemo(() => {
     if (!plant) return [];

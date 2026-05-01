@@ -69,8 +69,8 @@ export function PlantCard({
 
   // Calculate plant health
   const healthStatus = useMemo(
-    () => calculatePlantHealth(plant, today, weather ?? null, diagnoses),
-    [plant, today, weather, diagnoses]
+    () => calculatePlantHealth(plant, today, weather ?? null, diagnoses, latitude),
+    [plant, today, weather, diagnoses, latitude]
   );
 
   // Show health badge if health is not excellent (score < 80)

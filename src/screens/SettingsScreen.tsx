@@ -61,6 +61,7 @@ export default function SettingsScreen() {
     plants,
     weather,
     alerts: plantAlerts,
+    latitude: location?.lat ?? null,
   });
 
   const [searchQuery, setSearchQuery] = useState('');

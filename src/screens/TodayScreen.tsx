@@ -117,6 +117,7 @@ export default function TodayScreen() {
     weather,
     alerts: plantAlerts,
     diagnosisHistory,
+    latitude: location?.lat ?? null,
   });
 
   const { pendingPlantId, clearPendingPlantId } = useContext(NotificationContext);
@@ -326,7 +327,7 @@ export default function TodayScreen() {
         <WateringTips plants={plants} weather={weather} latitude={location?.lat ?? null} />
 
         {/* Garden Health Summary */}
-        <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} />
+        <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} latitude={location?.lat ?? null} />
 
         {/* Shopping List button */}
         {premium.canUseShoppingList() && shoppingList.length > 0 && (
@@ -557,6 +558,7 @@ export default function TodayScreen() {
         visible={!!detailPlant}
         plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
         weather={weather}
+        latitude={location?.lat ?? null}
         onClose={() => setDetailPlant(null)}
         onDelete={(id) => {
           handleDeletePlant(id);

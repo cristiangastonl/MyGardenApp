@@ -60,6 +60,7 @@ interface UseNotificationsOptions {
   weather: WeatherData | null;
   alerts: PlantAlert[];
   diagnosisHistory?: Record<string, SavedDiagnosis[]>;
+  latitude: number | null;
 }
 
 interface UseNotificationsReturn {
@@ -85,6 +86,7 @@ export function useNotifications({
   weather,
   alerts,
   diagnosisHistory,
+  latitude,
 }: UseNotificationsOptions): UseNotificationsReturn {
   const [permissionStatus, setPermissionStatus] =
     useState<PermissionStatus>("undetermined");
@@ -153,7 +155,7 @@ export function useNotifications({
   // Reschedule morning reminder when settings or plants change
   useEffect(() => {
     if (settings.enabled && settings.morningReminder && plants.length > 0) {
-      const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory);
+      const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, latitude);
       scheduleMorningReminder(settings.morningTime, plants, weather, healthStatuses);
       refreshScheduled();
     }
@@ -272,7 +274,7 @@ export function useNotifications({
 
       // Schedule morning reminder if enabled
       if (settings.morningReminder && plants.length > 0) {
-        const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory);
+        const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, latitude);
         await scheduleMorningReminder(settings.morningTime, plants, weather, healthStatuses);
       }
 

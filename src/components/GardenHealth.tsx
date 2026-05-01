@@ -23,6 +23,7 @@ interface GardenHealthProps {
   weather: WeatherData | null;
   onPlantPress?: (plantId: string) => void;
   diagnosisHistory?: Record<string, SavedDiagnosis[]>;
+  latitude: number | null;
 }
 
 export function GardenHealth({
@@ -30,6 +31,7 @@ export function GardenHealth({
   weather,
   onPlantPress,
   diagnosisHistory,
+  latitude,
 }: GardenHealthProps) {
   const { t } = useTranslation();
   const [showInfo, setShowInfo] = useState(false);
@@ -38,7 +40,7 @@ export function GardenHealth({
     averageScore,
     level,
     plantsNeedingAttention,
-  } = calculateGardenHealth(plants, today, weather, diagnosisHistory);
+  } = calculateGardenHealth(plants, today, weather, diagnosisHistory, latitude);
 
   const healthColor = getHealthColor(level);
   const healthBgColor = getHealthBgColor(level);

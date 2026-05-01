@@ -259,6 +259,7 @@ export default function PlantsScreen() {
         visible={!!detailPlant}
         plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
         weather={weather}
+        latitude={location?.lat ?? null}
         onClose={() => setDetailPlant(null)}
         onDelete={(id) => {
           handleDeletePlant(id);
