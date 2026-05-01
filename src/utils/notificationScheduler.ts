@@ -45,10 +45,11 @@ function parseTime(time: string): { hours: number; minutes: number } {
 function createMorningContent(
   plants: Plant[],
   weather: WeatherData | null,
+  latitude: number | null,
   healthStatuses?: PlantHealthStatus[]
 ): { title: string; body: string } {
   const today = new Date();
-  const tasks = getTasksForDay(plants, today);
+  const tasks = getTasksForDay(plants, today, latitude);
 
   // Check health statuses for danger/warning plants
   const dangerPlants = healthStatuses?.filter((h) => h.score < 40) || [];
@@ -77,7 +78,10 @@ function createMorningContent(
     title = i18n.t('notifications.morningTitle');
   }
 
-  const waterTasks = tasks.filter((t) => t.type === "water");
+  // Phase 5 / Open Question 1 — for v1.1 we LUMP check_soil tasks under water-task
+  // morning copy ("Regá: Aloe y 2 plantas" treats check-soil as water-axis attention).
+  // Refine in v1.2 if telemetry shows users want a separate verb.
+  const waterTasks = tasks.filter((t) => t.type === "water" || t.type === "check_soil");
   const sunTasks = tasks.filter((t) => t.type === "sun");
   const outdoorTasks = tasks.filter((t) => t.type === "outdoor");
 
@@ -139,6 +143,7 @@ export async function scheduleMorningReminder(
   time: string,
   plants: Plant[],
   weather: WeatherData | null,
+  latitude: number | null,
   healthStatuses?: PlantHealthStatus[]
 ): Promise<string | null> {
   if (!notificationsAvailable) return null;
@@ -148,7 +153,7 @@ export async function scheduleMorningReminder(
     await cancelMorningReminder();
 
     const { hours, minutes } = parseTime(time);
-    const { title, body } = createMorningContent(plants, weather, healthStatuses);
+    const { title, body } = createMorningContent(plants, weather, latitude, healthStatuses);
 
     const identifier = await Notifications.scheduleNotificationAsync({
       identifier: MORNING_REMINDER_ID,
