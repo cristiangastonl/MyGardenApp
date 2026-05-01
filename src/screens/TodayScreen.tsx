@@ -47,6 +47,7 @@ import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosis
 import { ShoppingListModal } from '../components/ShoppingListModal';
 import { FollowUpTaskSection } from '../components/FollowUpTaskSection';
 import { Features } from '../config/features';
+import { LocationBanner } from '../components/LocationBanner';
 import { NotificationContext } from '../../App';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -148,6 +149,9 @@ export default function TodayScreen() {
   const [diagnosePlant, setDiagnosePlant] = useState<Plant | null>(null);
   const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
   const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
+
+  // Per-session banner dismiss (Pitfall 8: useState, NOT AsyncStorage — banner reappears next launch)
+  const [locationBannerDismissed, setLocationBannerDismissed] = useState(false);
 
   const handleOpenAddPlant = () => {
     if (!premium.canAddPlant(plants.length)) {
@@ -307,6 +311,14 @@ export default function TodayScreen() {
           error={weatherError}
           onOpenSettings={() => navigation.navigate('Ajustes')}
         />
+
+        {/* Phase 7 LOC-02: dismissible soft nudge if no location AND no climate override */}
+        {location === null && (climateOverride ?? 'auto') === 'auto' && !locationBannerDismissed && (
+          <LocationBanner
+            onCtaPress={() => navigation.navigate('Ajustes' as never)}
+            onDismiss={() => setLocationBannerDismissed(true)}
+          />
+        )}
 
         {/* Weather Alerts */}
         <WeatherAlerts weather={weather} plants={plants} />
