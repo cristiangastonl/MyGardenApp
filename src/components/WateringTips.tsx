@@ -11,6 +11,7 @@ import {
 interface WateringTipsProps {
   plants: Plant[];
   weather: WeatherData | null;
+  latitude: number | null;
 }
 
 interface RecommendationTypeConfig {
@@ -84,10 +85,10 @@ function getTypeTitle(type: WateringRecommendation['type'], t: (key: string) => 
   }
 }
 
-export function WateringTips({ plants, weather }: WateringTipsProps) {
+export function WateringTips({ plants, weather, latitude }: WateringTipsProps) {
   const { t } = useTranslation();
   const today = new Date();
-  const recommendations = getWateringRecommendations(plants, weather, today);
+  const recommendations = getWateringRecommendations(plants, weather, today, latitude);
 
   if (recommendations.length === 0) {
     return null;

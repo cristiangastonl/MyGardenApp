@@ -161,7 +161,7 @@ export default function TodayScreen() {
     const withTasks: Plant[] = [];
 
     plants.forEach((plant) => {
-      const nextWater = getNextWaterDate(plant, today);
+      const nextWater = getNextWaterDate(plant, today, location?.lat ?? null);
       const needsWaterToday = isSameDay(nextWater, today);
       const needsSunToday = plant.sunDays.includes(today.getDay());
       const needsOutdoorToday = plant.outdoorDays.includes(today.getDay());
@@ -173,7 +173,7 @@ export default function TodayScreen() {
 
     const favSort = (a: Plant, b: Plant) => (a.favorite ? -1 : 0) - (b.favorite ? -1 : 0);
     return withTasks.sort(favSort);
-  }, [plants, today]);
+  }, [plants, today, location?.lat]);
 
   const handleWater = (plantId: string) => {
     updatePlant(plantId, { lastWatered: todayStr });
@@ -323,7 +323,7 @@ export default function TodayScreen() {
         />
 
         {/* Watering Tips based on weather */}
-        <WateringTips plants={plants} weather={weather} />
+        <WateringTips plants={plants} weather={weather} latitude={location?.lat ?? null} />
 
         {/* Garden Health Summary */}
         <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} />
@@ -401,6 +401,7 @@ export default function TodayScreen() {
                 key={plant.id}
                 plant={plant}
                 today={today}
+                latitude={location?.lat ?? null}
                 weather={weather}
                 onWater={handleWater}
                 onSunDone={handleSunDone}

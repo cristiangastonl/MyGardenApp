@@ -20,7 +20,8 @@ export interface WateringRecommendation {
 export function getWateringRecommendations(
   plants: Plant[],
   weather: WeatherData | null,
-  today: Date
+  today: Date,
+  latitude: number | null
 ): WateringRecommendation[] {
   if (!weather || plants.length === 0) return [];
 
@@ -41,14 +42,14 @@ export function getWateringRecommendations(
 
   // Get plants that need watering today or tomorrow
   const plantsNeedingWater = plants.filter(plant => {
-    const nextWater = getNextWaterDate(plant, today);
+    const nextWater = getNextWaterDate(plant, today, latitude);
     const tomorrow = addDays(today, 1);
     return isSameDay(nextWater, today) || isSameDay(nextWater, tomorrow);
   });
 
   // Process each plant that needs watering
   plantsNeedingWater.forEach(plant => {
-    const nextWater = getNextWaterDate(plant, today);
+    const nextWater = getNextWaterDate(plant, today, latitude);
     const needsWaterToday = isSameDay(nextWater, today);
     const isOutdoorPlant = plant.outdoorDays.length > 0;
 

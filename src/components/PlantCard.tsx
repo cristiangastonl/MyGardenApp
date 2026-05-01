@@ -16,6 +16,7 @@ import { getPlantCategories } from '../data/plantDatabase';
 interface PlantCardProps {
   plant: Plant;
   today: Date;
+  latitude: number | null;
   weather?: WeatherData | null;
   mode?: 'tasks' | 'collection';
   onWater?: (plantId: string) => void;
@@ -32,6 +33,7 @@ interface PlantCardProps {
 export function PlantCard({
   plant,
   today,
+  latitude,
   weather,
   mode = 'tasks',
   onWater,
@@ -48,7 +50,7 @@ export function PlantCard({
   const [showHealthDetail, setShowHealthDetail] = useState(false);
 
   const todayStr = formatDate(today);
-  const nextWater = getNextWaterDate(plant, today);
+  const nextWater = getNextWaterDate(plant, today, latitude);
   const needsWaterToday = isSameDay(nextWater, today);
   const waterDone = plant.lastWatered === todayStr && needsWaterToday;
 
