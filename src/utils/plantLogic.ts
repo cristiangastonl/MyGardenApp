@@ -1,6 +1,6 @@
 import { Plant, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
-import { getWaterSeason, type WaterSeason } from "./seasonality";
+import type { WaterSeason } from "./seasonality";
 import i18n from "../i18n";
 
 /**
@@ -27,14 +27,18 @@ export function getSeasonalInterval(plant: Plant, season: WaterSeason): number {
 
 /**
  * Returns the date of the next watering (or check-in for soil_check plants),
- * given the plant, today, and the user's latitude.
+ * given the plant, today, and the user's effective season.
  *
- * @param plant     The plant.
- * @param today     Reference date.
- * @param latitude  GPS latitude in degrees, or null for safe-default season ('warm').
+ * Phase 7 (Plan 07-02): signature changed from `latitude: number | null` to
+ * `season: WaterSeason` per RESEARCH.md Open-Question-3 Recommendation B.
+ * Callers MUST pre-compute season via getEffectiveSeason(location, climateOverride, today)
+ * exactly ONCE per render/scheduler tick, then pass to all consumers.
+ *
+ * @param plant   The plant.
+ * @param today   Reference date.
+ * @param season  Pre-computed effective season ('warm' | 'cold' | 'tropical').
  */
-export function getNextWaterDate(plant: Plant, today: Date, latitude: number | null): Date {
-  const season = getWaterSeason(latitude, today);
+export function getNextWaterDate(plant: Plant, today: Date, season: WaterSeason): Date {
   const intervalDays = getSeasonalInterval(plant, season);
   if (intervalDays <= 0) return today;
   if (!plant.lastWatered) return today;
@@ -50,11 +54,13 @@ export function getNextWaterDate(plant: Plant, today: Date, latitude: number | n
  *
  * Mode is the dispatcher; cadence comes from the same season-aware lookup
  * regardless of mode (CONTEXT.md decision: "single source of truth across modes").
+ *
+ * Phase 7 (Plan 07-02): `latitude` parameter replaced by pre-computed `season`.
  */
-export function getTasksForDay(plants: Plant[], day: Date, latitude: number | null): Task[] {
+export function getTasksForDay(plants: Plant[], day: Date, season: WaterSeason): Task[] {
   const tasks: Task[] = [];
   plants.forEach(p => {
-    const next = getNextWaterDate(p, day, latitude);
+    const next = getNextWaterDate(p, day, season);
     if (isSameDay(next, day)) {
       if (p.waterMode === 'soil_check') {
         tasks.push({
