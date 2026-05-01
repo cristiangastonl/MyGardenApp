@@ -4,7 +4,7 @@ milestone: v1.1
 milestone_name: Precision Care
 status: completed
 stopped_at: Completed 05-05-PLAN.md (Phase 5 complete — 5/5 plans)
-last_updated: "2026-05-01T14:55:56.401Z"
+last_updated: "2026-05-01T15:18:46.593Z"
 last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 progress:
   total_phases: 6
