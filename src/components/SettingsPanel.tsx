@@ -20,7 +20,8 @@ import * as ExpoLocation from "expo-location";
 import { useTranslation } from 'react-i18next';
 import { setLanguage } from '../i18n';
 import { colors, fonts, spacing, borderRadius, shadows } from "../theme";
-import { Location, NotificationSettings, SyncStatus } from "../types";
+import { Location, NotificationSettings, SyncStatus, ClimateOverride } from "../types";
+import { useStorage } from '../hooks/useStorage';
 import { SyncStatusBadge } from "./SyncStatusBadge";
 import { paymentService } from "../services/payments";
 
@@ -103,6 +104,7 @@ export function SettingsPanel({
   onSyncNow,
 }: SettingsPanelProps) {
   const { t, i18n } = useTranslation();
+  const { climateOverride, setClimateOverride } = useStorage();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -484,6 +486,34 @@ export function SettingsPanel({
                     )}
                   </View>
                 )}
+              </View>
+
+              {/* Phase 7 (LOC-04, LOC-05) — Zona climática manual override */}
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>{t('settings.climateOverride.title')}</Text>
+                <Text style={styles.sectionDescription}>
+                  {t('settings.climateOverride.body')}
+                </Text>
+
+                <View style={styles.climateOverrideRow}>
+                  {(['auto', 'northern', 'southern', 'tropical'] as const).map((opt) => {
+                    const selected = (climateOverride ?? 'auto') === opt;
+                    return (
+                      <TouchableOpacity
+                        key={opt}
+                        style={[styles.climateOptionPill, selected && styles.climateOptionPillSelected]}
+                        onPress={() => setClimateOverride(opt)}
+                        activeOpacity={0.7}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected }}
+                      >
+                        <Text style={[styles.climateOptionText, selected && styles.climateOptionTextSelected]}>
+                          {t(`settings.climateOverride.${opt}`)}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
               </View>
 
               {/* Notifications Section */}
@@ -1345,5 +1375,35 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
     color: colors.dangerText,
+  },
+  // Phase 7 (LOC-04, LOC-05) — Zona climática picker styles
+  climateOverrideRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+    marginTop: spacing.md,
+  },
+  climateOptionPill: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.lg,
+    backgroundColor: colors.bgPrimary,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    minHeight: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  climateOptionPillSelected: {
+    backgroundColor: colors.green,
+    borderColor: colors.green,
+  },
+  climateOptionText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 13,
+    color: colors.textPrimary,
+  },
+  climateOptionTextSelected: {
+    color: colors.white,
   },
 });
