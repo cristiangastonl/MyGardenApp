@@ -130,7 +130,140 @@ try {
   assert("getSeasonalInterval({warm:5,cold:10}, 'tropical') === 5 (tropical→warm bucket)",
     plantLogicMod.getSeasonalInterval({ waterSchedule: { warm: 5, cold: 10 } }, 'tropical') === 5);
 
-  console.log('\nWave 0 placeholder section reached, no further assertions yet (Plan 06-02 extends).');
+  // ──────────────────────────────────────────────────────────────────────
+  // Wave 1 (Plan 06-02): i18n key parity + behavior matrix.
+  // ──────────────────────────────────────────────────────────────────────
+  console.log('\n--- Wave 1: i18n parity + behavior matrix ---');
+
+  const en = JSON.parse(await fs.readFile('src/i18n/locales/en/common.json', 'utf8'));
+  const es = JSON.parse(await fs.readFile('src/i18n/locales/es/common.json', 'utf8'));
+  const get = (obj, path) => path.split('.').reduce((a, k) => a?.[k], obj);
+
+  const newKeyPaths = [
+    'lightLevel.indoor.direct',
+    'lightLevel.indoor.bright_indirect',
+    'lightLevel.indoor.medium_indirect',
+    'lightLevel.indoor.low',
+    'lightLevel.outdoor.direct',
+    'lightLevel.outdoor.bright_indirect',
+    'lightLevel.outdoor.medium_indirect',
+    'lightLevel.outdoor.low',
+    'plantCard.waterBadge.fixed',
+    'plantCard.waterBadge.soilCheck',
+    'plantDetail.seasonBadge.every',
+    'plantDetail.seasonBadge.warm',
+    'plantDetail.seasonBadge.cold',
+    'plantDetail.seasonBadge.tropical',
+    'today.soilCheckEmptyRow',
+  ];
+
+  // i18n parity: every new key must exist in BOTH locales as a non-empty string.
+  for (const p of newKeyPaths) {
+    const enVal = get(en, p);
+    const esVal = get(es, p);
+    assert(`EN key '${p}' exists as string`, typeof enVal === 'string' && enVal.length > 0);
+    assert(`ES key '${p}' exists as string`, typeof esVal === 'string' && esVal.length > 0);
+  }
+
+  // Specific value assertions — copy is locked in CONTEXT.md/RESEARCH.md.
+  assert("EN lightLevel.indoor.bright_indirect === 'Bright indirect light'",
+    en.lightLevel.indoor.bright_indirect === 'Bright indirect light');
+  assert("ES lightLevel.indoor.bright_indirect === 'Luz brillante indirecta'",
+    es.lightLevel.indoor.bright_indirect === 'Luz brillante indirecta');
+  assert("EN lightLevel.outdoor.direct === 'Full sun'",
+    en.lightLevel.outdoor.direct === 'Full sun');
+  assert("ES lightLevel.outdoor.direct === 'Sol pleno'",
+    es.lightLevel.outdoor.direct === 'Sol pleno');
+  assert("EN plantCard.waterBadge.fixed contains '💧' and '{{days}}'",
+    en.plantCard.waterBadge.fixed.includes('💧') && en.plantCard.waterBadge.fixed.includes('{{days}}'));
+  assert("ES plantCard.waterBadge.soilCheck === '🤚 Por chequeo'",
+    es.plantCard.waterBadge.soilCheck === '🤚 Por chequeo');
+  assert("EN plantDetail.seasonBadge.tropical === 'tropical'",
+    en.plantDetail.seasonBadge.tropical === 'tropical');
+  assert("ES plantDetail.seasonBadge.tropical === 'trópico'",
+    es.plantDetail.seasonBadge.tropical === 'trópico');
+  assert("EN today.soilCheckEmptyRow contains '{{plantName}}' and '{{days}}'",
+    en.today.soilCheckEmptyRow.includes('{{plantName}}') && en.today.soilCheckEmptyRow.includes('{{days}}'));
+  assert("ES today.soilCheckEmptyRow contains 'modo chequeo' and 'Te avisamos'",
+    es.today.soilCheckEmptyRow.includes('modo chequeo') && es.today.soilCheckEmptyRow.includes('Te avisamos'));
+
+  // Voseo-rejection in new ES keys (scoped to new namespaces only — does NOT affect existing keys).
+  const esNewBlob = JSON.stringify(es.lightLevel) + JSON.stringify(es.plantCard.waterBadge)
+                  + JSON.stringify(es.plantDetail.seasonBadge) + JSON.stringify(es.today.soilCheckEmptyRow);
+  assert("ES new keys contain no bare tuteo verbs (riega/toca/revisa)",
+    !/\briega\b|\btoca\b|\brevisa\b/.test(esNewBlob));
+
+  // Legacy-key preservation (SCHEMA-08 — keep one release).
+  assert("Legacy plantDetail.sunHours preserved in EN", typeof en.plantDetail.sunHours === 'string');
+  assert("Legacy plantDetail.waterEvery preserved in EN", typeof en.plantDetail.waterEvery === 'string');
+  assert("Legacy plantCard.nextWater preserved in EN", typeof en.plantCard.nextWater === 'string');
+  assert("Legacy plantDetailModal.hoursPerDay preserved in EN", typeof en.plantDetailModal.hoursPerDay === 'string');
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Wave 1: getLightLabel behavior matrix.
+  // Stub translator echoes the requested key — assertions check the key constructed.
+  // ──────────────────────────────────────────────────────────────────────
+  const tEcho = (key) => key;
+  const { getLightLabel, OUTDOOR_TYPE_IDS } = lightLabelMod;
+
+  // 8 indoor/outdoor × 4 level cases.
+  assert("getLightLabel({lightLevel:'direct',typeId:'interior'}) → 'lightLevel.indoor.direct'",
+    getLightLabel({ lightLevel: 'direct', typeId: 'interior' }, tEcho) === 'lightLevel.indoor.direct');
+  assert("getLightLabel({lightLevel:'bright_indirect',typeId:'interior'}) → 'lightLevel.indoor.bright_indirect'",
+    getLightLabel({ lightLevel: 'bright_indirect', typeId: 'interior' }, tEcho) === 'lightLevel.indoor.bright_indirect');
+  assert("getLightLabel({lightLevel:'medium_indirect',typeId:'interior'}) → 'lightLevel.indoor.medium_indirect'",
+    getLightLabel({ lightLevel: 'medium_indirect', typeId: 'interior' }, tEcho) === 'lightLevel.indoor.medium_indirect');
+  assert("getLightLabel({lightLevel:'low',typeId:'interior'}) → 'lightLevel.indoor.low'",
+    getLightLabel({ lightLevel: 'low', typeId: 'interior' }, tEcho) === 'lightLevel.indoor.low');
+
+  assert("getLightLabel({lightLevel:'direct',typeId:'exterior'}) → 'lightLevel.outdoor.direct'",
+    getLightLabel({ lightLevel: 'direct', typeId: 'exterior' }, tEcho) === 'lightLevel.outdoor.direct');
+  assert("getLightLabel({lightLevel:'bright_indirect',typeId:'huerta'}) → 'lightLevel.outdoor.bright_indirect'",
+    getLightLabel({ lightLevel: 'bright_indirect', typeId: 'huerta' }, tEcho) === 'lightLevel.outdoor.bright_indirect');
+  assert("getLightLabel({lightLevel:'medium_indirect',typeId:'aromaticas'}) → 'lightLevel.outdoor.medium_indirect'",
+    getLightLabel({ lightLevel: 'medium_indirect', typeId: 'aromaticas' }, tEcho) === 'lightLevel.outdoor.medium_indirect');
+  assert("getLightLabel({lightLevel:'low',typeId:'frutales'}) → 'lightLevel.outdoor.low'",
+    getLightLabel({ lightLevel: 'low', typeId: 'frutales' }, tEcho) === 'lightLevel.outdoor.low');
+
+  // suculentas → INDOOR (Anti-Pattern lock).
+  assert("getLightLabel({lightLevel:'medium_indirect',typeId:'suculentas'}) → INDOOR (suculentas is indoor)",
+    getLightLabel({ lightLevel: 'medium_indirect', typeId: 'suculentas' }, tEcho) === 'lightLevel.indoor.medium_indirect');
+
+  // Defensive ladder rung 2: sunHours fallback.
+  assert("getLightLabel({sunHours:5,typeId:'interior'}) → indoor.direct (rung 2 — sunHoursToLightLevel)",
+    getLightLabel({ sunHours: 5, typeId: 'interior' }, tEcho) === 'lightLevel.indoor.direct');
+  assert("getLightLabel({sunHours:4,typeId:'interior'}) → indoor.bright_indirect (rung 2)",
+    getLightLabel({ sunHours: 4, typeId: 'interior' }, tEcho) === 'lightLevel.indoor.bright_indirect');
+  assert("getLightLabel({sunHours:1,typeId:'exterior'}) → outdoor.low (rung 2)",
+    getLightLabel({ sunHours: 1, typeId: 'exterior' }, tEcho) === 'lightLevel.outdoor.low');
+
+  // Defensive ladder rung 3: safe default.
+  assert("getLightLabel({typeId:'interior'}) → indoor.bright_indirect (rung 3 — safe default)",
+    getLightLabel({ typeId: 'interior' }, tEcho) === 'lightLevel.indoor.bright_indirect');
+  assert("getLightLabel({typeId:'unknown_category'}) → indoor.bright_indirect (unknown typeId fails to indoor)",
+    getLightLabel({ typeId: 'unknown_category' }, tEcho) === 'lightLevel.indoor.bright_indirect');
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Wave 1: getSeasonalInterval matrix.
+  // ──────────────────────────────────────────────────────────────────────
+  const { getSeasonalInterval } = plantLogicMod;
+
+  assert("getSeasonalInterval({warm:5,cold:10}, 'warm') === 5",
+    getSeasonalInterval({ waterSchedule: { warm: 5, cold: 10 } }, 'warm') === 5);
+  assert("getSeasonalInterval({warm:5,cold:10}, 'cold') === 10",
+    getSeasonalInterval({ waterSchedule: { warm: 5, cold: 10 } }, 'cold') === 10);
+  assert("getSeasonalInterval({warm:5,cold:10}, 'tropical') === 5 (tropical→warm bucket)",
+    getSeasonalInterval({ waterSchedule: { warm: 5, cold: 10 } }, 'tropical') === 5);
+  assert("getSeasonalInterval({waterEvery:7}, 'warm') === 7 (legacy fallback)",
+    getSeasonalInterval({ waterEvery: 7 }, 'warm') === 7);
+  assert("getSeasonalInterval({waterEvery:7}, 'cold') === 7 (legacy fallback regardless of season)",
+    getSeasonalInterval({ waterEvery: 7 }, 'cold') === 7);
+  assert("getSeasonalInterval({}, 'warm') === 7 (safe default)",
+    getSeasonalInterval({}, 'warm') === 7);
+  assert("getSeasonalInterval({waterSchedule:{warm:0,cold:10}}, 'warm') === 7 (zero treated as fallback)",
+    getSeasonalInterval({ waterSchedule: { warm: 0, cold: 10 } }, 'warm') === 7);
+
+  console.log('\nWave 1 assertions complete.');
 
 } catch (err) {
   console.error('SMOKE RUNNER ERROR:', err && err.message ? err.message : err);
