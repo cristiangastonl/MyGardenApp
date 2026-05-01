@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry } from '../types';
+import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry, ClimateOverride } from '../types';
 import type { PersistedAppData } from '../types';
 import { STORAGE_KEY } from '../data/constants';
 import { formatDate } from '../utils/dates';
@@ -28,6 +28,7 @@ interface StorageState {
   diagnosisCount: number;
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
   shoppingList: ShoppingItem[];
+  climateOverride: ClimateOverride; // v1.1 Phase 7 LOC-05; never undefined at runtime, defaults to 'auto'
   loading: boolean;
   migrationFailed: boolean;       // SCHEMA-07: drives MigrationBanner render (Plan 06)
   migrationJustHappened: boolean; // SCHEMA-06: drives App-level reschedule trigger (Plan 07)
@@ -68,6 +69,7 @@ interface StorageActions {
   toggleShoppingItem: (itemId: string) => void;
   clearCheckedShoppingItems: () => void;
   acknowledgeMigrationReschedule: () => void; // App.tsx (Plan 07) calls this once it has rescheduled notifications
+  setClimateOverride: (override: ClimateOverride) => void; // v1.1 Phase 7 (LOC-05)
 }
 
 type StorageContextType = StorageState & StorageActions;
@@ -95,6 +97,7 @@ function snapshotFromRef(ref: React.MutableRefObject<Omit<StorageState, 'loading
     diagnosisCount: d.diagnosisCount,
     diagnosisHistory: d.diagnosisHistory,
     shoppingList: d.shoppingList,
+    climateOverride: d.climateOverride,
   };
 }
 
@@ -114,6 +117,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const [diagnosisCount, setDiagnosisCount] = useState(0);
   const [diagnosisHistory, setDiagnosisHistory] = useState<Record<string, SavedDiagnosis[]>>({});
   const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
+  const [climateOverride, setClimateOverrideState] = useState<ClimateOverride>('auto');
   const [loading, setLoading] = useState(true);
   const [migrationFailed, setMigrationFailed] = useState(false);
   const [migrationJustHappened, setMigrationJustHappened] = useState(false);
@@ -133,6 +137,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisCount: 0,
     diagnosisHistory: {},
     shoppingList: [],
+    climateOverride: 'auto',
   });
 
   // Debounced save timer ref
@@ -265,6 +270,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
         const dc = data.diagnosisCount || 0;
         const dh = data.diagnosisHistory || {};
         const sl = data.shoppingList || [];
+        const co: ClimateOverride = (data as AppData).climateOverride ?? 'auto';
         const effectiveInstallDate = data.installDate || formatDate(new Date());
 
         setPlants(p);
@@ -279,6 +285,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
         setDiagnosisCount(dc);
         setDiagnosisHistory(dh);
         setShoppingList(sl);
+        setClimateOverrideState(co);
         setInstallDate(effectiveInstallDate);
 
         dataRef.current = {
@@ -295,6 +302,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
           diagnosisCount: dc,
           diagnosisHistory: dh,
           shoppingList: sl,
+          climateOverride: co,
         };
       } else {
         // Both migration AND legacy parse failed — treat as brand-new user
@@ -663,6 +671,12 @@ export function StorageProvider({ children }: StorageProviderProps) {
     setMigrationJustHappened(false);
   }, []);
 
+  const setClimateOverride = useCallback((override: ClimateOverride) => {
+    setClimateOverrideState(override);
+    dataRef.current.climateOverride = override;
+    scheduleSave();
+  }, [scheduleSave]);
+
   const value: StorageContextType = useMemo(() => ({
     plants,
     notes,
@@ -677,6 +691,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisCount,
     diagnosisHistory,
     shoppingList,
+    climateOverride,
     loading,
     migrationFailed,
     migrationJustHappened,
@@ -714,10 +729,11 @@ export function StorageProvider({ children }: StorageProviderProps) {
     toggleShoppingItem,
     clearCheckedShoppingItems,
     acknowledgeMigrationReschedule,
+    setClimateOverride,
   }), [
     plants, notes, reminders, location, onboardingCompleted, userName,
     notificationSettings, plantNetApiKey, installDate, identificationCount,
-    diagnosisCount, diagnosisHistory, shoppingList, loading,
+    diagnosisCount, diagnosisHistory, shoppingList, climateOverride, loading,
     migrationFailed, migrationJustHappened,
     handleSetPlants, addPlant,
     addPlants, deletePlant, updatePlant, addNote, deleteNote, addReminder,
