@@ -34,7 +34,7 @@
 - [ ] **WATER-02**: Each plant has `waterMode: 'fixed' | 'soil_check'`; cacti, succulents, echeveria, haworthia, sedum, aloe, jade default to `soil_check`
 - [ ] **WATER-03**: User can edit warm/cold intervals separately in plant edit form; `soil_check` plants show no interval inputs but a toggle to switch to `fixed` mode
 - [x] **WATER-04**: Existing plants migrate `waterEvery` → `warm`; `cold` is computed by per-category factor (suculentas 2.0, interior 1.5, exterior 1.7, aromaticas 1.5, huerta 1.3, frutales 1.5)
-- [ ] **WATER-05**: `soil_check` plants generate a new `'check_soil'` task type instead of `'water'` — copy reads "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
+- [x] **WATER-05**: `soil_check` plants generate a new `'check_soil'` task type instead of `'water'` — copy reads "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
 - [ ] **WATER-06**: `soil_check` plants do NOT incur health-score penalty for "overdue watering"
 - [ ] **WATER-07**: Catalog rebalance phase replaces `applyColdFactor` heuristic values with explicit per-`PlantDBEntry` warm/cold defaults from the watering-ratio reference table
 
@@ -43,7 +43,7 @@
 - [x] **SEASON-01**: A new `getSeason(latitude, date)` utility returns `'warm' | 'cold' | 'tropical'` — three zones, not two
 - [x] **SEASON-02**: Tropical zone (~lat between 23.5°S and 23.5°N) always uses `warm` schedule (no flip)
 - [x] **SEASON-03**: Northern temperate uses warm Apr-Sep, cold Oct-Mar; Southern temperate uses warm Oct-Mar, cold Apr-Sep — month boundaries, not equinox
-- [ ] **SEASON-04**: Health calculation, task generation, and notification scheduler all derive watering interval from `(plant.waterSchedule, currentSeason)` consistently
+- [x] **SEASON-04**: Health calculation, task generation, and notification scheduler all derive watering interval from `(plant.waterSchedule, currentSeason)` consistently
 - [ ] **SEASON-05**: Plant detail view shows current season badge ("Cada 5 días — temporada cálida")
 
 ### Location Precision (LOC)
@@ -147,13 +147,13 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | WATER-02 | Phase 7 | Pending |
 | WATER-03 | Phase 7 | Pending |
 | WATER-04 | Phase 4 | Complete |
-| WATER-05 | Phase 5 | Pending |
+| WATER-05 | Phase 5 | Complete |
 | WATER-06 | Phase 5 | Pending |
 | WATER-07 | Phase 8 | Pending |
 | SEASON-01 | Phase 5 | Complete |
 | SEASON-02 | Phase 5 | Complete |
 | SEASON-03 | Phase 5 | Complete |
-| SEASON-04 | Phase 5 | Pending |
+| SEASON-04 | Phase 5 | Complete |
 | SEASON-05 | Phase 6 | Pending |
 | LOC-01 | Phase 7 | Pending |
 | LOC-02 | Phase 7 | Pending |

@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: "Completed 05-02-PLAN.md (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)"
-last_updated: "2026-05-01T13:54:32.640Z"
-last_activity: "2026-05-01 — Plan 05-02 complete (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)"
+stopped_at: Completed 05-03-PLAN.md (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
+last_updated: "2026-05-01T14:11:12.251Z"
+last_activity: "2026-05-01 — Plan 05-03 complete (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)"
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 9
-  percent: 75
+  completed_plans: 10
+  percent: 83
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-29)
 ## Current Position
 
 Phase: 5 of 9 (Hemisphere/Season Helpers + Pure-Utility Switchover)
-Plan: 03 of 5 (Wave 2: plantLogic season-aware dispatch + check_soil task emission)
-Status: Phase 5 in progress (2/5 plans complete; Wave-1 foundation landed — getWaterSeason + Task['check_soil'] + tasks.checkSoil i18n keys all green; downstream Plans 03/04/05 can import the helper and consume the discriminator without dangling references).
-Last activity: 2026-05-01 — Plan 05-02 complete (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)
+Plan: 04 of 5 (Wave 2: plantHealth penalty skip — gates daysUntilWater<0 on waterMode !== 'soil_check'; cascades to GardenHealth/MyPlantDetailModal/useNotifications)
+Status: Phase 5 in progress (3/5 plans complete; Wave-2 linchpin landed — plantLogic.ts season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch; 4 immediate callers threaded latitude through; smoke 86→101 PASS. Plan 04 (plantHealth) + Plan 05 (5 component/scheduler files) own the remaining tsc handoff).
+Last activity: 2026-05-01 — Plan 05-03 complete (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
 
-Progress: [████████░░] 75% (Phase 5: 2/5 plans complete; v1.1 overall: 9/12 plans)
+Progress: [████████░░] 83% (Phase 5: 3/5 plans complete; v1.1 overall: 10/12 plans)
 
 ## Performance Metrics
 
@@ -66,6 +66,7 @@ Progress: [████████░░] 75% (Phase 5: 2/5 plans complete; v1.
 | Phase 04 P07 | 5min | 1 tasks | 1 files |
 | Phase 05 P01 | 2 min | 1 tasks | 1 files |
 | Phase 05 P02 | 4 min | 3 tasks | 5 files |
+| Phase 05 P03 | 8 min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -110,6 +111,10 @@ Recent decisions affecting current work:
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: ES voseo regex uses /i flag for verb-presence checks (sentence-leading 'Tocá' is naturally capitalized; strict /tocá/ would miss). Tuteo-rejection regex stays case-sensitive (/\btoca\b|\briega\b/) — tuteo verbs are themselves lowercase tokens; case-insensitive rejection would over-match the voseo body.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: getWaterSeason naming chosen over getSeason to coexist with src/utils/tipSelector.ts > getSeason (4-season UI palette). Different files, different export names, same conceptual namespace ('what season is it?') but orthogonal taxonomies. JSDoc cross-reference kept in seasonality.ts to document the coexistence for future maintainers.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: Top-level 'tasks' i18n key inserted between 'dayDetail' and 'dataMigration' blocks — keeps existing nested label fragments (dayDetail.taskWater, notifications.water) untouched while giving full UX sentences (checkSoilBody) their own namespace. RESEARCH §Pitfall 7 pattern.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: Mode-as-dispatcher pattern locked — waterMode === 'soil_check' branches the task type emit ('check_soil' icon 🤚 + tasks.checkSoil i18n label) but the cadence pathway (next-water-date math) is shared with 'fixed' mode plants via getSeasonalInterval. Single source of truth across modes per CONTEXT.md. Future v1.2/v2.0 modes (auto_water_sensor, manual_only) MUST follow this — emit different task type, share cadence math.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: Pitfall 5 first-encounter day-1 nudge for soil_check plants — plants with waterMode==='soil_check' and lastWatered===null emit 'check_soil' on day-1 (NOT suppressed). Matches 'Hoy is non-empty for new plants' UX expectation; first user interaction with a new cactus is naturally a check-in (touch the soil). Asserted in smoke runner via pNew fixture.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: tsc handoff is multi-stage across 6 files, NOT 'only plantHealth.ts' as the planner's success-criteria phrasing implied. Actual handoff: plantHealth.ts (Plan 04) + DayDetail.tsx + DayDetailModal.tsx + MonthCalendar.tsx + PlantsScreen.tsx + notificationScheduler.ts (all 5 Plan 05). Future planners should treat the affects: field in dependency-graph as authoritative for downstream-caller enumeration, not just the <interfaces> block.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: Smoke-runner stub idiom for src/utils/* with React/i18n deps — regex-rewrite import specifiers ('../i18n', '../types', './seasonality', './dates') to scripts/.tmp-*.mjs paths BEFORE typescript.transpileModule, write minimal stub modules (i18n no-op translator, types empty module, dates real impl), then dynamic-import the compiled module. Reusable verbatim for Plan 04 (plantHealth.ts) and Plan 05 (notificationScheduler.ts) when they extend the smoke runner. Single-compile-path policy preserved (still typescript.transpileModule, no esbuild/swc fallbacks).
 
 ### Pending Todos
 
@@ -125,6 +130,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T13:54:16.066Z
-Stopped at: Completed 05-02-PLAN.md (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)
+Last session: 2026-05-01T14:11:12.249Z
+Stopped at: Completed 05-03-PLAN.md (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
 Resume file: None
