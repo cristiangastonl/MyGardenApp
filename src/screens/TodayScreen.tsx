@@ -18,6 +18,7 @@ import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
 import { formatDate, isSameDay, daysBetween } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
+import { getEffectiveSeason } from '../utils/seasonality';
 import { generatePlantAlerts } from '../utils/plantAlerts';
 import { Plant, SavedDiagnosis, ShoppingItem, TrackingStatus } from '../types';
 import {
@@ -63,6 +64,7 @@ export default function TodayScreen() {
     notes,
     reminders,
     location,
+    climateOverride,
     userName,
     notificationSettings,
     plantNetApiKey,
@@ -94,6 +96,11 @@ export default function TodayScreen() {
   const { weather, loading: weatherLoading, error: weatherError, refetch: refetchWeather } = useWeather(location);
   const { season, palette: seasonalPalette } = useSeason(location);
 
+  // Pre-compute effective season (climate-override-aware SSOT, Phase 7 LOC-05).
+  // Computed once per render — passed to all children instead of threading location?.lat.
+  const today = new Date();
+  const effectiveSeason = getEffectiveSeason(location, climateOverride, today);
+
   // Generate plant alerts for notifications
   const plantAlerts = useMemo(() => {
     return generatePlantAlerts(plants, weather);
@@ -117,7 +124,7 @@ export default function TodayScreen() {
     weather,
     alerts: plantAlerts,
     diagnosisHistory,
-    latitude: location?.lat ?? null,
+    season: effectiveSeason,
   });
 
   const { pendingPlantId, clearPendingPlantId } = useContext(NotificationContext);
@@ -150,7 +157,6 @@ export default function TodayScreen() {
     setShowAddPlant(true);
   };
 
-  const today = new Date();
   const todayStr = formatDate(today);
 
   // Get today's reminders and notes
@@ -162,7 +168,7 @@ export default function TodayScreen() {
     const withTasks: Plant[] = [];
 
     plants.forEach((plant) => {
-      const nextWater = getNextWaterDate(plant, today, location?.lat ?? null);
+      const nextWater = getNextWaterDate(plant, today, effectiveSeason);
       const needsWaterToday = isSameDay(nextWater, today);
       const needsSunToday = plant.sunDays.includes(today.getDay());
       const needsOutdoorToday = plant.outdoorDays.includes(today.getDay());
@@ -174,22 +180,21 @@ export default function TodayScreen() {
 
     const favSort = (a: Plant, b: Plant) => (a.favorite ? -1 : 0) - (b.favorite ? -1 : 0);
     return withTasks.sort(favSort);
-  }, [plants, today, location?.lat]);
+  }, [plants, today, effectiveSeason]);
 
   // UX-03: per-plant info rows for soil_check plants on non-check-in days.
   // Mutually exclusive with plantsWithTasks via the isSameDay filter — soil_check
   // plants on their check-in day appear in plantsWithTasks (PlantCard with check_soil task);
   // soil_check plants on a non-check-in day appear in soilCheckSilentPlants (info row).
   const soilCheckSilentPlants = useMemo(() => {
-    const lat = location?.lat ?? null;
     const silent = plants.filter((plant) => {
       if (plant.waterMode !== 'soil_check') return false;
-      const nextCheckIn = getNextWaterDate(plant, today, lat);
+      const nextCheckIn = getNextWaterDate(plant, today, effectiveSeason);
       return !isSameDay(nextCheckIn, today);
     });
     // Stable order: by plant name (alphabetical). Avoids reorder-flicker on re-render.
     return silent.sort((a, b) => a.name.localeCompare(b.name));
-  }, [plants, today, location?.lat]);
+  }, [plants, today, effectiveSeason]);
 
   const handleWater = (plantId: string) => {
     updatePlant(plantId, { lastWatered: todayStr });
@@ -339,10 +344,10 @@ export default function TodayScreen() {
         />
 
         {/* Watering Tips based on weather */}
-        <WateringTips plants={plants} weather={weather} latitude={location?.lat ?? null} />
+        <WateringTips plants={plants} weather={weather} season={effectiveSeason} />
 
         {/* Garden Health Summary */}
-        <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} latitude={location?.lat ?? null} />
+        <GardenHealth plants={plants} weather={weather} diagnosisHistory={diagnosisHistory} season={effectiveSeason} />
 
         {/* Shopping List button */}
         {premium.canUseShoppingList() && shoppingList.length > 0 && (
@@ -438,7 +443,7 @@ export default function TodayScreen() {
             {soilCheckSilentPlants.map((plant) => {
               const daysLeft = daysBetween(
                 today,
-                getNextWaterDate(plant, today, location?.lat ?? null)
+                getNextWaterDate(plant, today, effectiveSeason)
               );
               return (
                 <View key={plant.id} style={styles.soilCheckRow}>

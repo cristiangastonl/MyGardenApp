@@ -13,6 +13,7 @@ import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { useStorage } from '../hooks/useStorage';
 import { getMonths } from '../data/constants';
 import { formatDate } from '../utils/dates';
+import { getEffectiveSeason } from '../utils/seasonality';
 import { Note, Reminder } from '../types';
 import {
   MonthCalendar,
@@ -26,6 +27,7 @@ export default function CalendarScreen() {
     notes,
     reminders,
     location,
+    climateOverride,
     loading,
     updatePlant,
     addNote,
@@ -34,6 +36,8 @@ export default function CalendarScreen() {
     deleteReminder,
     updateReminder,
   } = useStorage();
+
+  const effectiveSeason = getEffectiveSeason(location, climateOverride, new Date());
 
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -204,7 +208,7 @@ export default function CalendarScreen() {
           plants={plants}
           notes={notes}
           reminders={reminders}
-          latitude={location?.lat ?? null}
+          season={effectiveSeason}
           selectedDate={selectedDate}
           onSelectDate={handleSelectDate}
         />
@@ -253,7 +257,7 @@ export default function CalendarScreen() {
           plants={plants}
           notes={selectedNotes}
           reminders={selectedReminders}
-          latitude={location?.lat ?? null}
+          season={effectiveSeason}
           onClose={handleCloseDayDetail}
           onWater={handleWater}
           onSunDone={handleSunDone}

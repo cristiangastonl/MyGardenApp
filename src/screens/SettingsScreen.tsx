@@ -11,6 +11,7 @@ import { usePremium } from '../hooks/usePremium';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
 import { generatePlantAlerts } from '../utils/plantAlerts';
+import { getEffectiveSeason } from '../utils/seasonality';
 import { Location } from '../types';
 import i18n, { setLanguage } from '../i18n';
 
@@ -36,6 +37,7 @@ export default function SettingsScreen() {
   const {
     plants,
     location,
+    climateOverride,
     notificationSettings,
     updateLocation,
     updateNotificationSettings,
@@ -45,6 +47,7 @@ export default function SettingsScreen() {
 
   const { weather } = useWeather(location);
   const plantAlerts = useMemo(() => generatePlantAlerts(plants, weather), [plants, weather]);
+  const effectiveSeason = getEffectiveSeason(location, climateOverride, new Date());
 
   const {
     permissionStatus,
@@ -61,7 +64,7 @@ export default function SettingsScreen() {
     plants,
     weather,
     alerts: plantAlerts,
-    latitude: location?.lat ?? null,
+    season: effectiveSeason,
   });
 
   const [searchQuery, setSearchQuery] = useState('');

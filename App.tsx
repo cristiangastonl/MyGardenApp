@@ -30,6 +30,7 @@ import {
   cancelAllNotifications,
   scheduleMorningReminder,
 } from './src/utils/notificationScheduler';
+import { getEffectiveSeason } from './src/utils/seasonality';
 
 // Screens
 import TodayScreen from './src/screens/TodayScreen';
@@ -172,7 +173,8 @@ function AppContentMVP() {
       try {
         await cancelAllNotifications();
         const morningTime = notificationSettings?.morningTime ?? '08:00';
-        await scheduleMorningReminder(morningTime, plants, null, location?.lat ?? null, []);
+        const season = getEffectiveSeason(location, climateOverride, new Date());
+        await scheduleMorningReminder(morningTime, plants, null, season, []);
         // NOTE (B1): the smart-sun scheduler is intentionally NOT called here —
         // it requires weather data and would be a no-op at App-level. TodayScreen's
         // existing useNotifications hook handles it once weather loads.
