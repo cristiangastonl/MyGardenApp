@@ -1,4 +1,5 @@
-import type { Location, ClimateOverride } from '../types';
+import type { Location, ClimateOverride, WaterSeason } from '../types';
+export type { WaterSeason };
 
 /**
  * Three-zone watering season helper (Phase 5, SEASON-01..03).
@@ -13,8 +14,6 @@ import type { Location, ClimateOverride } from '../types';
  * intentionally a different export name to avoid the naming collision called
  * out in Phase 5 RESEARCH.md Pitfall 1.
  */
-export type WaterSeason = 'warm' | 'cold' | 'tropical';
-
 /** Tropic of Cancer / Capricorn — inclusive boundary per CONTEXT.md SEASON-02 lock. */
 export const TROPICAL_LAT_BOUNDARY = 23.5;
 

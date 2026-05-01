@@ -307,12 +307,41 @@ export interface DiagnosisResult {
 
 export type DiagnosisState = 'idle' | 'capturing' | 'analyzing' | 'results' | 'error';
 
+/**
+ * Watering season bucket (Phase 5 — SEASON-01..03). 'tropical' always maps to 'warm' interval lookup.
+ * Defined here so PlantDiagnosisContext can reference it without importing from utils (avoids cycle).
+ * src/utils/seasonality.ts re-exports this type; all existing imports of WaterSeason remain valid.
+ */
+export type WaterSeason = 'warm' | 'cold' | 'tropical';
+
+/**
+ * Diagnosis context payload sent to edge functions (diagnose-plant, chat-diagnosis).
+ *
+ * Phase 7 (Plan 07-08, LIGHT-05): extended with v1.1 fields. The edge function
+ * uses `!!ctx.waterSchedule` as a discriminator to choose between legacy and v1.1
+ * prompt branches. New clients send v1.1 fields; legacy fields kept optional for
+ * backward compat (old store-installed clients still work; v1.2 sunsets the legacy branch).
+ */
 export interface PlantDiagnosisContext {
   species: string;
-  waterEvery: number;
-  sunHours: number;
   lastWatered: string | null;
   outdoorDays: number[];
+
+  // ─── v1.0 legacy fields (optional in Phase 7; new clients no longer send) ───
+  /** @deprecated Phase 7. v1.0 clients still send; new clients use waterSchedule. */
+  waterEvery?: number;
+  /** @deprecated Phase 7. v1.0 clients still send; new clients use lightLevel. */
+  sunHours?: number;
+
+  // ─── v1.1 fields (Phase 7 new — sent by post-Plan-07-08 clients) ───
+  /** v1.1 light level taxonomy. */
+  lightLevel?: LightLevel;
+  /** v1.1 warm/cold watering schedule. */
+  waterSchedule?: WaterSchedule;
+  /** v1.1 watering mode (fixed | soil_check). */
+  waterMode?: WaterMode;
+  /** v1.1 current effective season (warm | cold | tropical) — derived via getEffectiveSeason. */
+  currentSeason?: WaterSeason;
 }
 
 export interface DiagnosisChatMessage {
