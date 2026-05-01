@@ -18,6 +18,8 @@ import { usePremium } from '../../hooks/usePremium';
 import { useStorage } from '../../hooks/useStorage';
 import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry } from '../../types';
 import { startTracking } from '../../services/problemTrackingService';
+import { getEffectiveSeason } from '../../utils/seasonality';
+import { inferWaterMode } from '../../utils/migration';
 import { CameraCapture } from '../PlantIdentifier/CameraCapture';
 import { DiagnosisAnalyzingState } from './DiagnosisAnalyzingState';
 import { DiagnosisResults } from './DiagnosisResults';
@@ -44,7 +46,7 @@ export function PlantDiagnosisModal({
   canAddToShoppingList = false,
 }: PlantDiagnosisModalProps) {
   const { t } = useTranslation();
-  const { saveDiagnosis, addChatMessage, diagnosisCount, incrementDiagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry } = useStorage();
+  const { saveDiagnosis, addChatMessage, diagnosisCount, incrementDiagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry, location, climateOverride } = useStorage();
   const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
 
@@ -66,30 +68,20 @@ export function PlantDiagnosisModal({
     incrementDiagnosisCount();
   }, [saveDiagnosis, incrementDiagnosisCount]);
 
-  // v1.1: derive legacy diagnosis-context fields from new schema with defensive fallback.
-  // The PlantDiagnosisContext shape is consumed downstream by edge-function prompts that
-  // were trained on the v1.0 fields (waterEvery, sunHours); keep them populated until
-  // Phase 7 updates the edge functions to consume waterSchedule / lightLevel directly.
-  const waterEveryForContext: number =
-    plant.waterSchedule?.warm ?? (typeof plant.waterEvery === 'number' ? plant.waterEvery : 7);
-  const sunHoursForContext: number = (() => {
-    if (plant.lightLevel) {
-      switch (plant.lightLevel) {
-        case 'direct':           return 6;
-        case 'bright_indirect':  return 4;
-        case 'medium_indirect':  return 2;
-        case 'low':              return 1;
-      }
-    }
-    return typeof plant.sunHours === 'number' ? plant.sunHours : 3;
-  })();
+  // Phase 7 (Plan 07-08, LIGHT-05): build v1.1 PlantDiagnosisContext directly.
+  // Server reads via discriminator !!ctx.waterSchedule to choose new vs legacy prompt branch.
+  // No legacy fallback HERE because client + server ship atomically (Pitfall 6 lock).
+  const currentSeason = getEffectiveSeason(location, climateOverride, new Date());
 
   const plantContext: PlantDiagnosisContext = {
     species: plant.typeName,
-    waterEvery: waterEveryForContext,
-    sunHours: sunHoursForContext,
     lastWatered: plant.lastWatered,
     outdoorDays: plant.outdoorDays,
+    // ─── v1.1 precision-care fields ───
+    lightLevel: plant.lightLevel,
+    waterSchedule: plant.waterSchedule,
+    waterMode: plant.waterMode ?? inferWaterMode(undefined, plant.databaseId),
+    currentSeason,
   };
 
   const {
