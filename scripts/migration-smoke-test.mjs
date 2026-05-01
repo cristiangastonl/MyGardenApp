@@ -152,7 +152,13 @@ try {
   if (!seasonalityMod) {
     console.log('Phase 5: skipped — seasonality.ts not yet present');
   } else {
-    const { getWaterSeason, TROPICAL_LAT_BOUNDARY } = seasonalityMod;
+    // Phase 7 (Plan 07-02): getWaterSeason is now module-private (SSOT lock).
+    // All assertions now go through the public getEffectiveSeason API.
+    // getEffectiveSeason(location, 'auto', date) delegates to getWaterSeason internally,
+    // preserving all Phase 5 SEASON-01..03 behavior contracts.
+    const { getEffectiveSeason, TROPICAL_LAT_BOUNDARY } = seasonalityMod;
+    // Helper to call with latitude-derived location object (auto mode = same as old getWaterSeason).
+    const ws = (lat, date) => getEffectiveSeason(lat !== null && Number.isFinite(lat) ? { lat, lon: 0, name: '', country: '' } : null, 'auto', date);
 
     // Local-time Date constructor (year, monthIdx, day) is used throughout this
     // section instead of ISO strings — `new Date('2026-04-01')` parses as UTC
@@ -161,29 +167,29 @@ try {
     // multi-arg form is unambiguous local time and TZ-independent.
 
     // -------- SEASON-01: enum return shape --------
-    assert("getWaterSeason returns string", typeof getWaterSeason(40, new Date(2026, 3, 1)) === 'string');
+    assert("getEffectiveSeason('auto') returns string", typeof ws(40, new Date(2026, 3, 1)) === 'string');
     assert("TROPICAL_LAT_BOUNDARY === 23.5", TROPICAL_LAT_BOUNDARY === 23.5);
 
     // -------- SEASON-02: tropical inclusive boundary --------
-    assert("Singapore (1.35) Jan === 'tropical'", getWaterSeason(1.35, new Date(2026, 0, 15)) === 'tropical');
-    assert("Singapore (1.35) Jul === 'tropical'", getWaterSeason(1.35, new Date(2026, 6, 15)) === 'tropical');
-    assert("Boundary +23.5 Jul === 'tropical' (inclusive)", getWaterSeason(23.5, new Date(2026, 6, 15)) === 'tropical');
-    assert("Boundary -23.5 Jul === 'tropical' (inclusive)", getWaterSeason(-23.5, new Date(2026, 6, 15)) === 'tropical');
-    assert("Boundary +23.51 Jul === 'warm' (just outside, Northern)", getWaterSeason(23.51, new Date(2026, 6, 15)) === 'warm');
+    assert("Singapore (1.35) Jan === 'tropical'", ws(1.35, new Date(2026, 0, 15)) === 'tropical');
+    assert("Singapore (1.35) Jul === 'tropical'", ws(1.35, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary +23.5 Jul === 'tropical' (inclusive)", ws(23.5, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary -23.5 Jul === 'tropical' (inclusive)", ws(-23.5, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary +23.51 Jul === 'warm' (just outside, Northern)", ws(23.51, new Date(2026, 6, 15)) === 'warm');
 
     // -------- SEASON-03: month-boundary hard flip (off-by-one safeguard) --------
-    assert("NY (40) Apr 1 === 'warm' (Northern first warm day)", getWaterSeason(40, new Date(2026, 3, 1)) === 'warm');
-    assert("NY (40) Mar 31 === 'cold' (Northern last cold day)", getWaterSeason(40, new Date(2026, 2, 31)) === 'cold');
-    assert("NY (40) Sep 30 === 'warm' (Northern last warm day)", getWaterSeason(40, new Date(2026, 8, 30)) === 'warm');
-    assert("NY (40) Oct 1 === 'cold' (Northern first cold day)", getWaterSeason(40, new Date(2026, 9, 1)) === 'cold');
-    assert("BA (-34.6) Apr 1 === 'cold' (Southern inverted)", getWaterSeason(-34.6, new Date(2026, 3, 1)) === 'cold');
-    assert("BA (-34.6) Oct 1 === 'warm' (Southern inverted)", getWaterSeason(-34.6, new Date(2026, 9, 1)) === 'warm');
-    assert("BA (-34.6) Jan 15 === 'warm' (Southern summer)", getWaterSeason(-34.6, new Date(2026, 0, 15)) === 'warm');
-    assert("BA (-34.6) Jul 15 === 'cold' (Southern winter)", getWaterSeason(-34.6, new Date(2026, 6, 15)) === 'cold');
+    assert("NY (40) Apr 1 === 'warm' (Northern first warm day)", ws(40, new Date(2026, 3, 1)) === 'warm');
+    assert("NY (40) Mar 31 === 'cold' (Northern last cold day)", ws(40, new Date(2026, 2, 31)) === 'cold');
+    assert("NY (40) Sep 30 === 'warm' (Northern last warm day)", ws(40, new Date(2026, 8, 30)) === 'warm');
+    assert("NY (40) Oct 1 === 'cold' (Northern first cold day)", ws(40, new Date(2026, 9, 1)) === 'cold');
+    assert("BA (-34.6) Apr 1 === 'cold' (Southern inverted)", ws(-34.6, new Date(2026, 3, 1)) === 'cold');
+    assert("BA (-34.6) Oct 1 === 'warm' (Southern inverted)", ws(-34.6, new Date(2026, 9, 1)) === 'warm');
+    assert("BA (-34.6) Jan 15 === 'warm' (Southern summer)", ws(-34.6, new Date(2026, 0, 15)) === 'warm');
+    assert("BA (-34.6) Jul 15 === 'cold' (Southern winter)", ws(-34.6, new Date(2026, 6, 15)) === 'cold');
 
     // -------- Defensive fallbacks --------
-    assert("null lat === 'warm' (LOC-03 safe default)", getWaterSeason(null, new Date(2026, 0, 15)) === 'warm');
-    assert("NaN lat === 'warm' (defensive)", getWaterSeason(NaN, new Date(2026, 0, 15)) === 'warm');
+    assert("null lat === 'warm' (LOC-03 safe default)", ws(null, new Date(2026, 0, 15)) === 'warm');
+    assert("NaN lat === 'warm' (defensive)", ws(NaN, new Date(2026, 0, 15)) === 'warm');
 
     // -------- i18n key parity (EN + ES voseo) --------
     // Voseo regex uses /i flag because the body sentence starts with capital 'Tocá';
@@ -230,6 +236,14 @@ try {
     const plantLogicMod = await import(tmpPlantLogic);
     const { getNextWaterDate, getTasksForDay } = plantLogicMod;
 
+    // Phase 7 (Plan 07-02): getNextWaterDate and getTasksForDay now take season: WaterSeason
+    // instead of latitude. Pre-compute season using the ws() helper defined above.
+    const seasonBA_Apr = ws(-34.6, new Date(2026, 3, 15));   // 'cold'
+    const seasonNY_Apr = ws(40, new Date(2026, 3, 15));       // 'warm'
+    const seasonSG_Apr = ws(1.35, new Date(2026, 3, 15));     // 'tropical'
+    const seasonBA_Apr1 = ws(-34.6, new Date(2026, 3, 1));    // 'cold'
+    const seasonNull_Apr = ws(null, new Date(2026, 3, 15));   // 'warm' (LOC-03)
+
     // -------- SEASON-04: getNextWaterDate season-awareness --------
     const fixedPlantBA = {
       id: 'pBA', name: 'BA Fixed', waterMode: 'fixed',
@@ -238,17 +252,17 @@ try {
     };
     const apr15 = new Date(2026, 3, 15); // Apr 15, 2026
     // BA (-34.6) Apr 15: Southern → cold, 10d. lastWatered Apr 1 + 10 = Apr 11 → advance to Apr 21.
-    const baNext = getNextWaterDate(fixedPlantBA, apr15, -34.6);
+    const baNext = getNextWaterDate(fixedPlantBA, apr15, seasonBA_Apr);
     assert("BA fixed plant Apr 15 advances to cold-bucket interval (Apr 21)",
       baNext.getDate() === 21 && baNext.getMonth() === 3);
 
     // NY (40) Apr 15: Northern → warm, 5d. lastWatered Apr 1 + 5 = Apr 6 → advance to Apr 16.
-    const nyNext = getNextWaterDate(fixedPlantBA, apr15, 40);
+    const nyNext = getNextWaterDate(fixedPlantBA, apr15, seasonNY_Apr);
     assert("NY fixed plant Apr 15 uses warm-bucket interval (Apr 16)",
       nyNext.getDate() === 16 && nyNext.getMonth() === 3);
 
     // Tropical: Singapore (1.35) → must NOT yield NaN/undefined; uses warm bucket (5d).
-    const sgNext = getNextWaterDate(fixedPlantBA, apr15, 1.35);
+    const sgNext = getNextWaterDate(fixedPlantBA, apr15, seasonSG_Apr);
     assert("Singapore tropical Apr 15 uses warm bucket (no undefined/NaN)",
       !isNaN(sgNext.getTime()) && sgNext.getDate() === 16);
 
@@ -261,7 +275,7 @@ try {
       lastWatered: '2026-03-25', sunDays: [], outdoorDays: [],
     };
     const apr1 = new Date(2026, 3, 1); // Apr 1, 2026 — Southern flips warm→cold
-    const transitionNext = getNextWaterDate(transitionPlantBA, apr1, -34.6);
+    const transitionNext = getNextWaterDate(transitionPlantBA, apr1, seasonBA_Apr1);
     const apr1Ms = apr1.getTime();
     const tenDaysMs = 10 * 24 * 60 * 60 * 1000;
     assert("Cross-month transition (Mar 25 → Apr 1 Southern flip) returns valid Date (no NaN)",
@@ -277,12 +291,12 @@ try {
       waterEvery: 7, waterSchedule: undefined,
       lastWatered: '2026-04-01', sunDays: [], outdoorDays: [],
     };
-    const legacyNext = getNextWaterDate(legacyPlant, apr15, 40);
+    const legacyNext = getNextWaterDate(legacyPlant, apr15, seasonNY_Apr);
     assert("Legacy waterEvery fallback (7d) Apr 1 → Apr 8 → advance to Apr 15",
       !isNaN(legacyNext.getTime()) && legacyNext.getDate() === 15);
 
     // null lat → 'warm' default → 5d.
-    const nullLatNext = getNextWaterDate(fixedPlantBA, apr15, null);
+    const nullLatNext = getNextWaterDate(fixedPlantBA, apr15, seasonNull_Apr);
     assert("null latitude uses warm safe-default (Apr 16)",
       nullLatNext.getDate() === 16);
 
@@ -294,7 +308,7 @@ try {
       lastWatered: '2026-03-18', // 28d before Apr 15 — Southern Apr is cold, 28d → check-in TODAY
       sunDays: [], outdoorDays: [],
     };
-    const baTasks = getTasksForDay([soilCheckBA], apr15, -34.6);
+    const baTasks = getTasksForDay([soilCheckBA], apr15, seasonBA_Apr);
     assert("soil_check plant on check-in day emits exactly 1 task",
       baTasks.length === 1);
     assert("soil_check task type === 'check_soil' (NOT 'water')",
@@ -306,18 +320,18 @@ try {
 
     // Non-check-in day: same plant, day before next check-in.
     const apr14 = new Date(2026, 3, 14);
-    const baTasksNonCheckIn = getTasksForDay([soilCheckBA], apr14, -34.6);
+    const baTasksNonCheckIn = getTasksForDay([soilCheckBA], apr14, seasonBA_Apr);
     assert("soil_check plant on non-check-in day emits 0 tasks",
       baTasksNonCheckIn.length === 0);
 
     // First-encounter (lastWatered === null) for soil_check: emits day-1 (Pitfall 5 recommendation).
     const newSoilCheck = { ...soilCheckBA, id: 'pNew', lastWatered: null };
-    const newTasks = getTasksForDay([newSoilCheck], apr15, -34.6);
+    const newTasks = getTasksForDay([newSoilCheck], apr15, seasonBA_Apr);
     assert("New soil_check plant (lastWatered null) emits 'check_soil' on day 1",
       newTasks.length === 1 && newTasks[0]?.type === 'check_soil');
 
     // Fixed-mode plant on its check-in day: emits 'water', NOT 'check_soil'.
-    const fixedTasks = getTasksForDay([{ ...fixedPlantBA, lastWatered: '2026-04-05' }], new Date(2026,3,15), -34.6);
+    const fixedTasks = getTasksForDay([{ ...fixedPlantBA, lastWatered: '2026-04-05' }], new Date(2026,3,15), seasonBA_Apr);
     // BA Apr 15 cold 10d, lastWatered Apr 5 → next is Apr 15 = today (check-in)
     assert("fixed plant on check-in day emits 'water' (NOT 'check_soil')",
       fixedTasks.length === 1 && fixedTasks[0]?.type === 'water');
