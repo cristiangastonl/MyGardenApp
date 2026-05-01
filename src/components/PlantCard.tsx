@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle, Alert } from 'react-native';
-import { Plant, WeatherData, SavedDiagnosis, TrackingStatus } from '../types';
+import { Plant, WeatherData, SavedDiagnosis, TrackingStatus, Location } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { TRACKING_STATUS_CONFIG } from '../services/problemTrackingService';
 import { getNextWaterDate, getSeasonalInterval } from '../utils/plantLogic';
-import { getWaterSeason } from '../utils/seasonality';
+import { getEffectiveSeason } from '../utils/seasonality';
+import { useStorage } from '../hooks/useStorage';
 import { isSameDay, formatDate } from '../utils/dates';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { useTranslation } from 'react-i18next';
@@ -48,10 +49,15 @@ export function PlantCard({
   activeTrackingStatus,
 }: PlantCardProps) {
   const { t } = useTranslation();
+  const { climateOverride } = useStorage();
   const [showHealthDetail, setShowHealthDetail] = useState(false);
 
   const todayStr = formatDate(today);
-  const nextWaterDate = getNextWaterDate(plant, today, latitude);
+  // Pre-compute season once per render — PlantCard keeps latitude prop (Pattern A),
+  // derives Location inline for getEffectiveSeason (uses location?.lat ?? null internally).
+  const locationObj: Location | null = latitude !== null ? { lat: latitude, lon: 0, name: '', country: '' } : null;
+  const currentSeason = getEffectiveSeason(locationObj, climateOverride, today);
+  const nextWaterDate = getNextWaterDate(plant, today, currentSeason);
   const needsWaterToday = isSameDay(nextWaterDate, today);
   const waterDone = plant.lastWatered === todayStr && needsWaterToday;
 
@@ -66,14 +72,13 @@ export function PlantCard({
   const plantType = getPlantTypes().find(pt => pt.id === plant.typeId);
   const tip = plantType?.tip || '';
 
-  const currentSeason = getWaterSeason(latitude, today);
   const waterInterval = getSeasonalInterval(plant, currentSeason);
   const isCheckMode = plant.waterMode === 'soil_check';
 
   // Calculate plant health
   const healthStatus = useMemo(
-    () => calculatePlantHealth(plant, today, weather ?? null, diagnoses, latitude),
-    [plant, today, weather, diagnoses, latitude]
+    () => calculatePlantHealth(plant, today, weather ?? null, diagnoses, currentSeason),
+    [plant, today, weather, diagnoses, currentSeason]
   );
 
   // Show health badge if health is not excellent (score < 80)

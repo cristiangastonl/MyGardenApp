@@ -3,6 +3,7 @@ import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { Platform } from "react-native";
 import { Plant, WeatherData, NotificationSettings, SavedDiagnosis } from "../types";
+import type { WaterSeason } from "../utils/seasonality";
 import { PlantAlert } from "../utils/plantAlerts";
 import { calculateGardenHealth } from "../utils/plantHealth";
 import {
@@ -60,7 +61,7 @@ interface UseNotificationsOptions {
   weather: WeatherData | null;
   alerts: PlantAlert[];
   diagnosisHistory?: Record<string, SavedDiagnosis[]>;
-  latitude: number | null;
+  season: WaterSeason;
 }
 
 interface UseNotificationsReturn {
@@ -86,7 +87,7 @@ export function useNotifications({
   weather,
   alerts,
   diagnosisHistory,
-  latitude,
+  season,
 }: UseNotificationsOptions): UseNotificationsReturn {
   const [permissionStatus, setPermissionStatus] =
     useState<PermissionStatus>("undetermined");
@@ -155,8 +156,8 @@ export function useNotifications({
   // Reschedule morning reminder when settings or plants change
   useEffect(() => {
     if (settings.enabled && settings.morningReminder && plants.length > 0) {
-      const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, latitude);
-      scheduleMorningReminder(settings.morningTime, plants, weather, latitude, healthStatuses);
+      const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, season);
+      scheduleMorningReminder(settings.morningTime, plants, weather, season, healthStatuses);
       refreshScheduled();
     }
   }, [
@@ -274,8 +275,8 @@ export function useNotifications({
 
       // Schedule morning reminder if enabled
       if (settings.morningReminder && plants.length > 0) {
-        const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, latitude);
-        await scheduleMorningReminder(settings.morningTime, plants, weather, latitude, healthStatuses);
+        const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, season);
+        await scheduleMorningReminder(settings.morningTime, plants, weather, season, healthStatuses);
       }
 
       // Schedule weather alerts if enabled

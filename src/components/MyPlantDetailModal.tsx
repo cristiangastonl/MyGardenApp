@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
-import { Plant, PlantPhoto, WeatherData, SavedDiagnosis } from '../types';
+import { Plant, PlantPhoto, WeatherData, SavedDiagnosis, Location } from '../types';
 import { getPlantCategories, getTranslatedPlant } from '../data/plantDatabase';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
@@ -23,7 +23,7 @@ import { MigrationTooltip } from './MigrationTooltip';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useStorage } from '../hooks/useStorage';
-import { getWaterSeason, type WaterSeason } from '../utils/seasonality';
+import { getEffectiveSeason, type WaterSeason } from '../utils/seasonality';
 import { getSeasonalInterval } from '../utils/plantLogic';
 import { getLightLabel } from '../utils/lightLabel';
 
@@ -54,12 +54,15 @@ export function MyPlantDetailModal({
   const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
   const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
-  const { diagnosisCount, getDiagnosesForPlant } = useStorage();
+  const { diagnosisCount, getDiagnosesForPlant, climateOverride } = useStorage();
 
   const healthStatus = useMemo(() => {
     if (!plant) return null;
-    return calculatePlantHealth(plant, new Date(), weather, undefined, latitude);
-  }, [plant, weather, latitude]);
+    const today = new Date();
+    const locationObj: Location | null = latitude !== null ? { lat: latitude, lon: 0, name: '', country: '' } : null;
+    const season = getEffectiveSeason(locationObj, climateOverride, today);
+    return calculatePlantHealth(plant, today, weather, undefined, season);
+  }, [plant, weather, latitude, climateOverride]);
 
   const allPlantDiagnoses = useMemo(() => {
     if (!plant) return [];
@@ -77,17 +80,19 @@ export function MyPlantDetailModal({
   }, [plant]);
 
   // Phase 6 (SEASON-05, LIGHT-06/07): season-aware interval + localized light label.
-  // Hooks: useMemo to recompute only when lat/date or plant changes — keeps render cheap.
+  // Phase 7: getEffectiveSeason replaces getWaterSeason — honors climateOverride.
+  // Hooks: useMemo to recompute only when lat/override/plant/locale changes — keeps render cheap.
   const { currentSeason, waterInterval, lightLabel, seasonKey } = useMemo(() => {
     const today = new Date();
-    const season: WaterSeason = getWaterSeason(latitude, today);
+    const locationObj: Location | null = latitude !== null ? { lat: latitude, lon: 0, name: '', country: '' } : null;
+    const season: WaterSeason = getEffectiveSeason(locationObj, climateOverride, today);
     const interval = plant ? getSeasonalInterval(plant, season) : 0;
     const label = plant ? getLightLabel(plant, t) : '';
     // 'tropical' is its own label key; 'cold' is cold; everything else (incl. 'warm') is warm.
     const key: 'warm' | 'cold' | 'tropical' =
       season === 'cold' ? 'cold' : season === 'tropical' ? 'tropical' : 'warm';
     return { currentSeason: season, waterInterval: interval, lightLabel: label, seasonKey: key };
-  }, [plant, latitude, t]);
+  }, [plant, latitude, climateOverride, t]);
 
   const resolvedImageUrl = useMemo(() => {
     if (!plant) return null;

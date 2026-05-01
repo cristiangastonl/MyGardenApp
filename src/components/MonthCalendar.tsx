@@ -5,6 +5,7 @@ import { colors, spacing, borderRadius, fonts } from '../theme';
 import { DAYS_ES } from '../data/constants';
 import { formatDate, isSameDay } from '../utils/dates';
 import { getTasksForDay } from '../utils/plantLogic';
+import type { WaterSeason } from '../utils/seasonality';
 
 interface MonthCalendarProps {
   year: number;
@@ -12,7 +13,7 @@ interface MonthCalendarProps {
   plants: Plant[];
   notes: Record<string, Note[]>;
   reminders: Record<string, Reminder[]>;
-  latitude: number | null;
+  season: WaterSeason;
   selectedDate: Date | null;
   onSelectDate: (date: Date) => void;
 }
@@ -23,7 +24,7 @@ export function MonthCalendar({
   plants,
   notes,
   reminders,
-  latitude,
+  season,
   selectedDate,
   onSelectDate,
 }: MonthCalendarProps) {
@@ -61,7 +62,7 @@ export function MonthCalendar({
 
   const getIndicators = (date: Date) => {
     const dateStr = formatDate(date);
-    const tasks = getTasksForDay(plants, date, latitude);
+    const tasks = getTasksForDay(plants, date, season);
     const hasNotes = (notes[dateStr] || []).length > 0;
     const hasReminders = (reminders[dateStr] || []).length > 0;
     const hasWater = tasks.some(t => t.type === 'water' || t.type === 'check_soil');

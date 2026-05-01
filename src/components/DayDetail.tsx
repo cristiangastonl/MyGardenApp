@@ -16,6 +16,7 @@ import { Plant, Note, Reminder, Task } from "../types";
 import { DAYS_FULL, MONTHS_ES } from "../data/constants";
 import { getTasksForDay } from "../utils/plantLogic";
 import { parseDate } from "../utils/dates";
+import type { WaterSeason } from "../utils/seasonality";
 
 interface DayDetailProps {
   visible: boolean;
@@ -23,7 +24,7 @@ interface DayDetailProps {
   plants: Plant[];
   notes: Note[];
   reminders: Reminder[];
-  latitude: number | null;
+  season: WaterSeason;
   onClose: () => void;
   onAddNote: (dateStr: string, text: string) => void;
   onDeleteNote: (dateStr: string, noteId: string) => void;
@@ -38,7 +39,7 @@ export function DayDetail({
   plants,
   notes,
   reminders,
-  latitude,
+  season,
   onClose,
   onAddNote,
   onDeleteNote,
@@ -58,7 +59,7 @@ export function DayDetail({
   const monthName = MONTHS_ES[date.getMonth()];
   const dayNumber = date.getDate();
 
-  const tasks = getTasksForDay(plants, date, latitude);
+  const tasks = getTasksForDay(plants, date, season);
 
   const handleAddNote = () => {
     if (newNoteText.trim()) {

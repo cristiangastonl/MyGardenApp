@@ -7,11 +7,12 @@ import {
   getWateringRecommendations,
   WateringRecommendation,
 } from '../utils/wateringRecommendations';
+import type { WaterSeason } from '../utils/seasonality';
 
 interface WateringTipsProps {
   plants: Plant[];
   weather: WeatherData | null;
-  latitude: number | null;
+  season: WaterSeason;
 }
 
 interface RecommendationTypeConfig {
@@ -85,10 +86,10 @@ function getTypeTitle(type: WateringRecommendation['type'], t: (key: string) => 
   }
 }
 
-export function WateringTips({ plants, weather, latitude }: WateringTipsProps) {
+export function WateringTips({ plants, weather, season }: WateringTipsProps) {
   const { t } = useTranslation();
   const today = new Date();
-  const recommendations = getWateringRecommendations(plants, weather, today, latitude);
+  const recommendations = getWateringRecommendations(plants, weather, today, season);
 
   if (recommendations.length === 0) {
     return null;

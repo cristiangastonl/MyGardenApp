@@ -17,6 +17,7 @@ import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { DAYS_FULL, MONTHS_ES } from '../data/constants';
 import { formatDate } from '../utils/dates';
 import { getTasksForDay } from '../utils/plantLogic';
+import type { WaterSeason } from '../utils/seasonality';
 import { TaskButton } from './TaskButton';
 import { ReminderItem } from './ReminderItem';
 import { NoteItem } from './NoteItem';
@@ -27,7 +28,7 @@ interface DayDetailModalProps {
   plants: Plant[];
   notes: Note[];
   reminders: Reminder[];
-  latitude: number | null;
+  season: WaterSeason;
   onClose: () => void;
   onWater: (plantId: string) => void;
   onSunDone: (plantId: string) => void;
@@ -45,7 +46,7 @@ export function DayDetailModal({
   plants,
   notes,
   reminders,
-  latitude,
+  season,
   onClose,
   onWater,
   onSunDone,
@@ -62,7 +63,7 @@ export function DayDetailModal({
   const [showReminderInput, setShowReminderInput] = useState(false);
 
   const dateStr = formatDate(date);
-  const tasks = getTasksForDay(plants, date, latitude);
+  const tasks = getTasksForDay(plants, date, season);
   const dayName = DAYS_FULL[date.getDay()];
   const monthName = MONTHS_ES[date.getMonth()];
 

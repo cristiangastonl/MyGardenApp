@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Plant, PlantHealthStatus, SavedDiagnosis, WeatherData } from '../types';
+import type { WaterSeason } from '../utils/seasonality';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import {
   calculateGardenHealth,
@@ -23,7 +24,7 @@ interface GardenHealthProps {
   weather: WeatherData | null;
   onPlantPress?: (plantId: string) => void;
   diagnosisHistory?: Record<string, SavedDiagnosis[]>;
-  latitude: number | null;
+  season: WaterSeason;
 }
 
 export function GardenHealth({
@@ -31,7 +32,7 @@ export function GardenHealth({
   weather,
   onPlantPress,
   diagnosisHistory,
-  latitude,
+  season,
 }: GardenHealthProps) {
   const { t } = useTranslation();
   const [showInfo, setShowInfo] = useState(false);
@@ -40,7 +41,7 @@ export function GardenHealth({
     averageScore,
     level,
     plantsNeedingAttention,
-  } = calculateGardenHealth(plants, today, weather, diagnosisHistory, latitude);
+  } = calculateGardenHealth(plants, today, weather, diagnosisHistory, season);
 
   const healthColor = getHealthColor(level);
   const healthBgColor = getHealthBgColor(level);
