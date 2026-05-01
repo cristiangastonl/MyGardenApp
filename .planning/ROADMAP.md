@@ -24,7 +24,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 
 - [x] **Phase 4: Schema Foundation + Migration Core** — Versioned envelope, runMigrations infrastructure, deterministic mappers, cancel-and-reschedule notifications, post-migration explainer
 - [x] **Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover** — 3-zone seasonality utility, soil-check task type, health/logic/notifications consume new fields (completed 2026-05-01)
-- [ ] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges
+- [x] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges (completed 2026-05-01)
 - [ ] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload
 - [ ] **Phase 8: Catalog Rebalance** — All 60+ entries gain new fields, 14 LATAM outdoor additions, lavender variety split, lookup-by-id contract, CI guards
 - [ ] **Phase 9: Diagnosis Continuity + Paywall Architecture** — Continue button visible to all, "Reabrir consulta" rename, App-level paywall context, message-count per diagnosis lifetime, retroactive premium lift
@@ -132,7 +132,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
-| 6. UI Read-Side Propagation | 5/6 | In Progress|  | - |
+| 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
 | 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |
