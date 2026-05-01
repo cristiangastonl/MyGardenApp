@@ -1,25 +1,39 @@
 import { Plant, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
+import { getWaterSeason, type WaterSeason } from "./seasonality";
+import i18n from "../i18n";
 
 /**
- * Resolves the warm-season watering interval (days) for a plant.
- * v1.1: prefers `waterSchedule.warm`. Defensive fallback to legacy `waterEvery`
- * when `waterSchedule` is undefined (covers migration-failure code path where
- * the plant kept its v1.0 shape). Phase 5 will introduce season-aware selection
- * (warm vs. cold) — this helper currently always returns warm-season cadence.
+ * Resolves the active watering interval (days) for a plant given the season.
+ * Tropical zone maps to the 'warm' bucket — Plant.waterSchedule has only
+ * { warm, cold } keys (Pitfall 2 — tropical-bucket schema mismatch).
+ *
+ * Defensive fallback ladder (Phase 4 Plan 04 pattern):
+ *   v1.1 waterSchedule[bucket] → legacy waterEvery → 7d safe default.
  */
-function getWaterIntervalDays(plant: Plant): number {
-  if (plant.waterSchedule?.warm && plant.waterSchedule.warm > 0) {
-    return plant.waterSchedule.warm;
-  }
-  if (typeof plant.waterEvery === 'number' && plant.waterEvery > 0) {
-    return plant.waterEvery;
-  }
+function getSeasonalInterval(plant: Plant, season: WaterSeason): number {
+  const bucket: 'warm' | 'cold' = season === 'cold' ? 'cold' : 'warm';
+
+  const fromSchedule = plant.waterSchedule?.[bucket];
+  if (typeof fromSchedule === 'number' && fromSchedule > 0) return fromSchedule;
+
+  // Legacy fallback (covers migration-failure code path where the plant kept its v1.0 shape).
+  if (typeof plant.waterEvery === 'number' && plant.waterEvery > 0) return plant.waterEvery;
+
   return 7; // safe default — weekly
 }
 
-export function getNextWaterDate(plant: Plant, today: Date): Date {
-  const intervalDays = getWaterIntervalDays(plant);
+/**
+ * Returns the date of the next watering (or check-in for soil_check plants),
+ * given the plant, today, and the user's latitude.
+ *
+ * @param plant     The plant.
+ * @param today     Reference date.
+ * @param latitude  GPS latitude in degrees, or null for safe-default season ('warm').
+ */
+export function getNextWaterDate(plant: Plant, today: Date, latitude: number | null): Date {
+  const season = getWaterSeason(latitude, today);
+  const intervalDays = getSeasonalInterval(plant, season);
   if (intervalDays <= 0) return today;
   if (!plant.lastWatered) return today;
   const last = parseDate(plant.lastWatered);
@@ -28,14 +42,31 @@ export function getNextWaterDate(plant: Plant, today: Date): Date {
   return next;
 }
 
-export function getTasksForDay(plants: Plant[], day: Date): Task[] {
+/**
+ * Generates the task list for a given day. Dispatches soil_check plants to
+ * a 'check_soil' task (WATER-05); fixed-mode plants continue emitting 'water'.
+ *
+ * Mode is the dispatcher; cadence comes from the same season-aware lookup
+ * regardless of mode (CONTEXT.md decision: "single source of truth across modes").
+ */
+export function getTasksForDay(plants: Plant[], day: Date, latitude: number | null): Task[] {
   const tasks: Task[] = [];
   plants.forEach(p => {
-    const next = getNextWaterDate(p, day);
+    const next = getNextWaterDate(p, day, latitude);
     if (isSameDay(next, day)) {
-      tasks.push({ type: "water", icon: "💧", label: `Regar ${p.name}`, plantId: p.id });
+      if (p.waterMode === 'soil_check') {
+        tasks.push({
+          type: "check_soil",
+          icon: "🤚",
+          label: i18n.t('tasks.checkSoil', { name: p.name }),
+          plantId: p.id,
+        });
+      } else {
+        tasks.push({ type: "water", icon: "💧", label: `Regar ${p.name}`, plantId: p.id });
+      }
     }
     if (p.sunDays.includes(day.getDay())) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       tasks.push({ type: "sun", icon: "☀️", label: `Sol para ${p.name} (${p.sunHours}h)`, plantId: p.id });
     }
     if (p.outdoorDays.includes(day.getDay())) {
