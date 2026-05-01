@@ -48,12 +48,12 @@
 
 ### Location Precision (LOC)
 
-- [ ] **LOC-01**: Onboarding includes a non-blocking location prompt step with a clear skip option
-- [ ] **LOC-02**: If location is missing, "Hoy" tab shows a soft banner ("Agregá tu ubicación para horarios precisos") with CTA to settings location picker — banner is dismissible per session
+- [x] **LOC-01**: Onboarding includes a non-blocking location prompt step with a clear skip option
+- [x] **LOC-02**: If location is missing, "Hoy" tab shows a soft banner ("Agregá tu ubicación para horarios precisos") with CTA to settings location picker — banner is dismissible per session
 - [x] **LOC-03**: When location is missing, the app falls back to `warm` schedule (never under-waters by default)
 - [x] **LOC-04**: Location fallback chain: GPS → manual city via Open-Meteo geocoding → locale-based default (es-AR → Southern, en-US/en-GB → Northern)
 - [x] **LOC-05**: Settings includes a manual climate-zone override (Northern temperate / Southern temperate / Tropical) that wins over derived hemisphere
-- [ ] **LOC-06**: Location prompt copy explains why it's needed ("Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima")
+- [x] **LOC-06**: Location prompt copy explains why it's needed ("Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima")
 
 ### Diagnosis Continuity (DIAG)
 
@@ -155,12 +155,12 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | SEASON-03 | Phase 5 | Complete |
 | SEASON-04 | Phase 5 | Complete |
 | SEASON-05 | Phase 6 | Complete |
-| LOC-01 | Phase 7 | Pending |
-| LOC-02 | Phase 7 | Pending |
+| LOC-01 | Phase 7 | Complete |
+| LOC-02 | Phase 7 | Complete |
 | LOC-03 | Phase 7 | Complete |
 | LOC-04 | Phase 7 | Complete |
 | LOC-05 | Phase 7 | Complete |
-| LOC-06 | Phase 7 | Pending |
+| LOC-06 | Phase 7 | Complete |
 | DIAG-01 | Phase 9 | Pending |
 | DIAG-02 | Phase 9 | Pending |
 | DIAG-03 | Phase 9 | Pending |

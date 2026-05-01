@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 07-04-PLAN.md
-last_updated: "2026-05-01T22:30:21.118Z"
+stopped_at: Completed 07-03-PLAN.md
+last_updated: "2026-05-01T22:32:35.077Z"
 last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 26
-  completed_plans: 21
+  completed_plans: 22
   percent: 100
 ---
 
@@ -78,6 +78,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 07 P01 | 4 | 4 tasks | 4 files |
 | Phase 07 P02 | 15 | 6 tasks | 19 files |
 | Phase 07-ui-write-side-onboarding-edge-function-contract P04 | 4 | 2 tasks | 3 files |
+| Phase 07-ui-write-side-onboarding-edge-function-contract P03 | 5 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -152,6 +153,7 @@ Recent decisions affecting current work:
 - [Phase 07]: getEffectiveSeason is the new public SSOT for season selection — getWaterSeason becomes module-private; callers pre-compute season once per render/tick and thread to all consumers
 - [Phase 07]: LightLevelPicker uses flexBasis 48% + flexWrap for 2x2 grid — no FlatList for fixed 4-card layout (RESEARCH lock)
 - [Phase 07]: WaterScheduleEditor HIDE-not-disable: soil_check conditional render removes inputs from tree entirely; zero disabled= props
+- [Phase 07-ui-write-side-onboarding-edge-function-contract]: lightLevelHint as parallel top-level namespace (not nested under lightLevel.*.hint) — backward compat: t('lightLevel.indoor.direct') still returns string for Phase 6 callers
 
 ### Pending Todos
 
@@ -167,6 +169,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T22:30:21.116Z
-Stopped at: Completed 07-04-PLAN.md
+Last session: 2026-05-01T22:32:35.075Z
+Stopped at: Completed 07-03-PLAN.md
 Resume file: None

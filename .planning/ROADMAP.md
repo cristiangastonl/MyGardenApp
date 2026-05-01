@@ -141,6 +141,6 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
-| 7. UI Write-Side + Onboarding + Edge-Function Contract | 3/8 | In Progress|  | - |
+| 7. UI Write-Side + Onboarding + Edge-Function Contract | 4/8 | In Progress|  | - |
 | 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |
