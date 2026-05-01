@@ -12,14 +12,17 @@ import {
 } from "react-native";
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius } from "../theme";
-import { Plant, PlantDBEntry } from "../types";
+import { Plant, PlantDBEntry, LightLevel, WaterMode, WaterSchedule } from "../types";
 import { getPlantTypes } from "../data/constants";
+import { LightLevelPicker } from "./LightLevelPicker";
+import { WaterScheduleEditor } from "./WaterScheduleEditor";
+import { inferWaterMode } from "../utils/migration";
 
 interface AddPlantModalProps {
   visible: boolean;
   onClose: () => void;
   onAdd: (plant: Omit<Plant, "id">, imageUri?: string | null) => void;
-  prefilledPlant?: PlantDBEntry;
+  prefilledPlant?: PlantDBEntry | Plant;
 }
 
 export function AddPlantModal({
@@ -31,23 +34,41 @@ export function AddPlantModal({
   const { t } = useTranslation();
   const [name, setName] = useState("");
   const [selectedTypeId, setSelectedTypeId] = useState("otra");
-  const [waterEvery, setWaterEvery] = useState("4");
-  const [sunHours, setSunHours] = useState("3");
+  const [lightLevel, setLightLevel] = useState<LightLevel>('bright_indirect');
+  const [waterSchedule, setWaterSchedule] = useState<WaterSchedule>({ warm: 4, cold: 8 });
+  const [waterMode, setWaterMode] = useState<WaterMode>('fixed');
 
   // Reset or prefill form when modal opens
   useEffect(() => {
     if (visible) {
       if (prefilledPlant) {
         setName(prefilledPlant.name);
-        // Match plant type from database
+        // PlantDBEntry uses .category; Plant uses .typeId — handle both shapes
+        const categoryOrTypeId =
+          ('category' in prefilledPlant && prefilledPlant.category) ||
+          ('typeId' in prefilledPlant && prefilledPlant.typeId) ||
+          'otra';
         const matchedType = getPlantTypes().find(
           (t) =>
-            t.name.toLowerCase() === prefilledPlant.category.toLowerCase() ||
-            t.id === prefilledPlant.category
+            t.name.toLowerCase() === String(categoryOrTypeId).toLowerCase() ||
+            t.id === categoryOrTypeId
         );
         setSelectedTypeId(matchedType?.id || "otra");
-        setWaterEvery(String(prefilledPlant.waterDays));
-        setSunHours(String(prefilledPlant.sunHours));
+
+        // v1.1 fields with defensive ladder (v1.1 → legacy → default)
+        // PlantDBEntry has .waterDays, Plant has .waterEvery — both legacy
+        const legacyDays =
+          ('waterDays' in prefilledPlant && prefilledPlant.waterDays) ||
+          ('waterEvery' in prefilledPlant && prefilledPlant.waterEvery) ||
+          4;
+        setLightLevel(prefilledPlant.lightLevel ?? 'bright_indirect');
+        setWaterSchedule(
+          prefilledPlant.waterSchedule ?? { warm: legacyDays, cold: legacyDays * 2 }
+        );
+        // Plant doesn't expose category directly; PlantDBEntry has .category, Plant has .typeId
+        const dbId = ('id' in prefilledPlant && 'category' in prefilledPlant) ? (prefilledPlant as PlantDBEntry).id : undefined;
+        const cat = ('category' in prefilledPlant) ? (prefilledPlant as PlantDBEntry).category : undefined;
+        setWaterMode(prefilledPlant.waterMode ?? inferWaterMode(cat, dbId));
       } else {
         resetForm();
       }
@@ -57,16 +78,18 @@ export function AddPlantModal({
   const resetForm = () => {
     setName("");
     setSelectedTypeId("otra");
-    setWaterEvery("4");
-    setSunHours("3");
+    setLightLevel('bright_indirect');
+    setWaterSchedule({ warm: 4, cold: 8 });
+    setWaterMode('fixed');
   };
 
   const handleTypeSelect = (typeId: string) => {
     setSelectedTypeId(typeId);
     const plantType = getPlantTypes().find((pt) => pt.id === typeId);
     if (plantType) {
-      setWaterEvery(String(plantType.waterDays));
-      setSunHours(String(plantType.sunHours));
+      // PlantType has legacy waterDays + sunHours; derive v1.1 defaults
+      setWaterSchedule({ warm: plantType.waterDays || 4, cold: (plantType.waterDays || 4) * 2 });
+      setWaterMode(inferWaterMode(typeId as any));
     }
   };
 
@@ -80,8 +103,10 @@ export function AddPlantModal({
       typeId: selectedTypeId,
       typeName: selectedType?.name || "Otra",
       icon: selectedType?.icon || "🌻",
-      waterEvery: parseInt(waterEvery) || 4,
-      sunHours: parseInt(sunHours) || 3,
+      // v1.1 schema (Phase 7 LIGHT-01, LIGHT-02, WATER-01, WATER-02, WATER-03)
+      lightLevel,
+      waterSchedule,
+      waterMode,
       sunDays: [],
       outdoorDays: [],
       lastWatered: null,
@@ -117,7 +142,9 @@ export function AddPlantModal({
                 <Text style={styles.prefilledIcon}>{prefilledPlant.icon}</Text>
                 <View style={styles.prefilledInfo}>
                   <Text style={styles.prefilledName}>{prefilledPlant.name}</Text>
-                  <Text style={styles.prefilledTip}>{prefilledPlant.tip}</Text>
+                  {('tip' in prefilledPlant) && (
+                    <Text style={styles.prefilledTip}>{(prefilledPlant as PlantDBEntry).tip}</Text>
+                  )}
                 </View>
               </View>
             )}
@@ -173,62 +200,25 @@ export function AddPlantModal({
                 )}
               </View>
 
-              {/* Watering interval */}
+              {/* Light level — Phase 7 (LIGHT-01, LIGHT-02) */}
               <View style={styles.section}>
-                <Text style={styles.label}>{t('addPlant.waterEvery')}</Text>
-                <View style={styles.numberInputRow}>
-                  <TouchableOpacity
-                    style={styles.numberButton}
-                    onPress={() =>
-                      setWaterEvery(String(Math.max(1, parseInt(waterEvery) - 1)))
-                    }
-                  >
-                    <Text style={styles.numberButtonText}>-</Text>
-                  </TouchableOpacity>
-                  <TextInput
-                    style={styles.numberInput}
-                    value={waterEvery}
-                    onChangeText={setWaterEvery}
-                    keyboardType="number-pad"
-                    textAlign="center"
-                  />
-                  <TouchableOpacity
-                    style={styles.numberButton}
-                    onPress={() =>
-                      setWaterEvery(String(parseInt(waterEvery) + 1))
-                    }
-                  >
-                    <Text style={styles.numberButtonText}>+</Text>
-                  </TouchableOpacity>
-                </View>
+                <Text style={styles.label}>{t('identification.lightLevelLabel')}</Text>
+                <LightLevelPicker
+                  typeId={selectedTypeId}
+                  value={lightLevel}
+                  onChange={setLightLevel}
+                />
               </View>
 
-              {/* Sun hours */}
+              {/* Water schedule — Phase 7 (WATER-01, WATER-02, WATER-03) */}
               <View style={styles.section}>
-                <Text style={styles.label}>{t('addPlant.sunHours')}</Text>
-                <View style={styles.numberInputRow}>
-                  <TouchableOpacity
-                    style={styles.numberButton}
-                    onPress={() =>
-                      setSunHours(String(Math.max(0, parseInt(sunHours) - 1)))
-                    }
-                  >
-                    <Text style={styles.numberButtonText}>-</Text>
-                  </TouchableOpacity>
-                  <TextInput
-                    style={styles.numberInput}
-                    value={sunHours}
-                    onChangeText={setSunHours}
-                    keyboardType="number-pad"
-                    textAlign="center"
-                  />
-                  <TouchableOpacity
-                    style={styles.numberButton}
-                    onPress={() => setSunHours(String(parseInt(sunHours) + 1))}
-                  >
-                    <Text style={styles.numberButtonText}>+</Text>
-                  </TouchableOpacity>
-                </View>
+                <Text style={styles.label}>{t('addPlant.waterEvery')}</Text>
+                <WaterScheduleEditor
+                  mode={waterMode}
+                  schedule={waterSchedule}
+                  onModeChange={setWaterMode}
+                  onScheduleChange={setWaterSchedule}
+                />
               </View>
 
               <View style={styles.bottomPadding} />
