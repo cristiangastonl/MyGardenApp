@@ -67,16 +67,16 @@
   },
   "lightLevelHint": {
     "indoor": {
-      "direct": "By a south-facing window",
-      "bright_indirect": "1m from a bright window",
-      "medium_indirect": "2m from a bright window",
+      "direct": "Next to a south-facing window",
+      "bright_indirect": "Within 1m of a bright window",
+      "medium_indirect": "Within 2m of a bright window",
       "low": "Hallway with no direct sun"
     },
     "outdoor": {
-      "direct": "No shade all day",
-      "bright_indirect": "Shade from a nearby tree",
-      "medium_indirect": "Half the day in shade",
-      "low": "Under a roof or north wall"
+      "direct": "Full sun all day",
+      "bright_indirect": "Light shade from a nearby tree",
+      "medium_indirect": "Half-day shaded",
+      "low": "Under cover or north-facing wall"
     }
   },
   "waterSchedule": {
@@ -84,7 +84,7 @@
     "modeSoilCheck": "Check-in",
     "warmLabel": "Warm season",
     "coldLabel": "Cold season",
-    "soilCheckExplanation": "We remind you every {{days}} days to check the soil"
+    "soilCheckExplanation": "We'll remind you every {{days}} days to touch the soil"
   },
   "onboarding": {
     "welcome": "Welcome to My Happy Garden",
@@ -132,7 +132,14 @@
     "plantIdentified": "Plant identified: {{name}}",
     "identifyWithCamera": "Identify your plant with the camera",
     "freeIdUsed": "You already used your free identification",
-    "freeIdIncluded": "1 free identification included"
+    "freeIdIncluded": "1 free identification included",
+    "location": {
+      "title": "Where are your plants?",
+      "body": "We use it to adjust care for your climate — it's not sent anywhere besides the weather service",
+      "useGps": "Use my location",
+      "searchCity": "Search city",
+      "skip": "Skip"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -203,7 +210,15 @@
     "language": "Language",
     "languageDescription": "Choose the app language.",
     "spanish": "Español",
-    "english": "English"
+    "english": "English",
+    "climateOverride": {
+      "title": "Climate zone",
+      "body": "If auto-detection is off, pick your zone manually",
+      "auto": "Auto",
+      "northern": "Northern temperate",
+      "southern": "Southern temperate",
+      "tropical": "Tropical"
+    }
   },
   "today": {
     "loading": "Loading...",
@@ -217,7 +232,11 @@
     "unlimitedPlants": "Unlimited plants, alerts and more",
     "allCaughtUp": "All caught up!",
     "allCaughtUpText": "No pending tasks today. Great job!",
-    "soilCheckEmptyRow": "Your {{plantName}} is in check mode. We'll remind you in {{days}} days."
+    "soilCheckEmptyRow": "Your {{plantName}} is in check mode. We'll remind you in {{days}} days.",
+    "locationBanner": {
+      "body": "Add your location for precise schedules",
+      "cta": "Add"
+    }
   },
   "plants": {
     "title": "My Plants",
@@ -564,7 +583,8 @@
     "lowConfidence": "Identification was not confident enough. Try another photo.",
     "multiplePlantsFound": "We found several similar plants. Select the matching one.",
     "genericFamilyTip": "Plant from the {{family}} family. Care may vary depending on the specific species.",
-    "unknownFamily": "unknown"
+    "unknownFamily": "unknown",
+    "lightLevelLabel": "Light level"
   },
   "diagnosis": {
     "addToShoppingList": "🛒 Add to list",
