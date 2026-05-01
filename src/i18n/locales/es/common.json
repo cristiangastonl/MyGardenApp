@@ -51,6 +51,20 @@
     "frutales": "Frutales",
     "suculentas": "Suculentas"
   },
+  "lightLevel": {
+    "indoor": {
+      "direct": "Luz directa",
+      "bright_indirect": "Luz brillante indirecta",
+      "medium_indirect": "Luz media indirecta",
+      "low": "Poca luz"
+    },
+    "outdoor": {
+      "direct": "Sol pleno",
+      "bright_indirect": "Sol parcial",
+      "medium_indirect": "Semi sombra",
+      "low": "Sombra"
+    }
+  },
   "onboarding": {
     "welcome": "Bienvenido a My Happy Garden",
     "subtitle": "Tu asistente personal para el cuidado de plantas",
@@ -181,7 +195,8 @@
     "unlockGarden": "Desbloquea tu jardín completo",
     "unlimitedPlants": "Plantas ilimitadas, alertas y más",
     "allCaughtUp": "¡Todo al día!",
-    "allCaughtUpText": "No tenés tareas pendientes hoy. ¡Buen trabajo!"
+    "allCaughtUpText": "No tenés tareas pendientes hoy. ¡Buen trabajo!",
+    "soilCheckEmptyRow": "Tu {{plantName}} está en modo chequeo. Te avisamos en {{days}} días."
   },
   "plants": {
     "title": "Mis Plantas",
@@ -241,6 +256,10 @@
     "today": "Hoy",
     "tomorrow": "Mañana",
     "inDays": "En {{count}} días",
+    "waterBadge": {
+      "fixed": "💧 Cada {{days}}d",
+      "soilCheck": "🤚 Por chequeo"
+    },
     "deletePlant": "Eliminar planta",
     "deleteConfirm": "¿Seguro que querés eliminar \"{{name}}\"?",
     "cancelButton": "Cancelar",
@@ -354,6 +373,12 @@
   "plantDetail": {
     "waterEvery": "Riego cada {{days}} días",
     "sunHours": "{{hours}}h de sol",
+    "seasonBadge": {
+      "every": "Cada {{days}} días",
+      "warm": "temporada cálida",
+      "cold": "temporada fría",
+      "tropical": "trópico"
+    },
     "type": "Tipo: {{type}}",
     "deletePlant": "Eliminar planta",
     "deleteConfirm": "¿Seguro que querés eliminar \"{{name}}\"?",
