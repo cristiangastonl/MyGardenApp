@@ -9,6 +9,7 @@ import {
 } from '../types';
 import { getNextWaterDate } from './plantLogic';
 import { daysBetween, formatDate } from './dates';
+import type { WaterSeason } from './seasonality';
 
 /**
  * Calculates the health status of a plant based on its care history and weather conditions.
@@ -31,14 +32,14 @@ export function calculatePlantHealth(
   today: Date,
   weather: WeatherData | null,
   diagnoses: SavedDiagnosis[] | undefined,
-  latitude: number | null
+  season: WaterSeason
 ): PlantHealthStatus {
   let score = 100;
   const issues: HealthIssue[] = [];
   const todayStr = formatDate(today);
 
   // Check water status
-  const nextWaterDate = getNextWaterDate(plant, today, latitude);
+  const nextWaterDate = getNextWaterDate(plant, today, season);
   const daysUntilWater = daysBetween(today, nextWaterDate);
 
   // WATER-06: soil_check plants are not penalized for "overdue watering"
@@ -243,7 +244,7 @@ export function calculateGardenHealth(
   today: Date,
   weather: WeatherData | null,
   diagnosisHistory: Record<string, SavedDiagnosis[]> | undefined,
-  latitude: number | null
+  season: WaterSeason
 ): {
   averageScore: number;
   level: HealthLevel;
@@ -260,7 +261,7 @@ export function calculateGardenHealth(
   }
 
   const healthStatuses = plants.map((plant) =>
-    calculatePlantHealth(plant, today, weather, diagnosisHistory?.[plant.id], latitude)
+    calculatePlantHealth(plant, today, weather, diagnosisHistory?.[plant.id], season)
   );
 
   const totalScore = healthStatuses.reduce((sum, status) => sum + status.score, 0);

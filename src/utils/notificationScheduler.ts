@@ -1,6 +1,7 @@
 import * as Notifications from "expo-notifications";
 import { Plant, WeatherData, NotificationSettings, PlantHealthStatus, SavedDiagnosis, LightLevel } from "../types";
 import { getTasksForDay } from "./plantLogic";
+import type { WaterSeason } from "./seasonality";
 import { PlantAlert } from "./plantAlerts";
 import { formatDate } from "./dates";
 import { getPlantFullInfo, getPlantsAtTempRisk, PlantFullInfo } from "./plantInfo";
@@ -45,11 +46,11 @@ function parseTime(time: string): { hours: number; minutes: number } {
 function createMorningContent(
   plants: Plant[],
   weather: WeatherData | null,
-  latitude: number | null,
+  season: WaterSeason,
   healthStatuses?: PlantHealthStatus[]
 ): { title: string; body: string } {
   const today = new Date();
-  const tasks = getTasksForDay(plants, today, latitude);
+  const tasks = getTasksForDay(plants, today, season);
 
   // Check health statuses for danger/warning plants
   const dangerPlants = healthStatuses?.filter((h) => h.score < 40) || [];
@@ -143,7 +144,7 @@ export async function scheduleMorningReminder(
   time: string,
   plants: Plant[],
   weather: WeatherData | null,
-  latitude: number | null,
+  season: WaterSeason,
   healthStatuses?: PlantHealthStatus[]
 ): Promise<string | null> {
   if (!notificationsAvailable) return null;
@@ -153,7 +154,7 @@ export async function scheduleMorningReminder(
     await cancelMorningReminder();
 
     const { hours, minutes } = parseTime(time);
-    const { title, body } = createMorningContent(plants, weather, latitude, healthStatuses);
+    const { title, body } = createMorningContent(plants, weather, season, healthStatuses);
 
     const identifier = await Notifications.scheduleNotificationAsync({
       identifier: MORNING_REMINDER_ID,

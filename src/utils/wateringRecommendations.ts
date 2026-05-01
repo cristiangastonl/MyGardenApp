@@ -3,6 +3,7 @@ import { isRainyWeather } from '../data/weatherCodes';
 import { getNextWaterDate } from './plantLogic';
 import { isSameDay, addDays } from './dates';
 import i18n from '../i18n';
+import type { WaterSeason } from './seasonality';
 
 export interface WateringRecommendation {
   plantId: string;
@@ -21,7 +22,7 @@ export function getWateringRecommendations(
   plants: Plant[],
   weather: WeatherData | null,
   today: Date,
-  latitude: number | null
+  season: WaterSeason
 ): WateringRecommendation[] {
   if (!weather || plants.length === 0) return [];
 
@@ -42,14 +43,14 @@ export function getWateringRecommendations(
 
   // Get plants that need watering today or tomorrow
   const plantsNeedingWater = plants.filter(plant => {
-    const nextWater = getNextWaterDate(plant, today, latitude);
+    const nextWater = getNextWaterDate(plant, today, season);
     const tomorrow = addDays(today, 1);
     return isSameDay(nextWater, today) || isSameDay(nextWater, tomorrow);
   });
 
   // Process each plant that needs watering
   plantsNeedingWater.forEach(plant => {
-    const nextWater = getNextWaterDate(plant, today, latitude);
+    const nextWater = getNextWaterDate(plant, today, season);
     const needsWaterToday = isSameDay(nextWater, today);
     const isOutdoorPlant = plant.outdoorDays.length > 0;
 
