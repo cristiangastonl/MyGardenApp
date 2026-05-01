@@ -65,6 +65,27 @@
       "low": "Shade"
     }
   },
+  "lightLevelHint": {
+    "indoor": {
+      "direct": "By a south-facing window",
+      "bright_indirect": "1m from a bright window",
+      "medium_indirect": "2m from a bright window",
+      "low": "Hallway with no direct sun"
+    },
+    "outdoor": {
+      "direct": "No shade all day",
+      "bright_indirect": "Shade from a nearby tree",
+      "medium_indirect": "Half the day in shade",
+      "low": "Under a roof or north wall"
+    }
+  },
+  "waterSchedule": {
+    "modeFixed": "Schedule",
+    "modeSoilCheck": "Check-in",
+    "warmLabel": "Warm season",
+    "coldLabel": "Cold season",
+    "soilCheckExplanation": "We remind you every {{days}} days to check the soil"
+  },
   "onboarding": {
     "welcome": "Welcome to My Happy Garden",
     "subtitle": "Your personal plant care assistant",
