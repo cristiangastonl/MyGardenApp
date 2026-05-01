@@ -24,6 +24,8 @@ import { getPlantTypes } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { inferWaterMode, applyColdFactor, sunHoursToLightLevel } from '../utils/migration';
+import * as ExpoLocation from 'expo-location';
+import { Location } from '../types';
 import { trackEvent } from '../services/analyticsService';
 import { PlantIdentifierModal } from '../components';
 import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
@@ -195,7 +197,7 @@ function PlantSelectCard({ plant, selected, onToggle }: PlantSelectCardProps) {
 export default function OnboardingScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { completeOnboardingWithData } = useStorage();
+  const { completeOnboardingWithData, updateLocation } = useStorage();
   const { displayName } = useAuthContext();
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -209,6 +211,12 @@ export default function OnboardingScreen() {
   const [diagnosePlant, setDiagnosePlant] = useState<Plant | null>(null);
   const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
   const [showEmptyWarning, setShowEmptyWarning] = useState(false);
+  // Location step state
+  const [isLocationLoading, setIsLocationLoading] = useState(false);
+  const [showCitySearch, setShowCitySearch] = useState(false);
+  const [citySearchQuery, setCitySearchQuery] = useState('');
+  const [citySearchResults, setCitySearchResults] = useState<Array<{ id: string | number; name: string; admin1?: string; country: string; latitude: number; longitude: number }>>([]);
+  const [isSearchingCity, setIsSearchingCity] = useState(false);
   const { isPremium, canDiagnose } = usePremiumGate();
   const { diagnosisCount } = useStorage();
 
@@ -300,13 +308,15 @@ export default function OnboardingScreen() {
 
   const handleNext = useCallback(() => {
     if (currentStep === 0 && !name.trim()) return;
-    if (currentStep === 1 && selectedPlants.size + identifiedPlants.length === 0) {
+    // Plant-empty warning moves from step 1 → step 2 (location is now step 1)
+    if (currentStep === 2 && selectedPlants.size + identifiedPlants.length === 0) {
       if (!showEmptyWarning) {
         setShowEmptyWarning(true);
         return;
       }
     }
-    if (currentStep < 2) {
+    // Advancement guard: 4 steps (0,1,2,3) → cap at < 3
+    if (currentStep < 3) {
       setShowEmptyWarning(false);
       animateTransition('next');
     }
@@ -314,13 +324,82 @@ export default function OnboardingScreen() {
 
   const handleBack = useCallback(() => {
     if (currentStep > 0) {
-      // Reset identified plants when going back from step 1 so user can re-identify
-      if (currentStep === 1) {
+      // identifiedPlants reset moves from currentStep === 1 to currentStep === 2 (plant step is now step 2)
+      if (currentStep === 2) {
         setIdentifiedPlants([]);
       }
       animateTransition('back');
     }
   }, [currentStep, animateTransition]);
+
+  const handleUseGps = useCallback(async () => {
+    setIsLocationLoading(true);
+    try {
+      const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        // GPS denied — show city search inline instead of blocking flow
+        setShowCitySearch(true);
+        setIsLocationLoading(false);
+        return;
+      }
+      const { coords } = await ExpoLocation.getCurrentPositionAsync({});
+      const geo = await ExpoLocation.reverseGeocodeAsync({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+      const place = geo[0];
+      const newLocation: Location = {
+        lat: coords.latitude,
+        lon: coords.longitude,
+        name: place?.city || place?.subregion || t('settingsPanel.yourLocation'),
+        country: place?.country || '',
+        admin1: place?.region || undefined,
+      };
+      updateLocation(newLocation);
+      setIsLocationLoading(false);
+      animateTransition('next');
+    } catch (e) {
+      console.warn('[Onboarding] GPS failed:', e);
+      setShowCitySearch(true);
+      setIsLocationLoading(false);
+    }
+  }, [t, updateLocation, animateTransition]);
+
+  const handleCitySearch = useCallback(async (query: string) => {
+    setCitySearchQuery(query);
+    if (query.length < 2) { setCitySearchResults([]); return; }
+    setIsSearchingCity(true);
+    try {
+      const r = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=${i18n.language}`
+      );
+      const data = await r.json();
+      setCitySearchResults(data?.results || []);
+    } catch (e) {
+      console.warn('[Onboarding] geocoding failed:', e);
+    } finally {
+      setIsSearchingCity(false);
+    }
+  }, []);
+
+  const handleSelectCity = useCallback((city: { name: string; admin1?: string; country: string; latitude: number; longitude: number }) => {
+    const newLocation: Location = {
+      lat: city.latitude,
+      lon: city.longitude,
+      name: city.name,
+      country: city.country,
+      admin1: city.admin1,
+    };
+    updateLocation(newLocation);
+    setShowCitySearch(false);
+    setCitySearchQuery('');
+    setCitySearchResults([]);
+    animateTransition('next');
+  }, [updateLocation, animateTransition]);
+
+  const handleSkipLocation = useCallback(() => {
+    animateTransition('next');
+  }, [animateTransition]);
 
   const [isCompleting, setIsCompleting] = useState(false);
   const handleComplete = useCallback(() => {
@@ -437,6 +516,134 @@ export default function OnboardingScreen() {
           </View>
         </View>
       </View>
+    </ScrollView>
+  );
+
+  const renderStep1Location = () => (
+    <ScrollView
+      style={styles.stepContent}
+      contentContainerStyle={styles.step0ScrollContent}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.welcomeSection}>
+        <Text style={styles.welcomeEmoji}>📍</Text>
+        <Text style={styles.welcomeTitle}>{t('onboarding.location.title')}</Text>
+        <Text style={styles.welcomeSubtitle}>{t('onboarding.location.body')}</Text>
+      </View>
+
+      {!showCitySearch && (
+        <View style={{ paddingHorizontal: spacing.lg, gap: spacing.md, marginTop: spacing.xl }}>
+          <TouchableOpacity
+            onPress={handleUseGps}
+            disabled={isLocationLoading}
+            style={{
+              backgroundColor: colors.green,
+              paddingVertical: spacing.md,
+              borderRadius: borderRadius.lg,
+              alignItems: 'center',
+              minHeight: 44,
+              justifyContent: 'center',
+            }}
+            accessibilityRole="button"
+          >
+            {isLocationLoading
+              ? <ActivityIndicator color={colors.white} size="small" />
+              : <Text style={{ fontFamily: fonts.bodySemiBold, fontSize: 16, color: colors.white }}>
+                  {t('onboarding.location.useGps')}
+                </Text>}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setShowCitySearch(true)}
+            style={{
+              backgroundColor: colors.bgPrimary,
+              paddingVertical: spacing.md,
+              borderRadius: borderRadius.lg,
+              alignItems: 'center',
+              minHeight: 44,
+              justifyContent: 'center',
+              borderWidth: 1,
+              borderColor: colors.borderLight,
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ fontFamily: fonts.bodySemiBold, fontSize: 16, color: colors.textPrimary }}>
+              {t('onboarding.location.searchCity')}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={handleSkipLocation}
+            style={{
+              paddingVertical: spacing.md,
+              alignItems: 'center',
+              minHeight: 44,
+              justifyContent: 'center',
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ fontFamily: fonts.bodyMedium, fontSize: 16, color: colors.textSecondary }}>
+              {t('onboarding.location.skip')}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {showCitySearch && (
+        <View style={{ paddingHorizontal: spacing.lg, marginTop: spacing.xl }}>
+          <TextInput
+            style={{
+              fontFamily: fonts.body,
+              fontSize: 16,
+              color: colors.textPrimary,
+              backgroundColor: colors.bgPrimary,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              borderWidth: 1,
+              borderColor: colors.borderLight,
+              minHeight: 44,
+            }}
+            value={citySearchQuery}
+            onChangeText={handleCitySearch}
+            placeholder={t('onboarding.location.searchCity')}
+            placeholderTextColor={colors.textMuted}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          {isSearchingCity && (
+            <ActivityIndicator style={{ marginTop: spacing.md }} color={colors.textSecondary} />
+          )}
+          {citySearchResults.map((city) => (
+            <TouchableOpacity
+              key={String(city.id)}
+              onPress={() => handleSelectCity(city)}
+              style={{
+                paddingVertical: spacing.md,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.borderLight,
+                minHeight: 44,
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ fontFamily: fonts.bodySemiBold, fontSize: 15, color: colors.textPrimary }}>
+                {city.name}
+              </Text>
+              <Text style={{ fontFamily: fonts.body, fontSize: 13, color: colors.textSecondary }}>
+                {city.admin1 ? `${city.admin1}, ` : ''}{city.country}
+              </Text>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity
+            onPress={() => { setShowCitySearch(false); setCitySearchQuery(''); setCitySearchResults([]); }}
+            style={{ marginTop: spacing.md, alignItems: 'center', minHeight: 44, justifyContent: 'center' }}
+          >
+            <Text style={{ fontFamily: fonts.bodyMedium, fontSize: 14, color: colors.textSecondary }}>
+              {t('onboarding.back')}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </ScrollView>
   );
 
@@ -682,7 +889,7 @@ export default function OnboardingScreen() {
         style={styles.container}
       >
         <View style={[styles.content, { paddingTop: insets.top + spacing.lg }]}>
-          <StepIndicator currentStep={currentStep} totalSteps={3} />
+          <StepIndicator currentStep={currentStep} totalSteps={4} />
 
           <Animated.View
             style={[
@@ -694,8 +901,9 @@ export default function OnboardingScreen() {
             ]}
           >
             {currentStep === 0 && renderStep0()}
-            {currentStep === 1 && renderStep1()}
-            {currentStep === 2 && renderStep2()}
+            {currentStep === 1 && renderStep1Location()}
+            {currentStep === 2 && renderStep1()}    {/* old renderStep1 = plants */}
+            {currentStep === 3 && renderStep2()}    {/* old renderStep2 = done/summary */}
           </Animated.View>
 
           {/* Navigation */}
@@ -713,11 +921,11 @@ export default function OnboardingScreen() {
             )}
 
             <View style={currentStep === 0 && !name.trim() ? { opacity: 0.4 } : undefined}>
-              {currentStep < 2
+              {currentStep < 3
                 ? renderPrimaryButton(
                     currentStep === 0
                       ? t('onboarding.start')
-                      : showEmptyWarning && (selectedPlants.size + identifiedPlants.length) === 0
+                      : currentStep === 2 && showEmptyWarning && (selectedPlants.size + identifiedPlants.length) === 0
                         ? t('onboarding.continueAnyway')
                         : t('onboarding.continue'),
                     handleNext,
