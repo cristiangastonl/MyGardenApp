@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: Completed 05-03-PLAN.md (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
-last_updated: "2026-05-01T14:11:12.251Z"
-last_activity: "2026-05-01 — Plan 05-03 complete (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)"
+stopped_at: Completed 05-04-PLAN.md
+last_updated: "2026-05-01T14:31:48.143Z"
+last_activity: 2026-05-01 — Plan 05-04 complete (Wave 3 — plantHealth season-aware (latitude as 5th positional arg) + WATER-06 soil_check overdue-water penalty skip via `&& plant.waterMode !== 'soil_check'` gate; 7 callers threaded latitude through + 2 deviation callers; 5 new smoke assertions for WATER-06 + regression-safe + defensive; 101 → 106 PASS; tsc handoff to Plan 05 cleanly bounded to 5 files)
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 10
-  percent: 83
+  completed_plans: 11
+  percent: 92
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-29)
 ## Current Position
 
 Phase: 5 of 9 (Hemisphere/Season Helpers + Pure-Utility Switchover)
-Plan: 04 of 5 (Wave 2: plantHealth penalty skip — gates daysUntilWater<0 on waterMode !== 'soil_check'; cascades to GardenHealth/MyPlantDetailModal/useNotifications)
-Status: Phase 5 in progress (3/5 plans complete; Wave-2 linchpin landed — plantLogic.ts season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch; 4 immediate callers threaded latitude through; smoke 86→101 PASS. Plan 04 (plantHealth) + Plan 05 (5 component/scheduler files) own the remaining tsc handoff).
-Last activity: 2026-05-01 — Plan 05-03 complete (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
+Plan: 05 of 5 (Wave 3: notificationScheduler season-aware morning copy + 5 component callsites Task discriminator exhaustion — DayDetail/DayDetailModal/MonthCalendar 'check_soil' branches + PlantsScreen<PlantCard latitude> prop + notificationScheduler.createMorningContent → getTasksForDay 3-arg)
+Status: Phase 5 in progress (4/5 plans complete; Wave-3 plantHealth landed — calculatePlantHealth + calculateGardenHealth season-aware via latitude 5th positional arg, WATER-06 soil_check overdue-water gate locked with defensive undefined-waterMode preservation, 7 callers + 2 deviation callers updated, smoke 101→106 PASS. Plan 05 owns the final 5-file tsc handoff).
+Last activity: 2026-05-01 — Plan 05-04 complete (Wave 3 — plantHealth season-aware (latitude as 5th positional arg) + WATER-06 soil_check overdue-water penalty skip via `&& plant.waterMode !== 'soil_check'` gate; 7 callers threaded latitude through + 2 deviation callers; 5 new smoke assertions for WATER-06 + regression-safe + defensive; 101 → 106 PASS; tsc handoff to Plan 05 cleanly bounded to 5 files)
 
-Progress: [████████░░] 83% (Phase 5: 3/5 plans complete; v1.1 overall: 10/12 plans)
+Progress: [█████████░] 92% (Phase 5: 4/5 plans complete; v1.1 overall: 11/12 plans)
 
 ## Performance Metrics
 
@@ -67,6 +67,7 @@ Progress: [████████░░] 83% (Phase 5: 3/5 plans complete; v1.
 | Phase 05 P01 | 2 min | 1 tasks | 1 files |
 | Phase 05 P02 | 4 min | 3 tasks | 5 files |
 | Phase 05 P03 | 8 min | 3 tasks | 6 files |
+| Phase 05 P04 | 8 min | 3 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -115,6 +116,10 @@ Recent decisions affecting current work:
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: Pitfall 5 first-encounter day-1 nudge for soil_check plants — plants with waterMode==='soil_check' and lastWatered===null emit 'check_soil' on day-1 (NOT suppressed). Matches 'Hoy is non-empty for new plants' UX expectation; first user interaction with a new cactus is naturally a check-in (touch the soil). Asserted in smoke runner via pNew fixture.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: tsc handoff is multi-stage across 6 files, NOT 'only plantHealth.ts' as the planner's success-criteria phrasing implied. Actual handoff: plantHealth.ts (Plan 04) + DayDetail.tsx + DayDetailModal.tsx + MonthCalendar.tsx + PlantsScreen.tsx + notificationScheduler.ts (all 5 Plan 05). Future planners should treat the affects: field in dependency-graph as authoritative for downstream-caller enumeration, not just the <interfaces> block.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 03]: Smoke-runner stub idiom for src/utils/* with React/i18n deps — regex-rewrite import specifiers ('../i18n', '../types', './seasonality', './dates') to scripts/.tmp-*.mjs paths BEFORE typescript.transpileModule, write minimal stub modules (i18n no-op translator, types empty module, dates real impl), then dynamic-import the compiled module. Reusable verbatim for Plan 04 (plantHealth.ts) and Plan 05 (notificationScheduler.ts) when they extend the smoke runner. Single-compile-path policy preserved (still typescript.transpileModule, no esbuild/swc fallbacks).
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: WATER-06 gate idiom — `if (penaltyCondition && plant.waterMode !== 'soil_check')` — the second clause defensively skips ONLY for `'soil_check'`, NEVER for `undefined` (legacy/migration-failure path). Future health-axis additions targeting only fixed-mode plants should use the same idiom (single explicit string compare, never a !== nullish check). RESEARCH §Anti-Pattern locked.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: Two-stub compile-and-load pattern for cross-module smoke testing — when test A needs production semantics of util X (advance-loop) and test B needs different semantics (no-advance to force a past-date), write TWO temp stubs (.tmp-X-prod.mjs + .tmp-X-overdue.mjs) and load each in its own compiled-on-the-fly consumer. Plan 04 used .tmp-plantLogic.mjs (real, WATER-05 dispatch tests) and .tmp-plantLogic-overdue.mjs (no-advance, WATER-06 penalty tests). Reusable for any future smoke test where production advance-loop semantics block coverage of a downstream consumer's edge cases.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: First-write contract for `.tmp-dates.mjs` (and any other multi-consumer stub module) — Node ES module imports are cached per-URL on first resolution; re-writing the file mid-test does NOT re-trigger import resolution. ALL exports the second consumer needs MUST be present at first-write time. Plan 04 added daysBetween + formatDate to the first .tmp-dates.mjs write so plantHealth's later import succeeds (Plan 05 should treat this stub as append-only at the source-write site).
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: Structural insight (deferred to v1.2) — the `daysUntilWater < 0` overdue_water penalty branch in plantHealth.ts is unreachable through the production getNextWaterDate advance-loop (`while (next < today) next = addDays(next, intervalDays)` always returns >= today). The WATER-06 gate is shipped (defensive against future refactors) but exercising it in tests required a no-advance plantLogic stub. v1.2 may want to refactor either (a) plantHealth to compute days-since-lastWatered directly via daysBetween(parseDate(lastWatered), today) and compare to getSeasonalInterval, OR (b) plantLogic.getNextWaterDate to expose a non-advancing variant for health calculations. Current code is structurally surprising but correct.
 
 ### Pending Todos
 
@@ -130,6 +135,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T14:11:12.249Z
-Stopped at: Completed 05-03-PLAN.md (Wave 2 — plantLogic season-aware getNextWaterDate(plant, today, latitude) + soil_check dispatch in getTasksForDay; 4 callers threaded latitude through; 15 new smoke assertions for SEASON-04 single-source-of-truth + WATER-05 emit-side + cross-month transition; 101/101 PASS; tsc handoff state to Plan 04 (plantHealth) + Plan 05 (5 files) documented)
+Last session: 2026-05-01T14:31:48.141Z
+Stopped at: Completed 05-04-PLAN.md
 Resume file: None

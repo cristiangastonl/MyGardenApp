@@ -125,7 +125,7 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
-| 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 0/TBD | Not started | - |
+| 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 4/5 | In Progress | - |
 | 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
 | 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
