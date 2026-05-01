@@ -23,6 +23,9 @@ import { MigrationTooltip } from './MigrationTooltip';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useStorage } from '../hooks/useStorage';
+import { getWaterSeason, type WaterSeason } from '../utils/seasonality';
+import { getSeasonalInterval } from '../utils/plantLogic';
+import { getLightLabel } from '../utils/lightLabel';
 
 interface MyPlantDetailModalProps {
   visible: boolean;
@@ -72,6 +75,19 @@ export function MyPlantDetailModal({
     const raw = findDatabaseEntry(plant);
     return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
+
+  // Phase 6 (SEASON-05, LIGHT-06/07): season-aware interval + localized light label.
+  // Hooks: useMemo to recompute only when lat/date or plant changes — keeps render cheap.
+  const { currentSeason, waterInterval, lightLabel, seasonKey } = useMemo(() => {
+    const today = new Date();
+    const season: WaterSeason = getWaterSeason(latitude, today);
+    const interval = plant ? getSeasonalInterval(plant, season) : 0;
+    const label = plant ? getLightLabel(plant, t) : '';
+    // 'tropical' is its own label key; 'cold' is cold; everything else (incl. 'warm') is warm.
+    const key: 'warm' | 'cold' | 'tropical' =
+      season === 'cold' ? 'cold' : season === 'tropical' ? 'tropical' : 'warm';
+    return { currentSeason: season, waterInterval: interval, lightLabel: label, seasonKey: key };
+  }, [plant, latitude, t]);
 
   const resolvedImageUrl = useMemo(() => {
     if (!plant) return null;
@@ -158,18 +174,22 @@ export function MyPlantDetailModal({
               )}
             </View>
 
-            {/* Info pills */}
+            {/* Phase 6: SEASON-05 + LIGHT-06/07 — season-aware interval with badge + localized light label */}
             <View style={styles.infoRow}>
               <View style={styles.infoPill}>
                 <Text style={styles.infoPillIcon}>💧</Text>
                 <Text style={styles.infoPillText}>
-                  {t('plantDetail.waterEvery', { days: plant.waterEvery })}
+                  {t('plantDetail.seasonBadge.every', { days: waterInterval })}
+                  {' — '}
+                  <Text style={styles.seasonQualifier}>
+                    {t(`plantDetail.seasonBadge.${seasonKey}`)}
+                  </Text>
                 </Text>
               </View>
               <View style={styles.infoPill}>
                 <Text style={styles.infoPillIcon}>☀️</Text>
                 <Text style={styles.infoPillText}>
-                  {t('plantDetail.sunHours', { hours: plant.sunHours })}
+                  {lightLabel}
                 </Text>
               </View>
             </View>
@@ -375,6 +395,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
     flex: 1,
+  },
+  seasonQualifier: {
+    color: colors.textSecondary,
   },
 
   // Diagnose
