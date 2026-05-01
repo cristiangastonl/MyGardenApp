@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: completed
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-05-01T16:23:25.806Z"
-last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
+status: in_progress
+stopped_at: Completed 06-04-PLAN.md
+last_updated: "2026-05-01T16:28:45Z"
+last_activity: 2026-05-01 — Plan 06-04 complete (Wave 2 — MyPlantDetailModal info pills: water pill now shows season-aware interval via getSeasonalInterval with em-dash season qualifier (SEASON-05); sun pill shows localized lightLevel label via getLightLabel indoor/outdoor branch (LIGHT-06/07); seasonQualifier style using colors.textSecondary; legacy t('plantDetail.waterEvery') and t('plantDetail.sunHours') pill references removed; tsc GREEN; smoke 82/82 Phase 6 + 106/106 Phase 4/5 regression.)
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 18
-  completed_plans: 14
-  percent: 100
+  completed_plans: 15
+  percent: 83
 ---
 
 # Project State
@@ -71,6 +71,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 05-hemisphere-season-helpers-pure-utility-switchover P05 | 11 | 4 tasks | 8 files |
 | Phase 06-ui-read-side-propagation P01 | 3 | 3 tasks | 3 files |
 | Phase 06-ui-read-side-propagation P02 | 3 | 3 tasks | 3 files |
+| Phase 06-ui-read-side-propagation P05 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -130,6 +131,10 @@ Recent decisions affecting current work:
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: App.tsx has TWO independent AppContent paths — MVP (Features.AUTH=false) and AUTH (Features.AUTH=true). Each destructures useStorage independently. Phase 4 Plan 07 added 'location' to the AUTH path's destructure (line 275) but NOT the MVP path (line 116). Plan 05 added it to MVP path as a Rule 3 fix. Two-AppContent-paths pattern is a v1.1-readiness decision (Phase 4) that requires both paths to be kept in sync — a future plan may merge them once V1.1 ships.
 - [Phase 06-ui-read-side-propagation]: OUTDOOR_TYPE_IDS typed as ReadonlySet<string> not as const array; Translator type is local (key: string) => string NOT i18next TFunction to keep lightLabel.ts framework-free; suculentas excluded from outdoor set per 06-CONTEXT.md lock
 - [Phase 06-ui-read-side-propagation]: lightLevel block inserted after plantCategories; waterBadge inside plantCard after inDays; seasonBadge inside plantDetail after sunHours; soilCheckEmptyRow appended to today block
+- [Phase 06-ui-read-side-propagation]: [Plan 04]: useMemo deps array includes 't' for MyPlantDetailModal season/interval/lightLabel memo — locale-switch correctness; t identity changes on locale switch and memo must recompute localized lightLabel when locale changes
+- [Phase 06-ui-read-side-propagation]: [Plan 04]: Nested <Text style={styles.seasonQualifier}> inside parent infoPillText <Text> uses React Native nested Text pattern; qualifier inherits parent font/size and only overrides color via seasonQualifier style (colors.textSecondary)
+- [Phase 06-ui-read-side-propagation]: PlantDBEntry.category mapped to typeId at call site in both catalog surfaces — single getLightLabel signature handles Plant and PlantDBEntry without overloading
+- [Phase 06-ui-read-side-propagation]: numberOfLines={2} added to PlantDatabaseCard sun badge — localized labels longer than legacy sunHours text; wrapping prevents truncation at 48% card width
 
 ### Pending Todos
 
@@ -145,6 +150,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T16:23:25.804Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-05-01T16:28:25.744Z
+Stopped at: Completed 06-05-PLAN.md
 Resume file: None
