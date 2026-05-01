@@ -23,6 +23,7 @@ interface DayDetailProps {
   plants: Plant[];
   notes: Note[];
   reminders: Reminder[];
+  latitude: number | null;
   onClose: () => void;
   onAddNote: (dateStr: string, text: string) => void;
   onDeleteNote: (dateStr: string, noteId: string) => void;
@@ -37,6 +38,7 @@ export function DayDetail({
   plants,
   notes,
   reminders,
+  latitude,
   onClose,
   onAddNote,
   onDeleteNote,
@@ -56,7 +58,7 @@ export function DayDetail({
   const monthName = MONTHS_ES[date.getMonth()];
   const dayNumber = date.getDate();
 
-  const tasks = getTasksForDay(plants, date);
+  const tasks = getTasksForDay(plants, date, latitude);
 
   const handleAddNote = () => {
     if (newNoteText.trim()) {
@@ -83,6 +85,8 @@ export function DayDetail({
         return "☀️";
       case "outdoor":
         return "🌤️";
+      case "check_soil":
+        return "🤚";
       default:
         return "🌱";
     }
@@ -96,6 +100,8 @@ export function DayDetail({
         return t('dayDetail.taskSun');
       case "outdoor":
         return t('dayDetail.taskOutdoor');
+      case "check_soil":
+        return t('tasks.checkSoil');
       default:
         return "";
     }
@@ -152,6 +158,7 @@ export function DayDetail({
                               task.type === "water" && styles.taskIconWater,
                               task.type === "sun" && styles.taskIconSun,
                               task.type === "outdoor" && styles.taskIconOutdoor,
+                              task.type === "check_soil" && styles.taskIconWater,
                             ]}
                           >
                             <Text style={styles.taskIconText}>
