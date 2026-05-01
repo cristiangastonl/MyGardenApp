@@ -184,6 +184,58 @@ try {
   assert("EN waterSchedule.soilCheckExplanation contains {{days}} interpolation",
     en.waterSchedule.soilCheckExplanation.includes('{{days}}'));
 
+  // ─── Plan 07-08: edge-function payload discriminator (string-level) ───
+  const diagnoseSrc = await fs.readFile('supabase/functions/diagnose-plant/index.ts', 'utf8');
+  const chatSrc = await fs.readFile('supabase/functions/chat-diagnosis/index.ts', 'utf8');
+
+  // Discriminator presence
+  assert("diagnose-plant has isV2 discriminator (!!ctx.waterSchedule)",
+    /isV2\s*=\s*!!\s*ctx\??\.waterSchedule/.test(diagnoseSrc));
+  assert("chat-diagnosis has isV2 discriminator (!!ctx.waterSchedule)",
+    /isV2\s*=\s*!!\s*ctx\??\.waterSchedule/.test(chatSrc));
+
+  // v1.1 prompt fragments (ES + EN)
+  assert("diagnose-plant ES v1.1 prompt mentions 'Modo de riego'",
+    diagnoseSrc.includes('Modo de riego'));
+  assert("diagnose-plant EN v1.1 prompt mentions 'Watering mode'",
+    diagnoseSrc.includes('Watering mode'));
+  assert("diagnose-plant ES v1.1 prompt mentions 'temporada cálida cada'",
+    diagnoseSrc.includes('temporada cálida cada'));
+  assert("diagnose-plant EN v1.1 prompt mentions 'warm season every'",
+    diagnoseSrc.includes('warm season every'));
+  assert("diagnose-plant ES v1.1 prompt mentions 'Nivel de luz'",
+    diagnoseSrc.includes('Nivel de luz'));
+  assert("diagnose-plant EN v1.1 prompt mentions 'Light level'",
+    diagnoseSrc.includes('Light level'));
+
+  // Legacy fragments preserved (backward compat)
+  assert("diagnose-plant legacy ES branch preserves 'Frecuencia de riego: cada'",
+    diagnoseSrc.includes('Frecuencia de riego: cada'));
+  assert("diagnose-plant legacy EN branch preserves 'Watering frequency: every'",
+    diagnoseSrc.includes('Watering frequency: every'));
+
+  // soil_check explainer
+  assert("diagnose-plant ES soil_check explainer mentions 'por chequeo'",
+    diagnoseSrc.includes('por chequeo'));
+  assert("diagnose-plant EN soil_check explainer mentions 'check-in'",
+    diagnoseSrc.includes('check-in'));
+
+  // chat-diagnosis parity (same fragments)
+  assert("chat-diagnosis ES v1.1 prompt mentions 'Modo de riego'",
+    chatSrc.includes('Modo de riego'));
+  assert("chat-diagnosis EN v1.1 prompt mentions 'Watering mode'",
+    chatSrc.includes('Watering mode'));
+  assert("chat-diagnosis legacy ES branch preserves 'Frecuencia de riego: cada'",
+    chatSrc.includes('Frecuencia de riego: cada'));
+  assert("chat-diagnosis legacy EN branch preserves 'Watering frequency: every'",
+    chatSrc.includes('Watering frequency: every'));
+
+  // PlantContext shape parity
+  assert("diagnose-plant PlantContext has waterSchedule? optional field",
+    /waterSchedule\?\s*:\s*\{\s*warm:\s*number;\s*cold:\s*number/.test(diagnoseSrc));
+  assert("chat-diagnosis PlantContext has waterSchedule? optional field",
+    /waterSchedule\?\s*:\s*\{\s*warm:\s*number;\s*cold:\s*number/.test(chatSrc));
+
 } catch (err) {
   process.exitCode = 1;
   console.error('Phase 7 smoke runner failed:', err);
