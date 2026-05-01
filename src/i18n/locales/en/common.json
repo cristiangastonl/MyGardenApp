@@ -51,6 +51,20 @@
     "frutales": "Fruit trees",
     "suculentas": "Succulents"
   },
+  "lightLevel": {
+    "indoor": {
+      "direct": "Direct light",
+      "bright_indirect": "Bright indirect light",
+      "medium_indirect": "Medium indirect light",
+      "low": "Low light"
+    },
+    "outdoor": {
+      "direct": "Full sun",
+      "bright_indirect": "Partial sun",
+      "medium_indirect": "Semi-shade",
+      "low": "Shade"
+    }
+  },
   "onboarding": {
     "welcome": "Welcome to My Happy Garden",
     "subtitle": "Your personal plant care assistant",
@@ -181,7 +195,8 @@
     "unlockGarden": "Unlock your full garden",
     "unlimitedPlants": "Unlimited plants, alerts and more",
     "allCaughtUp": "All caught up!",
-    "allCaughtUpText": "No pending tasks today. Great job!"
+    "allCaughtUpText": "No pending tasks today. Great job!",
+    "soilCheckEmptyRow": "Your {{plantName}} is in check mode. We'll remind you in {{days}} days."
   },
   "plants": {
     "title": "My Plants",
@@ -241,6 +256,10 @@
     "today": "Today",
     "tomorrow": "Tomorrow",
     "inDays": "In {{count}} days",
+    "waterBadge": {
+      "fixed": "💧 Every {{days}}d",
+      "soilCheck": "🤚 Check soil"
+    },
     "deletePlant": "Delete plant",
     "deleteConfirm": "Are you sure you want to delete \"{{name}}\"?",
     "cancelButton": "Cancel",
@@ -354,6 +373,12 @@
   "plantDetail": {
     "waterEvery": "Water every {{days}} days",
     "sunHours": "{{hours}}h of sun",
+    "seasonBadge": {
+      "every": "Every {{days}} days",
+      "warm": "warm season",
+      "cold": "cold season",
+      "tropical": "tropical"
+    },
     "type": "Type: {{type}}",
     "deletePlant": "Delete plant",
     "deleteConfirm": "Are you sure you want to delete \"{{name}}\"?",
