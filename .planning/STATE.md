@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 07-05-PLAN.md
-last_updated: "2026-05-01T22:42:42.158Z"
+stopped_at: Completed 07-07-PLAN.md
+last_updated: "2026-05-01T23:17:50.070Z"
 last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 26
-  completed_plans: 24
+  completed_plans: 25
   percent: 100
 ---
 
@@ -81,6 +81,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 07-ui-write-side-onboarding-edge-function-contract P03 | 5 | 3 tasks | 3 files |
 | Phase 07-ui-write-side-onboarding-edge-function-contract P06 | 8 | 2 tasks | 4 files |
 | Phase 07-ui-write-side-onboarding-edge-function-contract P05 | 15 | 3 tasks | 2 files |
+| Phase 07 P07 | 29 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -161,6 +162,9 @@ Recent decisions affecting current work:
 - [Phase 07-ui-write-side-onboarding-edge-function-contract]: prefilledPlant union type widened to PlantDBEntry | Plant using 'category' in x runtime discriminator — enables correct prefill for both create (PlantDBEntry) and edit (Plant) flows without separate code paths
 - [Phase 07-ui-write-side-onboarding-edge-function-contract]: [Plan 05]: plantDBToPlant fixed (Pitfall 1): emits lightLevel+waterSchedule+waterMode via Phase 4 canonical mappers (sunHoursToLightLevel/inferWaterMode/applyColdFactor) — single SSOT across migration AND new-plant emission from onboarding catalog
 - [Phase 07-ui-write-side-onboarding-edge-function-contract]: [Plan 05]: OnboardingScreen step machine ratcheted from 3→4 steps; location step (step 1) inserted between name(0) and plants(2); GPS denied path falls through to city search inline — same Open-Meteo geocoding pattern as SettingsScreen
+- [Phase 07-07]: LocationBanner placed inside TodayScreen ScrollView (not App-level) — banner is Hoy-tab-specific nudge per Pitfall 4 lock
+- [Phase 07-07]: Banner dismiss is local useState(false) only — banner reappears on next launch per CONTEXT.md per-session spec (Pitfall 8 lock)
+- [Phase 07-07]: SettingsPanel imports useStorage() directly for climateOverride — avoids prop threading through SettingsScreen
 
 ### Pending Todos
 
@@ -176,6 +180,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T22:42:42.155Z
-Stopped at: Completed 07-05-PLAN.md
+Last session: 2026-05-01T23:17:50.068Z
+Stopped at: Completed 07-07-PLAN.md
 Resume file: None
