@@ -18,6 +18,7 @@ import {
   getHealthMessage,
 } from '../utils/plantHealth';
 import { formatDate } from '../utils/dates';
+import { getLightLabel } from '../utils/lightLabel';
 import { getDaysShort } from '../data/constants';
 import { ProgressBar } from './ProgressBar';
 
@@ -43,19 +44,8 @@ export function PlantHealthDetail({
   const waterDaysForDisplay: number =
     plant.waterSchedule?.warm ?? (typeof plant.waterEvery === 'number' ? plant.waterEvery : 7);
 
-  // v1.1: derive approximate display hours from lightLevel; fall back to legacy sunHours
-  // Mapping for display only — keeps existing translation key `needsSunHours` ({{hours}}).
-  const sunHoursForDisplay: number = (() => {
-    if (plant.lightLevel) {
-      switch (plant.lightLevel) {
-        case 'direct':           return 6;
-        case 'bright_indirect':  return 4;
-        case 'medium_indirect':  return 2;
-        case 'low':              return 0;
-      }
-    }
-    return typeof plant.sunHours === 'number' ? plant.sunHours : 0;
-  })();
+  // v1.1: localized light-level label (LIGHT-06). Replaces the hours-mapping derivation from Phase 4 Plan 04.
+  const lightLabel: string = getLightLabel(plant, t);
 
   const getSeverityColor = (severity: HealthIssueSeverity): string => {
     switch (severity) {
@@ -230,11 +220,9 @@ export function PlantHealthDetail({
                 <Text style={styles.tipItem}>
                   {t('health.waterEvery', { days: waterDaysForDisplay })}
                 </Text>
-                {sunHoursForDisplay > 0 && (
-                  <Text style={styles.tipItem}>
-                    {t('health.needsSunHours', { hours: sunHoursForDisplay })}
-                  </Text>
-                )}
+                <Text style={styles.tipItem}>
+                  {lightLabel}
+                </Text>
                 {plant.sunDays.length > 0 && (
                   <Text style={styles.tipItem}>
                     {t('health.sunDaysLabel', { days: getDayNames(plant.sunDays) })}
