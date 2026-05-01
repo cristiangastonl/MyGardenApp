@@ -27,6 +27,7 @@ interface DayDetailModalProps {
   plants: Plant[];
   notes: Note[];
   reminders: Reminder[];
+  latitude: number | null;
   onClose: () => void;
   onWater: (plantId: string) => void;
   onSunDone: (plantId: string) => void;
@@ -44,6 +45,7 @@ export function DayDetailModal({
   plants,
   notes,
   reminders,
+  latitude,
   onClose,
   onWater,
   onSunDone,
@@ -60,7 +62,7 @@ export function DayDetailModal({
   const [showReminderInput, setShowReminderInput] = useState(false);
 
   const dateStr = formatDate(date);
-  const tasks = getTasksForDay(plants, date);
+  const tasks = getTasksForDay(plants, date, latitude);
   const dayName = DAYS_FULL[date.getDay()];
   const monthName = MONTHS_ES[date.getMonth()];
 
@@ -121,12 +123,14 @@ export function DayDetailModal({
                     const isDone =
                       (task.type === 'water' && plant.lastWatered === dateStr) ||
                       (task.type === 'sun' && plant.sunDoneDate === dateStr) ||
-                      (task.type === 'outdoor' && plant.outdoorDoneDate === dateStr);
+                      (task.type === 'outdoor' && plant.outdoorDoneDate === dateStr) ||
+                      (task.type === 'check_soil' && plant.lastWatered === dateStr);
 
                     const handlePress = () => {
                       if (task.type === 'water') onWater(task.plantId);
                       else if (task.type === 'sun') onSunDone(task.plantId);
                       else if (task.type === 'outdoor') onOutdoorDone(task.plantId);
+                      else if (task.type === 'check_soil') onWater(task.plantId);
                     };
 
                     return (
@@ -137,14 +141,14 @@ export function DayDetailModal({
                         icon={task.icon}
                         label={task.label}
                         bgColor={
-                          task.type === 'water'
+                          task.type === 'water' || task.type === 'check_soil'
                             ? colors.waterLight
                             : task.type === 'sun'
                             ? colors.warningBg
                             : colors.infoBg
                         }
                         textColor={
-                          task.type === 'water'
+                          task.type === 'water' || task.type === 'check_soil'
                             ? colors.waterBlue
                             : task.type === 'sun'
                             ? colors.sunDark

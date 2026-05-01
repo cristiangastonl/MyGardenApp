@@ -25,6 +25,7 @@ export default function CalendarScreen() {
     plants,
     notes,
     reminders,
+    location,
     loading,
     updatePlant,
     addNote,
@@ -251,6 +252,7 @@ export default function CalendarScreen() {
           plants={plants}
           notes={selectedNotes}
           reminders={selectedReminders}
+          latitude={location?.lat ?? null}
           onClose={handleCloseDayDetail}
           onWater={handleWater}
           onSunDone={handleSunDone}
