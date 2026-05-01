@@ -85,8 +85,8 @@
 ### User-facing Migration (UX)
 
 - [x] **UX-01**: First launch after upgrade shows a one-time in-app message explaining the change ("Cambiamos cómo medimos la luz. Tu Monstera ahora está marcada como Luz brillante indirecta.")
-- [ ] **UX-02**: Plant cards show a watering-mode badge ("💧 Cada 5d" or "🤚 Por chequeo") so users understand their list shape
-- [ ] **UX-03**: Soil-check plants on non-check-in days display empty-state copy ("Tu cactus está en modo chequeo. Te avisamos en 12 días.")
+- [x] **UX-02**: Plant cards show a watering-mode badge ("💧 Cada 5d" or "🤚 Por chequeo") so users understand their list shape
+- [x] **UX-03**: Soil-check plants on non-check-in days display empty-state copy ("Tu cactus está en modo chequeo. Te avisamos en 12 días.")
 
 ## v2 Requirements
 
@@ -180,8 +180,8 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | CAT-07 | Phase 8 | Pending |
 | CAT-08 | Phase 8 | Pending |
 | UX-01 | Phase 4 | Complete |
-| UX-02 | Phase 6 | Pending |
-| UX-03 | Phase 6 | Pending |
+| UX-02 | Phase 6 | Complete |
+| UX-03 | Phase 6 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 55 total (9 SCHEMA + 7 LIGHT + 7 WATER + 5 SEASON + 6 LOC + 7 DIAG + 3 PAY + 8 CAT + 3 UX)
