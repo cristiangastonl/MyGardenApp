@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, PlantPhoto, WeatherData, SavedDiagnosis } from '../types';
-import { getPlantCategories } from '../data/plantDatabase';
+import { getPlantCategories, getTranslatedPlant } from '../data/plantDatabase';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
@@ -49,7 +49,7 @@ export function MyPlantDetailModal({
   const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
   const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
-  const { diagnosisCount, incrementDiagnosisCount, getDiagnosesForPlant } = useStorage();
+  const { diagnosisCount, getDiagnosesForPlant } = useStorage();
 
   const healthStatus = useMemo(() => {
     if (!plant) return null;
@@ -67,7 +67,8 @@ export function MyPlantDetailModal({
 
   const dbEntry = useMemo(() => {
     if (!plant) return null;
-    return findDatabaseEntry(plant);
+    const raw = findDatabaseEntry(plant);
+    return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
 
   const resolvedImageUrl = useMemo(() => {
@@ -90,7 +91,6 @@ export function MyPlantDetailModal({
       requestPaywall('plant_diagnosis');
       return;
     }
-    incrementDiagnosisCount();
     setShowDiagnosis(true);
   };
 

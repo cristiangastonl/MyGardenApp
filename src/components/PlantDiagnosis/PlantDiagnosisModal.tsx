@@ -44,7 +44,7 @@ export function PlantDiagnosisModal({
   canAddToShoppingList = false,
 }: PlantDiagnosisModalProps) {
   const { t } = useTranslation();
-  const { saveDiagnosis, addChatMessage, diagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry } = useStorage();
+  const { saveDiagnosis, addChatMessage, diagnosisCount, incrementDiagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry } = useStorage();
   const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
 
@@ -63,7 +63,8 @@ export function PlantDiagnosisModal({
   const handleDiagnosisComplete = useCallback((diagnosis: SavedDiagnosis) => {
     currentDiagnosisRef.current = diagnosis;
     saveDiagnosis(diagnosis);
-  }, [saveDiagnosis]);
+    incrementDiagnosisCount();
+  }, [saveDiagnosis, incrementDiagnosisCount]);
 
   // v1.1: derive legacy diagnosis-context fields from new schema with defensive fallback.
   // The PlantDiagnosisContext shape is consumed downstream by edge-function prompts that

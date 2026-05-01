@@ -5,14 +5,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Pressable,
   ScrollView,
   Dimensions,
   Animated,
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   Image,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import i18n, { setLanguage } from '../i18n';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { PlantDBEntry, PlantCategory, Plant } from '../types';
@@ -245,33 +248,35 @@ export default function OnboardingScreen() {
   }, []);
 
   const animateTransition = useCallback((direction: 'next' | 'back') => {
-    const toValue = direction === 'next' ? -SCREEN_WIDTH : SCREEN_WIDTH;
+    const exitTo = direction === 'next' ? -SCREEN_WIDTH * 0.6 : SCREEN_WIDTH * 0.6;
+    const enterFrom = direction === 'next' ? SCREEN_WIDTH * 0.6 : -SCREEN_WIDTH * 0.6;
 
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 0,
-        duration: 150,
+        duration: 120,
         useNativeDriver: true,
       }),
       Animated.timing(slideAnim, {
-        toValue: toValue * 0.3,
-        duration: 150,
+        toValue: exitTo,
+        duration: 180,
         useNativeDriver: true,
       }),
     ]).start(() => {
       setCurrentStep(prev => direction === 'next' ? prev + 1 : prev - 1);
-      slideAnim.setValue(direction === 'next' ? SCREEN_WIDTH * 0.3 : -SCREEN_WIDTH * 0.3);
+      slideAnim.setValue(enterFrom);
 
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 200,
+          duration: 220,
           useNativeDriver: true,
         }),
-        Animated.timing(slideAnim, {
+        Animated.spring(slideAnim, {
           toValue: 0,
-          duration: 200,
           useNativeDriver: true,
+          friction: 9,
+          tension: 60,
         }),
       ]).start();
     });
@@ -301,12 +306,14 @@ export default function OnboardingScreen() {
     }
   }, [currentStep, animateTransition]);
 
+  const [isCompleting, setIsCompleting] = useState(false);
   const handleComplete = useCallback(() => {
+    if (isCompleting) return;
+    setIsCompleting(true);
     const totalCount = selectedPlants.size + identifiedPlants.length;
     console.log('[Onboarding] Completing onboarding...');
     trackEvent('onboarding_completed', { plants_selected: totalCount });
 
-    // Convert selected plants to Plant format
     const catalogPlants = selectedPlants.size > 0
       ? PLANT_DATABASE.filter(p => selectedPlants.has(p.id)).map(plantDBToPlant)
       : [];
@@ -314,9 +321,8 @@ export default function OnboardingScreen() {
     const plantsToAdd = [...identifiedPlants, ...catalogPlants];
     const finalName = name.trim() || null;
 
-    // Atomic save: plants + userName + onboardingCompleted in a single write
     completeOnboardingWithData(plantsToAdd, finalName);
-  }, [name, selectedPlants, identifiedPlants, completeOnboardingWithData]);
+  }, [isCompleting, name, selectedPlants, identifiedPlants, completeOnboardingWithData]);
 
   const renderStep0 = () => (
     <ScrollView
@@ -326,6 +332,23 @@ export default function OnboardingScreen() {
       keyboardDismissMode="interactive"
       showsVerticalScrollIndicator={false}
     >
+      <View style={styles.languagePickerRow}>
+        <TouchableOpacity
+          style={[styles.languagePill, i18n.language === 'es' && styles.languagePillActive]}
+          onPress={() => setLanguage('es')}
+          activeOpacity={0.7}
+        >
+          <Text style={[styles.languagePillText, i18n.language === 'es' && styles.languagePillTextActive]}>🇦🇷 Español</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.languagePill, i18n.language === 'en' && styles.languagePillActive]}
+          onPress={() => setLanguage('en')}
+          activeOpacity={0.7}
+        >
+          <Text style={[styles.languagePillText, i18n.language === 'en' && styles.languagePillTextActive]}>🇺🇸 English</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.welcomeSection}>
         <Text style={styles.welcomeEmoji}>🌱</Text>
         <Text style={styles.welcomeTitle}>{t('onboarding.welcome')}</Text>
@@ -595,29 +618,38 @@ export default function OnboardingScreen() {
   );
 
   // Render primary button with or without gradient
-  const renderPrimaryButton = (text: string, onPress: () => void) => {
+  const renderPrimaryButton = (text: string, onPress: () => void, loading: boolean = false) => {
+    const inner = loading
+      ? <ActivityIndicator color={colors.white} />
+      : <Text style={styles.primaryButtonText}>{text}</Text>;
+
     if (LinearGradient) {
       return (
-        <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-          <LinearGradient
-            colors={[colors.green, colors.greenDark]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.primaryButton}
-          >
-            <Text style={styles.primaryButtonText}>{text}</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <Pressable onPress={loading ? undefined : onPress} disabled={loading}>
+          {({ pressed }) => (
+            <LinearGradient
+              colors={[colors.green, colors.greenDark]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={[
+                styles.primaryButton,
+                pressed && styles.primaryButtonPressed,
+              ]}
+            >
+              {inner}
+            </LinearGradient>
+          )}
+        </Pressable>
       );
     }
     return (
-      <TouchableOpacity
-        style={styles.primaryButtonFallback}
-        onPress={onPress}
-        activeOpacity={0.8}
-      >
-        <Text style={styles.primaryButtonText}>{text}</Text>
-      </TouchableOpacity>
+      <Pressable onPress={loading ? undefined : onPress} disabled={loading}>
+        {({ pressed }) => (
+          <View style={[styles.primaryButtonFallback, pressed && styles.primaryButtonPressed]}>
+            {inner}
+          </View>
+        )}
+      </Pressable>
     );
   };
 
@@ -674,7 +706,7 @@ export default function OnboardingScreen() {
                         : t('onboarding.continue'),
                     handleNext,
                   )
-                : renderPrimaryButton(t('onboarding.begin'), handleComplete)
+                : renderPrimaryButton(t('onboarding.begin'), handleComplete, isCompleting)
               }
             </View>
           </View>
@@ -752,6 +784,35 @@ const styles = StyleSheet.create({
   },
   step0ScrollContent: {
     paddingBottom: spacing.xl,
+  },
+
+  // Step 0: Language picker
+  languagePickerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    marginTop: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  languagePill: {
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.xl,
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+  },
+  languagePillActive: {
+    backgroundColor: colors.green,
+    borderColor: colors.green,
+  },
+  languagePillText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  languagePillTextActive: {
+    color: colors.white,
   },
 
   // Step 0: Welcome
@@ -1173,5 +1234,9 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 16,
     color: colors.white,
+  },
+  primaryButtonPressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.97 }],
   },
 });

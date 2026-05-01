@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { PlantDBEntry } from '../types';
+import { getTranslatedPlant } from '../data/plantDatabase';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -31,9 +32,10 @@ const HUMIDITY_KEYS: Record<string, string> = {
   alta: 'identification.humidityHigh',
 };
 
-export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetailModalProps) {
+export function PlantDetailModal({ visible, plant: rawPlant, onClose, onAdd }: PlantDetailModalProps) {
   const { t } = useTranslation();
-  if (!plant) return null;
+  if (!rawPlant) return null;
+  const plant = getTranslatedPlant(rawPlant);
 
   return (
     <Modal
@@ -135,7 +137,7 @@ export function PlantDetailModal({ visible, plant, onClose, onAdd }: PlantDetail
             )}
 
             <View style={styles.actions}>
-              <TouchableOpacity style={styles.addButton} onPress={() => onAdd(plant)}>
+              <TouchableOpacity style={styles.addButton} onPress={() => onAdd(rawPlant)}>
                 <Text style={styles.addButtonText}>{t('plantDetailModal.addToMyPlants')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.closeButton} onPress={onClose}>

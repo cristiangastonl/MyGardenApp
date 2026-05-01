@@ -444,6 +444,31 @@ export default function SettingsScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
+              style={styles.devButton}
+              onPress={() => {
+                Alert.alert(
+                  'Load v0 fixture',
+                  'Replaces current data with the legacy v1.0 fixture (7 plants, no envelope) so the next launch triggers migration. Continues?',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Load & reload',
+                      onPress: async () => {
+                        const fixture = require('../../tests/fixtures/v0-app-data.json');
+                        await AsyncStorage.removeItem('plant-agenda-v2.backup-pre-v1.1');
+                        await AsyncStorage.removeItem('migration-tooltip-seen-v1.1');
+                        await AsyncStorage.setItem('plant-agenda-v2', JSON.stringify(fixture));
+                        DevSettings?.reload?.();
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.devButtonText}>🧪 Load v0 fixture (smoke test)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
               style={[styles.devButton, { backgroundColor: colors.dangerBg }]}
               onPress={() => {
                 Alert.alert(
