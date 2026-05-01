@@ -33,6 +33,7 @@ const fs = await import('node:fs/promises');
 const tmp = `${process.cwd()}/scripts/.tmp-migration.mjs`;
 const tmpSeason = `${process.cwd()}/scripts/.tmp-seasonality.mjs`;
 const tmpPlantLogic = `${process.cwd()}/scripts/.tmp-plantLogic.mjs`;
+const tmpPlantHealth = `${process.cwd()}/scripts/.tmp-plantHealth.mjs`;
 let pass = 0;
 let total = 0;
 
@@ -215,12 +216,16 @@ try {
       `export default { t: (key, opts) => opts?.name ? key + ":" + opts.name : key };\n`);
     // Stub types: empty module — TS types are erased at runtime.
     await fs.writeFile(`${process.cwd()}/scripts/.tmp-types.mjs`, `export {};\n`);
-    // Stub dates: real impls (parseDate, addDays, isSameDay).
+    // Stub dates: real impls (parseDate, addDays, isSameDay, formatDate, daysBetween).
+    // daysBetween + formatDate are added so plantHealth (Plan 04) imports succeed
+    // when this module is loaded later — Node ES module caches imports, so the
+    // exports must exist on first load (cannot be appended later mid-test).
     await fs.writeFile(`${process.cwd()}/scripts/.tmp-dates.mjs`,
       `export const parseDate=(s)=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
        export const addDays=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
        export const isSameDay=(a,b)=>a.toDateString()===b.toDateString();
-       export const formatDate=(d)=>\`\${d.getFullYear()}-\${String(d.getMonth()+1).padStart(2,'0')}-\${String(d.getDate()).padStart(2,'0')}\`;\n`);
+       export const formatDate=(d)=>\`\${d.getFullYear()}-\${String(d.getMonth()+1).padStart(2,'0')}-\${String(d.getDate()).padStart(2,'0')}\`;
+       export const daysBetween=(a,b)=>{const aa=new Date(a.getFullYear(),a.getMonth(),a.getDate());const bb=new Date(b.getFullYear(),b.getMonth(),b.getDate());return Math.round((bb.getTime()-aa.getTime())/86400000);};\n`);
 
     const plantLogicMod = await import(tmpPlantLogic);
     const { getNextWaterDate, getTasksForDay } = plantLogicMod;
@@ -316,6 +321,67 @@ try {
     // BA Apr 15 cold 10d, lastWatered Apr 5 → next is Apr 15 = today (check-in)
     assert("fixed plant on check-in day emits 'water' (NOT 'check_soil')",
       fixedTasks.length === 1 && fixedTasks[0]?.type === 'water');
+
+    // -------- WATER-06: plantHealth overdue-water penalty skip for soil_check --------
+    // Note: .tmp-dates.mjs was already written above with daysBetween +
+    // formatDate exports; no need to rewrite (Node ES caches anyway).
+    //
+    // Subtle: the production getNextWaterDate uses an advance-loop
+    // (`while (next < today) next = addDays(next, intervalDays)`) which
+    // ALWAYS returns a date >= today, making `daysUntilWater < 0` unreachable
+    // through the real plantLogic. To exercise the WATER-06 gate (the
+    // ENTIRE point of Plan 04), we stub plantLogic with a no-advance
+    // getNextWaterDate that returns `lastWatered` verbatim — this makes
+    // `daysUntilWater = today - lastWatered` produce a NEGATIVE value
+    // (overdue), which is the precondition for the penalty branch. The
+    // gate `plant.waterMode !== 'soil_check'` is then meaningfully
+    // exercised: soil_check skips, fixed/undefined apply.
+    const tmpPlantLogicOverdue = `${process.cwd()}/scripts/.tmp-plantLogic-overdue.mjs`;
+    await fs.writeFile(tmpPlantLogicOverdue,
+      `export const getNextWaterDate=(plant)=>{const[y,m,d]=(plant.lastWatered||'2026-01-01').split('-').map(Number);return new Date(y,m-1,d);};\n`);
+
+    const plantHealthSrc = await fs.readFile('src/utils/plantHealth.ts', 'utf8');
+    const phStubbed = plantHealthSrc
+      .replace(/from ["']\.\.\/types["']/g, 'from "./.tmp-types.mjs"')
+      .replace(/from ["']\.\/plantLogic["']/g, 'from "./.tmp-plantLogic-overdue.mjs"')
+      .replace(/from ["']\.\/dates["']/g, 'from "./.tmp-dates.mjs"');
+    const phCompiled = ts.transpileModule(phStubbed, {
+      compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+    }).outputText;
+    await fs.writeFile(tmpPlantHealth, phCompiled);
+    const plantHealthMod = await import(tmpPlantHealth);
+    const { calculatePlantHealth } = plantHealthMod;
+
+    // Heavily-overdue soil_check plant — must NOT incur overdue_water penalty.
+    // With the no-advance stub: nextWaterDate === Feb 1, today === Apr 15,
+    // daysBetween(Apr15, Feb1) === -73 → triggers the penalty branch (which
+    // WATER-06 must skip for soil_check).
+    const today = new Date(2026, 3, 15); // Apr 15, 2026
+    const overdueSoilCheck = {
+      id: 'pSCO', name: 'Cactus Overdue', waterMode: 'soil_check',
+      waterSchedule: { warm: 14, cold: 28 },
+      lastWatered: '2026-02-01', // 73 days ago
+      sunDays: [], outdoorDays: [],
+    };
+    const phSoilCheck = calculatePlantHealth(overdueSoilCheck, today, null, undefined, -34.6);
+    assert("WATER-06: soil_check overdue does NOT push overdue_water issue",
+      !phSoilCheck.issues.some(i => i.type === 'overdue_water'));
+    assert("WATER-06: soil_check overdue score === 100 (no water penalty applied)",
+      phSoilCheck.score === 100);
+
+    // Same plant but waterMode === 'fixed' — MUST incur the penalty (regression-safe).
+    const overdueFixed = { ...overdueSoilCheck, id: 'pFO', waterMode: 'fixed' };
+    const phFixed = calculatePlantHealth(overdueFixed, today, null, undefined, -34.6);
+    assert("Regression: fixed-mode overdue STILL pushes overdue_water issue",
+      phFixed.issues.some(i => i.type === 'overdue_water'));
+    assert("Regression: fixed-mode overdue score < 100",
+      phFixed.score < 100);
+
+    // Defensive: waterMode === undefined (legacy/migration-failure) — penalty STILL applies.
+    const overdueLegacy = { ...overdueSoilCheck, id: 'pLO', waterMode: undefined, waterEvery: 7 };
+    const phLegacy = calculatePlantHealth(overdueLegacy, today, null, undefined, -34.6);
+    assert("Defensive: undefined waterMode STILL pushes overdue_water (preserves pre-Phase-5 behavior)",
+      phLegacy.issues.some(i => i.type === 'overdue_water'));
   }
 
   console.log(`\n${pass}/${total} PASS`);
@@ -327,6 +393,8 @@ try {
   await fs.unlink(tmp).catch(() => {});
   await fs.unlink(tmpSeason).catch(() => {});
   await fs.unlink(tmpPlantLogic).catch(() => {});
+  await fs.unlink(tmpPlantHealth).catch(() => {});
+  await fs.unlink(`${process.cwd()}/scripts/.tmp-plantLogic-overdue.mjs`).catch(() => {});
   await fs.unlink(`${process.cwd()}/scripts/.tmp-i18n.mjs`).catch(() => {});
   await fs.unlink(`${process.cwd()}/scripts/.tmp-types.mjs`).catch(() => {});
   await fs.unlink(`${process.cwd()}/scripts/.tmp-dates.mjs`).catch(() => {});
