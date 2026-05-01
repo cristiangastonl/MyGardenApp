@@ -20,8 +20,8 @@
 
 ### Light Model (LIGHT)
 
-- [ ] **LIGHT-01**: User can set a plant's light level via a 4-card picker showing icon + level name + real-world placement description ("Junto a ventana sur" / "A 2m de ventana clara" / "Pasillo sin sol directo")
-- [ ] **LIGHT-02**: Light levels are `direct`, `bright_indirect`, `medium_indirect`, `low` — translated to user locale (en + es-AR with voseo)
+- [x] **LIGHT-01**: User can set a plant's light level via a 4-card picker showing icon + level name + real-world placement description ("Junto a ventana sur" / "A 2m de ventana clara" / "Pasillo sin sol directo")
+- [x] **LIGHT-02**: Light levels are `direct`, `bright_indirect`, `medium_indirect`, `low` — translated to user locale (en + es-AR with voseo)
 - [x] **LIGHT-03**: Existing user plants are auto-mapped from `sunHours` to `lightLevel` deterministically (≥5h direct, ≥3h bright_indirect, ≥2h medium_indirect, <2h low)
 - [ ] **LIGHT-04**: Plant catalog (60+ entries) is updated with `lightLevel` using same deterministic mapper; horticultural review pass corrects edge cases (orquídea, calathea, etc.)
 - [ ] **LIGHT-05**: Plant identification flow returns plants with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust)
@@ -30,9 +30,9 @@
 
 ### Watering Model (WATER)
 
-- [ ] **WATER-01**: Each plant has `waterSchedule: { warm: number, cold: number }` replacing `waterEvery: number`
-- [ ] **WATER-02**: Each plant has `waterMode: 'fixed' | 'soil_check'`; cacti, succulents, echeveria, haworthia, sedum, aloe, jade default to `soil_check`
-- [ ] **WATER-03**: User can edit warm/cold intervals separately in plant edit form; `soil_check` plants show no interval inputs but a toggle to switch to `fixed` mode
+- [x] **WATER-01**: Each plant has `waterSchedule: { warm: number, cold: number }` replacing `waterEvery: number`
+- [x] **WATER-02**: Each plant has `waterMode: 'fixed' | 'soil_check'`; cacti, succulents, echeveria, haworthia, sedum, aloe, jade default to `soil_check`
+- [x] **WATER-03**: User can edit warm/cold intervals separately in plant edit form; `soil_check` plants show no interval inputs but a toggle to switch to `fixed` mode
 - [x] **WATER-04**: Existing plants migrate `waterEvery` → `warm`; `cold` is computed by per-category factor (suculentas 2.0, interior 1.5, exterior 1.7, aromaticas 1.5, huerta 1.3, frutales 1.5)
 - [x] **WATER-05**: `soil_check` plants generate a new `'check_soil'` task type instead of `'water'` — copy reads "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
 - [x] **WATER-06**: `soil_check` plants do NOT incur health-score penalty for "overdue watering"
@@ -136,16 +136,16 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | SCHEMA-07 | Phase 4 | Complete |
 | SCHEMA-08 | Phase 4 | Complete |
 | SCHEMA-09 | Phase 4 | Complete |
-| LIGHT-01 | Phase 7 | Pending |
-| LIGHT-02 | Phase 7 | Pending |
+| LIGHT-01 | Phase 7 | Complete |
+| LIGHT-02 | Phase 7 | Complete |
 | LIGHT-03 | Phase 4 | Complete |
 | LIGHT-04 | Phase 8 | Pending |
 | LIGHT-05 | Phase 7 | Pending |
 | LIGHT-06 | Phase 6 | Complete |
 | LIGHT-07 | Phase 6 | Complete |
-| WATER-01 | Phase 7 | Pending |
-| WATER-02 | Phase 7 | Pending |
-| WATER-03 | Phase 7 | Pending |
+| WATER-01 | Phase 7 | Complete |
+| WATER-02 | Phase 7 | Complete |
+| WATER-03 | Phase 7 | Complete |
 | WATER-04 | Phase 4 | Complete |
 | WATER-05 | Phase 5 | Complete |
 | WATER-06 | Phase 5 | Complete |
