@@ -71,6 +71,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 05-hemisphere-season-helpers-pure-utility-switchover P05 | 11 | 4 tasks | 8 files |
 | Phase 06-ui-read-side-propagation P01 | 3 | 3 tasks | 3 files |
 | Phase 06-ui-read-side-propagation P02 | 3 | 3 tasks | 3 files |
+| Phase 06-ui-read-side-propagation P04 | 2 | 1 tasks | 1 files |
 | Phase 06-ui-read-side-propagation P05 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
