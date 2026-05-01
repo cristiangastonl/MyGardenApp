@@ -272,6 +272,8 @@ export interface IdentifiedPlant {
   indoor: boolean;
   tip: string;
   icon: string;
+  /** v1.1 Phase 7 (LIGHT-05). Populated client-side from catalog match or sunHours mapping. User overrides via picker before save. */
+  lightLevel?: LightLevel;
 }
 
 export type IdentificationResultType = 'single' | 'multiple' | 'none';

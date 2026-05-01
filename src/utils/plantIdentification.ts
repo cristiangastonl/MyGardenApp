@@ -1,6 +1,7 @@
 import { IdentifiedPlant, IdentificationResult, PlantCategory, HumidityLevel, PlantDBEntry } from '../types';
 import { PLANT_DATABASE, getTranslatedPlant } from '../data/plantDatabase';
 import i18n from '../i18n';
+import { sunHoursToLightLevel } from './migration';
 
 // ============================================================================
 // Plant Identification via Supabase Edge Function
@@ -209,6 +210,9 @@ function convertPlantNetResult(result: PlantNetResult): IdentifiedPlant {
       indoor: !translated.outdoor,
       tip: translated.tip,
       icon: translated.icon,
+      // v1.1 Phase 7 (LIGHT-05): defensive ladder — catalog v1.1 → mapped from sunHours → safe default
+      lightLevel: translated.lightLevel
+        ?? (typeof translated.sunHours === 'number' ? sunHoursToLightLevel(translated.sunHours) : 'bright_indirect'),
     };
   }
 
@@ -229,6 +233,10 @@ function convertPlantNetResult(result: PlantNetResult): IdentifiedPlant {
     indoor: genericCare.indoor ?? true,
     tip: i18n.t('identification.genericFamilyTip', { family: family || i18n.t('identification.unknownFamily') }),
     icon: genericCare.icon || '🌱',
+    // v1.1 Phase 7 (LIGHT-05): no catalog match — derive from genericCare sunHours or default
+    lightLevel: typeof genericCare.sunHours === 'number'
+      ? sunHoursToLightLevel(genericCare.sunHours)
+      : 'bright_indirect',
   };
 }
 
