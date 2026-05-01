@@ -11,7 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantIdentification } from '../../hooks/usePlantIdentification';
-import { IdentifiedPlant, Plant } from '../../types';
+import { IdentifiedPlant, LightLevel, Plant } from '../../types';
 import { Features } from '../../config/features';
 import { usePremiumGate } from '../../config/premium';
 import { usePremium } from '../../hooks/usePremium';
@@ -84,7 +84,7 @@ export function PlantIdentifierModal({
     }
   };
 
-  const handleAddPlant = () => {
+  const handleAddPlant = (lightLevel: LightLevel) => {
     if (!selectedPlant) return;
 
     // Use enriched data if available, otherwise fall back to identified data
@@ -92,6 +92,7 @@ export function PlantIdentifierModal({
     const useEnriched = data && data.source !== 'default';
 
     // Convert IdentifiedPlant to Plant format
+    // lightLevel comes from user's picker selection in IdentificationResults (LIGHT-05)
     const plantData: Omit<Plant, 'id'> = {
       name: useEnriched ? data.name : selectedPlant.commonName,
       typeId: selectedPlant.category,
@@ -107,6 +108,8 @@ export function PlantIdentifierModal({
       // Add temperature info from enriched data
       tempMin: useEnriched ? (data.tempMin ?? undefined) : selectedPlant.tempMin,
       tempMax: useEnriched ? (data.tempMax ?? undefined) : selectedPlant.tempMax,
+      // v1.1 Phase 7 (LIGHT-05): user-picked lightLevel from IdentificationResults picker
+      lightLevel,
     };
 
     const doAdd = async (usePhoto: boolean) => {

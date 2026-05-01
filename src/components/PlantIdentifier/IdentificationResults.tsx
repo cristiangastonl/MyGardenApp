@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,14 +9,15 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
-import { IdentificationResult, IdentifiedPlant } from '../../types';
+import { IdentificationResult, IdentifiedPlant, LightLevel } from '../../types';
+import { LightLevelPicker } from '../LightLevelPicker';
 
 interface IdentificationResultsProps {
   result: IdentificationResult;
   imageUri: string | null;
   selectedPlant: IdentifiedPlant | null;
   onSelectPlant: (plant: IdentifiedPlant) => void;
-  onAddPlant: () => void;
+  onAddPlant: (lightLevel: LightLevel) => void;   // CHANGED — accepts user's picker selection
   onRetry: () => void;
   onClose: () => void;
 }
@@ -37,6 +38,19 @@ export function IdentificationResults({
   onClose,
 }: IdentificationResultsProps) {
   const { t } = useTranslation();
+
+  const [selectedLightLevel, setSelectedLightLevel] = useState<LightLevel>(
+    selectedPlant?.lightLevel ?? 'bright_indirect'
+  );
+
+  // Re-sync when user taps a different plant card in multi-result branch
+  useEffect(() => {
+    if (selectedPlant) {
+      setSelectedLightLevel(selectedPlant.lightLevel ?? 'bright_indirect');
+    }
+  }, [selectedPlant]);
+
+  const typeIdForPicker = selectedPlant?.indoor === false ? 'exterior' : 'interior';
 
   // Case C: No result / error
   if (!result.success || result.type === 'none') {
@@ -79,8 +93,18 @@ export function IdentificationResults({
           onSelect={() => onSelectPlant(plant)}
         />
 
+        {/* Phase 7 LIGHT-05: user adjusts light level before saving */}
+        <View style={styles.pickerSection}>
+          <Text style={styles.pickerLabel}>{t('identification.lightLevelLabel')}</Text>
+          <LightLevelPicker
+            typeId={plant.indoor === false ? 'exterior' : 'interior'}
+            value={selectedLightLevel}
+            onChange={setSelectedLightLevel}
+          />
+        </View>
+
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.addButton} onPress={onAddPlant}>
+          <TouchableOpacity style={styles.addButton} onPress={() => onAddPlant(selectedLightLevel)}>
             <Text style={styles.addButtonText}>{t('identification.addToGarden')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
@@ -112,10 +136,22 @@ export function IdentificationResults({
         />
       ))}
 
+      {/* Phase 7 LIGHT-05: user adjusts light level once a plant is selected */}
+      {selectedPlant && (
+        <View style={styles.pickerSection}>
+          <Text style={styles.pickerLabel}>{t('identification.lightLevelLabel')}</Text>
+          <LightLevelPicker
+            typeId={typeIdForPicker}
+            value={selectedLightLevel}
+            onChange={setSelectedLightLevel}
+          />
+        </View>
+      )}
+
       <View style={styles.actions}>
         <TouchableOpacity
           style={[styles.addButton, !selectedPlant && styles.addButtonDisabled]}
-          onPress={onAddPlant}
+          onPress={() => selectedPlant && onAddPlant(selectedLightLevel)}
           disabled={!selectedPlant}
         >
           <Text style={styles.addButtonText}>
@@ -351,6 +387,19 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.infoText,
     lineHeight: 19,
+  },
+  // Light level picker section
+  pickerSection: {
+    marginTop: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  pickerLabel: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 11,
+    color: colors.textSecondary,
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
+    textTransform: 'uppercase',
   },
   // Actions
   actions: {
