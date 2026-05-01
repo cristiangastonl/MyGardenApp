@@ -12,6 +12,7 @@ interface MonthCalendarProps {
   plants: Plant[];
   notes: Record<string, Note[]>;
   reminders: Record<string, Reminder[]>;
+  latitude: number | null;
   selectedDate: Date | null;
   onSelectDate: (date: Date) => void;
 }
@@ -22,6 +23,7 @@ export function MonthCalendar({
   plants,
   notes,
   reminders,
+  latitude,
   selectedDate,
   onSelectDate,
 }: MonthCalendarProps) {
@@ -59,10 +61,10 @@ export function MonthCalendar({
 
   const getIndicators = (date: Date) => {
     const dateStr = formatDate(date);
-    const tasks = getTasksForDay(plants, date);
+    const tasks = getTasksForDay(plants, date, latitude);
     const hasNotes = (notes[dateStr] || []).length > 0;
     const hasReminders = (reminders[dateStr] || []).length > 0;
-    const hasWater = tasks.some(t => t.type === 'water');
+    const hasWater = tasks.some(t => t.type === 'water' || t.type === 'check_soil');
     const hasSun = tasks.some(t => t.type === 'sun');
     const hasOutdoor = tasks.some(t => t.type === 'outdoor');
 

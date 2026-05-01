@@ -135,6 +135,7 @@ export default function PlantsScreen() {
       plant={item}
       today={today}
       weather={weather}
+      latitude={location?.lat ?? null}
       mode="collection"
       onDelete={handleDeletePlant}
       onPress={setDetailPlant}

@@ -204,6 +204,7 @@ export default function CalendarScreen() {
           plants={plants}
           notes={notes}
           reminders={reminders}
+          latitude={location?.lat ?? null}
           selectedDate={selectedDate}
           onSelectDate={handleSelectDate}
         />
