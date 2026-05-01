@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: completed
-stopped_at: "Completed 04-07-PLAN.md (Wave 4 App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule effect; B1 invariant honored: scheduleSmartSunNotifications NOT imported/called; sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green; Phase 4 COMPLETE — all 7 plans shipped)"
-last_updated: "2026-04-30T22:17:03.471Z"
-last_activity: "2026-04-30 — Plan 04-07 complete (Wave 4 App.tsx wiring: MigrationBanner rendered as sibling-to-NavigationContainer above MainTabs when migrationFailed; post-migration morning-reminder reschedule useEffect triggers cancelAllNotifications + scheduleMorningReminder when migrationJustHappened flips true; B1 invariant honored — scheduleSmartSunNotifications NOT imported/called, sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green)"
+status: executing
+stopped_at: "Completed 05-01-PLAN.md (Wave 0 Phase-5 scaffold — migration smoke runner extended with locked typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant graceful skip emits 'Phase 5: skipped — seasonality.ts not yet present' until Plan 02 lands the source; existing 63/63 Phase-4 PASS contract preserved verbatim; tsc + check:legacy-fields + smoke:migration all green)"
+last_updated: "2026-05-01T13:43:27.797Z"
+last_activity: "2026-05-01 — Plan 05-01 complete (Wave 0 Phase-5 scaffold: migration-smoke-test.mjs extended with Phase-5 section that locks typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant try-catch emits skip line when source absent so existing 63/63 PASSes remain green; tmpSeason temp-file added with cleanup symmetry; single-compile-path policy preserved across both phases — 2 ts.transpileModule invocations, 0 esbuild/swc fallbacks)"
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 7
-  completed_plans: 7
-  percent: 100
+  total_plans: 12
+  completed_plans: 8
+  percent: 67
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 4: Schema Foundation, Waves 0+1+2+3 complete (Plans 01-06). Plan 07 (Wave 4: App.tsx wiring + reschedule trigger) is the only remaining plan in Phase 4 — UNBLOCKED, ready to ship.
+**Current focus:** v1.1 Precision Care — Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover. Plan 01 (Wave 0 smoke-runner scaffold) complete. Plan 02 (seasonality.ts source + first matrix assertions) UNBLOCKED, ready to ship.
 
 ## Current Position
 
-Phase: 4 of 9 (Schema Foundation + Migration Core) — COMPLETE
-Plan: 07 of 7 (Wave 4: App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule trigger) — COMPLETE
-Status: Phase 4 done (7/7 plans complete; all 12 requirement IDs implemented). Phase 5 (UI propagation) unblocked.
-Last activity: 2026-04-30 — Plan 04-07 complete (Wave 4 App.tsx wiring: MigrationBanner rendered as sibling-to-NavigationContainer above MainTabs when migrationFailed; post-migration morning-reminder reschedule useEffect triggers cancelAllNotifications + scheduleMorningReminder when migrationJustHappened flips true; B1 invariant honored — scheduleSmartSunNotifications NOT imported/called, sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green)
+Phase: 5 of 9 (Hemisphere/Season Helpers + Pure-Utility Switchover)
+Plan: 02 of 5 (Wave 1: seasonality.ts source + getWaterSeason matrix assertions)
+Status: Phase 5 in progress (1/5 plans complete; Wave-0 scaffold landed — locked compile path for src/utils/seasonality.ts mirrors migration.ts pattern; downstream plans use `npm run smoke:migration` as automated verify with no further scaffolding work).
+Last activity: 2026-05-01 — Plan 05-01 complete (Wave 0 Phase-5 scaffold: migration-smoke-test.mjs extended with Phase-5 section that locks typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant try-catch emits skip line when source absent so existing 63/63 PASSes remain green; tmpSeason temp-file added with cleanup symmetry; single-compile-path policy preserved across both phases — 2 ts.transpileModule invocations, 0 esbuild/swc fallbacks)
 
-Progress: [██████████] 100% (Phase 4 complete — 7/7 plans)
+Progress: [███████░░░] 67% (Phase 5: 1/5 plans complete; v1.1 overall: 8/12 plans)
 
 ## Performance Metrics
 
@@ -64,6 +64,7 @@ Progress: [██████████] 100% (Phase 4 complete — 7/7 plans)
 
 *Updated after each plan completion*
 | Phase 04 P07 | 5min | 1 tasks | 1 files |
+| Phase 05 P01 | 2 min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,9 @@ Recent decisions affecting current work:
 - [Phase 04]: [Plan 07]: B1 invariant — scheduleSmartSunNotifications NOT imported or called in App.tsx (grep -c == 0). Sun reschedule continues via TodayScreen's existing useNotifications hook once weather loads (lightLevel-aware after Plan 04). App-level reschedule is morning-only because the smart-sun scheduler short-circuits on !weather and would no-op at App-level.
 - [Phase 04]: [Plan 07]: One-shot reschedule with finally-acknowledge — useEffect calls acknowledgeMigrationReschedule() in finally regardless of success/failure. Failure path emits trackEvent('migration_failed', { stage: 'reschedule' }) per Plan 03's separation-of-stages contract. No retry loop — partial reschedule acceptable per CONTEXT.md.
 - [Phase 04]: [Plan 07]: MigrationBanner placed sibling-to-NavigationContainer (above MainTabs) inside NotificationContext.Provider — visible on every tab, not just Hoy. bannerDismissed is local React state only (not persisted), so banner reappears next launch if migration still fails (matches CONTEXT.md idempotent-retry stance).
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Phase-5 smoke-runner scaffold uses ENOENT-tolerant try-catch — non-ENOENT errors propagate so source-level bugs surface; ENOENT swallowed only at Wave 0 to keep 63/63 contract green until Plan 02 lands seasonality.ts
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Single-compile-path policy extended verbatim from Phase 4 to Phase 5 — 2 ts.transpileModule( invocations (one per source), 0 esbuild/swc fallbacks. Policy comments documenting the lock count semantically as guards, not violations of grep-count acceptance criteria.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Two distinct Phase-5 placeholder messages — 'skipped — seasonality.ts not yet present' (Wave 0, ENOENT branch) vs 'section reached, no assertions yet (placeholder)' (Plan-02-onward, present-but-empty branch). Gives downstream planners an unambiguous landing signal that the file flipped from absent to present.
 
 ### Pending Todos
 
@@ -116,6 +120,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-04-30T22:16:28.148Z
-Stopped at: Completed 04-07-PLAN.md (Wave 4 App.tsx wiring — MigrationBanner above MainTabs + post-migration morning-reminder reschedule effect; B1 invariant honored: scheduleSmartSunNotifications NOT imported/called; sun reschedule continues via TodayScreen's existing weather-gated flow; tsc + check:legacy-fields + smoke:migration 63/63 all green; Phase 4 COMPLETE — all 7 plans shipped)
+Last session: 2026-05-01T13:43:27.795Z
+Stopped at: Completed 05-01-PLAN.md (Wave 0 Phase-5 scaffold — migration smoke runner extended with locked typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant graceful skip emits 'Phase 5: skipped — seasonality.ts not yet present' until Plan 02 lands the source; existing 63/63 Phase-4 PASS contract preserved verbatim; tsc + check:legacy-fields + smoke:migration all green)
 Resume file: None

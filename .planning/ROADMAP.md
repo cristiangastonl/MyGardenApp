@@ -59,7 +59,12 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   2. Tasks shown in "Hoy", scheduled OS notifications, and the plant health score for a given plant on a given day all derive their watering interval from the SAME `(plant.waterSchedule, currentSeason)` lookup — no field disagrees with another.
   3. A user with a cactus in `soil_check` mode on a non-check-in day sees no "regar" task and no health-score penalty for overdue watering; on a check-in day they see a `'check_soil'` task with copy "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
   4. Season transition between months is observable in the data layer (badge-ready) but produces no NaN, no crash, and no >1-cycle jump in next-watering date.
-**Plans**: TBD
+**Plans**: 5 plans (1/5 complete) — In Progress
+- [x] 05-01-PLAN.md — Wave 0: Phase-5 scaffold in migration smoke runner — completed 2026-05-01
+- [ ] 05-02-PLAN.md — Wave 1: seasonality.ts source + getWaterSeason matrix assertions
+- [ ] 05-03-PLAN.md — Wave 2: soil_check task emission in plantLogic + i18n keys
+- [ ] 05-04-PLAN.md — Wave 2: plantHealth overdue-water penalty skip for soil_check
+- [ ] 05-05-PLAN.md — Wave 3: notificationScheduler season-aware water reminders + task-discriminator audit
 
 ### Phase 6: UI Read-Side Propagation
 **Goal**: Every screen that renders plant care today shows the precision-care model — light level translated to the user's locale (with outdoor-context labels for outdoor plants), current-season badge with effective interval, watering-mode badge — so the user never sees stale "Xh sol" copy or wonders why their cactus list is empty.
