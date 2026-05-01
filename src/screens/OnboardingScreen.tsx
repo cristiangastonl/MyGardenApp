@@ -23,6 +23,7 @@ import { PLANT_DATABASE, getPlantCategories, getTranslatedPlant, getTranslatedDa
 import { getPlantTypes } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
+import { inferWaterMode, applyColdFactor, sunHoursToLightLevel } from '../utils/migration';
 import { trackEvent } from '../services/analyticsService';
 import { PlantIdentifierModal } from '../components';
 import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
@@ -94,11 +95,24 @@ const PLANT_TYPE_MAP: Record<string, string> = {
   'sedum': 'suculenta',
 };
 
-// Helper to convert PlantDBEntry to Plant
+// Helper to convert PlantDBEntry to Plant — emits Phase 7 v1.1 schema (Pitfall 1 fix)
 function plantDBToPlant(dbEntry: PlantDBEntry): Plant {
   const today = new Date().toISOString().split('T')[0];
   const typeId = PLANT_TYPE_MAP[dbEntry.id] || 'otra';
   const plantType = getPlantTypes().find(t => t.id === typeId);
+
+  // v1.1 fields with defensive ladder (Phase 4 lock — single SSOT via Phase 4 mappers):
+  //   1. Catalog v1.1 fields (Phase 4 codemod populated; Phase 8 expert refines)
+  //   2. Derived from legacy fields via Phase 4 mappers
+  //   3. Safe defaults
+  const lightLevel = dbEntry.lightLevel
+    ?? (typeof dbEntry.sunHours === 'number' ? sunHoursToLightLevel(dbEntry.sunHours) : 'bright_indirect');
+  const waterMode = dbEntry.waterMode ?? inferWaterMode(dbEntry.category, dbEntry.id);
+  const waterSchedule = dbEntry.waterSchedule ?? {
+    warm: dbEntry.waterDays ?? 4,
+    cold: applyColdFactor(dbEntry.waterDays ?? 4, dbEntry.category),
+  };
+
   return {
     id: `${dbEntry.id}-${Date.now()}`,
     name: dbEntry.name,
@@ -106,8 +120,10 @@ function plantDBToPlant(dbEntry: PlantDBEntry): Plant {
     typeName: plantType?.name || 'Otra',
     icon: dbEntry.icon,
     imageUrl: dbEntry.imageUrl,
-    waterEvery: dbEntry.waterDays,
-    sunHours: dbEntry.sunHours,
+    // v1.1 schema (Phase 7 SSOT — replaces legacy waterEvery/sunHours)
+    lightLevel,
+    waterSchedule,
+    waterMode,
     sunDays: [1, 2, 3, 4, 5], // Default: weekdays
     outdoorDays: dbEntry.outdoor ? [0, 6] : [], // Weekends if outdoor plant
     lastWatered: today,
