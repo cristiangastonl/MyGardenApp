@@ -94,7 +94,15 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   3. The user identifying a plant via the camera receives a result with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust before saving).
   4. The user is shown a non-blocking location prompt at onboarding with a clear skip option and copy explaining why ("Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima"); skipping does not block onboarding.
   5. If location is missing, "Hoy" shows a soft, dismissible banner ("Agregá tu ubicación para horarios precisos"), the app falls back to warm schedule (never under-waters), and Settings exposes both manual city entry (Open-Meteo geocoding) and a manual climate-zone override (Northern / Southern / Tropical) that wins over derived hemisphere.
-**Plans**: TBD
+**Plans**: 8 plans
+- [ ] 07-01-PLAN.md — Wave 0: ClimateOverride type + AppData field + useStorage action + both AppContent destructures + smoke runner scaffold
+- [ ] 07-02-PLAN.md — Wave 0: getEffectiveSeason SSOT + getNextWaterDate/getTasksForDay signature change (latitude → season) + 8 call-site migrations + matrix smoke
+- [ ] 07-03-PLAN.md — Wave 1: 27 new i18n keys (lightLevelHint + waterSchedule + onboarding.location + settings.climateOverride + today.locationBanner + identification.lightLevelLabel) in EN + ES voseo + parity smoke
+- [ ] 07-04-PLAN.md — Wave 1: LightLevelPicker (2×2 grid, locale-aware) + WaterScheduleEditor (segmented mode + dual warm/cold inputs)
+- [ ] 07-05-PLAN.md — Wave 2: AddPlantModal swap (LightLevelPicker + WaterScheduleEditor) + OnboardingScreen new location step (3-button: GPS / city / skip) + plantDBToPlant new schema
+- [ ] 07-06-PLAN.md — Wave 2: IdentifiedPlant.lightLevel + convertPlantNetResult ladder + IdentificationResults picker integration + onAddPlant signature change
+- [ ] 07-07-PLAN.md — Wave 3: SettingsPanel Zona climática 4-option segmented picker + LocationBanner component + TodayScreen integration (per-session dismiss)
+- [ ] 07-08-PLAN.md — Wave 4: PlantDiagnosisContext widening + PlantDiagnosisModal v1.1 build + 2 edge functions (diagnose-plant, chat-diagnosis) dual-payload discriminator + ES/EN prompts + manual deploy checkpoint
 
 ### Phase 8: Catalog Rebalance
 **Goal**: All 60+ existing catalog entries gain expert-vetted `lightLevel`, `waterSchedule {warm, cold}`, and `waterMode` fields; 14 LATAM outdoor plants are added with full new-model fields; lavender is split into three variants with distinct cold tolerance; catalog content is read by lookup, not copied; CI guards every catalog `id` for full keyset in EN + ES and every `imageUrl` resolves to 200.
