@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Image, ImageStyle } from 'react-native';
 import { PlantDBEntry } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
+import { useTranslation } from 'react-i18next';
+import { getLightLabel } from '../utils/lightLabel';
 
 interface PlantDatabaseCardProps {
   plant: PlantDBEntry;
@@ -9,6 +11,7 @@ interface PlantDatabaseCardProps {
 }
 
 export function PlantDatabaseCard({ plant, onPress }: PlantDatabaseCardProps) {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       {plant.imageUrl ? (
@@ -28,7 +31,9 @@ export function PlantDatabaseCard({ plant, onPress }: PlantDatabaseCardProps) {
           <Text style={styles.badgeText}>💧 {plant.waterDays}d</Text>
         </View>
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>☀️ {plant.sunHours}h</Text>
+          <Text style={styles.badgeText} numberOfLines={2}>
+            ☀️ {getLightLabel({ ...plant, typeId: plant.category }, t)}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
