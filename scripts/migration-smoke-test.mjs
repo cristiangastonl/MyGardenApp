@@ -150,11 +150,50 @@ try {
   if (!seasonalityMod) {
     console.log('Phase 5: skipped — seasonality.ts not yet present');
   } else {
-    // Plan 02 will populate getWaterSeason matrix assertions here.
-    // Plan 03 will add soil_check task emission assertions here.
-    // Plan 04 will add plantHealth overdue-penalty-skip assertions here.
-    // Plan 05 may add notification-scheduler season-aware assertions here.
-    console.log('Phase 5: section reached, no assertions yet (placeholder)');
+    const { getWaterSeason, TROPICAL_LAT_BOUNDARY } = seasonalityMod;
+
+    // Local-time Date constructor (year, monthIdx, day) is used throughout this
+    // section instead of ISO strings — `new Date('2026-04-01')` parses as UTC
+    // midnight, which getMonth() then re-interprets in the runner's local TZ
+    // (e.g. America/Buenos_Aires UTC-3 turns Apr 1 UTC into Mar 31 local). The
+    // multi-arg form is unambiguous local time and TZ-independent.
+
+    // -------- SEASON-01: enum return shape --------
+    assert("getWaterSeason returns string", typeof getWaterSeason(40, new Date(2026, 3, 1)) === 'string');
+    assert("TROPICAL_LAT_BOUNDARY === 23.5", TROPICAL_LAT_BOUNDARY === 23.5);
+
+    // -------- SEASON-02: tropical inclusive boundary --------
+    assert("Singapore (1.35) Jan === 'tropical'", getWaterSeason(1.35, new Date(2026, 0, 15)) === 'tropical');
+    assert("Singapore (1.35) Jul === 'tropical'", getWaterSeason(1.35, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary +23.5 Jul === 'tropical' (inclusive)", getWaterSeason(23.5, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary -23.5 Jul === 'tropical' (inclusive)", getWaterSeason(-23.5, new Date(2026, 6, 15)) === 'tropical');
+    assert("Boundary +23.51 Jul === 'warm' (just outside, Northern)", getWaterSeason(23.51, new Date(2026, 6, 15)) === 'warm');
+
+    // -------- SEASON-03: month-boundary hard flip (off-by-one safeguard) --------
+    assert("NY (40) Apr 1 === 'warm' (Northern first warm day)", getWaterSeason(40, new Date(2026, 3, 1)) === 'warm');
+    assert("NY (40) Mar 31 === 'cold' (Northern last cold day)", getWaterSeason(40, new Date(2026, 2, 31)) === 'cold');
+    assert("NY (40) Sep 30 === 'warm' (Northern last warm day)", getWaterSeason(40, new Date(2026, 8, 30)) === 'warm');
+    assert("NY (40) Oct 1 === 'cold' (Northern first cold day)", getWaterSeason(40, new Date(2026, 9, 1)) === 'cold');
+    assert("BA (-34.6) Apr 1 === 'cold' (Southern inverted)", getWaterSeason(-34.6, new Date(2026, 3, 1)) === 'cold');
+    assert("BA (-34.6) Oct 1 === 'warm' (Southern inverted)", getWaterSeason(-34.6, new Date(2026, 9, 1)) === 'warm');
+    assert("BA (-34.6) Jan 15 === 'warm' (Southern summer)", getWaterSeason(-34.6, new Date(2026, 0, 15)) === 'warm');
+    assert("BA (-34.6) Jul 15 === 'cold' (Southern winter)", getWaterSeason(-34.6, new Date(2026, 6, 15)) === 'cold');
+
+    // -------- Defensive fallbacks --------
+    assert("null lat === 'warm' (LOC-03 safe default)", getWaterSeason(null, new Date(2026, 0, 15)) === 'warm');
+    assert("NaN lat === 'warm' (defensive)", getWaterSeason(NaN, new Date(2026, 0, 15)) === 'warm');
+
+    // -------- i18n key parity (EN + ES voseo) --------
+    // Voseo regex uses /i flag because the body sentence starts with capital 'Tocá';
+    // a strict /tocá/ would miss the sentence-leading capitalized form.
+    const en = JSON.parse(await fs.readFile('src/i18n/locales/en/common.json', 'utf8'));
+    const es = JSON.parse(await fs.readFile('src/i18n/locales/es/common.json', 'utf8'));
+    assert("en.tasks.checkSoil exists", typeof en.tasks?.checkSoil === 'string' && en.tasks.checkSoil.length > 0);
+    assert("en.tasks.checkSoilBody exists", typeof en.tasks?.checkSoilBody === 'string' && en.tasks.checkSoilBody.length > 0);
+    assert("es.tasks.checkSoil exists", typeof es.tasks?.checkSoil === 'string' && es.tasks.checkSoil.length > 0);
+    assert("es.tasks.checkSoilBody exists", typeof es.tasks?.checkSoilBody === 'string' && es.tasks.checkSoilBody.length > 0);
+    assert("es.tasks.checkSoilBody uses voseo (tocá+regá)", /tocá/i.test(es.tasks.checkSoilBody) && /regá/i.test(es.tasks.checkSoilBody));
+    assert("es.tasks.checkSoilBody NOT tuteo (no standalone toca/riega)", !/\btoca\b/.test(es.tasks.checkSoilBody) && !/\briega\b/.test(es.tasks.checkSoilBody));
   }
 
   console.log(`\n${pass}/${total} PASS`);
