@@ -10,10 +10,18 @@ const corsHeaders = {
 
 interface PlantContext {
   species: string;
-  waterEvery: number;
-  sunHours: number;
   lastWatered: string | null;
   outdoorDays: number[];
+
+  // ─── v1.0 legacy fields (optional — old clients only) ───
+  waterEvery?: number;
+  sunHours?: number;
+
+  // ─── v1.1 fields (Phase 7+) ───
+  lightLevel?: 'direct' | 'bright_indirect' | 'medium_indirect' | 'low';
+  waterSchedule?: { warm: number; cold: number };
+  waterMode?: 'fixed' | 'soil_check';
+  currentSeason?: 'warm' | 'cold' | 'tropical';
 }
 
 interface RequestBody {
@@ -86,24 +94,91 @@ serve(async (req) => {
       ? ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
       : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-    const contextInfo = ctx
-      ? isEs
-        ? `
+    // Phase 7 (Plan 07-08): dual-payload discriminator. New clients send waterSchedule;
+    // old clients (pre-Phase-7, store-update grace window) send waterEvery + sunHours.
+    // Legacy branch sunsets in v1.2 once telemetry shows ≥99% new-payload traffic.
+    const isV2 = !!ctx?.waterSchedule;
+
+    // ─── i18n helpers for v1.1 enums (ES + EN) ───
+    const lightLevelLabelEs: Record<string, string> = {
+      direct: 'luz directa',
+      bright_indirect: 'luz brillante indirecta',
+      medium_indirect: 'luz media indirecta',
+      low: 'poca luz',
+    };
+    const lightLevelLabelEn: Record<string, string> = {
+      direct: 'direct light',
+      bright_indirect: 'bright indirect light',
+      medium_indirect: 'medium indirect light',
+      low: 'low light',
+    };
+    const seasonLabelEs: Record<string, string> = { warm: 'cálida', cold: 'fría', tropical: 'trópico' };
+    const seasonLabelEn: Record<string, string> = { warm: 'warm', cold: 'cold', tropical: 'tropical' };
+
+    // ─── v1.1 prompt builder ───
+    const buildV2Es = (c: PlantContext) => {
+      const ll = c.lightLevel ? lightLevelLabelEs[c.lightLevel] : 'no especificado';
+      const season = c.currentSeason ? seasonLabelEs[c.currentSeason] : 'no especificada';
+      const waterLines = c.waterMode === 'soil_check'
+        ? `- Modo de riego: por chequeo
+- Esta planta usa modo "por chequeo" — el usuario revisa la tierra en lugar de regar en intervalos fijos`
+        : `- Modo de riego: calendario
+- Cuidado de riego: temporada cálida cada ${c.waterSchedule?.warm ?? '?'} días
+- Cuidado de riego: temporada fría cada ${c.waterSchedule?.cold ?? '?'} días`;
+      return `
 Contexto de la planta:
-- Especie: ${ctx.species}
-- Frecuencia de riego: cada ${ctx.waterEvery} días
-- Horas de sol recomendadas: ${ctx.sunHours}h/día
-- Último riego: ${ctx.lastWatered || 'desconocido'}
-- Días al exterior: ${ctx.outdoorDays.length > 0 ? ctx.outdoorDays.map(d => dayNames[d]).join(', ') : 'ninguno (interior)'}
-`
-        : `
+- Especie: ${c.species}
+${waterLines}
+- Temporada actual: ${season}
+- Nivel de luz: ${ll}
+- Último riego: ${c.lastWatered || 'desconocido'}
+- Días al exterior: ${c.outdoorDays.length > 0 ? c.outdoorDays.map(d => dayNames[d]).join(', ') : 'ninguno (interior)'}
+`;
+    };
+
+    const buildV2En = (c: PlantContext) => {
+      const ll = c.lightLevel ? lightLevelLabelEn[c.lightLevel] : 'unspecified';
+      const season = c.currentSeason ? seasonLabelEn[c.currentSeason] : 'unspecified';
+      const waterLines = c.waterMode === 'soil_check'
+        ? `- Watering mode: check-in
+- This plant uses "check-in" mode — the user checks the soil instead of watering on fixed intervals`
+        : `- Watering mode: schedule
+- Watering care: warm season every ${c.waterSchedule?.warm ?? '?'} days
+- Watering care: cold season every ${c.waterSchedule?.cold ?? '?'} days`;
+      return `
 Plant context:
-- Species: ${ctx.species}
-- Watering frequency: every ${ctx.waterEvery} days
-- Recommended sun hours: ${ctx.sunHours}h/day
-- Last watered: ${ctx.lastWatered || 'unknown'}
-- Outdoor days: ${ctx.outdoorDays.length > 0 ? ctx.outdoorDays.map(d => dayNames[d]).join(', ') : 'none (indoor)'}
-`
+- Species: ${c.species}
+${waterLines}
+- Current season: ${season}
+- Light level: ${ll}
+- Last watered: ${c.lastWatered || 'unknown'}
+- Outdoor days: ${c.outdoorDays.length > 0 ? c.outdoorDays.map(d => dayNames[d]).join(', ') : 'none (indoor)'}
+`;
+    };
+
+    // ─── v1.0 legacy prompt builder (preserved for grace-window clients) ───
+    const buildLegacyEs = (c: PlantContext) => `
+Contexto de la planta:
+- Especie: ${c.species}
+- Frecuencia de riego: cada ${c.waterEvery} días
+- Horas de sol recomendadas: ${c.sunHours}h/día
+- Último riego: ${c.lastWatered || 'desconocido'}
+- Días al exterior: ${c.outdoorDays.length > 0 ? c.outdoorDays.map(d => dayNames[d]).join(', ') : 'ninguno (interior)'}
+`;
+    const buildLegacyEn = (c: PlantContext) => `
+Plant context:
+- Species: ${c.species}
+- Watering frequency: every ${c.waterEvery} days
+- Recommended sun hours: ${c.sunHours}h/day
+- Last watered: ${c.lastWatered || 'unknown'}
+- Outdoor days: ${c.outdoorDays.length > 0 ? c.outdoorDays.map(d => dayNames[d]).join(', ') : 'none (indoor)'}
+`;
+
+    const contextInfo = ctx
+      ? (isV2 && isEs ? buildV2Es(ctx)
+        : isV2 && !isEs ? buildV2En(ctx)
+        : isEs ? buildLegacyEs(ctx)
+        : buildLegacyEn(ctx))
       : '';
 
     const photoContext = images.length > 1
