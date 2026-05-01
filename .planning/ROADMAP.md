@@ -23,7 +23,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 **Milestone Goal:** Replace fixed-value plant care with precision-aware schedules tied to user location, light quality, and seasonal context — and surface diagnosis chat continuity so users can resume conversations instead of staring at frozen summaries.
 
 - [x] **Phase 4: Schema Foundation + Migration Core** — Versioned envelope, runMigrations infrastructure, deterministic mappers, cancel-and-reschedule notifications, post-migration explainer
-- [ ] **Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover** — 3-zone seasonality utility, soil-check task type, health/logic/notifications consume new fields
+- [x] **Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover** — 3-zone seasonality utility, soil-check task type, health/logic/notifications consume new fields (completed 2026-05-01)
 - [ ] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges
 - [ ] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload
 - [ ] **Phase 8: Catalog Rebalance** — All 60+ entries gain new fields, 14 LATAM outdoor additions, lavender variety split, lookup-by-id contract, CI guards
@@ -59,12 +59,12 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   2. Tasks shown in "Hoy", scheduled OS notifications, and the plant health score for a given plant on a given day all derive their watering interval from the SAME `(plant.waterSchedule, currentSeason)` lookup — no field disagrees with another.
   3. A user with a cactus in `soil_check` mode on a non-check-in day sees no "regar" task and no health-score penalty for overdue watering; on a check-in day they see a `'check_soil'` task with copy "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
   4. Season transition between months is observable in the data layer (badge-ready) but produces no NaN, no crash, and no >1-cycle jump in next-watering date.
-**Plans**: 5 plans (3/5 complete) — In Progress
+**Plans**: 5 plans (completed 2026-05-01)
 - [x] 05-01-PLAN.md — Wave 0: Phase-5 scaffold in migration smoke runner — completed 2026-05-01
 - [x] 05-02-PLAN.md — Wave 1: seasonality.ts source + getWaterSeason matrix assertions — completed 2026-05-01
 - [x] 05-03-PLAN.md — Wave 2: soil_check task emission in plantLogic + i18n keys — completed 2026-05-01
-- [ ] 05-04-PLAN.md — Wave 2: plantHealth overdue-water penalty skip for soil_check
-- [ ] 05-05-PLAN.md — Wave 3: notificationScheduler season-aware water reminders + task-discriminator audit
+- [x] 05-04-PLAN.md — Wave 2: plantHealth overdue-water penalty skip for soil_check — completed 2026-05-01
+- [x] 05-05-PLAN.md — Wave 3: notificationScheduler season-aware water reminders + task-discriminator audit — completed 2026-05-01
 
 ### Phase 6: UI Read-Side Propagation
 **Goal**: Every screen that renders plant care today shows the precision-care model — light level translated to the user's locale (with outdoor-context labels for outdoor plants), current-season badge with effective interval, watering-mode badge — so the user never sees stale "Xh sol" copy or wonders why their cactus list is empty.
@@ -76,7 +76,13 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   3. The plant detail view shows the current effective interval with a season badge ("Cada 5 días — temporada cálida").
   4. Plant cards show a watering-mode badge ("💧 Cada 5d" or "🤚 Por chequeo") so a mixed garden of cacti and houseplants is self-explanatory.
   5. A user with a cactus in `soil_check` mode opening "Hoy" on a non-check-in day sees explicit empty-state copy ("Tu cactus está en modo chequeo. Te avisamos en 12 días.") rather than an empty list.
-**Plans**: TBD
+**Plans**: 6 plans
+- [ ] 06-01-PLAN.md — Wave 0: Smoke runner scaffold + export getSeasonalInterval + create lightLabel.ts helper
+- [ ] 06-02-PLAN.md — Wave 1: 15 new i18n keys (EN+ES voseo) + extend smoke runner with parity + behavior matrix
+- [ ] 06-03-PLAN.md — Wave 2: PlantCard watering-mode badge (UX-02) + PlantHealthDetail label swap (LIGHT-06)
+- [ ] 06-04-PLAN.md — Wave 2: MyPlantDetailModal info pills (SEASON-05 season badge + LIGHT-06/07 sun pill)
+- [ ] 06-05-PLAN.md — Wave 2: Catalog read-side surfaces — PlantDetailModal + PlantDatabaseCard (LIGHT-06/07)
+- [ ] 06-06-PLAN.md — Wave 3: TodayScreen soilCheckSilentPlants per-plant info row + all-caught-up guard (UX-03)
 
 ### Phase 7: UI Write-Side + Onboarding + Edge-Function Contract
 **Goal**: Every plant-creating and plant-editing surface — onboarding, AddPlantModal, plant identification, diagnosis context — emits the new schema; the user is asked for location at onboarding with a clear skip path; if location is missing the app falls back gracefully and surfaces a non-blocking banner; manual climate-zone override is available in Settings.
@@ -125,8 +131,8 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
 | 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
-| 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 4/5 | In Progress | - |
-| 6. UI Read-Side Propagation | v1.1 | 0/TBD | Not started | - |
+| 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
+| 6. UI Read-Side Propagation | v1.1 | 0/6 | Not started | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 0/TBD | Not started | - |
 | 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |
