@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, 
 import { Plant, WeatherData, SavedDiagnosis, TrackingStatus } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { TRACKING_STATUS_CONFIG } from '../services/problemTrackingService';
-import { getNextWaterDate } from '../utils/plantLogic';
-import { isSameDay, daysBetween, formatDate } from '../utils/dates';
+import { getNextWaterDate, getSeasonalInterval } from '../utils/plantLogic';
+import { getWaterSeason } from '../utils/seasonality';
+import { isSameDay, formatDate } from '../utils/dates';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { useTranslation } from 'react-i18next';
 import { TaskButton } from './TaskButton';
@@ -50,8 +51,8 @@ export function PlantCard({
   const [showHealthDetail, setShowHealthDetail] = useState(false);
 
   const todayStr = formatDate(today);
-  const nextWater = getNextWaterDate(plant, today, latitude);
-  const needsWaterToday = isSameDay(nextWater, today);
+  const nextWaterDate = getNextWaterDate(plant, today, latitude);
+  const needsWaterToday = isSameDay(nextWaterDate, today);
   const waterDone = plant.lastWatered === todayStr && needsWaterToday;
 
   const needsSunToday = plant.sunDays.includes(today.getDay());
@@ -65,7 +66,9 @@ export function PlantCard({
   const plantType = getPlantTypes().find(pt => pt.id === plant.typeId);
   const tip = plantType?.tip || '';
 
-  const daysUntilWater = daysBetween(today, nextWater);
+  const currentSeason = getWaterSeason(latitude, today);
+  const waterInterval = getSeasonalInterval(plant, currentSeason);
+  const isCheckMode = plant.waterMode === 'soil_check';
 
   // Calculate plant health
   const healthStatus = useMemo(
@@ -147,53 +150,50 @@ export function PlantCard({
 
       {tip ? <Text style={styles.tip}>{tip}</Text> : null}
 
-      {mode === 'tasks' && (
-        hasTasks ? (
-          <View style={styles.tasks}>
-            {needsWaterToday && onWater && (
-              <TaskButton
-                done={waterDone}
-                onPress={() => onWater(plant.id)}
-                icon="💧"
-                label={t('plantCard.water')}
-                bgColor={colors.waterLight}
-                textColor={colors.waterBlue}
-              />
-            )}
-            {needsSunToday && onSunDone && (
-              <TaskButton
-                done={sunDone}
-                onPress={() => onSunDone(plant.id)}
-                icon="☀️"
-                label={t('plantCard.sunLabel', { hours: plant.sunHours })}
-                bgColor={colors.warningBg}
-                textColor={colors.sunDark}
-              />
-            )}
-            {needsOutdoorToday && onOutdoorDone && (
-              <TaskButton
-                done={outdoorDone}
-                onPress={() => onOutdoorDone(plant.id)}
-                icon="🌤️"
-                label={t('plantCard.outdoor')}
-                bgColor={colors.infoBg}
-                textColor={colors.infoText}
-              />
-            )}
-          </View>
-        ) : (
-          <View style={styles.nextWater}>
-            <Text style={styles.nextWaterLabel}>{t('plantCard.nextWater')}</Text>
-            <Text style={styles.nextWaterText}>
-              {daysUntilWater === 0
-                ? t('plantCard.today')
-                : daysUntilWater === 1
-                ? t('plantCard.tomorrow')
-                : t('plantCard.inDays', { count: daysUntilWater })}
-            </Text>
-          </View>
-        )
+      {mode === 'tasks' && hasTasks && (
+        <View style={styles.tasks}>
+          {needsWaterToday && onWater && (
+            <TaskButton
+              done={waterDone}
+              onPress={() => onWater(plant.id)}
+              icon="💧"
+              label={t('plantCard.water')}
+              bgColor={colors.waterLight}
+              textColor={colors.waterBlue}
+            />
+          )}
+          {needsSunToday && onSunDone && (
+            <TaskButton
+              done={sunDone}
+              onPress={() => onSunDone(plant.id)}
+              icon="☀️"
+              label={t('plantCard.sunLabel', { hours: plant.sunHours })}
+              bgColor={colors.warningBg}
+              textColor={colors.sunDark}
+            />
+          )}
+          {needsOutdoorToday && onOutdoorDone && (
+            <TaskButton
+              done={outdoorDone}
+              onPress={() => onOutdoorDone(plant.id)}
+              icon="🌤️"
+              label={t('plantCard.outdoor')}
+              bgColor={colors.infoBg}
+              textColor={colors.infoText}
+            />
+          )}
+        </View>
       )}
+
+      {/* UX-02: Watering-mode badge — ALWAYS visible regardless of hasTasks or mode.
+          Replaces legacy watering-text block. Single source of watering info per card. */}
+      <View style={styles.waterBadge}>
+        <Text style={styles.waterBadgeText}>
+          {isCheckMode
+            ? t('plantCard.waterBadge.soilCheck')
+            : t('plantCard.waterBadge.fixed', { days: waterInterval })}
+        </Text>
+      </View>
 
       {/* Health Detail Modal */}
       <PlantHealthDetail
@@ -225,9 +225,8 @@ interface Styles {
   deleteIcon: TextStyle;
   tip: TextStyle;
   tasks: ViewStyle;
-  nextWater: ViewStyle;
-  nextWaterLabel: TextStyle;
-  nextWaterText: TextStyle;
+  waterBadge: ViewStyle;
+  waterBadgeText: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -322,20 +321,13 @@ const styles = StyleSheet.create<Styles>({
   tasks: {
     marginTop: spacing.sm,
   },
-  nextWater: {
+  waterBadge: {
     marginTop: spacing.sm,
     paddingTop: spacing.sm,
     borderTopWidth: 1,
     borderTopColor: colors.borderLight,
   },
-  nextWaterLabel: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 11,
-    letterSpacing: 1,
-    color: colors.textMuted,
-    marginBottom: spacing.xs,
-  },
-  nextWaterText: {
+  waterBadgeText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
     color: colors.textSecondary,
