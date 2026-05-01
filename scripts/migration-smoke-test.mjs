@@ -17,9 +17,21 @@
 // (no experimental TypeScript loaders, no swc, no esbuild). If transpileModule
 // throws, fix migration.ts — fallbacks hide real problems.
 
+// Phase 5 / Wave 0 — Pure-utility switchover.
+//
+// At Wave 0 (before src/utils/seasonality.ts exists), the Phase-5 section
+// must EMIT a single line "Phase 5: skipped — seasonality.ts not yet
+// present" and NOT increment total/pass. Plan 02 lands seasonality.ts;
+// Plans 03/04/05 fill in the assertions (season matrix, soil_check task
+// emission, overdue-water penalty skip).
+//
+// Single compile path policy applies: typescript.transpileModule ONLY.
+// Do NOT add esbuild/swc/loader fallbacks.
+
 const fs = await import('node:fs/promises');
 
 const tmp = `${process.cwd()}/scripts/.tmp-migration.mjs`;
+const tmpSeason = `${process.cwd()}/scripts/.tmp-seasonality.mjs`;
 let pass = 0;
 let total = 0;
 
@@ -115,6 +127,36 @@ try {
   // -------- Schema version constant --------
   assert('CURRENT_SCHEMA_VERSION === 1', CURRENT_SCHEMA_VERSION === 1);
 
+  // ======================================================================
+  // PHASE 5 — seasonality + soil_check + overdue-penalty skip
+  // ======================================================================
+
+  let seasonalityMod = null;
+  try {
+    const seasonSrc = await fs.readFile('src/utils/seasonality.ts', 'utf8');
+    const seasonCompiled = ts.transpileModule(seasonSrc, {
+      compilerOptions: {
+        module: ts.ModuleKind.ESNext,
+        target: ts.ScriptTarget.ES2022,
+      },
+    }).outputText;
+    await fs.writeFile(tmpSeason, seasonCompiled);
+    seasonalityMod = await import(tmpSeason);
+  } catch (e) {
+    // ENOENT is expected at Wave 0 / Plan 01 — Plan 02 lands the file.
+    if (e && e.code !== 'ENOENT') throw e;
+  }
+
+  if (!seasonalityMod) {
+    console.log('Phase 5: skipped — seasonality.ts not yet present');
+  } else {
+    // Plan 02 will populate getWaterSeason matrix assertions here.
+    // Plan 03 will add soil_check task emission assertions here.
+    // Plan 04 will add plantHealth overdue-penalty-skip assertions here.
+    // Plan 05 may add notification-scheduler season-aware assertions here.
+    console.log('Phase 5: section reached, no assertions yet (placeholder)');
+  }
+
   console.log(`\n${pass}/${total} PASS`);
 } catch (err) {
   console.error('SMOKE RUNNER ERROR:', err && err.message ? err.message : err);
@@ -122,6 +164,7 @@ try {
   process.exitCode = 1;
 } finally {
   await fs.unlink(tmp).catch(() => {});
+  await fs.unlink(tmpSeason).catch(() => {});
 }
 
 process.exit(process.exitCode || 0);
