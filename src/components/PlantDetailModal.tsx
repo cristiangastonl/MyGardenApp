@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { PlantDBEntry } from '../types';
 import { getTranslatedPlant } from '../data/plantDatabase';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
+import { getLightLabel } from '../utils/lightLabel';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -94,7 +95,7 @@ export function PlantDetailModal({ visible, plant: rawPlant, onClose, onAdd }: P
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>☀️</Text>
                 <Text style={styles.infoLabel}>{t('plantDetailModal.sun')}</Text>
-                <Text style={styles.infoValue}>{t('plantDetailModal.hoursPerDay', { hours: plant.sunHours })}</Text>
+                <Text style={styles.infoValue}>{getLightLabel({ ...plant, typeId: plant.category }, t)}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoIcon}>🌡️</Text>
