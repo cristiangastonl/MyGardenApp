@@ -45,19 +45,82 @@ try {
   assert("ClimateOverride accepts 'southern'",
     ['auto','northern','southern','tropical'].includes('southern'));
 
-  // ─── Plan 07-02 placeholder: getEffectiveSeason matrix ───
-  // ENOENT-tolerant — Plan 07-02 adds the export; until then, log placeholder.
-  try {
-    const seasonalitySrc = await fs.readFile('src/utils/seasonality.ts', 'utf8');
-    if (seasonalitySrc.includes('export function getEffectiveSeason')) {
-      console.log('PLACEHOLDER: getEffectiveSeason found — Plan 07-02 assertions land in next plan');
-    } else {
-      console.log('PLACEHOLDER: getEffectiveSeason not yet present (Wave 0 / Plan 07-01 only)');
-    }
-  } catch (e) {
-    if (e.code !== 'ENOENT') throw e;
-    console.log('PLACEHOLDER: seasonality.ts skipped — file not found (should never happen post Phase 5)');
-  }
+  // ─── getEffectiveSeason matrix (Plan 07-02) ───
+  // Compile and load src/utils/seasonality.ts using the established stub pattern.
+  const ts = (await import('typescript')).default;
+  const compile = (src) => ts.transpileModule(src, {
+    compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+
+  const seasonalitySrc = await fs.readFile('src/utils/seasonality.ts', 'utf8');
+  // Stub the ../types import (TS types are erased at runtime).
+  const seasonalityStubbed = seasonalitySrc
+    .replace(/from ["']\.\.\/types["']/g, `from "./.tmp-types-p7.mjs"`);
+  const tmpTypesP7 = `${process.cwd()}/scripts/.tmp-types-p7.mjs`;
+  const tmpSeasonalityP7 = `${process.cwd()}/scripts/.tmp-seasonality-p7.mjs`;
+  await fs.writeFile(tmpTypesP7, `export {};\n`);
+  await fs.writeFile(tmpSeasonalityP7, compile(seasonalityStubbed));
+  const seasonMod = await import(tmpSeasonalityP7);
+
+  assert('seasonality.ts exports getEffectiveSeason as function',
+    typeof seasonMod.getEffectiveSeason === 'function');
+  assert('seasonality.ts no longer exports getWaterSeason (Phase 7 SSOT lock)',
+    typeof seasonMod.getWaterSeason === 'undefined');
+
+  // Buenos Aires (Southern temperate, lat -34.6)
+  const buenosAires = { lat: -34.6, lon: -58.4, name: 'BA', country: 'AR' };
+  // Singapore (tropical, lat 1.35)
+  const singapore = { lat: 1.35, lon: 103.8, name: 'SG', country: 'SG' };
+  // New York (Northern temperate, lat 40.7)
+  const newYork = { lat: 40.7, lon: -74.0, name: 'NY', country: 'US' };
+
+  // TZ-safe local-time constructor (Phase 5 lock)
+  const apr1_2026 = new Date(2026, 3, 1);   // April 1, 2026
+  const oct1_2026 = new Date(2026, 9, 1);   // October 1, 2026
+  const jul15_2026 = new Date(2026, 6, 15); // July 15, 2026
+  const jan15_2026 = new Date(2026, 0, 15); // Jan 15, 2026
+
+  // Branch: 'tropical' override — always 'warm' for any location/date.
+  assert("getEffectiveSeason(loc, 'tropical', anyDate) → 'warm' (NY Apr)",
+    seasonMod.getEffectiveSeason(newYork, 'tropical', apr1_2026) === 'warm');
+  assert("getEffectiveSeason(loc, 'tropical', anyDate) → 'warm' (BA Oct)",
+    seasonMod.getEffectiveSeason(buenosAires, 'tropical', oct1_2026) === 'warm');
+  assert("getEffectiveSeason(null, 'tropical', anyDate) → 'warm' (no location)",
+    seasonMod.getEffectiveSeason(null, 'tropical', jan15_2026) === 'warm');
+
+  // Branch: 'northern' override — Apr-Sep warm, Oct-Mar cold (regardless of actual latitude).
+  assert("getEffectiveSeason(BA, 'northern', Apr) → 'warm' (override forces Northern flip)",
+    seasonMod.getEffectiveSeason(buenosAires, 'northern', apr1_2026) === 'warm');
+  assert("getEffectiveSeason(BA, 'northern', Oct) → 'cold' (override forces Northern flip)",
+    seasonMod.getEffectiveSeason(buenosAires, 'northern', oct1_2026) === 'cold');
+  assert("getEffectiveSeason(null, 'northern', Jul) → 'warm'",
+    seasonMod.getEffectiveSeason(null, 'northern', jul15_2026) === 'warm');
+
+  // Branch: 'southern' override — Apr-Sep cold, Oct-Mar warm.
+  assert("getEffectiveSeason(NY, 'southern', Apr) → 'cold' (override forces Southern flip)",
+    seasonMod.getEffectiveSeason(newYork, 'southern', apr1_2026) === 'cold');
+  assert("getEffectiveSeason(NY, 'southern', Oct) → 'warm' (override forces Southern flip)",
+    seasonMod.getEffectiveSeason(newYork, 'southern', oct1_2026) === 'warm');
+
+  // Branch: 'auto' override — delegates to internal getWaterSeason via location.lat.
+  assert("getEffectiveSeason(NY, 'auto', Apr) → 'warm' (Northern temperate Apr)",
+    seasonMod.getEffectiveSeason(newYork, 'auto', apr1_2026) === 'warm');
+  assert("getEffectiveSeason(NY, 'auto', Oct) → 'cold' (Northern temperate Oct)",
+    seasonMod.getEffectiveSeason(newYork, 'auto', oct1_2026) === 'cold');
+  assert("getEffectiveSeason(BA, 'auto', Apr) → 'cold' (Southern temperate Apr)",
+    seasonMod.getEffectiveSeason(buenosAires, 'auto', apr1_2026) === 'cold');
+  assert("getEffectiveSeason(BA, 'auto', Oct) → 'warm' (Southern temperate Oct)",
+    seasonMod.getEffectiveSeason(buenosAires, 'auto', oct1_2026) === 'warm');
+  assert("getEffectiveSeason(SG, 'auto', anyDate) → 'tropical' (lat within boundary)",
+    seasonMod.getEffectiveSeason(singapore, 'auto', jul15_2026) === 'tropical');
+
+  // Branch: 'auto' + null location → 'warm' (LOC-03 fallback — never under-water).
+  assert("getEffectiveSeason(null, 'auto', anyDate) → 'warm' (LOC-03 fallback)",
+    seasonMod.getEffectiveSeason(null, 'auto', apr1_2026) === 'warm');
+
+  // Defensive: undefined climateOverride treated as 'auto'.
+  assert("getEffectiveSeason(NY, undefined, Apr) → 'warm' (undefined treated as 'auto')",
+    seasonMod.getEffectiveSeason(newYork, undefined, apr1_2026) === 'warm');
 
 } catch (err) {
   process.exitCode = 1;
