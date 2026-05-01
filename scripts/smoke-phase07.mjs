@@ -122,6 +122,68 @@ try {
   assert("getEffectiveSeason(NY, undefined, Apr) → 'warm' (undefined treated as 'auto')",
     seasonMod.getEffectiveSeason(newYork, undefined, apr1_2026) === 'warm');
 
+  // ─── Plan 07-03: i18n parity (Phase 7 keyset present in both EN + ES) ───
+  const en = JSON.parse(await fs.readFile('src/i18n/locales/en/common.json', 'utf8'));
+  const es = JSON.parse(await fs.readFile('src/i18n/locales/es/common.json', 'utf8'));
+
+  // Phase 7 mandatory keyset
+  const phase7Keys = [
+    'lightLevelHint.indoor.direct',
+    'lightLevelHint.indoor.bright_indirect',
+    'lightLevelHint.indoor.medium_indirect',
+    'lightLevelHint.indoor.low',
+    'lightLevelHint.outdoor.direct',
+    'lightLevelHint.outdoor.bright_indirect',
+    'lightLevelHint.outdoor.medium_indirect',
+    'lightLevelHint.outdoor.low',
+    'waterSchedule.modeFixed',
+    'waterSchedule.modeSoilCheck',
+    'waterSchedule.warmLabel',
+    'waterSchedule.coldLabel',
+    'waterSchedule.soilCheckExplanation',
+    'onboarding.location.title',
+    'onboarding.location.body',
+    'onboarding.location.useGps',
+    'onboarding.location.searchCity',
+    'onboarding.location.skip',
+    'settings.climateOverride.title',
+    'settings.climateOverride.body',
+    'settings.climateOverride.auto',
+    'settings.climateOverride.northern',
+    'settings.climateOverride.southern',
+    'settings.climateOverride.tropical',
+    'today.locationBanner.body',
+    'today.locationBanner.cta',
+    'identification.lightLevelLabel',
+  ];
+
+  const lookup = (obj, path) => path.split('.').reduce((o, k) => (o && typeof o === 'object') ? o[k] : undefined, obj);
+
+  for (const key of phase7Keys) {
+    assert(`ES has key ${key}`, typeof lookup(es, key) === 'string');
+    assert(`EN has key ${key}`, typeof lookup(en, key) === 'string');
+  }
+
+  // ─── Verbatim REQUIREMENTS lock (LOC-02 + LOC-06) ───
+  assert("ES onboarding.location.body matches LOC-06 verbatim",
+    es.onboarding.location.body === 'Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima');
+  assert("ES today.locationBanner.body matches LOC-02 verbatim",
+    es.today.locationBanner.body === 'Agregá tu ubicación para horarios precisos');
+
+  // ─── Voseo discipline ───
+  assert("ES onboarding.location.useGps starts with 'Usá' (voseo, not tuteo 'Usa')",
+    es.onboarding.location.useGps === 'Usá mi ubicación');
+  assert("ES settings.climateOverride.body uses 'elegí' (voseo, not 'elige')",
+    es.settings.climateOverride.body.includes('elegí'));
+  assert("ES onboarding.location.title uses 'tenés' (voseo, not 'tienes')",
+    es.onboarding.location.title.includes('tenés'));
+
+  // ─── Interpolation markers preserved ───
+  assert("ES waterSchedule.soilCheckExplanation contains {{days}} interpolation",
+    es.waterSchedule.soilCheckExplanation.includes('{{days}}'));
+  assert("EN waterSchedule.soilCheckExplanation contains {{days}} interpolation",
+    en.waterSchedule.soilCheckExplanation.includes('{{days}}'));
+
 } catch (err) {
   process.exitCode = 1;
   console.error('Phase 7 smoke runner failed:', err);
