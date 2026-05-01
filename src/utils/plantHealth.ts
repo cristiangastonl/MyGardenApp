@@ -30,18 +30,23 @@ export function calculatePlantHealth(
   plant: Plant,
   today: Date,
   weather: WeatherData | null,
-  diagnoses?: SavedDiagnosis[]
+  diagnoses: SavedDiagnosis[] | undefined,
+  latitude: number | null
 ): PlantHealthStatus {
   let score = 100;
   const issues: HealthIssue[] = [];
   const todayStr = formatDate(today);
 
   // Check water status
-  const nextWaterDate = getNextWaterDate(plant, today);
+  const nextWaterDate = getNextWaterDate(plant, today, latitude);
   const daysUntilWater = daysBetween(today, nextWaterDate);
 
-  // If nextWaterDate is in the past, plant is overdue
-  if (daysUntilWater < 0) {
+  // WATER-06: soil_check plants are not penalized for "overdue watering"
+  // (their cadence is a check-in reminder, not a missed action). Defensive:
+  // when waterMode is undefined (legacy/migration-failure path), preserve
+  // PRE-Phase-5 behavior — apply penalty. Pitfall: do NOT skip optimistically
+  // on undefined (per RESEARCH.md anti-pattern).
+  if (daysUntilWater < 0 && plant.waterMode !== 'soil_check') {
     const daysOverdue = Math.abs(daysUntilWater);
 
     // -20 for being overdue
@@ -237,7 +242,8 @@ export function calculateGardenHealth(
   plants: Plant[],
   today: Date,
   weather: WeatherData | null,
-  diagnosisHistory?: Record<string, SavedDiagnosis[]>
+  diagnosisHistory: Record<string, SavedDiagnosis[]> | undefined,
+  latitude: number | null
 ): {
   averageScore: number;
   level: HealthLevel;
@@ -254,7 +260,7 @@ export function calculateGardenHealth(
   }
 
   const healthStatuses = plants.map((plant) =>
-    calculatePlantHealth(plant, today, weather, diagnosisHistory?.[plant.id])
+    calculatePlantHealth(plant, today, weather, diagnosisHistory?.[plant.id], latitude)
   );
 
   const totalScore = healthStatuses.reduce((sum, status) => sum + status.score, 0);
