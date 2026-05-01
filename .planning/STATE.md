@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: executing
-stopped_at: Completed 05-04-PLAN.md
-last_updated: "2026-05-01T14:31:48.143Z"
-last_activity: 2026-05-01 — Plan 05-04 complete (Wave 3 — plantHealth season-aware (latitude as 5th positional arg) + WATER-06 soil_check overdue-water penalty skip via `&& plant.waterMode !== 'soil_check'` gate; 7 callers threaded latitude through + 2 deviation callers; 5 new smoke assertions for WATER-06 + regression-safe + defensive; 101 → 106 PASS; tsc handoff to Plan 05 cleanly bounded to 5 files)
+status: completed
+stopped_at: Completed 05-05-PLAN.md (Phase 5 complete — 5/5 plans)
+last_updated: "2026-05-01T14:55:56.401Z"
+last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 progress:
   total_phases: 6
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 12
-  completed_plans: 11
-  percent: 92
+  completed_plans: 12
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover. Plans 01 + 02 complete. Plan 03 (plantLogic dispatch + getNextWaterDate signature change consuming getWaterSeason) UNBLOCKED, ready to ship.
+**Current focus:** v1.1 Precision Care — Phase 5 COMPLETE (5/5 plans). Hemisphere/Season Helpers + Pure-Utility Switchover shipped: SEASON-01..04, WATER-05, WATER-06 locked across plantLogic, plantHealth, calculateGardenHealth, wateringRecommendations, PlantCard, notificationScheduler, and 5 component callsites. v1.1 milestone complete pending Phase 6 UX polish (NEXT).
 
 ## Current Position
 
-Phase: 5 of 9 (Hemisphere/Season Helpers + Pure-Utility Switchover)
-Plan: 05 of 5 (Wave 3: notificationScheduler season-aware morning copy + 5 component callsites Task discriminator exhaustion — DayDetail/DayDetailModal/MonthCalendar 'check_soil' branches + PlantsScreen<PlantCard latitude> prop + notificationScheduler.createMorningContent → getTasksForDay 3-arg)
-Status: Phase 5 in progress (4/5 plans complete; Wave-3 plantHealth landed — calculatePlantHealth + calculateGardenHealth season-aware via latitude 5th positional arg, WATER-06 soil_check overdue-water gate locked with defensive undefined-waterMode preservation, 7 callers + 2 deviation callers updated, smoke 101→106 PASS. Plan 05 owns the final 5-file tsc handoff).
-Last activity: 2026-05-01 — Plan 05-04 complete (Wave 3 — plantHealth season-aware (latitude as 5th positional arg) + WATER-06 soil_check overdue-water penalty skip via `&& plant.waterMode !== 'soil_check'` gate; 7 callers threaded latitude through + 2 deviation callers; 5 new smoke assertions for WATER-06 + regression-safe + defensive; 101 → 106 PASS; tsc handoff to Plan 05 cleanly bounded to 5 files)
+Phase: 5 of 6 (Hemisphere/Season Helpers + Pure-Utility Switchover) — COMPLETE
+Plan: 5 of 5 — COMPLETE
+Status: Phase 5 complete (5/5 plans). Multi-stage tsc handoff Plan 03 → 04 → 05 fully closed; project-wide `npx tsc --noEmit` exits 0; smoke 106/106 PASS; legacy-fields ALLOWLIST count unchanged at 27; B4 null-guard parity invariant preserved. Next: Phase 6 (UX badges + empty-state copy + dedicated 'check_soil' visual differentiation if telemetry warrants).
+Last activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 
-Progress: [█████████░] 92% (Phase 5: 4/5 plans complete; v1.1 overall: 11/12 plans)
+Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1.1 overall: 12/12 plans)
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Progress: [█████████░] 92% (Phase 5: 4/5 plans complete; v1.
 | Phase 05 P02 | 4 min | 3 tasks | 5 files |
 | Phase 05 P03 | 8 min | 3 tasks | 6 files |
 | Phase 05 P04 | 8 min | 3 tasks | 9 files |
+| Phase 05-hemisphere-season-helpers-pure-utility-switchover P05 | 11 | 4 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -120,6 +121,11 @@ Recent decisions affecting current work:
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: Two-stub compile-and-load pattern for cross-module smoke testing — when test A needs production semantics of util X (advance-loop) and test B needs different semantics (no-advance to force a past-date), write TWO temp stubs (.tmp-X-prod.mjs + .tmp-X-overdue.mjs) and load each in its own compiled-on-the-fly consumer. Plan 04 used .tmp-plantLogic.mjs (real, WATER-05 dispatch tests) and .tmp-plantLogic-overdue.mjs (no-advance, WATER-06 penalty tests). Reusable for any future smoke test where production advance-loop semantics block coverage of a downstream consumer's edge cases.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: First-write contract for `.tmp-dates.mjs` (and any other multi-consumer stub module) — Node ES module imports are cached per-URL on first resolution; re-writing the file mid-test does NOT re-trigger import resolution. ALL exports the second consumer needs MUST be present at first-write time. Plan 04 added daysBetween + formatDate to the first .tmp-dates.mjs write so plantHealth's later import succeeds (Plan 05 should treat this stub as append-only at the source-write site).
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 04]: Structural insight (deferred to v1.2) — the `daysUntilWater < 0` overdue_water penalty branch in plantHealth.ts is unreachable through the production getNextWaterDate advance-loop (`while (next < today) next = addDays(next, intervalDays)` always returns >= today). The WATER-06 gate is shipped (defensive against future refactors) but exercising it in tests required a no-advance plantLogic stub. v1.2 may want to refactor either (a) plantHealth to compute days-since-lastWatered directly via daysBetween(parseDate(lastWatered), today) and compare to getSeasonalInterval, OR (b) plantLogic.getNextWaterDate to expose a non-advancing variant for health calculations. Current code is structurally surprising but correct.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: SEASON-04 single-source-of-truth contract satisfied transitively, not via direct import. Scheduler does NOT import getWaterSeason — instead threads latitude into getTasksForDay (which calls getWaterSeason internally). Acceptance criterion grep -c 'getWaterSeason' src/utils/notificationScheduler.ts === 0 enforces this. Pattern: prefer call-chain parameter threading over duplicating leaf-utility imports for SSOT contracts. Future planners should treat 'single source of truth' as 'single call path,' not 'single import edge'.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: Lump-under-water decision applied uniformly across 6 task-discriminator audit sites (Pitfall 8 list): morning notification body, calendar dot indicator, DayDetailModal bgColor + textColor, DayDetail taskIcon style, plantLogic emit. Visual + notification copy lump check_soil under water; the SEMANTIC differentiation lives in the i18n label only ('Chequear tierra de Aloe' vs 'Regar Aloe'). The lump form 't.type === "X" || t.type === "Y"' is naturally easy to flip back to split when telemetry warrants — Phase 6 may revisit. v1.1 default: lump.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: Required-prop ratchet for season-aware components — when a downstream utility (here getTasksForDay) gains a required parameter, ratchet the prop interface of every component that calls it from optional to required. Plan 05 ratcheted DayDetail/DayDetailModal/MonthCalendar from optional to required latitude prop. The ratchet forces tsc to surface every JSX consumer that needs to be updated (CalendarScreen had blind-spot — wasn't destructuring location from useStorage). Anti-pattern (rejected): defaulting latitude = null inside the component — silently masks blind spots.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: Multi-stage tsc handoff verification pattern — when the previous plan ships an intentionally-bounded set of tsc errors as 'handed off to next plan,' the next plan's first verify step should be 'npx tsc --noEmit 2>&1 | head' to confirm baseline matches the documented handoff. Plan 05 baseline showed exactly the 5 errors documented in Plan 04 SUMMARY's affects field (DayDetail, DayDetailModal, MonthCalendar, PlantsScreen<PlantCard>, notificationScheduler). When current plan task list enumerates fewer sites than previous plan's affects field, treat unenumerated sites as Rule 3 deviations to satisfy success_criteria 'project-wide tsc green'.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 05]: App.tsx has TWO independent AppContent paths — MVP (Features.AUTH=false) and AUTH (Features.AUTH=true). Each destructures useStorage independently. Phase 4 Plan 07 added 'location' to the AUTH path's destructure (line 275) but NOT the MVP path (line 116). Plan 05 added it to MVP path as a Rule 3 fix. Two-AppContent-paths pattern is a v1.1-readiness decision (Phase 4) that requires both paths to be kept in sync — a future plan may merge them once V1.1 ships.
 
 ### Pending Todos
 
@@ -135,6 +141,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T14:31:48.141Z
-Stopped at: Completed 05-04-PLAN.md
+Last session: 2026-05-01T14:55:25.281Z
+Stopped at: Completed 05-05-PLAN.md (Phase 5 complete — 5/5 plans)
 Resume file: None
