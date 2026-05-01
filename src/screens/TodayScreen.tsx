@@ -16,7 +16,7 @@ import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
-import { formatDate, isSameDay } from '../utils/dates';
+import { formatDate, isSameDay, daysBetween } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { generatePlantAlerts } from '../utils/plantAlerts';
 import { Plant, SavedDiagnosis, ShoppingItem, TrackingStatus } from '../types';
@@ -174,6 +174,21 @@ export default function TodayScreen() {
 
     const favSort = (a: Plant, b: Plant) => (a.favorite ? -1 : 0) - (b.favorite ? -1 : 0);
     return withTasks.sort(favSort);
+  }, [plants, today, location?.lat]);
+
+  // UX-03: per-plant info rows for soil_check plants on non-check-in days.
+  // Mutually exclusive with plantsWithTasks via the isSameDay filter — soil_check
+  // plants on their check-in day appear in plantsWithTasks (PlantCard with check_soil task);
+  // soil_check plants on a non-check-in day appear in soilCheckSilentPlants (info row).
+  const soilCheckSilentPlants = useMemo(() => {
+    const lat = location?.lat ?? null;
+    const silent = plants.filter((plant) => {
+      if (plant.waterMode !== 'soil_check') return false;
+      const nextCheckIn = getNextWaterDate(plant, today, lat);
+      return !isSameDay(nextCheckIn, today);
+    });
+    // Stable order: by plant name (alphabetical). Avoids reorder-flicker on re-render.
+    return silent.sort((a, b) => a.name.localeCompare(b.name));
   }, [plants, today, location?.lat]);
 
   const handleWater = (plantId: string) => {
@@ -417,8 +432,28 @@ export default function TodayScreen() {
           </View>
         )}
 
+        {/* UX-03: soil-check info rows — per-plant on non-check-in days */}
+        {soilCheckSilentPlants.length > 0 && (
+          <View style={styles.section}>
+            {soilCheckSilentPlants.map((plant) => {
+              const daysLeft = daysBetween(
+                today,
+                getNextWaterDate(plant, today, location?.lat ?? null)
+              );
+              return (
+                <View key={plant.id} style={styles.soilCheckRow}>
+                  <Text style={styles.soilCheckIcon}>🤚</Text>
+                  <Text style={styles.soilCheckText}>
+                    {t('today.soilCheckEmptyRow', { plantName: plant.name, days: daysLeft })}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        )}
+
         {/* All caught up message */}
-        {plants.length > 0 && plantsWithTasks.length === 0 && (
+        {plants.length > 0 && plantsWithTasks.length === 0 && soilCheckSilentPlants.length === 0 && (
           <View style={styles.allCaughtUp}>
             <Text style={styles.allCaughtUpIcon}>🎉</Text>
             <Text style={styles.allCaughtUpTitle}>{t('today.allCaughtUp')}</Text>
@@ -707,6 +742,26 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     lineHeight: 22,
+  },
+  soilCheckRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: colors.bgSecondary,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  soilCheckIcon: {
+    fontSize: 20,
+    marginRight: spacing.sm,
+    marginTop: 1, // optical alignment with first line of body text
+  },
+  soilCheckText: {
+    flex: 1,
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 20,
   },
   bottomPadding: {
     height: 100,
