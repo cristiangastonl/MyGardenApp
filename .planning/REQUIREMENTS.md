@@ -24,7 +24,7 @@
 - [x] **LIGHT-02**: Light levels are `direct`, `bright_indirect`, `medium_indirect`, `low` — translated to user locale (en + es-AR with voseo)
 - [x] **LIGHT-03**: Existing user plants are auto-mapped from `sunHours` to `lightLevel` deterministically (≥5h direct, ≥3h bright_indirect, ≥2h medium_indirect, <2h low)
 - [ ] **LIGHT-04**: Plant catalog (60+ entries) is updated with `lightLevel` using same deterministic mapper; horticultural review pass corrects edge cases (orquídea, calathea, etc.)
-- [ ] **LIGHT-05**: Plant identification flow returns plants with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust)
+- [x] **LIGHT-05**: Plant identification flow returns plants with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust)
 - [x] **LIGHT-06**: All plant cards, detail modals, and diagnosis context display `lightLevel` translated label instead of `${sunHours}h sol`
 - [x] **LIGHT-07**: Outdoor plants show `lightLevel` with outdoor-context labels ("Sol pleno" / "Sol parcial" / "Semi sombra" / "Sombra") that map to the same 4 buckets
 
@@ -140,7 +140,7 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | LIGHT-02 | Phase 7 | Complete |
 | LIGHT-03 | Phase 4 | Complete |
 | LIGHT-04 | Phase 8 | Pending |
-| LIGHT-05 | Phase 7 | Pending |
+| LIGHT-05 | Phase 7 | Complete |
 | LIGHT-06 | Phase 6 | Complete |
 | LIGHT-07 | Phase 6 | Complete |
 | WATER-01 | Phase 7 | Complete |
