@@ -10,8 +10,10 @@ import i18n from "../i18n";
  *
  * Defensive fallback ladder (Phase 4 Plan 04 pattern):
  *   v1.1 waterSchedule[bucket] → legacy waterEvery → 7d safe default.
+ *
+ * Exported in Phase 6 (Plan 06-01) for read-side consumers (PlantCard badge, MyPlantDetailModal season badge).
  */
-function getSeasonalInterval(plant: Plant, season: WaterSeason): number {
+export function getSeasonalInterval(plant: Plant, season: WaterSeason): number {
   const bucket: 'warm' | 'cold' = season === 'cold' ? 'cold' : 'warm';
 
   const fromSchedule = plant.waterSchedule?.[bucket];
