@@ -40,9 +40,9 @@
 
 ### Seasonality (SEASON)
 
-- [ ] **SEASON-01**: A new `getSeason(latitude, date)` utility returns `'warm' | 'cold' | 'tropical'` — three zones, not two
-- [ ] **SEASON-02**: Tropical zone (~lat between 23.5°S and 23.5°N) always uses `warm` schedule (no flip)
-- [ ] **SEASON-03**: Northern temperate uses warm Apr-Sep, cold Oct-Mar; Southern temperate uses warm Oct-Mar, cold Apr-Sep — month boundaries, not equinox
+- [x] **SEASON-01**: A new `getSeason(latitude, date)` utility returns `'warm' | 'cold' | 'tropical'` — three zones, not two
+- [x] **SEASON-02**: Tropical zone (~lat between 23.5°S and 23.5°N) always uses `warm` schedule (no flip)
+- [x] **SEASON-03**: Northern temperate uses warm Apr-Sep, cold Oct-Mar; Southern temperate uses warm Oct-Mar, cold Apr-Sep — month boundaries, not equinox
 - [ ] **SEASON-04**: Health calculation, task generation, and notification scheduler all derive watering interval from `(plant.waterSchedule, currentSeason)` consistently
 - [ ] **SEASON-05**: Plant detail view shows current season badge ("Cada 5 días — temporada cálida")
 
@@ -150,9 +150,9 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | WATER-05 | Phase 5 | Pending |
 | WATER-06 | Phase 5 | Pending |
 | WATER-07 | Phase 8 | Pending |
-| SEASON-01 | Phase 5 | Pending |
-| SEASON-02 | Phase 5 | Pending |
-| SEASON-03 | Phase 5 | Pending |
+| SEASON-01 | Phase 5 | Complete |
+| SEASON-02 | Phase 5 | Complete |
+| SEASON-03 | Phase 5 | Complete |
 | SEASON-04 | Phase 5 | Pending |
 | SEASON-05 | Phase 6 | Pending |
 | LOC-01 | Phase 7 | Pending |

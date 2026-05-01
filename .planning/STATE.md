@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: executing
-stopped_at: "Completed 05-01-PLAN.md (Wave 0 Phase-5 scaffold — migration smoke runner extended with locked typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant graceful skip emits 'Phase 5: skipped — seasonality.ts not yet present' until Plan 02 lands the source; existing 63/63 Phase-4 PASS contract preserved verbatim; tsc + check:legacy-fields + smoke:migration all green)"
-last_updated: "2026-05-01T13:43:27.797Z"
-last_activity: "2026-05-01 — Plan 05-01 complete (Wave 0 Phase-5 scaffold: migration-smoke-test.mjs extended with Phase-5 section that locks typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant try-catch emits skip line when source absent so existing 63/63 PASSes remain green; tmpSeason temp-file added with cleanup symmetry; single-compile-path policy preserved across both phases — 2 ts.transpileModule invocations, 0 esbuild/swc fallbacks)"
+stopped_at: "Completed 05-02-PLAN.md (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)"
+last_updated: "2026-05-01T13:54:32.640Z"
+last_activity: "2026-05-01 — Plan 05-02 complete (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)"
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 8
-  percent: 67
+  completed_plans: 9
+  percent: 75
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover. Plan 01 (Wave 0 smoke-runner scaffold) complete. Plan 02 (seasonality.ts source + first matrix assertions) UNBLOCKED, ready to ship.
+**Current focus:** v1.1 Precision Care — Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover. Plans 01 + 02 complete. Plan 03 (plantLogic dispatch + getNextWaterDate signature change consuming getWaterSeason) UNBLOCKED, ready to ship.
 
 ## Current Position
 
 Phase: 5 of 9 (Hemisphere/Season Helpers + Pure-Utility Switchover)
-Plan: 02 of 5 (Wave 1: seasonality.ts source + getWaterSeason matrix assertions)
-Status: Phase 5 in progress (1/5 plans complete; Wave-0 scaffold landed — locked compile path for src/utils/seasonality.ts mirrors migration.ts pattern; downstream plans use `npm run smoke:migration` as automated verify with no further scaffolding work).
-Last activity: 2026-05-01 — Plan 05-01 complete (Wave 0 Phase-5 scaffold: migration-smoke-test.mjs extended with Phase-5 section that locks typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant try-catch emits skip line when source absent so existing 63/63 PASSes remain green; tmpSeason temp-file added with cleanup symmetry; single-compile-path policy preserved across both phases — 2 ts.transpileModule invocations, 0 esbuild/swc fallbacks)
+Plan: 03 of 5 (Wave 2: plantLogic season-aware dispatch + check_soil task emission)
+Status: Phase 5 in progress (2/5 plans complete; Wave-1 foundation landed — getWaterSeason + Task['check_soil'] + tasks.checkSoil i18n keys all green; downstream Plans 03/04/05 can import the helper and consume the discriminator without dangling references).
+Last activity: 2026-05-01 — Plan 05-02 complete (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)
 
-Progress: [███████░░░] 67% (Phase 5: 1/5 plans complete; v1.1 overall: 8/12 plans)
+Progress: [████████░░] 75% (Phase 5: 2/5 plans complete; v1.1 overall: 9/12 plans)
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Progress: [███████░░░] 67% (Phase 5: 1/5 plans complete; v1.
 *Updated after each plan completion*
 | Phase 04 P07 | 5min | 1 tasks | 1 files |
 | Phase 05 P01 | 2 min | 1 tasks | 1 files |
+| Phase 05 P02 | 4 min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,10 @@ Recent decisions affecting current work:
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Phase-5 smoke-runner scaffold uses ENOENT-tolerant try-catch — non-ENOENT errors propagate so source-level bugs surface; ENOENT swallowed only at Wave 0 to keep 63/63 contract green until Plan 02 lands seasonality.ts
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Single-compile-path policy extended verbatim from Phase 4 to Phase 5 — 2 ts.transpileModule( invocations (one per source), 0 esbuild/swc fallbacks. Policy comments documenting the lock count semantically as guards, not violations of grep-count acceptance criteria.
 - [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 01]: Two distinct Phase-5 placeholder messages — 'skipped — seasonality.ts not yet present' (Wave 0, ENOENT branch) vs 'section reached, no assertions yet (placeholder)' (Plan-02-onward, present-but-empty branch). Gives downstream planners an unambiguous landing signal that the file flipped from absent to present.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: TZ-safe Date assertions in smoke runner — use new Date(YYYY, monthIdx, DD) (local-time multi-arg constructor) instead of new Date('YYYY-MM-DD') ISO strings. Runner is in America/Buenos_Aires UTC-3, so ISO 'Apr 1' parses as UTC midnight which getMonth() returns as local Mar 31. Pattern is now mandatory for Plans 03/04/05 month-boundary assertions.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: ES voseo regex uses /i flag for verb-presence checks (sentence-leading 'Tocá' is naturally capitalized; strict /tocá/ would miss). Tuteo-rejection regex stays case-sensitive (/\btoca\b|\briega\b/) — tuteo verbs are themselves lowercase tokens; case-insensitive rejection would over-match the voseo body.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: getWaterSeason naming chosen over getSeason to coexist with src/utils/tipSelector.ts > getSeason (4-season UI palette). Different files, different export names, same conceptual namespace ('what season is it?') but orthogonal taxonomies. JSDoc cross-reference kept in seasonality.ts to document the coexistence for future maintainers.
+- [Phase 05-hemisphere-season-helpers-pure-utility-switchover]: [Plan 02]: Top-level 'tasks' i18n key inserted between 'dayDetail' and 'dataMigration' blocks — keeps existing nested label fragments (dayDetail.taskWater, notifications.water) untouched while giving full UX sentences (checkSoilBody) their own namespace. RESEARCH §Pitfall 7 pattern.
 
 ### Pending Todos
 
@@ -120,6 +125,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T13:43:27.795Z
-Stopped at: Completed 05-01-PLAN.md (Wave 0 Phase-5 scaffold — migration smoke runner extended with locked typescript.transpileModule compile path for src/utils/seasonality.ts; ENOENT-tolerant graceful skip emits 'Phase 5: skipped — seasonality.ts not yet present' until Plan 02 lands the source; existing 63/63 Phase-4 PASS contract preserved verbatim; tsc + check:legacy-fields + smoke:migration all green)
+Last session: 2026-05-01T13:54:16.066Z
+Stopped at: Completed 05-02-PLAN.md (Wave 1 — getWaterSeason 3-zone helper + Task type 'check_soil' + tasks.checkSoil i18n keys (EN+ES voseo) + 23 Phase-5 smoke assertions; 86/86 PASS; tsc + check:legacy-fields green; TZ-safe Date constructor pattern established for downstream Plans 03/04/05)
 Resume file: None
