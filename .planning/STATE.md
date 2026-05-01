@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 07-01-PLAN.md
-last_updated: "2026-05-01T22:06:47.770Z"
+stopped_at: Completed 07-02-PLAN.md
+last_updated: "2026-05-01T22:24:46.384Z"
 last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 26
-  completed_plans: 19
+  completed_plans: 20
   percent: 100
 ---
 
@@ -76,6 +76,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 06-ui-read-side-propagation P03 | 5 | 2 tasks | 2 files |
 | Phase 06 P06 | 4 | 1 tasks | 1 files |
 | Phase 07 P01 | 4 | 4 tasks | 4 files |
+| Phase 07 P02 | 15 | 6 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -146,6 +147,8 @@ Recent decisions affecting current work:
 - [Phase 07]: ClimateOverride optional on AppData but non-optional in StorageState — backward compat via ?? 'auto' hydration, no schema bump (additive field, version stays at 1)
 - [Phase 07]: Two-AppContent-paths discipline applied in Wave 0: both AppContentMVP and AppContentFullInner destructure climateOverride atomically per Phase 5 Plan 05 documented trap
 - [Phase 07]: Phase 7 smoke runner ENOENT-tolerant placeholder for getEffectiveSeason — Plan 07-02 extends without restructuring the runner
+- [Phase 07]: Pattern A (inline getEffectiveSeason) vs Pattern B (prop ratchet to season: WaterSeason): components with prior getWaterSeason import use Pattern A; components that only threaded latitude use Pattern B
+- [Phase 07]: getEffectiveSeason is the new public SSOT for season selection — getWaterSeason becomes module-private; callers pre-compute season once per render/tick and thread to all consumers
 
 ### Pending Todos
 
@@ -161,6 +164,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T22:06:47.768Z
-Stopped at: Completed 07-01-PLAN.md
+Last session: 2026-05-01T22:24:46.382Z
+Stopped at: Completed 07-02-PLAN.md
 Resume file: None
