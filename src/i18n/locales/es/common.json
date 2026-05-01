@@ -65,6 +65,27 @@
       "low": "Sombra"
     }
   },
+  "lightLevelHint": {
+    "indoor": {
+      "direct": "Junto a ventana sur",
+      "bright_indirect": "A 1m de ventana clara",
+      "medium_indirect": "A 2m de ventana clara",
+      "low": "Pasillo sin sol directo"
+    },
+    "outdoor": {
+      "direct": "Sin sombra todo el día",
+      "bright_indirect": "Sombra de árbol vecino",
+      "medium_indirect": "Mitad del día con sombra",
+      "low": "Bajo techo o pared norte"
+    }
+  },
+  "waterSchedule": {
+    "modeFixed": "Calendario",
+    "modeSoilCheck": "Por chequeo",
+    "warmLabel": "Temporada cálida",
+    "coldLabel": "Temporada fría",
+    "soilCheckExplanation": "Te avisamos cada {{days}} días para que toques la tierra"
+  },
   "onboarding": {
     "welcome": "Bienvenido a My Happy Garden",
     "subtitle": "Tu asistente personal para el cuidado de plantas",
@@ -111,7 +132,14 @@
     "plantIdentified": "Planta identificada: {{name}}",
     "identifyWithCamera": "Identificá tu planta con la cámara",
     "freeIdUsed": "Ya usaste tu identificación gratis",
-    "freeIdIncluded": "1 identificación gratis incluida"
+    "freeIdIncluded": "1 identificación gratis incluida",
+    "location": {
+      "title": "¿Dónde tenés tus plantas?",
+      "body": "Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima",
+      "useGps": "Usá mi ubicación",
+      "searchCity": "Buscar ciudad",
+      "skip": "Omitir"
+    }
   },
   "settings": {
     "title": "Configuración",
@@ -182,7 +210,15 @@
     "language": "Idioma",
     "languageDescription": "Elige el idioma de la aplicación.",
     "spanish": "Español",
-    "english": "English"
+    "english": "English",
+    "climateOverride": {
+      "title": "Zona climática",
+      "body": "Si la detección automática no acierta, elegí tu zona manualmente",
+      "auto": "Auto",
+      "northern": "Norte templado",
+      "southern": "Sur templado",
+      "tropical": "Tropical"
+    }
   },
   "today": {
     "loading": "Cargando...",
@@ -196,7 +232,11 @@
     "unlimitedPlants": "Plantas ilimitadas, alertas y más",
     "allCaughtUp": "¡Todo al día!",
     "allCaughtUpText": "No tenés tareas pendientes hoy. ¡Buen trabajo!",
-    "soilCheckEmptyRow": "Tu {{plantName}} está en modo chequeo. Te avisamos en {{days}} días."
+    "soilCheckEmptyRow": "Tu {{plantName}} está en modo chequeo. Te avisamos en {{days}} días.",
+    "locationBanner": {
+      "body": "Agregá tu ubicación para horarios precisos",
+      "cta": "Agregar"
+    }
   },
   "plants": {
     "title": "Mis Plantas",
@@ -543,7 +583,8 @@
     "lowConfidence": "La identificación no fue lo suficientemente confiable. Probá con otra foto.",
     "multiplePlantsFound": "Encontramos varias plantas similares. Seleccioná la que corresponda.",
     "genericFamilyTip": "Planta de la familia {{family}}. Los cuidados pueden variar según la especie específica.",
-    "unknownFamily": "desconocida"
+    "unknownFamily": "desconocida",
+    "lightLevelLabel": "Nivel de luz"
   },
   "diagnosis": {
     "addToShoppingList": "🛒 Agregar a lista",
