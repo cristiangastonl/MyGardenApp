@@ -680,6 +680,10 @@
     "taskSun": "Sol",
     "taskOutdoor": "Exterior"
   },
+  "tasks": {
+    "checkSoil": "Chequear tierra — {{name}}",
+    "checkSoilBody": "Tocá la tierra. Si está seca 5cm hacia abajo, regá."
+  },
   "dataMigration": {
     "title": "Tenés plantas guardadas",
     "description_one": "Encontramos {{count}} planta guardada en este dispositivo. ¿Qué querés hacer?",

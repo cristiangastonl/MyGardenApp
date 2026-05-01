@@ -680,6 +680,10 @@
     "taskSun": "Sun",
     "taskOutdoor": "Outdoor"
   },
+  "tasks": {
+    "checkSoil": "Check soil — {{name}}",
+    "checkSoilBody": "Touch the soil. If it's dry 5cm down, water."
+  },
   "dataMigration": {
     "title": "You have saved plants",
     "description_one": "We found {{count}} plant saved on this device. What would you like to do?",

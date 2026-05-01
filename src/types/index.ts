@@ -94,7 +94,7 @@ export interface Location {
 }
 
 export interface Task {
-  type: "water" | "sun" | "outdoor";
+  type: "water" | "sun" | "outdoor" | "check_soil";
   icon: string;
   label: string;
   plantId: string;
