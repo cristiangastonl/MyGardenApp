@@ -32,6 +32,7 @@ const fs = await import('node:fs/promises');
 
 const tmp = `${process.cwd()}/scripts/.tmp-migration.mjs`;
 const tmpSeason = `${process.cwd()}/scripts/.tmp-seasonality.mjs`;
+const tmpPlantLogic = `${process.cwd()}/scripts/.tmp-plantLogic.mjs`;
 let pass = 0;
 let total = 0;
 
@@ -194,6 +195,127 @@ try {
     assert("es.tasks.checkSoilBody exists", typeof es.tasks?.checkSoilBody === 'string' && es.tasks.checkSoilBody.length > 0);
     assert("es.tasks.checkSoilBody uses voseo (tocá+regá)", /tocá/i.test(es.tasks.checkSoilBody) && /regá/i.test(es.tasks.checkSoilBody));
     assert("es.tasks.checkSoilBody NOT tuteo (no standalone toca/riega)", !/\btoca\b/.test(es.tasks.checkSoilBody) && !/\briega\b/.test(es.tasks.checkSoilBody));
+
+    // -------- Compile plantLogic.ts (depends on seasonality.ts + i18n + types) --------
+    // The plantLogic source imports from "../i18n" which is a relative path
+    // resolved at runtime; in Node smoke we stub it to a no-op translator.
+    const plantLogicSrc = await fs.readFile('src/utils/plantLogic.ts', 'utf8');
+    const stubbed = plantLogicSrc
+      .replace(/from ["']\.\.\/types["']/g, 'from "./.tmp-types.mjs"')
+      .replace(/from ["']\.\.\/i18n["']/g, 'from "./.tmp-i18n.mjs"')
+      .replace(/from ["']\.\/seasonality["']/g, 'from "./.tmp-seasonality.mjs"')
+      .replace(/from ["']\.\/dates["']/g, 'from "./.tmp-dates.mjs"');
+    // Compile and stub deps
+    const stubbedCompiled = ts.transpileModule(stubbed, {
+      compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+    }).outputText;
+    await fs.writeFile(tmpPlantLogic, stubbedCompiled);
+    // Stub i18n: pass through key with optional name interpolation.
+    await fs.writeFile(`${process.cwd()}/scripts/.tmp-i18n.mjs`,
+      `export default { t: (key, opts) => opts?.name ? key + ":" + opts.name : key };\n`);
+    // Stub types: empty module — TS types are erased at runtime.
+    await fs.writeFile(`${process.cwd()}/scripts/.tmp-types.mjs`, `export {};\n`);
+    // Stub dates: real impls (parseDate, addDays, isSameDay).
+    await fs.writeFile(`${process.cwd()}/scripts/.tmp-dates.mjs`,
+      `export const parseDate=(s)=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
+       export const addDays=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
+       export const isSameDay=(a,b)=>a.toDateString()===b.toDateString();
+       export const formatDate=(d)=>\`\${d.getFullYear()}-\${String(d.getMonth()+1).padStart(2,'0')}-\${String(d.getDate()).padStart(2,'0')}\`;\n`);
+
+    const plantLogicMod = await import(tmpPlantLogic);
+    const { getNextWaterDate, getTasksForDay } = plantLogicMod;
+
+    // -------- SEASON-04: getNextWaterDate season-awareness --------
+    const fixedPlantBA = {
+      id: 'pBA', name: 'BA Fixed', waterMode: 'fixed',
+      waterSchedule: { warm: 5, cold: 10 },
+      lastWatered: '2026-04-01', sunDays: [], outdoorDays: [],
+    };
+    const apr15 = new Date(2026, 3, 15); // Apr 15, 2026
+    // BA (-34.6) Apr 15: Southern → cold, 10d. lastWatered Apr 1 + 10 = Apr 11 → advance to Apr 21.
+    const baNext = getNextWaterDate(fixedPlantBA, apr15, -34.6);
+    assert("BA fixed plant Apr 15 advances to cold-bucket interval (Apr 21)",
+      baNext.getDate() === 21 && baNext.getMonth() === 3);
+
+    // NY (40) Apr 15: Northern → warm, 5d. lastWatered Apr 1 + 5 = Apr 6 → advance to Apr 16.
+    const nyNext = getNextWaterDate(fixedPlantBA, apr15, 40);
+    assert("NY fixed plant Apr 15 uses warm-bucket interval (Apr 16)",
+      nyNext.getDate() === 16 && nyNext.getMonth() === 3);
+
+    // Tropical: Singapore (1.35) → must NOT yield NaN/undefined; uses warm bucket (5d).
+    const sgNext = getNextWaterDate(fixedPlantBA, apr15, 1.35);
+    assert("Singapore tropical Apr 15 uses warm bucket (no undefined/NaN)",
+      !isNaN(sgNext.getTime()) && sgNext.getDate() === 16);
+
+    // -------- ROADMAP success criterion #4: cross-month transition produces no >1-cycle jump --------
+    // Southern plant lastWatered Mar 25 (warm season was active). On Apr 1 Southern flips to cold (10d).
+    // Verify next-water-date is bounded: not in the past, not >1 full cold cycle ahead.
+    const transitionPlantBA = {
+      id: 'pBAtr', name: 'BA Transition', waterMode: 'fixed',
+      waterSchedule: { warm: 5, cold: 10 },
+      lastWatered: '2026-03-25', sunDays: [], outdoorDays: [],
+    };
+    const apr1 = new Date(2026, 3, 1); // Apr 1, 2026 — Southern flips warm→cold
+    const transitionNext = getNextWaterDate(transitionPlantBA, apr1, -34.6);
+    const apr1Ms = apr1.getTime();
+    const tenDaysMs = 10 * 24 * 60 * 60 * 1000;
+    assert("Cross-month transition (Mar 25 → Apr 1 Southern flip) returns valid Date (no NaN)",
+      !isNaN(transitionNext.getTime()));
+    assert("Cross-month next-water-date is not in the past relative to today",
+      transitionNext.getTime() >= apr1Ms);
+    assert("Cross-month next-water-date is no more than 1 cold-cycle (10d) ahead of today",
+      transitionNext.getTime() <= apr1Ms + tenDaysMs);
+
+    // Defensive fallback: legacy waterEvery only.
+    const legacyPlant = {
+      id: 'pL', name: 'Legacy', waterMode: 'fixed',
+      waterEvery: 7, waterSchedule: undefined,
+      lastWatered: '2026-04-01', sunDays: [], outdoorDays: [],
+    };
+    const legacyNext = getNextWaterDate(legacyPlant, apr15, 40);
+    assert("Legacy waterEvery fallback (7d) Apr 1 → Apr 8 → advance to Apr 15",
+      !isNaN(legacyNext.getTime()) && legacyNext.getDate() === 15);
+
+    // null lat → 'warm' default → 5d.
+    const nullLatNext = getNextWaterDate(fixedPlantBA, apr15, null);
+    assert("null latitude uses warm safe-default (Apr 16)",
+      nullLatNext.getDate() === 16);
+
+    // -------- WATER-05: soil_check dispatch --------
+    // Plant whose check-in day is today (lastWatered exactly cold-interval ago).
+    const soilCheckBA = {
+      id: 'pSC', name: 'Cactus', waterMode: 'soil_check',
+      waterSchedule: { warm: 14, cold: 28 },
+      lastWatered: '2026-03-18', // 28d before Apr 15 — Southern Apr is cold, 28d → check-in TODAY
+      sunDays: [], outdoorDays: [],
+    };
+    const baTasks = getTasksForDay([soilCheckBA], apr15, -34.6);
+    assert("soil_check plant on check-in day emits exactly 1 task",
+      baTasks.length === 1);
+    assert("soil_check task type === 'check_soil' (NOT 'water')",
+      baTasks[0]?.type === 'check_soil');
+    assert("soil_check task icon === '🤚'",
+      baTasks[0]?.icon === '🤚');
+    assert("soil_check task label uses tasks.checkSoil i18n key (stubbed pass-through)",
+      baTasks[0]?.label?.startsWith('tasks.checkSoil'));
+
+    // Non-check-in day: same plant, day before next check-in.
+    const apr14 = new Date(2026, 3, 14);
+    const baTasksNonCheckIn = getTasksForDay([soilCheckBA], apr14, -34.6);
+    assert("soil_check plant on non-check-in day emits 0 tasks",
+      baTasksNonCheckIn.length === 0);
+
+    // First-encounter (lastWatered === null) for soil_check: emits day-1 (Pitfall 5 recommendation).
+    const newSoilCheck = { ...soilCheckBA, id: 'pNew', lastWatered: null };
+    const newTasks = getTasksForDay([newSoilCheck], apr15, -34.6);
+    assert("New soil_check plant (lastWatered null) emits 'check_soil' on day 1",
+      newTasks.length === 1 && newTasks[0]?.type === 'check_soil');
+
+    // Fixed-mode plant on its check-in day: emits 'water', NOT 'check_soil'.
+    const fixedTasks = getTasksForDay([{ ...fixedPlantBA, lastWatered: '2026-04-05' }], new Date(2026,3,15), -34.6);
+    // BA Apr 15 cold 10d, lastWatered Apr 5 → next is Apr 15 = today (check-in)
+    assert("fixed plant on check-in day emits 'water' (NOT 'check_soil')",
+      fixedTasks.length === 1 && fixedTasks[0]?.type === 'water');
   }
 
   console.log(`\n${pass}/${total} PASS`);
@@ -204,6 +326,10 @@ try {
 } finally {
   await fs.unlink(tmp).catch(() => {});
   await fs.unlink(tmpSeason).catch(() => {});
+  await fs.unlink(tmpPlantLogic).catch(() => {});
+  await fs.unlink(`${process.cwd()}/scripts/.tmp-i18n.mjs`).catch(() => {});
+  await fs.unlink(`${process.cwd()}/scripts/.tmp-types.mjs`).catch(() => {});
+  await fs.unlink(`${process.cwd()}/scripts/.tmp-dates.mjs`).catch(() => {});
 }
 
 process.exit(process.exitCode || 0);
