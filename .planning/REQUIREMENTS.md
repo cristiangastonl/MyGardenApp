@@ -25,8 +25,8 @@
 - [x] **LIGHT-03**: Existing user plants are auto-mapped from `sunHours` to `lightLevel` deterministically (≥5h direct, ≥3h bright_indirect, ≥2h medium_indirect, <2h low)
 - [ ] **LIGHT-04**: Plant catalog (60+ entries) is updated with `lightLevel` using same deterministic mapper; horticultural review pass corrects edge cases (orquídea, calathea, etc.)
 - [ ] **LIGHT-05**: Plant identification flow returns plants with `lightLevel` populated (default `bright_indirect` if PlantNet doesn't supply enough info, user can adjust)
-- [ ] **LIGHT-06**: All plant cards, detail modals, and diagnosis context display `lightLevel` translated label instead of `${sunHours}h sol`
-- [ ] **LIGHT-07**: Outdoor plants show `lightLevel` with outdoor-context labels ("Sol pleno" / "Sol parcial" / "Semi sombra" / "Sombra") that map to the same 4 buckets
+- [x] **LIGHT-06**: All plant cards, detail modals, and diagnosis context display `lightLevel` translated label instead of `${sunHours}h sol`
+- [x] **LIGHT-07**: Outdoor plants show `lightLevel` with outdoor-context labels ("Sol pleno" / "Sol parcial" / "Semi sombra" / "Sombra") that map to the same 4 buckets
 
 ### Watering Model (WATER)
 
@@ -44,7 +44,7 @@
 - [x] **SEASON-02**: Tropical zone (~lat between 23.5°S and 23.5°N) always uses `warm` schedule (no flip)
 - [x] **SEASON-03**: Northern temperate uses warm Apr-Sep, cold Oct-Mar; Southern temperate uses warm Oct-Mar, cold Apr-Sep — month boundaries, not equinox
 - [x] **SEASON-04**: Health calculation, task generation, and notification scheduler all derive watering interval from `(plant.waterSchedule, currentSeason)` consistently
-- [ ] **SEASON-05**: Plant detail view shows current season badge ("Cada 5 días — temporada cálida")
+- [x] **SEASON-05**: Plant detail view shows current season badge ("Cada 5 días — temporada cálida")
 
 ### Location Precision (LOC)
 
@@ -141,8 +141,8 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | LIGHT-03 | Phase 4 | Complete |
 | LIGHT-04 | Phase 8 | Pending |
 | LIGHT-05 | Phase 7 | Pending |
-| LIGHT-06 | Phase 6 | Pending |
-| LIGHT-07 | Phase 6 | Pending |
+| LIGHT-06 | Phase 6 | Complete |
+| LIGHT-07 | Phase 6 | Complete |
 | WATER-01 | Phase 7 | Pending |
 | WATER-02 | Phase 7 | Pending |
 | WATER-03 | Phase 7 | Pending |
@@ -154,7 +154,7 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | SEASON-02 | Phase 5 | Complete |
 | SEASON-03 | Phase 5 | Complete |
 | SEASON-04 | Phase 5 | Complete |
-| SEASON-05 | Phase 6 | Pending |
+| SEASON-05 | Phase 6 | Complete |
 | LOC-01 | Phase 7 | Pending |
 | LOC-02 | Phase 7 | Pending |
 | LOC-03 | Phase 7 | Pending |
