@@ -27,6 +27,17 @@ export type LightLevel = 'direct' | 'bright_indirect' | 'medium_indirect' | 'low
 export type WaterMode = 'fixed' | 'soil_check';
 
 /**
+ * User-controlled climate-zone override (v1.1 / Phase 7 LOC-05).
+ * Wins over derived-from-latitude season detection.
+ * - 'auto'      → use getWaterSeason(location.lat, date) (existing behavior)
+ * - 'northern'  → force Northern temperate flip (warm Apr-Sep, cold Oct-Mar)
+ * - 'southern'  → force Southern temperate flip (warm Oct-Mar, cold Apr-Sep)
+ * - 'tropical'  → always 'warm' (matches SEASON-02 lock for tropical zone)
+ * Missing on AppData = treat as 'auto' (additive, no schema bump).
+ */
+export type ClimateOverride = 'auto' | 'northern' | 'southern' | 'tropical';
+
+/**
  * Per-plant warm/cold watering schedule (v1.1). Replaces the single `waterEvery` field.
  * Cold interval is typically warm × per-category factor (see applyColdFactor in migration.ts).
  */
@@ -124,6 +135,8 @@ export interface AppData {
   diagnosisCount: number;
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
   shoppingList: ShoppingItem[];
+  /** v1.1 Phase 7 (LOC-05). User-controlled climate-zone override. Missing = 'auto'. */
+  climateOverride?: ClimateOverride;
 }
 
 /**
