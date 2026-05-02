@@ -1,3 +1,5 @@
+// Phase 8 (CAT-04): catalog content sourced via careTips/lightLabel utilities; no Plant-instance
+// content reads (tip/description/problems/nutrients) here. Verified by Plan 04 Task 2.
 import React from 'react';
 import {
   View,

@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, PlantPhoto, WeatherData, SavedDiagnosis, Location } from '../types';
-import { getPlantCategories, getTranslatedPlant } from '../data/plantDatabase';
+import { getPlantCategories, getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
@@ -73,9 +73,13 @@ export function MyPlantDetailModal({
     return allPlantDiagnoses.slice(0, 5);
   }, [allPlantDiagnoses]);
 
+  // Phase 8 (CAT-04): prefer direct id lookup via getCatalogEntry over fuzzy findDatabaseEntry.
+  // Defensive 3-rung fallback: getCatalogEntry(databaseId) → findDatabaseEntry (fuzzy, covers
+  // user-created custom plants without databaseId) → null.
   const dbEntry = useMemo(() => {
     if (!plant) return null;
-    const raw = findDatabaseEntry(plant);
+    const raw = (plant.databaseId ? getCatalogEntry(plant.databaseId) : null)
+      ?? findDatabaseEntry(plant);
     return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
 
