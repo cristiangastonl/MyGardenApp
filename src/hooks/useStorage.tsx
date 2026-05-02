@@ -13,6 +13,7 @@ import {
   BACKUP_KEY,
   CURRENT_SCHEMA_VERSION,
 } from '../utils/migration';
+import { getCatalogEntry } from '../data/plantDatabase';
 
 interface StorageState {
   plants: Plant[];
@@ -374,7 +375,20 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }, [scheduleSave]);
 
   const updatePlant = useCallback((id: string, updates: Partial<Plant>) => {
-    const newPlants = dataRef.current.plants.map(p => p.id === id ? { ...p, ...updates } : p);
+    // Phase 8 (CAT-05): auto-rewrite alias databaseId to canonical on save.
+    // Idempotent — if databaseId is already canonical, entry.id === updates.databaseId
+    // and no rewrite occurs. ONLY in updatePlant (not addPlant/setPlants) per CONTEXT decision.
+    const normalizedUpdates = { ...updates };
+    if (updates.databaseId) {
+      const entry = getCatalogEntry(updates.databaseId);
+      if (entry && entry.id !== updates.databaseId) {
+        normalizedUpdates.databaseId = entry.id;
+        if (__DEV__) {
+          console.warn(`[updatePlant] aliased databaseId "${updates.databaseId}" → "${entry.id}"`);
+        }
+      }
+    }
+    const newPlants = dataRef.current.plants.map(p => p.id === id ? { ...p, ...normalizedUpdates } : p);
     setPlants(newPlants);
     dataRef.current.plants = newPlants;
     scheduleSave();
