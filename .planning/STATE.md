@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-status: roadmapped
-stopped_at: Roadmap created — 15 phases (10-24), 74/74 requirements mapped. Ready for /gsd:plan-phase 10.
-last_updated: "2026-05-01T00:00:00.000Z"
-last_activity: "2026-05-01 — v1.2 roadmap created: 15 phases (10-24), 74 requirements mapped. Phase 10 (Perenual Security) is first."
+status: planning
+stopped_at: Completed 10-01-PLAN.md (get-plant-care edge function source created)
+last_updated: "2026-05-02T23:37:42.191Z"
+last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 4
+  completed_plans: 1
   percent: 0
 ---
 
@@ -60,6 +60,7 @@ Key v1.2 pre-decisions locked during research:
 - **Pet toxicity sourced from ASPCA only:** No AI-only toxicity classification; ASPCA source URL required per entry in code comment (CRIT-2).
 - **`ReanimatedSwipeable` banned:** iOS crash bug with RNGH 2.28 + Reanimated 4.1; use `Gesture.Pan()` directly for all swipe gestures.
 - **Edge function dual-payload backward-compat:** `!!ctx.waterSchedule` discriminator sunset decision deferred to Phase 24 (DOCS).
+- [Phase 10]: SEC-02: PERENUAL_API_KEY moved server-side via Deno.env.get in get-plant-care edge function; response envelope { data: PerenualPlantDetail | null } enables clean null-fallback chain in client
 
 ### Pending Todos
 
@@ -73,6 +74,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-01
-Stopped at: Roadmap creation complete. ROADMAP.md + STATE.md written. REQUIREMENTS.md traceability updated.
+Last session: 2026-05-02T23:37:42.189Z
+Stopped at: Completed 10-01-PLAN.md (get-plant-care edge function source created)
 Resume file: None
