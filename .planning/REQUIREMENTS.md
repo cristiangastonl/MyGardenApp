@@ -67,9 +67,9 @@
 
 ### Paywall Architecture (PAY)
 
-- [ ] **PAY-01**: Paywall presentation lifts to App-level context (mirrors existing NotificationContext pattern); single render at root level
+- [x] **PAY-01**: Paywall presentation lifts to App-level context (mirrors existing NotificationContext pattern); single render at root level
 - [ ] **PAY-02**: Any nested modal that triggers paywall closes itself first, then the App-level paywall opens (no stacking)
-- [ ] **PAY-03**: Successful purchase invokes a deferred callback (registered when paywall opened) so the original gated action proceeds without the user re-tapping
+- [x] **PAY-03**: Successful purchase invokes a deferred callback (registered when paywall opened) so the original gated action proceeds without the user re-tapping
 
 ### Catalog Rebalance (CAT)
 
@@ -168,9 +168,9 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | DIAG-05 | Phase 9 | Pending |
 | DIAG-06 | Phase 9 | Pending |
 | DIAG-07 | Phase 9 | Pending |
-| PAY-01 | Phase 9 | Pending |
+| PAY-01 | Phase 9 | Complete |
 | PAY-02 | Phase 9 | Pending |
-| PAY-03 | Phase 9 | Pending |
+| PAY-03 | Phase 9 | Complete |
 | CAT-01 | Phase 8 | Complete |
 | CAT-02 | Phase 8 | Pending |
 | CAT-03 | Phase 8 | Pending |

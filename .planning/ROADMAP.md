@@ -156,4 +156,4 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | 8/8 | Complete   | 2026-05-02 | 2026-05-01 |
 | 8. Catalog Rebalance | 5/5 | Complete   | 2026-05-02 | - |
-| 9. Diagnosis Continuity + Paywall Architecture | 2/8 | In Progress|  | - |
+| 9. Diagnosis Continuity + Paywall Architecture | 3/8 | In Progress|  | - |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 09-03-PLAN.md (2/2 tasks)
-last_updated: "2026-05-02T14:56:50.499Z"
+stopped_at: Completed 09-02-PLAN.md (4/4 tasks)
+last_updated: "2026-05-02T14:59:44.193Z"
 last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
 progress:
   total_phases: 6
   completed_phases: 5
   total_plans: 39
-  completed_plans: 33
+  completed_plans: 34
   percent: 100
 ---
 
@@ -90,6 +90,7 @@ Progress: [██████████] 100% (v1.1 complete: 31/31 plans acro
 | Phase 08-catalog-rebalance P05 | 6 | 4 tasks | 5 files |
 | Phase 09 P01 | 3 min | 2 tasks | 2 files |
 | Phase 09 P03 | 4 | 2 tasks | 2 files |
+| Phase 09-diagnosis-continuity-paywall-architecture P02 | 4 | 4 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -192,6 +193,9 @@ Recent decisions affecting current work:
 - [Phase 09]: 'system' added to DiagnosisChatMessage.role (Phase 9 DIAG-03) — additive union widening; system messages rendered as centered info banner, not chat bubble
 - [Phase 09]: Smoke runner comment discipline: policy comment avoids 'T0a/T0b/T0c' grouping and 'esbuild/swc/babel' substring to keep grep -c contract counts exact (3 and 0 respectively)
 - [Phase 09]: updateDiagnosis placed after resolveDiagnosis in StorageActions interface; Partial<SavedDiagnosis> merge semantics chosen for atomic reopenedAt + chat update from Plan 09-05
+- [Phase 09-diagnosis-continuity-paywall-architecture]: consumePendingCallback atomic get-and-clear chosen over raw setPendingCallback: single operation prevents race between read and clear in purchase-success path
+- [Phase 09-diagnosis-continuity-paywall-architecture]: T8 smoke assertion uses indexOf+slice for function body extraction not lazy regex — lazy [\s\S]*?\n\} stops at parameter destructuring close-brace, not function body close
+- [Phase 09-diagnosis-continuity-paywall-architecture]: hidePaywall capture-then-clear-then-fire for cancel path: cb=pending; setPending(null); cb?.onCancel?.() — purchase-success path uses consumePendingCallback leaving null so onCancel is no-op (Pitfall 7 lock)
 
 ### Pending Todos
 
@@ -207,6 +211,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T14:56:50.496Z
-Stopped at: Completed 09-03-PLAN.md (2/2 tasks)
+Last session: 2026-05-02T14:59:44.191Z
+Stopped at: Completed 09-02-PLAN.md (4/4 tasks)
 Resume file: None
