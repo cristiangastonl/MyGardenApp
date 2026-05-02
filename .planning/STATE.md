@@ -4,7 +4,7 @@ milestone: v1.1
 milestone_name: Precision Care
 status: completed
 stopped_at: Completed 07-08-PLAN.md (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone by user decision)
-last_updated: "2026-05-02T00:13:14.450Z"
+last_updated: "2026-05-02T00:24:44.388Z"
 last_activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
 progress:
   total_phases: 6
