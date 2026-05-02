@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 08-01-PLAN.md (3/3 tasks)
-last_updated: "2026-05-02T03:38:11.276Z"
+stopped_at: Completed 08-02-PLAN.md (3/3 tasks)
+last_updated: "2026-05-02T04:12:39.492Z"
 last_activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 31
-  completed_plans: 27
+  completed_plans: 28
   percent: 100
 ---
 
@@ -84,6 +84,7 @@ Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1
 | Phase 07 P07 | 29 | 3 tasks | 3 files |
 | Phase 07 P08 | 5 | 5/6 tasks (Task 6 deploy deferred) | 6 files |
 | Phase 08-catalog-rebalance P01 | 12 | 3 tasks | 4 files |
+| Phase 08-catalog-rebalance P02 | 32min | 3 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -172,6 +173,8 @@ Recent decisions affecting current work:
 - [Phase 07-ui-write-side-onboarding-edge-function-contract]: Supabase edge function deploy (diagnose-plant + chat-diagnosis) deferred to end-of-milestone batch by user decision 2026-05-01 — legacy server branch continues to serve all clients; deploy is tracked in v1_1_test_backlog.md
 - [Phase 08-catalog-rebalance]: A8 count baseline set to 50 not 38: live catalog has 50 entries; RESEARCH.md had stale count; Plan 03 must flip A8 to 64 when 14 new entries land
 - [Phase 08-catalog-rebalance]: getCatalogEntry id-before-alias invariant: canonical id find runs before _aliases scan; synthetic 2-entry harness asserts this without mutating live PLANT_DATABASE
+- [Phase 08-catalog-rebalance]: Citrus cold drift fixed as Rule 1: RESEARCH SSOT says cold=10 for citrus (1:2 ratio from FEATURES.md); Phase 4 codemod produced cold=8; applied expert values to 4 entries (limonero/naranjo/aguacate/mandarino)
+- [Phase 08-catalog-rebalance]: lavanda frozen at cold=17: Plan 03 owns rename lavanda->lavanda-angustifolia atomically with cold 17->21 override; splitting would create transient broken state
 
 ### Pending Todos
 
@@ -187,6 +190,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T03:38:11.274Z
-Stopped at: Completed 08-01-PLAN.md (3/3 tasks)
+Last session: 2026-05-02T04:12:39.489Z
+Stopped at: Completed 08-02-PLAN.md (3/3 tasks)
 Resume file: None
