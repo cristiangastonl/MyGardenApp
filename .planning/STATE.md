@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 09-06-PLAN.md (4/4 tasks)
-last_updated: "2026-05-02T15:09:19.655Z"
+stopped_at: Completed 09-05-PLAN.md (3/3 tasks)
+last_updated: "2026-05-02T15:10:20.547Z"
 last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
 progress:
   total_phases: 6
   completed_phases: 5
   total_plans: 39
-  completed_plans: 36
+  completed_plans: 37
   percent: 100
 ---
 
@@ -93,6 +93,7 @@ Progress: [██████████] 100% (v1.1 complete: 31/31 plans acro
 | Phase 09-diagnosis-continuity-paywall-architecture P02 | 4 | 4 tasks | 4 files |
 | Phase 09 P04 | 4 | 3 tasks | 3 files |
 | Phase 09 P06 | 8 | 4 tasks | 4 files |
+| Phase 09-diagnosis-continuity-paywall-architecture P05 | 8 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -200,6 +201,9 @@ Recent decisions affecting current work:
 - [Phase 09-diagnosis-continuity-paywall-architecture]: hidePaywall capture-then-clear-then-fire for cancel path: cb=pending; setPending(null); cb?.onCancel?.() — purchase-success path uses consumePendingCallback leaving null so onCancel is no-op (Pitfall 7 lock)
 - [Phase 09]: continueChat wording updated (drop emoji prefix): ES 'Continuar consulta', EN 'Continue chat' — matches RESEARCH §Example 4; 4 new diagnosis i18n keys locked (reopenChat, resumeBanner, reopenSystemMessage, messagesRemaining) in both locales
 - [Phase 09]: priorPersistedCount from resumeDiagnosis?.chat not from in-session chatMessages — fixes CF-7 session-only bug; remaining ?? Infinity defensive idiom for no-gate-when-undefined
+- [Phase 09]: isPremium prop removed from DiagnosisDetailModal entirely — component reads usePremiumGate() directly (single source of truth); all callers (MyPlantDetailModal + TodayScreen) updated atomically
+- [Phase 09]: Reopen system message idempotency key is sys-${reopenedAtIso} — deterministic id allows O(1) last-message check without scanning the full chat array; RESEARCH §Q2 lock
+- [Phase 09]: System message append runs BEFORE paywall check — reopenedAt persisted even if free user cancels paywall; reopen intent captured regardless of purchase outcome
 
 ### Pending Todos
 
@@ -215,6 +219,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T15:09:12.112Z
-Stopped at: Completed 09-06-PLAN.md (4/4 tasks)
+Last session: 2026-05-02T15:10:20.544Z
+Stopped at: Completed 09-05-PLAN.md (3/3 tasks)
 Resume file: None
