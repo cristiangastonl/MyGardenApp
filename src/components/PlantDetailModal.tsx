@@ -14,7 +14,9 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { PlantDBEntry } from '../types';
-import { getTranslatedPlant } from '../data/plantDatabase';
+// Phase 8 (CAT-04): catalog content rendered via getCatalogEntry live lookup.
+// Patch updates to PLANT_DATABASE propagate on next render — no instance copy.
+import { getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { getLightLabel } from '../utils/lightLabel';
 
@@ -36,7 +38,11 @@ const HUMIDITY_KEYS: Record<string, string> = {
 export function PlantDetailModal({ visible, plant: rawPlant, onClose, onAdd }: PlantDetailModalProps) {
   const { t } = useTranslation();
   if (!rawPlant) return null;
-  const plant = getTranslatedPlant(rawPlant);
+  // Defensive canonical re-lookup: if the entry came from a list snapshot, re-resolve via
+  // getCatalogEntry to ensure live PLANT_DATABASE values render (not a stale snapshot copy).
+  // Fallback to the passed rawPlant if getCatalogEntry returns null (shouldn't happen for catalog plants).
+  const canonical = getCatalogEntry(rawPlant.id) ?? rawPlant;
+  const plant = getTranslatedPlant(canonical);
 
   return (
     <Modal
