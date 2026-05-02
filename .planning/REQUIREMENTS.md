@@ -61,7 +61,7 @@
 - [x] **DIAG-02**: Free users tapping "Continue chat" see the paywall before chat opens; existing paywall message-count limits remain enforced
 - [x] **DIAG-03**: Resolved diagnoses show "Reabrir consulta" instead of "Continuar consulta"; reopened chats prepend a system message ("Hace N días marcaste esta consulta como resuelta. ¿Qué cambió?")
 - [x] **DIAG-04**: Resumed conversations are text-only by design; UI shows explicit copy ("Continuando diagnóstico anterior. Para reevaluación visual, sacá una foto nueva.")
-- [ ] **DIAG-05**: Resume system prompt includes prior assessment summary so AI doesn't re-assess severity unless new photo is uploaded
+- [x] **DIAG-05**: Resume system prompt includes prior assessment summary so AI doesn't re-assess severity unless new photo is uploaded
 - [x] **DIAG-06**: Message-count limit on resume is per-diagnosis-lifetime, not per-session; remaining count is visible to user before they type
 - [x] **DIAG-07**: Premium upgrade lifts the message limit retroactively (no re-tap required)
 
@@ -165,7 +165,7 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | DIAG-02 | Phase 9 | Complete |
 | DIAG-03 | Phase 9 | Complete |
 | DIAG-04 | Phase 9 | Complete |
-| DIAG-05 | Phase 9 | Pending |
+| DIAG-05 | Phase 9 | Complete |
 | DIAG-06 | Phase 9 | Complete |
 | DIAG-07 | Phase 9 | Complete |
 | PAY-01 | Phase 9 | Complete |
