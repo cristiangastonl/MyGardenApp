@@ -25,7 +25,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 - [x] **Phase 4: Schema Foundation + Migration Core** — Versioned envelope, runMigrations infrastructure, deterministic mappers, cancel-and-reschedule notifications, post-migration explainer
 - [x] **Phase 5: Hemisphere/Season Helpers + Pure-Utility Switchover** — 3-zone seasonality utility, soil-check task type, health/logic/notifications consume new fields (completed 2026-05-01)
 - [x] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges (completed 2026-05-01)
-- [ ] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload
+- [x] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload (completed 2026-05-01; Supabase deploy batched to end-of-milestone)
 - [ ] **Phase 8: Catalog Rebalance** — All 60+ entries gain new fields, 14 LATAM outdoor additions, lavender variety split, lookup-by-id contract, CI guards
 - [ ] **Phase 9: Diagnosis Continuity + Paywall Architecture** — Continue button visible to all, "Reabrir consulta" rename, App-level paywall context, message-count per diagnosis lifetime, retroactive premium lift
 
@@ -95,14 +95,14 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   4. The user is shown a non-blocking location prompt at onboarding with a clear skip option and copy explaining why ("Lo usamos para ajustar el cuidado a tu clima — no se envía a ningún lado además del servicio de clima"); skipping does not block onboarding.
   5. If location is missing, "Hoy" shows a soft, dismissible banner ("Agregá tu ubicación para horarios precisos"), the app falls back to warm schedule (never under-waters), and Settings exposes both manual city entry (Open-Meteo geocoding) and a manual climate-zone override (Northern / Southern / Tropical) that wins over derived hemisphere.
 **Plans**: 8 plans
-- [ ] 07-01-PLAN.md — Wave 0: ClimateOverride type + AppData field + useStorage action + both AppContent destructures + smoke runner scaffold
-- [ ] 07-02-PLAN.md — Wave 0: getEffectiveSeason SSOT + getNextWaterDate/getTasksForDay signature change (latitude → season) + 8 call-site migrations + matrix smoke
-- [ ] 07-03-PLAN.md — Wave 1: 27 new i18n keys (lightLevelHint + waterSchedule + onboarding.location + settings.climateOverride + today.locationBanner + identification.lightLevelLabel) in EN + ES voseo + parity smoke
-- [ ] 07-04-PLAN.md — Wave 1: LightLevelPicker (2×2 grid, locale-aware) + WaterScheduleEditor (segmented mode + dual warm/cold inputs)
-- [ ] 07-05-PLAN.md — Wave 2: AddPlantModal swap (LightLevelPicker + WaterScheduleEditor) + OnboardingScreen new location step (3-button: GPS / city / skip) + plantDBToPlant new schema
-- [ ] 07-06-PLAN.md — Wave 2: IdentifiedPlant.lightLevel + convertPlantNetResult ladder + IdentificationResults picker integration + onAddPlant signature change
-- [ ] 07-07-PLAN.md — Wave 3: SettingsPanel Zona climática 4-option segmented picker + LocationBanner component + TodayScreen integration (per-session dismiss)
-- [ ] 07-08-PLAN.md — Wave 4: PlantDiagnosisContext widening + PlantDiagnosisModal v1.1 build + 2 edge functions (diagnose-plant, chat-diagnosis) dual-payload discriminator + ES/EN prompts + manual deploy checkpoint
+- [x] 07-01-PLAN.md — Wave 0: ClimateOverride type + AppData field + useStorage action + both AppContent destructures + smoke runner scaffold — completed 2026-05-01
+- [x] 07-02-PLAN.md — Wave 0: getEffectiveSeason SSOT + getNextWaterDate/getTasksForDay signature change (latitude → season) + 8 call-site migrations + matrix smoke — completed 2026-05-01
+- [x] 07-03-PLAN.md — Wave 1: 27 new i18n keys (lightLevelHint + waterSchedule + onboarding.location + settings.climateOverride + today.locationBanner + identification.lightLevelLabel) in EN + ES voseo + parity smoke — completed 2026-05-01
+- [x] 07-04-PLAN.md — Wave 1: LightLevelPicker (2×2 grid, locale-aware) + WaterScheduleEditor (segmented mode + dual warm/cold inputs) — completed 2026-05-01
+- [x] 07-05-PLAN.md — Wave 2: AddPlantModal swap (LightLevelPicker + WaterScheduleEditor) + OnboardingScreen new location step (3-button: GPS / city / skip) + plantDBToPlant new schema — completed 2026-05-01
+- [x] 07-06-PLAN.md — Wave 2: IdentifiedPlant.lightLevel + convertPlantNetResult ladder + IdentificationResults picker integration + onAddPlant signature change — completed 2026-05-01
+- [x] 07-07-PLAN.md — Wave 3: SettingsPanel Zona climática 4-option segmented picker + LocationBanner component + TodayScreen integration (per-session dismiss) — completed 2026-05-01
+- [x] 07-08-PLAN.md — Wave 4: PlantDiagnosisContext widening + PlantDiagnosisModal v1.1 build + 2 edge functions (diagnose-plant, chat-diagnosis) dual-payload discriminator + ES/EN prompts + Supabase deploy deferred to end-of-milestone — completed 2026-05-01
 
 ### Phase 8: Catalog Rebalance
 **Goal**: All 60+ existing catalog entries gain expert-vetted `lightLevel`, `waterSchedule {warm, cold}`, and `waterMode` fields; 14 LATAM outdoor plants are added with full new-model fields; lavender is split into three variants with distinct cold tolerance; catalog content is read by lookup, not copied; CI guards every catalog `id` for full keyset in EN + ES and every `imageUrl` resolves to 200.
@@ -141,6 +141,6 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
-| 7. UI Write-Side + Onboarding + Edge-Function Contract | 7/8 | In Progress|  | - |
+| 7. UI Write-Side + Onboarding + Edge-Function Contract | 8/8 | Complete   | 2026-05-02 | 2026-05-01 |
 | 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |

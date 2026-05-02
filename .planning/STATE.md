@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
-status: checkpoint-awaiting-deploy
-stopped_at: "07-08-PLAN.md Task 6 — awaiting user deploy of diagnose-plant + chat-diagnosis edge functions"
-last_updated: "2026-05-01T23:26:00Z"
-last_activity: 2026-05-01 — Plan 05-05 complete (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
+status: completed
+stopped_at: Completed 07-08-PLAN.md (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone by user decision)
+last_updated: "2026-05-02T00:13:14.450Z"
+last_activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 26
-  completed_plans: 25
+  completed_plans: 26
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 5 COMPLETE (5/5 plans). Hemisphere/Season Helpers + Pure-Utility Switchover shipped: SEASON-01..04, WATER-05, WATER-06 locked across plantLogic, plantHealth, calculateGardenHealth, wateringRecommendations, PlantCard, notificationScheduler, and 5 component callsites. v1.1 milestone complete pending Phase 6 UX polish (NEXT).
+**Current focus:** v1.1 Precision Care — Phase 7 COMPLETE (8/8 plans). UI Write-Side + Onboarding + Edge-Function Contract shipped: LightLevelPicker, WaterScheduleEditor, AddPlantModal swap, OnboardingScreen location step, plant identification lightLevel, LocationBanner, SettingsPanel climate override, diagnose-plant + chat-diagnosis dual-payload discriminator. Supabase deploy batched to end-of-milestone. Next: Phase 8 (Catalog Rebalance).
 
 ## Current Position
 
-Phase: 5 of 6 (Hemisphere/Season Helpers + Pure-Utility Switchover) — COMPLETE
-Plan: 5 of 5 — COMPLETE
-Status: Phase 5 complete (5/5 plans). Multi-stage tsc handoff Plan 03 → 04 → 05 fully closed; project-wide `npx tsc --noEmit` exits 0; smoke 106/106 PASS; legacy-fields ALLOWLIST count unchanged at 27; B4 null-guard parity invariant preserved. Next: Phase 6 (UX badges + empty-state copy + dedicated 'check_soil' visual differentiation if telemetry warrants).
-Last activity: 2026-05-01 — Plan 07-08 Tasks 1-5 complete (checkpoint at Task 6 — edge function deploy requires user CLI access) (Wave 4 — notificationScheduler season-aware via latitude threading into createMorningContent + scheduleMorningReminder; 'check_soil' branches added across 8 component discriminator chains in DayDetail/DayDetailModal/MonthCalendar; multi-stage tsc handoff closed via Rule 3 PlantsScreen<PlantCard> + 3 cascading prop ratchets; project-wide tsc GREEN; smoke 106/106 unchanged; B4 invariant preserved; SEASON-04 satisfied transitively (no direct getWaterSeason import in scheduler — single source of truth via call-chain getTasksForDay). Phase 5 ships 5/5 plans.)
+Phase: 7 of 6 (UI Write-Side + Onboarding + Edge-Function Contract) — COMPLETE
+Plan: 8 of 8 — COMPLETE (Task 6 deploy deferred)
+Status: Phase 7 complete (8/8 plans). All source changes shipped; Supabase function deploy deferred to end-of-milestone batch per user decision 2026-05-01. tsc exits 0; smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. Next: Phase 8 (Catalog Rebalance).
+Last activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
 
-Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1.1 overall: 12/12 plans)
+Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1.1 overall: 26/26 plans)
 
 ## Performance Metrics
 
@@ -82,7 +82,7 @@ Progress: [██████████] 100% (Phase 5: 5/5 plans complete; v1
 | Phase 07-ui-write-side-onboarding-edge-function-contract P06 | 8 | 2 tasks | 4 files |
 | Phase 07-ui-write-side-onboarding-edge-function-contract P05 | 15 | 3 tasks | 2 files |
 | Phase 07 P07 | 29 | 3 tasks | 3 files |
-| Phase 07 P08 (partial) | 5 | 5/6 tasks | 6 files |
+| Phase 07 P08 | 5 | 5/6 tasks (Task 6 deploy deferred) | 6 files |
 
 ## Accumulated Context
 
@@ -168,6 +168,7 @@ Recent decisions affecting current work:
 - [Phase 07-07]: SettingsPanel imports useStorage() directly for climateOverride — avoids prop threading through SettingsScreen
 - [Phase 07-08]: WaterSeason defined in src/types/index.ts (not seasonality.ts) to avoid import cycles; seasonality.ts imports+re-exports for backward compat — zero drift for existing consumers
 - [Phase 07-08]: Edge function dual-payload discriminator !!ctx.waterSchedule — new clients send v1.1 shape; grace-window clients keep legacy branch; v1.2 sunsets legacy once ≥99% new-payload telemetry
+- [Phase 07-ui-write-side-onboarding-edge-function-contract]: Supabase edge function deploy (diagnose-plant + chat-diagnosis) deferred to end-of-milestone batch by user decision 2026-05-01 — legacy server branch continues to serve all clients; deploy is tracked in v1_1_test_backlog.md
 
 ### Pending Todos
 
@@ -183,6 +184,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-01T23:17:50.068Z
-Stopped at: Completed 07-07-PLAN.md
+Last session: 2026-05-02T00:13:14.440Z
+Stopped at: Completed 07-08-PLAN.md (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone by user decision)
 Resume file: None

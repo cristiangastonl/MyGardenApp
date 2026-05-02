@@ -43,18 +43,17 @@ decisions:
   - "chat-diagnosis systemPrompt ES + EN both replaced inline ctx.waterEvery/ctx.sunHours with ${contextInfo} (same builder helpers as diagnose-plant)"
 metrics:
   duration: "~5 min (Tasks 1-5)"
-  completed: "2026-05-01 (partial — awaiting Task 6 deploy)"
+  completed: "2026-05-01"
   tasks_completed: 5
+  tasks_deferred: 1
   files_modified: 6
 ---
 
 # Phase 7 Plan 8: Edge-Function Payload Contract Summary
 
-Dual-payload `!!ctx.waterSchedule` discriminator for `diagnose-plant` + `chat-diagnosis`; `PlantDiagnosisContext` widened with v1.1 fields; `PlantDiagnosisModal` drops legacy bridge and builds v1.1 context via `getEffectiveSeason(location, climateOverride, today)`.
+Dual-payload `!!ctx.waterSchedule` discriminator for `diagnose-plant` + `chat-diagnosis`; `PlantDiagnosisContext` widened with v1.1 fields; `PlantDiagnosisModal` drops legacy bridge and builds v1.1 context via `getEffectiveSeason(location, climateOverride, today)`. Task 6 (Supabase deploy) deferred to end-of-milestone batch deploy — legacy branch on server continues to serve both old and new clients correctly during the deferral window.
 
-**Status: PARTIAL — Tasks 1-5 complete. Task 6 (Supabase deploy) awaiting human action.**
-
-## Tasks Completed (1-5 of 6)
+## Tasks Completed (5/6 tasks; Task 6 DEFERRED by user decision)
 
 | # | Name | Commit | Key Files |
 |---|------|--------|-----------|
@@ -63,11 +62,15 @@ Dual-payload `!!ctx.waterSchedule` discriminator for `diagnose-plant` + `chat-di
 | 3 | diagnose-plant — widen PlantContext + discriminator prompt (ES + EN) | 327b1c4 | supabase/functions/diagnose-plant/index.ts |
 | 4 | chat-diagnosis — mirror diagnose-plant changes | c041e43 | supabase/functions/chat-diagnosis/index.ts |
 | 5 | Smoke runner — assert discriminator string-level logic | 069b2f7 | scripts/smoke-phase07.mjs |
-| 6 | Deploy edge functions to Supabase | PENDING | (human action — Task 6 checkpoint) |
+| 6 | Deploy edge functions to Supabase | DEFERRED | User decision — batched to end-of-milestone deploy |
 
-## Task 6: Awaiting Deploy (human-action checkpoint)
+## Task 6: DEFERRED (User Decision — Batch Deploy at End of Milestone)
 
-Edge function source changes from Tasks 3 + 4 are committed but NOT yet deployed. The `.envrc` file holds the Supabase CLI access token (never committed per security policy). Run these two commands from the project root:
+**Decision date:** 2026-05-01
+
+Edge function source changes from Tasks 3 + 4 are committed but intentionally NOT deployed yet. User opted to batch Supabase function deploys at end of v1.1 milestone (during device-test phase) rather than per-plan. The legacy branch on the Supabase servers continues to correctly serve both old clients (pre-Phase-7 installs, still sending `waterEvery` + `sunHours`) and new clients (post-Phase-7 builds, sending `waterSchedule` + `lightLevel`) — the server's existing code still produces valid prompts for old-shape payloads. No users are broken during the deferral window.
+
+**Deploy commands to run before declaring v1.1 ready:**
 
 ```bash
 source .envrc && supabase functions deploy diagnose-plant
@@ -75,6 +78,8 @@ source .envrc && supabase functions deploy chat-diagnosis
 ```
 
 After deploy, Supabase Dashboard → Functions → Logs should show new prompt format when a diagnosis is triggered from the updated app.
+
+**Backlog tracking:** Added to v1.1 device-test backlog (`memory/v1_1_test_backlog.md`) under Phase 7 deploy item.
 
 ## Type Changes (Task 1)
 
@@ -238,7 +243,7 @@ Trigger: telemetry shows ≥99% new-payload traffic to diagnose-plant and chat-d
 - **Files modified:** supabase/functions/diagnose-plant/index.ts, supabase/functions/chat-diagnosis/index.ts
 - **Commit:** 327b1c4
 
-## Self-Check: PENDING (awaiting Task 6 deploy)
+## Self-Check: PASSED (Task 6 deferred by user decision)
 
 Pre-deploy self-check:
 - FOUND: src/types/index.ts (export interface PlantDiagnosisContext: 1; export type WaterSeason: 1; lightLevel?: LightLevel: 1)
@@ -249,8 +254,4 @@ Pre-deploy self-check:
 - FOUND: scripts/smoke-phase07.mjs (PASS 100/100)
 - Commits: 9ec01fc, 532e30e, 327b1c4, c041e43, 069b2f7 — all present
 - tsc --noEmit: exits 0
-
-Post-deploy self-check (continuation agent):
-- Confirm `supabase functions deploy diagnose-plant` succeeded ("Deployed Function" message)
-- Confirm `supabase functions deploy chat-diagnosis` succeeded ("Deployed Function" message)
-- Optional: Supabase Dashboard logs show new prompt format after app trigger
+- Task 6: DEFERRED — user decision 2026-05-01; deploy batched to end-of-milestone; added to device-test backlog
