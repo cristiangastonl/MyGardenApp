@@ -27,7 +27,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
 - [x] **Phase 6: UI Read-Side Propagation** — Plant cards, detail modals, diagnosis context display lightLevel + seasonal interval + mode badges (completed 2026-05-01)
 - [x] **Phase 7: UI Write-Side + Onboarding + Edge-Function Contract** — 4-card light picker, warm/cold inputs, location prompt + banner + manual override, edge functions accept new payload (completed 2026-05-01; Supabase deploy batched to end-of-milestone)
 - [x] **Phase 8: Catalog Rebalance** — All 60+ entries gain new fields, 14 LATAM outdoor additions, lavender variety split, lookup-by-id contract, CI guards (completed 2026-05-02)
-- [ ] **Phase 9: Diagnosis Continuity + Paywall Architecture** — Continue button visible to all, "Reabrir consulta" rename, App-level paywall context, message-count per diagnosis lifetime, retroactive premium lift
+- [x] **Phase 9: Diagnosis Continuity + Paywall Architecture** — Continue button visible to all, "Reabrir consulta" rename, App-level paywall context, message-count per diagnosis lifetime, retroactive premium lift (completed 2026-05-02)
 
 ## Phase Details
 
@@ -156,4 +156,4 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | 8/8 | Complete   | 2026-05-02 | 2026-05-01 |
 | 8. Catalog Rebalance | 5/5 | Complete   | 2026-05-02 | - |
-| 9. Diagnosis Continuity + Paywall Architecture | 7/8 | In Progress|  | - |
+| 9. Diagnosis Continuity + Paywall Architecture | 8/8 | Complete   | 2026-05-02 | - |

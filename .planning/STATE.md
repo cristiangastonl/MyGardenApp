@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 09-07-PLAN.md (3/3 tasks)
-last_updated: "2026-05-02T17:00:48.275Z"
+stopped_at: Completed 09-08-PLAN.md (4/4 tasks)
+last_updated: "2026-05-02T17:07:14.783Z"
 last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
 progress:
   total_phases: 6
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 39
-  completed_plans: 38
+  completed_plans: 39
   percent: 100
 ---
 
@@ -95,6 +95,7 @@ Progress: [██████████] 100% (v1.1 complete: 31/31 plans acro
 | Phase 09 P06 | 8 | 4 tasks | 4 files |
 | Phase 09-diagnosis-continuity-paywall-architecture P05 | 8 | 3 tasks | 4 files |
 | Phase 09 P07 | 7 | 3 tasks | 5 files |
+| Phase 09-diagnosis-continuity-paywall-architecture P08 | 8 | 4 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -207,6 +208,8 @@ Recent decisions affecting current work:
 - [Phase 09]: System message append runs BEFORE paywall check — reopenedAt persisted even if free user cancels paywall; reopen intent captured regardless of purchase outcome
 - [Phase 09]: T5g assertion scoped to TypeScript/source files only — plan docs reference 'supabase functions deploy' in explanatory text; self-defeating false positive avoided
 - [Phase 09]: buildPriorDiagnosisSummary placed as module-level function in PlantDiagnosisModal.tsx — single-use helper co-located with its only consumer
+- [Phase 09-diagnosis-continuity-paywall-architecture]: handlePaywallFromChat named useCallback replaces inline JSX prop for T9b smoke unambiguity + PAY-02 compliance
+- [Phase 09-diagnosis-continuity-paywall-architecture]: handlePaywallWithDeferredSend stays inside modal by design (DIAG-07 documented PAY-02 exception): closing chat mid-type loses typedText; closure captures text for deferred onSuccess re-send
 
 ### Pending Todos
 
@@ -222,6 +225,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T17:00:34.936Z
-Stopped at: Completed 09-07-PLAN.md (3/3 tasks)
+Last session: 2026-05-02T17:07:14.780Z
+Stopped at: Completed 09-08-PLAN.md (4/4 tasks)
 Resume file: None
