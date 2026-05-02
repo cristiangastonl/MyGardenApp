@@ -1,639 +1,577 @@
-# Domain Pitfalls — v1.1 Precision Care
+# Domain Pitfalls — v1.2 Recommendation-First Plant Guide
 
-**Domain:** Schema migration + behavioral model change in a live local-first React Native app with real production users
-**Researched:** 2026-04-29
-**Scope:** Pitfalls specific to ADDING precision care features (light levels, seasonal watering, soil-check mode, hemisphere/season, diagnosis continuity, catalog rebalance) to the existing My Happy Garden app — NOT generic mobile/RN advice
+**Domain:** Feature expansion + UX modernization on a live local-first React Native app (My Happy Garden)
+**Researched:** 2026-05-01
+**Scope:** Pitfalls specific to ADDING v1.2 features (recommendation-first refactor, catalog authoring at scale, PlantCard cleanup, bottom sheets, swipe gestures, pet toxicity, fertilization, plant journal, streaks) to the existing app — NOT a repeat of v1.1 pitfalls.
 
-> **Read this first.** This document is opinionated. Each pitfall is concrete, has a detection signal, a prevention you can actually test, and a phase placement. The roadmap should map each pitfall to a milestone gate (migration phase / feature phase / verification / post-ship).
+> This document is opinionated. Each pitfall is concrete, has a detection signal, a prevention you can actually implement and test, and a phase placement. It reads the existing codebase first and draws conclusions from what is actually there — not generic mobile advice.
 
 ---
 
 ## Critical Pitfalls
 
-These cause data loss, support fires, or rewrites if missed.
+These cause data loss, broken user trust, or rewrites if missed.
 
-### CRIT-1: Migration runs partially, app is killed mid-write, user loses plants
+### CRIT-1: Recommendation adoption silently overwrites user's deliberate custom values
 
 **What goes wrong:**
-The current `useStorage` writes the entire `AppData` blob to a single AsyncStorage key (`'plant-agenda-v2'`) under a 100ms debounce. A migration that maps `sunHours → lightLevel` and `waterEvery → waterSchedule` for every plant must rewrite the entire blob. If the user backgrounds the app or the OS kills the process while the migration `setItem` is in flight (or worse, between read and write), they end up with: pre-migration blob still on disk, in-memory state already mutated, and on next launch — the load handler in `useStorage.tsx:144` reads the OLD blob silently, treating new fields as missing.
+The pivot to "recommendation-first" means the picker for watering interval and light level will pre-select the species recommendation (`PlantDBEntry.waterSchedule.warm`, `.lightLevel`). When the user saves a plant — especially from the identification flow or via "update care settings" — a naive implementation passes the recommendation as the default and calls `updatePlant(id, { waterSchedule: catalogEntry.waterSchedule })`. If the user already had a custom value (e.g. they water their Monstera every 5 days instead of the catalog's 7 because their apartment is hot), the recommendation replaces it silently.
 
 **Why it happens:**
-- AsyncStorage write is async and not atomic from the user's perspective (RN bridge → native → SQLite/leveldb)
-- The 100ms debounce means there is always a window where in-memory state and on-disk state diverge
-- No migration version marker exists in the current `AppData` schema — there is no way to detect "did migration finish?" on next launch
-- The `useStorage` load path silently swallows missing fields with `|| []` / `|| {}` defaults — a half-migrated record looks identical to a not-yet-migrated record
+`updatePlant` in `useStorage.tsx:378` does a shallow merge of `Partial<Plant>`. If the caller passes `waterSchedule: { warm: 7, cold: 14 }` from the catalog, the user's stored `{ warm: 5, cold: 10 }` is gone. There is no "did the user touch this field?" signal in the current `Plant` type. The current "identification picker pre-selects species recommendation" feature goal actively creates this code path.
 
-**Consequences:**
-- Plants reset to default care schedules silently, user thinks app is broken
-- Worst case: user customized `waterEvery` for a plant, migration overwrote with `waterSchedule.warm/cold` defaults from catalog mapping, original value lost
-- Worst case 2: user opens TestFlight build, migration runs but doesn't commit, then opens stable build — schema version mismatches cause type errors
+**How to avoid:**
+1. **Never call `updatePlant` with catalog values as the payload.** The picker must render catalog values as display-only suggestions and the actual saved value must come from the picker's current state — meaning if the user hasn't changed anything, the pre-selected value IS the catalog default, but it's the user's next explicit choice, not an auto-push.
+2. **Distinguish two states in the picker:** "Using recommended (7d)" vs "Using your custom (5d)". If the stored plant value differs from the catalog recommendation, show a visual indicator: "Tu configuración difiere de la recomendación (7d). Tocá para aplicar la recomendación." — This makes the divergence visible without making it feel wrong.
+3. **The Tus ajustes section** (4th section in the educational detail modal per PROJECT.md) is the right place for user-adjustable values. The first three sections (¿Qué hacer?, ¿Dónde ponerla?, ¿Por qué?) are read-only recommendations. Keep them structurally separate.
+4. **Smoke test guard:** add an assertion to the smoke runner that calls `updatePlant` with a catalog-default payload on a plant that already has a custom value, then reads back and verifies the custom value is unchanged unless the caller explicitly opted in.
 
-**Prevention (testable, not vague):**
-1. **Add `schemaVersion: number` to `AppData`** at top level. Default `0` for legacy blobs (missing field).
-2. **Migration runs as a single atomic transaction:** read blob → migrate in memory → write NEW blob with `schemaVersion: 1` → only after `setItem` resolves do we set `loading: false` in storage provider. NOT debounced. NOT optimistic.
-3. **Backup-before-migrate:** before writing migrated blob, write a copy to key `'plant-agenda-v2.backup-pre-v1.1'`. Keep for one app version then delete.
-4. **Test by killing the app:** in dev, install pre-migration build, create test data, sideload v1.1 build, force-kill during launch, verify data on relaunch.
-5. **Migration must be idempotent:** running it twice on already-migrated data is a no-op (check `schemaVersion >= 1` first).
-6. **Add structured log/analytics event:** `migration_started`, `migration_completed`, `migration_failed` so we can detect crashes in production via analytics rate.
+**Warning signs:**
+- A user reports "my watering schedule reset after I looked at the plant detail"
+- `updatePlant` call sites in `PlantDetailModal`, `AddPlantModal`, or `IdentificationResults` that accept a full `Plant` or `PlantDBEntry` as argument without user-edit confirmation
 
-**Detection signals in production:**
-- Spike in `migration_failed` analytics events
-- Drop in `plants_with_lightLevel_set / total_plants` ratio (should be ~100% post-migration)
-- Support tickets mentioning "my schedules reset" within 48h of v1.1 release
-
-**Phase placement:** **Migration phase (must complete before any feature work).** Block any v1.1 feature that touches Plant fields until schemaVersion infrastructure is shipped. Verification gate: simulate kill-during-migration on real device.
-
-**Confidence:** HIGH — directly observable from `useStorage.tsx:144-207` load logic.
+**Phase to address:** Educational Detail Modal phase (first feature phase). Establish the pattern before any picker UI is built; all subsequent pickers inherit it.
 
 ---
 
-### CRIT-2: Old field kept "just in case" → tech debt forever, dual-source-of-truth bugs
+### CRIT-2: Pet toxicity data shown as authoritative when source is unverified or incomplete
 
 **What goes wrong:**
-Tempting "safe" approach: keep `sunHours: number` AND add `lightLevel`, keep `waterEvery: number` AND add `waterSchedule`. Sounds like backward compat. Reality: every read site (`plantHealth.ts`, `plantLogic.ts:13-28`, `notificationScheduler.ts:533, 732`, plant card UI, edit modal, etc.) now has to choose which field to trust, and over time half use one and half use the other. Catalog seed says one thing, user override says another, computed task says a third.
+Pet toxicity information carries real liability. A user trusts the app, ignores a safety risk because the app says "no tóxica", and their cat gets sick. Or worse: the app says "tóxica" for a plant that is fine, causing user anxiety and undermining trust in the whole feature.
+
+The dataset accuracy problem is two-sided: (1) wrong classification, (2) incomplete catalog — if 30 of 64 entries lack toxicity data, user interprets "no warning = safe" when it might mean "unknown."
+
+ASPCA Toxic Plant Database is the canonical US source. There is no single equivalent LATAM authority — Argentine SENASA, Chilean SAG, and regional veterinary associations don't publish a digital-first toxicity list comparable to ASPCA. The app's audience is primarily Argentine Spanish speakers.
 
 **Why it happens:**
-- Risk-aversion at migration time
-- "We'll remove old field next release" — but next release adds another concern, old field stays
-- No single owner for "this is how watering interval is computed"
+- AI-drafted catalog content will hallucinate toxicity classifications if prompted naively ("is this plant toxic to cats?")
+- "Mildly toxic" is ambiguous medical territory — most plants cause GI discomfort at worst; a few cause systemic damage
+- Incomplete data is treated as negative ("not listed = safe") by users who read absence of a warning as clearance
 
-**Consequences:**
-- `getNextWaterDate(plant)` (plantLogic.ts:4) uses `plant.waterEvery`, but a new "next watering" widget uses `waterSchedule.warm` — they disagree → user sees two different "next watering" dates
-- `scheduleSunWindow(plant.sunHours * 3600 * 1000)` (notificationScheduler.ts:533) keeps using stale `sunHours` while plant card shows new "Bright indirect" badge → notification body says "needs 4hs of sun" for a plant the user told the app needs "low light"
+**How to avoid:**
+1. **Use ASPCA as primary source, cross-checked with one additional source per entry** (e.g. ASPCA + UC Davis Poisonous Plants database, or ASPCA + PetMD). Do NOT rely on AI drafts for toxicity classification — use AI only to format and translate human-verified data.
+2. **Three-state taxonomy, not binary:** `safe | caution | toxic`. Never omit the field — if unverified, use `'unknown'` (4th state) and display "No verificamos la toxicidad de esta planta. Consultá a tu veterinario."
+3. **"Mildly toxic" copy discipline:** avoid "no es dañina" — say "puede causar molestias digestivas si se ingiere. En caso de ingestión, consultá a tu veterinario." This is honest and not alarmist.
+4. **Scope to cats/dogs only** for v1.2. Other pets (birds, reptiles, horses) have different sensitivities; don't overpromise scope.
+5. **Legal copy:** add a single disclaimer sentence in the toxicity section: "Esta información es orientativa. En caso de emergencia, contactá a un veterinario." Not a wall of text — one sentence.
+6. **Smoke guard:** `grep -r "petToxicity\|toxicCats\|toxicDogs" src/data/plantDatabase.ts | wc -l` — run after catalog content phase, assert count equals total catalog entries.
 
-**Prevention:**
-1. **One-way migration, then delete.** After migration completes, the old field MUST be removed from the in-memory `Plant` type AND from the persisted blob. Migration writes new schema, period.
-2. **TypeScript will catch the rest.** Remove `sunHours: number` and `waterEvery: number` from `Plant` type in `src/types/index.ts`. The compiler will surface every read site. Fix or delete each.
-3. **Keep old field on `PlantDBEntry` (catalog)** ONLY as a `_legacySunHours` / `_legacyWaterDays` private field used by the migration mapper, never read at runtime. Better: derive at build time and never persist.
-4. **Add an ESLint rule or grep guard in CI:** any reference to `.sunHours` or `.waterEvery` outside the migration file fails the type-check (since the field is gone, the project won't compile).
+**Warning signs:**
+- Any catalog entry has `petToxicity: 'safe'` without a source citation in the code comment
+- AI-drafted entries for toxicity that don't cite a specific database entry
+- Catalog entries where `petToxicity` field is absent (undefined treated as safe)
 
-**Detection signals:**
-- Any PR that reintroduces `plant.sunHours` outside `migrations/` should fail type-check
-- A code review checklist: "does this read either of the old fields?"
-
-**Phase placement:** **Migration phase + feature phase.** Migration removes old fields. Feature phase rebuilds anything that read them on top of the new model.
-
-**Confidence:** HIGH — pattern observed at notificationScheduler.ts:533, 732, 880 — all read `sunHours`/`tempMin` directly today.
+**Phase to address:** Pet toxicity dataset phase. Authoring checklist must include "ASPCA reference URL" comment per entry. No AI-only sourcing.
 
 ---
 
-### CRIT-3: Notification reschedule not triggered after schedule-shape change
+### CRIT-3: AsyncStorage size pressure from journal photo URIs — no hard limit enforced
 
 **What goes wrong:**
-v1.0 has scheduled notifications already alive on user devices: morning reminders, follow-up diagnosis reminders (`scheduleFollowUpReminder` in notificationScheduler.ts:305), care reminders, weather alerts, sun-window notifications. Their **trigger times were computed from old `waterEvery` and `sunHours` values**. After migration to seasonal schedules, the in-memory plant says "water every 5 days in warm season" but the OS-level scheduled notification still fires on the OLD interval (e.g. every 7 days).
+Plant journal entries will store `photoUri` fields. If these are local file paths from `expo-image-picker` or `expo-camera`, the file path itself is tiny but the underlying file is in the app's cache. If journal entries store base64-encoded images (as `PlantPhoto` does today for diagnosis photos), the single `plant-agenda-v2` JSON blob grows rapidly. AsyncStorage has documented limits: 6MB per item on Android (LevelDB backend), though in practice React Native apps have hit limits around 2-4MB before corruption or silent failures.
 
-For sun-window notifications it is even worse: `calculateSunWindow` uses `plant.sunHours * 60 * 60 * 1000` (notificationScheduler.ts:533). Migration changes `sunHours` to nothing — the function will throw or return `NaN` if not refactored, killing all sun notifications silently because of the global try/catch that calls `markNotificationsUnavailable()`.
+A user with 15 plants × 5 journal entries × 1 photo each = 75 photos. If stored as base64 at 200KB each = 15MB in a single AsyncStorage item → guaranteed corruption on Android.
 
 **Why it happens:**
-- Notifications live in the OS, not in app state
-- `scheduleNotificationAsync` returns an identifier that gets stored in plant data; if you change the trigger logic but don't cancel + reschedule, OS keeps the old one
-- The `notificationsAvailable` global flag (notificationScheduler.ts:17) silently disables ALL notifications on first error — a single migration-related throw in sun-window calc kills the whole notification subsystem
+- `PlantPhoto.uri` (src/types/index.ts:11) stores a string URI. Historically this was a local path or base64 string — the existing photo album (`PlantPhotoAlbum.tsx`) already stores photos this way.
+- Journal entries are likely modeled after `PlantPhoto` — same pattern, same size problem.
+- The app is local-first (no Supabase Storage for personal photos until cloud sync ships in a future milestone), so there's nowhere else to put them.
 
-**Consequences:**
-- User sees stale "Regar Monstera (4hs sol)" reminder for a plant they just changed to "low light"
-- Sun notifications stop firing entirely after first migration (silent failure via `markNotificationsUnavailable`)
-- Follow-up diagnosis reminders may also be affected if they reference plant fields that changed
+**How to avoid:**
+1. **Journal photo URIs must be permanent local file paths, not base64.** When the user picks a photo, copy it to `expo-file-system` document directory immediately: `FileSystem.copyAsync({ from: pickerResult.uri, to: documentDirectory + 'journals/' + uuid + '.jpg' })`. This reference survives app restarts and doesn't inflate AsyncStorage.
+2. **Never store base64 in journal entries.** Even for existing `PlantPhoto` entries: if legacy entries have base64 URIs, that is a pre-existing problem, do not extend the pattern.
+3. **AsyncStorage size guard:** add a dev-only check at app startup that logs `JSON.stringify(appData).length`. Track it across milestones. Warn at 1MB, error at 3MB.
+4. **Supabase Storage migration path:** design `JournalEntry.photoUri` as a field that can hold either a local `file://` path (pre-sync) or a Supabase URL (post-sync). The field name is stable; the value changes when sync ships. No schema migration needed later.
+5. **Maximum photos per journal entry:** cap at 3 (matching existing diagnosis photo limit). Document the cap in the UI.
 
-**Prevention:**
-1. **As part of migration, call `cancelAllNotifications()` then re-run the daily scheduling pass** with new model values. Treat OS notifications as cache, not source of truth.
-2. **Refactor `calculateSunWindow` and `groupPlantsBySunHours`** (notificationScheduler.ts:524, 548) to take `lightLevel` and translate to a recommended hour-band per level (e.g. `direct: 4-6h`, `bright_indirect: 0h direct sun, all-day window`, `medium_indirect: morning only`, `low: no outdoor schedule`). Verify each level path doesn't throw.
-3. **Remove the global "first error disables all" pattern** — at minimum, log which call failed before disabling. The current `markNotificationsUnavailable(error)` swallows the cause.
-4. **Add a dev-only "show all scheduled notifications" debug screen** to verify post-migration that body text matches new schedule.
-5. **Test matrix:** plant in `direct` mode in summer (warm), plant in `low` mode in winter (cold), plant in `soil_check` mode (should NOT schedule water reminders at all? — see CRIT-5).
+**Warning signs:**
+- Any `JournalEntry` or journal photo stored with `data:image/jpeg;base64,...` URIs
+- AsyncStorage JSON blob exceeding 1MB in development with typical plant count
+- Crash reports on Android with "AsyncStorage: Failed to set item" errors
 
-**Detection signals:**
-- After migration, `getScheduledNotificationCounts` (notificationScheduler.ts:411) should NOT show care reminders with intervals matching old `waterEvery`
-- `notificationsAvailable === false` after migration on a device where it was true before
-- Support: "I changed my plant to low light but it still tells me to put it in the sun"
-
-**Phase placement:** **Migration phase + feature phase.** Cancel-all-and-reschedule is part of migration completion. Refactoring sun/light scheduling logic is part of light-level feature phase. Verification: run pre/post migration on real device, count and inspect scheduled notifications.
-
-**Confidence:** HIGH — read directly in notificationScheduler.ts.
+**Phase to address:** Plant journal phase. Establish file-system-first pattern before any photo storage is implemented.
 
 ---
 
-### CRIT-4: Modal stacking — paywall opened from nested modal closes only the paywall
+### CRIT-4: BottomSheetModalProvider not added to both AppContent paths — AUTH-mode bugs
 
 **What goes wrong:**
-The "Continue diagnosis" button lives inside `DiagnosisDetailModal`, which itself is presented from `MyPlantDetailModal`. When a free user taps Continue and the paywall opens, **iOS modal stack semantics** dismiss only the topmost modal on close. Result: paywall closes, the user is back inside `DiagnosisDetailModal`, and (if `usePremiumGate.canSendChatMessage` is reactive) they may either be unable to interact, or the flow proceeds before the underlying modal finished re-rendering with the new premium state.
+App.tsx has two AppContent branches: `AppContentMVP` (no auth, current active path) and `AppContentFull` (with auth, used when `Features.AUTH: true`). The "Two AppContent paths discipline" was established at Phase 5 and is explicitly flagged in PROJECT.md as a lock. If `BottomSheetModalProvider` (from `@gorhom/bottom-sheet`) is added to `AppContentMVP` but forgotten in `AppContentFull`, any bottom sheet rendered when `Features.AUTH` is flipped on will either crash ("No BottomSheetModalProvider found") or render without the provider context and appear at z-index 0 behind all other content.
 
-The handover note explicitly says: "we just hit this exact bug elsewhere — mention as known pattern."
+This is silent in MVP mode (current) and only surfaces when the auth milestone flips `Features.AUTH: true`. By that time the v1.2 engineer may be gone.
 
 **Why it happens:**
-- React Native `Modal` uses native presentation; nested Modals stack on iOS but Android handles them with overlay z-index — behavior is platform-divergent
-- The premium-gate hook's value updates async (RevenueCat callback), so a simple `if (isPremium)` re-check after paywall close races the modal animation
-- CLAUDE.md confirms the design rule: "No nested navigators — All modals use local state visibility toggles within screens" — but local-state toggles don't auto-coordinate across siblings
+- `AppContentFull` uses lazy requires and is never actually rendered during current development (Features.AUTH is false)
+- Easy to add a provider to the path you're testing and forget the other
+- No test exercises `AppContentFull`
 
-**Consequences:**
-- User pays, comes back, has to tap Continue a second time — looks broken
-- Or worse: `canSendChatMessage` returns `true` immediately on RevenueCat callback but the chat input is still disabled because the parent modal hasn't re-rendered
+**How to avoid:**
+1. **Add `BottomSheetModalProvider` to BOTH AppContent paths in the same commit.** No exceptions.
+2. **Add a smoke test assertion:** `grep -c "BottomSheetModalProvider"` in `App.tsx` must return exactly 2 (once per path). Fail the smoke runner if count is 1.
+3. **Document the discipline** with a comment in App.tsx at the `AppContentFull` provider stack: `// TWO-PATH DISCIPLINE: keep in sync with AppContentMVP. See PROJECT.md Phase 5 lock.`
+4. **Same applies to any new React context provider** added in v1.2: `StreakProvider`, `JournalContext`, etc. — must be in both paths.
 
-**Prevention:**
-1. **Lift the paywall presentation to a single top-level component** (App-level paywall context, similar to existing `NotificationContext` pattern noted in CLAUDE.md / PROJECT.md). When any flow needs the paywall, it dispatches via context. Paywall renders at root. No modal stacking.
-2. **Continue-after-purchase flow is a deferred callback**, not a re-check. Caller passes `onContinueAfterPurchase: () => ...` to the paywall context; paywall calls it AFTER both the modal animation completes AND the RevenueCat customerInfo update has been observed.
-3. **Test matrix is mandatory:** iOS + Android × free user mid-conversation × user who upgrades × user who cancels purchase. Verify the modal returns the user to the chat with the correct premium state visible.
-4. **Reuse the existing v1.0 NotificationContext deep-link pattern** — that already solves "deep link into a nested modal flow" cleanly per PROJECT.md context. Don't reinvent.
+**Warning signs:**
+- A new provider appears in `AppContentMVP` but not in `AppContentFull`
+- Grep count for any new provider name returns 1 in App.tsx
 
-**Detection signals:**
-- Manual QA test: free user opens past diagnosis → Continue → paywall → close without buying → expected: stays in `DiagnosisDetailModal` with Continue still visible. Bug if either modal disappears unexpectedly OR paywall lingers.
-- Free user opens past diagnosis → Continue → paywall → buys → expected: paywall closes, returns to chat, send button enabled, no second tap needed.
-
-**Phase placement:** **Diagnosis-continuity feature phase.** This is the highest-risk piece of the milestone for premium revenue (a broken purchase loop = lost conversion). Verification phase: dedicated paywall regression checklist.
-
-**Confidence:** HIGH — pattern explicitly flagged in handover, premium hook structure confirmed in `src/config/premium.ts:18-66`.
+**Phase to address:** Bottom sheets phase (first phase that requires a new root-level provider). Establish the guard before any other providers are added.
 
 ---
 
-### CRIT-5: Soil-check mode notifications don't translate to scheduled push
+### CRIT-5: Fertilization as 4th task type — notification + health score not wired up, silently skipped
 
 **What goes wrong:**
-The new `waterMode: 'fixed' | 'soil_check'` mode is for cacti and succulents where "water every N days" is dangerous advice. But the existing notification model assumes a date-triggerable schedule: `scheduleNotificationAsync({ trigger: { seconds: ... } })` (notificationScheduler.ts:289). What does a "soil_check" plant get? Options:
-1. No notifications → user forgets the plant → dies of slow neglect
-2. Notification every N days that says "Check your plant's soil" → but that is essentially fixed mode wearing a costume; user gets desensitized
-3. Adaptive interval based on weather (humidity / temperature) → not currently supported by `getNextWaterDate`
+The `Task.type` union (src/types/index.ts:107) currently has `"water" | "sun" | "outdoor" | "check_soil"`. Adding `"fertilize"` as a 5th type is not just a UI change — it must propagate through: `getTasksForDay()` in `plantLogic.ts` (task generation), `notificationScheduler.ts` (push notification scheduling), `calculatePlantHealth()` in `plantHealth.ts` (overdue penalty or not), and the "Hoy" screen discriminator switch. If the task type is added in the UI but skipped in any of these, fertilization tasks either: (a) never appear, (b) never get reminders, (c) don't affect health score, or (d) make the health score wrong by penalizing "no fertilization" for plants that don't need it.
 
-The current `getNextWaterDate` in plantLogic.ts:4-11 returns `today` if `waterEvery <= 0`, then keeps adding `waterEvery` days. There is no concept of "indeterminate next watering."
+Additionally: `DayDetail.tsx`, `DayDetailModal.tsx`, and `MonthCalendar.tsx` all have explicit discriminator chains over task types (as evidenced by the recent commit history: "add 'check_soil' branch to icon/label/style switches"). Fertilize needs a branch in all of them.
 
 **Why it happens:**
-- Soil-check is fundamentally a behavior signal ("the plant tells you, not the calendar") that does not have a natural notification trigger
-- Mixing soil-check plants with fixed plants in one user's garden creates UI inconsistency in the "Hoy" tab — half tasks have a clear due date, half don't
+- Discriminator chains (switch/if-else over task.type) are manually maintained — there's no compile-time exhaustiveness check in the current code (TypeScript union works only if devs use typed exhaustive switches, which they may not)
+- `getTasksForDay` is stateless and easy to miss as a place where new tasks need to be generated
+- Health score logic is in a separate file and easy to overlook
 
-**Consequences:**
-- Cacti/succulents get over-watered because the app keeps reminding (defeats the entire feature)
-- OR the app silently never reminds, user complains "you forgot about my cactus"
-- Health score (plantHealth.ts:40-64) penalizes "overdue water" — soil-check plants are perpetually "overdue" or perpetually "fine" depending on default, both wrong
+**How to avoid:**
+1. **Add `fertilize` to the `Task.type` union AND immediately grep for every discriminator chain over task type.** Fix all branches before any UI work. This is the single commit that extends the type — use TypeScript's exhaustiveness checker: add `never` default to all switches.
+2. **Health score design decision must be made explicitly:** overdue fertilization should NOT penalize score at the same rate as overdue watering (missing water = plant dies; missing fertilizer = plant grows slower). Suggest a 0-penalty model for fertilize overdue, OR a separate "fertilization score" subcategory that doesn't drag down the main score.
+3. **Fertilize notifications: seasonal gating.** Fertilization is warm-season only for most plants. The notification scheduler must check current season before scheduling fertilize reminders. A "fertilize your monstera" push in winter is incorrect advice.
+4. **Smoke guard:** extend the smoke runner's task-type discriminator test to assert that `getTasksForDay()` for a plant with `fertilizeSchedule` set returns a `fertilize` task on the correct day; returns no task on off-days; and returns no task when `fertilizeSchedule` is absent.
 
-**Prevention:**
-1. **Soil-check plants get a low-frequency *check-in* notification (e.g. weekly or biweekly), not a watering reminder.** Body text: "Tocá la tierra de tu Cactus — si está seca 5cm hacia abajo, regalo." Action button: "Registrar riego" or "Aún seca, recordame en 3 días."
-2. **Health score for `waterMode === 'soil_check'` plants does NOT penalize for overdue watering at all.** Document this in `plantHealth.ts` with a clear comment referencing the design decision. Their health is driven by other factors (weather extremes, light mismatch, diagnoses).
-3. **In "Hoy" tasks, soil-check plants surface only when the check-in date is reached, with a different task type** (`type: 'check_soil'` distinct from `type: 'water'`) so the UI can render a different verb and a confirm/snooze flow.
-4. **Onboarding copy** when a user picks a cactus must explain: "Esta planta no tiene un calendario fijo. Te avisamos para chequear, no para regar." — set the expectation up front.
+**Warning signs:**
+- Any switch over `task.type` that compiles but has no `fertilize` case
+- `getTasksForDay()` modified to add fertilize but `notificationScheduler.ts` not updated in the same PR
+- Health score decreasing for a plant whose only issue is overdue fertilization
 
-**Detection signals:**
-- Health score dashboard for a test cactus over 30 days should never go below 80 from watering alone
-- "Hoy" screen for a user with only soil-check plants on a non-check-in day shows zero water tasks (not "overdue: cactus")
-
-**Phase placement:** **Watering-feature phase + verification.** This is the trickiest UX piece — needs dedicated copy review and a multi-day device test.
-
-**Confidence:** HIGH for the structural problem; MEDIUM for the exact UX copy (needs validation with real users).
+**Phase to address:** Fertilization feature phase. Must be treated as a new subsystem expansion (same rigor as v1.1's `check_soil` mode addition), not just a UI card.
 
 ---
 
 ## Moderate Pitfalls
 
-These cause embarrassing bugs but not data loss.
+These cause friction, wrong behavior, or slow production fire-drills.
 
-### MOD-1: Equator and tropical users have no meaningful "warm/cold" split
+### MOD-1: User-chosen value treated as "wrong" by recommendation UI tone
 
 **What goes wrong:**
-The `waterSchedule: { warm, cold }` model assumes a real seasonal swing. In Quito, Singapore, Nairobi, Manaus — temperature varies by 3-5°C across the year. Mapping "current month → warm/cold" produces nonsense flips. A user in Quito would get "warm season" all year, which is fine — but a user in Bogotá at 2600m altitude has consistent 14°C — perpetually "cold" by a naive mapping, but plants there don't slow down because there is no seasonal dormancy.
+When user's stored `waterSchedule.warm = 5` and the catalog recommends `7`, a naively-worded UI says "Recomendado: 7 días" next to the picker showing "5 días" — implicitly labeling the user's choice as incorrect. This is especially damaging for the tone this app is trying to set: "app recommends, user adjusts to their reality." If the user feels judged, they disengage with the educational content entirely.
 
-**Why it happens:**
-- Hemisphere-month mapping is a Northern/Southern hemisphere concept that breaks at low latitudes
-- "Tropical" is a climate concept, not a hemisphere concept
+Voseo copy pitfall: "Estás usando 5 días cuando recomendamos 7" sounds like a scolding teacher. Correct tone: "Te recomendamos cada 7 días. Podés ajustarlo a tu realidad." — the recommendation is offered, the override is celebrated.
 
-**Prevention:**
-1. **Three zones, not two hemispheres:** Northern temperate (lat > ~23.5°N), Southern temperate (lat < ~23.5°S), Tropical (between). Tropical zone uses a single schedule (the "warm" one), no seasonal flip. Catalog entries can declare `waterSchedule: { warm: 7 }` (no `cold`) for tropical-suited plants, or both for temperate.
-2. **Edge case: equator (lat ≈ 0)** falls into tropical zone naturally. No special handling needed.
-3. **Allow user override:** Settings → "Climate zone: Northern / Southern / Tropical / I'll choose per plant." Default detected from location, manually overridable.
-4. **Catalog test data:** include plants where this matters (e.g. tropical houseplant doesn't change schedule; temperate fruit tree does) and unit-test the zone-classification function with lat=0, lat=23, lat=24, lat=-23, lat=-24.
+**How to avoid:**
+1. **Copy rule:** the recommendation section never says "you are wrong." Phrases to ban: "incorrecto," "diferente a lo recomendado," "estás usando menos/más." Permitted: "Te sugerimos," "La mayoría de los Potus prospera con," "Adaptalo a cómo regar mejor en tu espacio."
+2. **Visual hierarchy:** recommendation text is smaller and secondary; user's current setting is the primary displayed value.
+3. **"¿Por qué?" section** in the educational modal is the rationale — it explains the recommendation's basis without implying the user must comply.
+4. **Copy review gate:** before each phase ships, review all strings involving recommendation + user value divergence for patronizing tone.
 
-**Detection signals:**
-- Test user with location set to Singapore (1.35°N) sees same schedule year-round
-- Test user with location set to Buenos Aires (34.6°S) sees schedule flip in March/September
+**Warning signs:**
+- Any i18n key value containing "incorrecto," "diferente," or comparing recommendation vs. user value negatively
+- Numeric comparison shown as "too much/too little" rather than "we recommend X"
 
-**Phase placement:** **Hemisphere/season feature phase.** Add tropical zone from day one, not "we'll add it later" — adding a third zone retroactively requires migrating user preferences.
-
-**Confidence:** HIGH on the structural issue, MEDIUM on the latitude threshold (23.5° is the Tropic of Cancer/Capricorn but climate boundaries are fuzzier — could go with 20° or 25° based on Köppen-ish heuristic).
+**Phase to address:** Microcopy + brand voice phase. Establish tone rules before authoring any new copy.
 
 ---
 
-### MOD-2: Season transition jitters on March 21 / September 21
+### MOD-2: Catalog content quality drift across 512 strings — batch 3 degrades
 
 **What goes wrong:**
-If "warm season" is defined by month range (e.g. Northern: April-October warm, November-March cold), the schedule flips abruptly at midnight March 31 → April 1. A user wakes up on April 1 and the next-watering date jumps from "in 3 days" to "in 5 days" (or vice versa) with no explanation. Worse, if defined by astronomical equinox (March 21), users in different time zones flip on different local dates, leading to support questions.
+64 entries × 4 new fields (`careAction`, `placementRecommended`, `placementAlternatives`, `placementAvoid`, `whyRationale`) × 2 locales = 512+ strings. The first batch (10-15 entries) gets careful horticultural review. By batch 4, the reviewer is tired, the AI drafts get less scrutiny, and subtle errors accumulate: wrong seasonality advice for LATAM outdoor plants, generic `careAction` text that doesn't match the plant's actual care needs, `whyRationale` that's scientifically imprecise ("because plants love water" level explanations).
 
-The user-prompt also calls out March 21 vs March 22 — the exact equinox date varies (Mar 19-21 depending on year and time zone).
+Voseo discipline drift is a specific sub-problem: Spanish strings in batch 1 use "Regá," "Sacá," "Ponela." By batch 3 under time pressure, AI returns "Riega," "Saca," "Ponla" — standard Castilian conjugations — and the reviewer misses it.
 
-**Why it happens:**
-- Discrete boundaries on continuous phenomena
-- No transition smoothing
-- Time zone math + astronomy = bugs
+**How to avoid:**
+1. **Schema-first authoring.** Define the exact character limit and quality bar per field before batch 1: `careAction` ≤ 120 chars, imperative voseo sentence, no filler words. `whyRationale` must cite a specific plant physiology mechanism (photoperiod, transpiration rate, nutrient cycle), not generic advice.
+2. **Voseo linter:** add a script that greps all ES strings in the batch for Castilian conjugation patterns (`" riega "`, `" saca "`, `" pon "`, `" ten "`, `" haz "`) and fails if found. This is a 15-line script, not a major undertaking.
+3. **Batch review checklist:** for every entry, reviewer signs off on: (a) careAction is voseo, (b) whyRationale cites a mechanism, (c) placement advice is LATAM-relevant (not "outside in summer" for a plant that has no cold-dormancy concept in subtropical LATAM climates), (d) at least 1 source URL in code comment.
+4. **Cross-check against existing tips.json:** several fertilizer, light, and seasonal tips already exist in `src/i18n/locales/es/tips.json`. The new `whyRationale` and `careAction` fields must not contradict them.
 
-**Prevention:**
-1. **Use month-based zones, not equinox-based.** Northern: warm = April-September (months 4-9), cold = October-March. Southern: inverted. Easy to reason about, no time zone edge cases. Document in code comment: "approximation, not astronomical."
-2. **Show the user what season the app thinks it is.** A small badge in plant detail: "Verano · regando cada 5 días". When the season flips, the user sees the new label and the new interval at the same time — no mystery.
-3. **Smooth the transition (optional, can defer):** in the boundary month (March/September depending on hemisphere), interpolate. E.g. `cold=10d, warm=7d` → mid-September: `8.5d` rounded to 9d. Adds complexity, only do if user testing reveals abruptness as a complaint.
-4. **Test:** unit test for every month × hemisphere combination. Just 24 cases. Snapshot the expected season label.
+**Warning signs:**
+- Castilian conjugation in any ES batch output
+- `whyRationale` fields starting with "porque" and ending with generic advice ("las plantas necesitan luz")
+- All 64 entries in a category having identical or near-identical `careAction` text
 
-**Detection signals:**
-- A plant's "next watering" date should never jump by more than 1 cycle when the season flips (i.e. if `cold=10d` and `warm=7d`, the next-watering date should change by at most 3 days)
-- No support tickets about "my schedule changed overnight"
-
-**Phase placement:** **Season feature phase.** Pin design decision early.
-
-**Confidence:** HIGH on the issue, HIGH on the recommended solution (month-based is industry standard for consumer apps).
+**Phase to address:** Catalog content authoring phase. Establish batch checklist and voseo linter before drafting entry 1.
 
 ---
 
-### MOD-3: User customized `sunHours` for a plant; migration overwrites with catalog default
+### MOD-3: PlantCard health badge hidden (score > 80) — but power users want always-visible
 
 **What goes wrong:**
-User has Monstera (slug `monstera`). The catalog entry says `sunHours: 3`. But the user manually set `sunHours: 5` last month because their apartment is dim and they wanted longer windows. Migration runs and maps "catalog sunHours 3 → bright_indirect" without checking what the user actually saved. User's customization is silently lost.
+Current behavior: `showHealthBadge = healthStatus.score < 80` (PlantCard.tsx:91). v1.2 will reduce visual elements from 10 to 5. The plan is to hide the badge when score is high. Some power users who track health obsessively use the badge to monitor exactly when a plant dips from 95 to 78 — they want the score visible all the time.
 
-**Why it happens:**
-- Migration mapper most likely uses `plant.id` to look up catalog and derive lightLevel
-- Forgets that `plant.sunHours` is per-plant-instance, not per-catalog-entry — it diverges over the user's lifetime
+Hiding it feels like information removal. The user can't tell if their plant is at 82 (just above the hide threshold) or at 95 without tapping into the detail.
 
-**Prevention:**
-1. **Migration maps per-instance, not per-catalog.** `lightLevel = mapSunHoursToLight(plant.sunHours)` where the mapper uses the user's actual stored value (not the catalog default).
-2. **Mapping table** — concrete and testable:
-   - `sunHours <= 1` → `low`
-   - `sunHours <= 3` → `medium_indirect`
-   - `sunHours <= 5` → `bright_indirect`
-   - `sunHours > 5` → `direct`
-3. **Add a one-time post-migration in-app message:** "Cambiamos cómo medimos la luz. Tu Monstera ahora está marcada como Luz brillante indirecta. Podés cambiarla en cualquier momento." — sets expectations that this is a translation, not a reset.
-4. **Spot-check migration with real users:** before rolling to 100%, run on dev account that has actually-used data, verify customizations preserved.
+**How to avoid:**
+1. **Don't hard-remove the badge rendering — change its visual weight.** When score ≥ 80, show a minimal dot or no badge at all is fine, but make the detail tap target always present (the plant card itself is tappable, health detail is one tap away — that is sufficient for power users).
+2. **Alternative:** settings toggle "Mostrar puntuación de salud siempre" — but this adds settings complexity. Simpler: health badge hidden when excellent, detail modal always accessible via card tap.
+3. **Communicate the change in onboarding or via a one-time tooltip** for users who upgraded from a version where the badge was always visible. Otherwise they think the score feature broke.
 
-**Detection signals:**
-- After migration, plants where `oldSunHours > catalogSunHours` should map to a higher light level than the catalog default
-- Snapshot test: feed the migration a plant with custom `sunHours: 6` whose catalog entry has `sunHours: 2`, expect output `lightLevel: 'direct'`
+**Warning signs:**
+- Users asking "where did the health score go?" in reviews
+- No accessible way to see health score when badge is hidden
 
-**Phase placement:** **Migration phase.** This is part of the mapper, must be right before any user runs it.
-
-**Confidence:** HIGH on the issue, HIGH on the prevention.
+**Phase to address:** PlantCard cleanup phase. One-time tooltip for badge-hiding change is part of this phase's UX work.
 
 ---
 
-### MOD-4: Resumed diagnosis loses image context, AI hallucinates
+### MOD-4: Swipe-to-delete vs. scroll — gesture conflict in FlatList
 
 **What goes wrong:**
-"Continue diagnosis" reopens an old chat. The AI receives the full text history. But the original photo(s) the user uploaded are referenced in the chat as image messages. Edge functions (`chat-diagnosis`, `diagnose-plant`) typically pass images inline as base64 or URLs. If photos were uploaded only as attachments in the original turn and not persisted as URLs accessible in the resume request, the resumed AI sees text like "the user sent a photo showing yellow leaves" but no actual image — and may invent or contradict the original analysis.
+Swipe gestures on PlantCard items in a vertically-scrolling FlatList create a classic conflict: horizontal swipe (delete) vs. vertical scroll. Without proper gesture priority configuration, a diagonal swipe (which most real-world gestures are) either: (a) always triggers delete accidentally when user tries to scroll, or (b) never triggers delete because the scroll consumes the touch first.
 
-Worse: if the original analysis said "moderate severity, leaf spot" but the resumed AI re-evaluates without the photo and says "looks fine, healthy" — the user is now confused and might dismiss a real problem.
+This is worse on Android where gesture handling priority differs from iOS. The current app has no `react-native-gesture-handler` or `react-native-reanimated` in `package.json` — these would need to be freshly installed.
 
-**Why it happens:**
-- AsyncStorage isn't a great place to store image bytes — they're in `PlantPhoto.uri` which may be a local file path that no longer exists if the user deleted/cleared cache
-- The image was sent to the edge function once and the response was saved; the image itself may not be in `SavedDiagnosis`
-- AI re-prompted with text-only context can drift
+**How to avoid:**
+1. **Install `react-native-gesture-handler` via `npx expo install`**, not via npm direct (Expo version compatibility is critical — wrong version of RNGH with Expo SDK 54 causes subtle crashes on Android gesture cancel).
+2. **Use a proven pattern for swipe-in-list:** wrap PlantCard in `Swipeable` from RNGH, configure `friction={2}` and `leftThreshold={40}` to distinguish casual scroll from intentional swipe. The horizontal threshold should be large enough that normal vertical-ish scrolling doesn't trigger it.
+3. **Visual affordance is mandatory.** Users do NOT discover swipe gestures on their own. Options: (a) chevron/arrow peek when list first renders, (b) hint animation on first app launch after upgrade, (c) long-press context menu as fallback delete path. Both swipe AND long-press must work — swipe is primary, long-press is discoverable fallback.
+4. **Delete confirmation:** swipe-to-delete should reveal a red "Eliminar" action, NOT immediately delete. Instant delete with no undo is a hard UX anti-pattern in plant apps (data loss is permanent without cloud sync).
 
-**Prevention:**
-1. **Diagnosis chat continuity is explicitly text-only.** UI should display: "Continuando diagnóstico anterior. Para una reevaluación visual, sacá una foto nueva." Don't pretend the AI can see the original photo.
-2. **The system prompt for resumed conversations** must include: "User is continuing a previous diagnosis. Your prior assessment was: [summary]. The user is asking for follow-up advice. Do NOT re-assess severity unless they upload a new photo."
-3. **If a new photo IS uploaded mid-resume**, treat it as a re-diagnosis, possibly with a UX confirm: "Reevaluar el problema con esta foto nueva?" — explicit, not silent.
-4. **Persist the original image URL** to a stable location (Supabase Storage when cloud sync ships, or document directory in the meantime) so even if cache is cleared, the photo stays. Alternative: ship without this and accept image loss, but document explicitly in chat.
+**Warning signs:**
+- Swipe triggers during normal list scrolling
+- No visual affordance for swipe gesture existence on first launch
+- Delete executes immediately without confirmation
 
-**Detection signals:**
-- Resume an old diagnosis on a fresh app install (no local images) — does the AI behave coherently?
-- Look at the prompt sent to the edge function in dev logs for a resumed chat — does it correctly indicate "continuation" mode?
-
-**Phase placement:** **Diagnosis-continuity feature phase.** Prompt design and UX copy are part of feature work, not migration.
-
-**Confidence:** MEDIUM — depends on edge function implementation details I haven't read. Worth verifying with `chat-diagnosis` source before locking the design.
+**Phase to address:** Mobile UX modernization phase (swipe gestures). RNGH installation must happen at the START of this phase — it requires a dev client rebuild, not just a JS change.
 
 ---
 
-### MOD-5: Diagnosis message-count limit on resume — reset or carry over?
+### MOD-5: Bottom sheet keyboard interaction on iOS — input fields inside sheets
 
 **What goes wrong:**
-Free tier limit is `FREE_CHAT_MESSAGES_PER_DIAGNOSIS` (premium.ts:62). If a user used 5/5 messages 3 weeks ago and now resumes, what is the budget?
+If any bottom sheet contains a text input (e.g. journal entry note field, plant name in a quick-edit sheet), iOS keyboard presentation interacts badly with `@gorhom/bottom-sheet`'s snap behavior. When keyboard appears, the bottom sheet either: (a) doesn't move up, keyboard covers the input, (b) snaps to the wrong position, or (c) fights the keyboard avoidance system from `react-native-safe-area-context`.
 
-- **Reset to 5:** infinite-money exploit — free users open old diagnoses repeatedly to keep chatting
-- **Stay at 0/5:** correct behavior, but the user's first reaction is "this is broken, I have 0 even though I just opened it" — looks like a bug
-- **Hybrid (e.g. +1 free per week):** complex, hard to communicate, hard to test
+This is a well-documented gotcha with `@gorhom/bottom-sheet` v4 — requires `keyboardBehavior="extend"` or `keyboardBlurBehavior="restore"` prop configuration and sometimes a `scrollRef` attachment.
 
-**Why it happens:**
-- The original limit was per-diagnosis-session, not per-diagnosis-lifetime — resume blurs that line
-- The premium gate hook reads a `userMessageCount` parameter; the source of truth for "messages already sent in this diagnosis" is the saved chat history
+**How to avoid:**
+1. **Design constraint: keep text inputs OUT of bottom sheets where possible.** Bottom sheets in v1.2 should be used for short-action flows (confirm delete, pick a care setting from a list, view toxicity info). Full text-input flows (journal entry authoring) should remain as full-screen modals or full-screen screens.
+2. **If a text input MUST be in a bottom sheet:** use `@gorhom/bottom-sheet`'s `BottomSheetTextInput` component (not the standard RN `TextInput`) — it's wired to the sheet's internal keyboard handling. Do NOT mix standard `TextInput` with bottom sheet.
+3. **Test on real device:** simulator keyboard behavior is not representative on iOS. Test on a physical iPhone with iOS 17+.
 
-**Prevention:**
-1. **Pick "Stay at 0/5" — count messages per diagnosis lifetime, not per session.** Implement: when computing `canSendChatMessage`, count user messages across the entire `SavedDiagnosis.chat` array (not just the current session).
-2. **Surface the count in UI before the user types:** "Te quedan 0 mensajes en esta conversación. Convertite en Premium para seguir." So the limit is a precondition, not a mid-typing gotcha.
-3. **Premium upgrade lifts the limit retroactively** — this is the value prop of upgrading mid-resume.
-4. **Document the rule** in a code comment in `premium.ts` so future contributors don't re-debate this.
+**Warning signs:**
+- Standard `TextInput` used inside a `BottomSheetView`
+- Bottom sheet content hidden behind keyboard on iOS
+- KeyboardAvoidingView inside a bottom sheet (they conflict)
 
-**Detection signals:**
-- QA flow: free user uses 5 messages, kills app, reopens 1 day later, opens diagnosis → can NOT send messages, sees paywall trigger.
-- Premium user has unlimited messages even on resumed conversations.
-
-**Phase placement:** **Diagnosis-continuity feature phase.** Pair with CRIT-4 (paywall coordination).
-
-**Confidence:** HIGH on the recommendation — this is the only option that doesn't either lose money or look broken.
+**Phase to address:** Bottom sheets phase. Include a physical iOS device test for any sheet containing a focusable input.
 
 ---
 
-### MOD-6: Catalog `tip` text update → user's existing plant has stale instance copy
+### MOD-6: Bottom sheet z-order conflict with root-level PaywallModal
 
 **What goes wrong:**
-If `Plant` instances copy `tip`, `description`, `problems` from `PLANT_DATABASE` at creation time (which the schema implies — `Plant` has these as fields), then updating the catalog (e.g. fixing a typo in `monstera.tip`) does NOT propagate to existing user plants. They keep the old tip.
+`PaywallModal` renders at the root level in both AppContent paths (App.tsx lines 228, 368). It uses RN's `Modal` component which renders natively above all other content. `BottomSheetModal` from `@gorhom/bottom-sheet` renders in a `BottomSheetModalProvider` portal. When a user triggers a bottom sheet AND the paywall is visible simultaneously (e.g. a premium feature triggers both), the two compete for z-index and the result is platform-dependent.
 
-OR: if `Plant` instances reference the catalog by `id` and read `tip` at render time, then changing the catalog DOES update everyone — but then user's overridden `tip` (if the UI allows editing) is lost, or never rendered.
+On iOS: native `Modal` wins — paywall covers the bottom sheet. On Android: z-index can be wrong either way depending on whether the sheet was already rendered when the modal opened.
 
-**Why it happens:**
-- The current data model isn't fully clear on this from the snippets — needs verification
-- Either model is reasonable; mixing the two is the bug
+**How to avoid:**
+1. **Never trigger a bottom sheet while the paywall is open.** Before showing any BottomSheetModal, check `isPaywallVisible` from `usePremium()` and short-circuit.
+2. **Before dismissing a bottom sheet, don't show the paywall immediately.** Use the existing `setTimeout(() => showPaywall(trigger), 350)` pattern (already in `MyPlantDetailModal.tsx:line ~350`) to let the sheet finish its dismiss animation before the paywall presents.
+3. **Test matrix:** (a) open bottom sheet → trigger premium gate → paywall appears on top of sheet, (b) close paywall → sheet is still accessible or has been dismissed gracefully.
 
-**Prevention:**
-1. **Pick one and document it.** Recommendation: catalog content (`tip`, `description`, `problems`, `nutrients`) is **always read by lookup** (`getCatalogEntry(plant.dbId).tip`), never copied to the instance. User customizations live in dedicated nullable fields (e.g. `plant.userNotes`, `plant.userTip`) that are checked first.
-2. **i18n of catalog content** flows through the same lookup path → updating Spanish translations is automatic for all users.
-3. **Audit the existing schema** before v1.1 — if old user plants have a copied `tip` field, the migration is the place to drop it and switch to lookup.
+**Warning signs:**
+- Paywall and bottom sheet visible simultaneously in UI
+- Bottom sheet rendering on top of paywall on Android
 
-**Detection signals:**
-- Update a catalog `tip` in dev, reload an existing user's plant — new tip should show.
-- Test by changing one entry's tip text and verifying old plants display the new text after relaunch.
-
-**Phase placement:** **Migration phase + catalog rebalance phase.** Lock the contract before adding 10-15 new outdoor plants.
-
-**Confidence:** MEDIUM — depends on current schema (need to read `Plant` type fully). Flag for verification.
+**Phase to address:** Bottom sheets phase. Add the z-order test to the phase verification checklist.
 
 ---
 
-### MOD-7: Adding new plants — i18n keys missing for one language → "[plants:new_plant.name]" shown in production
+### MOD-7: Light streaks / celebration toasts crossing into heavy gamification territory
 
 **What goes wrong:**
-v1.0 has Spanish and English locale files (`src/i18n/locales/{en,es}/plants.json`). When adding 10-15 outdoor plants, it is easy to add the English keys, ship, and discover later that Spanish keys for `name`, `tip`, `description`, `problems[N].symptom`, `problems[N].cause`, `problems[N].solution`, `nutrients.type`, `nutrients.homemade` are missing for some entries → Spanish users see the raw key in their UI.
+Plant apps that add heavy gamification (badges, points, leaderboards, "level up", daily login streaks with punishment for missing) alienate adult users who care about their plants, not a game. Gardenio and PlantParent (2022-2023 cohort) added badge systems and saw negative reviews: "I don't need a badge, I need to know when to water."
 
-**Why it happens:**
-- No automated check that every catalog entry has corresponding i18n keys in every locale
-- New plant added in a hurry, missing a single problem entry
-- Plant has 3 problems in EN but 2 in ES → accessing `problems[2]` returns a missing key
+Streaks specifically have an anti-pattern: **the streak anxiety loop**. When a user misses a day, the streak counter resets to 0. This either causes the user to feel punished (opens resentment) or causes them to care more about the streak than the plant (waterS the plant at midnight to keep the number). Both outcomes are bad.
 
-**Prevention:**
-1. **Add a build-time check** (npm script + CI step): walks `PLANT_DATABASE`, asserts every `id` has full keyset in both EN and ES locales. Fail loudly.
-2. **Use a typed catalog schema** that includes the expected number of problems → translations file generates a TS type listing required keys → mismatched count is a type error.
-3. **i18n fallback config**: if EN key exists but ES key missing, fall back to EN string (with a `__MISSING_TRANSLATION__` console.warn in dev). Avoid showing raw keys in prod ever.
-4. **PR template for catalog additions** has a checklist: "Added EN keys / Added ES keys / Verified in both locales / Image hosted in Supabase Storage."
+**How to avoid:**
+1. **Celebration, not streak tracking.** Show a toast when: plant is watered on time ("¡Bien! Tu Monstera está feliz."), week of perfect care completed ("Semana perfecta para el Potus."). No counter, no reset, no "streak of 7 days" visible anywhere.
+2. **No streak counter in the UI.** Streaks can exist as an internal signal for notification copy personalization ("llevas 5 días cuidando bien a tu jardín" in a weekly summary), but NOT as a visible metric that resets.
+3. **No punishment for missing.** Celebration-only model: a missed day is just a missed day; the next on-time action is celebrated fresh.
+4. **No leaderboards, badges, or points.** The premium value prop is better AI, not more gamification.
 
-**Detection signals:**
-- Switch app language to ES, browse all 75+ plants, look for `[plants:` brackets or English text where Spanish should be
-- CI build step fails when keys are missing
+**Warning signs:**
+- Any UI showing a number that resets to 0 when user misses a care action
+- "Streak" as a visible counter (not just internal analytics signal)
+- Achievement badge unlocks
 
-**Phase placement:** **Catalog-rebalance phase + verification phase.** Build-time check is part of CI infrastructure, applies to all future catalog work.
-
-**Confidence:** HIGH — this is a generic i18n pitfall but acutely relevant given the milestone scope.
+**Phase to address:** Streaks/celebration phase. The design decision (celebration-not-streaks) must be locked in phase planning before any implementation; it's hard to undo a streak counter once users see it.
 
 ---
 
-### MOD-8: Renaming or removing a plant in the catalog → orphaned user references
+### MOD-8: v1.1 schema migration backup cleanup not done — stale backup bloats AsyncStorage
 
 **What goes wrong:**
-User has `plant.dbId = "monstera"`. A future catalog reorganization renames the slug to `monstera-deliciosa`. User's plant now points to a non-existent catalog entry. Lookup returns undefined, plant detail screen renders blank or crashes.
+`migration.ts` line 18 explicitly flags: `// TODO(v1.2): call cleanupBackup_v1_1() once on launch, then delete this helper.` The function `cleanupBackup_v1_1()` exists and is ready to call. If this is not done in v1.2, the backup key `'plant-agenda-v2.backup-pre-v1.1'` persists in AsyncStorage indefinitely. For users who migrated from v1.0 to v1.1, this backup contains a full duplicate of their plant data — doubling AsyncStorage usage for that cohort. Combined with journal photo path storage (CRIT-3), this is an unnecessary pressure on the 6MB limit.
 
-Less obvious: if catalog rebalance "splits" a plant (e.g. `tomate` → `tomate-cherry` and `tomate-perita`), user's tomato is now ambiguous.
+**How to avoid:**
+1. **Call `cleanupBackup_v1_1()` in the storage load sequence early in v1.2**, before any new features run. It's already written — just needs to be wired. Place it immediately after the `schemaVersion >= CURRENT_SCHEMA_VERSION` short-circuit in `useStorage.tsx:196`.
+2. **After calling it, set `CURRENT_SCHEMA_VERSION = 2`** and delete the migration module entirely (as the comment says). Add a `migrateV1toV2` stub for v1.2's additive changes (new optional fields default gracefully, so the migration can be a no-op identity function for now — but it establishes the v1→v2 envelope so future real migrations are incremental, not a surprise).
+3. **Smoke guard:** after startup, assert that `AsyncStorage.getItem('plant-agenda-v2.backup-pre-v1.1')` returns null.
 
-**Why it happens:**
-- Catalog is shipped with the app, but user data persists across versions
-- No alias/redirect table
+**Warning signs:**
+- `migration.ts` TODO comment still present after v1.2 ships
+- `cleanupBackup_v1_1` never called in `useStorage.tsx` load sequence
+- Backup key still present in AsyncStorage during dev testing
 
-**Prevention:**
-1. **Slugs are forever.** Document this rule. Rename = add new slug + keep old slug as alias.
-2. **Add a `_aliases: string[]` field on catalog entries** (or a top-level `CATALOG_ALIASES: Record<string, string>` map) so old slugs redirect to new ones at lookup time.
-3. **Migration handles known renames:** if v1.1 renames any v1.0 slugs, the migration also rewrites `plant.dbId` for affected user plants.
-4. **Lookup must fail soft:** `getCatalogEntry(unknownSlug)` returns a sentinel "Unknown plant" entry, not undefined. Plant detail handles it gracefully.
-
-**Detection signals:**
-- Test data: a user's plant with a stale `dbId` should render with a fallback name and not crash.
-- v1.0 → v1.1 migration verification: count of plants with valid `dbId` post-migration ≥ count pre-migration.
-
-**Phase placement:** **Catalog-rebalance phase.** If renames are happening as part of v1.1, the alias map is part of this phase. Otherwise, ship the alias-map infrastructure now to enable safe catalog evolution later.
-
-**Confidence:** HIGH.
+**Phase to address:** v1.2 kickoff / first phase. This is a housekeeping item that should be done before any new data model work.
 
 ---
 
-### MOD-9: Location permission denied — user gets no precision care
+### MOD-9: Fertilization schedule treated as free feature when it creates premium-adjacent engagement
 
 **What goes wrong:**
-User denies location permission on the prompt. The app needs hemisphere/season for the new model. Without location, the app falls back to... what? Hardcoded northern hemisphere assumption? Asks user manually? Disables seasonal feature entirely?
+Fertilization schedule adds a 4th task type visible in the "Hoy" screen and potentially in notifications. If it's free for everyone, premium users get no differentiation from it. If it's premium-gated entirely, free users feel the app nags them about an upsell every time they see a fertilize task.
 
-The user prompt explicitly asks: "Permission denial → fallback story (geocoding alternative? city-only via search?)"
+The risk: adding a task type that shows up in push notifications for free users (increased notification fatigue) but the action flow requires premium to interact fully with.
 
-**Why it happens:**
-- Location permission denial is permanent until user manually changes settings
-- iOS in particular makes re-prompting impossible from the app
+**How to avoid:**
+1. **Design decision must be explicit before implementation:** Recommended model — fertilize schedule configuration is free (add the task, set the interval), but fertilize reminder notifications are premium-gated (same gating model as NOTIFICATIONS_ADVANCED in features.ts). This way free users still see fertilize tasks on the "Hoy" screen but don't get push notifications for them unless they upgrade.
+2. **If fertilize is fully free:** ensure it doesn't inflate notification count for users who already have 10+ morning + care + follow-up notifications. Fertilize is a low-frequency event (every 2-4 weeks); the notification budget impact is low.
+3. **Features.ts must have a `FERTILIZE_SCHEDULE` flag** from day one. This lets the feature be shipped behind a flag and its premium gating adjusted post-launch without a code change.
 
-**Prevention:**
-1. **Manual location entry as first-class fallback.** Settings → "Tu zona" → search by city, returns lat/lon via Open-Meteo geocoding (which the app already uses per CLAUDE.md). No GPS required. Privacy-friendly. Works on iOS where re-prompt isn't possible.
-2. **Default to a sensible guess** until set: if the app's locale/region is `es-AR` → assume Southern hemisphere; if `en-US` / `en-GB` → Northern. Show a small banner: "Usando hemisferio sur por tu idioma. Tocá para ajustar."
-3. **Privacy copy on the location prompt** must be brief and clear: "Solo usamos tu ubicación para clima local y estación. No la compartimos con nadie. No la guardamos en servidores." Reduce paranoia.
-4. **No precision feature is locked behind location.** Watering schedule with `warm/cold` works without location — it just uses the default-zone assumption. Location refines, never gates.
+**Warning signs:**
+- `fertilizeSchedule` feature shipped with no feature flag
+- Fertilize task notifications dispatched via `notificationScheduler.ts` without checking premium status
 
-**Detection signals:**
-- Deny location on iOS sim → onboarding flow completes, plants get reasonable schedules from locale fallback.
-- Settings → manually set city → schedule recomputes correctly.
-
-**Phase placement:** **Hemisphere/season feature phase.** The fallback chain (manual entry → locale guess → conservative default) must exist on day one.
-
-**Confidence:** HIGH.
+**Phase to address:** Fertilization feature phase design gate (before implementation).
 
 ---
 
-### MOD-10: Migration on app launch flashes a black screen / blocks splash
+### MOD-10: Identification picker pre-selects recommendation but outdoor/indoor label is wrong
 
 **What goes wrong:**
-The current `useStorage` provider sets `loading: true` until the load completes (useStorage.tsx:105, 203). If the migration adds 100ms+ of work (mapping every plant's fields, validating, writing back), the splash/loading screen visible to the user lengthens. Worse: if migration fails partway, the app may never set `loading: false` → white screen forever.
+This is a v1.1 UAT bug cited in the milestone scope: "picker outdoor labels for outdoor PlantNet results." When PlantNet identifies an outdoor plant, the light level picker currently shows indoor labels ("Luz directa," "Luz brillante indirecta") — these are meaningless for a tomato plant that lives outside.
 
-The user prompt explicitly: "Async migrations blocking app start — splash screen must not flash."
+The fix for this is in `LightLevelPicker.tsx` (and related label utilities in `getLightLabel` / `src/utils/lightLabel.ts`). If the v1.2 recommendation-first refactor adds new picker sections for `placementRecommended` / `placementAlternatives` without fixing this underlying label mapping, the new educational content will use indoor framing for outdoor plants and confuse users.
 
-**Why it happens:**
-- Migration is on the critical path (must run before any UI renders that touches plant data)
-- AsyncStorage on Android can be slow with large blobs (10+ plants with diagnosis history)
-- A throw inside the migration code is caught by the parent try/catch (useStorage.tsx:200) but the error path doesn't differentiate "no data" from "migration failed"
+**How to avoid:**
+1. **Fix the outdoor label mapping FIRST**, before building the new educational sections. The label lookup must check `plant.outdoor` (or `PlantDBEntry.outdoor`) and use outdoor terms: "Pleno sol," "Sol parcial," "Media sombra," "Sombra."
+2. **`getLightLabel` utility** must accept an `isOutdoor: boolean` parameter (or derive it from the plant). This is a single-function change with downstream impact on every place labels render.
+3. **Grep guard:** after fix, assert that `getLightLabel('direct', true)` returns an outdoor-specific string (not "Luz directa").
 
-**Prevention:**
-1. **Run migration synchronously inside the existing `loadData` flow in `useStorage`** — same place the load happens, same `loading: true` window. Don't add a second loading state.
-2. **Time-budget the migration:** typical case <50ms (in-memory transform). If it routinely exceeds 200ms, profile and optimize before shipping.
-3. **Show splash with progress for migration** if needed: native splash → JS splash with "Actualizando tu jardín..." text → main UI. Avoid silent black screen.
-4. **Migration failure path is explicit:** wrap migration in its own try/catch separate from the load try/catch. On failure: log, alert user with "Reintentar" / "Continuar con datos viejos" buttons (using legacy schema in read-only mode), do NOT lock the app.
-5. **Test on a low-end Android device with 50 plants and full diagnosis history.** Real-world worst case.
+**Warning signs:**
+- PlantNet identification of an outdoor plant shows "Luz brillante indirecta" in the picker
+- `getLightLabel` called without context about indoor/outdoor
 
-**Detection signals:**
-- App launch time on dev device pre/post migration: should differ by <200ms
-- Crashlytics: "App not responding" / ANR reports after v1.1 release
-
-**Phase placement:** **Migration phase + verification phase.** Performance test on real low-end device is a release blocker.
-
-**Confidence:** HIGH.
+**Phase to address:** UAT bug fixes phase (must be fixed before the educational detail modal renders recommendation labels).
 
 ---
 
 ## Minor Pitfalls
 
-### MIN-1: TestFlight vs Production behavior differences for RevenueCat
+### MIN-1: Schema version not bumped in v1.2 — new optional fields silently ignored
 
 **What goes wrong:**
-RevenueCat sandbox (used by TestFlight) and production receipts behave differently — particularly around subscription renewals, "ask to buy" Family Sharing flows, and refresh latency. A diagnosis-continuity flow tested in TestFlight may behave differently for paying production users.
+v1.2 adds optional fields to `Plant` (`fertilizeSchedule?`, `journals?`, `petToxicityOverride?`) and to `PlantDBEntry` (`careAction?`, `petToxicity?`, etc.). If `CURRENT_SCHEMA_VERSION` stays at `1` and no migration runs, these fields are simply absent for all existing users — which is fine, they default gracefully. BUT: if the migration module is supposed to be deleted (per the TODO comment) and a future migration needs to run between v1.2 and v2.0, the version counter is behind.
 
-**Prevention:**
-1. RevenueCat docs explicitly enumerate sandbox quirks — review before release.
-2. Use a real Apple test account configured in App Store Connect (not just TestFlight tester) for purchase regression.
-3. Don't ship the diagnosis-continuity premium flow without a `customerInfo.activeEntitlements` smoke test on a real production-style account.
+**How to avoid:**
+Bump `CURRENT_SCHEMA_VERSION` to `2` at the start of v1.2. The migration itself can be a no-op (identity function: all new fields are optional and default to absent). This establishes the clean v1→v2 boundary and keeps the migration sequence correct for v2.0 when real migrations will be needed.
 
-**Phase placement:** Verification phase, paywall regression checklist.
+**Warning signs:**
+- `CURRENT_SCHEMA_VERSION = 1` in migration.ts after v1.2 ships
 
-**Confidence:** MEDIUM — well-known RevenueCat issue, exact severity for this app depends on prior release testing.
+**Phase to address:** v1.2 kickoff, same commit as backup cleanup.
 
 ---
 
-### MIN-2: User travels with cached location → wrong hemisphere
+### MIN-2: `MigrationBanner` triggered again for v1.2 non-migration
 
 **What goes wrong:**
-User's cached location is Buenos Aires. They visit family in Madrid for a month. Phone GPS isn't queried (or permission is "while in use" and the app doesn't trigger a refresh). App keeps using cached Southern hemisphere data → wrong season for current location. Edge case for a small subset of users.
+`MigrationBanner` in App.tsx renders when `migrationFailed: true`. This is set in `useStorage.tsx:259`. If the v1.2 migration path throws for any reason (even a benign parsing issue with the new optional fields), `migrationFailed` flips and the user sees the "Datos antiguos" banner — which was designed for a real migration failure, not a v1.2 additive change.
 
-**Prevention:**
-1. **Refresh location on app foreground if more than N days old** (e.g. 7 days). Existing weather fetch likely already does something similar — verify and align.
-2. **Show current location in Settings** so users can manually update.
-3. **Manual override** (per MOD-9) lets travelers force a zone.
-4. Accept this as a low-frequency edge case; do not over-engineer.
+**How to avoid:**
+Since v1.2 schema changes are purely additive (new optional fields with graceful defaults), the load path in `useStorage.tsx` already handles them: `data.journals ?? []` style defaults. As long as the CURRENT_SCHEMA_VERSION short-circuit (`isVersioned(parsed) && parsed.schemaVersion >= CURRENT_SCHEMA_VERSION`) correctly matches the bumped version number, no migration code runs and no banner risk exists.
 
-**Phase placement:** Hemisphere feature phase. Low priority.
+The risk is: if CURRENT_SCHEMA_VERSION is bumped but the stored data still says `schemaVersion: 1`, the migration runner triggers and attempts to run a no-op v1→v2 function. If that no-op has a bug (even a minor one), `migrationFailed` fires. Prevention: unit test the no-op migration function explicitly.
 
-**Confidence:** HIGH on the issue, MEDIUM on the priority — affects few users.
+**Warning signs:**
+- `MigrationBanner` visible to users who have never had a real migration error
+- Smoke runner not covering the v1→v2 no-op migration path
+
+**Phase to address:** v1.2 kickoff / schema version bump phase.
 
 ---
 
-### MIN-3: Northern-hemisphere-developer testing southern-only logic
+### MIN-3: Voseo discipline in new microcopy for action buttons
 
 **What goes wrong:**
-You (developer) live in Argentina (Southern hemisphere). The team or anyone using the codebase from a Northern-hemisphere dev environment may test on April 1 and see "warm season" because the local clock + a buggy hemisphere check defaults to Northern. Subtle bugs creep in because the developer's local context masks them.
+Brand voice phase adds voseo + emoji to action buttons. New strings authored under time pressure default to Castilian conjugations. AI-assisted copy drafts will almost always use standard Spanish ("Riega," "Saca," "Confirmar") unless explicitly prompted with voseo requirement AND example strings.
 
-**Prevention:**
-1. **Test fixtures with explicit lat/lon in unit tests:** assert season for (lat=-34, month=4) === 'cold' (BA in autumn) and (lat=40, month=4) === 'warm' (NY in spring) and (lat=1, month=4) === 'tropical'.
-2. **Dev menu:** override location/date in development builds. Existing "fake care" / debug toggles are referenced in recent commits (`8a014c6 feat: notification settings clarity — breakdown subtitle, hide fake care toggle`) — extend the same pattern.
-3. **Snapshot tests** for "what does the Hoy screen show in March" with a fixed mocked date and a fixed mocked location.
+The existing ES translation files use consistent voseo: "Regá," "Sacá," "Chequear." New action button strings must match.
 
-**Phase placement:** Verification phase. CI unit tests catch the most insidious cases.
+**How to avoid:**
+1. Extend the voseo linter (from MOD-2) to cover all locale files, not just the catalog batch.
+2. Copy authoring checklist for action button strings: every imperative verb must be voseo form.
+3. Prompt engineering for AI-assisted drafts: include explicit instruction "usar voseo argentino (regá, sacá, ponela) en lugar de tuteo (riega, saca, ponla)" and include 3 example pairs.
 
-**Confidence:** HIGH — this is a classic timezone/locale-developer-blindness bug pattern.
+**Warning signs:**
+- Any new action button string with Castilian imperative forms
+- Voseo linter not run as part of i18n key check
+
+**Phase to address:** Microcopy + brand voice phase.
 
 ---
 
-### MIN-4: Catalog images for new outdoor plants not yet uploaded to Supabase Storage
+### MIN-4: Long-press actions have no discoverability mechanism
 
 **What goes wrong:**
-New outdoor plants have `imageUrl` referencing `${CATALOG_BASE_URL}/{slug}.jpg`. If those images aren't uploaded to Supabase Storage before release, users see broken images.
+Long-press for hidden actions (favorite, duplicate, archive) is a power-user pattern that casual users never find. Unlike swipe (which has visual affordance via peek animation), long-press has no visual indicator in the React Native standard component set. Users will use the app for months without knowing the feature exists.
 
-**Prevention:**
-1. Pre-release checklist: every catalog entry's `imageUrl` resolves to a 200 OK before submitting to App Store / Play Store.
-2. Automated script: `curl -I` every URL in the catalog as part of CI.
-3. Fallback image: the plant card renders the `icon` emoji prominently when image fails — already part of the design (per CLAUDE.md "Emoji icons throughout").
+**How to avoid:**
+1. One-time hint: on first visit to the plant list after v1.2 upgrade, show a brief overlay or tooltip: "Mantené apretado una planta para más opciones."
+2. All long-press actions must also be accessible via the plant detail modal — long-press is a shortcut, not the only path. Never put an action exclusively behind long-press.
+3. Haptic feedback (`expo-haptics`) on long-press activation confirms to the user that something happened.
 
-**Phase placement:** Catalog rebalance phase, pre-submit verification.
+**Warning signs:**
+- Any action only accessible via long-press with no alternative path
+- No onboarding hint for long-press on first encounter
 
-**Confidence:** HIGH.
+**Phase to address:** Mobile UX modernization phase.
 
 ---
 
-### MIN-5: Ambiguous light-level for outdoor plants
+### MIN-5: `_migratedFromV0` flag on Plant objects not cleaned up in v1.2
 
 **What goes wrong:**
-The `lightLevel` taxonomy (`direct | bright_indirect | medium_indirect | low`) is designed for indoor positioning relative to a window. Outdoor plants don't have an "indirect" light context the same way — they have "full sun / partial shade / shade." Forcing outdoor plants into the indoor taxonomy creates absurd labels (a tomato as "bright indirect"?).
+The `Plant._migratedFromV0?: true` field (types/index.ts:83) is explicitly marked: "Removed in v1.2." It was used in v1.1 to show per-plant tooltips to users who had pre-v1.1 plants. By v1.2, all users have seen the tooltip (or it's been dismissed). The field should be removed from the type and cleaned up in the v1→v2 migration no-op.
 
-**Prevention:**
-1. **Either extend the taxonomy** with `partial_shade` and `shade` for outdoor plants, OR map: `direct = full sun, bright_indirect = partial sun, medium_indirect = partial shade, low = shade`. The latter keeps 4 levels but requires clear copy that explains the mapping for outdoor plants.
-2. **Surface different copy per plant context:** if `outdoor === true`, label the lightLevel selector with outdoor terms; if false, indoor terms.
-3. **Catalog entries** can suggest the right lightLevel per plant, so users don't have to translate themselves.
+If not removed, it persists in AsyncStorage forever, consuming a small amount of space per plant and creating dead code paths.
 
-**Phase placement:** Light-level feature phase + catalog rebalance phase. Copy and labels.
+**How to avoid:**
+Include `_migratedFromV0` removal in the v1→v2 migration no-op: `const { _migratedFromV0, ...rest } = plant; return rest;`. Remove the field from the `Plant` type in `types/index.ts`. Remove any UI code that checks `plant._migratedFromV0`.
 
-**Confidence:** MEDIUM — depends on taxonomy decision not yet locked. Worth a UX review with real outdoor-plant users.
+**Warning signs:**
+- `_migratedFromV0` still in `Plant` type after v1.2 ships
+- Any component rendering tooltip logic based on `_migratedFromV0`
+
+**Phase to address:** v1.2 kickoff / schema version bump phase.
 
 ---
 
-### MIN-6: Mixing fixed-mode and soil-check-mode plants in one user's garden — UI consistency
+### MIN-6: Plant journal entries not deleted when plant is deleted
 
 **What goes wrong:**
-On the "Hoy" tab, water tasks for fixed plants show "Regar Monstera". For soil-check plants on a check-in day, tasks show "Chequear cactus". For soil-check plants on a non-check-in day, tasks show... nothing? But the user thinks "did I forget to add my cactus to the schedule?"
+`deletePlant()` in `useStorage.tsx:364` cleans up `diagnosisHistory[id]` for the deleted plant. Journal entries stored at `plant.journals` (if embedded on the Plant object) would be deleted automatically with the plant. But if journals are stored in a top-level key (e.g. `journals: Record<plantId, JournalEntry[]>` as a sibling to `diagnosisHistory`), they become orphaned silently when the plant is deleted — same pattern that would have happened with `diagnosisHistory` if it weren't explicitly cleaned up.
 
-**Prevention:**
-1. **Plant card always shows current mode badge** (a small "💧 Cada 5d" or "🤚 Por chequeo") so the user understands why the task list looks the way it does.
-2. **Empty state for soil-check plants** when no check-in is due: "Tu cactus está en modo chequeo. Te avisamos en 12 días." — explicit, not silent.
-3. **Settings has a global preference** (or a per-plant choice via edit modal): "Modo de riego para [plant]". Unblocks user fixing whatever the migration mapped them to.
+**How to avoid:**
+1. If journals are stored at top-level (recommended for future cloud sync alignment — same pattern as `diagnosisHistory`), extend `deletePlant()` to also clean `newJournals[id]`. One line. Do it in the same commit that adds the journal field.
+2. If journals are embedded on `Plant` (simpler), they're automatically cleaned up but harder to migrate to cloud sync later. Design decision should be made explicitly.
 
-**Phase placement:** Watering feature phase, UX details.
+**Warning signs:**
+- `deletePlant` implementation in v1.2 not updated to clean journal data
+- Orphaned journal entries for deleted plants accumulating in AsyncStorage
 
-**Confidence:** HIGH.
+**Phase to address:** Plant journal phase. Include orphan cleanup in the deletePlant update.
 
 ---
 
-### MIN-7: Schema-version drift between TestFlight users and Production users
+## Technical Debt Patterns
 
-**What goes wrong:**
-TestFlight beta users get v1.1 with `schemaVersion: 1`. They migrate. Then they later install (or roll back to) the v1.0 production build for any reason — old build reads new blob, sees fields it doesn't know, ignores them silently. Or worse, crashes if a non-nullable assumption is violated by new data.
-
-**Prevention:**
-1. **v1.0 was never built to handle v1.1 data — that's expected and unavoidable.** Make v1.0 → v1.1 a one-way door. Don't actively support downgrade.
-2. **Document this in TestFlight release notes:** "v1.1 changes how plant data is stored. Reverting to v1.0 is not supported and may cause data loss." Sets expectations.
-3. **The pre-migration backup blob** (CRIT-1 prevention) gives users a recovery path: reinstall v1.0 + manual recovery from backup if absolutely needed (would require a secondary tool, not supported in-app).
-4. **Don't let a beta user be a production user simultaneously** — App Store / TestFlight don't let this happen normally, but be aware that some users uninstall TestFlight and reinstall production.
-
-**Phase placement:** Verification + release notes.
-
-**Confidence:** MEDIUM — affects very few users but support cost is high if it happens.
+| Shortcut | Immediate Benefit | Long-term Cost | When Acceptable |
+|----------|-------------------|----------------|-----------------|
+| AI-only toxicity data without source verification | Faster authoring | Wrong safety data = real liability + trust loss | Never — always cross-check with ASPCA |
+| Base64 photo storage in journal entries | Simpler implementation | AsyncStorage bloat → Android corruption | Never — use file system URIs |
+| Single AppContent path tested (MVP only) | Faster development cycle | AUTH-mode bugs surface in a future milestone | Never — both paths must stay in sync |
+| Streak counter visible to users | Higher engagement metric | Streak anxiety, user resentment, negative reviews | Never for this app's audience |
+| Skip CURRENT_SCHEMA_VERSION bump for "minor" additive changes | One less migration to write | Version counter desync, harder future migrations | Acceptable ONLY if no migration function runs; still bump the version |
+| Fertilize notifications without premium check | Simpler code | Notification fatigue for free users, undermines premium value | Acceptable in MVP of the feature if gating is flagged as a TODO and tracked |
 
 ---
 
-### MIN-8: Privacy manifest update for location use
+## Integration Gotchas
 
-**What goes wrong:**
-v1.0 may already declare location use in `privacyManifests` (CLAUDE.md mentions `app.json` declares APIs). v1.1 makes location MORE prominent (onboarding prompt, banner, settings UI). If the manifest already covers "Coarse Location" and "Reverse Geocoding," no change needed. If not, App Store submission may flag this.
-
-**Prevention:**
-1. **Audit `app.json` privacyManifests entry** vs new usage. If location was already declared, fine. If not, update before submission.
-2. **PrivacyInfo.xcprivacy** mentioned in CLAUDE.md root — verify it covers location category.
-3. CLAUDE.md guidance: "Update privacy manifest when adding cloud sync or new Apple-required APIs." Adding more visible location UI alone doesn't require update if the API category was already declared.
-
-**Phase placement:** Pre-submission verification.
-
-**Confidence:** MEDIUM — depends on what's currently declared.
+| Integration | Common Mistake | Correct Approach |
+|-------------|----------------|------------------|
+| `@gorhom/bottom-sheet` | Install via `npm install` directly | Use `npx expo install` to get Expo-compatible version for SDK 54 |
+| `@gorhom/bottom-sheet` | Use standard `TextInput` inside a sheet | Use `BottomSheetTextInput` from the library |
+| `react-native-gesture-handler` | Forget to wrap root component in `GestureHandlerRootView` | Add `GestureHandlerRootView` at the top of App.tsx, outside both AppContent paths |
+| ASPCA toxicity data | Scrape ASPCA website without checking update date | ASPCA Toxic Plant database is periodically updated; note the access date in code comments |
+| `expo-file-system` for journal photos | Store photos in cache directory | Store in document directory (`FileSystem.documentDirectory`) — cache may be cleared by OS |
+| Voseo in AI-assisted copy | Prompt AI in generic Spanish | Explicitly specify "voseo argentino" and provide 3-5 example pairs in the prompt |
 
 ---
 
-## Phase-Specific Warnings
+## Performance Traps
 
-| Phase Topic | Likely Pitfall | Mitigation |
-|-------------|----------------|------------|
-| Migration phase (kickoff) | CRIT-1 partial migration data loss | schemaVersion + atomic write + backup blob + idempotent re-runs |
-| Migration phase | CRIT-2 dual-source-of-truth from kept-old fields | Remove old fields entirely; let TS surface read sites |
-| Migration phase | CRIT-3 stale notifications fire after migration | cancelAllNotifications() then full reschedule on first post-migration launch |
-| Migration phase | MOD-3 user customizations overwritten | Map per-instance values, not catalog defaults; show one-time post-migration message |
-| Migration phase | MOD-10 splash flash / blocked launch | Synchronous migration in existing loadData flow, time-budget <200ms, profile on low-end Android |
-| Light-level feature phase | MIN-5 outdoor plants ambiguous | Outdoor labels: full sun / partial sun / partial shade / shade — same 4 buckets, different copy |
-| Watering-feature phase | CRIT-5 soil-check has no notification trigger | Check-in (not water) reminders, distinct task type, no health penalty for soil-check overdue |
-| Watering-feature phase | MIN-6 mixed-mode UI inconsistency | Mode badge on plant card + explicit empty states |
-| Hemisphere/season phase | MOD-1 tropical zone | Three zones: Northern temperate / Southern temperate / Tropical |
-| Hemisphere/season phase | MOD-2 abrupt season transitions | Month-based boundaries (April vs October), not equinox; show season label in UI |
-| Hemisphere/season phase | MOD-9 permission denied fallback | Manual city entry via Open-Meteo geocoding; locale-based default; never gate features behind GPS |
-| Hemisphere/season phase | MIN-3 northern-dev testing southern logic | Unit tests with explicit lat/lon fixtures; dev menu for date/location override |
-| Diagnosis continuity phase | CRIT-4 modal stacking / paywall | Lift paywall to root context; deferred-callback after purchase confirmation |
-| Diagnosis continuity phase | MOD-4 image context lost on resume | Text-only resume; explicit copy "para reevaluar visualmente, sacá una foto nueva" |
-| Diagnosis continuity phase | MOD-5 message-count limit on resume | Count per diagnosis lifetime, not per session; surface count before user types |
-| Catalog rebalance phase | MOD-6 stale tip text on existing plants | Lookup-by-id, never copy catalog content to plant instance |
-| Catalog rebalance phase | MOD-7 partial i18n keys | CI build-time check that every slug has full keyset in both locales |
-| Catalog rebalance phase | MOD-8 renamed/removed plants | Slugs are forever; alias map for renames; soft-fail lookup |
-| Catalog rebalance phase | MIN-4 missing catalog images | Pre-submit script validates all imageUrl resolve to 200 |
-| Verification phase | MIN-1 RevenueCat sandbox vs prod | Test with real production-style Apple account, not just TestFlight tester |
-| Verification phase | MIN-7 schema drift TestFlight↔Prod | One-way migration; document in beta release notes |
-| Pre-submission | MIN-8 privacy manifest | Audit app.json + PrivacyInfo.xcprivacy for location declarations |
+| Trap | Symptoms | Prevention | When It Breaks |
+|------|----------|------------|----------------|
+| Journal photos as base64 in AsyncStorage | App crash on launch, "Failed to parse" errors on Android | File system URIs only; cap photo count per entry at 3 | ~10 journal entries with photos (varies by device) |
+| Re-rendering all PlantCards when any one plant updates | Visible scroll jank as plant list grows | `React.memo` on `PlantCard`, stable callback refs for handlers | 15+ plants in collection mode |
+| Bottom sheet Reanimated worklet on slow JS thread | Sheet snap animation jitter | Use `@gorhom/bottom-sheet` v5 (Reanimated 3 native driver) not v4 | Low-end Android devices |
+| Discriminator switch over task types without default branch | Silent runtime no-op for unhandled task type | TypeScript `never` exhaustiveness check in all switches | Every time a new task type is added |
+
+---
+
+## "Looks Done But Isn't" Checklist
+
+- [ ] **Fertilization task type:** Added to `Task.type` union, `getTasksForDay`, `notificationScheduler`, `plantHealth`, AND all discriminator switches in DayDetail/DayDetailModal/MonthCalendar — verify all 5 sites, not just the UI.
+- [ ] **Pet toxicity:** Every catalog entry has `petToxicity` field set (not absent/undefined) — run grep count assertion.
+- [ ] **Both AppContent paths:** Any new root provider (BottomSheetModalProvider, etc.) appears in BOTH `AppContentMVP` and `AppContentFull` — grep count must be 2.
+- [ ] **Journal orphan cleanup:** `deletePlant()` cleans journal data for the deleted plant — verify in smoke test.
+- [ ] **v1.1 backup removed:** `AsyncStorage.getItem('plant-agenda-v2.backup-pre-v1.1')` returns null after first v1.2 launch.
+- [ ] **Voseo compliance:** All new ES strings pass the voseo linter — no Castilian imperative forms in new i18n keys.
+- [ ] **Outdoor light labels:** `getLightLabel` with `isOutdoor: true` returns outdoor-appropriate terms — verify with `direct` + outdoor = "Pleno sol" (or equivalent).
+- [ ] **Recommendation vs. custom value:** Existing user with custom `waterSchedule` can open educational modal and close it without their custom value being overwritten — smoke test this flow explicitly.
+
+---
+
+## Recovery Strategies
+
+| Pitfall | Recovery Cost | Recovery Steps |
+|---------|---------------|----------------|
+| CRIT-1: Recommendation overwrites user custom values | HIGH | Schema migration to restore from backup is impossible (values gone); post-hoc: show "reset to our recommendation?" banner with ability to undo; long-term: cannot recover lost custom values without user input |
+| CRIT-2: Wrong toxicity data shipped | HIGH | Hotfix release with corrected data; public acknowledgment in app update notes; add disclaimer copy to all entries as immediate mitigation |
+| CRIT-3: AsyncStorage corruption from journal photos | HIGH | `AsyncStorage.clear()` is nuclear (loses all data); partial recovery via backup blob if v1.1 backup still present; lesson: never store binary in AsyncStorage |
+| CRIT-4: Missing BottomSheetModalProvider in one path | MEDIUM | Hotfix App.tsx to add provider to missing path; no data impact |
+| CRIT-5: Fertilize task type incomplete | MEDIUM | Hotfix the missing switch branches; notification rescheduling required if notificationScheduler was missed |
+| MOD-7: Streak counter shipped and users complain | MEDIUM | Remove or hide the counter in a patch; UX damage partially irreversible (users who saw it feel the loss) |
+
+---
+
+## Pitfall-to-Phase Mapping
+
+| Pitfall | Prevention Phase | Verification |
+|---------|------------------|--------------|
+| CRIT-1: Recommendation overwrites custom values | Educational Detail Modal phase | Smoke test: open picker → close without saving → assert no updatePlant call was made |
+| CRIT-2: Wrong toxicity data | Pet toxicity dataset phase | ASPCA cross-check checklist; grep guard for entries with undefined petToxicity |
+| CRIT-3: Journal photo AsyncStorage bloat | Plant journal phase | Dev startup log of AppData JSON byte size; cap at 3 photos per entry |
+| CRIT-4: Missing BottomSheetModalProvider | Bottom sheets phase (first phase) | Grep count for BottomSheetModalProvider in App.tsx == 2 |
+| CRIT-5: Fertilize task type not fully wired | Fertilization feature phase | Smoke runner extension: fertilize task in getTasksForDay, notificationScheduler, plantHealth |
+| MOD-1: Recommendation tone feels judgmental | Microcopy phase | Copy review checklist: no "incorrecto" or negative comparison language |
+| MOD-2: Catalog quality drift + voseo drift | Catalog authoring phase | Voseo linter script; per-entry source citation check |
+| MOD-3: Health badge hidden without communication | PlantCard cleanup phase | One-time tooltip for returning users; health detail always accessible via card tap |
+| MOD-4: Swipe-delete vs. scroll conflict | Mobile UX modernization phase | Physical device test: diagonal swipe on iOS and Android; long-press fallback exists |
+| MOD-5: Bottom sheet keyboard issues | Bottom sheets phase | Physical iOS device test with text input in a sheet |
+| MOD-6: Bottom sheet z-order vs. PaywallModal | Bottom sheets phase | Test matrix: paywall + bottom sheet simultaneously |
+| MOD-7: Streaks anti-pattern | Streaks/celebration phase | Design review gate before any streak counter implementation |
+| MOD-8: v1.1 backup not cleaned up | v1.2 kickoff (first commit) | AsyncStorage.getItem backup key == null after first run |
+| MOD-9: Fertilize gating decision | Fertilization phase design gate | features.ts FERTILIZE_SCHEDULE flag present from day one |
+| MOD-10: Outdoor light labels wrong | UAT bug fixes phase (first) | getLightLabel('direct', true) returns outdoor term |
+| MIN-1: Schema version not bumped | v1.2 kickoff | CURRENT_SCHEMA_VERSION == 2 in migration.ts |
+| MIN-2: MigrationBanner triggers for v1.2 | v1.2 kickoff | Smoke test: load v1.1 schema → migrationFailed remains false |
+| MIN-3: Voseo in microcopy | Microcopy phase | Voseo linter on all locale files |
+| MIN-4: Long-press undiscoverable | Mobile UX modernization phase | All long-press actions have an alternative tap path |
+| MIN-5: _migratedFromV0 not removed | v1.2 kickoff | Field absent from Plant type; grep returns 0 hits |
+| MIN-6: Journal orphan on plant delete | Plant journal phase | Smoke test: add journal entries, delete plant, assert no orphans in storage |
 
 ---
 
 ## Sources
 
-This document is grounded in direct reading of:
+Grounded in direct reading of:
+- `src/hooks/useStorage.tsx` — persistence model, deletePlant orphan cleanup pattern, debounce behavior
+- `src/types/index.ts` — Plant type, Task.type union, `_migratedFromV0` deprecation notice
+- `src/utils/migration.ts` — CURRENT_SCHEMA_VERSION=1, cleanupBackup_v1_1 TODO, v1→v2 stub stub
+- `src/components/PlantCard.tsx` — `showHealthBadge = healthStatus.score < 80` (line 91), current 10-element visual structure
+- `src/data/plantDatabase.ts` — catalog structure, 64 entries, existing field set
+- `App.tsx` — Two-AppContent-paths discipline, PaywallModal root placement (lines 228, 368), provider hierarchy
+- `src/hooks/usePremium.tsx` — PaywallCallbackOptions, showPaywall API, deferred callback pattern
+- `package.json` — no react-native-gesture-handler, no reanimated, no @gorhom/bottom-sheet currently installed
+- `.planning/PROJECT.md` — v1.2 milestone scope, Key Decisions table, Two-path discipline lock
+- `src/config/features.ts` — feature flag architecture, CARE_STREAKS already defined as V2.0 feature
+- Recent git commits — "add check_soil branch to all 4 discriminator chains" (confirming discriminator propagation pattern and risk)
+- ASPCA Toxic Plant Database (canonical source): https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants
 
-- `/Users/gaston/Documents/Personal/MiJardinApp/CLAUDE.md` — confirmed local-first AsyncStorage, RevenueCat, i18n, modal pattern
-- `/Users/gaston/Documents/Personal/MiJardinApp/.planning/PROJECT.md` — milestone scope, target features, out-of-scope
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/hooks/useStorage.tsx` — single-blob persistence, debounced save, load fallbacks (lines 144-207)
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/utils/plantHealth.ts` — health scoring assumes `waterEvery` semantics (line 41 via getNextWaterDate)
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/utils/plantLogic.ts` — `getNextWaterDate` and `getTasksForDay` reference `waterEvery`, `sunHours`, `sunDays`, `outdoorDays` directly
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/utils/notificationScheduler.ts` — sun-window logic depends on `sunHours` (lines 524-543); UV warning filters by `sunHours <= 3` (line 732); notifications subsystem disables globally on first error (line 17, 23-27)
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/data/plantDatabase.ts` (read partial) — confirms current catalog shape with `waterDays`, `sunHours`, `tempMin`, `tempMax`, `humidity`, `outdoor`
-- `/Users/gaston/Documents/Personal/MiJardinApp/src/config/premium.ts` — `canSendChatMessage` based on `userMessageCount` parameter (line 61), confirms message-limit per chat session
-
-**Confidence levels assigned per pitfall above.** All HIGH-confidence pitfalls are observable directly in the code or design constraints. MEDIUM-confidence pitfalls flag assumptions that should be verified in implementation.
-
-**Not verified (recommended follow-up before locking design):**
-- Exact shape of `Plant` type re: whether `tip`/`description`/`problems` are copied or referenced (MOD-6)
-- Exact prompt structure used by `chat-diagnosis` edge function (MOD-4)
-- Current privacyManifests location declaration (MIN-8)
+---
+*Pitfalls research for: v1.2 Recommendation-First Plant Guide*
+*Researched: 2026-05-01*
