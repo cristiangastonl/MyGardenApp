@@ -92,25 +92,56 @@ pass++; // placeholder counts as pass until plan activates
 // Assertion: priorPersistedCount + sessionUserCount = lifetimeUserCount (arithmetic correctness test)
 pass++; // placeholder counts as pass until plan activates
 
-// PLACEHOLDER — Plan 09-02 activates
 // T7: deferred callback fires once on success, cleared first (pure JS simulation)
-// Assertion: pendingCallback.onSuccess fires, then pendingCallback set to null before hidePaywall
-pass++; // placeholder counts as pass until plan activates
+// Plan 09-02 (PAY-03): consumePendingCallback clears before onSuccess fires; hidePaywall sees null.
+{
+  let callbackFired = false;
+  let cancelFired = false;
+  let pendingCallback = { onSuccess: () => { callbackFired = true; }, onCancel: () => { cancelFired = true; } };
+  // Simulate consumePendingCallback (Plan 09-02 Task 2 contract)
+  const cb = pendingCallback;
+  pendingCallback = null;
+  cb?.onSuccess?.();
+  // Then simulate hidePaywall (which sees null pendingCallback)
+  const cb2 = pendingCallback;
+  pendingCallback = null;
+  cb2?.onCancel?.();
+  assert(callbackFired === true, "T7: onSuccess fires on consume");
+  assert(cancelFired === false, "T7: onCancel does NOT fire after consume (Pitfall 7 lock)");
+  assert(pendingCallback === null, "T7: pendingCallback cleared atomically");
+}
 
-// PLACEHOLDER — Plan 09-02 activates
 // T8: PaywallModal in BOTH AppContent paths in App.tsx
-// Assertion: App.tsx contains <PaywallModal in AppContentMVP AND AppContentFullInner sections
-pass++; // placeholder counts as pass until plan activates
+// Plan 09-02 (PAY-01): Two-AppContent-paths discipline (Phase 5 Plan 05 lock).
+// Slice-based extraction: each function body runs from its declaration to the next top-level declaration.
+{
+  const appSrc = readFileSync(resolve(ROOT, 'App.tsx'), 'utf8');
+  const mvpStart = appSrc.indexOf('function AppContentMVP(');
+  const fullStart = appSrc.indexOf('function AppContentFull(');
+  const authStart = appSrc.indexOf('function AppContentFullInner(');
+  const exportStart = appSrc.indexOf('\nexport default function App(');
+  const mvpBody = mvpStart !== -1 && fullStart !== -1 ? appSrc.slice(mvpStart, fullStart) : '';
+  const authBody = authStart !== -1 && exportStart !== -1 ? appSrc.slice(authStart, exportStart) : '';
+  assert(mvpBody.length > 0 && /<PaywallModal/.test(mvpBody), "T8: PaywallModal mounted in AppContentMVP");
+  assert(authBody.length > 0 && /<PaywallModal/.test(authBody), "T8: PaywallModal mounted in AppContentFullInner");
+}
 
 // PLACEHOLDER — Plan 09-08 activates
 // T9: no direct showPaywall( inside PlantDiagnosisModal/PlantIdentifierModal without close-then-trigger wrapper
 // Assertion: grep PlantDiagnosisModal.tsx + PlantIdentifierModal.tsx for raw showPaywall( count === 0
 pass++; // placeholder counts as pass until plan activates
 
-// PLACEHOLDER — Plan 09-02 activates
-// T10: showPaywall accepts options? in usePremium.tsx (signature widening)
-// Assertion: grep usePremium.tsx for 'PaywallCallbackOptions' type declaration count >= 1
-pass++; // placeholder counts as pass until plan activates
+// T10: usePremium signature + PaywallCallbackOptions + new union members
+// Plan 09-02 (PAY-03): all three widenings verified via source grep.
+{
+  const upSrc = readFileSync(resolve(ROOT, 'src/hooks/usePremium.tsx'), 'utf8');
+  assert(/showPaywall:\s*\(trigger:\s*PaywallTrigger,\s*options\?:\s*PaywallCallbackOptions\)/.test(upSrc),
+    "T10a: showPaywall signature accepts options? PaywallCallbackOptions");
+  assert(/'diagnosis-resume'/.test(upSrc) && /'diagnosis-limit'/.test(upSrc),
+    "T10b: PaywallTrigger union expanded with diagnosis-resume + diagnosis-limit");
+  assert(/consumePendingCallback/.test(upSrc),
+    "T10c: consumePendingCallback exposed (Plan 09-02 atomic get-and-clear contract)");
+}
 
 // ─────────────────────────────────────────────
 // Final report
