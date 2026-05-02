@@ -233,10 +233,10 @@
       "homemade": "Eggshell water once a month"
     }
   },
-  "lavanda": {
-    "name": "Lavender",
+  "lavanda-angustifolia": {
+    "name": "English Lavender",
     "tip": "Prune after flowering to keep it compact and prevent it from getting too woody.",
-    "description": "A Mediterranean aromatic with fragrant flowers. Attracts pollinators and repels mosquitoes.",
+    "description": "A Mediterranean aromatic with fragrant flowers. Attracts pollinators and repels mosquitoes. The hardiest of the lavenders, tolerating very cold winters.",
     "problems": [
       {
         "symptom": "Woody plant with no flowers",
@@ -257,6 +257,48 @@
     "nutrients": {
       "type": "Very low, prefers poor soil",
       "homemade": "Not needed; light compost once a year"
+    }
+  },
+  "lavanda-stoechas": {
+    "name": "French Lavender",
+    "tip": "Choose this if your winter is mild. Doesn't tolerate hard frosts like English lavender, but blooms more in spring and is more decorative with its \"rabbit ear\" bracts.",
+    "description": "French Lavender (Lavandula stoechas) is distinguished by its purple \"rabbit ear\" bracts above each flower. It's more heat-loving than English lavender and blooms abundantly in spring. Ideal for climates with mild winters.",
+    "problems": [
+      {
+        "symptom": "Death in winter",
+        "cause": "Frost below -5°C",
+        "solution": "Cover with frost cloth or move it indoors in pots if hard frosts are expected."
+      },
+      {
+        "symptom": "Woody plant with no flowers",
+        "cause": "Lack of pruning",
+        "solution": "Prune one third after each flowering to rejuvenate."
+      }
+    ],
+    "nutrients": {
+      "type": "Very low, well-drained poor soil",
+      "homemade": "No fertilizer; a bit of compost once a year"
+    }
+  },
+  "lavanda-dentada": {
+    "name": "Fringed Lavender",
+    "tip": "It's the most heat-loving of the lavenders. Blooms almost year-round in warm climates. Recognize it by its serrated or toothed leaf edges.",
+    "description": "Fringed Lavender (Lavandula dentata) has scalloped leaf edges that distinguish it visually. It's the most heat-tolerant variety and the most cold-sensitive of the three. In warm temperate climates it can bloom practically year-round with regular pruning.",
+    "problems": [
+      {
+        "symptom": "Winter death",
+        "cause": "Hard frosts (-5°C)",
+        "solution": "Plant it in the most sheltered spot in the garden or in a pot to move in winter."
+      },
+      {
+        "symptom": "Pale gray leaves",
+        "cause": "Excess moisture or frequent watering",
+        "solution": "Reduce watering; prefers dry conditions between waterings."
+      }
+    ],
+    "nutrients": {
+      "type": "Very low, well-drained and poor soil",
+      "homemade": "No fertilizer; a bit of compost once a year"
     }
   },
   "petunia": {

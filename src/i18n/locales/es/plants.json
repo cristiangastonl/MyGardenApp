@@ -233,15 +233,15 @@
       "homemade": "Agua de cáscara de huevo 1 vez al mes"
     }
   },
-  "lavanda": {
-    "name": "Lavanda",
-    "tip": "Poda después de la floración para mantener la forma compacta y evitar que se vuelva leñosa.",
-    "description": "Aromática mediterránea con flores perfumadas. Atrae polinizadores y repele mosquitos.",
+  "lavanda-angustifolia": {
+    "name": "Lavanda inglesa",
+    "tip": "Podá después de la floración para mantener la forma compacta y evitar que se vuelva leñosa.",
+    "description": "Aromática mediterránea con flores perfumadas. Atrae polinizadores y repele mosquitos. La más resistente al frío de las lavandas, aguanta inviernos muy duros.",
     "problems": [
       {
         "symptom": "Planta leñosa sin flores",
         "cause": "Falta de poda",
-        "solution": "Poda 1/3 después de florecer, nunca hasta madera vieja."
+        "solution": "Podá 1/3 después de florecer, nunca hasta madera vieja."
       },
       {
         "symptom": "Hojas amarillas",
@@ -251,12 +251,54 @@
       {
         "symptom": "Muerte súbita",
         "cause": "Exceso de humedad en raíces",
-        "solution": "Planta en suelo muy drenado, evita riego excesivo."
+        "solution": "Plantá en suelo muy drenado, evitá riego excesivo."
       }
     ],
     "nutrients": {
       "type": "Muy bajo, prefiere suelo pobre",
       "homemade": "No necesita; compost liviano 1 vez al año"
+    }
+  },
+  "lavanda-stoechas": {
+    "name": "Lavanda francesa",
+    "tip": "Elegila si tu invierno es suave. No tolera heladas fuertes como la lavanda inglesa, pero florece más en primavera y es más decorativa con sus brácteas en \"orejas de conejo\".",
+    "description": "La Lavanda francesa (Lavandula stoechas) se distingue por sus brácteas moradas en forma de orejas de conejo sobre cada flor. Es más amante del calor que la lavanda inglesa y florece abundantemente en primavera. Ideal para climas con inviernos suaves.",
+    "problems": [
+      {
+        "symptom": "Muerte en invierno",
+        "cause": "Heladas bajo -5°C",
+        "solution": "Cubría con tela antigranizo o llevala en maceta al interior si se esperan heladas fuertes."
+      },
+      {
+        "symptom": "Planta leñosa sin flores",
+        "cause": "Falta de poda",
+        "solution": "Podá un tercio después de cada floración para que rejuvenezca."
+      }
+    ],
+    "nutrients": {
+      "type": "Muy bajo, suelo pobre bien drenado",
+      "homemade": "Sin fertilizante; un poco de compost una vez al año"
+    }
+  },
+  "lavanda-dentada": {
+    "name": "Lavanda dentada",
+    "tip": "Es la más calurosa de las lavandas. Florece casi todo el año en climas cálidos. Reconocela por sus hojas con bordes dentados o aserrados.",
+    "description": "La Lavanda dentada (Lavandula dentata) tiene hojas con bordes festoneados que la distinguen visualmente. Es la variedad más tolerante al calor y la más sensible al frío de las tres. En climas templados-cálidos puede florecer prácticamente todo el año con podas regulares.",
+    "problems": [
+      {
+        "symptom": "Muerte invernal",
+        "cause": "Heladas fuertes (-5°C)",
+        "solution": "Plantala en el lugar más abrigado del jardín o en maceta para moverla en invierno."
+      },
+      {
+        "symptom": "Hojas grises pálidas",
+        "cause": "Exceso de humedad o riego frecuente",
+        "solution": "Reducí el riego; prefiere condiciones secas entre riegos."
+      }
+    ],
+    "nutrients": {
+      "type": "Muy bajo, suelo bien drenado y pobre",
+      "homemade": "Sin fertilizante; un poco de compost una vez al año"
     }
   },
   "petunia": {
