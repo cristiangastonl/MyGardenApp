@@ -1,25 +1,12 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { DbPlantKnowledge, DbPlantKnowledgeInsert } from '../types/database';
 
-const PERENUAL_API_BASE = 'https://perenual.com/api';
-
 /**
  * Escape special characters that have meaning in PostgREST filter strings
  * to prevent injection via ilike/or filters.
  */
 function escapePostgrestFilter(str: string): string {
   return str.replace(/[%_,.()"'\\]/g, '');
-}
-
-// Get API key from environment variable or allow runtime override
-let perenualApiKey: string | null = process.env.EXPO_PUBLIC_PERENUAL_API_KEY || null;
-
-export function setPerenualApiKey(key: string | null) {
-  perenualApiKey = key;
-}
-
-export function getPerenualApiKey(): string | null {
-  return perenualApiKey;
 }
 
 interface PerenualPlant {
@@ -70,13 +57,13 @@ export async function searchPlantKnowledge(
     return { success: true, data: cached, source: 'cache' };
   }
 
-  // 2. If not in cache, fetch from API
-  if (!perenualApiKey) {
+  // 2. If not in cache, fetch from edge function
+  if (!isSupabaseConfigured()) {
     return {
       success: false,
       data: null,
       source: 'none',
-      error: 'No API key configured',
+      error: 'Supabase not configured',
     };
   }
 
@@ -133,44 +120,41 @@ async function searchLocalCache(
 }
 
 /**
- * Fetch plant data from Perenual API
+ * Fetch plant data via the get-plant-care Supabase Edge Function (Phase 10 SEC-02/03).
+ * The Perenual API key lives ONLY in Supabase secrets (PERENUAL_API_KEY) — never bundled with the client.
+ *
+ * Signature preserved: all 4 internal callers (searchPlantKnowledge etc.) work unchanged.
+ * On any failure (Supabase error, network, no plants found, edge function error) returns null
+ * so the defensive fallback ladder in getEnrichedPlantData() drops to defaults.
  */
 async function fetchFromPerenual(
-  plantName: string
+  plantName: string,
+  lang?: 'en' | 'es'
 ): Promise<DbPlantKnowledgeInsert | null> {
-  if (!perenualApiKey) return null;
+  if (!isSupabaseConfigured()) return null;
 
   try {
-    // 1. Search for the plant
-    const searchUrl = `${PERENUAL_API_BASE}/species-list?key=${perenualApiKey}&q=${encodeURIComponent(plantName)}`;
-    const searchRes = await fetch(searchUrl);
+    console.log('[PlantKnowledge] Fetching from Perenual via edge function...');
 
-    if (!searchRes.ok) {
-      console.log('[PlantKnowledge] Search failed:', searchRes.status);
+    const { data: invokeResponse, error: invokeError } = await supabase.functions.invoke(
+      'get-plant-care',
+      { body: { plantName, lang } }
+    );
+
+    if (invokeError) {
+      console.log('[PlantKnowledge] Edge function invoke error:', invokeError.message);
       return null;
     }
 
-    const searchData = await searchRes.json();
-    const plants: PerenualPlant[] = searchData.data || [];
+    // Edge function envelope: { data: PerenualPlantDetail | null, error?: string }
+    // (Plan 10-01 deliberate envelope so future fields don't break the contract.)
+    const detail = (invokeResponse as { data?: PerenualPlantDetail | null; error?: string } | null)?.data ?? null;
 
-    if (plants.length === 0) {
-      console.log('[PlantKnowledge] No plants found for:', plantName);
+    if (!detail) {
+      console.log('[PlantKnowledge] No plants found via edge function for:', plantName);
       return null;
     }
 
-    // Get the first match
-    const plant = plants[0];
-
-    // 2. Get detailed info
-    const detailUrl = `${PERENUAL_API_BASE}/species/details/${plant.id}?key=${perenualApiKey}`;
-    const detailRes = await fetch(detailUrl);
-
-    let detail: PerenualPlantDetail = plant;
-    if (detailRes.ok) {
-      detail = await detailRes.json();
-    }
-
-    // 3. Convert to our format
     return convertPerenualToKnowledge(detail);
   } catch (error) {
     console.error('[PlantKnowledge] API error:', error);
