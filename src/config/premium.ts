@@ -4,7 +4,7 @@ import { usePremium } from '../hooks/usePremium';
 const FREE_PLANT_LIMIT = 5;
 const FREE_IDENTIFICATION_LIMIT = 1;
 const FREE_DIAGNOSIS_LIMIT = 1;
-const FREE_CHAT_MESSAGES_PER_DIAGNOSIS = 3;
+export const FREE_CHAT_MESSAGES_PER_DIAGNOSIS = 3;
 const FREE_TIPS_TRIAL_DAYS = 7;
 
 function daysSinceInstall(installDate: string | null): number {
