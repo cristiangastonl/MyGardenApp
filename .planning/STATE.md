@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 08-05-PLAN.md (4/4 tasks)
-last_updated: "2026-05-02T13:59:52.153Z"
+stopped_at: Completed 09-01-PLAN.md (2/2 tasks)
+last_updated: "2026-05-02T14:53:11.710Z"
 last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
 progress:
   total_phases: 6
   completed_phases: 5
-  total_plans: 31
-  completed_plans: 31
+  total_plans: 39
+  completed_plans: 32
   percent: 100
 ---
 
@@ -88,6 +88,7 @@ Progress: [██████████] 100% (v1.1 complete: 31/31 plans acro
 | Phase 08-catalog-rebalance P03 | 25min | 3 tasks | 4 files |
 | Phase 08-catalog-rebalance P04 | 4min | 3 tasks | 4 files |
 | Phase 08-catalog-rebalance P05 | 6 | 4 tasks | 5 files |
+| Phase 09 P01 | 3 min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -187,6 +188,8 @@ Recent decisions affecting current work:
 - [Phase 08-catalog-rebalance]: alias-rewrite scope: ONLY in updatePlant (not addPlant/setPlants) — read-side getCatalogEntry covers render; save-time normalization closes round-trip on user edits only; pure runtime no migration script
 - [Phase 08-catalog-rebalance]: _aliases NOT checked by check:i18n-keys — canonical-id-only; runtime getCatalogEntry resolves aliases; lavanda alias has no i18n key post-Plan-03 rename so checking would yield false-positive
 - [Phase 08-catalog-rebalance]: CLAUDE.md Pre-submit Checks: flat Markdown (not nested fence) — 1 bash block pair added = 14 total fences (even); check:i18n-keys PASS count is 64 not 52 (catalog 50+14=64 per STATE)
+- [Phase 09]: 'system' added to DiagnosisChatMessage.role (Phase 9 DIAG-03) — additive union widening; system messages rendered as centered info banner, not chat bubble
+- [Phase 09]: Smoke runner comment discipline: policy comment avoids 'T0a/T0b/T0c' grouping and 'esbuild/swc/babel' substring to keep grep -c contract counts exact (3 and 0 respectively)
 
 ### Pending Todos
 
@@ -202,6 +205,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T12:47:59.692Z
-Stopped at: Completed 08-05-PLAN.md (4/4 tasks)
+Last session: 2026-05-02T14:53:11.708Z
+Stopped at: Completed 09-01-PLAN.md (2/2 tasks)
 Resume file: None

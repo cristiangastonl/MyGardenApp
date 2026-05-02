@@ -131,7 +131,15 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   3. A user reopening a resolved diagnosis sees a prepended system message ("Hace N días marcaste esta consulta como resuelta. ¿Qué cambió?") and explicit copy ("Continuando diagnóstico anterior. Para reevaluación visual, sacá una foto nueva.") — the AI does not re-assess severity unless a new photo is uploaded.
   4. A user resuming a diagnosis sees their remaining message count (per-diagnosis-lifetime, not per-session) before they type — at 0 of N, the input is gated by the paywall trigger, not a mid-typing surprise.
   5. A successful purchase from any paywall entry point invokes the deferred callback registered when the paywall opened — the original gated action proceeds without the user re-tapping.
-**Plans**: TBD
+**Plans**: 8 plans
+- [ ] 09-01-PLAN.md — Wave 0: type extensions (DiagnosisChatMessage role 'system' + SavedDiagnosis.reopenedAt) + scripts/smoke-phase09.mjs scaffold with 10 placeholder T-assertions
+- [ ] 09-02-PLAN.md — Wave 1: usePremium widening (showPaywall(trigger, options?) + pendingCallback + consumePendingCallback) + PaywallModal deferred onSuccess + App.tsx PaywallModal mount in AppContentFullInner (PAY-01 + PAY-03)
+- [ ] 09-03-PLAN.md — Wave 1: useStorage updateDiagnosis(plantId, diagnosisId, Partial<SavedDiagnosis>) action (RESEARCH §CF-4 fix)
+- [ ] 09-04-PLAN.md — Wave 2: 5 i18n keys (continueChat update + reopenChat + resumeBanner + reopenSystemMessage + messagesRemaining) in EN + ES voseo with parity smoke
+- [ ] 09-05-PLAN.md — Wave 3: DiagnosisDetailModal gate removal + handleContinueOrReopen (close-then-paywall + reopen system message idempotent append) + MyPlantDetailModal closure capture (DIAG-01..03)
+- [ ] 09-06-PLAN.md — Wave 3: PlantDiagnosisModal lifetime count fix (CF-7) + DiagnosisResults count display + send-tap deferred-send paywall + system message centered banner + resume banner (DIAG-04 + DIAG-06 + DIAG-07)
+- [ ] 09-07-PLAN.md — Wave 4: chat-diagnosis edge function priorDiagnosisSummary field + ES/EN resume clauses + client buildPriorDiagnosisSummary; deploy DEFERRED to v1.1 batch (DIAG-05)
+- [ ] 09-08-PLAN.md — Wave 5: PAY-02 close-then-trigger refactor in PlantDiagnosisModal + PlantIdentifierModal + 09-AUDIT.md documenting all 13 showPaywall sites
 
 ## Progress
 
@@ -148,4 +156,4 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | 8/8 | Complete   | 2026-05-02 | 2026-05-01 |
 | 8. Catalog Rebalance | 5/5 | Complete   | 2026-05-02 | - |
-| 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |
+| 9. Diagnosis Continuity + Paywall Architecture | 1/8 | In Progress|  | - |
