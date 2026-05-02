@@ -111,16 +111,33 @@ assert(synthLookup('canonical-a').id === 'canonical-a',
 assert(synthLookup('legacy-x').id === 'canonical-a',
   `A6: alias resolves to canonical`);
 
-// ─── A8: count baseline (Plan 03 will UPDATE THIS to 64 when 14 new entries land) ───
-// NOTE: RESEARCH.md stated 38 entries but the live catalog has 50 entries (Phase 4 Plan 05 codemod
+// ─── A8: count baseline (updated by Plan 03 when 14 new entries landed) ───
+// NOTE: RESEARCH.md stated 38 entries but live catalog had 50 entries (Phase 4 Plan 05 codemod
 // added entries beyond the planner's estimate; see 04-05-SUMMARY.md deviation note).
-// Baseline here is 50; Plan 03 flips to 64 (50 + 14 new outdoor entries).
-assert(PLANT_DATABASE.length === 50,
-  `A8: PLANT_DATABASE.length === 50 baseline (current: ${PLANT_DATABASE.length}). Plan 03 must update this assertion to 64.`);
+// Plan 03 added 14 new outdoor entries (lavanda-angustifolia rename + 2 new lavender variants +
+// 12 other new entries), bringing total to 64 (50 + 14).
+assert(PLANT_DATABASE.length === 64,
+  `A8: PLANT_DATABASE.length === 64 (50 existing + 14 new from Plan 03; current: ${PLANT_DATABASE.length}).`);
 
-// === Plan 03 will activate the following assertions ===
-// A9: lavender split — getCatalogEntry('lavanda')?.id === 'lavanda-angustifolia' (alias)
-//     getCatalogEntry('lavanda-angustifolia')?.waterSchedule.cold > getCatalogEntry('lavanda-stoechas')?.waterSchedule.cold
+// === A9: Lavender split (CAT-03, CAT-05) ===
+const ang = getCatalogEntry('lavanda-angustifolia');
+const stoe = getCatalogEntry('lavanda-stoechas');
+const dent = getCatalogEntry('lavanda-dentada');
+assert(ang?.id === 'lavanda-angustifolia',
+  `A9.1: getCatalogEntry('lavanda-angustifolia') canonical lookup`);
+assert(stoe?.id === 'lavanda-stoechas',
+  `A9.2: getCatalogEntry('lavanda-stoechas') canonical lookup`);
+assert(dent?.id === 'lavanda-dentada',
+  `A9.3: getCatalogEntry('lavanda-dentada') canonical lookup`);
+assert(getCatalogEntry('lavanda')?.id === 'lavanda-angustifolia',
+  `A9.4: getCatalogEntry('lavanda') alias resolves to lavanda-angustifolia`);
+assert(ang.waterSchedule.cold === 21,
+  `A9.5: lavanda-angustifolia cold === 21 (RHS zone 5-8 hardy)`);
+assert(stoe.waterSchedule.cold === 14 && dent.waterSchedule.cold === 14,
+  `A9.6: stoechas + dentada cold === 14 (zones 8-10, less hardy)`);
+assert(ang.waterSchedule.cold > stoe.waterSchedule.cold,
+  `A9.7: angustifolia cold (${ang.waterSchedule.cold}) > stoechas cold (${stoe.waterSchedule.cold})`);
+
 // A10: i18n key parity per id (delegated to scripts/check-i18n-keys.mjs in Plan 05)
 
 // ─── Final report ───
