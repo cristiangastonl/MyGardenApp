@@ -105,10 +105,41 @@ assert(/sac[aá]/i.test(esJson.diagnosis.resumeBanner),
 // Assertion: grep -c "priorDiagnosisSummary" supabase/functions/chat-diagnosis/index.ts >= 2
 pass++; // placeholder counts as pass until plan activates
 
-// PLACEHOLDER — Plan 09-06 activates
-// T6: lifetime count = prior + session pure-JS arithmetic
-// Assertion: priorPersistedCount + sessionUserCount = lifetimeUserCount (arithmetic correctness test)
-pass++; // placeholder counts as pass until plan activates
+// ─── T6: lifetime count arithmetic + presence (Plan 09-06 / DIAG-06 / RESEARCH §CF-7 fix) ───
+(function testLifetimeCount() {
+  const LIMIT = 3;
+  const prior = [{role:'user'},{role:'assistant'},{role:'user'}];
+  const session = [{role:'user'}];
+  const priorUserCount = prior.filter(m => m.role === 'user').length; // 2
+  const sessionUserCount = session.filter(m => m.role === 'user').length; // 1
+  const lifetime = priorUserCount + sessionUserCount; // 3
+  assert(lifetime === 3, 'T6a: lifetime count = prior(2) + session(1) = 3');
+  const remaining = Math.max(0, LIMIT - lifetime);
+  assert(remaining === 0, 'T6b: remaining = max(0, 3 - 3) = 0');
+  // Above-limit boundary
+  const overLimit = Math.max(0, LIMIT - 5);
+  assert(overLimit === 0, 'T6c: above-limit clamped to 0 by Math.max guard');
+  // At LIMIT-1
+  const atOneRemaining = Math.max(0, LIMIT - 2);
+  assert(atOneRemaining === 1, 'T6d: at lifetime=2, remaining=1');
+})();
+const premiumSrc = readFileSync(resolve(ROOT, 'src/config/premium.ts'), 'utf8');
+assert(/^export const FREE_CHAT_MESSAGES_PER_DIAGNOSIS = 3;/m.test(premiumSrc),
+  "T6e: FREE_CHAT_MESSAGES_PER_DIAGNOSIS exported from premium.ts (Plan 09-06 Task 1)");
+const pdmSrc = readFileSync(resolve(ROOT, 'src/components/PlantDiagnosis/PlantDiagnosisModal.tsx'), 'utf8');
+assert(/priorPersistedCount/.test(pdmSrc),
+  "T6f: PlantDiagnosisModal computes priorPersistedCount (CF-7 fix)");
+assert(/lifetimeUserCount/.test(pdmSrc),
+  "T6g: PlantDiagnosisModal computes lifetimeUserCount");
+assert(/showPaywall\('diagnosis-limit'/.test(pdmSrc),
+  "T6h: showPaywall('diagnosis-limit' wired in PlantDiagnosisModal");
+const drSrc = readFileSync(resolve(ROOT, 'src/components/PlantDiagnosis/DiagnosisResults.tsx'), 'utf8');
+assert(/msg\.role === 'system'/.test(drSrc),
+  "T6i: DiagnosisResults renders system messages distinctly (Pitfall 6 lock)");
+assert(/diagnosis\.resumeBanner/.test(drSrc),
+  "T6j: DiagnosisResults renders resume banner via t('diagnosis.resumeBanner')");
+assert(/diagnosis\.messagesRemaining/.test(drSrc),
+  "T6k: DiagnosisResults renders count display via t('diagnosis.messagesRemaining', ...)");
 
 // T7: deferred callback fires once on success, cleared first (pure JS simulation)
 // Plan 09-02 (PAY-03): consumePendingCallback clears before onSuccess fires; hidePaywall sees null.
