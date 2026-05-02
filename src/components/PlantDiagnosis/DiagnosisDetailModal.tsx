@@ -13,7 +13,11 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
-import { SavedDiagnosis, DiagnosisSeverity } from '../../types';
+import { SavedDiagnosis, DiagnosisSeverity, DiagnosisChatMessage } from '../../types';
+import { usePremiumGate } from '../../config/premium';
+import { usePremium } from '../../hooks/usePremium';
+import { useStorage } from '../../hooks/useStorage';
+import { daysBetween, parseDate } from '../../utils/dates';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const COLLAPSED_HEIGHT = SCREEN_HEIGHT * 0.5;
@@ -28,7 +32,6 @@ interface DiagnosisDetailModalProps {
   onContinueChat?: (diagnosis: SavedDiagnosis) => void;
   onAddToShoppingList?: (treatment: string) => void;
   canAddToShoppingList?: boolean;
-  isPremium?: boolean;
 }
 
 const STATUS_STYLE: Record<DiagnosisSeverity, { icon: string; color: string; bg: string }> = {
@@ -47,8 +50,13 @@ function formatDate(dateStr: string, monthNames: string[]): string {
   return `${day} ${month}, ${hours}:${minutes}`;
 }
 
-export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, onContinueChat, onAddToShoppingList, canAddToShoppingList = false, isPremium = false }: DiagnosisDetailModalProps) {
+export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, onContinueChat, onAddToShoppingList, canAddToShoppingList = false }: DiagnosisDetailModalProps) {
   const { t } = useTranslation();
+  // Phase 9 (DIAG-01..03): isPremium read from usePremiumGate — single source of truth.
+  // isPremium PROP has been removed; DiagnosisDetailModal no longer accepts it from callers.
+  const { isPremium } = usePremiumGate();
+  const { showPaywall } = usePremium();
+  const { updateDiagnosis } = useStorage();
   const modalHeight = useRef(new Animated.Value(COLLAPSED_HEIGHT)).current;
   const [isExpanded, setIsExpanded] = useState(false);
   const currentHeight = useRef(COLLAPSED_HEIGHT);
@@ -135,6 +143,52 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, o
   const result = diagnosis.result;
   const statusStyle = STATUS_STYLE[result.overallStatus];
   const statusLabel = STATUS_LABELS[result.overallStatus];
+
+  // Phase 9 (DIAG-01..03): visibility = always when onContinueChat is provided; gating on tap.
+  const isResolved = Boolean(diagnosis.resolvedDate);
+  const buttonLabel = isResolved
+    ? t('diagnosis.reopenChat')
+    : t('diagnosis.continueChat');
+
+  const handleContinueOrReopen = () => {
+    if (!onContinueChat) return;
+
+    // DIAG-03: Reopen idempotent system message append.
+    // Idempotency key: sys-${reopenedAt} — RESEARCH §Q2 lock.
+    if (isResolved && diagnosis.resolvedDate) {
+      const lastMsg = diagnosis.chat[diagnosis.chat.length - 1];
+      const alreadyReopened =
+        lastMsg?.role === 'system' &&
+        !!diagnosis.reopenedAt &&
+        lastMsg.id === `sys-${diagnosis.reopenedAt}`;
+      if (!alreadyReopened) {
+        const reopenedAtIso = new Date().toISOString();
+        const days = daysBetween(parseDate(diagnosis.resolvedDate), new Date());
+        const sysMsg: DiagnosisChatMessage = {
+          id: `sys-${reopenedAtIso}`,
+          role: 'system',
+          text: t('diagnosis.reopenSystemMessage', { days }),
+          timestamp: reopenedAtIso,
+        };
+        updateDiagnosis(diagnosis.plantId, diagnosis.id, {
+          reopenedAt: reopenedAtIso,
+          chat: [...diagnosis.chat, sysMsg],
+        });
+      }
+    }
+
+    // DIAG-02 + PAY-02: free user → close-then-paywall (350ms iOS Modal stacking safety).
+    if (isPremium) {
+      onContinueChat(diagnosis);
+    } else {
+      onClose();
+      setTimeout(() => {
+        showPaywall('diagnosis-resume', {
+          onSuccess: () => onContinueChat(diagnosis),
+        });
+      }, 350);
+    }
+  };
 
   return (
     <Modal
@@ -244,13 +298,13 @@ export function DiagnosisDetailModal({ visible, diagnosis, onClose, onResolve, o
                 </View>
               )}
 
-              {/* Continue chat button (premium) */}
-              {isPremium && !diagnosis.resolved && onContinueChat && (
+              {/* Phase 9 DIAG-01: visible to ALL users; gating happens on tap inside handleContinueOrReopen. */}
+              {onContinueChat && (
                 <TouchableOpacity
                   style={styles.continueChatAction}
-                  onPress={() => onContinueChat(diagnosis)}
+                  onPress={handleContinueOrReopen}
                 >
-                  <Text style={styles.continueChatActionText}>{t('diagnosis.continueChat')}</Text>
+                  <Text style={styles.continueChatActionText}>{buttonLabel}</Text>
                 </TouchableOpacity>
               )}
 
