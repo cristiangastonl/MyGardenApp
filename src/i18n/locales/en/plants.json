@@ -1341,6 +1341,283 @@
       "homemade": "Rice water once a month"
     }
   },
+  "jacaranda": {
+    "name": "Jacaranda",
+    "tip": "Water sparingly once established; tolerates summer drought and blooms in November without much watering.",
+    "description": "The Jacaranda is the most emblematic tree of Buenos Aires, painting the city violet in November. A large tree, ideal for spacious gardens or sidewalks. Once established, it tolerates summer drought and needs little care.",
+    "problems": [
+      {
+        "symptom": "Doesn't bloom",
+        "cause": "Young tree or excess watering",
+        "solution": "Needs several years to bloom; reduce watering and let it stress a bit in summer."
+      },
+      {
+        "symptom": "Premature yellow leaves",
+        "cause": "Waterlogging or iron-poor soil",
+        "solution": "Improve drainage and apply iron chelate if soil is alkaline."
+      }
+    ],
+    "nutrients": {
+      "type": "Low, tolerates poor soil",
+      "homemade": "Mature compost once a year in spring"
+    }
+  },
+  "ceibo": {
+    "name": "Ceibo (Cockspur Coral Tree)",
+    "tip": "Prune after flowering so it doesn't get woody. Blooms in summer, especially near water.",
+    "description": "The Ceibo is the Argentine national flower, a tree or shrub that grows naturally on river and lagoon banks. Its scarlet red flowers are spectacular in summer. Very hardy and easy to grow once established.",
+    "problems": [
+      {
+        "symptom": "Doesn't bloom",
+        "cause": "Young tree or low light",
+        "solution": "Needs full sun; young specimens take 2-3 years to bloom."
+      },
+      {
+        "symptom": "Yellow-spotted leaves",
+        "cause": "Excess watering in poor-draining soil",
+        "solution": "Improve drainage; ceibo tolerates moisture but not permanent waterlogging."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderate, phosphorus for blooming",
+      "homemade": "Banana tea monthly in spring-summer"
+    }
+  },
+  "glicina": {
+    "name": "Wisteria",
+    "tip": "Prune hard in winter and again in summer (green pruning) so it focuses energy on flowering. Without pruning, it grows uncontrollably.",
+    "description": "Wisteria is a spectacular climber with cascades of fragrant lilac flowers in spring. It can live for decades and grow huge. It needs a very strong support structure and regular pruning to bloom well.",
+    "problems": [
+      {
+        "symptom": "Doesn't bloom",
+        "cause": "Excess nitrogen or lack of pruning",
+        "solution": "Avoid nitrogen fertilizers; prune in winter and summer with green pruning."
+      },
+      {
+        "symptom": "Invasive growth",
+        "cause": "That's its nature",
+        "solution": "Prune twice a year without exception to keep it contained."
+      }
+    ],
+    "nutrients": {
+      "type": "Low nitrogen, phosphorus for blooming",
+      "homemade": "Wood ash + banana tea in spring"
+    }
+  },
+  "gardenia": {
+    "name": "Gardenia",
+    "tip": "Use chlorine-free water and never wet the flowers. It's demanding, but the perfume is worth the effort.",
+    "description": "The Gardenia is famous for its intensely fragrant white flowers. It's a demanding plant that needs soil acidity, chlorine-free water, high humidity, and protection from intense cold. When it blooms, it's one of the most beautiful in the garden.",
+    "problems": [
+      {
+        "symptom": "Buds drop before opening",
+        "cause": "Sudden temperature change, drafts, or irregular watering",
+        "solution": "Keep it in a stable spot with no drafts; water consistently without waterlogging."
+      },
+      {
+        "symptom": "Yellow leaves with green veins",
+        "cause": "Chlorosis from alkaline soil or iron deficiency",
+        "solution": "Acidify the substrate and apply iron chelate."
+      },
+      {
+        "symptom": "Brown flowers before opening",
+        "cause": "Excess moisture on petals",
+        "solution": "Never wet the flowers; mist only the foliage."
+      }
+    ],
+    "nutrients": {
+      "type": "Acid, iron and magnesium",
+      "homemade": "Coffee grounds weekly + acidified water with vinegar (1 tbsp/L)"
+    }
+  },
+  "camelia": {
+    "name": "Camellia",
+    "tip": "Plant it where afternoon sun won't reach; flowers burn in midday heat. Blooms in winter, when most of the garden sleeps!",
+    "description": "The Camellia is a winter-flowering shrub with perfect petals in pink, white, and red. It prefers semi-shade, acid soils, and protection from strong sun. In Buenos Aires it blooms from autumn to spring, filling the garden with color in the coldest months.",
+    "problems": [
+      {
+        "symptom": "Brown, falling flowers",
+        "cause": "Direct midday sun or rain on flowers",
+        "solution": "Plant with east orientation; morning sun is ideal."
+      },
+      {
+        "symptom": "Yellow-spotted leaves",
+        "cause": "High soil pH",
+        "solution": "Acidify with aluminum sulfate or azalea substrate."
+      },
+      {
+        "symptom": "Doesn't bloom",
+        "cause": "Very alkaline soil or excess nitrogen",
+        "solution": "Adjust pH to 5.5-6.5 and use low-nitrogen fertilizer."
+      }
+    ],
+    "nutrients": {
+      "type": "Acid, low nitrogen",
+      "homemade": "Coffee grounds monthly + rainwater when possible"
+    }
+  },
+  "dalia": {
+    "name": "Dahlia",
+    "tip": "In autumn, when leaves turn black from frost, dig up the tubers, dry them, and store in a cool dry place until spring.",
+    "description": "Dahlias are the queens of the summer garden with huge flowers in every color and form. They are tubers planted in spring that bloom from summer to autumn. In cold climates the tubers must be lifted to overwinter. They bring spectacular color to the garden.",
+    "problems": [
+      {
+        "symptom": "Aphids on shoots",
+        "cause": "Very common pest",
+        "solution": "Treat with potassium soap or neem oil; ladybugs are natural allies."
+      },
+      {
+        "symptom": "Gray spots on leaves",
+        "cause": "Powdery mildew from humidity and poor ventilation",
+        "solution": "Improve air circulation and treat with diluted baking soda."
+      },
+      {
+        "symptom": "Small flowers",
+        "cause": "Lack of nutrients or overcrowded plant",
+        "solution": "Fertilize high-phosphorus and remove some shoots to concentrate energy."
+      }
+    ],
+    "nutrients": {
+      "type": "High in phosphorus and potassium",
+      "homemade": "Banana tea weekly during blooming"
+    }
+  },
+  "salvia-ornamental": {
+    "name": "Ornamental Sage",
+    "tip": "Remove old flowers so it keeps producing new ones. Very drought-resistant once established; don't over-water.",
+    "description": "Ornamental Sage attracts hummingbirds and butterflies with its flower spikes in blue, violet, or red. It's a perennial or annual depending on the variety, very heat- and drought-resistant. Ideal for pollinator gardens and bed borders.",
+    "problems": [
+      {
+        "symptom": "Yellow leaves at base",
+        "cause": "Excess watering or poor-draining soil",
+        "solution": "Improve drainage; sage prefers to dry between waterings."
+      },
+      {
+        "symptom": "Few flowers",
+        "cause": "Lack of pruning or low light",
+        "solution": "Remove old flowers regularly and ensure full sun."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderate, phosphorus for blooming",
+      "homemade": "Light compost annually in spring"
+    }
+  },
+  "cala": {
+    "name": "Calla Lily",
+    "tip": "Plant in semi-shade and keep soil moist; in hot summer it needs more water. Blooms better with some winter cold.",
+    "description": "The Calla or Arum Lily is an elegant plant with funnel-shaped, pure white flowers. It grows from a rhizome and prefers moist soils, even tolerating being near water. Blooms in spring and early summer. In Argentine gardens it's a classic of shade and semi-shade.",
+    "problems": [
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Excess direct sunlight or lack of watering",
+        "solution": "Move to semi-shade and keep substrate moist."
+      },
+      {
+        "symptom": "Doesn't bloom",
+        "cause": "Rhizome had no rest period",
+        "solution": "In autumn, reduce watering so the plant rests before winter."
+      },
+      {
+        "symptom": "Dark spots on leaves",
+        "cause": "Erwinia bacteria or waterlogging",
+        "solution": "Improve drainage and avoid water pooling in leaf axils."
+      }
+    ],
+    "nutrients": {
+      "type": "Balanced nitrogen and phosphorus",
+      "homemade": "Rice water + worm compost every 15 days during blooming"
+    }
+  },
+  "copete": {
+    "name": "Marigold",
+    "tip": "Plant near tomatoes and peppers — repels nematodes and aphids. Remove dry flowers so it keeps blooming all season.",
+    "description": "The Marigold or Tagetes is a summer annual flower with a double role: it decorates with yellow and orange flowers and protects the vegetable garden from pests like nematodes and aphids. Easy to grow, heat-resistant, fast-growing. Ideal for bed borders and pots.",
+    "problems": [
+      {
+        "symptom": "Silvery or spotted leaves",
+        "cause": "Spider mites in heat and dry conditions",
+        "solution": "Water more frequently and treat with potassium soap."
+      },
+      {
+        "symptom": "Few flowers",
+        "cause": "Lack of sun or flowers not removed",
+        "solution": "Ensure 6+ hours of sun and remove faded flowers regularly."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderate, phosphorus for blooming",
+      "homemade": "Banana tea biweekly during blooming"
+    }
+  },
+  "verbena": {
+    "name": "Verbena",
+    "tip": "Let it self-seed; verbena bonariensis comes back on its own every year. Cut dry flowers to prolong blooming.",
+    "description": "Verbena bonariensis is a native Argentine plant that attracts butterflies and bees with small violet flowers on thin tall stems. Very drought-tolerant and almost no care needed once established. It self-seeds, making it a practical perennial.",
+    "problems": [
+      {
+        "symptom": "Powdery mildew on leaves",
+        "cause": "High humidity + poor ventilation",
+        "solution": "Improve air circulation and avoid wetting leaves when watering."
+      },
+      {
+        "symptom": "Few flowers",
+        "cause": "Soil too fertile",
+        "solution": "Verbena blooms best in poor soils; avoid excess nitrogen fertilizer."
+      }
+    ],
+    "nutrients": {
+      "type": "Very low, poor soil preferred",
+      "homemade": "Minimal compost once a year"
+    }
+  },
+  "romero-rastrero": {
+    "name": "Trailing Rosemary",
+    "tip": "Ideal for balconies and walls; grows hanging. Water very little and give it all the sun you can. Same care as upright rosemary but more decorative in height.",
+    "description": "Trailing Rosemary is a prostrate variety of rosemary that, instead of growing upward, spreads horizontally or cascades down. Perfect for hanging pots, terraces, or wall coverings. As hardy and aromatic as common rosemary, with a more decorative silhouette.",
+    "problems": [
+      {
+        "symptom": "Dry branches at base",
+        "cause": "Excess watering or poor ventilation",
+        "solution": "Cut dry parts, improve drainage, and space waterings."
+      },
+      {
+        "symptom": "Low aroma",
+        "cause": "Soil too fertile or excessive shade",
+        "solution": "Poor soil and full sun intensify essential oils."
+      }
+    ],
+    "nutrients": {
+      "type": "Very low, poor soil",
+      "homemade": "No fertilizer; light compost once a year"
+    }
+  },
+  "tomate-cherry": {
+    "name": "Cherry Tomato",
+    "tip": "Cherry tomatoes are indeterminate — they keep growing all season. Give them a tall stake and remove side shoots so they concentrate energy on the fruits.",
+    "description": "Cherry Tomato produces small sweet tomatoes in abundant clusters all summer. It's indeterminate, meaning it keeps growing and producing until frost. Ideal for large pots (minimum 30L), balconies, and small vegetable gardens. Needs less space than the large tomato but the same care.",
+    "problems": [
+      {
+        "symptom": "Splitting fruits",
+        "cause": "Irregular watering (dry then very abundant)",
+        "solution": "Keep watering consistent; sudden moisture changes cause splitting."
+      },
+      {
+        "symptom": "Blossom end rot (black bottom)",
+        "cause": "Calcium deficiency or irregular watering",
+        "solution": "Consistent watering + crushed eggshells in substrate."
+      },
+      {
+        "symptom": "Whitefly on leaf undersides",
+        "cause": "Common summer pest",
+        "solution": "Treat with potassium soap or neem oil; introduce lacewings if possible."
+      }
+    ],
+    "nutrients": {
+      "type": "High in potassium during fruiting",
+      "homemade": "Banana tea weekly when fruits start"
+    }
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",

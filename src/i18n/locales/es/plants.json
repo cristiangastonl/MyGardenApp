@@ -1341,6 +1341,283 @@
       "homemade": "Agua de arroz 1 vez al mes"
     }
   },
+  "jacaranda": {
+    "name": "Jacarandá",
+    "tip": "Regala poco una vez establecida; aguanta sequía de verano y florece en noviembre sin necesitarla.",
+    "description": "El Jacarandá es el árbol más emblemático de Buenos Aires, que pinta la ciudad de violeta en noviembre. Es un árbol grande, ideal para jardines amplios o veredas. Una vez establecido, tolera sequía estival y necesita pocas atenciones.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Árbol joven o exceso de riego",
+        "solution": "Necesita varios años para florecer; reducí el riego y dejalo estresarse un poco en verano."
+      },
+      {
+        "symptom": "Hojas amarillas prematuras",
+        "cause": "Encharcamiento o suelo pobre en hierro",
+        "solution": "Mejorá el drenaje y aplicá quelato de hierro si el suelo es alcalino."
+      }
+    ],
+    "nutrients": {
+      "type": "Bajo, tolerante a suelos pobres",
+      "homemade": "Compost maduro una vez al año en primavera"
+    }
+  },
+  "ceibo": {
+    "name": "Ceibo",
+    "tip": "Podalo después de la floración para que no se vuelva leñoso. Florece en verano, especialmente cerca del agua.",
+    "description": "El Ceibo es la flor nacional argentina, un árbol o arbusto que crece naturalmente en las orillas de ríos y lagunas. Sus flores rojas escarlatas son espectaculares en verano. Muy resistente y fácil de cultivar una vez establecido.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Árbol joven o poca luz",
+        "solution": "Necesita sol pleno; los ejemplares jóvenes tardan 2-3 años en florecer."
+      },
+      {
+        "symptom": "Hojas con manchas amarillas",
+        "cause": "Riego excesivo en suelo sin drenaje",
+        "solution": "Mejorá el drenaje; el ceibo tolera humedad pero no el encharcamiento permanente."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderado, fósforo para floración",
+      "homemade": "Té de banana mensual en primavera-verano"
+    }
+  },
+  "glicina": {
+    "name": "Glicina",
+    "tip": "Podala fuerte en invierno y en verano (poda verde) para que concentre energía en florecer. Sin poda, crece sin control.",
+    "description": "La Glicina es una trepadora espectacular con cascadas de flores lila perfumadas en primavera. Puede vivir décadas y volverse enorme. Necesita una estructura muy resistente para sostenerse y podas regulares para florecer bien.",
+    "problems": [
+      {
+        "symptom": "No florece",
+        "cause": "Exceso de nitrógeno o falta de poda",
+        "solution": "Evitá fertilizantes nitrogenados; podala en invierno y veranos con poda verde."
+      },
+      {
+        "symptom": "Crecimiento invasivo",
+        "cause": "Es su naturaleza",
+        "solution": "Podala dos veces al año sin excepción para mantenerla contenida."
+      }
+    ],
+    "nutrients": {
+      "type": "Bajo en nitrógeno, fósforo para floración",
+      "homemade": "Ceniza de madera + té de banana en primavera"
+    }
+  },
+  "gardenia": {
+    "name": "Gardenia",
+    "tip": "Usá agua sin cloro y nunca mojes las flores. Es exigente, pero el perfume vale el esfuerzo.",
+    "description": "La Gardenia es famosa por sus flores blancas de perfume intenso. Es una planta exigente que necesita acidez del suelo, agua sin cloro, alta humedad y protección del frío intenso. Cuando florece, es una de las más hermosas del jardín.",
+    "problems": [
+      {
+        "symptom": "Botones que se caen antes de abrir",
+        "cause": "Cambio brusco de temperatura, corrientes de aire o riego irregular",
+        "solution": "Mantenela en un lugar estable sin corrientes; riego constante sin encharcamiento."
+      },
+      {
+        "symptom": "Hojas amarillas con nervios verdes",
+        "cause": "Clorosis por suelo alcalino o falta de hierro",
+        "solution": "Acidificá el sustrato y aplicá quelato de hierro."
+      },
+      {
+        "symptom": "Flores marrones antes de abrirse",
+        "cause": "Humedad excesiva sobre los pétalos",
+        "solution": "Nunca mojes las flores; pulverizá solo el follaje."
+      }
+    ],
+    "nutrients": {
+      "type": "Ácido, hierro y magnesio",
+      "homemade": "Borra de café semanal + agua acidificada con vinagre (1 cda/L)"
+    }
+  },
+  "camelia": {
+    "name": "Camelia",
+    "tip": "Plantala donde no le llegue el sol de la tarde; las flores se queman con el calor de mediodía. Florece en invierno, ¡cuando la mayoría del jardín duerme!",
+    "description": "La Camelia es un arbusto de flor invernal con pétalos perfectos en rosa, blanco y rojo. Prefiere semisombra, suelos ácidos y protección del sol fuerte. En Buenos Aires florece de otoño a primavera, llenando el jardín de color en los meses más fríos.",
+    "problems": [
+      {
+        "symptom": "Flores marrones y caídas",
+        "cause": "Sol directo del mediodía o lluvia sobre flores",
+        "solution": "Plantala con orientación este; el sol de mañana es ideal."
+      },
+      {
+        "symptom": "Hojas con manchas amarillas",
+        "cause": "pH alto del suelo",
+        "solution": "Acidificá con sulfato de aluminio o sustrato para azaleas."
+      },
+      {
+        "symptom": "No florece",
+        "cause": "Suelo muy alcalino o exceso de nitrógeno",
+        "solution": "Ajustá el pH a 5.5-6.5 y usá fertilizante bajo en nitrógeno."
+      }
+    ],
+    "nutrients": {
+      "type": "Ácido, bajo en nitrógeno",
+      "homemade": "Borra de café mensual + agua de lluvia cuando sea posible"
+    }
+  },
+  "dalia": {
+    "name": "Dalia",
+    "tip": "En otoño, cuando las hojas se ponen negras por la helada, desenterrá los tubérculos, sécalos y guardalos en un lugar fresco y seco hasta primavera.",
+    "description": "Las Dalias son las reinas del jardín estival con flores enormes en todos los colores y formas. Son tuberosas que se plantan en primavera y florecen de verano a otoño. En climas fríos los tubérculos deben desenterrarse para invernar. Aportan un color espectacular al jardín.",
+    "problems": [
+      {
+        "symptom": "Pulgones en brotes",
+        "cause": "Plaga muy común",
+        "solution": "Tratá con jabón potásico o aceite de neem; las mariquitas son aliadas naturales."
+      },
+      {
+        "symptom": "Manchas grises en hojas",
+        "cause": "Oídio por humedad y poca ventilación",
+        "solution": "Mejorá la circulación de aire y tratá con bicarbonato de sodio diluido."
+      },
+      {
+        "symptom": "Flores pequeñas",
+        "cause": "Falta de nutrientes o planta muy tupida",
+        "solution": "Fertilizá con alto fósforo y eliminá algunos brotes para concentrar energía."
+      }
+    ],
+    "nutrients": {
+      "type": "Alto en fósforo y potasio",
+      "homemade": "Té de banana semanal durante floración"
+    }
+  },
+  "salvia-ornamental": {
+    "name": "Salvia ornamental",
+    "tip": "Quitá las flores viejas para que siga produciendo nuevas. Muy resistente a la sequía una vez establecida; no la riegues de más.",
+    "description": "La Salvia ornamental atrae colibríes y mariposas con sus espigas floridas en azul, violeta o rojo. Es una planta perenne o anual según la variedad, muy resistente al calor y la sequía. Ideal para jardines de polinizadores y bordes de canteros.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas en la base",
+        "cause": "Exceso de riego o suelo que no drena",
+        "solution": "Mejorá el drenaje; la salvia prefiere secarse entre riegos."
+      },
+      {
+        "symptom": "Pocas flores",
+        "cause": "Falta de poda o poca luz",
+        "solution": "Quitá flores viejas regularmente y asegurá sol pleno."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderado, fósforo para floración",
+      "homemade": "Compost ligero anual en primavera"
+    }
+  },
+  "cala": {
+    "name": "Cala",
+    "tip": "Plantala en semisombra y mantené el suelo húmedo; en verano caliente necesita más agua. Florece mejor con algo de frío invernal.",
+    "description": "La Cala o Cartucho es una planta elegante con flores en forma de embudo, blancas y puras. Crece desde un rizoma y prefiere suelos húmedos, incluso aguanta estar cerca del agua. Florece en primavera y principios del verano. En jardines argentinos es un clásico de la sombra y semisombra.",
+    "problems": [
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de luz solar directa o falta de riego",
+        "solution": "Movilala a semisombra y mantené el sustrato húmedo."
+      },
+      {
+        "symptom": "No florece",
+        "cause": "Rizoma no tuvo período de reposo",
+        "solution": "En otoño, reducí el riego para que la planta descanse antes del invierno."
+      },
+      {
+        "symptom": "Manchas oscuras en hojas",
+        "cause": "Bacteria Erwinia o encharcamiento",
+        "solution": "Mejorá el drenaje y evitá que el agua quede estancada en la axila de las hojas."
+      }
+    ],
+    "nutrients": {
+      "type": "Nitrógeno y fósforo equilibrado",
+      "homemade": "Agua de arroz + compost de lombrices cada 15 días en floración"
+    }
+  },
+  "copete": {
+    "name": "Copete",
+    "tip": "Plantalo cerca de tomates y pimientos — repele nematodos y pulgones. Quitá las flores secas para que siga floreciendo toda la temporada.",
+    "description": "El Copete o Tagetes es una flor anual de verano que cumple doble función: decora con sus flores amarillas y naranjas, y protege la huerta de plagas como nematodos y pulgones. Fácil de cultivar, resistente al calor y de crecimiento rápido. Ideal para bordes de canteros y macetas.",
+    "problems": [
+      {
+        "symptom": "Hojas plateadas o manchadas",
+        "cause": "Araña roja en condiciones de calor y sequía",
+        "solution": "Regá más frecuentemente y tratá con jabón potásico."
+      },
+      {
+        "symptom": "Pocas flores",
+        "cause": "Falta de sol o flores no removidas",
+        "solution": "Asegurá 6+ horas de sol y quitá las flores marchitas regularmente."
+      }
+    ],
+    "nutrients": {
+      "type": "Moderado, fósforo para floración",
+      "homemade": "Té de banana quincenal durante la floración"
+    }
+  },
+  "verbena": {
+    "name": "Verbena",
+    "tip": "Tolerá que se auto-siembre; la verbena bonariensis rebrota sola cada año. Cortá las flores secas para prolongar la floración.",
+    "description": "La Verbena bonariensis es una planta nativa argentina que atrae mariposas y abejas con sus pequeñas flores violetas en tallos delgados y altos. Muy tolerante a la sequía y casi sin necesidad de cuidado una vez establecida. Se auto-siembra, lo que la convierte en una perenne práctica.",
+    "problems": [
+      {
+        "symptom": "Oídio en hojas",
+        "cause": "Humedad alta + poca ventilación",
+        "solution": "Mejorá la circulación de aire y evitá mojar las hojas al regar."
+      },
+      {
+        "symptom": "Pocas flores",
+        "cause": "Suelo demasiado fértil",
+        "solution": "La verbena florece mejor en suelos pobres; evitá exceso de fertilizante nitrogenado."
+      }
+    ],
+    "nutrients": {
+      "type": "Muy bajo, suelo pobre es preferible",
+      "homemade": "Compost mínimo una vez al año"
+    }
+  },
+  "romero-rastrero": {
+    "name": "Romero rastrero",
+    "tip": "Ideal para balcones y muros; crece colgando. Regalo muy poco y dale todo el sol que puedas. Mismo cuidado que el romero erecto pero más decorativo en altura.",
+    "description": "El Romero rastrero es una variedad de romero de porte postrado que en lugar de crecer hacia arriba, se extiende horizontalmente o cae en cascada. Perfecto para macetas colgantes, terrazas o para cubrir muros. Tan resistente y aromático como el romero común, con una silueta más decorativa.",
+    "problems": [
+      {
+        "symptom": "Ramas secas en la base",
+        "cause": "Exceso de riego o mala ventilación",
+        "solution": "Cortá las partes secas, mejorá el drenaje y espaciá los riegos."
+      },
+      {
+        "symptom": "Poco aroma",
+        "cause": "Suelo demasiado fértil o sombra excesiva",
+        "solution": "Suelo pobre y sol pleno intensifican los aceites esenciales."
+      }
+    ],
+    "nutrients": {
+      "type": "Muy bajo, suelo pobre",
+      "homemade": "Sin fertilizante; compost ligero una vez al año"
+    }
+  },
+  "tomate-cherry": {
+    "name": "Tomate cherry",
+    "tip": "Los tomates cherry son indeterminados — siguen creciendo toda la temporada. Poneles un tutor alto y quitá los chupones laterales para que concentren energía en los frutos.",
+    "description": "El Tomate cherry produce pequeños tomates dulces en racimos abundantes durante todo el verano. Es indeterminado, lo que significa que sigue creciendo y produciendo hasta las heladas. Ideal para macetas grandes (mínimo 30L), balcones y huertas pequeñas. Necesita menos espacio que la tomatera grande pero el mismo cuidado.",
+    "problems": [
+      {
+        "symptom": "Frutos que se parten",
+        "cause": "Riego irregular (seco y luego muy abundante)",
+        "solution": "Mantené el riego constante; los cambios bruscos de humedad causan el rajado."
+      },
+      {
+        "symptom": "Podredumbre apical (culo negro)",
+        "cause": "Falta de calcio o riego irregular",
+        "solution": "Riego constante + cáscaras de huevo trituradas al sustrato."
+      },
+      {
+        "symptom": "Mosca blanca en envés de hojas",
+        "cause": "Plaga frecuente en verano",
+        "solution": "Tratá con jabón potásico o aceite de neem; introducí crisópas si es posible."
+      }
+    ],
+    "nutrients": {
+      "type": "Alto en potasio durante fructificación",
+      "homemade": "Té de banana semanal cuando empiezan los frutos"
+    }
+  },
   "humidity": {
     "baja": "Baja",
     "media": "Media",
