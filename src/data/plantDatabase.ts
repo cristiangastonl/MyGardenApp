@@ -48,7 +48,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz cada 15 días" },
     lightLevel: "medium_indirect",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -73,7 +73,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno y potasio", homemade: "Té de banana cada 15 días" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -148,7 +148,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo en nitrógeno, fósforo y potasio", homemade: "Agua de arroz y cáscara de banana mensual" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -173,7 +173,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz cada 10 días" },
     lightLevel: "medium_indirect",
-    waterSchedule: { warm: 4, cold: 6 },
+    waterSchedule: { warm: 4, cold: 7 },
     waterMode: "fixed",
   },
   {
@@ -198,7 +198,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz quincenal" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 5, cold: 8 },
+    waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
   },
   {
@@ -223,7 +223,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno y magnesio", homemade: "Agua de verduras hervidas cada 15 días" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -248,7 +248,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo 1 vez al mes" },
     lightLevel: "direct",
-    waterSchedule: { warm: 14, cold: 21 },
+    waterSchedule: { warm: 14, cold: 30 },
     waterMode: "soil_check",
   },
 
@@ -685,7 +685,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo en nitrógeno", homemade: "Agua de arroz quincenal" },
     lightLevel: "medium_indirect",
-    waterSchedule: { warm: 10, cold: 15 },
+    waterSchedule: { warm: 14, cold: 21 },
     waterMode: "fixed",
   },
   {
@@ -710,7 +710,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno moderado", homemade: "Agua de arroz + compost de lombrices" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -735,7 +735,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Muy bajo, fósforo y potasio", homemade: "Agua de cáscara de huevo cada 2 meses" },
     lightLevel: "bright_indirect",
-    waterSchedule: { warm: 14, cold: 21 },
+    waterSchedule: { warm: 14, cold: 30 },
     waterMode: "soil_check",
   },
   {
@@ -1299,7 +1299,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Bajo, nitrógeno equilibrado", homemade: "Agua de arroz 1 vez al mes" },
     lightLevel: "direct",
-    waterSchedule: { warm: 10, cold: 15 },
+    waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
   },
 ];
