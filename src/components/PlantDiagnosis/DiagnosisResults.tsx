@@ -32,6 +32,10 @@ interface DiagnosisResultsProps {
   isPremium?: boolean;
   chatCameraPermissionDenied?: boolean;
   onPaywall?: () => void;
+  // Phase 9 (DIAG-06 / DIAG-07): per-diagnosis-lifetime count display + send-tap gating
+  remaining?: number;
+  chatLimit?: number;
+  onPaywallWithDeferredSend?: (text: string, base64?: string, uri?: string) => void;
   // Shopping list
   onAddToShoppingList?: (treatment: string) => void;
   canAddToShoppingList?: boolean;
@@ -66,6 +70,9 @@ export function DiagnosisResults({
   isPremium = false,
   chatCameraPermissionDenied = false,
   onPaywall,
+  remaining,
+  chatLimit,
+  onPaywallWithDeferredSend,
   onAddToShoppingList,
   canAddToShoppingList = false,
   onTrackProblem,
@@ -94,7 +101,20 @@ export function DiagnosisResults({
   const handleSendChat = () => {
     const trimmed = chatInput.trim();
     if ((!trimmed && !pendingPhoto) || !onSendChat) return;
-    onSendChat(trimmed || t('diagnosis.photoSent'), pendingPhoto?.base64, pendingPhoto?.uri);
+    const text = trimmed || t('diagnosis.photoSent');
+    const base64 = pendingPhoto?.base64;
+    const uri = pendingPhoto?.uri;
+
+    // Phase 9 (DIAG-07): send-tap gate at 0 remaining for free users.
+    // typedText captured here in closure; deferred onSuccess re-invokes sendChatMessage(text, base64, uri).
+    if (!isPremium && (remaining ?? Infinity) === 0 && onPaywallWithDeferredSend) {
+      onPaywallWithDeferredSend(text, base64, uri);
+      setChatInput('');
+      setPendingPhoto(null);
+      return;
+    }
+
+    onSendChat(text, base64, uri);
     setChatInput('');
     setPendingPhoto(null);
   };
@@ -248,27 +268,45 @@ export function DiagnosisResults({
           <Text style={styles.sectionTitle}>{t('diagnosis.followUpConsultation')}</Text>
 
           {/* Chat messages */}
-          {chatMessages.map((msg) => (
-            <View
-              key={msg.id}
-              style={[
-                styles.chatBubble,
-                msg.role === 'user' ? styles.chatBubbleUser : styles.chatBubbleAssistant,
-              ]}
-            >
-              {msg.imageUri && (
-                <Image source={{ uri: msg.imageUri }} style={styles.chatImage} />
-              )}
-              <Text
+          {chatMessages.map((msg) => {
+            // Phase 9 (DIAG-03 / RESEARCH §Pattern 6 + §Pitfall 6): system messages render as
+            // centered italic info banners, NOT user/assistant chat bubbles.
+            if (msg.role === 'system') {
+              return (
+                <View key={msg.id} style={styles.systemMessageBanner}>
+                  <Text style={styles.systemMessageBannerText}>{msg.text}</Text>
+                </View>
+              );
+            }
+            return (
+              <View
+                key={msg.id}
                 style={[
-                  styles.chatBubbleText,
-                  msg.role === 'user' ? styles.chatBubbleTextUser : styles.chatBubbleTextAssistant,
+                  styles.chatBubble,
+                  msg.role === 'user' ? styles.chatBubbleUser : styles.chatBubbleAssistant,
                 ]}
               >
-                {msg.text}
-              </Text>
+                {msg.imageUri && (
+                  <Image source={{ uri: msg.imageUri }} style={styles.chatImage} />
+                )}
+                <Text
+                  style={[
+                    styles.chatBubbleText,
+                    msg.role === 'user' ? styles.chatBubbleTextUser : styles.chatBubbleTextAssistant,
+                  ]}
+                >
+                  {msg.text}
+                </Text>
+              </View>
+            );
+          })}
+
+          {/* Phase 9 (DIAG-04): resume banner — centered, above input area */}
+          {isResumedChat && (
+            <View style={styles.resumeBanner}>
+              <Text style={styles.resumeBannerText}>{t('diagnosis.resumeBanner')}</Text>
             </View>
-          ))}
+          )}
 
           {/* Resolution suggestion card - shown when AI detects improvement (PROB-05) */}
           {showResolutionSuggestion && (
@@ -327,6 +365,15 @@ export function DiagnosisResults({
           {/* Input or upsell */}
           {canSendChat && !chatLoading ? (
             <View>
+              {/* Phase 9 (DIAG-06): per-diagnosis-lifetime remaining count, free users only */}
+              {!isPremium && remaining !== undefined && (
+                <Text style={[
+                  styles.messagesRemainingRow,
+                  remaining <= 2 && styles.messagesRemainingWarning,
+                ]}>
+                  {t('diagnosis.messagesRemaining', { remaining, total: chatLimit ?? 3 })}
+                </Text>
+              )}
               {pendingPhoto && (
                 <View style={styles.pendingPhotoContainer}>
                   <Image source={{ uri: pendingPhoto.uri }} style={styles.pendingPhotoPreview} />
@@ -792,5 +839,50 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 16,
     color: colors.textSecondary,
+  },
+  // Phase 9 styles (DIAG-04 / DIAG-06 / DIAG-03)
+  resumeBanner: {
+    backgroundColor: colors.infoBg,
+    borderRadius: borderRadius.md,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    marginBottom: spacing.sm,
+    alignSelf: 'center',
+    maxWidth: '90%',
+  },
+  resumeBannerText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    fontStyle: 'italic',
+    color: colors.infoText,
+    textAlign: 'center',
+    lineHeight: 18,
+  },
+  systemMessageBanner: {
+    backgroundColor: colors.infoBg,
+    borderRadius: borderRadius.md,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    marginBottom: spacing.sm,
+    alignSelf: 'center',
+    maxWidth: '90%',
+  },
+  systemMessageBannerText: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    fontStyle: 'italic',
+    color: colors.infoText,
+    textAlign: 'center',
+    lineHeight: 18,
+  },
+  messagesRemainingRow: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textMuted,
+    textAlign: 'center',
+    marginBottom: spacing.xs,
+  },
+  messagesRemainingWarning: {
+    color: colors.warningText,
   },
 });
