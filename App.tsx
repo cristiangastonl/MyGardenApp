@@ -362,6 +362,10 @@ function AppContentFullInner({
           onCancel={() => setShowMigrationModal(false)}
         />
       )}
+
+      {/* Phase 9 (PAY-01): single-render mount; mirrors AppContentMVP line 227.
+          Two-AppContent-paths discipline (Phase 5 Plan 05 lock) — both paths in sync. */}
+      <PaywallModal />
     </>
   );
 }
