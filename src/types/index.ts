@@ -192,6 +192,12 @@ export interface PlantDBEntry {
   waterSchedule?: WaterSchedule;
   /** Watering mode (v1.1). Inferred from category + dbId allowlist. */
   waterMode?: WaterMode;
+
+  /**
+   * Phase 8 (CAT-05). Legacy slug aliases that resolve to this entry via getCatalogEntry().
+   * Underscore prefix denotes meta. Canonical id always wins; aliases scanned only if no id match.
+   */
+  _aliases?: string[];
 }
 
 // Weather types for Open-Meteo API integration

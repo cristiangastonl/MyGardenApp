@@ -1344,7 +1344,42 @@ export function searchPlants(query: string): PlantDBEntry[] {
   );
 }
 
-// Helper function to get a plant by ID
+/**
+ * @deprecated Phase 8 (CAT-04). Prefer `getCatalogEntry(slug)` which also resolves `_aliases`
+ * and returns `null` (not `undefined`) on miss. Will be removed in v1.2.
+ */
 export function getPlantById(id: string): PlantDBEntry | undefined {
   return PLANT_DATABASE.find(plant => plant.id === id);
+}
+
+/**
+ * Phase 8 (CAT-04, CAT-05). Canonical lookup for catalog entries.
+ * Resolves both canonical ids and `_aliases` slugs. Use this at every read site
+ * that needs to read fresh `tip`/`description`/`problems`/`nutrients` from the catalog
+ * (do NOT cache catalog content on Plant instances).
+ *
+ * Resolution order:
+ *  1. Canonical `id` match (id-before-alias invariant; protects against data bugs)
+ *  2. `_aliases` array scan
+ *  3. null + __DEV__ warning
+ *
+ * Performance: O(N) linear scan; appropriate for N < 60.
+ *
+ * @param slug Plant id or legacy alias.
+ * @returns Canonical PlantDBEntry, or null if not found.
+ */
+export function getCatalogEntry(slug: string): PlantDBEntry | null {
+  // 1. Canonical id (id-before-alias invariant — Pitfall 2)
+  const canonical = PLANT_DATABASE.find(e => e.id === slug);
+  if (canonical) return canonical;
+
+  // 2. Alias scan
+  const aliased = PLANT_DATABASE.find(e => e._aliases?.includes(slug));
+  if (aliased) return aliased;
+
+  // 3. Not found
+  if (__DEV__) {
+    console.warn(`[getCatalogEntry] slug "${slug}" not found in PLANT_DATABASE`);
+  }
+  return null;
 }
