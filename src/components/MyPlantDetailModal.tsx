@@ -294,7 +294,10 @@ export function MyPlantDetailModal({
       visible={!!selectedDiagnosis}
       diagnosis={selectedDiagnosis}
       onClose={() => setSelectedDiagnosis(null)}
-      isPremium={isPremium}
+      // Phase 9 (RESEARCH §Q3): closure captures setSelectedDiagnosis + setResumeDiagnosis +
+      // setShowDiagnosis (and plant via outer scope) so DiagnosisDetailModal's deferred
+      // showPaywall onSuccess can re-invoke this same closure after purchase succeeds.
+      // No state-machine handoff needed — vanilla React closure suffices.
       onContinueChat={(diag) => {
         setSelectedDiagnosis(null);
         setResumeDiagnosis(diag);

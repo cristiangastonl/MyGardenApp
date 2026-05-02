@@ -564,7 +564,6 @@ export default function TodayScreen() {
         visible={!!selectedDiagnosis}
         diagnosis={selectedDiagnosis}
         onClose={() => setSelectedDiagnosis(null)}
-        isPremium={premium.isPremium}
         onContinueChat={(diag) => {
           setSelectedDiagnosis(null);
           const plant = plants.find(p => p.id === diag.plantId);
