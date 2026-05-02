@@ -24,6 +24,35 @@ import { CameraCapture } from '../PlantIdentifier/CameraCapture';
 import { DiagnosisAnalyzingState } from './DiagnosisAnalyzingState';
 import { DiagnosisResults } from './DiagnosisResults';
 
+// Phase 9 (DIAG-05): Builds a plain-text summary from a SavedDiagnosis for inclusion
+// in the chat-diagnosis edge function prompt as priorDiagnosisSummary. The summary is
+// locale-aware (isEs) so the LLM prompt stays in the user's language.
+function buildPriorDiagnosisSummary(diagnosis: SavedDiagnosis, isEs: boolean): string {
+  const result = diagnosis.result;
+  const lines: string[] = [];
+  lines.push(isEs
+    ? `Estado general: ${result.overallStatus}`
+    : `Overall status: ${result.overallStatus}`);
+  lines.push(isEs ? `Resumen: ${result.summary}` : `Summary: ${result.summary}`);
+  if (result.issues.length > 0) {
+    lines.push(isEs ? 'Problemas identificados:' : 'Identified problems:');
+    for (const issue of result.issues) {
+      lines.push(`- ${issue.name} (${issue.severity}, ${issue.confidence}%): ${issue.treatment}`);
+    }
+  }
+  if (result.careTips.length > 0) {
+    lines.push(isEs
+      ? `Consejos de cuidado: ${result.careTips.join('; ')}`
+      : `Care tips: ${result.careTips.join('; ')}`);
+  }
+  if (diagnosis.imageUri || (diagnosis.imageUris && diagnosis.imageUris.length > 0)) {
+    lines.push(isEs
+      ? '(El diagnóstico original incluyó fotos.)'
+      : '(The original diagnosis included photos.)');
+  }
+  return lines.join('\n');
+}
+
 interface PlantDiagnosisModalProps {
   visible: boolean;
   plant: Plant;
@@ -45,7 +74,7 @@ export function PlantDiagnosisModal({
   onAddToShoppingList,
   canAddToShoppingList = false,
 }: PlantDiagnosisModalProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { saveDiagnosis, addChatMessage, diagnosisCount, incrementDiagnosisCount, trackProblem, resolveTrackedProblem, addFollowUpEntry, location, climateOverride } = useStorage();
   const { canChatDiagnosis, canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
@@ -84,6 +113,13 @@ export function PlantDiagnosisModal({
     currentSeason,
   };
 
+  // Phase 9 (DIAG-05): build locale-aware priorDiagnosisSummary for the chat-diagnosis resume clause.
+  // Only computed + sent when isResumedChat (resumeDiagnosis is non-null).
+  const isEs = i18n.language === 'es';
+  const priorDiagnosisSummary = resumeDiagnosis
+    ? buildPriorDiagnosisSummary(resumeDiagnosis, isEs)
+    : undefined;
+
   const {
     state,
     images,
@@ -113,6 +149,7 @@ export function PlantDiagnosisModal({
       if (!plant || !savedDiagnosisId) return;
       addFollowUpEntry(plant.id, savedDiagnosisId, entry);
     },
+    priorDiagnosisSummary,
   });
 
   // Handler for "Track this problem" button

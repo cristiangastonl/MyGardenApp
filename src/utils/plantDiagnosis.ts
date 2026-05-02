@@ -154,6 +154,7 @@ export async function chatDiagnosis(
   signal?: AbortSignal,
   imageBase64?: string,
   lang?: string,
+  priorDiagnosisSummary?: string,
 ): Promise<ChatDiagnosisResponse> {
   if (!isSupabaseConfigured()) {
     console.log('[ChatDiagnosis] Supabase no configurado, usando modo mock');
@@ -172,6 +173,7 @@ export async function chatDiagnosis(
         userMessage,
         lang: lang || 'en',
         ...(imageBase64 ? { imageBase64 } : {}),
+        priorDiagnosisSummary,    // Phase 9 (DIAG-05): additive — undefined omitted by JSON serializer
       },
       headers: {
         Authorization: `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY}`,

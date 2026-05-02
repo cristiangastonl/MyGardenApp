@@ -19,6 +19,10 @@ interface UsePlantDiagnosisOptions {
   resumeDiagnosis?: SavedDiagnosis | null;
   onImprovementDetected?: () => void;  // Called when AI detects improvement in chat
   onFollowUpEntry?: (entry: ProblemEntry) => void;  // Called to record a follow-up entry for tracked problems (PROB-07)
+  /** Phase 9 (DIAG-05): locale-aware plain-text summary of the prior diagnosis for
+   *  the chat-diagnosis resume clause. Sent only when resumeDiagnosis is non-null.
+   *  When undefined, JSON serializer omits the key → server falls back to current behavior. */
+  priorDiagnosisSummary?: string;
 }
 
 interface ImageEntry {
@@ -303,6 +307,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
         controller.signal,
         imageBase64,
         i18n.language,
+        options?.priorDiagnosisSummary,   // Phase 9 (DIAG-05): additive — undefined when not resumed
       );
 
       clearTimeout(timeoutId);
