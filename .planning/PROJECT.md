@@ -34,21 +34,31 @@ Users can diagnose their plants' problems through photos and AI, and the app pro
 - ✓ Follow-up diagnosis tasks in "Hoy" screen (premium) — v1.0
 - ✓ Notification deep-link navigation (cold-start safe) — v1.0
 - ✓ PlantCard tracking status emoji badges — v1.0
+- ✓ 4-level light model with locale-aware labels (indoor + outdoor variants) — v1.1
+- ✓ Seasonal watering schedule (warm/cold split) with soil-check mode for cacti — v1.1
+- ✓ Three-zone seasonality (Northern/Southern/Tropical) with manual climate override — v1.1
+- ✓ Onboarding location prompt with GPS / city search / skip — v1.1
+- ✓ Diagnosis conversation continuity (continue + reopen) with App-level paywall + deferred callback — v1.1
+- ✓ Per-diagnosis-lifetime message count + retroactive premium lift on upgrade — v1.1
+- ✓ Catalog rebalance: 50 expert overrides + 14 new LATAM outdoor plants + lavender split (64 total) — v1.1
+- ✓ Lookup-by-id catalog content with `_aliases` for renamed slugs — v1.1
+- ✓ CI guards for catalog i18n key parity + image URL 200 OK — v1.1
 
 ### Active
 
 <!-- Current scope. Building toward these. -->
 
-## Current Milestone: v1.1 Precision Care
+## Current Milestone: v1.2 (TBD)
 
-**Goal:** Replace fixed-value plant care model with precision-aware schedules tied to user location, light quality, and seasonal context — and surface diagnosis chat continuity so users can resume conversations instead of staring at frozen summaries.
+Run `/gsd:new-milestone` to define v1.2 scope.
 
-**Target features:**
-- Light model with 4 quality levels (direct / bright indirect / medium indirect / low) replacing flat sun-hours
-- Watering schedule with seasonal warm/cold split + optional soil-check mode for cacti & succulents
-- Location-driven precision (hemisphere → season) with onboarding prompt + non-blocking banner when missing
-- Diagnosis conversation continuity (continue/reopen past diagnoses) with paywall coordination for free users
-- Catalog rebalance: 10-15 outdoor plants added with full new-model fields, existing 60+ entries migrated
+### Pending Operational Tasks (v1.1 closeout)
+
+Manual ops batched at end of milestone — must complete before declaring v1.1 publicly released:
+- Run device-test backlog (~27 scenarios) on Android device
+- Deploy 2 Supabase edge functions: `chat-diagnosis` + `diagnose-plant`
+- Upload 15 catalog images to Supabase Storage `plant-images/catalog/<id>.jpg` (14 new outdoor + lavanda-angustifolia rename)
+- Re-run `npm run check:images` until exit 0
 
 ### Out of Scope
 
@@ -64,11 +74,11 @@ Users can diagnose their plants' problems through photos and AI, and the app pro
 
 ## Context
 
-Shipped v1.0 Diagnosis & Tracking milestone with +1,545 LOC across 20 files. The app is on Google Play (internal track) and being prepared for production.
+Shipped v1.1 Precision Care milestone (39 plans across 6 phases, 4 waves of complexity). v1.0 shipped earlier with +1,545 LOC. The app is on Google Play (internal track), preparing for production after v1.1 device-test backlog completes.
 
-**Current state:** Camera works in diagnosis chat (iOS ActionSheetIOS + Android custom Modal). Problem tracking fully operational: premium users can track problems, get push notification reminders, see follow-up tasks in Hoy, view photo timelines in plant detail, and resolve problems via AI suggestion or manually. Notification deep-linking handles cold start, background, and foreground scenarios.
+**Current state (post-v1.1):** Plant care is precision-driven — light quality (4 levels indoor/outdoor), seasonal warm/cold watering split, three-zone seasonality (lat-derived or manual override), soil-check mode for cacti. Onboarding asks for location with skip-safe path. Catalog has 64 expert-vetted entries (50 rebalanced + 14 new LATAM outdoor + lavender 3-variant split). Diagnosis chat now resumes across sessions with App-level paywall + deferred callback. All code green: smoke 752 PASS across all phases, project-wide tsc strict.
 
-**Tech stack:** React Native + Expo SDK 54, TypeScript strict, Supabase edge functions, AsyncStorage local-first, RevenueCat premium gating.
+**Tech stack:** React Native + Expo SDK 54, TypeScript strict, Supabase edge functions (with dual-payload backward compat), AsyncStorage local-first with versioned envelope, RevenueCat premium gating, single-compile-path smoke runner via `typescript.transpileModule` (no jest/vitest installed).
 
 ## Constraints
 
@@ -91,6 +101,15 @@ Shipped v1.0 Diagnosis & Tracking milestone with +1,545 LOC across 20 files. The
 | Extend SavedDiagnosis in-place (not parallel collection) | Avoids stale cross-reference bugs, backward-compatible with optional fields | ✓ Good |
 | NotificationContext for deep-link (not URL-based) | Lightweight, avoids deep-linking complexity, cold-start safe | ✓ Good |
 | Emoji + text severity labels | Fits app's emoji-throughout convention, avoids anxiety of numeric scores | ✓ Good |
+| Three-zone seasonality (Northern/Southern/Tropical) from day one | Avoids two-hemisphere assumption; tropical zone bypasses season flip | ✓ Good (v1.1) |
+| Schema migration via versioned envelope `{schemaVersion, data}` + backup blob | Atomic from user's perspective; rollback safety net for one release | ✓ Good (v1.1) |
+| Mode-as-dispatcher: waterMode toggles task type, NOT cadence math | Single SSOT across modes; future v1.2/v2 modes reuse cadence | ✓ Good (v1.1) |
+| `getEffectiveSeason(location, climateOverride, date)` as public SSOT, `getWaterSeason` private | Single search-and-replace for 8 call sites; manual override wins over derived hemisphere | ✓ Good (v1.1) |
+| Lookup-by-id catalog content (`getCatalogEntry(plant.databaseId)`) with `_aliases` | Patch updates to `tip` propagate to existing user plants on next render; renamed slugs don't orphan | ✓ Good (v1.1) |
+| App-level PaywallModal context with deferred onSuccess callback | No nested-modal stacking; purchase auto-resends gated action; close-then-trigger contract documented | ✓ Good (v1.1) |
+| Single-compile-path smoke runner (`typescript.transpileModule`) instead of jest/vitest | Zero new framework install; 752 assertions across 5 phase runners; carried Phase 4→9 | ✓ Good (v1.1) |
+| Edge function dual-payload via discriminator (`!!ctx.waterSchedule`) | Backward-compat grace window for old clients; v1.2 sunset target | ⚠️ Revisit v1.2 |
+| Defer manual ops (device tests, edge function deploys, image uploads) to end-of-milestone | Per user preference — full E2E test more efficient than per-phase smoke | ✓ Good (v1.1) |
 
 ---
-*Last updated: 2026-04-29 after starting v1.1 Precision Care milestone*
+*Last updated: 2026-05-02 after v1.1 Precision Care milestone shipped (39 plans / 6 phases). Next: v1.2 (TBD).*
