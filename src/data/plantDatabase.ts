@@ -556,7 +556,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido en riego + clavos oxidados mensual" },
     lightLevel: "direct",
-    waterSchedule: { warm: 5, cold: 8 },
+    waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
   },
 
@@ -1093,7 +1093,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido en riego + cáscara de huevo" },
     lightLevel: "direct",
-    waterSchedule: { warm: 5, cold: 8 },
+    waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
   },
   {
@@ -1118,7 +1118,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno y potasio", homemade: "Compost de lombrices + té de banana mensual" },
     lightLevel: "direct",
-    waterSchedule: { warm: 5, cold: 8 },
+    waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
   },
   {
@@ -1143,7 +1143,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Potasio y fósforo", homemade: "Té de banana + ceniza de madera quincenal" },
     lightLevel: "direct",
-    waterSchedule: { warm: 7, cold: 11 },
+    waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
   },
   {
@@ -1168,7 +1168,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     nutrients: { type: "Nitrógeno, hierro y zinc", homemade: "Vinagre diluido + clavos oxidados mensual" },
     lightLevel: "direct",
-    waterSchedule: { warm: 5, cold: 8 },
+    waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
   },
 
