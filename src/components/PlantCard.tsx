@@ -13,7 +13,7 @@ import { TaskButton } from './TaskButton';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantHealthDetail } from './PlantHealthDetail';
 import { getPlantTypes } from '../data/constants';
-import { getPlantCategories } from '../data/plantDatabase';
+import { getPlantCategories, getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
 
 interface PlantCardProps {
   plant: Plant;
@@ -69,8 +69,14 @@ export function PlantCard({
 
   const hasTasks = needsWaterToday || needsSunToday || needsOutdoorToday;
 
+  // Phase 8 (CAT-04): live catalog lookup — patch updates to PLANT_DATABASE propagate on next render.
+  // Defensive 3-rung fallback: translatedEntry → legacy plant field → empty string.
+  const catalogEntry = plant.databaseId ? getCatalogEntry(plant.databaseId) : null;
+  const translatedEntry = catalogEntry ? getTranslatedPlant(catalogEntry) : null;
+
   const plantType = getPlantTypes().find(pt => pt.id === plant.typeId);
-  const tip = plantType?.tip || '';
+  // Prefer per-plant catalog tip; fall back to generic category tip; then empty.
+  const tip = translatedEntry?.tip ?? plantType?.tip ?? '';
 
   const waterInterval = getSeasonalInterval(plant, currentSeason);
   const isCheckMode = plant.waterMode === 'soil_check';
