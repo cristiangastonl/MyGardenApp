@@ -297,8 +297,8 @@
     "tomorrow": "Mañana",
     "inDays": "En {{count}} días",
     "waterBadge": {
-      "fixed": "💧 Cada {{days}}d",
-      "soilCheck": "🤚 Por chequeo"
+      "fixed": "💧 Regá cada {{days}}d",
+      "soilCheck": "🤚 Chequeá cada {{days}}d"
     },
     "deletePlant": "Eliminar planta",
     "deleteConfirm": "¿Seguro que querés eliminar \"{{name}}\"?",

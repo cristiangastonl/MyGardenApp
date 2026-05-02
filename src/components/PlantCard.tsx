@@ -197,11 +197,14 @@ export function PlantCard({
       )}
 
       {/* UX-02: Watering-mode badge — ALWAYS visible regardless of hasTasks or mode.
-          Replaces legacy watering-text block. Single source of watering info per card. */}
+          Both modes show parallel "verb + interval" form (voseo for ES) so the user
+          knows the action AND the cadence. soil_check uses "Chequeá cada Nd" (check
+          the soil every N days), fixed uses "Regá cada Nd" — both share the same
+          waterInterval (season-aware via getSeasonalInterval). */}
       <View style={styles.waterBadge}>
         <Text style={styles.waterBadgeText}>
           {isCheckMode
-            ? t('plantCard.waterBadge.soilCheck')
+            ? t('plantCard.waterBadge.soilCheck', { days: waterInterval })
             : t('plantCard.waterBadge.fixed', { days: waterInterval })}
         </Text>
       </View>

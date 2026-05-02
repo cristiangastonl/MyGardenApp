@@ -176,8 +176,11 @@ try {
     es.lightLevel.outdoor.direct === 'Sol pleno');
   assert("EN plantCard.waterBadge.fixed contains '💧' and '{{days}}'",
     en.plantCard.waterBadge.fixed.includes('💧') && en.plantCard.waterBadge.fixed.includes('{{days}}'));
-  assert("ES plantCard.waterBadge.soilCheck === '🤚 Por chequeo'",
-    es.plantCard.waterBadge.soilCheck === '🤚 Por chequeo');
+  // QW6: soilCheck badge now parallel to fixed (verb + interval voseo). Both share {{days}} interp.
+  assert("ES plantCard.waterBadge.soilCheck contains '🤚', voseo verb 'Chequeá', and '{{days}}'",
+    es.plantCard.waterBadge.soilCheck.includes('🤚') &&
+    es.plantCard.waterBadge.soilCheck.includes('Chequeá') &&
+    es.plantCard.waterBadge.soilCheck.includes('{{days}}'));
   assert("EN plantDetail.seasonBadge.tropical === 'tropical'",
     en.plantDetail.seasonBadge.tropical === 'tropical');
   assert("ES plantDetail.seasonBadge.tropical === 'trópico'",
