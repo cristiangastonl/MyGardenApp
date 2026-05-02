@@ -51,6 +51,10 @@ interface RequestBody {
   userMessage: string;
   imageBase64?: string;
   lang?: string; // 'es' | 'en'
+  /** Phase 9 (DIAG-05): when present, server prepends a resume clause to systemPrompt
+   *  including this summary verbatim plus the no-severity-re-assess instruction.
+   *  Backward-compat: when absent, behavior unchanged. */
+  priorDiagnosisSummary?: string;
 }
 
 serve(async (req) => {
@@ -176,10 +180,18 @@ ${waterLines}
         : buildLegacyEn(ctx))
       : '';
 
+    // Phase 9 (DIAG-05): resume clause injected when priorDiagnosisSummary is present.
+    // Voseo: "Continuá", "evalúes" — Phase 5 Plan 02 lock.
+    const resumeClause = body.priorDiagnosisSummary
+      ? (isEs
+        ? `\n\nResumen del diagnóstico previo:\n${body.priorDiagnosisSummary}\n\nNo re-evalúes la severidad ni cambies el diagnóstico salvo que el usuario suba una foto nueva. Continuá el seguimiento basándote en el diagnóstico previo.`
+        : `\n\nPrior diagnosis summary:\n${body.priorDiagnosisSummary}\n\nDo not re-assess severity or change the diagnosis unless the user uploads a new photo. Continue follow-up based on the prior diagnosis.`)
+      : '';
+
     const systemPrompt = isEs
       ? `Sos un experto en fitopatología y cuidado de plantas, haciendo seguimiento de un diagnóstico previo.
 
-${contextInfo}
+${contextInfo}${resumeClause}
 
 Diagnóstico previo:
 - Estado general: ${diag.overallStatus}
@@ -206,7 +218,7 @@ Reglas:
 - "improvementDetected": true SOLO si observas una mejora clara comparando la foto/info nueva con el diagnostico previo. No lo pongas en true solo porque el usuario dice que mejoro — evalualo vos.`
       : `You are an expert in plant pathology and plant care, following up on a previous diagnosis.
 
-${contextInfo}
+${contextInfo}${resumeClause}
 
 Previous diagnosis:
 - Overall status: ${diag.overallStatus}
