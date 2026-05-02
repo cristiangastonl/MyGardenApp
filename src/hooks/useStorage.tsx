@@ -60,6 +60,7 @@ interface StorageActions {
   addChatMessage: (plantId: string, diagnosisId: string, message: DiagnosisChatMessage | DiagnosisChatMessage[]) => void;
   getDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
   resolveDiagnosis: (plantId: string, diagnosisId: string) => void;
+  updateDiagnosis: (plantId: string, diagnosisId: string, updates: Partial<SavedDiagnosis>) => void; // Phase 9 (DIAG-03): generic merge for reopenedAt + system-message append on reopen
   getActiveDiagnosesForPlant: (plantId: string) => SavedDiagnosis[];
   trackProblem: (plantId: string, diagnosisId: string, trackingStatus: TrackingStatus, followUpDate: string, notificationId: string | null, problemSummary: string) => void;
   resolveTrackedProblem: (plantId: string, diagnosisId: string) => void;
@@ -571,6 +572,21 @@ export function StorageProvider({ children }: StorageProviderProps) {
     scheduleSave();
   }, [scheduleSave]);
 
+  const updateDiagnosis = useCallback((plantId: string, diagnosisId: string, updates: Partial<SavedDiagnosis>) => {
+    // Phase 9 (DIAG-03 / RESEARCH §CF-4): generic merge action.
+    // Used by reopen path to atomically set reopenedAt AND append system message in one state update.
+    const cur = dataRef.current.diagnosisHistory;
+    const plantDiagnoses = cur[plantId];
+    if (!plantDiagnoses) return; // no-op when plant has no history
+    const updatedDiagnoses = plantDiagnoses.map(d =>
+      d.id === diagnosisId ? { ...d, ...updates } : d
+    );
+    const newHistory = { ...cur, [plantId]: updatedDiagnoses };
+    setDiagnosisHistory(newHistory);
+    dataRef.current.diagnosisHistory = newHistory;
+    scheduleSave();
+  }, [scheduleSave]);
+
   const getActiveDiagnosesForPlant = useCallback((plantId: string): SavedDiagnosis[] => {
     return (dataRef.current.diagnosisHistory[plantId] || []).filter(d =>
       !d.resolved && d.result.overallStatus !== 'healthy'
@@ -733,6 +749,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     addChatMessage,
     getDiagnosesForPlant,
     resolveDiagnosis,
+    updateDiagnosis,
     getActiveDiagnosesForPlant,
     trackProblem,
     resolveTrackedProblem,
@@ -755,7 +772,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     completeOnboardingWithData, setUserName, updateNotificationSettings,
     updatePlantNetApiKey, incrementIdentificationCount, incrementDiagnosisCount,
     addPhotoToPlant, removePhotoFromPlant, saveDiagnosis, addChatMessage,
-    getDiagnosesForPlant, resolveDiagnosis, getActiveDiagnosesForPlant,
+    getDiagnosesForPlant, resolveDiagnosis, updateDiagnosis, getActiveDiagnosesForPlant,
     trackProblem, resolveTrackedProblem, reopenTrackedProblem, addFollowUpEntry,
     addShoppingItem, removeShoppingItem, toggleShoppingItem, clearCheckedShoppingItems,
     acknowledgeMigrationReschedule,
