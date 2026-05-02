@@ -119,10 +119,35 @@ assert(esJson.diagnosis.messagesRemaining.includes('{{remaining}}') && esJson.di
 assert(/sac[aá]/i.test(esJson.diagnosis.resumeBanner),
   "T4.es.resumeBanner: voseo verb 'sacá' present");
 
-// PLACEHOLDER — Plan 09-07 activates
-// T5: priorDiagnosisSummary in chat-diagnosis/index.ts >= 2 occurrences
-// Assertion: grep -c "priorDiagnosisSummary" supabase/functions/chat-diagnosis/index.ts >= 2
-pass++; // placeholder counts as pass until plan activates
+// ─── T5: priorDiagnosisSummary edge + client wiring (Plan 09-07 / DIAG-05) ───
+const cdSrc = readFileSync(resolve(ROOT, 'supabase/functions/chat-diagnosis/index.ts'), 'utf8');
+const pdsCount = (cdSrc.match(/priorDiagnosisSummary/g) || []).length;
+assert(pdsCount >= 3, `T5a: priorDiagnosisSummary appears >= 3 times in edge function (found ${pdsCount})`);
+assert(/Resumen del diagnóstico previo/.test(cdSrc), "T5b: ES resume clause copy present");
+assert(/Prior diagnosis summary/.test(cdSrc), "T5c: EN resume clause copy present");
+assert(/Continuá el seguimiento/.test(cdSrc), "T5d: ES voseo verb 'Continuá' in resume clause");
+assert(/Do not re-assess severity/.test(cdSrc), "T5e: EN no-re-assess instruction");
+const pdmSrc2 = readFileSync(resolve(ROOT, 'src/components/PlantDiagnosis/PlantDiagnosisModal.tsx'), 'utf8');
+assert(/buildPriorDiagnosisSummary/.test(pdmSrc2),
+  "T5f: client buildPriorDiagnosisSummary helper present in PlantDiagnosisModal");
+// No active deploy call in edge function or client source files.
+// Plan docs and smoke scripts reference the command phrase in quotes/comments — those are excluded.
+// Only the Supabase edge function source and client TypeScript files are checked.
+const sourceFilesToCheckDeploy = [
+  'supabase/functions/chat-diagnosis/index.ts',
+  'src/hooks/usePlantDiagnosis.ts',
+  'src/utils/plantDiagnosis.ts',
+];
+for (const relPath of sourceFilesToCheckDeploy) {
+  const p = resolve(ROOT, relPath);
+  if (existsSync(p)) {
+    const src = readFileSync(p, 'utf8');
+    // Real invocation pattern: supabase functions deploy <function-name>
+    // e.g. `supabase functions deploy chat-diagnosis` or `supabase functions deploy identify-plant`
+    assert(!/supabase functions deploy [a-z]/.test(src),
+      `T5g: NO active deploy call in ${relPath} (deferred to v1.1 batch deploy per CLAUDE.md)`);
+  }
+}
 
 // ─── T6: lifetime count arithmetic + presence (Plan 09-06 / DIAG-06 / RESEARCH §CF-7 fix) ───
 (function testLifetimeCount() {
