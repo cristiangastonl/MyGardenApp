@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 08-04-PLAN.md (3/3 tasks)
-last_updated: "2026-05-02T12:38:57.029Z"
+stopped_at: Completed 08-05-PLAN.md (4/4 tasks)
+last_updated: "2026-05-02T12:48:14.544Z"
 last_activity: "2026-05-01 — Plan 08-03 complete (3/3 tasks): atomic lavender split + 12 new outdoor entries + A9 smoke assertions active"
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 31
-  completed_plans: 30
+  completed_plans: 31
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 8 (Catalog Rebalance) in progress (3/5 plans complete). Plans 01-03 shipped: Wave 0 smoke harness + getCatalogEntry helper, Wave 1 expert overrides for all 50 existing entries, Wave 2 lavender split + 14 new outdoor entries (64-entry catalog). Next: Plan 04 (read-site consumer migration) + Plan 05 (CI guards).
+**Current focus:** v1.1 Precision Care — COMPLETE. Phase 8 (Catalog Rebalance) all 5 plans shipped: Wave 0 smoke harness + getCatalogEntry, Wave 1 expert overrides, Wave 2 lavender split + 14 new outdoor entries (64-entry catalog), Wave 3 read-site consumer migration (getCatalogEntry live lookup), Wave 4 CI guards + alias-rewrite-on-save + CLAUDE.md docs. Next: `/gsd:verify-work` then v1.1 ship preparation.
 
 ## Current Position
 
-Phase: 8 of 6 (Catalog Rebalance) — IN PROGRESS
-Plan: 3 of 5 — COMPLETE
-Status: Phase 8, Plan 03 complete (3/3 tasks). 64-entry catalog with lavender split + 14 new outdoor entries + full EN/ES i18n parity. smoke-phase08 PASS 396/396 (A1-A9); smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. tsc exits 0. Next: Plan 04 (read-site consumer migration).
-Last activity: 2026-05-01 — Plan 08-03 complete (3/3 tasks): atomic lavender split + 12 new outdoor entries + A9 smoke assertions active
+Phase: 8 of 8 (Catalog Rebalance) — COMPLETE
+Plan: 5 of 5 — COMPLETE
+Status: Phase 8 complete (5/5 plans). useStorage.updatePlant alias-rewrite (CAT-05); check-i18n-keys CI guard PASS 64 ids (CAT-06); check-images CI guard runs to completion — 15 accepted-known failures (CAT-07); CLAUDE.md Pre-submit Checks section added. smoke-phase08 PASS 396/396; smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. tsc exits 0.
+Last activity: 2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs
 
-Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1.1 overall: 26/26 plans)
+Progress: [██████████] 100% (v1.1 complete: 31/31 plans across 8 phases)
 
 ## Performance Metrics
 
@@ -87,6 +87,7 @@ Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1
 | Phase 08-catalog-rebalance P02 | 32min | 3 tasks | 1 files |
 | Phase 08-catalog-rebalance P03 | 25min | 3 tasks | 4 files |
 | Phase 08-catalog-rebalance P04 | 4min | 3 tasks | 4 files |
+| Phase 08-catalog-rebalance P05 | 6 | 4 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -183,6 +184,9 @@ Recent decisions affecting current work:
 - [Phase 08-catalog-rebalance]: PlantCard tip source upgraded to per-plant catalog tip (translatedEntry?.tip) > category tip (plantType?.tip) > empty string — 3-rung fallback applied
 - [Phase 08-catalog-rebalance]: PlantHealthDetail comment-only path (Warning 5 strict): 0 direct plant.{tip|description|problems|nutrients} reads confirmed; Phase 8 marker added; no code migration needed
 - [Phase 08-catalog-rebalance]: PlantDetailModal canonical re-lookup: getCatalogEntry(rawPlant.id) ?? rawPlant before getTranslatedPlant — ensures live PLANT_DATABASE values even from stale list snapshots
+- [Phase 08-catalog-rebalance]: alias-rewrite scope: ONLY in updatePlant (not addPlant/setPlants) — read-side getCatalogEntry covers render; save-time normalization closes round-trip on user edits only; pure runtime no migration script
+- [Phase 08-catalog-rebalance]: _aliases NOT checked by check:i18n-keys — canonical-id-only; runtime getCatalogEntry resolves aliases; lavanda alias has no i18n key post-Plan-03 rename so checking would yield false-positive
+- [Phase 08-catalog-rebalance]: CLAUDE.md Pre-submit Checks: flat Markdown (not nested fence) — 1 bash block pair added = 14 total fences (even); check:i18n-keys PASS count is 64 not 52 (catalog 50+14=64 per STATE)
 
 ### Pending Todos
 
@@ -198,6 +202,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T12:38:57.026Z
-Stopped at: Completed 08-04-PLAN.md (3/3 tasks)
+Last session: 2026-05-02T12:47:59.692Z
+Stopped at: Completed 08-05-PLAN.md (4/4 tasks)
 Resume file: None

@@ -78,8 +78,8 @@
 - [ ] **CAT-03**: Existing lavanda entry is split into angustifolia, stoechas, dentata variants with distinct cold-tolerance and care
 - [x] **CAT-04**: Plant catalog `tip`, `description`, `problems`, and `nutrients` are always read by lookup (`getCatalogEntry(plant.dbId).tip`), never copied to plant instance
 - [x] **CAT-05**: Catalog entries support `_aliases: string[]` so renamed slugs don't orphan user references
-- [ ] **CAT-06**: CI build-time check verifies every catalog `id` has a complete keyset in both `en/plants.json` and `es/plants.json`
-- [ ] **CAT-07**: Pre-submit check verifies every catalog `imageUrl` returns 200 OK
+- [x] **CAT-06**: CI build-time check verifies every catalog `id` has a complete keyset in both `en/plants.json` and `es/plants.json`
+- [x] **CAT-07**: Pre-submit check verifies every catalog `imageUrl` returns 200 OK
 - [x] **CAT-08**: Horticultural audit pass replaces auto-mapped `lightLevel` and `cold` values with expert-vetted defaults per category (FEATURES.md watering-ratio table)
 
 ### User-facing Migration (UX)
@@ -176,8 +176,8 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | CAT-03 | Phase 8 | Pending |
 | CAT-04 | Phase 8 | Complete |
 | CAT-05 | Phase 8 | Complete |
-| CAT-06 | Phase 8 | Pending |
-| CAT-07 | Phase 8 | Pending |
+| CAT-06 | Phase 8 | Complete |
+| CAT-07 | Phase 8 | Complete |
 | CAT-08 | Phase 8 | Complete |
 | UX-01 | Phase 4 | Complete |
 | UX-02 | Phase 6 | Complete |
