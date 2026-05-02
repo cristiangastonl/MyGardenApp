@@ -8,9 +8,9 @@
 
 ### Perenual Security Hardening (SEC)
 
-- [ ] **SEC-01**: `EXPO_PUBLIC_PERENUAL_API_KEY` is removed from `.env`, `.env.example`, and the client bundle (no `process.env.EXPO_PUBLIC_PERENUAL_API_KEY` reference in `src/`)
+- [x] **SEC-01**: `EXPO_PUBLIC_PERENUAL_API_KEY` is removed from `.env`, `.env.example`, and the client bundle (no `process.env.EXPO_PUBLIC_PERENUAL_API_KEY` reference in `src/`)
 - [x] **SEC-02**: New Supabase edge function `get-plant-care` proxies Perenual search + details using `Deno.env.get('PERENUAL_API_KEY')` server-side, mirroring `identify-plant` structure
-- [ ] **SEC-03**: `plantKnowledgeService.fetchFromPerenual()` is replaced with `supabase.functions.invoke('get-plant-care', { body: { plantName, lang } })`
+- [x] **SEC-03**: `plantKnowledgeService.fetchFromPerenual()` is replaced with `supabase.functions.invoke('get-plant-care', { body: { plantName, lang } })`
 - [ ] **SEC-04**: Perenual API key is rotated in the Perenual dashboard before merge; old key invalidated
 - [ ] **SEC-05**: CLAUDE.md documents the new edge function deploy command and the post-deploy verification (Supabase Functions logs check)
 
@@ -187,9 +187,9 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SEC-01 | Phase 10 | Pending |
+| SEC-01 | Phase 10 | Complete |
 | SEC-02 | Phase 10 | Complete |
-| SEC-03 | Phase 10 | Pending |
+| SEC-03 | Phase 10 | Complete |
 | SEC-04 | Phase 10 | Pending |
 | SEC-05 | Phase 10 | Pending |
 | DATA-01 | Phase 11 | Pending |
