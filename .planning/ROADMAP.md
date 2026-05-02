@@ -114,7 +114,12 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   3. A patch update to a catalog `tip` text (e.g., fixing a typo in `monstera.tip`) propagates to existing user plants on next render — content is always read by lookup (`getCatalogEntry(plant.dbId).tip`), never copied to the plant instance.
   4. A user whose plant references a renamed slug (e.g., `tomate` → `tomate-cherry`) does not see a broken plant; alias resolution returns the new entry.
   5. CI fails any build where a catalog `id` is missing keys in `en/plants.json` or `es/plants.json`, or where any `imageUrl` does not return 200 OK — Spanish-only users never see raw `[plants:...]` keys or broken images in production.
-**Plans**: TBD
+**Plans**: 5 plans
+- [ ] 08-01-PLAN.md — Wave 0: smoke runner scaffold + _aliases field + getCatalogEntry helper + getPlantById @deprecated marker + 08-VALIDATION.md per-task map
+- [ ] 08-02-PLAN.md — Wave 1: expert overrides on 38 existing entries (interior, exterior+aromaticas, huerta+frutales+suculentas)
+- [ ] 08-03-PLAN.md — Wave 2: 14 new outdoor entries + lavender 3-variant split (lavanda → lavanda-angustifolia + alias + lavanda-stoechas + lavanda-dentada) + atomic EN+ES i18n migration + smoke A8/A9 update
+- [ ] 08-04-PLAN.md — Wave 3: read-site lookup migration (PlantCard + MyPlantDetailModal + PlantHealthDetail + PlantDetailModal) — getCatalogEntry replaces direct plant-instance content reads
+- [ ] 08-05-PLAN.md — Wave 4: useStorage.updatePlant alias-rewrite-on-save + scripts/check-i18n-keys.mjs + scripts/check-images.mjs + package.json scripts + CLAUDE.md Pre-submit Checks section
 
 ### Phase 9: Diagnosis Continuity + Paywall Architecture
 **Goal**: The "Continue chat" button on past diagnoses is visible to all users; free users tapping it see the paywall before chat opens (existing message limits enforced); resolved diagnoses can be reopened with a system-message context summary; the paywall lifts to App-level context so it never stacks behind a nested modal, and a successful purchase invokes a deferred callback so the original gated action proceeds without re-tapping.
@@ -142,5 +147,5 @@ Phases execute in numeric order: 4 → 5 → 6 → 7 → 8 → 9. Phase 9 is ind
 | 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
 | 6. UI Read-Side Propagation | 6/6 | Complete   | 2026-05-01 | - |
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | 8/8 | Complete   | 2026-05-02 | 2026-05-01 |
-| 8. Catalog Rebalance | v1.1 | 0/TBD | Not started | - |
+| 8. Catalog Rebalance | 1/5 | In Progress|  | - |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 0/TBD | Not started | - |

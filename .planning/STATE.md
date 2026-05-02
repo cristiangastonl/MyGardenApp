@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 07-08-PLAN.md (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone by user decision)
-last_updated: "2026-05-02T00:24:44.388Z"
+stopped_at: Completed 08-01-PLAN.md (3/3 tasks)
+last_updated: "2026-05-02T03:38:11.276Z"
 last_activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 26
-  completed_plans: 26
+  total_plans: 31
+  completed_plans: 27
   percent: 100
 ---
 
@@ -83,6 +83,7 @@ Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1
 | Phase 07-ui-write-side-onboarding-edge-function-contract P05 | 15 | 3 tasks | 2 files |
 | Phase 07 P07 | 29 | 3 tasks | 3 files |
 | Phase 07 P08 | 5 | 5/6 tasks (Task 6 deploy deferred) | 6 files |
+| Phase 08-catalog-rebalance P01 | 12 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -169,6 +170,8 @@ Recent decisions affecting current work:
 - [Phase 07-08]: WaterSeason defined in src/types/index.ts (not seasonality.ts) to avoid import cycles; seasonality.ts imports+re-exports for backward compat — zero drift for existing consumers
 - [Phase 07-08]: Edge function dual-payload discriminator !!ctx.waterSchedule — new clients send v1.1 shape; grace-window clients keep legacy branch; v1.2 sunsets legacy once ≥99% new-payload telemetry
 - [Phase 07-ui-write-side-onboarding-edge-function-contract]: Supabase edge function deploy (diagnose-plant + chat-diagnosis) deferred to end-of-milestone batch by user decision 2026-05-01 — legacy server branch continues to serve all clients; deploy is tracked in v1_1_test_backlog.md
+- [Phase 08-catalog-rebalance]: A8 count baseline set to 50 not 38: live catalog has 50 entries; RESEARCH.md had stale count; Plan 03 must flip A8 to 64 when 14 new entries land
+- [Phase 08-catalog-rebalance]: getCatalogEntry id-before-alias invariant: canonical id find runs before _aliases scan; synthetic 2-entry harness asserts this without mutating live PLANT_DATABASE
 
 ### Pending Todos
 
@@ -184,6 +187,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T00:13:14.440Z
-Stopped at: Completed 07-08-PLAN.md (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone by user decision)
+Last session: 2026-05-02T03:38:11.274Z
+Stopped at: Completed 08-01-PLAN.md (3/3 tasks)
 Resume file: None
