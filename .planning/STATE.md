@@ -4,8 +4,8 @@ milestone: v1.1
 milestone_name: Precision Care
 status: completed
 stopped_at: Completed 08-05-PLAN.md (4/4 tasks)
-last_updated: "2026-05-02T12:48:14.544Z"
-last_activity: "2026-05-01 — Plan 08-03 complete (3/3 tasks): atomic lavender split + 12 new outdoor entries + A9 smoke assertions active"
+last_updated: "2026-05-02T13:59:52.153Z"
+last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
 progress:
   total_phases: 6
   completed_phases: 5
