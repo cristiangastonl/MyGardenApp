@@ -352,7 +352,7 @@ export interface PlantDiagnosisContext {
 
 export interface DiagnosisChatMessage {
   id: string;
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system'; // 'system' added in Phase 9 (DIAG-03) — rendered as centered info banner, NOT chat bubble
   text: string;
   timestamp: string;
   imageUri?: string | null;
@@ -379,6 +379,8 @@ export interface SavedDiagnosis {
   chat: DiagnosisChatMessage[];
   resolved: boolean;
   resolvedDate: string | null;
+  /** Phase 9 (DIAG-03): ISO timestamp of latest reopen for resolved diagnoses. Single-reopen tracking; latest overwrites. */
+  reopenedAt?: string;
   // Problem tracking (Phase 2)
   isTracked?: boolean;
   trackingStatus?: TrackingStatus;
