@@ -50,6 +50,13 @@ assert(
   "T0c: NO 'resolvedAt' in types (RESEARCH §CF-1 — field is resolvedDate)"
 );
 
+// ─── T11: updateDiagnosis action present in useStorage (Plan 09-03) ───
+const usSrc = readFileSync(resolve(ROOT, 'src/hooks/useStorage.tsx'), 'utf8');
+assert(/updateDiagnosis:\s*\(plantId:\s*string,\s*diagnosisId:\s*string,\s*updates:\s*Partial<SavedDiagnosis>\)/.test(usSrc),
+  "T11a: updateDiagnosis signature in StorageActions interface");
+assert(/if\s*\(!plantDiagnoses\)\s*return;/.test(usSrc),
+  "T11b: updateDiagnosis defensive no-op (plant-not-found guard)");
+
 // ─────────────────────────────────────────────
 // PLACEHOLDER SLOTS — Plans 09-02 through 09-08 activate these
 // Each placeholder counts as pass until the plan replaces it with a real assertion.
