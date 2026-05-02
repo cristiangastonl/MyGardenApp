@@ -77,10 +77,28 @@ pass++; // placeholder counts as pass until plan activates
 // Assertion: reopenedAt check prevents double system-message prepend (pure logic test)
 pass++; // placeholder counts as pass until plan activates
 
-// PLACEHOLDER — Plan 09-04 + 09-06 activate
-// T4: resume banner i18n key present in both EN + ES locales
-// Assertion: 'diagnosis.resumeBanner' key exists in src/i18n/locales/{en,es}/common.json
-pass++; // placeholder counts as pass until plan activates
+// ─── T4: i18n parity + interpolation markers (Plan 09-04) ───
+const enJson = JSON.parse(readFileSync(resolve(ROOT, 'src/i18n/locales/en/common.json'), 'utf8'));
+const esJson = JSON.parse(readFileSync(resolve(ROOT, 'src/i18n/locales/es/common.json'), 'utf8'));
+const requiredKeys = ['continueChat', 'reopenChat', 'resumeBanner', 'reopenSystemMessage', 'messagesRemaining'];
+for (const k of requiredKeys) {
+  assert(typeof enJson?.diagnosis?.[k] === 'string' && enJson.diagnosis[k].length > 0,
+    `T4.en.${k}: present + non-empty in en/common.json`);
+  assert(typeof esJson?.diagnosis?.[k] === 'string' && esJson.diagnosis[k].length > 0,
+    `T4.es.${k}: present + non-empty in es/common.json`);
+}
+// Interpolation markers
+assert(enJson.diagnosis.reopenSystemMessage.includes('{{days}}'),
+  "T4.en.reopenSystemMessage: contains {{days}} interpolation");
+assert(esJson.diagnosis.reopenSystemMessage.includes('{{days}}'),
+  "T4.es.reopenSystemMessage: contains {{days}} interpolation");
+assert(enJson.diagnosis.messagesRemaining.includes('{{remaining}}') && enJson.diagnosis.messagesRemaining.includes('{{total}}'),
+  "T4.en.messagesRemaining: contains {{remaining}} AND {{total}}");
+assert(esJson.diagnosis.messagesRemaining.includes('{{remaining}}') && esJson.diagnosis.messagesRemaining.includes('{{total}}'),
+  "T4.es.messagesRemaining: contains {{remaining}} AND {{total}}");
+// Voseo verb (Phase 5 lock — /i flag tolerated, but exact match preferred)
+assert(/sac[aá]/i.test(esJson.diagnosis.resumeBanner),
+  "T4.es.resumeBanner: voseo verb 'sacá' present");
 
 // PLACEHOLDER — Plan 09-07 activates
 // T5: priorDiagnosisSummary in chat-diagnosis/index.ts >= 2 occurrences
