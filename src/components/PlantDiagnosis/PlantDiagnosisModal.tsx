@@ -182,8 +182,9 @@ export function PlantDiagnosisModal({
   const handleRetake = () => {
     // Only check paywall if a diagnosis was already completed (not on permission errors etc.)
     if (result && !canDiagnose(diagnosisCount)) {
-      showPaywall('plant_diagnosis');
+      // PAY-02: close-then-trigger (was: showPaywall then handleClose — order caused iOS stacking)
       handleClose();
+      setTimeout(() => showPaywall('plant_diagnosis'), 350);
       return;
     }
     reset();
@@ -193,7 +194,22 @@ export function PlantDiagnosisModal({
     analyze(plantContext);
   };
 
-  // Phase 9 (DIAG-07 + PAY-03): on send-tap with 0 remaining, fire paywall with deferred onSuccess.
+  // PAY-02 close-then-trigger wrapper for the chat-side photo-button paywall trigger
+  // (and any other "leave-the-chat" paywall path). 350ms matches iOS slide-down animation.
+  // Reference impl: src/components/MyPlantDetailModal.tsx requestPaywall (line 109-114).
+  const handlePaywallFromChat = useCallback(() => {
+    handleClose();
+    setTimeout(() => showPaywall('plant_diagnosis'), 350);
+  }, [handleClose, showPaywall]);
+
+  // Phase 9 (DIAG-07 + PAY-03): documented exception to PAY-02 close-then-trigger rule.
+  // Chat modal stays open during paywall because:
+  //   (a) closing it would dismiss the in-progress typed message (UX failure),
+  //   (b) typedText is captured in this closure — onSuccess can re-fire sendChatMessage
+  //       even if the chat surface is no longer mounted.
+  // The paywall opening over the chat is acceptable because the chat surface is the SAME
+  // Modal containing this caller; React Native's Modal.visible toggle handles re-render correctly.
+  // RESEARCH §DIAG-07 + PAY-03: on send-tap with 0 remaining, fire paywall with deferred onSuccess.
   // typedText + photo captured in closure (RESEARCH lock — NOT stored in usePremium state).
   const handlePaywallWithDeferredSend = useCallback(
     (text: string, base64?: string, uri?: string) => {
@@ -355,7 +371,7 @@ export function PlantDiagnosisModal({
             onPickChatPhoto={pickChatPhoto}
             isPremium={isPremium}
             chatCameraPermissionDenied={cameraPermissionDenied}
-            onPaywall={() => showPaywall('plant_diagnosis')}
+            onPaywall={handlePaywallFromChat}
             remaining={remaining}
             chatLimit={FREE_CHAT_MESSAGES_PER_DIAGNOSIS}
             onPaywallWithDeferredSend={handlePaywallWithDeferredSend}

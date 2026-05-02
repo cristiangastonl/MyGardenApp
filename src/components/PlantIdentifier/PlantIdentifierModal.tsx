@@ -73,7 +73,9 @@ export function PlantIdentifierModal({
 
   const handleDiagnose = (reusePhotos: boolean) => {
     if (!canDiagnose(diagnosisCount)) {
-      showPaywall('plant_diagnosis');
+      // PAY-02 close-then-trigger; reference: MyPlantDetailModal.requestPaywall (line 109-114).
+      onClose();
+      setTimeout(() => showPaywall('plant_diagnosis'), 350);
       return;
     }
     if (addedPlant && onDiagnoseAfterIdentify) {
