@@ -187,13 +187,88 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| _Filled by roadmapper_ | — | Pending |
+| SEC-01 | Phase 10 | Pending |
+| SEC-02 | Phase 10 | Pending |
+| SEC-03 | Phase 10 | Pending |
+| SEC-04 | Phase 10 | Pending |
+| SEC-05 | Phase 10 | Pending |
+| DATA-01 | Phase 11 | Pending |
+| DATA-02 | Phase 11 | Pending |
+| DATA-03 | Phase 11 | Pending |
+| DATA-04 | Phase 11 | Pending |
+| TRACK-01 | Phase 12 | Pending |
+| TRACK-02 | Phase 12 | Pending |
+| TRACK-03 | Phase 12 | Pending |
+| INFRA-01 | Phase 13 | Pending |
+| INFRA-02 | Phase 13 | Pending |
+| INFRA-03 | Phase 13 | Pending |
+| INFRA-04 | Phase 13 | Pending |
+| EDU-01 | Phase 14 | Pending |
+| EDU-02 | Phase 14 | Pending |
+| EDU-03 | Phase 14 | Pending |
+| EDU-04 | Phase 14 | Pending |
+| EDU-05 | Phase 14 | Pending |
+| EDU-06 | Phase 14 | Pending |
+| EDU-07 | Phase 14 | Pending |
+| CAT-09 | Phase 15 | Pending |
+| CAT-10 | Phase 15 | Pending |
+| CAT-11 | Phase 15 | Pending |
+| CAT-12 | Phase 15 | Pending |
+| CAT-13 | Phase 16 | Pending |
+| CAT-14 | Phase 16 | Pending |
+| CAT-15 | Phase 16 | Pending |
+| CAT-16 | Phase 16 | Pending |
+| CAT-17 | Phase 17 | Pending |
+| CAT-18 | Phase 17 | Pending |
+| CAT-19 | Phase 17 | Pending |
+| CAT-20 | Phase 17 | Pending |
+| CAT-21 | Phase 17 | Pending |
+| CARD-01 | Phase 18 | Pending |
+| CARD-02 | Phase 18 | Pending |
+| CARD-03 | Phase 18 | Pending |
+| CARD-04 | Phase 18 | Pending |
+| CARD-05 | Phase 18 | Pending |
+| GAM-03 | Phase 18 | Pending |
+| GAM-04 | Phase 18 | Pending |
+| TOX-01 | Phase 19 | Pending |
+| TOX-02 | Phase 19 | Pending |
+| TOX-03 | Phase 19 | Pending |
+| TOX-04 | Phase 19 | Pending |
+| TOX-05 | Phase 19 | Pending |
+| TOX-06 | Phase 19 | Pending |
+| FERT-01 | Phase 20 | Pending |
+| FERT-02 | Phase 20 | Pending |
+| FERT-03 | Phase 20 | Pending |
+| FERT-04 | Phase 20 | Pending |
+| FERT-05 | Phase 20 | Pending |
+| FERT-06 | Phase 20 | Pending |
+| FERT-07 | Phase 20 | Pending |
+| JOURNAL-01 | Phase 21 | Pending |
+| JOURNAL-02 | Phase 21 | Pending |
+| JOURNAL-03 | Phase 21 | Pending |
+| JOURNAL-04 | Phase 21 | Pending |
+| JOURNAL-05 | Phase 21 | Pending |
+| GAM-01 | Phase 22 | Pending |
+| GAM-02 | Phase 22 | Pending |
+| GAM-05 | Phase 22 | Pending |
+| POLISH-01 | Phase 23 | Pending |
+| POLISH-02 | Phase 23 | Pending |
+| POLISH-03 | Phase 23 | Pending |
+| POLISH-04 | Phase 23 | Pending |
+| POLISH-05 | Phase 23 | Pending |
+| POLISH-06 | Phase 23 | Pending |
+| POLISH-07 | Phase 23 | Pending |
+| POLISH-08 | Phase 23 | Pending |
+| DOCS-01 | Phase 24 | Pending |
+| DOCS-02 | Phase 24 | Pending |
 
 **Coverage:**
-- v1.2 requirements: 72 total (5 SEC + 4 DATA + 3 TRACK + 4 INFRA + 7 EDU + 13 CAT + 5 CARD + 6 TOX + 6 FERT + 5 JOURNAL + 4 GAM + 8 POLISH + 2 DOCS)
-- Mapped to phases: 0/72 (pending roadmap)
+- v1.2 requirements: 74 total (5 SEC + 4 DATA + 3 TRACK + 4 INFRA + 7 EDU + 13 CAT + 5 CARD + 6 TOX + 7 FERT + 5 JOURNAL + 5 GAM + 8 POLISH + 2 DOCS)
+- Mapped to phases: 74/74 — complete
+
+**Note on GAM split:** GAM-03 and GAM-04 (mood emoji replacing health badge) are mapped to Phase 18 (PlantCard Cleanup) because they define PlantCard's 5-element layout and the CARD requirements explicitly reference them. GAM-01, GAM-02, and GAM-05 (toasts, haptics, streak policy) are mapped to Phase 22 after all task types exist.
 
 ---
 
 *Requirements defined: 2026-05-02*
-*Last updated: 2026-05-02 — v1.2 combined scope (6 themes + Plant DB hardening spec)*
+*Last updated: 2026-05-01 — Traceability table filled by gsd-roadmapper. 74/74 requirements mapped to Phases 10-24.*
