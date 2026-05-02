@@ -46,7 +46,7 @@ const ANIM_DURATION = 400;
 
 export function PaywallModal() {
   const { t } = useTranslation();
-  const { isPaywallVisible, hidePaywall, isPremium } = usePremium();
+  const { isPaywallVisible, hidePaywall, isPremium, consumePendingCallback } = usePremium();
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('annual');
   const [offerings, setOfferings] = useState<Offerings | null>(null);
   const [loading, setLoading] = useState(false);
@@ -94,11 +94,16 @@ export function PaywallModal() {
     }
   }, [isPaywallVisible]);
 
+  // Phase 9 (PAY-03 + DIAG-07): purchase-success path fires deferred onSuccess BEFORE hide.
+  // Capture-then-clear-then-fire ordering avoids Pitfall 7 double-fire (hidePaywall's
+  // onCancel branch sees null pendingCallback and is a no-op).
   useEffect(() => {
     if (isPremium && isPaywallVisible) {
+      const cb = consumePendingCallback();
+      cb?.onSuccess?.();
       hidePaywall();
     }
-  }, [isPremium, isPaywallVisible, hidePaywall]);
+  }, [isPremium, isPaywallVisible, hidePaywall, consumePendingCallback]);
 
   const handlePurchase = async () => {
     setError(null);
