@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 08-03-PLAN.md (3/3 tasks)
-last_updated: "2026-05-01T00:57:00.000Z"
-last_activity: 2026-05-01 — Plan 08-03 complete (3/3 tasks): 64-entry PLANT_DATABASE with atomic lavender split (lavanda→angustifolia + stoechas + dentada) + 12 new LATAM outdoor plants, full EN/ES i18n parity, smoke-phase08 A9 lavender assertions active PASS 396/396
+stopped_at: Completed 08-04-PLAN.md (3/3 tasks)
+last_updated: "2026-05-02T12:38:57.029Z"
+last_activity: "2026-05-01 — Plan 08-03 complete (3/3 tasks): atomic lavender split + 12 new outdoor entries + A9 smoke assertions active"
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 31
-  completed_plans: 28
+  completed_plans: 30
   percent: 100
 ---
 
@@ -86,6 +86,7 @@ Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1
 | Phase 08-catalog-rebalance P01 | 12 | 3 tasks | 4 files |
 | Phase 08-catalog-rebalance P02 | 32min | 3 tasks | 1 files |
 | Phase 08-catalog-rebalance P03 | 25min | 3 tasks | 4 files |
+| Phase 08-catalog-rebalance P04 | 4min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -179,6 +180,9 @@ Recent decisions affecting current work:
 - [Phase 08-catalog-rebalance]: A8 baseline corrected 50→64 (not 38→52 as plan text stated): live catalog had 50 entries; 50 + 14 new = 64; plan text had stale counts from RESEARCH.md which still said 38
 - [Phase 08-catalog-rebalance]: HumidityLevel type uses Spanish enum values (baja/media/alta); new catalog entries must use Spanish strings not English; caught as Rule 1 bug during T1 execution
 - [Phase 08-catalog-rebalance]: Atomic source+i18n commit pattern: PlantDBEntry rename + i18n key rename land in SAME commit (CONTEXT Pitfall 1 prevention); intermediate states with renamed source but old i18n key cause silent EN locale fallback to hardcoded Spanish
+- [Phase 08-catalog-rebalance]: PlantCard tip source upgraded to per-plant catalog tip (translatedEntry?.tip) > category tip (plantType?.tip) > empty string — 3-rung fallback applied
+- [Phase 08-catalog-rebalance]: PlantHealthDetail comment-only path (Warning 5 strict): 0 direct plant.{tip|description|problems|nutrients} reads confirmed; Phase 8 marker added; no code migration needed
+- [Phase 08-catalog-rebalance]: PlantDetailModal canonical re-lookup: getCatalogEntry(rawPlant.id) ?? rawPlant before getTranslatedPlant — ensures live PLANT_DATABASE values even from stale list snapshots
 
 ### Pending Todos
 
@@ -194,6 +198,6 @@ None yet for v1.1.
 
 ## Session Continuity
 
-Last session: 2026-05-02T04:12:39.489Z
-Stopped at: Completed 08-02-PLAN.md (3/3 tasks)
+Last session: 2026-05-02T12:38:57.026Z
+Stopped at: Completed 08-04-PLAN.md (3/3 tasks)
 Resume file: None
