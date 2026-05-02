@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Precision Care
 status: completed
-stopped_at: Completed 08-02-PLAN.md (3/3 tasks)
-last_updated: "2026-05-02T04:12:39.492Z"
-last_activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
+stopped_at: Completed 08-03-PLAN.md (3/3 tasks)
+last_updated: "2026-05-01T00:57:00.000Z"
+last_activity: 2026-05-01 — Plan 08-03 complete (3/3 tasks): 64-entry PLANT_DATABASE with atomic lavender split (lavanda→angustifolia + stoechas + dentada) + 12 new LATAM outdoor plants, full EN/ES i18n parity, smoke-phase08 A9 lavender assertions active PASS 396/396
 progress:
   total_phases: 6
   completed_phases: 4
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-29)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — Phase 7 COMPLETE (8/8 plans). UI Write-Side + Onboarding + Edge-Function Contract shipped: LightLevelPicker, WaterScheduleEditor, AddPlantModal swap, OnboardingScreen location step, plant identification lightLevel, LocationBanner, SettingsPanel climate override, diagnose-plant + chat-diagnosis dual-payload discriminator. Supabase deploy batched to end-of-milestone. Next: Phase 8 (Catalog Rebalance).
+**Current focus:** v1.1 Precision Care — Phase 8 (Catalog Rebalance) in progress (3/5 plans complete). Plans 01-03 shipped: Wave 0 smoke harness + getCatalogEntry helper, Wave 1 expert overrides for all 50 existing entries, Wave 2 lavender split + 14 new outdoor entries (64-entry catalog). Next: Plan 04 (read-site consumer migration) + Plan 05 (CI guards).
 
 ## Current Position
 
-Phase: 7 of 6 (UI Write-Side + Onboarding + Edge-Function Contract) — COMPLETE
-Plan: 8 of 8 — COMPLETE (Task 6 deploy deferred)
-Status: Phase 7 complete (8/8 plans). All source changes shipped; Supabase function deploy deferred to end-of-milestone batch per user decision 2026-05-01. tsc exits 0; smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. Next: Phase 8 (Catalog Rebalance).
-Last activity: 2026-05-01 — Plan 07-08 complete (5/6 tasks; Task 6 Supabase deploy deferred to end-of-milestone batch per user decision; dual-payload discriminator !!ctx.waterSchedule shipped in source; legacy server branch continues to serve both old and new clients during deferral window; Phase 7 ships 8/8 plans)
+Phase: 8 of 6 (Catalog Rebalance) — IN PROGRESS
+Plan: 3 of 5 — COMPLETE
+Status: Phase 8, Plan 03 complete (3/3 tasks). 64-entry catalog with lavender split + 14 new outdoor entries + full EN/ES i18n parity. smoke-phase08 PASS 396/396 (A1-A9); smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. tsc exits 0. Next: Plan 04 (read-site consumer migration).
+Last activity: 2026-05-01 — Plan 08-03 complete (3/3 tasks): atomic lavender split + 12 new outdoor entries + A9 smoke assertions active
 
 Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1.1 overall: 26/26 plans)
 
@@ -85,6 +85,7 @@ Progress: [██████████] 100% (Phase 7: 8/8 plans complete; v1
 | Phase 07 P08 | 5 | 5/6 tasks (Task 6 deploy deferred) | 6 files |
 | Phase 08-catalog-rebalance P01 | 12 | 3 tasks | 4 files |
 | Phase 08-catalog-rebalance P02 | 32min | 3 tasks | 1 files |
+| Phase 08-catalog-rebalance P03 | 25min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -175,6 +176,9 @@ Recent decisions affecting current work:
 - [Phase 08-catalog-rebalance]: getCatalogEntry id-before-alias invariant: canonical id find runs before _aliases scan; synthetic 2-entry harness asserts this without mutating live PLANT_DATABASE
 - [Phase 08-catalog-rebalance]: Citrus cold drift fixed as Rule 1: RESEARCH SSOT says cold=10 for citrus (1:2 ratio from FEATURES.md); Phase 4 codemod produced cold=8; applied expert values to 4 entries (limonero/naranjo/aguacate/mandarino)
 - [Phase 08-catalog-rebalance]: lavanda frozen at cold=17: Plan 03 owns rename lavanda->lavanda-angustifolia atomically with cold 17->21 override; splitting would create transient broken state
+- [Phase 08-catalog-rebalance]: A8 baseline corrected 50→64 (not 38→52 as plan text stated): live catalog had 50 entries; 50 + 14 new = 64; plan text had stale counts from RESEARCH.md which still said 38
+- [Phase 08-catalog-rebalance]: HumidityLevel type uses Spanish enum values (baja/media/alta); new catalog entries must use Spanish strings not English; caught as Rule 1 bug during T1 execution
+- [Phase 08-catalog-rebalance]: Atomic source+i18n commit pattern: PlantDBEntry rename + i18n key rename land in SAME commit (CONTEXT Pitfall 1 prevention); intermediate states with renamed source but old i18n key cause silent EN locale fallback to hardcoded Spanish
 
 ### Pending Todos
 

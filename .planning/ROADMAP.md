@@ -115,9 +115,9 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details
   4. A user whose plant references a renamed slug (e.g., `tomate` → `tomate-cherry`) does not see a broken plant; alias resolution returns the new entry.
   5. CI fails any build where a catalog `id` is missing keys in `en/plants.json` or `es/plants.json`, or where any `imageUrl` does not return 200 OK — Spanish-only users never see raw `[plants:...]` keys or broken images in production.
 **Plans**: 5 plans
-- [ ] 08-01-PLAN.md — Wave 0: smoke runner scaffold + _aliases field + getCatalogEntry helper + getPlantById @deprecated marker + 08-VALIDATION.md per-task map
-- [ ] 08-02-PLAN.md — Wave 1: expert overrides on 38 existing entries (interior, exterior+aromaticas, huerta+frutales+suculentas)
-- [ ] 08-03-PLAN.md — Wave 2: 14 new outdoor entries + lavender 3-variant split (lavanda → lavanda-angustifolia + alias + lavanda-stoechas + lavanda-dentada) + atomic EN+ES i18n migration + smoke A8/A9 update
+- [x] 08-01-PLAN.md — Wave 0: smoke runner scaffold + _aliases field + getCatalogEntry helper + getPlantById @deprecated marker + 08-VALIDATION.md per-task map
+- [x] 08-02-PLAN.md — Wave 1: expert overrides on 50 existing entries (interior, exterior+aromaticas, huerta+frutales+suculentas)
+- [x] 08-03-PLAN.md — Wave 2: 14 new outdoor entries + lavender 3-variant split (lavanda → lavanda-angustifolia + alias + lavanda-stoechas + lavanda-dentada) + atomic EN+ES i18n migration + smoke A8→64/A9 update (PLANT_DATABASE.length = 64)
 - [ ] 08-04-PLAN.md — Wave 3: read-site lookup migration (PlantCard + MyPlantDetailModal + PlantHealthDetail + PlantDetailModal) — getCatalogEntry replaces direct plant-instance content reads
 - [ ] 08-05-PLAN.md — Wave 4: useStorage.updatePlant alias-rewrite-on-save + scripts/check-i18n-keys.mjs + scripts/check-images.mjs + package.json scripts + CLAUDE.md Pre-submit Checks section
 
