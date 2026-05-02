@@ -74,8 +74,8 @@
 ### Catalog Rebalance (CAT)
 
 - [x] **CAT-01**: All 60+ existing `PLANT_DATABASE` entries gain `lightLevel`, `waterSchedule: { warm, cold }`, and `waterMode` fields populated by the same deterministic mapper used for user migration
-- [ ] **CAT-02**: 10-15 new outdoor plants are added with full new-model fields: jacarandá, ceibo, glicina, gardenia, camelia, dalia, salvia ornamental, cala, copete (Tagetes), verbena, lavanda francesa, lavanda dentada, romero rastrero, tomate cherry
-- [ ] **CAT-03**: Existing lavanda entry is split into angustifolia, stoechas, dentata variants with distinct cold-tolerance and care
+- [x] **CAT-02**: 10-15 new outdoor plants are added with full new-model fields: jacarandá, ceibo, glicina, gardenia, camelia, dalia, salvia ornamental, cala, copete (Tagetes), verbena, lavanda francesa, lavanda dentada, romero rastrero, tomate cherry
+- [x] **CAT-03**: Existing lavanda entry is split into angustifolia, stoechas, dentata variants with distinct cold-tolerance and care
 - [x] **CAT-04**: Plant catalog `tip`, `description`, `problems`, and `nutrients` are always read by lookup (`getCatalogEntry(plant.dbId).tip`), never copied to plant instance
 - [x] **CAT-05**: Catalog entries support `_aliases: string[]` so renamed slugs don't orphan user references
 - [x] **CAT-06**: CI build-time check verifies every catalog `id` has a complete keyset in both `en/plants.json` and `es/plants.json`
@@ -172,8 +172,8 @@ Populated during roadmap creation. Every v1.1 requirement maps to exactly one ph
 | PAY-02 | Phase 9 | Complete |
 | PAY-03 | Phase 9 | Complete |
 | CAT-01 | Phase 8 | Complete |
-| CAT-02 | Phase 8 | Pending |
-| CAT-03 | Phase 8 | Pending |
+| CAT-02 | Phase 8 | Complete |
+| CAT-03 | Phase 8 | Complete |
 | CAT-04 | Phase 8 | Complete |
 | CAT-05 | Phase 8 | Complete |
 | CAT-06 | Phase 8 | Complete |
