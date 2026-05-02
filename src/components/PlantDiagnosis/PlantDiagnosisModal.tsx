@@ -13,7 +13,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { usePlantDiagnosis } from '../../hooks/usePlantDiagnosis';
-import { usePremiumGate } from '../../config/premium';
+import { usePremiumGate, FREE_CHAT_MESSAGES_PER_DIAGNOSIS } from '../../config/premium';
 import { usePremium } from '../../hooks/usePremium';
 import { useStorage } from '../../hooks/useStorage';
 import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry } from '../../types';
@@ -156,11 +156,27 @@ export function PlantDiagnosisModal({
     analyze(plantContext);
   };
 
-  const userMessageCount = chatMessages.filter(m => m.role === 'user').length;
-  const totalUserMessages = isResumedChat
-    ? userMessageCount  // For resumed chats, count only new messages in this session
-    : userMessageCount;
-  const canChat = canChatDiagnosis(totalUserMessages);
+  // Phase 9 (DIAG-07 + PAY-03): on send-tap with 0 remaining, fire paywall with deferred onSuccess.
+  // typedText + photo captured in closure (RESEARCH lock — NOT stored in usePremium state).
+  const handlePaywallWithDeferredSend = useCallback(
+    (text: string, base64?: string, uri?: string) => {
+      showPaywall('diagnosis-limit', {
+        onSuccess: () => {
+          sendChatMessage(text, base64, uri);
+        },
+      });
+    },
+    [showPaywall, sendChatMessage]
+  );
+
+  // Phase 9 (DIAG-06 / RESEARCH §CF-7 fix): per-diagnosis-lifetime count =
+  // prior persisted user messages (from resumeDiagnosis.chat) + in-session user messages.
+  // Bug: prior code returned session-only count both branches; resumed diagnoses reset the limit.
+  const sessionUserCount = chatMessages.filter(m => m.role === 'user').length;
+  const priorPersistedCount = (resumeDiagnosis?.chat || []).filter(m => m.role === 'user').length;
+  const lifetimeUserCount = priorPersistedCount + sessionUserCount;
+  const remaining = Math.max(0, FREE_CHAT_MESSAGES_PER_DIAGNOSIS - lifetimeUserCount);
+  const canChat = canChatDiagnosis(lifetimeUserCount);
 
   const pickChatPhotoFromCamera = useCallback(async (): Promise<{ base64: string; uri: string } | null> => {
     try {
@@ -303,6 +319,9 @@ export function PlantDiagnosisModal({
             isPremium={isPremium}
             chatCameraPermissionDenied={cameraPermissionDenied}
             onPaywall={() => showPaywall('plant_diagnosis')}
+            remaining={remaining}
+            chatLimit={FREE_CHAT_MESSAGES_PER_DIAGNOSIS}
+            onPaywallWithDeferredSend={handlePaywallWithDeferredSend}
             onAddToShoppingList={onAddToShoppingList}
             canAddToShoppingList={canAddToShoppingList}
             onTrackProblem={handleTrackProblem}
