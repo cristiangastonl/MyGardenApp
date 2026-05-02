@@ -62,20 +62,39 @@ assert(/if\s*\(!plantDiagnoses\)\s*return;/.test(usSrc),
 // Each placeholder counts as pass until the plan replaces it with a real assertion.
 // ─────────────────────────────────────────────
 
-// PLACEHOLDER — Plan 09-05 activates
-// T1: DiagnosisDetailModal — isPremium && gate removed for continue-chat button
-// Assertion: grep DiagnosisDetailModal.tsx for 'isPremium && !diagnosis.resolved' count === 0
-pass++; // placeholder counts as pass until plan activates
+// ─── T1: DiagnosisDetailModal — isPremium && gate removed (Plan 09-05 / DIAG-01) ───
+const ddmSrc = readFileSync(resolve(ROOT, 'src/components/PlantDiagnosis/DiagnosisDetailModal.tsx'), 'utf8');
+const gateMatches = (ddmSrc.match(/isPremium\s*&&\s*!diagnosis\.resolved/g) || []).length;
+assert(gateMatches === 0, `T1: isPremium && !diagnosis.resolved gate REMOVED (found ${gateMatches})`);
+assert(!/resolvedAt/.test(ddmSrc), "T1: NO 'resolvedAt' in DiagnosisDetailModal (RESEARCH §CF-1 lock)");
 
-// PLACEHOLDER — Plan 09-05 activates
-// T2: DiagnosisDetailModal close-then-paywall handler present + showPaywall(trigger, options)
-// Assertion: DiagnosisDetailModal.tsx contains close-then-paywall pattern (onClose(); setTimeout(() => showPaywall))
-pass++; // placeholder counts as pass until plan activates
+// ─── T2: DiagnosisDetailModal — close-then-paywall + showPaywall(trigger, options) (Plan 09-05 / DIAG-02) ───
+const showCount = (ddmSrc.match(/showPaywall\('diagnosis-resume'/g) || []).length;
+assert(showCount === 1, `T2a: showPaywall('diagnosis-resume' invoked exactly once (found ${showCount})`);
+assert(/onSuccess:\s*\(\)\s*=>\s*onContinueChat\(diagnosis\)/.test(ddmSrc),
+  "T2b: deferred onSuccess re-invokes onContinueChat(diagnosis)");
+assert(/onClose\(\);[\s\S]{0,200}setTimeout\([\s\S]{0,300}showPaywall/.test(ddmSrc),
+  "T2c: close-then-paywall pattern (onClose() before setTimeout(...showPaywall))");
+assert(/350/.test(ddmSrc), "T2d: 350ms slide-down delay present");
 
-// PLACEHOLDER — Plan 09-05 activates
-// T3: system message append idempotency — pure JS logic
-// Assertion: reopenedAt check prevents double system-message prepend (pure logic test)
-pass++; // placeholder counts as pass until plan activates
+// ─── T3: Reopen system message idempotency (Plan 09-05 / DIAG-03 / RESEARCH §Q2) ───
+(function testIdempotency() {
+  const chat = [{ id: 'msg-1', role: 'user', text: 'Q1', timestamp: 'iso1' }];
+  const reopenedAt = '2026-05-02T10:00:00.000Z';
+  const sysMsg = { id: `sys-${reopenedAt}`, role: 'system', text: 'system', timestamp: reopenedAt };
+  const after1 = [...chat, sysMsg];
+  const lastMsg = after1[after1.length - 1];
+  const alreadyReopened = lastMsg?.role === 'system' && lastMsg.id === `sys-${reopenedAt}`;
+  assert(alreadyReopened === true, 'T3a: idempotency detected on identical reopenedAt');
+  const newReopenedAt = '2026-05-03T10:00:00.000Z';
+  const alreadyReopened2 = lastMsg?.role === 'system' && lastMsg.id === `sys-${newReopenedAt}`;
+  assert(alreadyReopened2 === false, 'T3b: new reopenedAt is NOT a collision with prior system msg');
+})();
+// T3 source presence — handler exists in DiagnosisDetailModal
+assert(/handleContinueOrReopen/.test(ddmSrc), "T3c: handleContinueOrReopen function declared");
+assert(/alreadyReopened/.test(ddmSrc), "T3d: alreadyReopened guard present in source");
+assert(/role:\s*'system'/.test(ddmSrc), "T3e: system message constructor present");
+assert(/updateDiagnosis\(/.test(ddmSrc), "T3f: updateDiagnosis call wires reopen persist");
 
 // ─── T4: i18n parity + interpolation markers (Plan 09-04) ───
 const enJson = JSON.parse(readFileSync(resolve(ROOT, 'src/i18n/locales/en/common.json'), 'utf8'));
