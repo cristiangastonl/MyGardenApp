@@ -48,9 +48,17 @@ Users can diagnose their plants' problems through photos and AI, and the app pro
 
 <!-- Current scope. Building toward these. -->
 
-## Current Milestone: v1.2 (TBD)
+## Current Milestone: v1.2 Recommendation-First Plant Guide
 
-Run `/gsd:new-milestone` to define v1.2 scope.
+**Goal:** Pivot from passive tracker to guided assistant — the app recommends what to do (with horticultural rationale) and the user adjusts to their reality. Polish PlantCard, add brand voice, fix UAT bugs, modernize mobile patterns, and expand plant-app domain coverage (fertilization, pet toxicity, journal).
+
+**Target features (6 themes):**
+- **Educational Detail Modal** (centerpiece): 4-section redesign with ¿Qué hacer? / ¿Dónde ponerla? / ¿Por qué? / Tus ajustes; catalog extended with `careAction`, `placementRecommended`, `placementAlternatives`, `placementAvoid`, `whyRationale` per entry; identification picker pre-selects species recommendation
+- **PlantCard Cleanup**: delete trash out of card (swipe-to-delete or detail menu); reduce 10 visual elements → 5; tip italic collapses to detail
+- **Microcopy + Brand Voice**: voseo + emoji on action buttons; consistent voice/personality; illustrated empty states; sample-data path in onboarding
+- **UAT Bug Fixes**: outdoor task gate (no "Sacar afuera" on outdoor plants); picker outdoor labels for outdoor PlantNet results; consolidate two identification entry points; textSecondary contrast fix (WCAG AA)
+- **Mobile UX Modernization**: bottom sheets replacing full-screen modals for short actions; swipe gestures (delete, complete, favorite); long-press actions; haptic feedback at key moments; skeleton loaders
+- **Plant-App Domain Expansion**: fertilization schedule per plant; pet toxicity (cats/dogs) per catalog entry; per-plant photo journal; light streaks/celebration toasts (no heavy gamification)
 
 ### Pending Operational Tasks (v1.1 closeout)
 
@@ -112,4 +120,4 @@ Shipped v1.1 Precision Care milestone (39 plans across 6 phases, 4 waves of comp
 | Defer manual ops (device tests, edge function deploys, image uploads) to end-of-milestone | Per user preference — full E2E test more efficient than per-phase smoke | ✓ Good (v1.1) |
 
 ---
-*Last updated: 2026-05-02 after v1.1 Precision Care milestone shipped (39 plans / 6 phases). Next: v1.2 (TBD).*
+*Last updated: 2026-05-02 after v1.2 Recommendation-First Plant Guide milestone defined (6 themes from UAT findings + UX diagnostic). Previous: v1.1 Precision Care shipped (39 plans / 6 phases).*

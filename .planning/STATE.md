@@ -1,36 +1,36 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.1
-milestone_name: Precision Care
-status: completed
-stopped_at: Completed 09-08-PLAN.md (4/4 tasks)
-last_updated: "2026-05-02T20:08:43.478Z"
-last_activity: "2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs"
+milestone: v1.2
+milestone_name: Recommendation-First Plant Guide
+status: defining
+stopped_at: Defining requirements (post-v1.1 + post-UAT testing scope)
+last_updated: "2026-05-02T22:30:00.000Z"
+last_activity: "2026-05-02 — v1.2 milestone scope confirmed: 6 themes derived from UAT findings + UX diagnostic"
 progress:
-  total_phases: 6
-  completed_phases: 6
-  total_plans: 39
-  completed_plans: 39
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-04-29)
+See: .planning/PROJECT.md (updated 2026-05-02)
 
 **Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.1 Precision Care — COMPLETE. Phase 8 (Catalog Rebalance) all 5 plans shipped: Wave 0 smoke harness + getCatalogEntry, Wave 1 expert overrides, Wave 2 lavender split + 14 new outdoor entries (64-entry catalog), Wave 3 read-site consumer migration (getCatalogEntry live lookup), Wave 4 CI guards + alias-rewrite-on-save + CLAUDE.md docs. Next: `/gsd:verify-work` then v1.1 ship preparation.
+**Current focus:** v1.2 Recommendation-First Plant Guide — defining requirements. 6 themes confirmed: Educational Detail Modal (centerpiece), PlantCard Cleanup, Microcopy + Brand Voice, UAT Bug Fixes, Mobile UX Modernization, Plant-App Domain Expansion. Next: `/gsd:plan-phase` per phase after roadmap approval.
 
 ## Current Position
 
-Phase: 8 of 8 (Catalog Rebalance) — COMPLETE
-Plan: 5 of 5 — COMPLETE
-Status: Phase 8 complete (5/5 plans). useStorage.updatePlant alias-rewrite (CAT-05); check-i18n-keys CI guard PASS 64 ids (CAT-06); check-images CI guard runs to completion — 15 accepted-known failures (CAT-07); CLAUDE.md Pre-submit Checks section added. smoke-phase08 PASS 396/396; smoke-phase07 PASS 100/100; smoke-phase06 PASS 82/82; migration-smoke-test PASS 106/106. tsc exits 0.
-Last activity: 2026-05-02 — Plan 08-05 complete (4/4 tasks): CI guards + alias-rewrite-on-save + CLAUDE.md docs
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements for v1.2. 6 themes locked from UAT findings + UX diagnostic. Awaiting research decision + REQUIREMENTS.md generation + roadmap creation.
+Last activity: 2026-05-02 — Quick wins QW1-6 shipped (UAT fixes #4 #5 + a11y i18n + WCAG contrast + parallel water badges). v1.2 milestone scope confirmed.
 
-Progress: [██████████] 100% (v1.1 complete: 31/31 plans across 8 phases)
+Progress: [░░░░░░░░░░] 0% (v1.2 just started)
 
 ## Performance Metrics
 
