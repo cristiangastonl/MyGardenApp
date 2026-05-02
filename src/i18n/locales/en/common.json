@@ -303,7 +303,11 @@
     "deletePlant": "Delete plant",
     "deleteConfirm": "Are you sure you want to delete \"{{name}}\"?",
     "cancelButton": "Cancel",
-    "deleteButton": "Delete"
+    "deleteButton": "Delete",
+    "a11y": {
+      "needsWater": "needs water",
+      "needsSun": "needs sun"
+    }
   },
   "addPlant": {
     "title": "New plant",
@@ -311,6 +315,7 @@
     "namePlaceholder": "My favorite pothos",
     "plantType": "PLANT TYPE",
     "waterEvery": "WATER EVERY (DAYS)",
+    "waterScheduleSection": "Watering",
     "sunHours": "SUN HOURS",
     "sunDays": "SUN DAYS",
     "outdoorDays": "OUTDOOR DAYS",

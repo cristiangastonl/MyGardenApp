@@ -303,7 +303,11 @@
     "deletePlant": "Eliminar planta",
     "deleteConfirm": "¿Seguro que querés eliminar \"{{name}}\"?",
     "cancelButton": "Cancelar",
-    "deleteButton": "Eliminar"
+    "deleteButton": "Eliminar",
+    "a11y": {
+      "needsWater": "necesita agua",
+      "needsSun": "necesita sol"
+    }
   },
   "addPlant": {
     "title": "Nueva planta",
@@ -311,6 +315,7 @@
     "namePlaceholder": "Mi potus favorito",
     "plantType": "TIPO DE PLANTA",
     "waterEvery": "RIEGO CADA (DÍAS)",
+    "waterScheduleSection": "Riego",
     "sunHours": "HORAS DE SOL",
     "sunDays": "DÍAS PARA SOL",
     "outdoorDays": "DÍAS EXTERIOR",

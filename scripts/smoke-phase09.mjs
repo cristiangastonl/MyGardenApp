@@ -238,7 +238,8 @@ assert(/setTimeout[\s\S]{0,200}showPaywall\('plant_diagnosis'\)/.test(pidSrc),
 // Documented exception (DIAG-07 deferred-send) is intentional and acceptable
 assert(/handlePaywallWithDeferredSend/.test(pdmSrc3), "T9f: handlePaywallWithDeferredSend exists (documented PAY-02 exception)");
 // 09-AUDIT.md exists and confirms compliance
-const auditPath = resolve(ROOT, '.planning/phases/09-diagnosis-continuity-paywall-architecture/09-AUDIT.md');
+// Path updated post-v1.1 archive: phase dir moved to .planning/milestones/v1.1-phases/
+const auditPath = resolve(ROOT, '.planning/milestones/v1.1-phases/09-diagnosis-continuity-paywall-architecture/09-AUDIT.md');
 assert(existsSync(auditPath), "T9g: 09-AUDIT.md exists");
 const auditSrc = readFileSync(auditPath, 'utf8');
 assert(/PAY-02 Status[\s\S]*PASS/.test(auditSrc), "T9h: 09-AUDIT.md compliance summary marked PASS");

@@ -96,7 +96,7 @@ export function PlantCard({
       onPress={() => onPress?.(plant)}
       activeOpacity={onPress ? 0.7 : 1}
       accessible={true}
-      accessibilityLabel={`${plant.name}, ${plant.typeName}${needsWaterToday ? ', necesita agua' : ''}${needsSunToday ? ', necesita sol' : ''}`}
+      accessibilityLabel={`${plant.name}, ${plant.typeName}${needsWaterToday ? `, ${t('plantCard.a11y.needsWater')}` : ''}${needsSunToday ? `, ${t('plantCard.a11y.needsSun')}` : ''}`}
       accessibilityRole="button"
     >
       <View style={styles.header}>

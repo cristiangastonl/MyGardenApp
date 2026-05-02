@@ -32,14 +32,10 @@ import {
   SectionHeader,
   ReminderItem,
   NoteItem,
-  ExpandedFAB,
-  AddPlantModal,
   SettingsPanel,
-  PlantIdentifierModal,
   MyPlantDetailModal,
   DiagnosisFollowUp,
 } from '../components';
-import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
 import { LinearGradient } from 'expo-linear-gradient';
 import { DiagnosisDetailModal } from '../components/PlantDiagnosis/DiagnosisDetailModal';
@@ -72,7 +68,6 @@ export default function TodayScreen() {
     loading: storageLoading,
     updatePlant,
     deletePlant,
-    addPlant,
     deleteNote,
     deleteReminder,
     updateReminder,
@@ -80,8 +75,6 @@ export default function TodayScreen() {
     updateNotificationSettings,
     updatePlantNetApiKey,
     installDate,
-    identificationCount,
-    incrementIdentificationCount,
     addPhotoToPlant,
     removePhotoFromPlant,
     diagnosisHistory,
@@ -130,8 +123,6 @@ export default function TodayScreen() {
 
   const { pendingPlantId, clearPendingPlantId } = useContext(NotificationContext);
 
-  const [showAddPlant, setShowAddPlant] = useState(false);
-  const [showIdentifier, setShowIdentifier] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
 
@@ -152,14 +143,6 @@ export default function TodayScreen() {
 
   // Per-session banner dismiss (Pitfall 8: useState, NOT AsyncStorage — banner reappears next launch)
   const [locationBannerDismissed, setLocationBannerDismissed] = useState(false);
-
-  const handleOpenAddPlant = () => {
-    if (!premium.canAddPlant(plants.length)) {
-      showPaywall('plant_limit');
-      return;
-    }
-    setShowAddPlant(true);
-  };
 
   const todayStr = formatDate(today);
 
@@ -223,32 +206,6 @@ export default function TodayScreen() {
       });
       trackEvent('outdoor_logged', { plant_id: plantId });
     }
-  };
-
-  const handleAddPlant = async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {
-    const plantId = Date.now().toString();
-
-    // Upload image if provided
-    let imageUrl: string | undefined;
-    if (imageUri) {
-      try {
-        const uploadedUrl = await uploadPlantImage(imageUri, plantId);
-        if (uploadedUrl) {
-          imageUrl = uploadedUrl;
-        }
-      } catch (e) {
-        console.error('Error uploading plant image:', e);
-      }
-    }
-
-    const newPlant: Plant = {
-      ...plantData,
-      id: plantId,
-      imageUrl,
-    };
-    addPlant(newPlant);
-    trackEvent('plant_added', { plant_name: plantData.name, source: 'today' });
-    return newPlant;
   };
 
   const handleDeletePlant = (plantId: string) => {
@@ -491,44 +448,6 @@ export default function TodayScreen() {
 
         <View style={styles.bottomPadding} />
       </ScrollView>
-
-      <ExpandedFAB
-        onAddManual={handleOpenAddPlant}
-        onIdentify={() => {
-          if (!premium.canIdentify(identificationCount)) {
-            showPaywall('plant_identification');
-            return;
-          }
-          setShowIdentifier(true);
-        }}
-        showIdentifyOption={Features.PLANT_IDENTIFICATION}
-      />
-
-      {/* Add Plant Modal */}
-      <AddPlantModal
-        visible={showAddPlant}
-        onClose={() => setShowAddPlant(false)}
-        onAdd={handleAddPlant}
-      />
-
-      {/* Plant Identifier Modal — only when flag is on */}
-      {Features.PLANT_IDENTIFICATION && (
-        <PlantIdentifierModal
-          visible={showIdentifier}
-          onClose={() => setShowIdentifier(false)}
-          onAddPlant={async (plantData, imageUri) => {
-            incrementIdentificationCount();
-            return handleAddPlant(plantData, imageUri);
-          }}
-          isPremium={premium.isPremium}
-          diagnosisCount={diagnosisHistory ? Object.values(diagnosisHistory).flat().length : 0}
-          onDiagnoseAfterIdentify={(plant, reusePhotos, capturedUri, capturedBase64) => {
-            setShowIdentifier(false);
-            setDiagnosePlant(plant);
-            setDiagnosisInitialImages(reusePhotos && capturedUri && capturedBase64 ? [{ uri: capturedUri, base64: capturedBase64 }] : undefined);
-          }}
-        />
-      )}
 
       {/* Diagnosis Modal from Identify flow */}
       {diagnosePlant && (

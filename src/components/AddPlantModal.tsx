@@ -212,7 +212,7 @@ export function AddPlantModal({
 
               {/* Water schedule — Phase 7 (WATER-01, WATER-02, WATER-03) */}
               <View style={styles.section}>
-                <Text style={styles.label}>{t('addPlant.waterEvery')}</Text>
+                <Text style={styles.label}>{t('addPlant.waterScheduleSection')}</Text>
                 <WaterScheduleEditor
                   mode={waterMode}
                   schedule={waterSchedule}

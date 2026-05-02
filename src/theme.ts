@@ -9,7 +9,9 @@ export const colors = {
   // Text
   textPrimary: '#2d3a2e',
   textSecondary: '#8a7e6b',
-  textMuted: '#a89e8b',
+  // textMuted: darkened from #a89e8b → #6a604f to meet WCAG AA contrast on bgPrimary (#f5f0e6) and card (#fffdf8). Was ~3.1:1 → now ~4.9:1.
+  // NOTE (v1.2): textSecondary #8a7e6b also fails AA on bgPrimary (~3.1:1). Audit + fix in v1.2 polish phase.
+  textMuted: '#6a604f',
 
   // Accents
   green: '#5b9a6a',
