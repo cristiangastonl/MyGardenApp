@@ -12,6 +12,8 @@ My Happy Garden is a React Native (Expo) plant care app. Users track watering, s
 npx expo start                # Dev server (Expo Go or dev client)
 npx tsc --noEmit              # Type-check (no linter or test runner configured)
 npx expo install [pkg]        # Install Expo-compatible dependency version
+npm run check:i18n-keys       # Pre-submit: catalog id ↔ i18n keyset parity
+npm run check:images          # Pre-submit: catalog imageUrl 200 OK (network)
 
 # Supabase Edge Functions
 source .envrc && supabase functions deploy identify-plant
@@ -161,6 +163,30 @@ eas submit --platform ios --profile production --id <BUILD_ID>
 - In-app purchase products must be created in App Store Connect (yearly + lifetime)
 - Privacy Policy URL required
 - Screenshots required (6.7" iPhone, 5.5" iPhone minimum)
+
+## Pre-submit Checks
+
+Two npm scripts must be run before submitting builds to catch catalog drift:
+
+```bash
+npm run check:i18n-keys   # sync; ~2s; fails on missing en/es plants.json keys
+npm run check:images      # async network HEAD; ~30-60s; fails on 404 imageUrl
+```
+
+**`check:i18n-keys`** — verifies every entry id in `src/data/plantDatabase.ts` has a complete keyset (`name`, `tip`, `description`, `problems[>=1]`, `nutrients` if entry declares any) in both `src/i18n/locales/en/plants.json` AND `src/i18n/locales/es/plants.json`. Exits 1 with itemised list of missing keys. **MUST pass before any submit.**
+
+**`check:images`** — HEAD-requests every `imageUrl` in PLANT_DATABASE at concurrency 8. Exits 1 with itemised URL list on any non-200. **Accepted-known failures (Phase 8, v1.1):** the following 15 entries point at imageUrls that 404 until manual image upload to Supabase Storage:
+
+- jacaranda, ceibo, glicina, gardenia, camelia, dalia
+- salvia-ornamental, cala, copete, verbena
+- lavanda-stoechas, lavanda-dentada
+- romero-rastrero, tomate-cherry
+- lavanda-angustifolia (renamed from lavanda; old lavanda.jpg needs re-upload as lavanda-angustifolia.jpg)
+
+These failures are documented in the v1.1 device-test backlog. Image upload steps:
+1. Source images (CC0/public domain or user-shot photos).
+2. Upload to Supabase Storage bucket `plant-images/catalog/<id>.jpg`.
+3. Re-run `npm run check:images` — should now pass.
 
 ## Landing Page & Waitlist
 
