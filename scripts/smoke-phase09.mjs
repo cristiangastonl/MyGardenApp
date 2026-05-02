@@ -219,10 +219,29 @@ assert(/diagnosis\.messagesRemaining/.test(drSrc),
   assert(authBody.length > 0 && /<PaywallModal/.test(authBody), "T8: PaywallModal mounted in AppContentFullInner");
 }
 
-// PLACEHOLDER — Plan 09-08 activates
-// T9: no direct showPaywall( inside PlantDiagnosisModal/PlantIdentifierModal without close-then-trigger wrapper
-// Assertion: grep PlantDiagnosisModal.tsx + PlantIdentifierModal.tsx for raw showPaywall( count === 0
-pass++; // placeholder counts as pass until plan activates
+// ─── T9: PAY-02 close-then-trigger compliance (Plan 09-08) ───
+const pdmSrc3 = readFileSync(resolve(ROOT, 'src/components/PlantDiagnosis/PlantDiagnosisModal.tsx'), 'utf8');
+// T9a: no bare JSX-prop inline arrow form (the old onPaywall={() => showPaywall('plant_diagnosis')}).
+// Note: () => showPaywall appears inside setTimeout wrappers (correct pattern) — those are excluded
+// by checking specifically for the JSX prop assignment shape onPaywall={()
+const inlineJsxCount = (pdmSrc3.match(/onPaywall=\{\(\)\s*=>\s*showPaywall\('plant_diagnosis'\)/g) || []).length;
+assert(inlineJsxCount === 0, `T9a: PlantDiagnosisModal — no bare inline onPaywall={() => showPaywall JSX prop (found ${inlineJsxCount})`);
+assert(/handlePaywallFromChat/.test(pdmSrc3), "T9b: PlantDiagnosisModal — handlePaywallFromChat (close-then-trigger wrapper) declared");
+const closeThenTriggerPattern = /handleClose\(\)[\s\S]{0,200}setTimeout[\s\S]{0,200}showPaywall\('plant_diagnosis'\)/g;
+const ctPatternCount = (pdmSrc3.match(closeThenTriggerPattern) || []).length;
+assert(ctPatternCount >= 2, `T9c: PlantDiagnosisModal — close-then-trigger pattern present in >= 2 places (found ${ctPatternCount})`);
+const pidSrc = readFileSync(resolve(ROOT, 'src/components/PlantIdentifier/PlantIdentifierModal.tsx'), 'utf8');
+const pidShowCount = (pidSrc.match(/showPaywall\('plant_diagnosis'\)/g) || []).length;
+assert(pidShowCount === 1, `T9d: PlantIdentifierModal — single showPaywall('plant_diagnosis') call (found ${pidShowCount})`);
+assert(/setTimeout[\s\S]{0,200}showPaywall\('plant_diagnosis'\)/.test(pidSrc),
+  "T9e: PlantIdentifierModal — close-then-trigger setTimeout pattern around showPaywall");
+// Documented exception (DIAG-07 deferred-send) is intentional and acceptable
+assert(/handlePaywallWithDeferredSend/.test(pdmSrc3), "T9f: handlePaywallWithDeferredSend exists (documented PAY-02 exception)");
+// 09-AUDIT.md exists and confirms compliance
+const auditPath = resolve(ROOT, '.planning/phases/09-diagnosis-continuity-paywall-architecture/09-AUDIT.md');
+assert(existsSync(auditPath), "T9g: 09-AUDIT.md exists");
+const auditSrc = readFileSync(auditPath, 'utf8');
+assert(/PAY-02 Status[\s\S]*PASS/.test(auditSrc), "T9h: 09-AUDIT.md compliance summary marked PASS");
 
 // T10: usePremium signature + PaywallCallbackOptions + new union members
 // Plan 09-02 (PAY-03): all three widenings verified via source grep.
