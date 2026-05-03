@@ -38,7 +38,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 **Milestone Goal:** Pivot from passive tracker to guided assistant — the app recommends what to do (with horticultural rationale) and the user adjusts to their reality. Polish PlantCard, add brand voice, fix UAT bugs, modernize mobile patterns, secure the Perenual API key, and expand plant coverage from 64 to 120 entries with fertilization, pet toxicity, and journal features.
 
 - [x] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle (completed 2026-05-03)
-- [ ] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity`
+- [x] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity` (completed 2026-05-03; DATA-04 FINDING: free-tier API paywall; see 11-03-SUMMARY.md)
 - [ ] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings
 - [ ] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component
 - [ ] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard
@@ -79,11 +79,11 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. Identifying an Araceae/tropical plant returns `humidity: 'alta'`; identifying a cactus returns `humidity: 'baja'`
   3. Querying a species name that doesn't match the top Perenual result returns `null` (no garbage cached)
   4. Test fixture of 5 known species shows `tempMax ≠ 35` and `humidity ≠ null` in ≥80% of cases
-**Plans:** 3/4 plans executed
-  - [ ] 11-00-PLAN.md — Wave 0 scaffold: smoke-phase11.mjs runner + 2 import-stub modules (Nyquist gate)
-  - [ ] 11-01-PLAN.md — Edge function: isGoodMatch validator + PerenualPlantDetail family/type schema (DATA-01)
-  - [ ] 11-02-PLAN.md — Client service: parseHardiness reads .max + inferHumidity + classifyTempMaxFallback + schema parity (DATA-02, DATA-03)
-  - [ ] 11-03-PLAN.md — Manual checkpoints: redeploy edge function + 5-species fixture verification (DATA-04)
+**Plans:** 4/4 plans complete
+  - [x] 11-00-PLAN.md — Wave 0 scaffold: smoke-phase11.mjs runner + 2 import-stub modules (Nyquist gate)
+  - [x] 11-01-PLAN.md — Edge function: isGoodMatch validator + PerenualPlantDetail family/type schema (DATA-01)
+  - [x] 11-02-PLAN.md — Client service: parseHardiness reads .max + inferHumidity + classifyTempMaxFallback + schema parity (DATA-02, DATA-03)
+  - [x] 11-03-PLAN.md — Manual checkpoints: redeploy + 5-species fixture (DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness — 0/5 threshold; implementation correct; forward-compatible)
 
 ### Phase 12: Unknown Plant Tracking
 **Goal**: Every time a user identifies a plant not in the curated catalog, that species is silently logged so future expansion waves can be prioritized by real user demand
