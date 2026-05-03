@@ -93,7 +93,11 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   1. Identifying a plant that isn't in the 64-entry catalog increments its count in `@unknown_plants` AsyncStorage key (verified in dev tools)
   2. Settings → Dev tools section shows the unknown plant report sorted by count descending
   3. The tracking call is fire-and-forget — identifying a plant completes at the same speed whether tracking succeeds or fails
-**Plans**: TBD
+**Plans:** 1/4 plans executed
+  - [ ] 12-00-PLAN.md — Wave 0 scaffold: smoke-phase12.mjs runner + AsyncStorage stub (Nyquist gate)
+  - [ ] 12-01-PLAN.md — Wave 1: src/services/unknownPlantTracker.ts service module (TRACK-01)
+  - [ ] 12-02-PLAN.md — Wave 2 (parallel): TRACK-02 catalog-miss gate in getEnrichedPlantData
+  - [ ] 12-03-PLAN.md — Wave 2 (parallel): TRACK-03 Settings dev-tools UI + 4 i18n keys × 2 locales
 
 ### Phase 13: Gesture + Bottom-Sheet Infrastructure
 **Goal**: The four native gesture/animation/haptic packages are installed and wired into the provider hierarchy so all future swipe and bottom-sheet UI can be built without a second rebuild
@@ -245,7 +249,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
-| 12. Unknown Plant Tracking | v1.2 | 0/TBD | Not started | - |
+| 12. Unknown Plant Tracking | 1/4 | In Progress|  | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |
