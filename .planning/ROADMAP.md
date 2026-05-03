@@ -239,7 +239,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 8/8 | Complete | 2026-05-01 |
 | 8. Catalog Rebalance | v1.1 | 5/5 | Complete | 2026-05-02 |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
-| 10. Perenual Security | 5/4 | Complete   | 2026-05-03 | - |
+| 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | v1.2 | 0/TBD | Not started | - |
 | 12. Unknown Plant Tracking | v1.2 | 0/TBD | Not started | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |

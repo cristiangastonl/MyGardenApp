@@ -4,7 +4,7 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
 stopped_at: Completed 10-04-PLAN.md (CLAUDE.md + PROJECT.md docs update; Phase 10 Perenual Security complete)
-last_updated: "2026-05-03T00:31:50.139Z"
+last_updated: "2026-05-03T00:36:21.095Z"
 last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
