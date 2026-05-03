@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Completed 10-02-PLAN.md (client-side Perenual key removal; fetchFromPerenual rewired to edge function)
-last_updated: "2026-05-02T23:57:49.878Z"
+stopped_at: Completed 10-04-PLAN.md (CLAUDE.md + PROJECT.md docs update; Phase 10 Perenual Security complete)
+last_updated: "2026-05-03T00:31:50.139Z"
 last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 5
   percent: 0
 ---
 
@@ -62,6 +62,7 @@ Key v1.2 pre-decisions locked during research:
 - **Edge function dual-payload backward-compat:** `!!ctx.waterSchedule` discriminator sunset decision deferred to Phase 24 (DOCS).
 - [Phase 10]: SEC-02: PERENUAL_API_KEY moved server-side via Deno.env.get in get-plant-care edge function; response envelope { data: PerenualPlantDetail | null } enables clean null-fallback chain in client
 - [Phase 10]: SEC-01/SEC-03: fetchFromPerenual() rewired to supabase.functions.invoke('get-plant-care'); EXPO_PUBLIC_PERENUAL_API_KEY removed from all client-bundle paths; gap window until Plan 10-03 deploy is expected degraded state
+- [Phase 10]: SEC-05: CLAUDE.md updated with get-plant-care deploy docs, PERENUAL_API_KEY secret docs, and pre-submit grep guard; PROJECT.md Key Decisions row added with rotation-deferred wording
 
 ### Pending Todos
 
@@ -75,6 +76,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-02T23:57:49.876Z
-Stopped at: Completed 10-02-PLAN.md (client-side Perenual key removal; fetchFromPerenual rewired to edge function)
+Last session: 2026-05-03T00:31:50.137Z
+Stopped at: Completed 10-04-PLAN.md (CLAUDE.md + PROJECT.md docs update; Phase 10 Perenual Security complete)
 Resume file: None

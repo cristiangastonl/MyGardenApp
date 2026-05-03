@@ -37,7 +37,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 
 **Milestone Goal:** Pivot from passive tracker to guided assistant — the app recommends what to do (with horticultural rationale) and the user adjusts to their reality. Polish PlantCard, add brand voice, fix UAT bugs, modernize mobile patterns, secure the Perenual API key, and expand plant coverage from 64 to 120 entries with fertilization, pet toxicity, and journal features.
 
-- [ ] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle
+- [x] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle (completed 2026-05-03)
 - [ ] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity`
 - [ ] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings
 - [ ] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component
@@ -64,7 +64,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. Plant identification that previously fell back to Perenual still enriches data correctly (end-to-end smoke test with a known species)
   3. Supabase Functions logs show `get-plant-care` invocations with no errors after deploy
   4. Old Perenual API key is rotated and the new key is only accessible via `Deno.env.get` server-side
-**Plans:** 3/4 plans executed
+**Plans:** 5/4 plans complete
   - [ ] 10-01-PLAN.md — Create get-plant-care edge function source mirroring identify-plant (SEC-02)
   - [ ] 10-02-PLAN.md — Swap fetchFromPerenual to invoke edge function; remove EXPO_PUBLIC_PERENUAL_API_KEY from client bundle + .env + .env.example + audit app.json (SEC-01, SEC-03)
   - [ ] 10-03-PLAN.md — MANUAL CHECKPOINTS: deploy edge function + set Supabase secret + verify live; decision gate; rotate Perenual key + final verify (SEC-04)
@@ -239,7 +239,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 8/8 | Complete | 2026-05-01 |
 | 8. Catalog Rebalance | v1.1 | 5/5 | Complete | 2026-05-02 |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
-| 10. Perenual Security | 3/4 | In Progress|  | - |
+| 10. Perenual Security | 5/4 | Complete   | 2026-05-03 | - |
 | 11. Perenual Data Quality | v1.2 | 0/TBD | Not started | - |
 | 12. Unknown Plant Tracking | v1.2 | 0/TBD | Not started | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |
