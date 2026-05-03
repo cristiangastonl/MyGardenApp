@@ -106,7 +106,7 @@ assert(typeof globalThis.__DEV__ === 'boolean', 'W0.3: __DEV__ shim present (fal
 // P1.1: trackUnknownPlant inserts a new entry on first call
 await assertSkippableAsync(async () => {
   if (!svcMod || typeof svcMod.trackUnknownPlant !== 'function') return undefined;
-  const stub = await import(STUB_AS + '?t=' + Date.now());
+  const stub = await import(STUB_AS);
   await stub.default.removeItem('@unknown_plants');
   await svcMod.trackUnknownPlant('Monstera deliciosa');
   const report = await svcMod.getUnknownPlantsReport();
@@ -116,7 +116,7 @@ await assertSkippableAsync(async () => {
 // P1.2: Second call for the same name increments count to 2
 await assertSkippableAsync(async () => {
   if (!svcMod || typeof svcMod.trackUnknownPlant !== 'function') return undefined;
-  const stub = await import(STUB_AS + '?t=' + Date.now());
+  const stub = await import(STUB_AS);
   await stub.default.removeItem('@unknown_plants');
   await svcMod.trackUnknownPlant('Monstera deliciosa');
   await svcMod.trackUnknownPlant('Monstera deliciosa');
@@ -127,7 +127,7 @@ await assertSkippableAsync(async () => {
 // P1.3: Lowercase canonicalization — 'MONSTERA DELICIOSA' merges with 'monstera deliciosa'
 await assertSkippableAsync(async () => {
   if (!svcMod || typeof svcMod.trackUnknownPlant !== 'function') return undefined;
-  const stub = await import(STUB_AS + '?t=' + Date.now());
+  const stub = await import(STUB_AS);
   await stub.default.removeItem('@unknown_plants');
   await svcMod.trackUnknownPlant('Monstera deliciosa');
   await svcMod.trackUnknownPlant('MONSTERA DELICIOSA');
@@ -139,7 +139,7 @@ await assertSkippableAsync(async () => {
 // P1.4: Report sorted desc by count, then desc by lastSeen
 await assertSkippableAsync(async () => {
   if (!svcMod || typeof svcMod.trackUnknownPlant !== 'function') return undefined;
-  const stub = await import(STUB_AS + '?t=' + Date.now());
+  const stub = await import(STUB_AS);
   await stub.default.removeItem('@unknown_plants');
   await svcMod.trackUnknownPlant('Rosa canina');     // count=1
   await svcMod.trackUnknownPlant('Monstera deliciosa');
@@ -152,7 +152,7 @@ await assertSkippableAsync(async () => {
 // P1.5: firstSeen is set on first call and NOT overwritten by subsequent calls
 await assertSkippableAsync(async () => {
   if (!svcMod || typeof svcMod.trackUnknownPlant !== 'function') return undefined;
-  const stub = await import(STUB_AS + '?t=' + Date.now());
+  const stub = await import(STUB_AS);
   await stub.default.removeItem('@unknown_plants');
   await svcMod.trackUnknownPlant('Ficus lyrata');
   const r1 = await svcMod.getUnknownPlantsReport();
