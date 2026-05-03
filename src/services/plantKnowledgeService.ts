@@ -36,6 +36,8 @@ interface PerenualPlantDetail extends PerenualPlant {
     min?: string;
     max?: string;
   };
+  family?: string;   // ADD: taxonomic family (e.g., "Araceae", "Cactaceae") - mirrors edge function (Plan 11-01)
+  type?: string;     // ADD: plant type (e.g., "tree", "Flower", "succulent") - used by inferHumidity + classifyTempMaxFallback
 }
 
 interface PlantKnowledgeResult {
@@ -253,35 +255,42 @@ function parseSunlight(sunlight: string[]): {
 }
 
 /**
- * Parse hardiness zones to temperature
+ * Parse hardiness zones to temperature.
+ * DATA-02: reads BOTH hardiness.min and hardiness.max via separate USDA-zone lookup tables.
+ * USDA zones define cold tolerance (min); the zoneToTempMax table is the planner-derived
+ * heat-tolerance proxy where higher zone → more tropical → higher tempMax.
+ * Returns tempMax: null when hardiness.max is missing/unparseable so the caller
+ * (convertPerenualToKnowledge) can apply the category-based fallback.
  */
-function parseHardiness(hardiness?: {
+export function parseHardiness(hardiness?: {
   min?: string;
   max?: string;
 }): { tempMin: number | null; tempMax: number | null } {
-  // USDA Hardiness zones to approximate Celsius
-  const zoneToTemp: Record<string, number> = {
-    '1': -45,
-    '2': -40,
-    '3': -35,
-    '4': -30,
-    '5': -25,
-    '6': -20,
-    '7': -15,
-    '8': -10,
-    '9': -5,
-    '10': 0,
-    '11': 5,
-    '12': 10,
-    '13': 15,
+  // Cold-tolerance: USDA zone → minimum survivable °C
+  const zoneToTempMin: Record<string, number> = {
+    '1': -45, '2': -40, '3': -35, '4': -30, '5': -25,
+    '6': -20, '7': -15, '8': -10, '9': -5, '10': 0,
+    '11': 5, '12': 10, '13': 15,
+  };
+  // Heat-tolerance proxy: planner-derived from DATA-02 fallback anchors (RESEARCH.md table)
+  // Zones 1-4 → 25 (cold-only perennials), 5-6 → 28 (fría), 7-8 → 32 (templada/indoor tropical),
+  // 9 → 35 (templada default), 10 → 38 (subtropical), 11-13 → 40 (tropical/succulent ceiling)
+  const zoneToTempMax: Record<string, number> = {
+    '1': 25, '2': 25, '3': 25, '4': 25, '5': 28,
+    '6': 28, '7': 32, '8': 32, '9': 35, '10': 38,
+    '11': 40, '12': 40, '13': 40,
   };
 
   let tempMin: number | null = null;
-  let tempMax: number | null = 35; // Default max
+  let tempMax: number | null = null; // null = caller applies category fallback
 
   if (hardiness?.min) {
     const zone = hardiness.min.replace(/[^0-9]/g, '');
-    tempMin = zoneToTemp[zone] ?? null;
+    tempMin = zoneToTempMin[zone] ?? null;
+  }
+  if (hardiness?.max) {
+    const zone = hardiness.max.replace(/[^0-9]/g, '');
+    tempMax = zoneToTempMax[zone] ?? null;
   }
 
   return { tempMin, tempMax };
