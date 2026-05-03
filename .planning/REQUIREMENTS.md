@@ -16,9 +16,9 @@
 
 ### Perenual Data Quality (DATA)
 
-- [ ] **DATA-01**: Edge function adds `isGoodMatch(query, result)` validator — checks bidirectional `lowercase().includes(...)` overlap between query and `common_name`/`scientific_name`; failed match returns `null` (no cached garbage)
-- [ ] **DATA-02**: `parseHardiness()` reads `hardiness.max` (USDA zone → °C mapping) when present; falls back per category: indoor tropical 32, succulent/cactus 40, templada 35, fría 28
-- [ ] **DATA-03**: `convertPerenualToKnowledge()` infers `humidity` from `plant.family` and `plant.type`: `araceae`/tropical → `'alta'`; `cactaceae`/`crassulaceae`/succulent/cactus → `'baja'`; default → `'media'`
+- [x] **DATA-01**: Edge function adds `isGoodMatch(query, result)` validator — checks bidirectional `lowercase().includes(...)` overlap between query and `common_name`/`scientific_name`; failed match returns `null` (no cached garbage)
+- [x] **DATA-02**: `parseHardiness()` reads `hardiness.max` (USDA zone → °C mapping) when present; falls back per category: indoor tropical 32, succulent/cactus 40, templada 35, fría 28
+- [x] **DATA-03**: `convertPerenualToKnowledge()` infers `humidity` from `plant.family` and `plant.type`: `araceae`/tropical → `'alta'`; `cactaceae`/`crassulaceae`/succulent/cactus → `'baja'`; default → `'media'`
 - [ ] **DATA-04**: Identifying a plant not in the curated catalog produces enriched data with `tempMax ≠ 35` and `humidity ≠ null` in ≥80% of cases (verified via test fixture of 5 known species)
 
 ### Unknown Plant Tracking (TRACK)
@@ -192,9 +192,9 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | SEC-03 | Phase 10 | Complete |
 | SEC-04 | Phase 10 | Pending |
 | SEC-05 | Phase 10 | Complete |
-| DATA-01 | Phase 11 | Pending |
-| DATA-02 | Phase 11 | Pending |
-| DATA-03 | Phase 11 | Pending |
+| DATA-01 | Phase 11 | Complete |
+| DATA-02 | Phase 11 | Complete |
+| DATA-03 | Phase 11 | Complete |
 | DATA-04 | Phase 11 | Pending |
 | TRACK-01 | Phase 12 | Pending |
 | TRACK-02 | Phase 12 | Pending |

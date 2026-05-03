@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Phase 11 context gathered
-last_updated: "2026-05-03T00:48:52.933Z"
+stopped_at: Completed 11-00-PLAN.md
+last_updated: "2026-05-03T01:42:51.646Z"
 last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
   completed_phases: 1
-  total_plans: 4
-  completed_plans: 5
+  total_plans: 8
+  completed_plans: 6
   percent: 0
 ---
 
@@ -63,6 +63,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 10]: SEC-02: PERENUAL_API_KEY moved server-side via Deno.env.get in get-plant-care edge function; response envelope { data: PerenualPlantDetail | null } enables clean null-fallback chain in client
 - [Phase 10]: SEC-01/SEC-03: fetchFromPerenual() rewired to supabase.functions.invoke('get-plant-care'); EXPO_PUBLIC_PERENUAL_API_KEY removed from all client-bundle paths; gap window until Plan 10-03 deploy is expected degraded state
 - [Phase 10]: SEC-05: CLAUDE.md updated with get-plant-care deploy docs, PERENUAL_API_KEY secret docs, and pre-submit grep guard; PROJECT.md Key Decisions row added with rotation-deferred wording
+- [Phase 11-perenual-data-quality]: Phase 11-00: Stubs written at runtime via writeFileSync (scripts/.tmp-phase11/ is gitignored); W0.10 assertion uses split-match for multi-line invoke call
 
 ### Pending Todos
 
@@ -76,6 +77,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T00:48:52.931Z
-Stopped at: Phase 11 context gathered
-Resume file: .planning/phases/11-perenual-data-quality/11-CONTEXT.md
+Last session: 2026-05-03T01:42:51.644Z
+Stopped at: Completed 11-00-PLAN.md
+Resume file: None
