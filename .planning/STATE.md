@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Completed 10-04-PLAN.md (CLAUDE.md + PROJECT.md docs update; Phase 10 Perenual Security complete)
-last_updated: "2026-05-03T00:36:21.095Z"
+stopped_at: Phase 11 context gathered
+last_updated: "2026-05-03T00:48:52.933Z"
 last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
@@ -76,6 +76,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T00:31:50.137Z
-Stopped at: Completed 10-04-PLAN.md (CLAUDE.md + PROJECT.md docs update; Phase 10 Perenual Security complete)
-Resume file: None
+Last session: 2026-05-03T00:48:52.931Z
+Stopped at: Phase 11 context gathered
+Resume file: .planning/phases/11-perenual-data-quality/11-CONTEXT.md
