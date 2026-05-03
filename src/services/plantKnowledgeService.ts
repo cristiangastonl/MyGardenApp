@@ -167,7 +167,7 @@ async function fetchFromPerenual(
 /**
  * Convert Perenual API response to our format
  */
-function convertPerenualToKnowledge(
+export function convertPerenualToKnowledge(
   plant: PerenualPlantDetail
 ): DbPlantKnowledgeInsert {
   // Parse watering to days
@@ -192,14 +192,89 @@ function convertPerenualToKnowledge(
     sun_hours_min: sunHoursMin,
     sun_hours_max: sunHoursMax,
     temp_min_c: tempMin,
-    temp_max_c: tempMax,
-    humidity: null, // Perenual doesn't provide this directly
+    temp_max_c: tempMax ?? classifyTempMaxFallback(plant), // DATA-02: category fallback when no hardiness.max (includes fría-28 cold-hardy branch)
+    humidity: inferHumidity(plant),                         // DATA-03: family/type → 'alta' | 'media' | 'baja'
     indoor: plant.indoor ?? null,
     description: plant.description || null,
     care_tips: plant.maintenance || null,
     source: 'perenual',
     source_id: String(plant.id),
   };
+}
+
+/**
+ * DATA-03: Infer humidity preference from Perenual family/type metadata.
+ * Family match wins (most reliable taxonomic signal); type substring is the fallback.
+ * Returns 'media' when no rule matches (default safe value — neutral humidity).
+ * Spec lock: REQUIREMENTS.md DATA-03.
+ */
+export function inferHumidity(plant: { family?: string | null; type?: string | null }): 'alta' | 'media' | 'baja' {
+  const family = (plant.family || '').toLowerCase();
+  const type = (plant.type || '').toLowerCase();
+
+  // Family match (most reliable)
+  if (family.includes('araceae') || family.includes('orchidaceae') || family.includes('bromeliaceae')) {
+    return 'alta';
+  }
+  if (family.includes('cactaceae') || family.includes('crassulaceae')) {
+    return 'baja';
+  }
+
+  // Type substring fallback
+  if (type.includes('cactus') || type.includes('succulent')) {
+    return 'baja';
+  }
+  if (type.includes('tropical') || type.includes('fern') || type.includes('moss')) {
+    return 'alta';
+  }
+
+  return 'media';
+}
+
+/**
+ * DATA-02 fallback: derive a category-appropriate tempMax when hardiness.max is missing.
+ * Called by convertPerenualToKnowledge when parseHardiness returns tempMax: null.
+ * Spec lock: REQUIREMENTS.md DATA-02 — four anchors: indoor tropical 32, succulent/cactus 40, templada 35, fría 28.
+ *
+ * Order discipline (load-bearing — keep the cactus rule first):
+ *   1. cactus/succulent (Cactaceae/Crassulaceae OR type contains cactus/succulent)  → 40
+ *   2. tropical (Araceae/Orchidaceae/Bromeliaceae OR type contains tropical/fern/moss) → 32
+ *   3. fría / cold-hardy (Rosaceae/Asteraceae/Lamiaceae/Fagaceae/Pinaceae OR type contains perennial/conifer/tree/bulb) → 28
+ *   4. generic indoor (indoor === true)                                                → 32
+ *   5. default (templada)                                                              → 35
+ *
+ * Note step 1 must run before step 3 — a Cactaceae plant with type "perennial" is still a succulent (40 ceiling, not 28 fría).
+ */
+export function classifyTempMaxFallback(plant: { family?: string | null; type?: string | null; indoor?: boolean | null }): number {
+  const family = (plant.family || '').toLowerCase();
+  const type = (plant.type || '').toLowerCase();
+
+  // Step 1: Succulent/cactus ceiling (must run BEFORE fría — Cactaceae perennials stay 40)
+  if (family.includes('cactaceae') || family.includes('crassulaceae')
+      || type.includes('cactus') || type.includes('succulent')) {
+    return 40;
+  }
+  // Step 2: Tropical (Araceae/Orchidaceae/Bromeliaceae/fern/moss/explicit tropical type)
+  if (family.includes('araceae') || family.includes('orchidaceae') || family.includes('bromeliaceae')
+      || type.includes('tropical') || type.includes('fern') || type.includes('moss')) {
+    return 32;
+  }
+  // Step 3: Fría / cold-hardy — temperate flowering families + cold-tolerant plant types
+  // Family list: Rosaceae (rose family), Asteraceae (daisy/sunflower), Lamiaceae (mint/sage),
+  //              Fagaceae (oaks/beeches), Pinaceae (pines/conifers).
+  // Type list:   "perennial" (cold-dormant herbaceous), "conifer" (evergreen cold-hardy),
+  //              "tree" (default cold-hardy unless tropical signal earlier), "bulb" (cold-stratification).
+  if (family.includes('rosaceae') || family.includes('asteraceae') || family.includes('lamiaceae')
+      || family.includes('fagaceae') || family.includes('pinaceae')
+      || type.includes('perennial') || type.includes('conifer') || type.includes('tree') || type.includes('bulb')) {
+    return 28;
+  }
+  // Step 4: Generic indoor → tropical fallback (32) per CONTEXT.md decision tree step 3
+  if (plant.indoor === true) {
+    return 32;
+  }
+  // Step 5: Default templada
+  return 35;
 }
 
 /**
