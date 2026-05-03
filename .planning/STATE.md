@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Completed 11-01-PLAN.md
-last_updated: "2026-05-03T01:47:07.301Z"
+stopped_at: Completed 11-02-PLAN.md
+last_updated: "2026-05-03T01:55:41.074Z"
 last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
 progress:
   total_phases: 15
   completed_phases: 1
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 0
 ---
 
@@ -66,6 +66,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 11-perenual-data-quality]: Phase 11-00: Stubs written at runtime via writeFileSync (scripts/.tmp-phase11/ is gitignored); W0.10 assertion uses split-match for multi-line invoke call
 - [Phase 11-01]: DATA-01: isGoodMatch uses bidirectional lowercase().includes() per spec lock — inserted between search and details fetch in get-plant-care edge function; mismatch returns { data: null } status 200
 - [Phase 11-01]: PerenualPlantDetail in edge function gains family?: string and type?: string (schema parity with client service Plan 11-02)
+- [Phase 11]: parseHardiness returns tempMax: null when hardiness.max absent; caller (convertPerenualToKnowledge) applies classifyTempMaxFallback with 4 anchors (cactus 40, tropical 32, fría 28, templada 35)
+- [Phase 11]: inferHumidity: family-first classification (Araceae/Orchidaceae/Bromeliaceae→alta; Cactaceae/Crassulaceae→baja; type substring fallback; media default) — DATA-03
 
 ### Pending Todos
 
@@ -79,6 +81,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T01:47:07.299Z
-Stopped at: Completed 11-01-PLAN.md
+Last session: 2026-05-03T01:55:41.072Z
+Stopped at: Completed 11-02-PLAN.md
 Resume file: None

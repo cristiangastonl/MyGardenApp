@@ -79,7 +79,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. Identifying an Araceae/tropical plant returns `humidity: 'alta'`; identifying a cactus returns `humidity: 'baja'`
   3. Querying a species name that doesn't match the top Perenual result returns `null` (no garbage cached)
   4. Test fixture of 5 known species shows `tempMax ≠ 35` and `humidity ≠ null` in ≥80% of cases
-**Plans:** 2/4 plans executed
+**Plans:** 3/4 plans executed
   - [ ] 11-00-PLAN.md — Wave 0 scaffold: smoke-phase11.mjs runner + 2 import-stub modules (Nyquist gate)
   - [ ] 11-01-PLAN.md — Edge function: isGoodMatch validator + PerenualPlantDetail family/type schema (DATA-01)
   - [ ] 11-02-PLAN.md — Client service: parseHardiness reads .max + inferHumidity + classifyTempMaxFallback + schema parity (DATA-02, DATA-03)
@@ -244,7 +244,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 8. Catalog Rebalance | v1.1 | 5/5 | Complete | 2026-05-02 |
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
-| 11. Perenual Data Quality | 2/4 | In Progress|  | - |
+| 11. Perenual Data Quality | 3/4 | In Progress|  | - |
 | 12. Unknown Plant Tracking | v1.2 | 0/TBD | Not started | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
