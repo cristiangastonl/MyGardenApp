@@ -11,6 +11,22 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+/**
+ * DATA-01: Bidirectional name-overlap validator for Perenual search results.
+ * Rejects search hits whose name has no substring overlap with the user's query.
+ * Spec lock per REQUIREMENTS.md DATA-01: lowercase + bidirectional includes.
+ * Known acceptable false positive: query "rose" matches result "rosemary" (documented; revisit only if DATA-04 fixture flags it).
+ */
+function isGoodMatch(query: string, result: { common_name?: string; scientific_name?: string[] }): boolean {
+  const q = (query || '').toLowerCase();
+  if (!q) return false;
+  const cn = (result.common_name || '').toLowerCase();
+  const sn = (result.scientific_name?.[0] || '').toLowerCase();
+  // Bidirectional: query includes result name OR result name includes query (either field)
+  return (cn !== '' && (cn.includes(q) || q.includes(cn)))
+      || (sn !== '' && (sn.includes(q) || q.includes(sn)));
+}
+
 interface RequestBody {
   plantName: string;
   lang?: 'en' | 'es';  // accepted for forward-compat with Phase 11; currently no server-side i18n branch
@@ -41,6 +57,8 @@ interface PerenualPlantDetail {
     min?: string;
     max?: string;
   };
+  family?: string;   // ADD: taxonomic family (e.g., "Araceae", "Cactaceae") - used by client humidity classifier (Plan 11-02 DATA-03)
+  type?: string;     // ADD: plant type (e.g., "tree", "Flower", "succulent") - used by client humidity + tempMax fallback (Plan 11-02 DATA-02/03)
 }
 
 serve(async (req) => {
@@ -113,6 +131,15 @@ serve(async (req) => {
 
     // Get the first match
     const plant = plants[0];
+
+    // DATA-01: Reject mismatched search results before the details fetch (no garbage cached, save one Perenual API call)
+    if (!isGoodMatch(body.plantName, plant)) {
+      console.log(`[get-plant-care] Mismatch: query="${body.plantName}" vs result="${plant.common_name}" / "${plant.scientific_name?.[0] ?? ''}"`);
+      return new Response(
+        JSON.stringify({ data: null }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     // 2. Get detailed info (mirrors plantKnowledgeService.ts:165)
     const detailUrl = `${PERENUAL_API_BASE}/species/details/${plant.id}?key=${perenualApiKey}`;
