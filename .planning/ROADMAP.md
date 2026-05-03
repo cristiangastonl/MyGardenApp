@@ -39,7 +39,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 
 - [x] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle (completed 2026-05-03)
 - [x] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity` (completed 2026-05-03; DATA-04 FINDING: free-tier API paywall; see 11-03-SUMMARY.md)
-- [ ] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings
+- [x] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings (completed 2026-05-03)
 - [ ] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component
 - [ ] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard
 - [ ] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan
@@ -93,7 +93,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   1. Identifying a plant that isn't in the 64-entry catalog increments its count in `@unknown_plants` AsyncStorage key (verified in dev tools)
   2. Settings → Dev tools section shows the unknown plant report sorted by count descending
   3. The tracking call is fire-and-forget — identifying a plant completes at the same speed whether tracking succeeds or fails
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
   - [ ] 12-00-PLAN.md — Wave 0 scaffold: smoke-phase12.mjs runner + AsyncStorage stub (Nyquist gate)
   - [ ] 12-01-PLAN.md — Wave 1: src/services/unknownPlantTracker.ts service module (TRACK-01)
   - [ ] 12-02-PLAN.md — Wave 2 (parallel): TRACK-02 catalog-miss gate in getEnrichedPlantData
@@ -249,7 +249,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
-| 12. Unknown Plant Tracking | 3/4 | In Progress|  | - |
+| 12. Unknown Plant Tracking | 4/4 | Complete   | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |

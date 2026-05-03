@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Completed 12-03-PLAN.md (TRACK-03 dev-tools unknown plants report)
-last_updated: "2026-05-03T12:36:19.860Z"
+stopped_at: Completed 12-02-PLAN.md (TRACK-02 catalog-miss gate in getEnrichedPlantData)
+last_updated: "2026-05-03T12:37:09.689Z"
 last_activity: "2026-05-03 — Phase 11 complete. DATA-01/02/03 verified (31/31 smoke + live mismatch validator). DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness/indoor fields — 0/5 fixture species achieve threshold. Implementation is correct; external API paywall is root cause. Code is forward-compatible for future API upgrade."
 progress:
   total_phases: 15
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 12
-  completed_plans: 12
+  completed_plans: 13
   percent: 0
 ---
 
@@ -73,6 +73,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 12-unknown-plant-tracking]: Phase 12-00: 7 TRACK-01 assertSkippableAsync placeholders wired in smoke runner; flip SKIP→PASS when Plan 01 lands trackUnknownPlant + getUnknownPlantsReport
 - [Phase 12-unknown-plant-tracking]: Smoke runner P1.1-P1.5 stub imports changed from cache-busted bare URL so removeItem operates on same Map singleton as tracker; dual try/catch pattern for silent fire-and-forget service
 - [Phase 12-unknown-plant-tracking]: Alert.alert for dev report (not Modal) per CONTEXT.md lock — dev-only feature
+- [Phase 12-unknown-plant-tracking]: TRACK-02: findPlantInDatabase used as catalog-miss gate in getEnrichedPlantData; fire-and-forget void trackUnknownPlant(plantName).catch(() => {}); only plantName passed (commonName/family undefined at this call site)
 
 ### Pending Todos
 
@@ -86,6 +87,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T12:36:19.858Z
-Stopped at: Completed 12-03-PLAN.md (TRACK-03 dev-tools unknown plants report)
+Last session: 2026-05-03T12:37:09.687Z
+Stopped at: Completed 12-02-PLAN.md (TRACK-02 catalog-miss gate in getEnrichedPlantData)
 Resume file: None
