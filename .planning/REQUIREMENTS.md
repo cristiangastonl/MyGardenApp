@@ -25,7 +25,7 @@
 
 - [x] **TRACK-01**: New service `src/services/unknownPlantTracker.ts` exports `trackUnknownPlant(scientificName, commonName, family)` and `getUnknownPlantsReport()` writing to AsyncStorage key `@unknown_plants` (Record<scientificName, UnknownPlantEntry>)
 - [ ] **TRACK-02**: `getEnrichedPlantData()` calls `trackUnknownPlant` (fire-and-forget, non-blocking) when `getPlantById(scientificName)` returns no curated entry — BEFORE the Perenual fallback chain
-- [ ] **TRACK-03**: Settings → Dev tools section shows `getUnknownPlantsReport()` sorted desc by count (read-only — used to prioritize future expansion phases)
+- [x] **TRACK-03**: Settings → Dev tools section shows `getUnknownPlantsReport()` sorted desc by count (read-only — used to prioritize future expansion phases)
 
 ### Gesture + Bottom-Sheet Infrastructure (INFRA)
 
@@ -198,7 +198,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | DATA-04 | Phase 11 | Pending |
 | TRACK-01 | Phase 12 | Complete |
 | TRACK-02 | Phase 12 | Pending |
-| TRACK-03 | Phase 12 | Pending |
+| TRACK-03 | Phase 12 | Complete |
 | INFRA-01 | Phase 13 | Pending |
 | INFRA-02 | Phase 13 | Pending |
 | INFRA-03 | Phase 13 | Pending |
