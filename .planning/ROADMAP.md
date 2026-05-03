@@ -249,7 +249,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
-| 12. Unknown Plant Tracking | 4/4 | Complete   | 2026-05-03 | - |
+| 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | v1.2 | 0/TBD | Not started | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |

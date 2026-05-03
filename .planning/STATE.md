@@ -4,7 +4,7 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
 stopped_at: Completed 12-02-PLAN.md (TRACK-02 catalog-miss gate in getEnrichedPlantData)
-last_updated: "2026-05-03T12:37:09.689Z"
+last_updated: "2026-05-03T12:40:24.773Z"
 last_activity: "2026-05-03 — Phase 11 complete. DATA-01/02/03 verified (31/31 smoke + live mismatch validator). DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness/indoor fields — 0/5 fixture species achieve threshold. Implementation is correct; external API paywall is root cause. Code is forward-compatible for future API upgrade."
 progress:
   total_phases: 15
