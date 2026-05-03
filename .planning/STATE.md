@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: planning
-stopped_at: Completed 11-03-PLAN.md
-last_updated: "2026-05-03T02:30:00.000Z"
-last_activity: "2026-05-01 — Roadmap created. 15 phases (10-24), 74/74 v1.2 requirements mapped. GAM split applied: GAM-03/04 land in Phase 18 (PlantCard); GAM-01/02/05 land in Phase 22."
+stopped_at: Completed 11-03-PLAN.md (Phase 11 closed with DATA-04 FINDING)
+last_updated: "2026-05-03T02:33:22.474Z"
+last_activity: "2026-05-03 — Phase 11 complete. DATA-01/02/03 verified (31/31 smoke + live mismatch validator). DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness/indoor fields — 0/5 fixture species achieve threshold. Implementation is correct; external API paywall is root cause. Code is forward-compatible for future API upgrade."
 progress:
   total_phases: 15
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 8
-  completed_plans: 8
+  completed_plans: 9
   percent: 0
 ---
 
