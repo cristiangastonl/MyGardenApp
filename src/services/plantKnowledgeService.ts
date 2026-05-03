@@ -1,5 +1,7 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { DbPlantKnowledge, DbPlantKnowledgeInsert } from '../types/database';
+import { findPlantInDatabase } from '../utils/plantIdentification';
+import { trackUnknownPlant } from './unknownPlantTracker';
 
 /**
  * Escape special characters that have meaning in PostgREST filter strings
@@ -485,6 +487,12 @@ export async function getEnrichedPlantData(
     imageUrl: null,
     source: 'default',
   };
+
+  // TRACK-02: Log catalog miss before Perenual fallback (fire-and-forget; never blocks).
+  // Uses findPlantInDatabase (NOT getPlantById, which is @deprecated and slug-based).
+  if (!findPlantInDatabase(plantName)) {
+    void trackUnknownPlant(plantName).catch(() => {});
+  }
 
   // Try to get from cache or API
   const result = await searchPlantKnowledge(plantName);
