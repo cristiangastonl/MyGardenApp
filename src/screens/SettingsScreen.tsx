@@ -14,6 +14,7 @@ import { generatePlantAlerts } from '../utils/plantAlerts';
 import { getEffectiveSeason } from '../utils/seasonality';
 import { Location } from '../types';
 import i18n, { setLanguage } from '../i18n';
+import { getUnknownPlantsReport } from '../services/unknownPlantTracker';
 
 interface GeocodingResult {
   id: number;
@@ -445,6 +446,32 @@ export default function SettingsScreen() {
               onPress={() => showPaywall('dev_test')}
             >
               <Text style={styles.devButtonText}>{t('settings.showPaywall')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.devButton}
+              onPress={async () => {
+                const report = await getUnknownPlantsReport();
+                if (report.length === 0) {
+                  Alert.alert(
+                    t('settings.unknownPlantsReportTitle'),
+                    t('settings.unknownPlantsReportEmpty')
+                  );
+                  return;
+                }
+                const body = report
+                  .map((e) =>
+                    t('settings.unknownPlantsReportFormatRow', {
+                      count: e.count,
+                      name: e.commonName ? `${e.scientificName} (${e.commonName})` : e.scientificName,
+                      lastSeen: e.lastSeen.slice(0, 10),
+                    })
+                  )
+                  .join('\n');
+                Alert.alert(t('settings.unknownPlantsReportTitle'), body);
+              }}
+            >
+              <Text style={styles.devButtonText}>{t('settings.unknownPlantsReport')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
