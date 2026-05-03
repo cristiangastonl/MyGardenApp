@@ -5,6 +5,8 @@ import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import * as Notifications from 'expo-notifications';
 import {
   useFonts,
@@ -372,13 +374,17 @@ function AppContentFullInner({
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <StorageProvider>
-        <PremiumProvider>
-          {Features.AUTH ? <AppContentFull /> : <AppContentMVP />}
-        </PremiumProvider>
-      </StorageProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <BottomSheetModalProvider>
+        <SafeAreaProvider>
+          <StorageProvider>
+            <PremiumProvider>
+              {Features.AUTH ? <AppContentFull /> : <AppContentMVP />}
+            </PremiumProvider>
+          </StorageProvider>
+        </SafeAreaProvider>
+      </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   );
 }
 
