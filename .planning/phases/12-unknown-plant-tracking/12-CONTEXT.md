@@ -49,10 +49,12 @@ Locked from REQUIREMENTS.md: TRACK-01, TRACK-02, TRACK-03.
 ### Call site (TRACK-02)
 
 - **Where:** `src/services/plantKnowledgeService.ts`, inside `getEnrichedPlantData()` (currently lines 468-510).
-- **Trigger condition:** call `trackUnknownPlant(scientificName, commonName, family)` **BEFORE** the `searchPlantKnowledge(plantName)` Perenual fallback chain, when `getPlantById(scientificName)` from `src/data/plantDatabase.ts` returns `undefined` (i.e., not in the curated catalog).
+- **Lookup function (corrected per RESEARCH.md):** use `findPlantInDatabase(plantName)` from `src/utils/plantIdentification.ts`, NOT `getPlantById` (which is `@deprecated` since Phase 8 and takes a slug, not a name). `findPlantInDatabase` matches against `PlantDBEntry.scientificName` with fuzzy genus-level fallback — exactly the right semantics for "is this plant in our curated catalog".
+- **Trigger condition:** call `trackUnknownPlant(scientificName, commonName, family)` **BEFORE** the `searchPlantKnowledge(plantName)` Perenual fallback chain, when `findPlantInDatabase(plantName)` returns `undefined` (i.e., not in the curated catalog).
   - REQUIREMENTS.md TRACK-02 wording: "BEFORE the Perenual fallback chain". The order matters: track THEN fall through to Perenual, so the tracking signal is captured even if Perenual returns nothing.
-- **Fire-and-forget invocation:** `void trackUnknownPlant(scientificName, commonName, family).catch(() => {})`. The `void` operator + `.catch` ensures no unhandled promise rejection AND no `await` (zero added latency per success criterion #3 in ROADMAP).
-- **Field sourcing:** at the call site we have `plantName` (the search query passed in). We do NOT yet have `scientificName`/`commonName`/`family`. The tracker should be called with `plantName` as the `scientificName` parameter when the catalog miss happens — it's a best-effort signal. After the Perenual response arrives, we could OPTIONALLY enrich the entry with the real `scientificName` from Perenual, but that's scope creep — the simple "track on miss with the input name" path is enough for prioritization.
+  - The `getEnrichedPlantData` function currently has NO catalog check — it goes straight to Perenual at line 491. Plan 12 adds the lookup + tracker invocation as a 3-line insertion before that call.
+- **Fire-and-forget invocation:** `void trackUnknownPlant(plantName).catch(() => {})`. The `void` operator + `.catch` ensures no unhandled promise rejection AND no `await` (zero added latency per success criterion #3 in ROADMAP).
+- **Field sourcing (per RESEARCH.md):** at the call site we have `plantName` only — typically the user's input or PlantNet's `commonName` (the calling code in `usePlantIdentification.ts` passes `plant.commonName`). We do NOT have a guaranteed scientific name OR `family`. Track with `plantName` as the canonical key; `commonName` and `family` parameters stay optional and can be left undefined. Enrichment from Perenual response is explicitly out of scope (RESEARCH.md confirms "best-effort signal" is the correct stance).
 
 ### Settings UI (TRACK-03)
 
@@ -87,9 +89,10 @@ Locked from REQUIREMENTS.md: TRACK-01, TRACK-02, TRACK-03.
 - `.planning/phases/11-perenual-data-quality/11-VERIFICATION.md` — DATA-04 finding (Perenual free-tier paywall on family/type) — directly relevant to TRACK because tracking provides an alternative prioritization signal.
 
 ### Source files of interest
-- `src/services/plantKnowledgeService.ts:468-510` (`getEnrichedPlantData`) — the call site for TRACK-02. The catalog miss check needs `getPlantById(scientificName)` from `plantDatabase.ts`.
-- `src/data/plantDatabase.ts:1671` (`getPlantById`) — exports the curated-catalog lookup. Returns `undefined` when not in catalog → that's the "unknown plant" signal.
-- `src/screens/SettingsScreen.tsx:421-` — existing Dev tools section pattern (`__DEV__` guard, TouchableOpacity + Alert.alert pattern). New report button slots in here.
+- `src/services/plantKnowledgeService.ts:468-510` (`getEnrichedPlantData`) — the call site for TRACK-02. Currently no catalog check — Plan 12 adds `findPlantInDatabase(plantName)` lookup + fire-and-forget tracker invocation immediately before line 491 (`searchPlantKnowledge(plantName)`).
+- `src/utils/plantIdentification.ts` (`findPlantInDatabase`) — correct catalog-lookup function. Returns `PlantDBEntry | undefined`. Matches by `scientificName` with fuzzy genus-level fallback. NOT `getPlantById` (deprecated since Phase 8).
+- `src/data/plantDatabase.ts:1671` (`getPlantById`) — DEPRECATED, takes a slug not a scientific name. DO NOT use as the catalog-miss gate.
+- `src/screens/SettingsScreen.tsx:421-` — existing Dev tools section pattern (`__DEV__` guard, TouchableOpacity + Alert.alert pattern). New report button slots between "Show Paywall" and "Load v0 fixture" — same `styles.devButton` style.
 - `src/i18n/locales/{en,es}/common.json` (search `settings.devTools` to find current dev keys) — add new `settings.unknownPlants*` keys with locale parity.
 
 ### Existing patterns to mirror
