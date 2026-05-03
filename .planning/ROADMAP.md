@@ -79,7 +79,11 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. Identifying an Araceae/tropical plant returns `humidity: 'alta'`; identifying a cactus returns `humidity: 'baja'`
   3. Querying a species name that doesn't match the top Perenual result returns `null` (no garbage cached)
   4. Test fixture of 5 known species shows `tempMax ≠ 35` and `humidity ≠ null` in ≥80% of cases
-**Plans**: TBD
+**Plans:** 4 plans
+  - [ ] 11-00-PLAN.md — Wave 0 scaffold: smoke-phase11.mjs runner + 2 import-stub modules (Nyquist gate)
+  - [ ] 11-01-PLAN.md — Edge function: isGoodMatch validator + PerenualPlantDetail family/type schema (DATA-01)
+  - [ ] 11-02-PLAN.md — Client service: parseHardiness reads .max + inferHumidity + classifyTempMaxFallback + schema parity (DATA-02, DATA-03)
+  - [ ] 11-03-PLAN.md — Manual checkpoints: redeploy edge function + 5-species fixture verification (DATA-04)
 
 ### Phase 12: Unknown Plant Tracking
 **Goal**: Every time a user identifies a plant not in the curated catalog, that species is silently logged so future expansion waves can be prioritized by real user demand
