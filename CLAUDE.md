@@ -17,6 +17,7 @@ npm run check:images          # Pre-submit: catalog imageUrl 200 OK (network)
 
 # Supabase Edge Functions
 source .envrc && supabase functions deploy identify-plant
+source .envrc && supabase functions deploy get-plant-care
 source .envrc && supabase secrets set KEY=value
 ```
 
@@ -81,8 +82,8 @@ When `Features.AUTH` is `false`, AuthProvider is skipped entirely. AppContent go
 - Client in `src/lib/supabase.ts` — Uses `expo-secure-store` for session (localStorage on web)
 - Env vars: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY` in `.env`
 - RLS enabled on all tables — users only access their own data (`auth.uid() = user_id`)
-- Edge functions in `supabase/functions/`: `identify-plant`, `diagnose-plant`, `chat-diagnosis`, `waitlist`
-- Secrets: `PLANTNET_API_KEY`, `GEMINI_API_KEY` configured in Supabase dashboard
+- Edge functions in `supabase/functions/`: `identify-plant`, `diagnose-plant`, `chat-diagnosis`, `waitlist`, `get-plant-care`
+- Secrets: `PLANTNET_API_KEY`, `GEMINI_API_KEY`, `PERENUAL_API_KEY` configured in Supabase dashboard (set via `source .envrc && supabase secrets set PERENUAL_API_KEY=<value>`)
 
 ## Design System (MUST follow)
 
@@ -197,3 +198,5 @@ These failures are documented in the v1.1 device-test backlog. Image upload step
 ## Security
 
 **Never commit** `.env` or `.envrc` (both in .gitignore). These contain Supabase keys and CLI tokens.
+
+**Pre-submit grep guard (Phase 10 SEC-01):** `EXPO_PUBLIC_PERENUAL_API_KEY` MUST NOT appear in `.env`, `.env.example`, `app.json`, or anywhere under `src/`. The Perenual API key lives ONLY in Supabase secrets (`PERENUAL_API_KEY`) and is accessed server-side via `Deno.env.get` in `supabase/functions/get-plant-care/index.ts`. Verify with: `grep -rc "EXPO_PUBLIC_PERENUAL_API_KEY" src/ .env .env.example app.json` — every line must show count 0. The pre-Phase-10 leaked key has been rotated as of v1.2.
