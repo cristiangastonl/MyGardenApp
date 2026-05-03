@@ -118,6 +118,7 @@ Shipped v1.1 Precision Care milestone (39 plans across 6 phases, 4 waves of comp
 | Single-compile-path smoke runner (`typescript.transpileModule`) instead of jest/vitest | Zero new framework install; 752 assertions across 5 phase runners; carried Phase 4→9 | ✓ Good (v1.1) |
 | Edge function dual-payload via discriminator (`!!ctx.waterSchedule`) | Backward-compat grace window for old clients; v1.2 sunset target | ⚠️ Revisit v1.2 |
 | Defer manual ops (device tests, edge function deploys, image uploads) to end-of-milestone | Per user preference — full E2E test more efficient than per-phase smoke | ✓ Good (v1.1) |
+| Perenual API key moved server-side via get-plant-care edge function (was in client bundle since v1.0 as EXPO_PUBLIC_PERENUAL_API_KEY; rotation deferred for trusted-test-build context — to be done before public ship) | Key was accidentally exposed in client bundle since v1.0; Phase 10 moves it exclusively to Supabase secrets (Deno.env.get). Rotation deferred: build is distributed to 5 trusted testers only, not a public APK — risk bounded. Rotate before any public store release. | ✓ Done (v1.2 Phase 10) |
 
 ---
 *Last updated: 2026-05-02 after v1.2 Recommendation-First Plant Guide milestone defined (6 themes from UAT findings + UX diagnostic). Previous: v1.1 Precision Care shipped (39 plans / 6 phases).*
