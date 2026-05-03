@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-status: planning
-stopped_at: Phase 13 context gathered
-last_updated: "2026-05-03T13:07:44.196Z"
-last_activity: "2026-05-03 — Phase 11 complete. DATA-01/02/03 verified (31/31 smoke + live mismatch validator). DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness/indoor fields — 0/5 fixture species achieve threshold. Implementation is correct; external API paywall is root cause. Code is forward-compatible for future API upgrade."
+status: executing
+stopped_at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
+last_updated: "2026-05-03T14:19:46.352Z"
+last_activity: "2026-05-03 — Phase 13 Plan 00 complete. scripts/smoke-phase13.mjs created (218 LOC, executable). Wave 0 baseline: PASS 6/6 (+16 skipped). 16 assertSkippable placeholders wired for INFRA-01/02/03/04 — flip SKIP→PASS as Plans 13-01/02 land deps, App.tsx providers, Skeleton/haptics/useDismissOnPaywall, SettingsScreen dev block, en/es i18n parity."
 progress:
   total_phases: 15
   completed_phases: 3
-  total_plans: 12
-  completed_plans: 13
-  percent: 0
+  total_plans: 16
+  completed_plans: 14
+  percent: 88
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 11 of 24 (Perenual Data Quality) — COMPLETE WITH FINDING
-Plan: 11-03 complete (4/4 plans in Phase 11)
-Status: Phase 11 closed; ready to plan Phase 12
-Last activity: 2026-05-03 — Phase 11 complete. DATA-01/02/03 verified (31/31 smoke + live mismatch validator). DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness/indoor fields — 0/5 fixture species achieve threshold. Implementation is correct; external API paywall is root cause. Code is forward-compatible for future API upgrade.
+Phase: 13 of 24 (Gesture + Bottom-Sheet Infrastructure) — IN PROGRESS
+Plan: 13-00 complete (1/4 plans in Phase 13)
+Status: Phase 13 Wave 0 scaffold landed; ready to execute Plan 13-01 (Wave 1 — INFRA-01 deps + INFRA-02 App.tsx provider wrap + babel)
+Last activity: 2026-05-03 — Phase 13 Plan 00 complete. scripts/smoke-phase13.mjs created (218 LOC, executable). Wave 0 baseline: PASS 6/6 (+16 skipped). 16 assertSkippable placeholders wired for INFRA-01/02/03/04 — flip SKIP→PASS as Plans 13-01/02 land deps, App.tsx providers, Skeleton/haptics/useDismissOnPaywall, SettingsScreen dev block, en/es i18n parity.
 
-Progress: [░░░░░░░░░░] 0% (v1.2 not started)
+Progress: [█████████░] 88% (v1.2 in progress — 14/16 plans complete in tracked window)
 
 ## Performance Metrics
 
@@ -74,6 +74,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 12-unknown-plant-tracking]: Smoke runner P1.1-P1.5 stub imports changed from cache-busted bare URL so removeItem operates on same Map singleton as tracker; dual try/catch pattern for silent fire-and-forget service
 - [Phase 12-unknown-plant-tracking]: Alert.alert for dev report (not Modal) per CONTEXT.md lock — dev-only feature
 - [Phase 12-unknown-plant-tracking]: TRACK-02: findPlantInDatabase used as catalog-miss gate in getEnrichedPlantData; fire-and-forget void trackUnknownPlant(plantName).catch(() => {}); only plantName passed (commonName/family undefined at this call site)
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: smoke-phase13.mjs sheds ts-transpile compilation block from Phase 11/12 pattern — Phase 13 is config + JSX wrapping (not runtime logic), so file-content asserts via readFileSync + regex are sufficient and ~5x faster
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: provider-count placeholders (BottomSheetModalProvider + GestureHandlerRootView) locked at `c === 3` (1 import + 1 JSX opening tag + 1 JSX closing tag) — encodes ROADMAP success criterion as smoke-runner invariant; SKIP at c=0 (Wave 0 baseline), PASS only at c=3 (locked shape)
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: babel.config.js conditional placeholder always evaluates (no SKIP) — absence is preferred state under Expo SDK 54 + babel-preset-expo auto-management; returns true when file absent → counts as PASS on Wave 0 baseline
 
 ### Pending Todos
 
@@ -87,6 +90,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T13:07:44.194Z
-Stopped at: Phase 13 context gathered
-Resume file: .planning/phases/13-gesture-bottom-sheet-infrastructure/13-CONTEXT.md
+Last session: 2026-05-03T14:19:46.350Z
+Stopped at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
+Resume file: None
