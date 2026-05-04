@@ -29,8 +29,8 @@
 
 ### Gesture + Bottom-Sheet Infrastructure (INFRA)
 
-- [ ] **INFRA-01**: 4 native dependencies installed via `npx expo install`: `react-native-reanimated@^4`, `react-native-gesture-handler` (compatible v4), `@gorhom/bottom-sheet@^5.1.8`, `expo-haptics`
-- [ ] **INFRA-02**: `App.tsx` provider hierarchy updated to wrap `StorageProvider` with `GestureHandlerRootView` and add `BottomSheetModalProvider` — present in BOTH `AppContentMVP` and `AppContentFullInner` (Two-AppContent-paths discipline; grep count assertion = 2)
+- [x] **INFRA-01**: 4 native dependencies installed via `npx expo install`: `react-native-reanimated@^4`, `react-native-gesture-handler` (compatible v4), `@gorhom/bottom-sheet@^5.1.8`, `expo-haptics`
+- [x] **INFRA-02**: `App.tsx` provider hierarchy updated to wrap `StorageProvider` with `GestureHandlerRootView` and add `BottomSheetModalProvider` — single App-root wrap above the `Features.AUTH` branch; both AppContent paths inherit context (grep count assertion = 3 per ROADMAP success-criterion adjustment)
 - [x] **INFRA-03**: Custom `Skeleton` component using `expo-linear-gradient` + Reanimated v4 `withRepeat/withTiming` (30 LOC; replaces full-screen `LoadingScreen` for inline loads)
 - [x] **INFRA-04**: Verified on iOS + Android device (Expo Go or dev client) that bottom-sheet gestures work without Z-order glitch with App-level `PaywallModal`
 
@@ -199,8 +199,8 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | TRACK-01 | Phase 12 | Complete |
 | TRACK-02 | Phase 12 | Complete |
 | TRACK-03 | Phase 12 | Complete |
-| INFRA-01 | Phase 13 | Pending |
-| INFRA-02 | Phase 13 | Pending |
+| INFRA-01 | Phase 13 | Complete |
+| INFRA-02 | Phase 13 | Complete |
 | INFRA-03 | Phase 13 | Complete |
 | INFRA-04 | Phase 13 | Complete |
 | EDU-01 | Phase 14 | Pending |

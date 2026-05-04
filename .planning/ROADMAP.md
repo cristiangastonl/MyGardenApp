@@ -254,7 +254,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
-| 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete   | 2026-05-04 | - |
+| 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |

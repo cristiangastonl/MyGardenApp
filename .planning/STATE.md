@@ -4,7 +4,7 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
 stopped_at: Completed 13-02-PLAN.md (consumer primitives + dev-tools test sheet — INFRA-03 + INFRA-04 closed)
-last_updated: "2026-05-04T21:37:06.607Z"
+last_updated: "2026-05-04T22:22:59.482Z"
 last_activity: "2026-05-04 — Phase 13 Plan 02 complete. 3 new files: src/components/Skeleton.tsx (53 LOC, Reanimated v4 shimmer), src/utils/haptics.ts (50 LOC, triggerHaptic + HapticKind), src/hooks/useDismissOnPaywall.ts (22 LOC, close-then-trigger contract). 1 modified file: src/screens/SettingsScreen.tsx (+33 lines — testSheetRef + openTestSheet/closeTestSheet handlers + __DEV__-block TouchableOpacity + Skeleton demo + screen-level <BottomSheetModal> sibling of ScrollView). 4 new dev-tool i18n keys per locale (en + es parity at 78 settings.* keys). Smoke: PASS 22/22, tsc PASS, check:i18n-keys PASS."
 progress:
   total_phases: 15
