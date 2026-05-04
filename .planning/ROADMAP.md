@@ -40,7 +40,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle (completed 2026-05-03)
 - [x] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity` (completed 2026-05-03; DATA-04 FINDING: free-tier API paywall; see 11-03-SUMMARY.md)
 - [x] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings (completed 2026-05-03)
-- [ ] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component
+- [x] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component (completed 2026-05-04)
 - [ ] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard
 - [ ] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan
 - [ ] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema
@@ -108,7 +108,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. `grep -c "BottomSheetModalProvider" App.tsx` returns 3 (1 import + 1 JSX opening tag + 1 JSX closing tag — single App-root wrap covers both AppContent paths via React context per locked CONTEXT.md decision; success-criterion adjustment from original "=== 2" reflects literal grep semantics with locked JSX shape)
   3. A test bottom sheet opens and closes with correct gesture behavior and no z-order conflict with the existing `PaywallModal`
   4. The custom `Skeleton` component renders a shimmer animation on a device (not just simulator)
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
   - [ ] 13-00-PLAN.md — Wave 0 scaffold: smoke-phase13.mjs runner with 5 W0.* scaffolds + 1 babel-conditional + 15 Plan 13-01/02 placeholders (file-content asserts only — no transpileModule)
   - [ ] 13-01-PLAN.md — Wave 1: install 4 native packages via npx expo install (INFRA-01) + wire GestureHandlerRootView + BottomSheetModalProvider into App.tsx default export above Features.AUTH branch (INFRA-02)
   - [ ] 13-02-PLAN.md — Wave 2: Skeleton.tsx + haptics.ts (triggerHaptic + HapticKind) + useDismissOnPaywall.ts hook + SettingsScreen __DEV__ test BottomSheetModal + Skeleton demo + 3 i18n keys × 2 locales (INFRA-03 + INFRA-04 verification surface)
@@ -254,7 +254,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
-| 13. Gesture + Bottom-Sheet Infrastructure | 3/4 | In Progress|  | - |
+| 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete   | 2026-05-04 | - |
 | 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
