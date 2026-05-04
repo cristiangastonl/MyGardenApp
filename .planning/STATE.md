@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: executing
-stopped_at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
-last_updated: "2026-05-04T02:43:17.542Z"
-last_activity: "2026-05-03 — Phase 13 Plan 00 complete. scripts/smoke-phase13.mjs created (218 LOC, executable). Wave 0 baseline: PASS 6/6 (+16 skipped). 16 assertSkippable placeholders wired for INFRA-01/02/03/04 — flip SKIP→PASS as Plans 13-01/02 land deps, App.tsx providers, Skeleton/haptics/useDismissOnPaywall, SettingsScreen dev block, en/es i18n parity."
+stopped_at: Completed 13-02-PLAN.md (consumer primitives + dev-tools test sheet)
+last_updated: "2026-05-04T03:50:28Z"
+last_activity: "2026-05-04 — Phase 13 Plan 02 complete. Skeleton.tsx + haptics.ts + useDismissOnPaywall.ts + SettingsScreen __DEV__ test sheet + 4 dev-tool i18n keys (en/es parity at 78 settings.* keys). Smoke runner now reports PASS 22/22 (no skips). INFRA-03 + INFRA-04 closed. Plan 13-03 (manual device verification checkpoint) is the next gate."
 progress:
   total_phases: 15
   completed_phases: 3
   total_plans: 16
-  completed_plans: 15
+  completed_plans: 16
   percent: 88
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 13 of 24 (Gesture + Bottom-Sheet Infrastructure) — IN PROGRESS
-Plan: 13-00 complete (1/4 plans in Phase 13)
-Status: Phase 13 Wave 0 scaffold landed; ready to execute Plan 13-01 (Wave 1 — INFRA-01 deps + INFRA-02 App.tsx provider wrap + babel)
-Last activity: 2026-05-03 — Phase 13 Plan 00 complete. scripts/smoke-phase13.mjs created (218 LOC, executable). Wave 0 baseline: PASS 6/6 (+16 skipped). 16 assertSkippable placeholders wired for INFRA-01/02/03/04 — flip SKIP→PASS as Plans 13-01/02 land deps, App.tsx providers, Skeleton/haptics/useDismissOnPaywall, SettingsScreen dev block, en/es i18n parity.
+Plan: 13-02 complete (3/4 plans in Phase 13 — Wave 0 scaffold, Wave 1 deps + App.tsx wrap, Wave 2 consumer primitives + dev-tools test sheet)
+Status: Phase 13 INFRA-01/02/03/04 all closed at the code level. Smoke runner PASS 22/22 (no skips). Plan 13-03 (manual device verification checkpoint, autonomous: false) is the next gate — iOS + Android dev clients need to be rebuilt and the Test bottom sheet + Skeleton shimmer surfaces verified on real hardware. Bug-watch on @gorhom/bottom-sheet v5.2.13 + Expo SDK 54 still active until Plan 13-03 device test passes.
+Last activity: 2026-05-04 — Phase 13 Plan 02 complete. 3 new files: src/components/Skeleton.tsx (53 LOC, Reanimated v4 shimmer), src/utils/haptics.ts (50 LOC, triggerHaptic + HapticKind), src/hooks/useDismissOnPaywall.ts (22 LOC, close-then-trigger contract). 1 modified file: src/screens/SettingsScreen.tsx (+33 lines — testSheetRef + openTestSheet/closeTestSheet handlers + __DEV__-block TouchableOpacity + Skeleton demo + screen-level <BottomSheetModal> sibling of ScrollView). 4 new dev-tool i18n keys per locale (en + es parity at 78 settings.* keys). Smoke: PASS 22/22, tsc PASS, check:i18n-keys PASS.
 
-Progress: [█████████░] 88% (v1.2 in progress — 14/16 plans complete in tracked window)
+Progress: [█████████░] 88% (v1.2 in progress — 16/16 plans complete in tracked window; Phase 13 Plans 03 + Phases 14-24 still ahead)
 
 ## Performance Metrics
 
@@ -77,6 +77,12 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: smoke-phase13.mjs sheds ts-transpile compilation block from Phase 11/12 pattern — Phase 13 is config + JSX wrapping (not runtime logic), so file-content asserts via readFileSync + regex are sufficient and ~5x faster
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: provider-count placeholders (BottomSheetModalProvider + GestureHandlerRootView) locked at `c === 3` (1 import + 1 JSX opening tag + 1 JSX closing tag) — encodes ROADMAP success criterion as smoke-runner invariant; SKIP at c=0 (Wave 0 baseline), PASS only at c=3 (locked shape)
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-00: babel.config.js conditional placeholder always evaluates (no SKIP) — absence is preferred state under Expo SDK 54 + babel-preset-expo auto-management; returns true when file absent → counts as PASS on Wave 0 baseline
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-01: Used `npx expo install` (NEVER `npm install`) for all 4 native deps per CONTEXT.md lock; @gorhom/bottom-sheet resolved to ^5.2.13 (latest 5.2.x patch under the ^5.2.11 caret); single App-root wrap above Features.AUTH branch — both AppContent paths inherit context via React context propagation, no per-AppContent duplication
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: Skeleton ships with NO variants exported (YAGNI lock) — Phase 14/21 callers will add SkeletonText/Card/Image when a real consumer needs them; fixed 200px translateX sweep range (no measured-width threading)
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: triggerHaptic returns void synchronously — Haptics.*Async promises explicitly discarded, no await/then; mirrors Phase 12 unknownPlantTracker.ts silent fire-and-forget pattern with try/catch + console.warn in __DEV__ + swallow in production
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: useDismissOnPaywall ships unused in Phase 13 — Phase 14 (educational modal) and Phase 21 (journal quick-add) will be the first consumers, opting in via one-line `useDismissOnPaywall(sheetRef)` after their `useRef<BottomSheetModal>(null)` line; locks the API surface NOW
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: BottomSheetModal placement at screen-component level (sibling of ScrollView, NOT inside) — gorhom's portal-based modal needs a stable parent for portaling to App-root BottomSheetModalProvider
+- [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: i18n convention discovered — common.json file has NO top-level `common.*` namespace despite the file name; close-button keys live at `diagnosis.close` + `plantDetailModal.close`. Plan 13-02 added `settings.devTestBottomSheetClose` instead of reusing non-existent `common.close` (Rule 3 deviation). Phase 24 DOCS may want to document this convention.
 
 ### Pending Todos
 
@@ -84,12 +90,12 @@ None yet for v1.2.
 
 ### Blockers/Concerns
 
-- **Phase 13 (INFRA):** Active bug reports on `@gorhom/bottom-sheet` v5.2.11 with Expo SDK 54 (issues #2528, #2471). Device test required before building any bottom-sheet UI. Fallback: custom `Animated.View` + `PanResponder` for 2-3 action-sheet use cases.
+- **Phase 13 (INFRA):** Active bug reports on `@gorhom/bottom-sheet` v5.2.11+ with Expo SDK 54 (issues #2528, #2471). Code installation + provider wrap + dev-tools test surface all clean (Plans 13-00/01/02). Plan 13-03 (manual device verification checkpoint) is the gate — iOS + Android dev clients need to be rebuilt and the Test bottom sheet exercised. Fallback if regression: custom `Animated.View` + `PanResponder` for 2-3 action-sheet use cases.
 - **Phase 15 (CAT Wave A):** Wave 3.6 trepadoras/colgantes species names are TBD — one research pass needed at Phase 16 planning time.
 - **v1.1 manual ops backlog:** Device tests (~27 scenarios), edge function deploys (`chat-diagnosis` + `diagnose-plant`), 15 catalog image uploads — all batched at milestone end per user preference.
 
 ## Session Continuity
 
-Last session: 2026-05-04T02:43:17.540Z
-Stopped at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
+Last session: 2026-05-04T03:50:28Z
+Stopped at: Completed 13-02-PLAN.md (consumer primitives + dev-tools test sheet — INFRA-03 + INFRA-04 closed)
 Resume file: None
