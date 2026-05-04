@@ -213,6 +213,7 @@
     "unknownPlantsReportFormatRow": "{{count}}× {{name}} (última vez: {{lastSeen}})",
     "devTestBottomSheet": "Probar hoja inferior",
     "devTestBottomSheetContent": "Verificación de infraestructura Fase 13 — gestos, hoja y haptics conectados.",
+    "devTestBottomSheetClose": "Cerrar",
     "devSkeletonDemo": "Brillo de skeleton",
     "language": "Idioma",
     "languageDescription": "Elige el idioma de la aplicación.",

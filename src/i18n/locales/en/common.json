@@ -213,6 +213,7 @@
     "unknownPlantsReportFormatRow": "{{count}}× {{name}} (last: {{lastSeen}})",
     "devTestBottomSheet": "Test bottom sheet",
     "devTestBottomSheetContent": "Phase 13 infrastructure check — gestures, sheet, haptics wired.",
+    "devTestBottomSheetClose": "Close",
     "devSkeletonDemo": "Skeleton shimmer",
     "language": "Language",
     "languageDescription": "Choose the app language.",

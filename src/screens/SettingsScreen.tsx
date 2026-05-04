@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Alert, Switch, Linking, Platform, DevSettings } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
 import { LinearGradient } from 'expo-linear-gradient';
+import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { useStorage } from '../hooks/useStorage';
 import { usePremium } from '../hooks/usePremium';
@@ -15,6 +16,7 @@ import { getEffectiveSeason } from '../utils/seasonality';
 import { Location } from '../types';
 import i18n, { setLanguage } from '../i18n';
 import { getUnknownPlantsReport } from '../services/unknownPlantTracker';
+import { Skeleton } from '../components/Skeleton';
 
 interface GeocodingResult {
   id: number;
@@ -74,6 +76,14 @@ export default function SettingsScreen() {
   const [isDetecting, setIsDetecting] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+  // Phase 13 INFRA-04 — dev-only test bottom sheet (regression check + manual verification surface)
+  const testSheetRef = useRef<BottomSheetModal>(null);
+  const openTestSheet = useCallback(() => {
+    testSheetRef.current?.present();
+  }, []);
+  const closeTestSheet = useCallback(() => {
+    testSheetRef.current?.dismiss();
+  }, []);
 
   const detectLocation = async () => {
     setIsDetecting(true);
@@ -499,6 +509,18 @@ export default function SettingsScreen() {
               <Text style={styles.devButtonText}>🧪 Load v0 fixture (smoke test)</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.devButton} onPress={openTestSheet}>
+              <Text style={styles.devButtonText}>{t('settings.devTestBottomSheet')}</Text>
+            </TouchableOpacity>
+
+            {/* Skeleton shimmer demo — INFRA-03 verification surface for manual device test */}
+            <View style={{ marginTop: spacing.md }}>
+              <Text style={[styles.devButtonText, { marginBottom: spacing.xs }]}>
+                {t('settings.devSkeletonDemo')}
+              </Text>
+              <Skeleton width="100%" height={20} />
+            </View>
+
             <TouchableOpacity
               style={[styles.devButton, { backgroundColor: colors.dangerBg }]}
               onPress={() => {
@@ -526,6 +548,22 @@ export default function SettingsScreen() {
 
         <View style={styles.bottomPadding} />
       </ScrollView>
+
+      {/* Phase 13 INFRA-04 verification — dev-only test bottom sheet.
+          Permanent __DEV__ regression check (mirrors Phase 12 unknown-plants report). */}
+      {__DEV__ && (
+        <BottomSheetModal ref={testSheetRef} snapPoints={['25%']}>
+          <BottomSheetView style={{ flex: 1, padding: spacing.lg }}>
+            <Text style={styles.sectionTitle}>{t('settings.devTestBottomSheet')}</Text>
+            <Text style={[styles.sectionDescription, { marginVertical: spacing.md }]}>
+              {t('settings.devTestBottomSheetContent')}
+            </Text>
+            <TouchableOpacity style={styles.devButton} onPress={closeTestSheet}>
+              <Text style={styles.devButtonText}>{t('settings.devTestBottomSheetClose')}</Text>
+            </TouchableOpacity>
+          </BottomSheetView>
+        </BottomSheetModal>
+      )}
     </SafeAreaView>
   );
 }
