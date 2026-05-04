@@ -60,6 +60,7 @@ Locked from REQUIREMENTS.md: INFRA-01, INFRA-02 (with success-criterion adjustme
   > `grep -c "BottomSheetModalProvider" App.tsx === 2` — counts the import statement + a single JSX usage at App root above the `Features.AUTH` branch (single source of truth covers both AppContent paths via React context).
   
   The two-AppContent-paths discipline is still preserved for `<PaywallModal />` (CRIT-4 lock from STATE.md remains exactly as-is for paywall — that pattern is unchanged). For BottomSheet specifically, the App-root wrapper is the cleaner architecture and removes the drift risk.
+- **Final smoke assertion (locked per ROADMAP):** `=== 3` (1 import + 1 opening tag + 1 closing tag) per ROADMAP success-criterion lock. The earlier "=== 2" wording in this CONTEXT.md captured an interim shape (1 import + 1 JSX usage); the executable assertion in `scripts/smoke-phase13.mjs` and the ROADMAP success criterion are both `=== 3` to reflect the literal substring-match count of the locked JSX shape (opening + closing tags counted separately).
 - **Smoke / planner enforcement:** the planner MUST update the success-criterion language in the phase plans (ROADMAP language frozen, but the phase's plan + smoke runner + verification script enforce the adjusted shape). Document the rationale inline so future readers understand the "single wrap" is intentional.
 
 ### PaywallModal Z-order coexistence (INFRA-04)

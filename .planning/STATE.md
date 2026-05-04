@@ -4,13 +4,13 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: executing
 stopped_at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
-last_updated: "2026-05-03T14:19:46.352Z"
+last_updated: "2026-05-04T02:43:17.542Z"
 last_activity: "2026-05-03 — Phase 13 Plan 00 complete. scripts/smoke-phase13.mjs created (218 LOC, executable). Wave 0 baseline: PASS 6/6 (+16 skipped). 16 assertSkippable placeholders wired for INFRA-01/02/03/04 — flip SKIP→PASS as Plans 13-01/02 land deps, App.tsx providers, Skeleton/haptics/useDismissOnPaywall, SettingsScreen dev block, en/es i18n parity."
 progress:
   total_phases: 15
   completed_phases: 3
   total_plans: 16
-  completed_plans: 14
+  completed_plans: 15
   percent: 88
 ---
 
@@ -90,6 +90,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-03T14:19:46.350Z
+Last session: 2026-05-04T02:43:17.540Z
 Stopped at: Completed 13-00-PLAN.md (Wave 0 scaffold runner)
 Resume file: None
