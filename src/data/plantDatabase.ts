@@ -618,6 +618,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 4 en frío. Pellizcá las puntas semanalmente para ramificar.",
+    },
+    placementRecommended: "Sol pleno o parcial — 4-6 horas, mejor luz mañanera.",
+    placementAlternatives: [
+      "Maceta junto a tomates en balcón soleado",
+      "Cantero de aromáticas con perejil y ciboulette",
+      "Mesada interior con luz directa de ventana",
+    ],
+    placementAvoid: "Sol intenso del mediodía sin riego frecuente — se marchita rápido.",
+    whyRationale: "Anual originaria del sudeste asiático tropical, necesita calor y día largo. Si florece, sus hojas amargan; por eso se pellizcan las puntas para mantener producción foliar y prolongar la cosecha.",
   },
   {
     id: "romero",
@@ -643,6 +654,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 21 en frío. Cosechá ramitas para uso culinario sin podar más del tercio.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas directas, en suelo bien drenado.",
+    placementAlternatives: [
+      "Maceta de barro al sol en balcón",
+      "Cantero mediterráneo junto a lavanda y tomillo",
+      "Borde de huerta seca al sol pleno",
+    ],
+    placementAvoid: "Suelo encharcado o sombra densa — pudre raíces rápidamente.",
+    whyRationale: "Arbusto perenne mediterráneo, evolucionó en colinas calcáreas con veranos secos. Sus aceites esenciales protegen del calor; el riego excesivo lo mata más rápido que la sequía. Suelo pobre intensifica el aroma.",
   },
   {
     id: "menta",
@@ -668,6 +690,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 2, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 4 en frío. Mantené humedad constante y cortá estolones invasivos.",
+    },
+    placementRecommended: "Sol parcial — 4 horas mañaneras, evitando sol fuerte de tarde.",
+    placementAlternatives: [
+      "Maceta aislada en patio (siempre — evita que invada)",
+      "Jardinera colgante con drenaje abundante",
+      "Cantero contenedor de aromáticas húmedas",
+    ],
+    placementAvoid: "Plantar directo en el jardín — sus estolones invaden todo el espacio.",
+    whyRationale: "Perenne subtropical húmeda con raíces estolóniferas muy agresivas. Evolucionó en bordes de arroyos donde la humedad permanente y la propagación lateral le dan ventaja competitiva. Por eso siempre se aísla en maceta.",
   },
 
   // ─── HUERTA ───
@@ -695,6 +728,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 2 días en cálido; cada 3 en frío. Tutorá tallos y quitá chupones laterales.",
+    },
+    placementRecommended: "Pleno sol — 8 horas directas con suelo profundo y compostado.",
+    placementAlternatives: [
+      "Maceta de 30+ litros con tutor alto",
+      "Cantero de huerta con copete cerca (repele plagas)",
+      "Bandeja vertical con sistema de tutorado",
+    ],
+    placementAvoid: "Heladas tardías y sombra parcial — no fructifica sin ≥18°C nocturno.",
+    whyRationale: "Solanácea anual de origen andino (Sudamérica), domesticada hace ~7000 años. Su fructificación depende del calor sostenido y luz plena; el riego irregular causa rajado del fruto y podredumbre apical por falta de calcio.",
   },
   {
     id: "pimiento",
@@ -720,6 +764,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 3 en frío. Sembrá tras última helada y tutorá si la variedad lo pide.",
+    },
+    placementRecommended: "Pleno sol — 8 horas y abrigo del viento frío.",
+    placementAlternatives: [
+      "Maceta de 25+ litros con compost",
+      "Cantero junto a tomatera (mismas condiciones)",
+      "Bandeja de balcón cálido y luminoso",
+    ],
+    placementAvoid: "Sombra y heladas tardías — frutos se quedan verdes o se caen las flores.",
+    whyRationale: "Solanácea anual de origen andino y centroamericano. Sus frutos picantes o dulces (capsaicina) evolucionaron como defensa contra mamíferos. Necesita ≥18°C nocturno y polinizadores para que las flores cuajen sin caer.",
   },
   {
     id: "frutilla",
@@ -745,6 +800,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá al pie cada 2 días en cálido; cada 3 en frío. Acolchá con paja para aislar los frutos del suelo.",
+    },
+    placementRecommended: "Sol pleno o parcial — 6 horas, en sustrato suelto y rico.",
+    placementAlternatives: [
+      "Maceta colgante o jardinera al sol",
+      "Cantero con paja de mulch entre plantas",
+      "Bandeja vertical con drenaje generoso",
+    ],
+    placementAvoid: "Frutos en contacto con tierra húmeda — pudren por hongo Botrytis.",
+    whyRationale: "Rosácea perenne de clima templado, se propaga por estolones (runners) en lugar de semilla. Productividad cae después del tercer año; conviene reemplazar plantas viejas. Mojar las hojas favorece hongos: el riego va al pie.",
   },
 
   // ─── FRUTALES ───
@@ -1202,6 +1268,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 2, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 4 en frío. Cosechá tallos exteriores; dejá brotar el centro.",
+    },
+    placementRecommended: "Sol parcial — 4 horas mañaneras; semisombra en verano.",
+    placementAlternatives: [
+      "Maceta junto a la ventana de la cocina",
+      "Cantero de aromáticas frescas con cilantro",
+      "Jardinera al sol mañanero del balcón",
+    ],
+    placementAvoid: "Sol pleno del verano sin riego — se va rápido a flor (bolting).",
+    whyRationale: "Bienal originaria del Mediterráneo oriental, prefiere clima fresco. Florece en su segundo año (de ahí 'bianual'); en huerta se resiembra cada temporada. Las semillas germinan lento porque tienen aceites que retrasan la salida.",
   },
   {
     id: "oregano",
@@ -1227,6 +1304,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Podá fuerte en primavera para renovar la mata.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas; tolera suelo pobre y pedregoso.",
+    placementAlternatives: [
+      "Borde de cantero mediterráneo con romero",
+      "Maceta al sol pleno con drenaje rápido",
+      "Jardinera en muro cálido y soleado",
+    ],
+    placementAvoid: "Sombra densa y suelo encharcado — sabor débil y hongos.",
+    whyRationale: "Perenne mediterránea adaptada a colinas pedregosas con veranos secos. El estrés hídrico concentra los aceites esenciales — riego escaso da más sabor que abono abundante. Tolera heladas y calor extremo, casi sin cuidados.",
   },
   {
     id: "cilantro",
@@ -1252,6 +1340,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 2, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 4 en frío. Sembrá escalonado cada 3 semanas para cosecha continua.",
+    },
+    placementRecommended: "Sol parcial — 4 horas mañaneras; semisombra en verano.",
+    placementAlternatives: [
+      "Maceta en balcón con luz mañanera",
+      "Cantero junto al perejil y la rúcula",
+      "Bandeja interior con luz brillante difusa",
+    ],
+    placementAvoid: "Sol intenso del verano — se va rápido a flor por día largo.",
+    whyRationale: "Anual de origen mediterráneo y Asia Menor, sensible al fotoperíodo: días largos + calor disparan la floración (bolting) y las hojas se vuelven amargas. Por eso conviene sembrar en otoño o primavera temprana, cosechando jóvenes.",
   },
   {
     id: "tomillo",
@@ -1277,6 +1376,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 21 en frío. Podá un tercio en primavera para rejuvenecer la mata.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas, en suelo pedregoso muy drenado.",
+    placementAlternatives: [
+      "Cantera de hierbas con romero y orégano",
+      "Maceta de barro al sol pleno",
+      "Borde de cantero seco como cubresuelo",
+    ],
+    placementAvoid: "Suelo arcilloso y húmedo — pudrición de raíz casi inevitable.",
+    whyRationale: "Subarbusto perenne mediterráneo de hojas diminutas. Sus aceites esenciales (timol) se concentran con sequía y sol pleno; el riego abundante diluye el aroma. Tolera heladas pero muere por exceso de humedad.",
   },
 
   // ─── HUERTA (nuevas) ───
@@ -1304,6 +1414,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 3 en frío. Cosechá hojas exteriores; el centro sigue produciendo.",
+    },
+    placementRecommended: "Sol parcial — 4 horas mañaneras; semisombra en verano.",
+    placementAlternatives: [
+      "Cantero de huerta con suelo rico en humus",
+      "Jardinera en balcón con luz mañanera",
+      "Maceta amplia con compost de lombrices",
+    ],
+    placementAvoid: "Sol pleno del verano — se va a flor (bolting) y se vuelve amarga.",
+    whyRationale: "Asterácea anual de clima fresco; con días largos y calor entra en bolting y la savia se torna amarga. Por eso se siembra escalonadamente y se cosecha temprano. La cosecha por hoja escalera prolonga la productividad varias semanas.",
   },
   {
     id: "pepino",
@@ -1329,6 +1450,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 2 días en cálido; cada 3 en frío. Tutorá la trepadora y atraé polinizadores con flores cerca.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas, con tutor o malla para que trepe.",
+    placementAlternatives: [
+      "Cantero de huerta con malla vertical",
+      "Maceta de 30+ litros con tutor de 1.5 m",
+      "Pérgola o reja al sol pleno",
+    ],
+    placementAvoid: "Sombra parcial y aislamiento de polinizadores — pocos frutos.",
+    whyRationale: "Cucurbitácea anual de origen indio, con flores macho y hembra separadas en la misma planta. Necesita polinización por insectos para cuajar; sin abejas o polinización manual, las flores caen sin frutos. Riego inconsistente da pepinos amargos.",
   },
   {
     id: "zanahoria",
@@ -1354,6 +1486,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá uniforme cada 3 días en cálido; cada 4 en frío. Aclará plantines a 5 cm cuando midan 4 cm.",
+    },
+    placementRecommended: "Pleno sol — 6 horas, en suelo profundo, suelto y sin piedras.",
+    placementAlternatives: [
+      "Cantero de huerta con suelo tamizado profundo",
+      "Maceta de 30+ cm de profundidad",
+      "Bandeja honda de balcón con sustrato suelto",
+    ],
+    placementAvoid: "Suelo compacto o pedregoso — raíces bifurcadas o deformes.",
+    whyRationale: "Apiácea bienal: forma raíz en el primer año y flor en el segundo (en huerta no se deja florecer). Origen euroasiático; necesita suelo profundo y suelto para que la raíz crezca recta. Siembra densa da raíces pequeñas.",
   },
   {
     id: "rucula",
@@ -1379,6 +1522,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 3 en frío. Sembrá escalonado cada 2-3 semanas para cosecha continua.",
+    },
+    placementRecommended: "Sol parcial — 4 horas mañaneras; semisombra en verano.",
+    placementAlternatives: [
+      "Cantero junto a lechuga (mismas condiciones)",
+      "Maceta en balcón con luz mañanera",
+      "Jardinera mediana de 20 cm de profundidad",
+    ],
+    placementAvoid: "Sol pleno del verano — hojas muy picantes y bolting rápido.",
+    whyRationale: "Brassicácea anual de ciclo rapidísimo (4-6 semanas). Sus glucosinolatos dan el sabor picante característico, que se intensifica con estrés térmico. Día largo + calor disparan floración temprana, por eso se siembra escalonadamente.",
   },
 
   // ─── FRUTALES (nuevos) ───
@@ -1508,6 +1662,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 2 días en cálido; cada 3 en frío. Cosechá tiernos y polinizá a mano si caen flores.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas, con compost generoso y espacio amplio.",
+    placementAlternatives: [
+      "Cantero de huerta con 1-1.5 m entre plantas",
+      "Maceta de 40+ litros con compost",
+      "Bandeja amplia al sol pleno con polinizadores cerca",
+    ],
+    placementAvoid: "Espacio chico y aislamiento de polinizadores — pocos frutos.",
+    whyRationale: "Cucurbitácea anual de origen sudamericano (Cucurbita maxima domesticada en los Andes). Flores macho y hembra separadas necesitan polinizadores; cuando faltan abejas, las flores hembra caen sin cuajar y conviene polinizar a mano.",
   },
 
   // ─── AROMÁTICAS (extra) ───
@@ -1535,6 +1700,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 3, cold: 6 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 6 en frío. Cortá tallos a 3 cm del suelo y rebrotará vigoroso.",
+    },
+    placementRecommended: "Sol parcial — 4-6 horas, en suelo fresco y bien drenado.",
+    placementAlternatives: [
+      "Maceta junto a la ventana de la cocina",
+      "Cantero de aromáticas con perejil y cilantro",
+      "Borde de huerta como compañero de zanahoria",
+    ],
+    placementAvoid: "Sol pleno en verano sin riego — puntas amarillas y débiles.",
+    whyRationale: "Allium perenne de zonas templadas frigoriales del hemisferio norte. Su rebrote vigoroso tras el corte (semejante al césped) la hace inagotable; el bulbo subterráneo aguanta heladas fuertes y vuelve a brotar en primavera.",
   },
 
   // ─── SUCULENTAS (nuevas) ───
@@ -1976,6 +2152,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 21 en frío. Cosechá ramitas para guiar el porte cascadeante.",
+    },
+    placementRecommended: "Pleno sol — 6+ horas, ideal en maceta colgante o muro alto.",
+    placementAlternatives: [
+      "Maceta colgante en balcón soleado",
+      "Cubresuelo en cantero seco al sol",
+      "Borde de muro o jardinera vertical",
+    ],
+    placementAvoid: "Suelo encharcado o sombra densa — pudre raíces igual que el romero erecto.",
+    whyRationale: "Variedad postrada del romero común, mismo origen mediterráneo y misma fisiología drought-adapted. La forma rastrera no cambia las necesidades: sol pleno, suelo pobre y poco riego; ideal cuando se busca cubresuelo o cascada decorativa.",
   },
 
   // ─── HUERTA — new Phase 8 entries ───
@@ -2001,6 +2188,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 3 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 2 días en cálido; cada 3 en frío. Cosechá casi diariamente y tutorá alto.",
+    },
+    placementRecommended: "Pleno sol — 8 horas, en maceta de 30+ L con tutor alto.",
+    placementAlternatives: [
+      "Maceta de 30+ litros con tutor de 1.5 m",
+      "Cantero pequeño con malla vertical",
+      "Balcón soleado contra pared cálida",
+    ],
+    placementAvoid: "Heladas tardías y riego irregular — frutos se rajan al recibir agua tras secarse.",
+    whyRationale: "Variante de Solanum lycopersicum con frutos chicos y planta indeterminada (crece hasta la helada). Cosecha casi diaria por el tamaño; los racimos abundantes exigen tutor alto y poda de chupones para concentrar energía en los frutos.",
   },
 ];
 

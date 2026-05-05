@@ -598,7 +598,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water weekly + compost"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 4 in cold. Pinch the tips weekly to encourage branching."
+    },
+    "placementRecommended": "Full or partial sun — 4-6 hours, ideally morning light.",
+    "placementAlternatives": [
+      "Pot near tomatoes on a sunny balcony",
+      "Herb bed alongside parsley and chives",
+      "Indoor counter with direct window light"
+    ],
+    "placementAvoid": "Intense midday sun without frequent watering — wilts fast.",
+    "whyRationale": "An annual native to tropical Southeast Asia, it needs warmth and long days. Once it flowers, the leaves turn bitter; pinching the tips keeps leaf production going and extends the harvest."
   },
   "romero": {
     "name": "Rosemary",
@@ -624,7 +635,18 @@
     "nutrients": {
       "type": "Very low, prefers poor soil",
       "homemade": "Not needed; a bit of compost yearly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 21 in cold. Harvest sprigs for cooking without pruning more than a third."
+    },
+    "placementRecommended": "Full sun — 6+ hours direct, in well-drained soil.",
+    "placementAlternatives": [
+      "Terracotta pot in full sun on the balcony",
+      "Mediterranean bed with lavender and thyme",
+      "Dry garden border in full sun"
+    ],
+    "placementAvoid": "Waterlogged soil or deep shade — root rot sets in fast.",
+    "whyRationale": "A perennial Mediterranean shrub, evolved on chalky hillsides with dry summers. Its essential oils protect it from heat; overwatering kills it faster than drought. Poor soil intensifies the aroma."
   },
   "menta": {
     "name": "Mint",
@@ -650,7 +672,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water every 10 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 4 in cold. Keep the soil moist and trim invasive runners."
+    },
+    "placementRecommended": "Partial sun — 4 morning hours, avoiding strong afternoon sun.",
+    "placementAlternatives": [
+      "Isolated pot on the patio (always — keeps it contained)",
+      "Hanging planter with generous drainage",
+      "Container bed with other moisture-loving herbs"
+    ],
+    "placementAvoid": "Planting directly in the garden — its runners take over the space.",
+    "whyRationale": "A humid-subtropical perennial with very aggressive stoloniferous roots. It evolved along stream banks where constant moisture and lateral spread give it a competitive edge. That's why it always belongs in a pot."
   },
   "tomatera": {
     "name": "Tomato Plant",
@@ -676,7 +709,18 @@
     "nutrients": {
       "type": "High in potassium and phosphorus",
       "homemade": "Banana peel tea weekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 2 days in warm; every 3 in cold. Stake the stems and remove side suckers."
+    },
+    "placementRecommended": "Full sun — 8 direct hours in deep, compost-rich soil.",
+    "placementAlternatives": [
+      "30+ liter pot with a tall stake",
+      "Vegetable bed with marigold nearby (pest repellent)",
+      "Vertical planter with staking system"
+    ],
+    "placementAvoid": "Late frost and partial shade — won't fruit without ≥18°C nights.",
+    "whyRationale": "An annual Andean Solanaceae (South America), domesticated some 7,000 years ago. Fruit set depends on sustained warmth and full light; irregular watering causes fruit cracking and blossom end rot from calcium starvation."
   },
   "pimiento": {
     "name": "Pepper Plant",
@@ -702,7 +746,18 @@
     "nutrients": {
       "type": "High in potassium and phosphorus",
       "homemade": "Banana peel tea + crushed eggshell"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 3 in cold. Sow after last frost and stake if the variety needs it."
+    },
+    "placementRecommended": "Full sun — 8 hours and shelter from cold wind.",
+    "placementAlternatives": [
+      "25+ liter pot with compost",
+      "Bed alongside tomatoes (same conditions)",
+      "Warm, bright balcony planter"
+    ],
+    "placementAvoid": "Shade and late frost — fruits stay green or flowers drop.",
+    "whyRationale": "An annual Solanaceae from the Andes and Central America. Its hot or sweet fruits (capsaicin) evolved as a defense against mammals. It needs ≥18°C nights and pollinators so flowers set instead of dropping."
   },
   "frutilla": {
     "name": "Strawberry",
@@ -728,7 +783,18 @@
     "nutrients": {
       "type": "Phosphorus and potassium",
       "homemade": "Banana peel tea biweekly + compost"
-    }
+    },
+    "careAction": {
+      "fixed": "Water at the base every 2 days in warm; every 3 in cold. Mulch with straw to keep fruit off the soil."
+    },
+    "placementRecommended": "Full or partial sun — 6 hours, in loose, rich substrate.",
+    "placementAlternatives": [
+      "Hanging pot or sunny planter",
+      "Bed with straw mulch between plants",
+      "Vertical planter with generous drainage"
+    ],
+    "placementAvoid": "Fruit touching damp soil — they rot from Botrytis fungus.",
+    "whyRationale": "A perennial Rosaceae of temperate climates, propagating by stolons (runners) instead of seed. Productivity drops after the third year; replace old plants. Wet leaves favor fungus, so watering goes at the base."
   },
   "limonero": {
     "name": "Lemon Tree",
@@ -1189,7 +1255,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water weekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 4 in cold. Harvest outer stems and let the center keep growing."
+    },
+    "placementRecommended": "Partial sun — 4 morning hours; partial shade in summer.",
+    "placementAlternatives": [
+      "Pot near a kitchen window",
+      "Cool-herb bed with cilantro",
+      "Morning-sun balcony planter"
+    ],
+    "placementAvoid": "Full summer sun without watering — bolts to flower fast.",
+    "whyRationale": "A biennial native to the eastern Mediterranean, it prefers cool weather. It flowers in its second year (hence 'biennial'); home gardeners resow each season. Seeds germinate slowly because their oils delay sprouting."
   },
   "oregano": {
     "name": "Oregano",
@@ -1215,7 +1292,18 @@
     "nutrients": {
       "type": "Very low, prefers poor soil",
       "homemade": "Not needed; light compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Prune hard in spring to renew the clump."
+    },
+    "placementRecommended": "Full sun — 6+ hours; tolerates poor, rocky soil.",
+    "placementAlternatives": [
+      "Mediterranean bed border with rosemary",
+      "Full-sun pot with fast drainage",
+      "Warm, sunny wall planter"
+    ],
+    "placementAvoid": "Deep shade and waterlogged soil — weak flavor and fungus.",
+    "whyRationale": "A Mediterranean perennial adapted to rocky hillsides with dry summers. Water stress concentrates the essential oils — sparse watering yields more flavor than heavy feeding. It tolerates frost and extreme heat with almost no care."
   },
   "cilantro": {
     "name": "Cilantro",
@@ -1241,7 +1329,18 @@
     "nutrients": {
       "type": "Low nitrogen",
       "homemade": "Rice water every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 4 in cold. Sow in succession every 3 weeks for continuous harvest."
+    },
+    "placementRecommended": "Partial sun — 4 morning hours; partial shade in summer.",
+    "placementAlternatives": [
+      "Pot on a balcony with morning light",
+      "Bed alongside parsley and arugula",
+      "Indoor tray with bright diffused light"
+    ],
+    "placementAvoid": "Strong summer sun — bolts fast under long-day light.",
+    "whyRationale": "An annual native to the Mediterranean and Asia Minor, sensitive to photoperiod: long days and heat trigger bolting and the leaves turn bitter. So sowing in autumn or early spring, harvesting young, works best."
   },
   "tomillo": {
     "name": "Thyme",
@@ -1267,7 +1366,18 @@
     "nutrients": {
       "type": "Very low, prefers poor soil",
       "homemade": "Not needed; light compost yearly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 21 in cold. Prune by a third in spring to rejuvenate the clump."
+    },
+    "placementRecommended": "Full sun — 6+ hours, in stony, very-well-drained soil.",
+    "placementAlternatives": [
+      "Herb bed with rosemary and oregano",
+      "Terracotta pot in full sun",
+      "Dry bed border as ground cover"
+    ],
+    "placementAvoid": "Heavy clay and damp soil — root rot is almost certain.",
+    "whyRationale": "A Mediterranean perennial subshrub with tiny leaves. Its essential oils (thymol) concentrate under drought and full sun; ample watering dilutes the aroma. It tolerates frost but dies from excess moisture."
   },
   "lechuga": {
     "name": "Lettuce",
@@ -1293,7 +1403,18 @@
     "nutrients": {
       "type": "High nitrogen",
       "homemade": "Rice water weekly + worm castings"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 3 in cold. Pick outer leaves; the center keeps producing."
+    },
+    "placementRecommended": "Partial sun — 4 morning hours; partial shade in summer.",
+    "placementAlternatives": [
+      "Vegetable bed with humus-rich soil",
+      "Balcony planter with morning light",
+      "Wide pot with worm-casting compost"
+    ],
+    "placementAvoid": "Full summer sun — bolts to flower and turns bitter.",
+    "whyRationale": "An annual Asteraceae of cool climates; long days and heat send it bolting and the sap turns bitter. That's why succession sowing and early picking work best. Outer-leaf harvesting extends productivity for several weeks."
   },
   "pepino": {
     "name": "Cucumber",
@@ -1319,7 +1440,18 @@
     "nutrients": {
       "type": "High in potassium and nitrogen",
       "homemade": "Banana peel tea weekly + rice water"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 2 days in warm; every 3 in cold. Stake the vine and attract pollinators with nearby flowers."
+    },
+    "placementRecommended": "Full sun — 6+ hours with a stake or trellis to climb.",
+    "placementAlternatives": [
+      "Vegetable bed with vertical mesh",
+      "30+ liter pot with a 1.5 m stake",
+      "Pergola or trellis in full sun"
+    ],
+    "placementAvoid": "Partial shade and isolation from pollinators — few fruits.",
+    "whyRationale": "An annual Cucurbitaceae of Indian origin, with separate male and female flowers on the same plant. It needs insect pollination to set fruit; without bees or hand-pollination, flowers drop fruitless. Inconsistent watering yields bitter cucumbers."
   },
   "zanahoria": {
     "name": "Carrot",
@@ -1345,7 +1477,18 @@
     "nutrients": {
       "type": "Phosphorus and potassium, low nitrogen",
       "homemade": "Wood ash + eggshell"
-    }
+    },
+    "careAction": {
+      "fixed": "Water evenly every 3 days in warm; every 4 in cold. Thin seedlings to 5 cm when they reach 4 cm."
+    },
+    "placementRecommended": "Full sun — 6 hours, in deep, loose, stone-free soil.",
+    "placementAlternatives": [
+      "Vegetable bed with sifted, deep soil",
+      "Pot at least 30 cm deep",
+      "Deep balcony tray with loose substrate"
+    ],
+    "placementAvoid": "Compacted or rocky soil — forked or deformed roots.",
+    "whyRationale": "An Apiaceae biennial: it forms a root in year one and flowers in year two (gardeners harvest before flowering). Eurasian origin; it needs deep, loose soil so the root grows straight. Dense sowing yields small roots."
   },
   "rucula": {
     "name": "Arugula",
@@ -1371,7 +1514,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water weekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 3 in cold. Sow in succession every 2-3 weeks for continuous harvest."
+    },
+    "placementRecommended": "Partial sun — 4 morning hours; partial shade in summer.",
+    "placementAlternatives": [
+      "Bed alongside lettuce (same conditions)",
+      "Balcony pot with morning light",
+      "Mid-size planter at least 20 cm deep"
+    ],
+    "placementAvoid": "Full summer sun — leaves get too spicy and bolt fast.",
+    "whyRationale": "A fast-cycling Brassicaceae annual (4-6 weeks). Its glucosinolates give the characteristic peppery flavor, which intensifies under heat stress. Long days plus warmth trigger early flowering, so successive sowing helps."
   },
   "naranjo": {
     "name": "Orange Tree",
@@ -1501,7 +1655,18 @@
     "nutrients": {
       "type": "High in potassium and phosphorus",
       "homemade": "Banana peel tea weekly + compost"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 2 days in warm; every 3 in cold. Pick young and hand-pollinate if flowers drop."
+    },
+    "placementRecommended": "Full sun — 6+ hours, with generous compost and ample space.",
+    "placementAlternatives": [
+      "Vegetable bed with 1-1.5 m between plants",
+      "40+ liter pot with compost",
+      "Wide tray in full sun near pollinators"
+    ],
+    "placementAvoid": "Cramped space and isolation from pollinators — few fruits.",
+    "whyRationale": "An annual Cucurbitaceae of South American origin (Cucurbita maxima domesticated in the Andes). Separate male and female flowers need pollinators; when bees are absent, female flowers drop without setting and hand-pollination helps."
   },
   "ciboulette": {
     "name": "Chives",
@@ -1527,7 +1692,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water every 10 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 6 in cold. Cut stems to 3 cm above the soil and they regrow vigorously."
+    },
+    "placementRecommended": "Partial sun — 4-6 hours, in cool, well-drained soil.",
+    "placementAlternatives": [
+      "Pot near a kitchen window",
+      "Herb bed with parsley and cilantro",
+      "Vegetable bed border as a carrot companion"
+    ],
+    "placementAvoid": "Full summer sun without watering — yellow tips and weak stems.",
+    "whyRationale": "A perennial Allium of cool temperate zones in the northern hemisphere. Its vigorous regrowth after cutting (similar to grass) makes it inexhaustible; the underground bulb survives hard frost and resprouts in spring."
   },
   "haworthia": {
     "name": "Haworthia",
@@ -1970,7 +2146,18 @@
     "nutrients": {
       "type": "Very low, poor soil",
       "homemade": "No fertilizer; light compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 21 in cold. Trim sprigs to guide the cascading habit."
+    },
+    "placementRecommended": "Full sun — 6+ hours, ideal in a hanging pot or tall wall.",
+    "placementAlternatives": [
+      "Hanging pot on a sunny balcony",
+      "Ground cover in a dry sunny bed",
+      "Wall edge or vertical planter"
+    ],
+    "placementAvoid": "Waterlogged soil or deep shade — root rot like upright rosemary.",
+    "whyRationale": "A prostrate variety of common rosemary, same Mediterranean origin and same drought-adapted physiology. The trailing form doesn't change the needs: full sun, poor soil, sparse watering; ideal for ground cover or decorative cascades."
   },
   "tomate-cherry": {
     "name": "Cherry Tomato",
@@ -1996,7 +2183,18 @@
     "nutrients": {
       "type": "High in potassium during fruiting",
       "homemade": "Banana tea weekly when fruits start"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 2 days in warm; every 3 in cold. Pick almost daily and stake tall."
+    },
+    "placementRecommended": "Full sun — 8 hours, in a 30+ L pot with a tall stake.",
+    "placementAlternatives": [
+      "30+ liter pot with a 1.5 m stake",
+      "Small vegetable bed with vertical mesh",
+      "Sunny balcony against a warm wall"
+    ],
+    "placementAvoid": "Late frost and irregular watering — fruits split when water hits dry soil.",
+    "whyRationale": "A Solanum lycopersicum variant with small fruit and an indeterminate growth habit (it keeps going until frost). Same genetics as the large tomato, but you harvest almost daily; abundant clusters need a tall stake and sucker pruning to focus energy on the fruit."
   },
   "humidity": {
     "baja": "Low",
