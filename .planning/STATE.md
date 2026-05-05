@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
-stopped_at: "Completed 14-06-PLAN.md (Wave 3c aromaticas+huerta catalog content: 18 entries × 5 educational fields × 2 locales)"
-last_updated: "2026-05-05T13:13:48.903Z"
-last_activity: "2026-05-05 — Phase 14 Plan 06 complete (Wave 3c aromaticas+huerta catalog content). 3 files: plantDatabase.ts +294 LOC, en/plants.json +162 LOC, es/plants.json +162 LOC. 18 entries × 5 educational fields × 2 locales = 270 content units. Cumulative phase progress: 54/64 entries (84%)."
+stopped_at: Completed 14-07-PLAN.md (Wave 3d frutales+suculentas — 10 entries × 5 educational fields × 2 locales; FULL CATALOG COVERAGE 64/64 entries 100%)
+last_updated: "2026-05-05T16:24:09.039Z"
+last_activity: "2026-05-05 — Phase 14 Plan 07 complete (Wave 3d frutales+suculentas catalog content — FINAL content wave). 3 files: plantDatabase.ts +110 LOC, en/plants.json +110 LOC, es/plants.json +110 LOC. 10 entries × 5 educational fields × 2 locales = 150 content units. **FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.**"
 progress:
   total_phases: 15
   completed_phases: 4
   total_plans: 25
-  completed_plans: 24
+  completed_plans: 25
   percent: 96
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
-Plan: 14-00, 14-01, 14-02, 14-03, 14-04, 14-05, 14-06 complete (7/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a/b/c content authoring). Plan 13-03 (manual device verification) still pending.
-Status: Phase 14 Wave 3c complete. Cumulative 54/64 catalog entries (84%) have full EDU-02/03 content (15 INTERIOR from 14-04 + 21 EXTERIOR from 14-05 + 18 AROMATICAS+HUERTA from 14-06). Plan 14-06 added 18 entries (9 aromaticas: albahaca, ciboulette, cilantro, menta, oregano, perejil, romero, romero-rastrero, tomillo + 9 huerta: frutilla, lechuga, pepino, pimiento, rucula, tomate-cherry, tomatera, zanahoria, zapallito) × 5 educational fields populated in src/data/plantDatabase.ts AND mirrored to both en/plants.json (90 EN strings) and es/plants.json (90 ES voseo strings) — 270 new content units total. 100% per-entry coverage on all 5 fields. Aromaticas tone: cosechá/pellizcá/cortá verbs; whyRationale cites Mediterráneo (4)/Frigorial (3)/Tropical (1)/Subtropical húmedo (1) origin. Huerta tone: tutorá/sembrá/regá profundo; whyRationale cites Solanáceas andinas (3)/Cucurbitáceas (2)/Brassicáceas (1)/Asteráceas (1)/Apiáceas bienales (1)/Rosáceas perennes (1). tomatera ≠ tomate-cherry; romero ≠ romero-rastrero (distinct rationales). Char-limit-from-draft discipline applied (vs Plan 14-05's post-hoc refactor): all 18 whyRationale strings ≤250 chars from first draft (max 241). Voseo grep guard maintained at baseline 2. Locale parity 18/18 verified. Smoke runner PASS 19/19. Plan 14-07 (Wave 3d frutales+suculentas, 10 entries) is next; closes EDU-03 to 64/64 (100%).
-Last activity: 2026-05-05 — Phase 14 Plan 06 complete (Wave 3c aromaticas+huerta catalog content). 3 files: plantDatabase.ts +294 LOC, en/plants.json +162 LOC, es/plants.json +162 LOC. 18 entries × 5 educational fields × 2 locales = 270 content units. Cumulative phase progress: 54/64 entries (84%).
+Plan: 14-00, 14-01, 14-02, 14-03, 14-04, 14-05, 14-06, 14-07 complete (8/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a/b/c/d content authoring). Plan 13-03 (manual device verification) still pending. Plan 14-08 (Wave 7 — manual device verification checkpoint, autonomous: false) is the final plan in Phase 14.
+Status: **Phase 14 EDU-02/03 content authoring is COMPLETE — FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.** Plan 14-07 added the final 10 entries (5 frutales: aguacate, higuera, limonero, mandarino, naranjo + 5 suculentas: cactus, echeveria, haworthia, sedum, suculenta-generica) × 5 educational fields populated in src/data/plantDatabase.ts AND mirrored to both en/plants.json (50 EN strings) and es/plants.json (50 ES voseo strings) — 150 new content units total. Frutales tone: cítrico-shared family lexicon (Rutáceas) + per-species cycle differentiation (limonero perpetual; mandarino+naranjo seasonal); 3 citrus rationales distinct (limonero ≠ mandarino ≠ naranjo). Suculentas tone: CAM photosynthesis as the marquee whyRationale mechanism (cited explicitly in 5/5); careAction.soilCheck (5/5) per waterMode discipline; haworthia is the rare shade-tolerant exception with translucent leaf-windows mechanism. Aguacate (Lauráceas, Mesoamerica, cross-pollination, shallow roots), higuera (Moráceas, mediterranean deciduous, brevas+higos dual crop, white látex). Char-limit-from-draft + inline-trim discipline applied: 9 of 10 initial drafts ran 251-312 chars; trimmed catalog defaults inline BEFORE mirroring to JSON (avoiding the 14-04 trim-the-i18n-after-the-fact pattern). Final max = 249 chars (naranjo). Voseo grep guard maintained at baseline 2. Locale parity 10/10 verified. Smoke runner PASS 19/19. **Cumulative content waves 14-04..07: 320 ES strings + 320 EN strings + 320 catalog defaults = 960 content units. EDU-01 through EDU-07 all marked complete in REQUIREMENTS.md.**
+Last activity: 2026-05-05 — Phase 14 Plan 07 complete (Wave 3d frutales+suculentas catalog content — FINAL content wave). 3 files: plantDatabase.ts +110 LOC, en/plants.json +110 LOC, es/plants.json +110 LOC. 10 entries × 5 educational fields × 2 locales = 150 content units. **FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.**
 
-Progress: [██████████] 96% (v1.2 in progress — 24/25 plans complete in tracked window; Phase 14 Plans 14-07..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
+Progress: [██████████] 100% (v1.2 in progress — 25/25 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [██████████] 96% (v1.2 in progress — 24/25 plans
 *Updated after each plan completion*
 | Phase 14 P04 | 22min | 1 tasks | 3 files |
 | Phase 14 P06 | 46min | 1 tasks | 3 files |
+| Phase 14 P07 | 26min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -116,6 +117,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 14]: Plan 14-06: char-limit-from-draft discipline — all 18 whyRationale strings drafted ≤250 chars from start (max 241); avoids the post-hoc refactor pattern from Plan 14-05
 - [Phase 14]: Plan 14-06: aromaticas vs huerta thematic batch — both share cosecha-driven verbs (cosechá/pellizcá/cortá/sembrá) but diverge on whyRationale framing (aromaticas use climate-of-origin Mediterráneo/Frigorial/Tropical/Subtropical; huerta use family-level ecology Solanáceas/Cucurbitáceas/Brassicáceas/Apiáceas/Rosáceas/Asteráceas)
 - [Phase 14]: Plan 14-06: Voseo regression on frutilla 'se riega al pie' (3rd-person reflexive matched regex); reworded to 'el riego va al pie' (verb→noun phrase) to keep baseline at 2; ciboulette self-reference in placementAlternatives caught and fixed (replaced with cilantro)
+- [Phase 14-educational-detail-modal]: Plan 14-07: FULL CATALOG COVERAGE achieved — 64/64 entries (100%) declare all 5 EDU-02/03 educational fields. 10 frutales+suculentas × 5 fields × 2 locales = 150 content units. Frutales family-lexicon framing (Rutáceas/Lauráceas/Moráceas, 5 citations); suculentas CAM-photosynthesis marquee mechanism (cited in 5/5).
+- [Phase 14-educational-detail-modal]: Plan 14-07: 3 citrus rationales distinct (limonero perpetual; naranjo seasonal+heat; mandarino compact+early). All 5 suculentas use careAction.soilCheck per waterMode discipline; all 5 frutales use careAction.fixed. haworthia is the rare shade-tolerant exception with translucent leaf-windows mechanism layered on top of CAM.
+- [Phase 14-educational-detail-modal]: Plan 14-07: Char-limit-from-draft + inline-trim discipline applied. 9 of 10 initial drafts ran 251-312 chars; trimmed catalog defaults inline BEFORE mirroring to JSON (avoiding the 14-04 trim-the-i18n-after-the-fact pattern). Final max = 249 chars (naranjo).
 
 ### Pending Todos
 
@@ -129,6 +133,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-05T13:13:48.901Z
-Stopped at: Completed 14-06-PLAN.md (Wave 3c aromaticas+huerta catalog content: 18 entries × 5 educational fields × 2 locales)
+Last session: 2026-05-05T16:23:55.244Z
+Stopped at: Completed 14-07-PLAN.md (Wave 3d frutales+suculentas — 10 entries × 5 educational fields × 2 locales; FULL CATALOG COVERAGE 64/64 entries 100%)
 Resume file: None
