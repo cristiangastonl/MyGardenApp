@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-status: verifying
-stopped_at: Completed 14-00-PLAN.md (Wave 0 scaffold)
-last_updated: "2026-05-05T02:20:23.058Z"
-last_activity: "2026-05-05 — Phase 14 Plan 00 complete (Wave 0 scaffold). 1 new file: scripts/smoke-phase14.mjs (241 LOC, single-compile-path ts.transpileModule + assertSkippableAsync harness). 2 modified: package.json (smoke:phase14 entry), .gitignore (explicit scripts/.tmp-phase14/ line). 2 auto-written gitignored stubs at scripts/.tmp-phase14/{async-storage,i18n}.mjs. Wave 0 baseline: PASS 7/19 (6 W0 scaffold + 1 EDU-04 regression), 12 SKIP placeholders for EDU-01/02/05/06/07, 0 FAIL, exit 0. npm run smoke:phase14 wired."
+status: "Phase 14 Wave 1 complete. Plan 14-01 (foundation: types + getTranslatedPlant + validator) and Plan 14-02 (storage guard + override comparator + section labels) ran in parallel as file-disjoint Wave 1 plans. Smoke runner: PASS 16/19, 3 SKIP (W2.EDU-01.* for Plan 14-03), 0 FAIL. ts.transpileModule single-compile-path locked. Plan 14-03 (modal restructure, Wave 2) ready to begin."
+stopped_at: "Completed 14-01-PLAN.md (Wave 1 foundation: types + getTranslatedPlant + validator)"
+last_updated: "2026-05-05T02:39:00.320Z"
+last_activity: "2026-05-05 — Phase 14 Plans 14-01 + 14-02 complete in parallel (Wave 1). 14-01: PlantDBEntry +5 fields; getTranslatedPlant body extended; check-i18n-keys.mjs validator extended. 14-02: useStorage.tsx +33 lines (PROTECTED_USER_FIELDS deep-merge guard, EDU-06); src/utils/overrideDetection.ts CREATED (78 LOC, EDU-05); en/es common.json +6 plantDetailModal keys (EDU-01 labels). Smoke: PASS 16/19, 3 SKIP, 0 FAIL."
 progress:
   total_phases: 15
   completed_phases: 4
   total_plans: 25
-  completed_plans: 19
-  percent: 76
+  completed_plans: 21
+  percent: 80
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
-Plan: 14-00 complete (1/9 plans in Phase 14 — Wave 0 scaffold). Plan 13-03 (manual device verification) still pending; Phase 14 work proceeds in parallel since 14-00 is harness-only and does not touch source code.
-Status: Phase 14 smoke runner skeleton wired. 6 W0 scaffold PASSes + 1 EDU-04 regression PASS at baseline; 12 SKIP placeholders covering every Wave 1+ requirement (EDU-01/02/05/06/07). 0 FAIL. ts.transpileModule single-compile-path locked. Plans 14-01 (foundation: types + getTranslatedPlant + validator) and 14-02 (storage guard + override comparator) are file-disjoint and can run in parallel as Wave 1.
-Last activity: 2026-05-05 — Phase 14 Plan 00 complete (Wave 0 scaffold). scripts/smoke-phase14.mjs (241 LOC) lands; npm run smoke:phase14 wired; auto-writes 2 gitignored stubs.
+Plan: 14-00, 14-01, 14-02 complete (3/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard). Plans 14-01 and 14-02 ran in parallel as Wave 1 file-disjoint plans. Plan 13-03 (manual device verification) still pending.
+Status: Phase 14 Wave 1 complete. PROTECTED_USER_FIELDS deep-merge guard in useStorage.updatePlant (EDU-06); compareUserVsCatalog comparator in src/utils/overrideDetection.ts (EDU-05); 6 plantDetailModal i18n keys with locale parity + ES voseo (EDU-01 label portion); PlantDBEntry +5 educational fields (EDU-02); getTranslatedPlant extended; check-i18n-keys.mjs validator extended (EDU-07). Smoke runner: PASS 16/19, 3 SKIP (W2.EDU-01.* for Plan 14-03), 0 FAIL. Plan 14-03 (Wave 2 modal restructure) ready.
+Last activity: 2026-05-05 — Phase 14 Plan 02 complete (Wave 1 storage guard + override comparator + section labels). 4 files: useStorage.tsx +33 lines, overrideDetection.ts CREATED 78 LOC, en/es common.json +6 keys each. W1.EDU-06.1 + W1.EDU-05.* flipped SKIP→PASS.
 
-Progress: [███████░░░] 76% (v1.2 in progress — 19/25 plans complete in tracked window; Phase 13 Plan 03 + Phases 14-24 still ahead)
+Progress: [████████░░] 80% (v1.2 in progress — 20/25 plans complete in tracked window; Phase 14 Plans 14-03..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
 
 ## Performance Metrics
 
@@ -41,11 +41,15 @@ Progress: [███████░░░] 76% (v1.2 in progress — 19/25 plans
 
 **Recent Trend (v1.2 Phase 14):**
 - Plan 14-00 (Wave 0 scaffold): ~3 min, 1 task, 3 files
+- Plan 14-01 (Wave 1 foundation): ~13 min, 3 tasks, 3 files
+- Plan 14-02 (Wave 1 storage guard + override + labels): ~11 min, 3 tasks, 4 files
 - Trend: Stable
 
 | Phase-Plan | Duration | Tasks | Files |
 | ---------- | -------- | ----- | ----- |
 | 14-00      | 3min     | 1     | 3     |
+| 14-01      | 13min    | 3     | 3     |
+| 14-02      | 11min    | 3     | 4     |
 
 *Updated after each plan completion*
 
@@ -91,6 +95,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 14-educational-detail-modal]: Plan 14-00: Heuristic SKIP gate — each EDU placeholder uses marker-regex sentinel (e.g., /careAction|placementRecommended|whyRationale/) so partial-shape Wave 1 commits FAIL loudly instead of silently SKIPping; prevents false PASS during in-progress work
 - [Phase 14-educational-detail-modal]: Plan 14-00: EDU-04 has NO SKIP gate — selectedPlant?.lightLevel ?? pre-select pattern at IdentificationResults.tsx:42-44 (Phase 7) is regression-checked, MUST PASS at baseline
 - [Phase 14-educational-detail-modal]: Plan 14-00: Stubs auto-written at runtime via writeFileSync (mirrors Phase 11/12) — scripts/.tmp-phase14/{async-storage,i18n}.mjs are gitignored, NOT committed; explicit scripts/.tmp-phase14/ added to .gitignore alongside existing wildcard
+- [Phase 14]: Plan 14-02: PROTECTED_USER_FIELDS const tuple + single fromUserEdit flag in useStorage.updatePlant — guard runs BEFORE alias-rewrite; existing[key] !== undefined check; key in normalizedUpdates check; no retrofit of 7 existing call sites (audit confirmed all touch non-protected fields)
+- [Phase 14]: Plan 14-02: compareUserVsCatalog detects 3 fields (lightLevel, waterScheduleWarm, waterScheduleCold) — tempMin/tempMax/humidity climate-driven; waterMode category-derived; all excluded per CONTEXT.md lock; field discriminator camelCase strings (waterScheduleWarm not waterSchedule.warm) for i18n key suffix compatibility
+- [Phase 14]: Plan 14-02: ES overrideNote locked verbatim from REQUIREMENTS.md line 43 — 'Diferente a la recomendación para esta especie. ¿Querés ajustar?' (voseo); 6 plantDetailModal keys land inside existing namespace with locale parity (jq keys identical); EN tone non-pushy ('Want to adjust?' not 'You should adjust')
+- [Phase 14]: Plan 14-01: PlantDBEntry gains 5 optional educational fields (careAction, placementRecommended, placementAlternatives, placementAvoid, whyRationale) plus new CareAction interface; getTranslatedPlant surfaces them via i18n indirection mirroring nutrients pattern; check-i18n-keys.mjs extended with 5 conditional checks (careAction sub-fields independent per Pitfall 5)
 
 ### Pending Todos
 
@@ -104,6 +112,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-05T02:20:23.056Z
-Stopped at: Completed 14-00-PLAN.md (Wave 0 scaffold)
+Last session: 2026-05-05T02:39:00.318Z
+Stopped at: Completed 14-01-PLAN.md (Wave 1 foundation: types + getTranslatedPlant + validator)
 Resume file: None
