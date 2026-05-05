@@ -744,7 +744,13 @@
     "cause": "Cause",
     "solution": "Solution",
     "addToMyPlants": "Add to my plants",
-    "close": "Close"
+    "close": "Close",
+    "whatToDo": "What to do?",
+    "whereToPlace": "Where to place it?",
+    "why": "Why?",
+    "yourSettings": "Your settings",
+    "overrideNote": "Different from the recommendation for this species. Want to adjust?",
+    "notInCatalog": "This plant isn't in our catalog yet."
   },
   "dayDetail": {
     "tasksOfDay": "TODAY'S TASKS",
