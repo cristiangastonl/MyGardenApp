@@ -1638,6 +1638,28 @@ export function getTranslatedPlant(plant: PlantDBEntry): PlantDBEntry {
       type: t(`${key}.nutrients.type`, { ns: 'plants', defaultValue: plant.nutrients.type }),
       homemade: t(`${key}.nutrients.homemade`, { ns: 'plants', defaultValue: plant.nutrients.homemade }),
     } : undefined,
+
+    // ─── v1.2 Phase 14 (EDU-02) educational fields — i18n indirection mirrors nutrients ───
+    careAction: plant.careAction ? {
+      fixed: plant.careAction.fixed
+        ? t(`${key}.careAction.fixed`, { ns: 'plants', defaultValue: plant.careAction.fixed })
+        : undefined,
+      soilCheck: plant.careAction.soilCheck
+        ? t(`${key}.careAction.soilCheck`, { ns: 'plants', defaultValue: plant.careAction.soilCheck })
+        : undefined,
+    } : undefined,
+    placementRecommended: plant.placementRecommended
+      ? t(`${key}.placementRecommended`, { ns: 'plants', defaultValue: plant.placementRecommended })
+      : undefined,
+    placementAlternatives: plant.placementAlternatives
+      ? (t(`${key}.placementAlternatives`, { ns: 'plants', returnObjects: true, defaultValue: plant.placementAlternatives }) as string[])
+      : undefined,
+    placementAvoid: plant.placementAvoid
+      ? t(`${key}.placementAvoid`, { ns: 'plants', defaultValue: plant.placementAvoid })
+      : undefined,
+    whyRationale: plant.whyRationale
+      ? t(`${key}.whyRationale`, { ns: 'plants', defaultValue: plant.whyRationale })
+      : undefined,
   };
 }
 
