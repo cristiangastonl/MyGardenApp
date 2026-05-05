@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
-stopped_at: "Completed 14-03-PLAN.md (Wave 2 modal restructure: EducationalSection + MyPlantDetailModal 4-section layout)"
-last_updated: "2026-05-05T02:59:32.832Z"
-last_activity: "2026-05-05 — Phase 14 Plan 03 complete (Wave 2 modal restructure). 4 files: EducationalSection.tsx CREATED 138 LOC, MyPlantDetailModal.tsx +179 LOC, en/es common.json +3 keys each. W2.EDU-01.* (3 placeholders) flipped SKIP→PASS. EDU-01/04/05 requirements complete."
+stopped_at: "Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)"
+last_updated: "2026-05-05T03:26:13.456Z"
+last_activity: "2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete. Voseo regression count maintained at baseline 2."
 progress:
   total_phases: 15
   completed_phases: 4
   total_plans: 25
-  completed_plans: 21
+  completed_plans: 22
   percent: 84
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
-Plan: 14-00, 14-01, 14-02, 14-03 complete (4/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure). Plans 14-01 and 14-02 ran in parallel as Wave 1 file-disjoint plans. Plan 13-03 (manual device verification) still pending.
-Status: Phase 14 Wave 2 complete. EducationalSection.tsx (138 LOC NEW) lands as Reanimated v4 lazy-measure collapsible card wrapper (useSharedValue + 3× useDerivedValue + 2× useAnimatedStyle + 3× withTiming with Easing.inOut(Easing.ease) at 250ms). MyPlantDetailModal restructured 495→674 LOC with 4-section layout (🌿→🏠→ℹ️→⚙️) replacing nutrients card + standalone ActiveProblemsSection consumer; strictDbEntry useMemo locks educational content to getCatalogEntry strict path (no fuzzy fallback) per RESEARCH §Q1; ⚙️ Tus ajustes renders inline override notes via compareUserVsCatalog for 3 user-set fields (lightLevel/waterScheduleWarm/waterScheduleCold); ¿Por qué? hides ENTIRELY when whyRationale absent. 3 new sub-block i18n keys (recommended/alternatives/avoid) land in both common.json with locale parity (21 plantDetailModal keys each). EDU-04 verified intact (no source change). Smoke runner: PASS 19/19, 0 SKIP, 0 FAIL — fully green. Plans 14-04..07 (catalog content authoring Wave 3..6) ready to chain sequentially.
-Last activity: 2026-05-05 — Phase 14 Plan 03 complete (Wave 2 modal restructure). 4 files: EducationalSection.tsx CREATED 138 LOC, MyPlantDetailModal.tsx +179 LOC, en/es common.json +3 keys each. W2.EDU-01.* (3 placeholders) flipped SKIP→PASS. EDU-01/04/05 requirements complete.
+Plan: 14-00, 14-01, 14-02, 14-03, 14-04 complete (5/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a interior catalog content). Plan 13-03 (manual device verification) still pending.
+Status: Phase 14 Wave 3a complete. 15 INTERIOR catalog entries (aloe-vera, calathea, cinta, dracaena, espatifilo, ficus, filodendro, jade, monstera, orquidea, palmera-interior, peperomia, potus, sansevieria, yuca) gain 5 educational fields populated in src/data/plantDatabase.ts (75 catalog field declarations) AND mirrored to both src/i18n/locales/en/plants.json (75 EN strings) and src/i18n/locales/es/plants.json (75 ES voseo strings) — 225 new content units total. 100% per-entry coverage on all 5 fields exceeds ≥80%/≥90% targets. whyRationale on every entry cites a specific physiology mechanism (sotobosque tropical, CAM metabolism, hemiepífita, suculenta xerófita, monsoon Asia, Sudáfrica grasslands, etc.). careAction sub-field selection per waterMode: 12× fixed, 2× soilCheck, 1× both (sansevieria). Voseo discipline preserved: regex baseline of 2 pre-existing matches unchanged (no NEW Castilian forms introduced). All char limits respected: whyRationale ≤250, placementRecommended ≤100, placementAvoid ≤80, careAction ≤120, alternatives bullets ≤80. Locale parity 15/15 verified. Smoke runner: PASS 19/19, 0 SKIP, 0 FAIL. Plans 14-05..07 (Wave 3b/c/d sequential content authoring for exterior/aromáticas+huerta/frutales+suculentas) ready to chain.
+Last activity: 2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete.
 
-Progress: [████████░░] 84% (v1.2 in progress — 21/25 plans complete in tracked window; Phase 14 Plans 14-04..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
+Progress: [█████████░] 88% (v1.2 in progress — 22/25 plans complete in tracked window; Phase 14 Plans 14-05..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
 
 ## Performance Metrics
 
@@ -44,7 +44,8 @@ Progress: [████████░░] 84% (v1.2 in progress — 21/25 plans
 - Plan 14-01 (Wave 1 foundation): ~13 min, 3 tasks, 3 files
 - Plan 14-02 (Wave 1 storage guard + override + labels): ~11 min, 3 tasks, 4 files
 - Plan 14-03 (Wave 2 modal restructure): ~12 min, 3 tasks, 4 files
-- Trend: Stable
+- Plan 14-04 (Wave 3a interior catalog content): ~22 min, 1 task, 3 files
+- Trend: Stable; content-authoring plans run longer than scaffold/structure plans (expected: 75 strings × 2 locales)
 
 | Phase-Plan | Duration | Tasks | Files |
 | ---------- | -------- | ----- | ----- |
@@ -54,6 +55,7 @@ Progress: [████████░░] 84% (v1.2 in progress — 21/25 plans
 | 14-03      | 12min    | 3     | 4     |
 
 *Updated after each plan completion*
+| Phase 14 P04 | 22min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -107,6 +109,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 14]: Plan 14-03: ActiveProblemsSection import retained (still used inside 🌿 section); standalone consumer JSX site at original line 230-237 removed; nutrients card relocated INSIDE 🌿 with nutrientsCardEdu nested-card styling (rgba 0,0,0,0.03 background)
 - [Phase 14]: Plan 14-03: EDU-04 NO source change — selectedPlant?.lightLevel ?? 'bright_indirect' pattern at IdentificationResults.tsx:43 intact since Phase 7 LIGHT-05; W2.EDU-04.1 smoke regression check stays PASS after modal restructure (which doesn't touch IdentificationResults.tsx)
 - [Phase 14]: Plan 14-03: 3 new sub-block i18n keys (recommended/alternatives/avoid) land alongside JSX consumers in same Task 2 commit (atomic surface lock); locale parity preserved at 21 plantDetailModal keys each (was 18 after Plan 14-02); ES voseo-friendly forms (Recomendado:/Alternativas:/Evitar:)
+- [Phase 14]: Plan 14-04: Wave 3a interior catalog content (15 entries × 5 educational fields × 2 locales = 225 content units); 100% per-entry coverage on all 5 fields exceeds ≥80%/≥90% targets; whyRationale physiology-mechanism citation per entry (sotobosque/CAM/hemiepífita/suculenta xerófita); careAction sub-field per waterMode (12× fixed, 2× soilCheck, 1× both for sansevieria); voseo regression count maintained at baseline 2; locale parity 15/15
+- [Phase 14]: Plan 14-04: Voseo grep guard caught 'mueve sus hojas' in calathea whyRationale draft (third-person descriptive verb form, false-positive on regex); reworded to 'reorienta sus hojas' to keep regex baseline at 2 (no NEW Castilian forms)
+- [Phase 14]: Plan 14-04: Initial whyRationale drafts had 13/15 entries 252-312 chars (over 250 ceiling); systematic trim pass on ES + EN + catalog defaults brought all 15 to ≤250 chars while preserving physiology mechanism citation
 
 ### Pending Todos
 
@@ -120,6 +125,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-05T02:59:32.829Z
-Stopped at: Completed 14-03-PLAN.md (Wave 2 modal restructure: EducationalSection + MyPlantDetailModal 4-section layout)
+Last session: 2026-05-05T03:25:55.734Z
+Stopped at: Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)
 Resume file: None
