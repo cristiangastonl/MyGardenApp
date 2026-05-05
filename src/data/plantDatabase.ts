@@ -373,6 +373,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
     _aliases: ["lavanda"],
+    careAction: {
+      fixed: "Regá poco — cada 10 días en cálido, cada 21 en frío. Suelo seco entre riegos.",
+    },
+    placementRecommended: "Pleno sol — al menos 6 horas directas, suelo bien drenado.",
+    placementAlternatives: [
+      "Cantero en jardín mediterráneo orientado al norte",
+      "Maceta grande con sustrato arenoso y grava al fondo",
+    ],
+    placementAvoid: "Suelo arcilloso encharcado y sombra húmeda — pudre las raíces.",
+    whyRationale: "Originaria del Mediterráneo, evolucionó en suelos calcáreos secos con sol intenso. Es la lavanda más resistente al frío de las tres: aguanta heladas fuertes hasta -15°C gracias a sus tejidos compactos y aceites esenciales protectores.",
   },
   {
     id: "lavanda-stoechas",
@@ -395,6 +405,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Cubrí con tela si la helada baja de -5°C.",
+    },
+    placementRecommended: "Pleno sol y suelo arenoso — sus brácteas atraen mariposas.",
+    placementAlternatives: [
+      "Borde de cantero soleado con riego mínimo",
+      "Maceta en balcón resguardado del viento frío",
+    ],
+    placementAvoid: "Heladas fuertes sin protección — no tolera bajo -5°C.",
+    whyRationale: "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores que atraen polinizadores desde lejos. Más amante del calor que la inglesa, florece intensamente en primavera pero no aguanta heladas duras.",
   },
   {
     id: "lavanda-dentada",
@@ -417,6 +437,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Plantala en lugar abrigado contra el frío.",
+    },
+    placementRecommended: "Pleno sol en zona resguardada — la más calurosa y la más sensible al frío.",
+    placementAlternatives: [
+      "Maceta movible para llevar adentro en invierno",
+      "Cantero contra muro orientado al norte",
+    ],
+    placementAvoid: "Heladas fuertes y suelos pesados — es la más delicada de las lavandas.",
+    whyRationale: "Originaria del Mediterráneo cálido (sur de España, norte de África), evolucionó en climas suaves sin heladas duras. Sus hojas dentadas y aromáticas tienen mayor superficie de aceites esenciales — más fragancia, pero menos tolerancia al frío.",
   },
   {
     id: "petunia",
@@ -442,6 +472,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 2, cold: 4 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 2 días en cálido; cada 4 en frío. Sacá flores marchitas para prolongar la floración.",
+    },
+    placementRecommended: "Pleno sol — al menos 6 horas directas para floración abundante.",
+    placementAlternatives: [
+      "Maceta colgante en balcón soleado",
+      "Jardinera en borde de balcón con riego diario",
+      "Cantero al sol en bordes y rincones",
+    ],
+    placementAvoid: "Sombra densa — tallos largos y muy pocas flores.",
+    whyRationale: "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso de altura. Su floración ininterrumpida es una estrategia reproductiva acelerada de planta de vida corta — cada flor es una apuesta por dejar semillas antes de las primeras heladas.",
   },
   {
     id: "hortensia",
@@ -467,6 +508,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá abundante cada 3 días en verano (a la base, sin mojar hojas); cada 7 en invierno.",
+    },
+    placementRecommended: "Sol parcial — mañana sí, sombra a la tarde para no quemar las flores.",
+    placementAlternatives: [
+      "Cantero orientado al este, suelo ácido y rico",
+      "Maceta grande con sustrato para acidófilas",
+      "Patio con luz filtrada y humedad ambiental",
+    ],
+    placementAvoid: "Sol del mediodía y suelo seco — las hojas marchitan al instante.",
+    whyRationale: "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. Sus inflorescencias enormes son una adaptación a polinizadores generalistas; el color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio en suelo ácido.",
   },
   {
     id: "jazmin",
@@ -492,6 +544,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 4, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 4 días en cálido; cada 10 en frío. Podá fuerte después de la floración.",
+    },
+    placementRecommended: "Pleno sol o sol parcial — perfume más intenso al atardecer.",
+    placementAlternatives: [
+      "Pérgola con sol matinal y soporte resistente",
+      "Muro orientado al oeste, cubierto por la trepadora",
+      "Maceta grande con tutor en patio cálido",
+    ],
+    placementAvoid: "Heladas fuertes prolongadas y maceta sin tutor — colapsa sin soporte.",
+    whyRationale: "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado donde escala árboles para alcanzar luz directa arriba. Su perfume nocturno atrae polillas crepusculares — por eso el aroma se intensifica al atardecer, cuando los polinizadores nocturnos están activos.",
   },
   {
     id: "geranio",
@@ -517,6 +580,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 7 en frío. Sacá flores secas y pellizcá puntas.",
+    },
+    placementRecommended: "Pleno sol — mínimo 6 horas directas para floración abundante.",
+    placementAlternatives: [
+      "Jardinera de balcón orientada al norte",
+      "Maceta colgante para variedades gitanillas",
+      "Cantero soleado con suelo bien drenado",
+    ],
+    placementAvoid: "Sombra y suelo siempre húmedo — los tallos se ennegrecen.",
+    whyRationale: "Originario de Sudáfrica (región del Cabo), evolucionó en clima mediterráneo con veranos secos e inviernos suaves. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías; por eso el exceso de riego es su principal causa de muerte en macetas.",
   },
 
   // ─── AROMÁTICAS ───
@@ -983,6 +1057,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo 2 veces por semana en cálido; mensual en invierno. Podá a fines de invierno antes de brotación.",
+    },
+    placementRecommended: "Pleno sol — mínimo 6 horas directas, suelo profundo y rico.",
+    placementAlternatives: [
+      "Cantero principal del jardín con espacio para crecer",
+      "Maceta grande (mín. 40L) en patio soleado",
+      "Borde con riego por goteo para riego profundo",
+    ],
+    placementAvoid: "Sombra y aire estancado — favorecen mancha negra y hongos.",
+    whyRationale: "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación de Asia y Europa. Necesita poda invernal porque florece en madera nueva: cada corte estimula brotes que llevan flores. Es caduca y aprovecha el dormir invernal para acumular reservas.",
   },
   {
     id: "bougainvillea",
@@ -1008,6 +1093,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá poco — cada 7 días en cálido, cada 21 en frío. El estrés hídrico induce floración.",
+    },
+    placementRecommended: "Pleno sol intenso — mínimo 8 horas directas, contra muro cálido.",
+    placementAlternatives: [
+      "Pérgola o muro orientado al norte para máximo calor",
+      "Maceta grande (mín. 50L) en terraza soleada",
+    ],
+    placementAvoid: "Heladas y exceso de riego — pierde brácteas y queda solo verde.",
+    whyRationale: "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en zonas de bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas dentro — una estrategia de polinización que confunde a herbívoros mientras atrae aves y mariposas.",
   },
   {
     id: "hibisco",
@@ -1033,6 +1128,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 7 en frío. Mantené humedad constante sin encharcar.",
+    },
+    placementRecommended: "Pleno sol o sol parcial — protección de heladas en clima frío.",
+    placementAlternatives: [
+      "Maceta grande movible para llevar adentro en invierno",
+      "Cantero al sol contra muro cálido",
+      "Patio resguardado del viento frío",
+    ],
+    placementAvoid: "Heladas (bajo 10°C) y cambios bruscos de ubicación — pierde botones.",
+    whyRationale: "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno verdadero. Cada flor dura solo un día porque su estrategia es producir flores grandes y vistosas en serie continua para atraer polinizadores específicos como colibríes y abejorros tropicales.",
   },
   {
     id: "margarita",
@@ -1058,6 +1164,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 7 en frío. Sacá flores marchitas y dividí la mata cada 2-3 años.",
+    },
+    placementRecommended: "Pleno sol — mínimo 6 horas directas para floración abundante.",
+    placementAlternatives: [
+      "Cantero soleado en borde de jardín",
+      "Maceta grande para balcón al sol",
+      "Bordura mixta junto a otros perennes",
+    ],
+    placementAvoid: "Sombra densa y suelo encharcado — tallos débiles y oídio.",
+    whyRationale: "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Su floración prolongada coincide con la actividad de abejas nativas; dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos en su hábitat de origen.",
   },
 
   // ─── AROMÁTICAS (nuevas) ───
@@ -1529,6 +1646,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 14, cold: 30 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 14 días en cálido; cada 30 en frío. Una vez establecido, casi no necesita riego.",
+    },
+    placementRecommended: "Pleno sol y espacio amplio — árbol grande, raíces extensivas.",
+    placementAlternatives: [
+      "Vereda ancha o jardín grande con suelo profundo",
+      "Cantero principal alejado de cañerías",
+    ],
+    placementAvoid: "Cerca de cimientos o cañerías — raíces invasivas en madurez.",
+    whyRationale: "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Es caduco en invierno y florece en primavera ANTES de echar hojas, una estrategia que maximiza la visibilidad de las flores violetas para polinizadores en bosques poco florecidos.",
   },
   {
     id: "ceibo",
@@ -1551,6 +1678,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 21 en frío. Podá después de la floración para mantener forma.",
+    },
+    placementRecommended: "Pleno sol y suelo húmedo — tolera estar cerca del agua.",
+    placementAlternatives: [
+      "Borde de estanque o jardín bajo con humedad",
+      "Cantero al sol con riego regular",
+    ],
+    placementAvoid: "Sombra densa y suelo seco prolongado — pocas flores y tallos débiles.",
+    whyRationale: "Flor nacional argentina, originaria de las riberas de ríos del NEA, Mesopotamia y sur de Brasil. Su floración roja escarlata coincide con el pico migratorio de picaflores y abejas nativas; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños.",
   },
   {
     id: "glicina",
@@ -1573,6 +1710,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 21 en frío. Podá fuerte en invierno y verano para forzar floración.",
+    },
+    placementRecommended: "Pleno sol y estructura muy resistente — pérgola de hierro o pared sólida.",
+    placementAlternatives: [
+      "Pérgola robusta sobre patio amplio",
+      "Muro de ladrillo con anclajes metálicos",
+    ],
+    placementAvoid: "Estructuras frágiles y cerca de cañerías — peso enorme y raíces invasivas.",
+    whyRationale: "Trepadora caduca originaria de China y Japón, evolucionó en valles montañosos templados. Sus flores violetas perfumadas son polinizadas por abejas, y la fotoperiodicidad invernal (frío + horas de luz cortas) es necesaria para inducir las yemas florales — sin invierno frío, no florece.",
   },
   {
     id: "gardenia",
@@ -1596,6 +1743,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido con agua sin cloro; cada 7 en frío. Nunca mojes las flores.",
+    },
+    placementRecommended: "Sol parcial — mañana sí, sombra a la tarde, suelo ácido y húmedo.",
+    placementAlternatives: [
+      "Cantero junto a otras acidófilas (camelia, azalea)",
+      "Maceta con sustrato para acidófilas y agua de lluvia",
+    ],
+    placementAvoid: "Sol fuerte del mediodía y agua del grifo con cloro — clorosis y caída de botones.",
+    whyRationale: "Originaria del sur de Asia (China, India, Japón), evolucionó en sotobosque tropical-subtropical con suelos ácidos y húmedos. Su exigencia de pH 5-6 viene de su microbiología nativa: solo absorbe hierro y magnesio en suelos ácidos, por eso amarillea en suelos alcalinos típicos de Buenos Aires.",
   },
   {
     id: "camelia",
@@ -1619,6 +1776,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Mantené el sustrato ácido y la humedad ambiental alta.",
+    },
+    placementRecommended: "Semi-sombra orientada al este — sol matinal suave, sombra a la tarde.",
+    placementAlternatives: [
+      "Bajo árbol caduco que da sombra en verano",
+      "Cantero contra muro orientado al este",
+    ],
+    placementAvoid: "Sol del mediodía — quema flores y hojas; suelo alcalino — clorosis crónica.",
+    whyRationale: "Originaria del este de Asia (Japón, China), evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque su ciclo está sincronizado con el frío seco de su hábitat: las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente.",
   },
   {
     id: "dalia",
@@ -1642,6 +1809,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 7 en frío. En otoño desenterrá los tubérculos y guardalos secos hasta primavera.",
+    },
+    placementRecommended: "Pleno sol — mínimo 6 horas directas, suelo profundo y rico.",
+    placementAlternatives: [
+      "Cantero al sol con riego regular",
+      "Maceta grande (mín. 30L) con tutor para variedades altas",
+    ],
+    placementAvoid: "Heladas tardías sobre tubérculos plantados — los pudre antes de brotar.",
+    whyRationale: "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En climas con inviernos fríos, hay que desenterrarlos en otoño porque las heladas fuertes quiebran las células y los pudren — emula la migración a tierra cálida que harían en su hábitat natural.",
   },
   {
     id: "salvia-ornamental",
@@ -1664,6 +1841,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Sacá flores viejas para prolongar la floración.",
+    },
+    placementRecommended: "Pleno sol — atrae colibríes y mariposas, ideal para jardines polinizadores.",
+    placementAlternatives: [
+      "Borde de cantero con otras plantas mediterráneas",
+      "Maceta soleada en patio o balcón",
+      "Jardín de polinizadores junto a lavanda y romero",
+    ],
+    placementAvoid: "Riego frecuente y suelo encharcado — la pudre rápidamente.",
+    whyRationale: "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bordes de bosque seco. Sus espigas florales rojas o violetas son específicamente diseñadas para colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros, una defensa química típica de las salvias.",
   },
   {
     id: "cala",
@@ -1687,6 +1875,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 5 días en cálido; cada 10 en frío. En otoño reducí riego para inducir reposo.",
+    },
+    placementRecommended: "Semi-sombra — luz filtrada, suelo siempre húmedo, tolera proximidad al agua.",
+    placementAlternatives: [
+      "Cantero a la sombra de árbol caduco",
+      "Borde de estanque o zona húmeda del jardín",
+      "Maceta en patio con luz indirecta abundante",
+    ],
+    placementAvoid: "Sol directo intenso y suelo seco — hojas quemadas y rizoma dormido.",
+    whyRationale: "Endémica de Sudáfrica (Provincia del Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un período de descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil o nula.",
   },
   {
     id: "copete",
@@ -1709,6 +1908,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 3, cold: 5 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 3 días en cálido; cada 5 en frío. Sacá flores marchitas para floración continua.",
+    },
+    placementRecommended: "Pleno sol — mínimo 6 horas directas, ideal junto a la huerta.",
+    placementAlternatives: [
+      "Borde de cantero de huerta para repeler nematodos",
+      "Maceta junto a tomates y pimientos",
+      "Jardinera al sol en balcón",
+    ],
+    placementAvoid: "Sombra y suelo encharcado — pocas flores y propenso a hongos.",
+    whyRationale: "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos del suelo — un fungicida natural. Por eso es compañero clásico de la huerta argentina: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas.",
   },
   {
     id: "verbena",
@@ -1731,6 +1941,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Cortá flores secas para prolongar floración.",
+    },
+    placementRecommended: "Pleno sol — atrae mariposas y abejas, ideal para jardín polinizador.",
+    placementAlternatives: [
+      "Borde de cantero junto a otras nativas",
+      "Maceta al sol en patio o balcón",
+      "Jardín silvestre que se auto-siembre",
+    ],
+    placementAvoid: "Suelo muy fértil y exceso de fertilizante — más hojas, menos flores.",
+    whyRationale: "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos y delgados con flores violetas son adaptación a polinizadores que buscan altura sobre la vegetación; la auto-siembra la convierte en perenne práctica que se renueva sola cada año.",
   },
 
   // ─── AROMATICAS — new Phase 8 entries ───

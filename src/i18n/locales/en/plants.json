@@ -352,7 +352,17 @@
     "nutrients": {
       "type": "Very low, prefers poor soil",
       "homemade": "Not needed; light compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water sparingly — every 10 days in warm, every 21 in cold. Soil dry between waterings."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct, well-drained soil.",
+    "placementAlternatives": [
+      "Mediterranean garden bed facing south",
+      "Large pot with sandy substrate and gravel at the bottom"
+    ],
+    "placementAvoid": "Waterlogged clay soil and damp shade — root rot.",
+    "whyRationale": "Native to the Mediterranean, it evolved in dry calcareous soils with intense sun. It's the most cold-hardy of the three lavenders: it withstands hard frosts down to -15°C thanks to its compact tissues and protective essential oils."
   },
   "lavanda-stoechas": {
     "name": "French Lavender",
@@ -373,7 +383,17 @@
     "nutrients": {
       "type": "Very low, well-drained poor soil",
       "homemade": "No fertilizer; a bit of compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Cover with frost cloth if temperatures drop below -5°C."
+    },
+    "placementRecommended": "Full sun and sandy soil — its bracts attract butterflies.",
+    "placementAlternatives": [
+      "Sunny garden bed edge with minimal watering",
+      "Pot on a balcony sheltered from cold wind"
+    ],
+    "placementAvoid": "Hard frosts without protection — doesn't tolerate below -5°C.",
+    "whyRationale": "Endemic to the western Mediterranean, its \"rabbit ear\" bracts work as reflectors that attract pollinators from afar. More heat-loving than English lavender, it blooms intensely in spring but doesn't withstand hard frosts."
   },
   "lavanda-dentada": {
     "name": "Fringed Lavender",
@@ -394,7 +414,17 @@
     "nutrients": {
       "type": "Very low, well-drained and poor soil",
       "homemade": "No fertilizer; a bit of compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Plant in a sheltered spot away from cold."
+    },
+    "placementRecommended": "Full sun in a sheltered area — the most heat-loving and most cold-sensitive.",
+    "placementAlternatives": [
+      "Movable pot to bring indoors in winter",
+      "Garden bed against a south-facing wall"
+    ],
+    "placementAvoid": "Hard frosts and heavy soils — it's the most delicate of the lavenders.",
+    "whyRationale": "Native to the warm Mediterranean (southern Spain, North Africa), it evolved in mild climates without harsh frosts. Its toothed, aromatic leaves have more surface area of essential oils — more fragrance, but less cold tolerance."
   },
   "petunia": {
     "name": "Petunia",
@@ -420,7 +450,18 @@
     "nutrients": {
       "type": "High in phosphorus and potassium",
       "homemade": "Banana peel tea weekly during blooming"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 2 days in warm; every 4 in cold. Deadhead spent flowers to extend bloom."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct for abundant flowering.",
+    "placementAlternatives": [
+      "Hanging basket on a sunny balcony",
+      "Window planter on a balcony edge with daily watering",
+      "Sunny garden bed in borders and corners"
+    ],
+    "placementAvoid": "Dense shade — leggy stems and few flowers.",
+    "whyRationale": "An annual native to the Argentine Andes, it evolved in poor volcanic soils under intense high-altitude sun. Its non-stop blooming is the accelerated reproductive strategy of a short-lived plant — every flower is a bet to set seed before the first frost."
   },
   "hortensia": {
     "name": "Hydrangea",
@@ -446,7 +487,18 @@
     "nutrients": {
       "type": "Iron and potassium",
       "homemade": "Rusty nails in watering water + banana peel tea"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 3 days in summer (at the base, no leaf-wetting); every 7 in winter."
+    },
+    "placementRecommended": "Partial sun — morning yes, afternoon shade to avoid scorching the flowers.",
+    "placementAlternatives": [
+      "East-facing bed with rich, acidic soil",
+      "Large pot with acid-loving plant substrate",
+      "Patio with filtered light and ambient humidity"
+    ],
+    "placementAvoid": "Midday sun and dry soil — leaves wilt instantly.",
+    "whyRationale": "Native to East Asia (Japan, Korea), it evolved in humid valleys of deciduous forest. Its huge inflorescences are an adaptation for generalist pollinators; the blue-vs-pink color shift by pH is real chemistry: anthocyanins change with aluminum availability in acidic soil."
   },
   "jazmin": {
     "name": "Jasmine",
@@ -472,7 +524,18 @@
     "nutrients": {
       "type": "Phosphorus and potassium",
       "homemade": "Banana peel tea every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 4 days in warm; every 10 in cold. Prune hard after flowering."
+    },
+    "placementRecommended": "Full or partial sun — fragrance most intense at dusk.",
+    "placementAlternatives": [
+      "Pergola with morning sun and a sturdy support",
+      "West-facing wall covered by the climber",
+      "Large pot with trellis on a warm patio"
+    ],
+    "placementAvoid": "Prolonged hard frost and pots without support — collapses without a trellis.",
+    "whyRationale": "A climber from the Caucasus and western Himalayas, it evolved on forest edges of temperate woodland where it scales trees to reach direct light above. Its night fragrance attracts crepuscular moths — that's why the scent intensifies at dusk, when nocturnal pollinators are active."
   },
   "geranio": {
     "name": "Geranium",
@@ -498,7 +561,18 @@
     "nutrients": {
       "type": "Phosphorus and potassium",
       "homemade": "Banana peel tea weekly during blooming season"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 7 in cold. Remove dead flowers and pinch tips."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct for abundant flowering.",
+    "placementAlternatives": [
+      "South-facing balcony planter",
+      "Hanging basket for trailing varieties",
+      "Sunny garden bed with well-drained soil"
+    ],
+    "placementAvoid": "Shade and constantly wet soil — stems turn black.",
+    "whyRationale": "Native to South Africa (the Cape region), it evolved in a Mediterranean climate with dry summers and mild winters. Its succulent stems store water and let it survive droughts; that's why excess watering is its main cause of death in pots."
   },
   "albahaca": {
     "name": "Basil",
@@ -968,7 +1042,18 @@
     "nutrients": {
       "type": "High in phosphorus and potassium",
       "homemade": "Banana peel tea weekly + eggshell"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply twice a week in warm; monthly in winter. Prune in late winter before bud break."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct, deep rich soil.",
+    "placementAlternatives": [
+      "Main garden bed with room to grow",
+      "Large pot (min. 40L) on a sunny patio",
+      "Border with drip irrigation for deep watering"
+    ],
+    "placementAvoid": "Shade and stagnant air — favor black spot and fungal disease.",
+    "whyRationale": "Cultivated by humans for over 5000 years, modern roses come from hybridizing Asian and European species. They need winter pruning because they bloom on new wood: each cut stimulates buds that bear flowers. They're deciduous and use winter dormancy to build up reserves."
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -994,7 +1079,17 @@
     "nutrients": {
       "type": "Low nitrogen, high in phosphorus",
       "homemade": "Banana peel tea biweekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water sparingly — every 7 days in warm, every 21 in cold. Water stress induces flowering."
+    },
+    "placementRecommended": "Intense full sun — at least 8 hours direct, against a warm wall.",
+    "placementAlternatives": [
+      "Pergola or south-facing wall for maximum heat",
+      "Large pot (min. 50L) on a sunny terrace"
+    ],
+    "placementAvoid": "Frost and excess water — drops bracts and stays plain green.",
+    "whyRationale": "Native to tropical South America (Brazil, Peru), it evolved in seasonally dry forest. Its colorful bracts aren't flowers but modified leaves protecting the tiny flowers within — a pollination strategy that confuses herbivores while attracting birds and butterflies."
   },
   "hibisco": {
     "name": "Hibiscus",
@@ -1020,7 +1115,18 @@
     "nutrients": {
       "type": "Phosphorus and potassium",
       "homemade": "Banana peel tea + coffee grounds monthly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 7 in cold. Keep humidity steady without waterlogging."
+    },
+    "placementRecommended": "Full or partial sun — frost protection in cold climates.",
+    "placementAlternatives": [
+      "Large movable pot to bring indoors in winter",
+      "Sunny bed against a warm wall",
+      "Patio sheltered from cold wind"
+    ],
+    "placementAvoid": "Frost (below 10°C) and sudden relocation — drops buds.",
+    "whyRationale": "Native to tropical Asia (China, India), it evolved in warm climates without true winter. Each flower lasts only a day because its strategy is to produce large showy flowers in continuous succession to attract specific pollinators like hummingbirds and tropical bees."
   },
   "margarita": {
     "name": "Daisy",
@@ -1046,7 +1152,18 @@
     "nutrients": {
       "type": "Moderate phosphorus",
       "homemade": "Banana peel tea every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 7 in cold. Deadhead spent flowers and divide the clump every 2-3 years."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct for abundant flowering.",
+    "placementAlternatives": [
+      "Sunny bed at the garden border",
+      "Large pot for a sunny balcony",
+      "Mixed border alongside other perennials"
+    ],
+    "placementAvoid": "Dense shade and waterlogged soil — weak stems and powdery mildew.",
+    "whyRationale": "A perennial native to central and southern Europe, it evolved in temperate montane grasslands. Its long bloom period coincides with native bee activity; dividing the clump every 2-3 years mimics the natural rejuvenation by low-intensity fires in its native habitat."
   },
   "perejil": {
     "name": "Parsley",
@@ -1519,7 +1636,17 @@
     "nutrients": {
       "type": "Low, tolerates poor soil",
       "homemade": "Mature compost once a year in spring"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm; every 30 in cold. Once established, it barely needs watering."
+    },
+    "placementRecommended": "Full sun and ample space — large tree, extensive root system.",
+    "placementAlternatives": [
+      "Wide sidewalk or large garden with deep soil",
+      "Main garden bed away from pipes"
+    ],
+    "placementAvoid": "Near foundations or pipes — invasive roots when mature.",
+    "whyRationale": "Endemic to northwestern Argentina and southern Bolivia, it evolved in warm valleys with seasonal droughts. Deciduous in winter, it blooms in spring BEFORE leafing out — a strategy that maximizes the violet flowers' visibility for pollinators in barely-flowered forests."
   },
   "ceibo": {
     "name": "Ceibo (Cockspur Coral Tree)",
@@ -1540,7 +1667,17 @@
     "nutrients": {
       "type": "Moderate, phosphorus for blooming",
       "homemade": "Banana tea monthly in spring-summer"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 21 in cold. Prune after flowering to maintain shape."
+    },
+    "placementRecommended": "Full sun and moist soil — tolerates being near water.",
+    "placementAlternatives": [
+      "Pond edge or low garden with humidity",
+      "Sunny bed with regular watering"
+    ],
+    "placementAvoid": "Dense shade and prolonged dry soil — few flowers and weak stems.",
+    "whyRationale": "Argentina's national flower, native to the riverbanks of the NEA, Mesopotamia, and southern Brazil. Its scarlet bloom coincides with the migration peak of hummingbirds and native bees; its roots have nitrogen-fixing nodules that let it grow in poor riverside soils."
   },
   "glicina": {
     "name": "Wisteria",
@@ -1561,7 +1698,17 @@
     "nutrients": {
       "type": "Low nitrogen, phosphorus for blooming",
       "homemade": "Wood ash + banana tea in spring"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 21 in cold. Prune hard in winter and summer to force flowering."
+    },
+    "placementRecommended": "Full sun and a very strong support — iron pergola or solid wall.",
+    "placementAlternatives": [
+      "Sturdy pergola over a wide patio",
+      "Brick wall with metal anchors"
+    ],
+    "placementAvoid": "Fragile structures and proximity to pipes — enormous weight and invasive roots.",
+    "whyRationale": "A deciduous climber native to China and Japan, it evolved in temperate mountain valleys. Its fragrant violet flowers are bee-pollinated, and the winter photoperiod (cold + short daylight) is required to induce flower buds — without a cold winter, it won't bloom."
   },
   "gardenia": {
     "name": "Gardenia",
@@ -1587,7 +1734,17 @@
     "nutrients": {
       "type": "Acid, iron and magnesium",
       "homemade": "Coffee grounds weekly + acidified water with vinegar (1 tbsp/L)"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm with chlorine-free water; every 7 in cold. Never wet the flowers."
+    },
+    "placementRecommended": "Partial sun — morning yes, afternoon shade, acid and moist soil.",
+    "placementAlternatives": [
+      "Bed alongside other acid-loving plants (camellia, azalea)",
+      "Pot with acid-loving substrate and rainwater"
+    ],
+    "placementAvoid": "Strong midday sun and chlorinated tap water — chlorosis and bud drop.",
+    "whyRationale": "Native to southern Asia (China, India, Japan), it evolved in tropical-subtropical understory with acidic, humid soils. Its pH 5-6 requirement comes from native microbiology: it only absorbs iron and magnesium in acidic soils, which is why it yellows in the alkaline soils typical of Buenos Aires."
   },
   "camelia": {
     "name": "Camellia",
@@ -1613,7 +1770,17 @@
     "nutrients": {
       "type": "Acid, low nitrogen",
       "homemade": "Coffee grounds monthly + rainwater when possible"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Keep substrate acidic and ambient humidity high."
+    },
+    "placementRecommended": "East-facing partial shade — gentle morning sun, afternoon shade.",
+    "placementAlternatives": [
+      "Under a deciduous tree that gives summer shade",
+      "Bed against an east-facing wall"
+    ],
+    "placementAvoid": "Midday sun — burns flowers and leaves; alkaline soil — chronic chlorosis.",
+    "whyRationale": "Native to East Asia (Japan, China), it evolved in deciduous montane understory. It blooms in winter-spring because its cycle is synced to the dry cold of its habitat: buds need exposure to low temperatures (vernalization) to open properly."
   },
   "dalia": {
     "name": "Dahlia",
@@ -1639,7 +1806,17 @@
     "nutrients": {
       "type": "High in phosphorus and potassium",
       "homemade": "Banana tea weekly during blooming"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 7 in cold. In autumn, dig up tubers and store dry until spring."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct, deep rich soil.",
+    "placementAlternatives": [
+      "Sunny bed with regular watering",
+      "Large pot (min. 30L) with stake for tall varieties"
+    ],
+    "placementAvoid": "Late frost on planted tubers — rots them before sprouting.",
+    "whyRationale": "Native to Mexico and Central America, the tubers evolved as reserves to survive the dry season. In climates with cold winters, you have to lift them in autumn because hard frosts shatter the cells and rot them — emulating the migration to warm ground they'd make in their natural habitat."
   },
   "salvia-ornamental": {
     "name": "Ornamental Sage",
@@ -1660,7 +1837,18 @@
     "nutrients": {
       "type": "Moderate, phosphorus for blooming",
       "homemade": "Light compost annually in spring"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Remove old flowers to extend blooming."
+    },
+    "placementRecommended": "Full sun — attracts hummingbirds and butterflies, ideal for pollinator gardens.",
+    "placementAlternatives": [
+      "Bed border with other Mediterranean plants",
+      "Sunny pot on patio or balcony",
+      "Pollinator garden alongside lavender and rosemary"
+    ],
+    "placementAvoid": "Frequent watering and waterlogged soil — rots quickly.",
+    "whyRationale": "Native to Brazil and warm zones of South America, it evolved in savannas and dry-forest edges. Its red or violet flower spikes are specifically designed for hummingbirds; the aromatic leaves contain essential oils that repel herbivores, a chemical defense typical of sages."
   },
   "cala": {
     "name": "Calla Lily",
@@ -1686,7 +1874,18 @@
     "nutrients": {
       "type": "Balanced nitrogen and phosphorus",
       "homemade": "Rice water + worm compost every 15 days during blooming"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm; every 10 in cold. In autumn reduce watering to induce dormancy."
+    },
+    "placementRecommended": "Semi-shade — filtered light, consistently moist soil, tolerates proximity to water.",
+    "placementAlternatives": [
+      "Bed under a deciduous tree",
+      "Pond edge or moist garden zone",
+      "Patio pot with abundant indirect light"
+    ],
+    "placementAvoid": "Intense direct sun and dry soil — scorched leaves and dormant rhizome.",
+    "whyRationale": "Endemic to South Africa (Cape Province), it evolved in seasonal wetlands with humid summers and cool winters. The rhizome needs a dry-cold rest period to build up reserves; without that autumn pause, the next bloom will be weak or fail."
   },
   "copete": {
     "name": "Marigold",
@@ -1707,7 +1906,18 @@
     "nutrients": {
       "type": "Moderate, phosphorus for blooming",
       "homemade": "Banana tea biweekly during blooming"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 5 in cold. Remove faded flowers for continuous blooming."
+    },
+    "placementRecommended": "Full sun — at least 6 hours direct, ideal next to the vegetable garden.",
+    "placementAlternatives": [
+      "Vegetable bed border to repel nematodes",
+      "Pot alongside tomatoes and peppers",
+      "Sunny balcony planter"
+    ],
+    "placementAvoid": "Shade and waterlogged soil — few flowers and prone to fungus.",
+    "whyRationale": "Native to Mexico and Central America, its roots secrete thiophenes that repel soil nematodes — a natural fungicide. That's why it's a classic companion for the Argentine vegetable garden: it protects tomatoes and peppers while attracting pollinators with its orange-yellow flowers."
   },
   "verbena": {
     "name": "Verbena",
@@ -1728,7 +1938,18 @@
     "nutrients": {
       "type": "Very low, poor soil preferred",
       "homemade": "Minimal compost once a year"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Cut dry flowers to prolong blooming."
+    },
+    "placementRecommended": "Full sun — attracts butterflies and bees, ideal for pollinator gardens.",
+    "placementAlternatives": [
+      "Bed border alongside other native plants",
+      "Sunny pot on patio or balcony",
+      "Wild garden where it can self-seed"
+    ],
+    "placementAvoid": "Very fertile soil and excess fertilizer — more leaves, fewer flowers.",
+    "whyRationale": "An Argentine native, it evolved in pampas and forest edges with poor soils and dry summers. Its tall, slender stems with violet flowers are an adaptation for pollinators that seek height above the vegetation; self-seeding makes it a practical perennial that renews itself every year."
   },
   "romero-rastrero": {
     "name": "Trailing Rosemary",
