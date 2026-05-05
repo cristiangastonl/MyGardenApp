@@ -124,7 +124,16 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. After identifying a plant via PlantNet, the light level picker pre-selects the species' recommended level
   4. `npm run check:i18n-keys` passes with the 5 new field validations in place
   5. "Tus ajustes" shows a soft override note when the user's stored value differs from the catalog recommendation
-**Plans**: TBD
+**Plans:** 1/9 plans executed
+  - [x] 14-00-PLAN.md — Wave 0 scaffold: smoke-phase14.mjs runner + 2 .tmp-phase14 stubs + npm-script entry + .gitignore line (Nyquist gate; covers EDU-01/02/04/05/06/07 placeholders)
+  - [ ] 14-01-PLAN.md — Wave 1: PlantDBEntry extended with 5 EDU-02 fields + getTranslatedPlant surfaces them + check-i18n-keys validator extended (EDU-02, EDU-07)
+  - [ ] 14-02-PLAN.md — Wave 1: useStorage.updatePlant deep-merge guard (EDU-06) + compareUserVsCatalog override comparator (EDU-05) + 6 plantDetailModal section labels in common.json (EDU-01 prep)
+  - [ ] 14-03-PLAN.md — Wave 2: EducationalSection.tsx Reanimated v4 collapsible card + MyPlantDetailModal restructured into 4 educational sections (EDU-01) + LightLevelPicker pre-select regression check (EDU-04) + 3 sub-block labels in common.json
+  - [ ] 14-04-PLAN.md — Wave 3: EDU-03 catalog content authoring — 15 INTERIOR entries (aloe-vera, calathea, cinta, dracaena, espatifilo, ficus, filodendro, jade, monstera, orquidea, palmera-interior, peperomia, potus, sansevieria, yuca) × 5 fields × 2 locales
+  - [ ] 14-05-PLAN.md — Wave 4: EDU-03 catalog content authoring — 21 EXTERIOR entries (3 lavandas + 18 others) × 5 fields × 2 locales
+  - [ ] 14-06-PLAN.md — Wave 5: EDU-03 catalog content authoring — 18 entries (9 AROMATICAS + 9 HUERTA) × 5 fields × 2 locales
+  - [ ] 14-07-PLAN.md — Wave 6: EDU-03 catalog content authoring — 10 entries (5 FRUTALES + 5 SUCULENTAS) × 5 fields × 2 locales — completes 64-entry catalog (FULL coverage)
+  - [ ] 14-08-PLAN.md — Wave 7: MANUAL CHECKPOINT (autonomous: false) — iOS + Android dev client device verification of EDU-01/04/05/06 + PaywallModal Z-order regression
 
 ### Phase 15: Catalog Wave A — Interior Tropicals
 **Goal**: 23 interior/tropical plants are fully added to the catalog with educational content, identification routing, and image plan — expanding from 64 to 87 entries
@@ -255,7 +264,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
-| 14. Educational Detail Modal | v1.2 | 0/TBD | Not started | - |
+| 14. Educational Detail Modal | 1/9 | In Progress|  | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |

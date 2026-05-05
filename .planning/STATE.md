@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
-stopped_at: Phase 14 context gathered
-last_updated: "2026-05-04T22:37:27.439Z"
-last_activity: "2026-05-04 — Phase 13 Plan 02 complete. 3 new files: src/components/Skeleton.tsx (53 LOC, Reanimated v4 shimmer), src/utils/haptics.ts (50 LOC, triggerHaptic + HapticKind), src/hooks/useDismissOnPaywall.ts (22 LOC, close-then-trigger contract). 1 modified file: src/screens/SettingsScreen.tsx (+33 lines — testSheetRef + openTestSheet/closeTestSheet handlers + __DEV__-block TouchableOpacity + Skeleton demo + screen-level <BottomSheetModal> sibling of ScrollView). 4 new dev-tool i18n keys per locale (en + es parity at 78 settings.* keys). Smoke: PASS 22/22, tsc PASS, check:i18n-keys PASS."
+stopped_at: Completed 14-00-PLAN.md (Wave 0 scaffold)
+last_updated: "2026-05-05T02:20:23.058Z"
+last_activity: "2026-05-05 — Phase 14 Plan 00 complete (Wave 0 scaffold). 1 new file: scripts/smoke-phase14.mjs (241 LOC, single-compile-path ts.transpileModule + assertSkippableAsync harness). 2 modified: package.json (smoke:phase14 entry), .gitignore (explicit scripts/.tmp-phase14/ line). 2 auto-written gitignored stubs at scripts/.tmp-phase14/{async-storage,i18n}.mjs. Wave 0 baseline: PASS 7/19 (6 W0 scaffold + 1 EDU-04 regression), 12 SKIP placeholders for EDU-01/02/05/06/07, 0 FAIL, exit 0. npm run smoke:phase14 wired."
 progress:
   total_phases: 15
   completed_phases: 4
-  total_plans: 16
-  completed_plans: 17
-  percent: 88
+  total_plans: 25
+  completed_plans: 19
+  percent: 76
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 13 of 24 (Gesture + Bottom-Sheet Infrastructure) — IN PROGRESS
-Plan: 13-02 complete (3/4 plans in Phase 13 — Wave 0 scaffold, Wave 1 deps + App.tsx wrap, Wave 2 consumer primitives + dev-tools test sheet)
-Status: Phase 13 INFRA-01/02/03/04 all closed at the code level. Smoke runner PASS 22/22 (no skips). Plan 13-03 (manual device verification checkpoint, autonomous: false) is the next gate — iOS + Android dev clients need to be rebuilt and the Test bottom sheet + Skeleton shimmer surfaces verified on real hardware. Bug-watch on @gorhom/bottom-sheet v5.2.13 + Expo SDK 54 still active until Plan 13-03 device test passes.
-Last activity: 2026-05-04 — Phase 13 Plan 02 complete. 3 new files: src/components/Skeleton.tsx (53 LOC, Reanimated v4 shimmer), src/utils/haptics.ts (50 LOC, triggerHaptic + HapticKind), src/hooks/useDismissOnPaywall.ts (22 LOC, close-then-trigger contract). 1 modified file: src/screens/SettingsScreen.tsx (+33 lines — testSheetRef + openTestSheet/closeTestSheet handlers + __DEV__-block TouchableOpacity + Skeleton demo + screen-level <BottomSheetModal> sibling of ScrollView). 4 new dev-tool i18n keys per locale (en + es parity at 78 settings.* keys). Smoke: PASS 22/22, tsc PASS, check:i18n-keys PASS.
+Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
+Plan: 14-00 complete (1/9 plans in Phase 14 — Wave 0 scaffold). Plan 13-03 (manual device verification) still pending; Phase 14 work proceeds in parallel since 14-00 is harness-only and does not touch source code.
+Status: Phase 14 smoke runner skeleton wired. 6 W0 scaffold PASSes + 1 EDU-04 regression PASS at baseline; 12 SKIP placeholders covering every Wave 1+ requirement (EDU-01/02/05/06/07). 0 FAIL. ts.transpileModule single-compile-path locked. Plans 14-01 (foundation: types + getTranslatedPlant + validator) and 14-02 (storage guard + override comparator) are file-disjoint and can run in parallel as Wave 1.
+Last activity: 2026-05-05 — Phase 14 Plan 00 complete (Wave 0 scaffold). scripts/smoke-phase14.mjs (241 LOC) lands; npm run smoke:phase14 wired; auto-writes 2 gitignored stubs.
 
-Progress: [█████████░] 88% (v1.2 in progress — 16/16 plans complete in tracked window; Phase 13 Plans 03 + Phases 14-24 still ahead)
+Progress: [███████░░░] 76% (v1.2 in progress — 19/25 plans complete in tracked window; Phase 13 Plan 03 + Phases 14-24 still ahead)
 
 ## Performance Metrics
 
@@ -39,9 +39,13 @@ Progress: [█████████░] 88% (v1.2 in progress — 16/16 plans
 - Average duration: ~9 min (v1.0), ~8 min (v1.1)
 - Total execution time: ~5.2 hours across v1.0+v1.1
 
-**Recent Trend (v1.1 Phase 9):**
-- Plans ranged 3-8 min each; P07 was 29 min (complex paywall architecture)
+**Recent Trend (v1.2 Phase 14):**
+- Plan 14-00 (Wave 0 scaffold): ~3 min, 1 task, 3 files
 - Trend: Stable
+
+| Phase-Plan | Duration | Tasks | Files |
+| ---------- | -------- | ----- | ----- |
+| 14-00      | 3min     | 1     | 3     |
 
 *Updated after each plan completion*
 
@@ -83,6 +87,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: useDismissOnPaywall ships unused in Phase 13 — Phase 14 (educational modal) and Phase 21 (journal quick-add) will be the first consumers, opting in via one-line `useDismissOnPaywall(sheetRef)` after their `useRef<BottomSheetModal>(null)` line; locks the API surface NOW
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: BottomSheetModal placement at screen-component level (sibling of ScrollView, NOT inside) — gorhom's portal-based modal needs a stable parent for portaling to App-root BottomSheetModalProvider
 - [Phase 13-gesture-bottom-sheet-infrastructure]: Plan 13-02: i18n convention discovered — common.json file has NO top-level `common.*` namespace despite the file name; close-button keys live at `diagnosis.close` + `plantDetailModal.close`. Plan 13-02 added `settings.devTestBottomSheetClose` instead of reusing non-existent `common.close` (Rule 3 deviation). Phase 24 DOCS may want to document this convention.
+- [Phase 14-educational-detail-modal]: Plan 14-00: Hybrid smoke runner — file-content asserts (modal/JSX) + ts.transpileModule (overrideDetection.ts behavioral) in one harness; 6 W0 scaffold PASSes + 12 SKIP placeholders + 1 EDU-04 regression PASS; baseline = PASS 7/19, 0 FAIL, exit 0
+- [Phase 14-educational-detail-modal]: Plan 14-00: Heuristic SKIP gate — each EDU placeholder uses marker-regex sentinel (e.g., /careAction|placementRecommended|whyRationale/) so partial-shape Wave 1 commits FAIL loudly instead of silently SKIPping; prevents false PASS during in-progress work
+- [Phase 14-educational-detail-modal]: Plan 14-00: EDU-04 has NO SKIP gate — selectedPlant?.lightLevel ?? pre-select pattern at IdentificationResults.tsx:42-44 (Phase 7) is regression-checked, MUST PASS at baseline
+- [Phase 14-educational-detail-modal]: Plan 14-00: Stubs auto-written at runtime via writeFileSync (mirrors Phase 11/12) — scripts/.tmp-phase14/{async-storage,i18n}.mjs are gitignored, NOT committed; explicit scripts/.tmp-phase14/ added to .gitignore alongside existing wildcard
 
 ### Pending Todos
 
@@ -96,6 +104,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-04T22:37:27.437Z
-Stopped at: Phase 14 context gathered
-Resume file: .planning/phases/14-educational-detail-modal/14-CONTEXT.md
+Last session: 2026-05-05T02:20:23.056Z
+Stopped at: Completed 14-00-PLAN.md (Wave 0 scaffold)
+Resume file: None
