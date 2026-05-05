@@ -838,6 +838,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 5-7 días en cálido; menos en frío. Fertilizá trimestral con fórmula cítricos rica en hierro y zinc.",
+    },
+    placementRecommended: "Pleno sol — al menos 6-8 horas. Suelo profundo bien drenado y abrigado del viento frío.",
+    placementAlternatives: [
+      "Maceta de 50+ litros con drenaje en patio soleado",
+      "Cantero resguardado contra muro orientado al norte",
+      "Galería vidriada o invernadero en zona con heladas frecuentes",
+    ],
+    placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
+    whyRationale: "Cítrico de la familia Rutáceas, originario del sudeste asiático. A diferencia del naranjo, fructifica casi continuamente bajo clima subtropical. La clorosis férrica en suelo alcalino refleja la necesidad de micronutrientes constantes.",
   },
 
   // ─── SUCULENTAS ───
@@ -865,6 +876,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 12, cold: 24 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra: solo regá cuando esté completamente seca (1-2 semanas en cálido, 3-4 en frío). Mejor de menos.",
+    },
+    placementRecommended: "Sol pleno o luz brillante directa — al menos 4-6 horas para mantener forma compacta.",
+    placementAlternatives: [
+      "Repisa cerca de ventana orientada al norte",
+      "Maceta exterior con buen drenaje en primavera y verano",
+      "Sustrato arenoso con perlita o piedra pómez para asegurar drenaje",
+    ],
+    placementAvoid: "Suelo encharcado y sombra prolongada — pudre raíces y se estira buscando luz (estiolación).",
+    whyRationale: "Las suculentas usan metabolismo CAM: cierran estomas de día para evitar pérdida de agua y los abren de noche. Sus hojas o tallos suculentos almacenan agua para sequías largas — por eso el exceso de riego, no la falta, es lo que más las mata.",
   },
   {
     id: "cactus",
@@ -890,6 +912,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 21, cold: 30 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra: regá solo si está seca a fondo. En invierno casi no riegues — necesita reposo seco para florecer.",
+    },
+    placementRecommended: "Sol pleno directo — al menos 6 horas. Sustrato arenoso con drenaje crítico.",
+    placementAlternatives: [
+      "Patio o balcón orientado al norte con sol directo",
+      "Maceta de barro con perlita o arena gruesa al 50%",
+      "Cantero exterior con suelo pedregoso bien drenado",
+    ],
+    placementAvoid: "Sombra prolongada y suelo siempre húmedo — pudre la base y se estira deformándose.",
+    whyRationale: "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Usa metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración.",
   },
   {
     id: "echeveria",
@@ -915,6 +948,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 20 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra: solo regá cuando esté completamente seca. Regá por abajo o directo a la tierra, nunca sobre la roseta.",
+    },
+    placementRecommended: "Sol pleno o luz brillante directa — al menos 4-6 horas para mantener color y forma compacta.",
+    placementAlternatives: [
+      "Repisa cerca de ventana orientada al norte",
+      "Balcón soleado en primavera y verano",
+      "Mesada con luz directa de mañana",
+    ],
+    placementAvoid: "Sombra prolongada — la roseta se abre y pierde colores; agua estancada en la roseta — pudre el centro.",
+    whyRationale: "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y usa metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación).",
   },
 
   // ─── INTERIOR (nuevas) ───
@@ -1560,6 +1604,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 5-7 días en cálido; menos en frío. Fertilizá con fórmula cítricos en primavera y verano para frutos dulces.",
+    },
+    placementRecommended: "Pleno sol — al menos 6-8 horas. Suelo profundo bien drenado, abrigado del viento frío.",
+    placementAlternatives: [
+      "Maceta de 50+ litros con drenaje en patio soleado",
+      "Cantero junto a muro orientado al norte",
+      "Galería vidriada en zona con heladas frecuentes",
+    ],
+    placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y flores entran en clorosis.",
+    whyRationale: "Cítrico de la familia Rutáceas, originario de China subtropical. La cosecha es estacional (otoño-invierno) y la dulzura del fruto requiere calor sostenido. La clorosis férrica en suelo alcalino es la falla más común — pide micronutrientes regulares.",
   },
   {
     id: "aguacate",
@@ -1585,6 +1640,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 5-7 días en cálido; menos en frío. Drenaje crítico — no soporta encharcamiento. Fertilizá con compost en primavera.",
+    },
+    placementRecommended: "Pleno sol — al menos 6-8 horas. Suelo profundo y bien drenado, protegido del viento.",
+    placementAlternatives: [
+      "Cantero abierto con espacio para raíces extensas",
+      "Maceta muy grande (80+ litros) con drenaje generoso",
+      "Patio cálido al reparo de heladas",
+    ],
+    placementAvoid: "Suelo encharcado y heladas bajo 10°C — la pudrición de raíz es la causa más común de muerte.",
+    whyRationale: "Lauráceas, originario de Mesoamérica. Tarda 3-7 años en dar fruta y necesita polinización cruzada (variedades tipo A y B). Sus raíces son superficiales — la falta de oxígeno por encharcamiento mata más plantas que la sequía.",
   },
   {
     id: "higuera",
@@ -1610,6 +1676,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 7-10 días en cálido; suspendé casi todo en invierno (es de hoja caduca). Podá formativa en invierno cuando está sin hojas.",
+    },
+    placementRecommended: "Pleno sol — al menos 8 horas. Suelo bien drenado; tolera suelos pobres y pedregosos.",
+    placementAlternatives: [
+      "Cantero amplio con espacio para copa generosa",
+      "Maceta muy grande (60+ litros) limitando crecimiento",
+      "Junto a muro orientado al norte que acumule calor",
+    ],
+    placementAvoid: "Viento intenso y poda en savia — el látex blanco irrita la piel y las heridas tardan en cicatrizar.",
+    whyRationale: "Moráceas, mediterránea de hoja caduca. Da dos cosechas en buen año: brevas en primavera (sobre madera vieja) e higos en verano (sobre brotes nuevos). Su látex blanco es el rasgo familiar; tolera suelos pobres y veranos secos.",
   },
   {
     id: "mandarino",
@@ -1635,6 +1712,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá profundo cada 5-7 días en cálido; menos en frío. Fertilizá trimestral con fórmula cítricos rica en hierro y zinc.",
+    },
+    placementRecommended: "Pleno sol — al menos 6-8 horas. Buen drenaje; ideal para jardín pequeño o maceta grande.",
+    placementAlternatives: [
+      "Maceta de 40+ litros con drenaje en patio soleado",
+      "Cantero junto a muro orientado al norte",
+      "Galería vidriada en zona con heladas frecuentes",
+    ],
+    placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
+    whyRationale: "Rutáceas, originario del sudeste asiático. Más compacto que el naranjo, con frutos dulces de cáscara fina. La cosecha es estacional, generalmente más temprana que la naranja. Comparte la sensibilidad familiar a clorosis férrica en suelo alcalino.",
   },
 
   // ─── HUERTA (extra) ───
@@ -1738,6 +1826,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 14, cold: 28 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra: solo regá cuando esté completamente seca (2-3 semanas en cálido, 4+ en frío). El sol fuerte la quema.",
+    },
+    placementRecommended: "Luz brillante indirecta — no directa. Tolera mejor la sombra que casi cualquier otra suculenta.",
+    placementAlternatives: [
+      "Escritorio cerca de ventana al este o norte",
+      "Estante con luz natural difusa",
+      "Baño con luz indirecta — tolera la humedad ambiente",
+    ],
+    placementAvoid: "Sol directo intenso y suelo siempre húmedo — el primero quema las hojas, el segundo pudre la base.",
+    whyRationale: "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual usa CAM y almacena agua.",
   },
   {
     id: "sedum",
@@ -1763,6 +1862,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 14, cold: 28 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra: regá solo cuando esté completamente seca. Manipulá lo menos posible — las hojas se desprenden al mínimo roce.",
+    },
+    placementRecommended: "Sol pleno o luz brillante directa — al menos 4-6 horas. Maceta colgante o estante alto donde sus tallos puedan caer.",
+    placementAlternatives: [
+      "Maceta colgante en galería luminosa",
+      "Estante alto cerca de ventana orientada al norte",
+      "Balcón con sol directo en primavera y verano",
+    ],
+    placementAvoid: "Lugares de paso donde la rocen — pierde hojas; sombra prolongada y suelo húmedo — pudre los tallos.",
+    whyRationale: "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Usa CAM como toda la familia.",
   },
   {
     id: "yuca",

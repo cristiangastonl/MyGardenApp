@@ -820,7 +820,18 @@
     "nutrients": {
       "type": "Nitrogen, iron and zinc",
       "homemade": "Diluted vinegar in watering + rusty nails monthly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 5-7 days in warm weather; less in cold. Fertilize quarterly with a citrus formula rich in iron and zinc."
+    },
+    "placementRecommended": "Full sun — at least 6-8 hours. Deep, well-drained soil sheltered from cold wind.",
+    "placementAlternatives": [
+      "50+ liter pot with drainage on a sunny patio",
+      "Bed sheltered against a north-facing wall",
+      "Glassed-in porch or greenhouse in frost-prone areas"
+    ],
+    "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and develops chronic chlorosis.",
+    "whyRationale": "A citrus from the Rutaceae family, native to Southeast Asia. Unlike the orange tree, it fruits almost continuously in subtropical climates. Iron chlorosis on alkaline soils reflects its constant need for micronutrients."
   },
   "suculenta-generica": {
     "name": "Succulent",
@@ -846,7 +857,18 @@
     "nutrients": {
       "type": "Very low, phosphorus and potassium",
       "homemade": "Eggshell water once a month"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil: only water when it's completely dry (1-2 weeks in warm weather, 3-4 in cold). Better to underwater."
+    },
+    "placementRecommended": "Full sun or bright direct light — at least 4-6 hours to maintain a compact shape.",
+    "placementAlternatives": [
+      "Shelf near a south-facing window",
+      "Outdoor pot with good drainage in spring and summer",
+      "Sandy substrate with perlite or pumice for drainage"
+    ],
+    "placementAvoid": "Waterlogged soil and prolonged shade — rots roots and stretches reaching for light (etiolation).",
+    "whyRationale": "Succulents use CAM metabolism: they close stomata during the day to prevent water loss and open them at night. Their fleshy leaves or stems store water for long droughts — that's why overwatering, not drought, is what kills them most."
   },
   "cactus": {
     "name": "Cactus",
@@ -872,7 +894,18 @@
     "nutrients": {
       "type": "Low, phosphorus and potassium",
       "homemade": "Eggshell water once a month"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil: only water if dry to the bottom. In winter, barely water at all — needs dry rest to flower."
+    },
+    "placementRecommended": "Full direct sun — at least 6 hours. Sandy substrate with critical drainage.",
+    "placementAlternatives": [
+      "Patio or south-facing balcony with direct sun",
+      "Terracotta pot with 50% perlite or coarse sand",
+      "Outdoor bed with rocky, well-drained soil"
+    ],
+    "placementAvoid": "Prolonged shade and constantly wet soil — rots the base and stretches deformed.",
+    "whyRationale": "Cactaceae family, native to the arid zones of the Americas. Spines are modified leaves and the green stem replaces leaf photosynthesis. Uses CAM metabolism (nocturnal stomata) to tolerate the desert; a cool dry winter triggers blooming."
   },
   "echeveria": {
     "name": "Echeveria",
@@ -898,7 +931,18 @@
     "nutrients": {
       "type": "Very low, phosphorus",
       "homemade": "Eggshell water every 2 months"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil: only water when completely dry. Water from below or directly onto the soil, never on the rosette."
+    },
+    "placementRecommended": "Full sun or bright direct light — at least 4-6 hours to keep color and compact form.",
+    "placementAlternatives": [
+      "Shelf near a south-facing window",
+      "Sunny balcony in spring and summer",
+      "Counter with direct morning light"
+    ],
+    "placementAvoid": "Prolonged shade — the rosette opens and loses color; standing water in the rosette — rots the center.",
+    "whyRationale": "Crassulaceae from semi-arid mountainous regions of Mexico. Its rosette form minimizes water loss and it uses CAM metabolism. Pastel colors intensify with direct sun; in shade they turn green and the plant stretches (etiolation)."
   },
   "espatifilo": {
     "name": "Peace Lily",
@@ -1551,7 +1595,18 @@
     "nutrients": {
       "type": "Nitrogen, iron and zinc",
       "homemade": "Diluted vinegar in watering + eggshell"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 5-7 days in warm weather; less in cold. Feed with a citrus formula in spring and summer for sweet fruit."
+    },
+    "placementRecommended": "Full sun — at least 6-8 hours. Deep, well-drained soil sheltered from cold wind.",
+    "placementAlternatives": [
+      "50+ liter pot with drainage on a sunny patio",
+      "Bed next to a north-facing wall",
+      "Glassed-in porch in frost-prone areas"
+    ],
+    "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and flowers fall to chlorosis.",
+    "whyRationale": "A citrus from the Rutaceae family, native to subtropical China. Harvest is seasonal (autumn-winter) and fruit sweetness requires sustained heat. Iron chlorosis on alkaline soil is the most common failure — needs regular micronutrients."
   },
   "aguacate": {
     "name": "Avocado",
@@ -1577,7 +1632,18 @@
     "nutrients": {
       "type": "Nitrogen and potassium",
       "homemade": "Worm castings + banana peel tea monthly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 5-7 days in warm weather; less in cold. Drainage is critical — won't tolerate waterlogging. Feed compost in spring."
+    },
+    "placementRecommended": "Full sun — at least 6-8 hours. Deep, well-drained soil, protected from wind.",
+    "placementAlternatives": [
+      "Open bed with room for extensive roots",
+      "Very large pot (80+ liters) with generous drainage",
+      "Warm patio sheltered from frost"
+    ],
+    "placementAvoid": "Waterlogged soil and frost below 10°C (50°F) — root rot is the most common cause of death.",
+    "whyRationale": "Lauraceae, native to Mesoamerica. Takes 3-7 years to fruit and needs cross-pollination (type A and B varieties). Roots are shallow — lack of oxygen from waterlogging kills more plants than drought."
   },
   "higuera": {
     "name": "Fig Tree",
@@ -1603,7 +1669,18 @@
     "nutrients": {
       "type": "Potassium and phosphorus",
       "homemade": "Banana peel tea + wood ash biweekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 7-10 days in warm weather; nearly stop in winter (it's deciduous). Formative pruning in winter while bare."
+    },
+    "placementRecommended": "Full sun — at least 8 hours. Well-drained soil; tolerates poor and rocky soils.",
+    "placementAlternatives": [
+      "Open bed with room for a generous canopy",
+      "Very large pot (60+ liters) limiting growth",
+      "Next to a north-facing wall that holds heat"
+    ],
+    "placementAvoid": "Strong wind and pruning during sap flow — the white latex irritates skin and wounds heal slowly.",
+    "whyRationale": "Moraceae, deciduous Mediterranean tree. Yields two crops in a good year: brebas in spring (on old wood) and figs in summer (on new shoots). White latex is the family hallmark; tolerates poor soils and dry summers."
   },
   "mandarino": {
     "name": "Mandarin Tree",
@@ -1629,7 +1706,18 @@
     "nutrients": {
       "type": "Nitrogen, iron and zinc",
       "homemade": "Diluted vinegar + rusty nails monthly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water deeply every 5-7 days in warm weather; less in cold. Fertilize quarterly with a citrus formula rich in iron and zinc."
+    },
+    "placementRecommended": "Full sun — at least 6-8 hours. Good drainage; ideal for small gardens or large pots.",
+    "placementAlternatives": [
+      "40+ liter pot with drainage on a sunny patio",
+      "Bed next to a north-facing wall",
+      "Glassed-in porch in frost-prone areas"
+    ],
+    "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and develops chronic chlorosis.",
+    "whyRationale": "Rutaceae, native to Southeast Asia. More compact than the orange tree, with sweet fruit and thin peel. Harvest is seasonal, generally earlier than the orange. Shares the family-wide sensitivity to iron chlorosis on alkaline soil."
   },
   "zapallito": {
     "name": "Summer Squash",
@@ -1729,7 +1817,18 @@
     "nutrients": {
       "type": "Very low, phosphorus",
       "homemade": "Eggshell water every 2 months"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil: only water when completely dry (2-3 weeks in warm, 4+ in cold). Strong sun burns its leaves."
+    },
+    "placementRecommended": "Bright indirect light — not direct. Tolerates shade better than almost any other succulent.",
+    "placementAlternatives": [
+      "Desk near an east- or north-facing window",
+      "Shelf with diffuse natural light",
+      "Bathroom with indirect light — tolerates ambient humidity"
+    ],
+    "placementAvoid": "Intense direct sun and constantly wet soil — the first burns the leaves, the second rots the base.",
+    "whyRationale": "Asphodelaceae, native to semi-arid South Africa with partial shade. Its translucent tips (windows) allow photosynthesis inside the leaf — a rare adaptation that makes it shade-tolerant. Still uses CAM and stores water."
   },
   "sedum": {
     "name": "Burro's Tail",
@@ -1755,7 +1854,18 @@
     "nutrients": {
       "type": "Very low, phosphorus",
       "homemade": "Eggshell water every 2 months"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil: only water when completely dry. Handle as little as possible — leaves drop at the slightest brush."
+    },
+    "placementRecommended": "Full sun or bright direct light — at least 4-6 hours. Hanging pot or high shelf where stems can trail.",
+    "placementAlternatives": [
+      "Hanging pot on a bright porch",
+      "High shelf near a north-facing window",
+      "Balcony with direct sun in spring and summer"
+    ],
+    "placementAvoid": "Walkways where it gets brushed — drops leaves; prolonged shade and wet soil — rots the stems.",
+    "whyRationale": "Crassulaceae from Mexico (burro's tail), more cold-tolerant than echeveria. Its bead-shaped leaves drop at the slightest touch but each one roots easily — an evolutionary clonal-propagation strategy on rocky soil. Uses CAM like the family."
   },
   "yuca": {
     "name": "Yucca",
