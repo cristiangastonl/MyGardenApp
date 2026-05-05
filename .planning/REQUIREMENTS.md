@@ -39,7 +39,7 @@
 - [x] **EDU-01**: `MyPlantDetailModal` restructured into 4 sections: "¿Qué hacer?" (action card), "¿Dónde ponerla?" (placement recommendation + alternatives + avoid), "¿Por qué?" (rationale, collapsable), "Tus ajustes" (current user state with override-detection)
 - [x] **EDU-02**: `PlantDBEntry` type extended with 5 new optional fields: `careAction: { fixed?: string, soilCheck?: string }`, `placementRecommended: string`, `placementAlternatives: string[]`, `placementAvoid: string`, `whyRationale: string` (additive, no schema bump per architecture research)
 - [ ] **EDU-03**: All 64 existing catalog entries gain content for the 5 new fields in BOTH EN and ES (es-AR voseo for ES) — total ~640 new strings; AI-drafted + horticultural review
-- [ ] **EDU-04**: `IdentificationResults` LightLevelPicker pre-selects the species' recommended `lightLevel` (closes UAT #1 — picker recommendation visible)
+- [x] **EDU-04**: `IdentificationResults` LightLevelPicker pre-selects the species' recommended `lightLevel` (closes UAT #1 — picker recommendation visible)
 - [x] **EDU-05**: When user's chosen value (e.g., `lightLevel`, `waterSchedule.warm`) differs from the catalog recommendation, "Tus ajustes" section shows a soft note ("Diferente a la recomendación para esta especie. ¿Querés ajustar?") — non-pushy
 - [x] **EDU-06**: `useStorage.updatePlant` deep-merge guard prevents catalog-source values from silently overwriting user customizations (Pitfall CRIT-1 from research)
 - [x] **EDU-07**: `check-i18n-keys.mjs` extended to validate the 5 new fields when present on entry; nutrient-conditional pattern (line 66) is the template
@@ -206,7 +206,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | EDU-01 | Phase 14 | Complete |
 | EDU-02 | Phase 14 | Complete |
 | EDU-03 | Phase 14 | Pending |
-| EDU-04 | Phase 14 | Pending |
+| EDU-04 | Phase 14 | Complete |
 | EDU-05 | Phase 14 | Complete |
 | EDU-06 | Phase 14 | Complete |
 | EDU-07 | Phase 14 | Complete |
