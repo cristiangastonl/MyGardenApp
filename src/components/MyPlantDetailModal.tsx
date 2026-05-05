@@ -20,6 +20,8 @@ import { PlantPhotoAlbum } from './PlantPhotoAlbum';
 import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from './PlantDiagnosis';
 import { ActiveProblemsSection } from './ActiveProblemsSection';
 import { MigrationTooltip } from './MigrationTooltip';
+import { EducationalSection } from './plant-detail/EducationalSection';
+import { compareUserVsCatalog, OverrideField, OverrideResult } from '../utils/overrideDetection';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
 import { useStorage } from '../hooks/useStorage';
@@ -82,6 +84,26 @@ export function MyPlantDetailModal({
       ?? findDatabaseEntry(plant);
     return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
+
+  // Phase 14 (EDU-01 + RESEARCH §Open Questions Q1 lock): strict-only catalog resolution
+  // for the 5 NEW educational fields (careAction / placement* / whyRationale). Fuzzy
+  // findDatabaseEntry is NOT used here — prevents wrong-plant educational content for
+  // ambiguous user-named plants. The legacy `dbEntry` (with fuzzy fallback) above stays
+  // for nutrients access (folded into the 🌿 ¿Qué hacer? section).
+  const strictDbEntry = useMemo(() => {
+    if (!plant?.databaseId) return null;
+    const raw = getCatalogEntry(plant.databaseId);
+    return raw ? getTranslatedPlant(raw) : null;
+  }, [plant]);
+
+  // Override detection (EDU-05) — feeds the ⚙️ Tus ajustes section's inline override notes.
+  // Compares against strict entry only (canonical recommendation, no false positives from fuzzy).
+  const overrides = useMemo(
+    () => (plant ? compareUserVsCatalog(plant, strictDbEntry) : []),
+    [plant, strictDbEntry]
+  );
+  const hasOverride = (field: OverrideField) =>
+    overrides.some((o: OverrideResult) => o.field === field);
 
   // Phase 6 (SEASON-05, LIGHT-06/07): season-aware interval + localized light label.
   // Phase 7: getEffectiveSeason replaces getWaterSeason — honors climateOverride.
@@ -213,28 +235,123 @@ export function MyPlantDetailModal({
               <Text style={styles.diagnoseButtonText}>{t('diagnosis.diagnoseHealth')}</Text>
             </TouchableOpacity>
 
-            {/* Nutrients */}
-            {dbEntry?.nutrients && (
-              <View style={styles.nutrientsSection}>
-                <Text style={styles.nutrientsSectionTitle}>
-                  {t('plantDetail.nutrients')}
-                </Text>
-                <View style={styles.nutrientsCard}>
+            {/* ═══════════════════════════════════════════════════════════════
+                Phase 14 (EDU-01) Educational sections — 4-section restructure
+                Replaces existing nutrients card + standalone ActiveProblemsSection.
+                Order locked per CONTEXT.md: 🌿 → 🏠 → ℹ️ → ⚙️
+                ═══════════════════════════════════════════════════════════════ */}
+
+            {/* 🌿 ¿Qué hacer? — folds Active Problems + careAction + nutrients */}
+            <EducationalSection emoji="🌿" title={t('plantDetailModal.whatToDo')}>
+              {/* Active Problems sub-block (folded from standalone ActiveProblemsSection) */}
+              <ActiveProblemsSection
+                diagnoses={allPlantDiagnoses}
+                plantIcon={plant.icon}
+                onPressDiagnosis={(d) => {
+                  setResumeDiagnosis(d);
+                  setShowDiagnosis(true);
+                }}
+              />
+              {/* careAction sub-block — sub-fields independently optional */}
+              {strictDbEntry?.careAction?.fixed && (
+                <Text style={styles.eduCopy}>{strictDbEntry.careAction.fixed}</Text>
+              )}
+              {strictDbEntry?.careAction?.soilCheck && (
+                <Text style={styles.eduCopy}>{strictDbEntry.careAction.soilCheck}</Text>
+              )}
+              {/* Legacy nutrients sub-block — moved INSIDE ¿Qué hacer? per CONTEXT decision.
+                  Uses legacy `dbEntry` (with fuzzy fallback) for backward compat. */}
+              {dbEntry?.nutrients && (
+                <View style={styles.nutrientsCardEdu}>
                   <Text style={styles.nutrientsType}>🧪 {dbEntry.nutrients.type}</Text>
-                  <Text style={styles.nutrientsHomemade}>🏡 {t('plantDetail.homemadeRecipe')}: {dbEntry.nutrients.homemade}</Text>
+                  <Text style={styles.nutrientsHomemade}>
+                    🏡 {t('plantDetail.homemadeRecipe')}: {dbEntry.nutrients.homemade}
+                  </Text>
                 </View>
-              </View>
+              )}
+            </EducationalSection>
+
+            {/* 🏠 ¿Dónde ponerla? — placement* fields; renders notInCatalog when strict null */}
+            <EducationalSection emoji="🏠" title={t('plantDetailModal.whereToPlace')}>
+              {!strictDbEntry ? (
+                <Text style={styles.placeholderCopy}>{t('plantDetailModal.notInCatalog')}</Text>
+              ) : (
+                <View>
+                  {strictDbEntry.placementRecommended && (
+                    <View style={styles.subBlock}>
+                      <Text style={styles.subTitle}>{t('plantDetailModal.recommended')}</Text>
+                      <Text style={styles.eduCopy}>{strictDbEntry.placementRecommended}</Text>
+                    </View>
+                  )}
+                  {strictDbEntry.placementAlternatives && strictDbEntry.placementAlternatives.length > 0 && (
+                    <View style={styles.subBlock}>
+                      <Text style={styles.subTitle}>{t('plantDetailModal.alternatives')}</Text>
+                      {strictDbEntry.placementAlternatives.map((alt, i) => (
+                        <Text key={i} style={styles.bullet}>• {alt}</Text>
+                      ))}
+                    </View>
+                  )}
+                  {strictDbEntry.placementAvoid && (
+                    <View style={styles.subBlock}>
+                      <Text style={styles.subTitle}>{t('plantDetailModal.avoid')}</Text>
+                      <Text style={styles.eduCopy}>{strictDbEntry.placementAvoid}</Text>
+                    </View>
+                  )}
+                </View>
+              )}
+            </EducationalSection>
+
+            {/* ℹ️ ¿Por qué? — single backing field; SKIP entire section if absent */}
+            {strictDbEntry?.whyRationale && (
+              <EducationalSection emoji="ℹ️" title={t('plantDetailModal.why')}>
+                <Text style={styles.eduCopy}>{strictDbEntry.whyRationale}</Text>
+              </EducationalSection>
             )}
 
-            {/* Active Problems */}
-            <ActiveProblemsSection
-              diagnoses={allPlantDiagnoses}
-              plantIcon={plant.icon}
-              onPressDiagnosis={(d) => {
-                setResumeDiagnosis(d);
-                setShowDiagnosis(true);
-              }}
-            />
+            {/* ⚙️ Tus ajustes — user data + override notes; works for ALL plants */}
+            <EducationalSection emoji="⚙️" title={t('plantDetailModal.yourSettings')}>
+              {/* Light level row */}
+              <View style={styles.settingRow}>
+                <Text style={styles.settingLabel}>☀️ {lightLabel || '—'}</Text>
+                {hasOverride('lightLevel') && (
+                  <Text style={styles.overrideNote}>
+                    {t('plantDetailModal.overrideNote')}
+                  </Text>
+                )}
+              </View>
+              {/* Watering warm row */}
+              <View style={styles.settingRow}>
+                <Text style={styles.settingLabel}>
+                  {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.warm')})
+                </Text>
+                <Text style={styles.settingValue}>
+                  {plant.waterSchedule?.warm != null
+                    ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.warm })
+                    : '—'}
+                </Text>
+                {hasOverride('waterScheduleWarm') && (
+                  <Text style={styles.overrideNote}>
+                    {t('plantDetailModal.overrideNote')}
+                  </Text>
+                )}
+              </View>
+              {/* Watering cold row */}
+              <View style={styles.settingRow}>
+                <Text style={styles.settingLabel}>
+                  {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.cold')})
+                </Text>
+                <Text style={styles.settingValue}>
+                  {plant.waterSchedule?.cold != null
+                    ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.cold })
+                    : '—'}
+                </Text>
+                {hasOverride('waterScheduleCold') && (
+                  <Text style={styles.overrideNote}>
+                    {t('plantDetailModal.overrideNote')}
+                  </Text>
+                )}
+              </View>
+            </EducationalSection>
 
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
@@ -491,5 +608,67 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
     color: colors.dangerText,
+  },
+
+  // ─── Phase 14 (EDU-01) educational section sub-blocks ───
+  eduCopy: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textPrimary,
+    lineHeight: 20,
+    marginBottom: spacing.sm,
+  },
+  placeholderCopy: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+  },
+  subBlock: {
+    marginBottom: spacing.md,
+  },
+  subTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 12,
+    color: colors.textSecondary,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: spacing.xs,
+  },
+  bullet: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textPrimary,
+    marginBottom: spacing.xs,
+    marginLeft: spacing.sm,
+  },
+  settingRow: {
+    marginBottom: spacing.md,
+  },
+  settingLabel: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 12,
+    color: colors.textSecondary,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: spacing.xs,
+  },
+  settingValue: {
+    fontFamily: fonts.body,
+    fontSize: 16,
+    color: colors.textPrimary,
+  },
+  overrideNote: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: spacing.xs,
+    fontStyle: 'italic',
+  },
+  nutrientsCardEdu: {
+    backgroundColor: 'rgba(0,0,0,0.03)',
+    borderRadius: borderRadius.md,
+    padding: spacing.sm,
+    marginTop: spacing.sm,
   },
 });
