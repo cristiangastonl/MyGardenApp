@@ -50,6 +50,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en temporada cálida; cada 14 días en frío.",
+    },
+    placementRecommended: "Cerca de una ventana con luz indirecta brillante.",
+    placementAlternatives: [
+      "A 1-2 metros de una ventana orientada al norte",
+      "Baño con luz natural — disfruta la humedad",
+      "Estante alto donde sus guías puedan colgar",
+    ],
+    placementAvoid: "Sol directo del mediodía — quema las hojas variegadas.",
+    whyRationale: "Es una trepadora del sotobosque tropical: en su hábitat crece bajo el dosel, así que necesita luz tamizada y humedad constante. Su tolerancia a la sombra viene de su adaptación al piso de la selva.",
   },
   {
     id: "monstera",
@@ -75,6 +86,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 días en frío. Pulverizá las hojas grandes.",
+    },
+    placementRecommended: "A 1-2 metros de una ventana grande con luz indirecta brillante.",
+    placementAlternatives: [
+      "Habitación luminosa con cortina filtrante",
+      "Cerca de una ventana al este (sol suave de mañana)",
+    ],
+    placementAvoid: "Sol directo del mediodía y corrientes de aire frío.",
+    whyRationale: "Originaria de la selva tropical de Centroamérica, crece como hemiepífita trepando árboles para alcanzar luz filtrada. Las fenestras de sus hojas se desarrollan solo con luz brillante — así resiste vientos y comparte luz con hojas inferiores.",
   },
   {
     id: "ficus",
@@ -100,6 +121,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 10, cold: 15 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 15 días en frío. No la muevas seguido.",
+    },
+    placementRecommended: "Lugar fijo con luz indirecta brillante, lejos de puertas.",
+    placementAlternatives: [
+      "Esquina luminosa de living con luz filtrada",
+      "Cerca de una ventana al este o al oeste",
+    ],
+    placementAvoid: "Corrientes de aire y cambios de ubicación frecuentes.",
+    whyRationale: "Originario del sudeste asiático monzónico, está adaptado a luz filtrada y temperaturas estables. Sus hojas viejas no aclimatan bien al cambio: pierde follaje cuando detecta variación brusca de luz, temperatura o riego.",
   },
   {
     id: "sansevieria",
@@ -125,6 +156,18 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 14, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 14 días en cálido; cada 21 en frío. Mejor de menos que de más.",
+      soilCheck: "Tocá los primeros 3 cm de tierra: si están secos, regá poco. Sus hojas almacenan agua.",
+    },
+    placementRecommended: "Cualquier rincón con luz indirecta, incluso poca luz.",
+    placementAlternatives: [
+      "Pasillo o rincón sin ventana cercana",
+      "Oficina con luz fluorescente",
+      "Dormitorio de poca luz natural",
+    ],
+    placementAvoid: "Sustrato siempre húmedo y maceta sin drenaje.",
+    whyRationale: "Originaria de regiones áridas de África Occidental, sus hojas suculentas almacenan agua y soportan sequías largas. Su metabolismo CAM (fotosíntesis nocturna) le permite tolerar baja luz y olvidos de riego.",
   },
   {
     id: "orquidea",
@@ -150,6 +193,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Sumergí la maceta 10 minutos cada 7 días en cálido; cada 14 en frío. Dejá escurrir.",
+    },
+    placementRecommended: "Cerca de una ventana con luz indirecta brillante constante.",
+    placementAlternatives: [
+      "Baño con ventana — la humedad la favorece",
+      "Cocina luminosa lejos del fuego",
+    ],
+    placementAvoid: "Sol directo del mediodía y agua estancada en la maceta.",
+    whyRationale: "Es una epífita tropical: crece sobre árboles con raíces aéreas que captan humedad ambiental, no agua estancada. Por eso necesita inmersión y secado completo — la pudrición radicular es su principal causa de muerte.",
   },
   {
     id: "calathea",
@@ -175,6 +228,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 4, cold: 7 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 4 días en cálido; cada 7 en frío. Usá agua filtrada o reposada.",
+    },
+    placementRecommended: "Lugar con luz indirecta filtrada y alta humedad ambiental.",
+    placementAlternatives: [
+      "Baño con ventana — la humedad le encanta",
+      "Cerca de un humidificador en el living",
+    ],
+    placementAvoid: "Sol directo y agua del grifo con mucho cloro.",
+    whyRationale: "Originaria del sotobosque amazónico, sus hojas con patrones evolucionaron para captar la luz tamizada del dosel. El sol directo daña su sistema fotosintético, optimizado para baja intensidad — por eso reorienta sus hojas siguiendo el ciclo día-noche.",
   },
   {
     id: "cinta",
@@ -200,6 +263,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 5, cold: 10 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 5 días en cálido; cada 10 en frío. Usá agua reposada para evitar puntas marrones.",
+    },
+    placementRecommended: "Estante alto o colgante con luz indirecta brillante.",
+    placementAlternatives: [
+      "Maceta con soporte donde sus hijuelos puedan colgar",
+      "Cerca de una ventana con cortina filtrante",
+      "Repisa de cocina con luz natural",
+    ],
+    placementAvoid: "Sol directo intenso — las hojas variegadas se queman.",
+    whyRationale: "Originaria de Sudáfrica, evolucionó en pastizales con luz filtrada y suelos drenados. Sus raíces tuberosas almacenan agua, lo que le permite sobrevivir sequías cortas. Es sensible al flúor del agua del grifo porque su zona nativa tiene aguas blandas.",
   },
   {
     id: "palmera-interior",
@@ -225,6 +299,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Mantené humedad constante sin encharcar.",
+    },
+    placementRecommended: "Rincón luminoso con luz indirecta — incluso lugares con poca luz.",
+    placementAlternatives: [
+      "Pasillo amplio cerca de una ventana lejana",
+      "Hall de entrada con luz filtrada",
+      "Esquina de oficina con luz natural difusa",
+    ],
+    placementAvoid: "Sol directo intenso y aire seco de calefactores.",
+    whyRationale: "Es una palmera del sotobosque mexicano: en la naturaleza crece bajo árboles altos que filtran la luz. Sus frondas se adaptaron a captar luz tenue, por eso tolera mejor la sombra que la mayoría de las palmeras y crece despacio.",
   },
   {
     id: "aloe-vera",
@@ -250,6 +335,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 14, cold: 30 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra a 3 cm: si está seca, regá a fondo. Mejor regar de menos que de más.",
+    },
+    placementRecommended: "Cerca de una ventana al sur o al oeste con sol directo varias horas.",
+    placementAlternatives: [
+      "Balcón soleado durante primavera y verano",
+      "Mesada de cocina con sol directo de mañana",
+    ],
+    placementAvoid: "Lugares oscuros sin sol — se debilita y se estira.",
+    whyRationale: "Es una suculenta originaria de la Península Arábiga y norte de África, adaptada a climas áridos con sol intenso. Sus hojas carnosas almacenan agua y gel para tolerar sequías largas. Su única vulnerabilidad real es la pudrición por exceso de riego.",
   },
 
   // ─── EXTERIOR ───
@@ -707,6 +802,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 5, cold: 8 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 5 días en cálido; cada 8 en frío. Si las hojas caen, regá ya — se recupera.",
+    },
+    placementRecommended: "Lugar con luz indirecta media; tolera rincones sombríos.",
+    placementAlternatives: [
+      "Baño con luz tenue — disfruta la humedad",
+      "Pasillo o dormitorio con poca luz natural",
+      "Oficina lejos de ventanas",
+    ],
+    placementAvoid: "Sol directo y agua del grifo con mucho cloro.",
+    whyRationale: "Originaria del sotobosque de Colombia y Venezuela, evolucionó bajo dosel cerrado. Por eso florece en sombra — algo raro entre plantas de interior — y comunica sed dramáticamente: sus hojas se desploman y se recuperan tras un buen riego.",
   },
   {
     id: "dracaena",
@@ -732,6 +838,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 14, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 14 días en cálido; cada 21 en frío. Usá agua filtrada para evitar puntas marrones.",
+    },
+    placementRecommended: "Rincón con luz indirecta media; tolera bien la poca luz.",
+    placementAlternatives: [
+      "Esquina de living con luz filtrada",
+      "Pasillo amplio o hall de entrada",
+      "Habitación con luz tamizada por cortina",
+    ],
+    placementAvoid: "Sol directo prolongado y agua del grifo con flúor.",
+    whyRationale: "Originaria de África Oriental, evolucionó en bordes de selva y sabana arbolada con luz filtrada. Es sensible al flúor del grifo porque su zona nativa tiene aguas blandas. Las puntas marrones señalan acumulación de sales que las raíces no procesan.",
   },
   {
     id: "filodendro",
@@ -757,6 +874,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 7, cold: 14 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 7 días en cálido; cada 14 en frío. Dejá secar los primeros cm entre riegos.",
+    },
+    placementRecommended: "Cerca de una ventana con luz indirecta brillante y un tutor para trepar.",
+    placementAlternatives: [
+      "Estante alto donde sus tallos puedan colgar",
+      "Esquina luminosa con tutor de musgo",
+      "Cesta colgante cerca de una ventana",
+    ],
+    placementAvoid: "Sol directo y rincones oscuros sin luz natural.",
+    whyRationale: "Es una hemiepífita tropical centroamericana: en su hábitat trepa por troncos hacia la luz, con hojas que crecen a medida que sube. Por eso un tutor de musgo le permite expresar su forma adulta — sin él las hojas se quedan pequeñas.",
   },
   {
     id: "jade",
@@ -782,6 +910,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "bright_indirect",
     waterSchedule: { warm: 14, cold: 30 },
     waterMode: "soil_check",
+    careAction: {
+      soilCheck: "Tocá la tierra a 3 cm: si está totalmente seca, regá a fondo. Aguanta sequía como un camello.",
+    },
+    placementRecommended: "Cerca de una ventana con luz indirecta brillante o sol matinal suave.",
+    placementAlternatives: [
+      "Balcón protegido con sol filtrado",
+      "Repisa luminosa cerca de una ventana al este",
+    ],
+    placementAvoid: "Tierra siempre húmeda y sombra profunda sin luz.",
+    whyRationale: "Es una suculenta sudafricana, adaptada a climas semiáridos con sequías estacionales. Sus hojas y tronco almacenan agua, por eso vive décadas con riego mínimo. Su anatomía está diseñada para escasez, no abundancia: el exceso de agua la pudre.",
   },
   {
     id: "peperomia",
@@ -807,6 +945,17 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "medium_indirect",
     waterSchedule: { warm: 10, cold: 15 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 15 en frío. Sus hojas almacenan agua, no la satures.",
+    },
+    placementRecommended: "Escritorio o estante con luz indirecta media, lejos de ventanas frías.",
+    placementAlternatives: [
+      "Mesa de oficina con luz natural difusa",
+      "Repisa de cocina con luz filtrada",
+      "Mesita de luz cerca de una ventana al este",
+    ],
+    placementAvoid: "Sol directo intenso y corrientes de aire frío.",
+    whyRationale: "Es una planta del sotobosque tropical americano que crece sobre troncos caídos. Sus hojas semi-suculentas almacenan agua para sobrevivir entre lluvias estacionales del dosel. Por eso prefiere riego espaciado y luz tamizada — su nicho natural.",
   },
 
   // ─── EXTERIOR (nuevas) ───
@@ -1346,6 +1495,16 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     lightLevel: "direct",
     waterSchedule: { warm: 10, cold: 21 },
     waterMode: "fixed",
+    careAction: {
+      fixed: "Regá cada 10 días en cálido; cada 21 en frío. Bancá olvidos sin problema.",
+    },
+    placementRecommended: "Cerca de una ventana grande con sol directo varias horas.",
+    placementAlternatives: [
+      "Balcón soleado o patio cubierto en verano",
+      "Esquina luminosa con luz indirecta muy brillante",
+    ],
+    placementAvoid: "Rincones oscuros — se estira buscando luz y pierde porte.",
+    whyRationale: "Originaria de zonas semiáridas de México y Centroamérica, evolucionó para tolerar sol intenso, sequías y suelos pobres. Su tronco leñoso almacena reservas para resistir condiciones extremas. Su único punto débil es la pudrición por exceso de riego.",
   },
 
   // ─── EXTERIOR — new Phase 8 entries ───

@@ -23,7 +23,18 @@
     "nutrients": {
       "type": "Low nitrogen",
       "homemade": "Rice water every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm season; every 14 days in cold."
+    },
+    "placementRecommended": "Near a window with bright indirect light.",
+    "placementAlternatives": [
+      "1-2 meters from a north-facing window",
+      "Bathroom with natural light — it enjoys the humidity",
+      "High shelf where its trailing vines can hang"
+    ],
+    "placementAvoid": "Direct midday sun — it scorches variegated leaves.",
+    "whyRationale": "It's a tropical understory climber: in its habitat it grows beneath the canopy, so it needs filtered light and consistent humidity. Its shade tolerance comes from adapting to the rainforest floor."
   },
   "monstera": {
     "name": "Monstera",
@@ -49,7 +60,17 @@
     "nutrients": {
       "type": "Nitrogen and potassium",
       "homemade": "Banana peel tea every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Mist the large leaves."
+    },
+    "placementRecommended": "1-2 meters from a large window with bright indirect light.",
+    "placementAlternatives": [
+      "Bright room with sheer curtains",
+      "Near an east-facing window (gentle morning sun)"
+    ],
+    "placementAvoid": "Direct midday sun and cold drafts.",
+    "whyRationale": "Native to Central American tropical rainforest, it grows as a hemiepiphyte climbing trees to reach filtered light. Its leaf fenestrations only develop with bright light — that's how it resists winds and shares light with lower leaves."
   },
   "ficus": {
     "name": "Ficus",
@@ -75,7 +96,17 @@
     "nutrients": {
       "type": "Balanced nitrogen",
       "homemade": "Worm castings every 2 months"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 15 in cold. Don't move it around."
+    },
+    "placementRecommended": "Stable spot with bright indirect light, away from doors.",
+    "placementAlternatives": [
+      "Bright living-room corner with filtered light",
+      "Near an east- or west-facing window"
+    ],
+    "placementAvoid": "Drafts and frequent location changes.",
+    "whyRationale": "Native to monsoon Southeast Asia, it's adapted to filtered light and stable temperatures. Old leaves don't reacclimate well: it sheds foliage when it detects sudden shifts in light, temperature, or watering."
   },
   "sansevieria": {
     "name": "Snake Plant",
@@ -101,7 +132,19 @@
     "nutrients": {
       "type": "Very low, phosphorus",
       "homemade": "Eggshell water once a month"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm; every 21 in cold. Less is more.",
+      "soilCheck": "Touch the top 3 cm of soil: if dry, water lightly. Its leaves store water."
+    },
+    "placementRecommended": "Any indirect-light corner, even low-light spots.",
+    "placementAlternatives": [
+      "Hallway or corner without a nearby window",
+      "Office with fluorescent lighting",
+      "Bedroom with little natural light"
+    ],
+    "placementAvoid": "Constantly moist substrate and pots without drainage.",
+    "whyRationale": "Native to arid regions of West Africa, its succulent leaves store water and withstand long droughts. Its CAM metabolism (nighttime photosynthesis) lets it tolerate low light and missed waterings."
   },
   "orquidea": {
     "name": "Orchid",
@@ -127,7 +170,17 @@
     "nutrients": {
       "type": "Low nitrogen, phosphorus and potassium",
       "homemade": "Rice water and banana peel monthly"
-    }
+    },
+    "careAction": {
+      "fixed": "Soak the pot for 10 minutes every 7 days in warm; every 14 in cold. Let it drain."
+    },
+    "placementRecommended": "Near a window with steady bright indirect light.",
+    "placementAlternatives": [
+      "Bathroom with a window — the humidity helps",
+      "Bright kitchen away from the stove"
+    ],
+    "placementAvoid": "Direct midday sun and standing water in the pot.",
+    "whyRationale": "It's a tropical epiphyte: it grows on trees with aerial roots that capture ambient humidity, not standing water. That's why it needs soaking and full drying — root rot is its main cause of death."
   },
   "calathea": {
     "name": "Calathea",
@@ -153,7 +206,17 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water every 10 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 4 days in warm; every 7 in cold. Use filtered or settled water."
+    },
+    "placementRecommended": "A spot with filtered indirect light and high ambient humidity.",
+    "placementAlternatives": [
+      "Bathroom with a window — it loves the humidity",
+      "Near a humidifier in the living room"
+    ],
+    "placementAvoid": "Direct sun and tap water with high chlorine.",
+    "whyRationale": "Native to the Amazon understory, its patterned leaves evolved to capture canopy-filtered light. Direct sun damages its photosynthetic system, optimized for low intensity — that's why it moves its leaves with the day-night cycle."
   },
   "cinta": {
     "name": "Spider Plant",
@@ -179,7 +242,18 @@
     "nutrients": {
       "type": "Low nitrogen",
       "homemade": "Rice water biweekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm; every 10 in cold. Use settled water to prevent brown tips."
+    },
+    "placementRecommended": "High shelf or hanging spot with bright indirect light.",
+    "placementAlternatives": [
+      "Pot with a stand where its babies can dangle",
+      "Near a window with sheer curtains",
+      "Kitchen ledge with natural light"
+    ],
+    "placementAvoid": "Intense direct sun — variegated leaves burn.",
+    "whyRationale": "Native to South Africa, it evolved in grasslands with filtered light and well-drained soils. Its tuberous roots store water, letting it survive short droughts. It's fluoride-sensitive because its native zone has naturally soft water."
   },
   "palmera-interior": {
     "name": "Indoor Palm",
@@ -205,7 +279,18 @@
     "nutrients": {
       "type": "Nitrogen and magnesium",
       "homemade": "Boiled vegetable water every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Keep moisture steady without waterlogging."
+    },
+    "placementRecommended": "Bright corner with indirect light — even low-light spots work.",
+    "placementAlternatives": [
+      "Wide hallway near a distant window",
+      "Entrance hall with filtered light",
+      "Office corner with diffused natural light"
+    ],
+    "placementAvoid": "Intense direct sun and dry heater air.",
+    "whyRationale": "It's a palm from the Mexican understory: in nature it grows beneath tall trees that filter light. Its fronds adapted to capture dim light, which is why it tolerates shade better than most palms and grows slowly."
   },
   "aloe-vera": {
     "name": "Aloe Vera",
@@ -231,7 +316,17 @@
     "nutrients": {
       "type": "Low, phosphorus and potassium",
       "homemade": "Eggshell water once a month"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil at 3 cm: if dry, water deeply. Better under than over-water."
+    },
+    "placementRecommended": "Near a south- or west-facing window with several hours of direct sun.",
+    "placementAlternatives": [
+      "Sunny balcony during spring and summer",
+      "Kitchen counter with direct morning sun"
+    ],
+    "placementAvoid": "Dark spots without sun — it weakens and stretches.",
+    "whyRationale": "It's a succulent native to the Arabian Peninsula and North Africa, adapted to arid climates with intense sun. Its fleshy leaves store water and gel for long droughts. Its only real vulnerability is rot from overwatering."
   },
   "lavanda-angustifolia": {
     "name": "English Lavender",
@@ -689,7 +784,18 @@
     "nutrients": {
       "type": "Balanced nitrogen",
       "homemade": "Rice water every 15 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm; every 8 in cold. If leaves droop, water now — it bounces back."
+    },
+    "placementRecommended": "Spot with medium indirect light; tolerates shadier corners.",
+    "placementAlternatives": [
+      "Bathroom with dim light — it enjoys the humidity",
+      "Hallway or bedroom with little natural light",
+      "Office away from windows"
+    ],
+    "placementAvoid": "Direct sun and tap water with high chlorine.",
+    "whyRationale": "Native to the tropical understory of Colombia and Venezuela, it evolved beneath dense rainforest canopy. That's why it blooms in shade — rare among houseplants — and signals thirst dramatically: leaves collapse and recover within hours of watering."
   },
   "dracaena": {
     "name": "Dracaena",
@@ -715,7 +821,18 @@
     "nutrients": {
       "type": "Low nitrogen",
       "homemade": "Rice water biweekly"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm; every 21 in cold. Use filtered water to avoid brown tips."
+    },
+    "placementRecommended": "Corner with medium indirect light; handles low light well.",
+    "placementAlternatives": [
+      "Living-room corner with filtered light",
+      "Wide hallway or entrance hall",
+      "Room with light filtered by curtains"
+    ],
+    "placementAvoid": "Prolonged direct sun and tap water with fluoride.",
+    "whyRationale": "Native to East Africa, it evolved on rainforest edges and wooded savannas with filtered light. It's fluoride-sensitive because its native zone has naturally soft water. Brown tips signal mineral-salt buildup that the roots can't process."
   },
   "filodendro": {
     "name": "Philodendron",
@@ -741,7 +858,18 @@
     "nutrients": {
       "type": "Moderate nitrogen",
       "homemade": "Rice water + worm castings"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Let the top few cm dry between waterings."
+    },
+    "placementRecommended": "Near a window with bright indirect light and a moss pole to climb.",
+    "placementAlternatives": [
+      "High shelf where its stems can trail",
+      "Bright corner with a moss pole",
+      "Hanging basket near a window"
+    ],
+    "placementAvoid": "Direct sun and dark corners without natural light.",
+    "whyRationale": "It's a tropical Central American hemiepiphyte: in its habitat it climbs trunks toward the light, growing larger leaves as it rises. That's why a moss pole lets it express its adult form — without it, leaves stay small."
   },
   "jade": {
     "name": "Jade Plant",
@@ -767,7 +895,17 @@
     "nutrients": {
       "type": "Very low, phosphorus and potassium",
       "homemade": "Eggshell water every 2 months"
-    }
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil at 3 cm: if completely dry, water deeply. Drought-tolerant like a camel."
+    },
+    "placementRecommended": "Near a window with bright indirect light or gentle morning sun.",
+    "placementAlternatives": [
+      "Sheltered balcony with filtered sun",
+      "Bright shelf near an east-facing window"
+    ],
+    "placementAvoid": "Constantly damp soil and deep shade without light.",
+    "whyRationale": "It's a South African succulent, adapted to semi-arid climates with seasonal droughts. Its leaves and trunk store water — that's why it lives for decades on minimal watering. Its anatomy is designed for scarcity, not abundance: excess water rots it."
   },
   "peperomia": {
     "name": "Peperomia",
@@ -793,7 +931,18 @@
     "nutrients": {
       "type": "Low nitrogen",
       "homemade": "Rice water every 20 days"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 15 in cold. Its leaves store water — don't oversaturate."
+    },
+    "placementRecommended": "Desk or shelf with medium indirect light, away from cold windows.",
+    "placementAlternatives": [
+      "Office desk with diffused natural light",
+      "Kitchen ledge with filtered light",
+      "Nightstand near an east-facing window"
+    ],
+    "placementAvoid": "Intense direct sun and cold drafts.",
+    "whyRationale": "It's a tropical American understory plant that grows on fallen logs. Its semi-succulent leaves store water to survive between seasonal canopy rains. That's why it prefers spaced waterings and filtered light — its natural niche."
   },
   "rosa": {
     "name": "Rose",
@@ -1339,7 +1488,17 @@
     "nutrients": {
       "type": "Low, balanced nitrogen",
       "homemade": "Rice water once a month"
-    }
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm; every 21 in cold. Forgives missed waterings easily."
+    },
+    "placementRecommended": "Near a large window with several hours of direct sun.",
+    "placementAlternatives": [
+      "Sunny balcony or covered patio in summer",
+      "Bright corner with very strong indirect light"
+    ],
+    "placementAvoid": "Dark corners — it stretches looking for light and loses its form.",
+    "whyRationale": "Native to semi-arid zones of Mexico and Central America, it evolved to tolerate intense sun, droughts, and poor soils. Its woody trunk stores reserves to withstand extreme conditions. Its only real weak point is rot from overwatering."
   },
   "jacaranda": {
     "name": "Jacaranda",
