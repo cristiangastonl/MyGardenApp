@@ -159,6 +159,17 @@ export interface PlantProblem {
   solution: string;
 }
 
+/**
+ * v1.2 Phase 14 (EDU-02). Care-action copy for the "¿Qué hacer?" educational section.
+ * Both sub-fields optional — entries gain content gradually; sub-blocks hide if absent.
+ */
+export interface CareAction {
+  /** Fixed-cadence care copy (e.g., "Regá cada 7 días en temporada cálida; cada 14 días en frío."). */
+  fixed?: string;
+  /** Soil-check care copy for waterMode === 'soil_check' plants (e.g., "Tocá los primeros 2cm de tierra: si están secos, regá."). */
+  soilCheck?: string;
+}
+
 export interface PlantDBEntry {
   id: string;
   name: string;
@@ -198,6 +209,18 @@ export interface PlantDBEntry {
    * Underscore prefix denotes meta. Canonical id always wins; aliases scanned only if no id match.
    */
   _aliases?: string[];
+
+  // ─── v1.2 Phase 14 (EDU-02) educational fields — additive, all optional ───
+  /** Action card copy for "¿Qué hacer?" section. Both sub-fields independently optional. */
+  careAction?: CareAction;
+  /** Single recommended placement description for "¿Dónde ponerla?". */
+  placementRecommended?: string;
+  /** Acceptable alternative placements (rendered as bullets/chips). */
+  placementAlternatives?: string[];
+  /** Single line of placement to avoid (e.g., "Evitá corrientes de aire frío"). */
+  placementAvoid?: string;
+  /** Horticultural rationale for "¿Por qué?" section. Hides ENTIRE section if absent. */
+  whyRationale?: string;
 }
 
 // Weather types for Open-Meteo API integration
