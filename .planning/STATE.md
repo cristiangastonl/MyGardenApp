@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
-stopped_at: "Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)"
-last_updated: "2026-05-05T12:21:09.861Z"
-last_activity: "2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete."
+stopped_at: "Completed 14-06-PLAN.md (Wave 3c aromaticas+huerta catalog content: 18 entries × 5 educational fields × 2 locales)"
+last_updated: "2026-05-05T13:13:48.903Z"
+last_activity: "2026-05-05 — Phase 14 Plan 06 complete (Wave 3c aromaticas+huerta catalog content). 3 files: plantDatabase.ts +294 LOC, en/plants.json +162 LOC, es/plants.json +162 LOC. 18 entries × 5 educational fields × 2 locales = 270 content units. Cumulative phase progress: 54/64 entries (84%)."
 progress:
   total_phases: 15
   completed_phases: 4
   total_plans: 25
-  completed_plans: 23
-  percent: 88
+  completed_plans: 24
+  percent: 96
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
-Plan: 14-00, 14-01, 14-02, 14-03, 14-04 complete (5/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a interior catalog content). Plan 13-03 (manual device verification) still pending.
-Status: Phase 14 Wave 3a complete. 15 INTERIOR catalog entries (aloe-vera, calathea, cinta, dracaena, espatifilo, ficus, filodendro, jade, monstera, orquidea, palmera-interior, peperomia, potus, sansevieria, yuca) gain 5 educational fields populated in src/data/plantDatabase.ts (75 catalog field declarations) AND mirrored to both src/i18n/locales/en/plants.json (75 EN strings) and src/i18n/locales/es/plants.json (75 ES voseo strings) — 225 new content units total. 100% per-entry coverage on all 5 fields exceeds ≥80%/≥90% targets. whyRationale on every entry cites a specific physiology mechanism (sotobosque tropical, CAM metabolism, hemiepífita, suculenta xerófita, monsoon Asia, Sudáfrica grasslands, etc.). careAction sub-field selection per waterMode: 12× fixed, 2× soilCheck, 1× both (sansevieria). Voseo discipline preserved: regex baseline of 2 pre-existing matches unchanged (no NEW Castilian forms introduced). All char limits respected: whyRationale ≤250, placementRecommended ≤100, placementAvoid ≤80, careAction ≤120, alternatives bullets ≤80. Locale parity 15/15 verified. Smoke runner: PASS 19/19, 0 SKIP, 0 FAIL. Plans 14-05..07 (Wave 3b/c/d sequential content authoring for exterior/aromáticas+huerta/frutales+suculentas) ready to chain.
-Last activity: 2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete.
+Plan: 14-00, 14-01, 14-02, 14-03, 14-04, 14-05, 14-06 complete (7/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a/b/c content authoring). Plan 13-03 (manual device verification) still pending.
+Status: Phase 14 Wave 3c complete. Cumulative 54/64 catalog entries (84%) have full EDU-02/03 content (15 INTERIOR from 14-04 + 21 EXTERIOR from 14-05 + 18 AROMATICAS+HUERTA from 14-06). Plan 14-06 added 18 entries (9 aromaticas: albahaca, ciboulette, cilantro, menta, oregano, perejil, romero, romero-rastrero, tomillo + 9 huerta: frutilla, lechuga, pepino, pimiento, rucula, tomate-cherry, tomatera, zanahoria, zapallito) × 5 educational fields populated in src/data/plantDatabase.ts AND mirrored to both en/plants.json (90 EN strings) and es/plants.json (90 ES voseo strings) — 270 new content units total. 100% per-entry coverage on all 5 fields. Aromaticas tone: cosechá/pellizcá/cortá verbs; whyRationale cites Mediterráneo (4)/Frigorial (3)/Tropical (1)/Subtropical húmedo (1) origin. Huerta tone: tutorá/sembrá/regá profundo; whyRationale cites Solanáceas andinas (3)/Cucurbitáceas (2)/Brassicáceas (1)/Asteráceas (1)/Apiáceas bienales (1)/Rosáceas perennes (1). tomatera ≠ tomate-cherry; romero ≠ romero-rastrero (distinct rationales). Char-limit-from-draft discipline applied (vs Plan 14-05's post-hoc refactor): all 18 whyRationale strings ≤250 chars from first draft (max 241). Voseo grep guard maintained at baseline 2. Locale parity 18/18 verified. Smoke runner PASS 19/19. Plan 14-07 (Wave 3d frutales+suculentas, 10 entries) is next; closes EDU-03 to 64/64 (100%).
+Last activity: 2026-05-05 — Phase 14 Plan 06 complete (Wave 3c aromaticas+huerta catalog content). 3 files: plantDatabase.ts +294 LOC, en/plants.json +162 LOC, es/plants.json +162 LOC. 18 entries × 5 educational fields × 2 locales = 270 content units. Cumulative phase progress: 54/64 entries (84%).
 
-Progress: [█████████░] 88% (v1.2 in progress — 22/25 plans complete in tracked window; Phase 14 Plans 14-05..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
+Progress: [██████████] 96% (v1.2 in progress — 24/25 plans complete in tracked window; Phase 14 Plans 14-07..08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [█████████░] 88% (v1.2 in progress — 22/25 plans
 
 *Updated after each plan completion*
 | Phase 14 P04 | 22min | 1 tasks | 3 files |
+| Phase 14 P06 | 46min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -112,6 +113,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 14]: Plan 14-04: Wave 3a interior catalog content (15 entries × 5 educational fields × 2 locales = 225 content units); 100% per-entry coverage on all 5 fields exceeds ≥80%/≥90% targets; whyRationale physiology-mechanism citation per entry (sotobosque/CAM/hemiepífita/suculenta xerófita); careAction sub-field per waterMode (12× fixed, 2× soilCheck, 1× both for sansevieria); voseo regression count maintained at baseline 2; locale parity 15/15
 - [Phase 14]: Plan 14-04: Voseo grep guard caught 'mueve sus hojas' in calathea whyRationale draft (third-person descriptive verb form, false-positive on regex); reworded to 'reorienta sus hojas' to keep regex baseline at 2 (no NEW Castilian forms)
 - [Phase 14]: Plan 14-04: Initial whyRationale drafts had 13/15 entries 252-312 chars (over 250 ceiling); systematic trim pass on ES + EN + catalog defaults brought all 15 to ≤250 chars while preserving physiology mechanism citation
+- [Phase 14]: Plan 14-06: char-limit-from-draft discipline — all 18 whyRationale strings drafted ≤250 chars from start (max 241); avoids the post-hoc refactor pattern from Plan 14-05
+- [Phase 14]: Plan 14-06: aromaticas vs huerta thematic batch — both share cosecha-driven verbs (cosechá/pellizcá/cortá/sembrá) but diverge on whyRationale framing (aromaticas use climate-of-origin Mediterráneo/Frigorial/Tropical/Subtropical; huerta use family-level ecology Solanáceas/Cucurbitáceas/Brassicáceas/Apiáceas/Rosáceas/Asteráceas)
+- [Phase 14]: Plan 14-06: Voseo regression on frutilla 'se riega al pie' (3rd-person reflexive matched regex); reworded to 'el riego va al pie' (verb→noun phrase) to keep baseline at 2; ciboulette self-reference in placementAlternatives caught and fixed (replaced with cilantro)
 
 ### Pending Todos
 
@@ -125,6 +129,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-05T12:21:09.858Z
-Stopped at: Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)
+Last session: 2026-05-05T13:13:48.901Z
+Stopped at: Completed 14-06-PLAN.md (Wave 3c aromaticas+huerta catalog content: 18 entries × 5 educational fields × 2 locales)
 Resume file: None
