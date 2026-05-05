@@ -393,7 +393,7 @@
       "Maceta en balcón resguardado del viento frío"
     ],
     "placementAvoid": "Heladas fuertes sin protección — no tolera bajo -5°C.",
-    "whyRationale": "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores que atraen polinizadores desde lejos. Más amante del calor que la inglesa, florece intensamente en primavera pero no aguanta heladas duras."
+    "whyRationale": "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores visuales que atraen polinizadores desde lejos. Más amante del calor que la inglesa, no aguanta heladas duras."
   },
   "lavanda-dentada": {
     "name": "Lavanda dentada",
@@ -461,7 +461,7 @@
       "Cantero al sol en bordes y rincones"
     ],
     "placementAvoid": "Sombra densa — tallos largos y muy pocas flores.",
-    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso de altura. Su floración ininterrumpida es una estrategia reproductiva acelerada de planta de vida corta — cada flor es una apuesta por dejar semillas antes de las primeras heladas."
+    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida corta antes de las heladas."
   },
   "hortensia": {
     "name": "Hortensia",
@@ -498,7 +498,7 @@
       "Patio con luz filtrada y humedad ambiental"
     ],
     "placementAvoid": "Sol del mediodía y suelo seco — las hojas marchitan al instante.",
-    "whyRationale": "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. Sus inflorescencias enormes son una adaptación a polinizadores generalistas; el color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio en suelo ácido."
+    "whyRationale": "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. El color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio, que la planta solo absorbe en suelo ácido."
   },
   "jazmin": {
     "name": "Jazmín",
@@ -535,7 +535,7 @@
       "Maceta grande con tutor en patio cálido"
     ],
     "placementAvoid": "Heladas fuertes prolongadas y maceta sin tutor — colapsa sin soporte.",
-    "whyRationale": "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado donde escala árboles para alcanzar luz directa arriba. Su perfume nocturno atrae polillas crepusculares — por eso el aroma se intensifica al atardecer, cuando los polinizadores nocturnos están activos."
+    "whyRationale": "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado escalando árboles hacia la luz. Su perfume nocturno atrae polillas crepusculares — el aroma se intensifica al atardecer, cuando esos polinizadores se activan."
   },
   "geranio": {
     "name": "Geranio",
@@ -572,7 +572,7 @@
       "Cantero soleado con suelo bien drenado"
     ],
     "placementAvoid": "Sombra y suelo siempre húmedo — los tallos se ennegrecen.",
-    "whyRationale": "Originario de Sudáfrica (región del Cabo), evolucionó en clima mediterráneo con veranos secos e inviernos suaves. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías; por eso el exceso de riego es su principal causa de muerte en macetas."
+    "whyRationale": "Originario de Sudáfrica (Cabo), evolucionó en clima mediterráneo con veranos secos. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías — por eso el exceso de riego es su principal causa de muerte en macetas."
   },
   "albahaca": {
     "name": "Albahaca",
@@ -1053,7 +1053,7 @@
       "Borde con riego por goteo para riego profundo"
     ],
     "placementAvoid": "Sombra y aire estancado — favorecen mancha negra y hongos.",
-    "whyRationale": "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación de Asia y Europa. Necesita poda invernal porque florece en madera nueva: cada corte estimula brotes que llevan flores. Es caduca y aprovecha el dormir invernal para acumular reservas."
+    "whyRationale": "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación entre Asia y Europa. Florece en madera nueva: cada corte invernal estimula brotes que llevan flores. Caduca, aprovecha el reposo frío para acumular reservas."
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -1089,7 +1089,7 @@
       "Maceta grande (mín. 50L) en terraza soleada"
     ],
     "placementAvoid": "Heladas y exceso de riego — pierde brácteas y queda solo verde.",
-    "whyRationale": "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en zonas de bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas dentro — una estrategia de polinización que confunde a herbívoros mientras atrae aves y mariposas."
+    "whyRationale": "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas adentro — atrae aves y mariposas mientras confunde herbívoros."
   },
   "hibisco": {
     "name": "Hibisco",
@@ -1126,7 +1126,7 @@
       "Patio resguardado del viento frío"
     ],
     "placementAvoid": "Heladas (bajo 10°C) y cambios bruscos de ubicación — pierde botones.",
-    "whyRationale": "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno verdadero. Cada flor dura solo un día porque su estrategia es producir flores grandes y vistosas en serie continua para atraer polinizadores específicos como colibríes y abejorros tropicales."
+    "whyRationale": "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno. Cada flor dura un día: su estrategia es producir flores grandes y vistosas en serie continua para atraer colibríes y abejorros tropicales."
   },
   "margarita": {
     "name": "Margarita",
@@ -1163,7 +1163,7 @@
       "Bordura mixta junto a otros perennes"
     ],
     "placementAvoid": "Sombra densa y suelo encharcado — tallos débiles y oídio.",
-    "whyRationale": "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Su floración prolongada coincide con la actividad de abejas nativas; dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos en su hábitat de origen."
+    "whyRationale": "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos que limpiaban su hábitat de origen."
   },
   "perejil": {
     "name": "Perejil",
@@ -1646,7 +1646,7 @@
       "Cantero principal alejado de cañerías"
     ],
     "placementAvoid": "Cerca de cimientos o cañerías — raíces invasivas en madurez.",
-    "whyRationale": "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Es caduco en invierno y florece en primavera ANTES de echar hojas, una estrategia que maximiza la visibilidad de las flores violetas para polinizadores en bosques poco florecidos."
+    "whyRationale": "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Caduco en invierno, florece en primavera ANTES de echar hojas — maximiza la visibilidad de las flores violetas para polinizadores."
   },
   "ceibo": {
     "name": "Ceibo",
@@ -1677,7 +1677,7 @@
       "Cantero al sol con riego regular"
     ],
     "placementAvoid": "Sombra densa y suelo seco prolongado — pocas flores y tallos débiles.",
-    "whyRationale": "Flor nacional argentina, originaria de las riberas de ríos del NEA, Mesopotamia y sur de Brasil. Su floración roja escarlata coincide con el pico migratorio de picaflores y abejas nativas; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños."
+    "whyRationale": "Flor nacional argentina, originaria de las riberas de ríos del NEA y sur de Brasil. Su floración roja escarlata atrae picaflores migratorios; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños."
   },
   "glicina": {
     "name": "Glicina",
@@ -1708,7 +1708,7 @@
       "Muro de ladrillo con anclajes metálicos"
     ],
     "placementAvoid": "Estructuras frágiles y cerca de cañerías — peso enorme y raíces invasivas.",
-    "whyRationale": "Trepadora caduca originaria de China y Japón, evolucionó en valles montañosos templados. Sus flores violetas perfumadas son polinizadas por abejas, y la fotoperiodicidad invernal (frío + horas de luz cortas) es necesaria para inducir las yemas florales — sin invierno frío, no florece."
+    "whyRationale": "Trepadora caduca originaria de China y Japón, evolucionó en valles templados. Sus flores violetas perfumadas son polinizadas por abejas; la fotoperiodicidad invernal (frío + días cortos) es necesaria para inducir yemas florales."
   },
   "gardenia": {
     "name": "Gardenia",
@@ -1744,7 +1744,7 @@
       "Maceta con sustrato para acidófilas y agua de lluvia"
     ],
     "placementAvoid": "Sol fuerte del mediodía y agua del grifo con cloro — clorosis y caída de botones.",
-    "whyRationale": "Originaria del sur de Asia (China, India, Japón), evolucionó en sotobosque tropical-subtropical con suelos ácidos y húmedos. Su exigencia de pH 5-6 viene de su microbiología nativa: solo absorbe hierro y magnesio en suelos ácidos, por eso amarillea en suelos alcalinos típicos de Buenos Aires."
+    "whyRationale": "Originaria del sur de Asia, evolucionó en sotobosque tropical con suelos ácidos y húmedos. Solo absorbe hierro y magnesio a pH 5-6: por eso amarillea (clorosis) en los suelos alcalinos típicos de Buenos Aires sin acidificación previa."
   },
   "camelia": {
     "name": "Camelia",
@@ -1780,7 +1780,7 @@
       "Cantero contra muro orientado al este"
     ],
     "placementAvoid": "Sol del mediodía — quema flores y hojas; suelo alcalino — clorosis crónica.",
-    "whyRationale": "Originaria del este de Asia (Japón, China), evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque su ciclo está sincronizado con el frío seco de su hábitat: las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente."
+    "whyRationale": "Originaria del este de Asia, evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente."
   },
   "dalia": {
     "name": "Dalia",
@@ -1816,7 +1816,7 @@
       "Maceta grande (mín. 30L) con tutor para variedades altas"
     ],
     "placementAvoid": "Heladas tardías sobre tubérculos plantados — los pudre antes de brotar.",
-    "whyRationale": "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En climas con inviernos fríos, hay que desenterrarlos en otoño porque las heladas fuertes quiebran las células y los pudren — emula la migración a tierra cálida que harían en su hábitat natural."
+    "whyRationale": "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En invierno frío hay que desenterrarlos: las heladas fuertes quiebran las células y los pudren."
   },
   "salvia-ornamental": {
     "name": "Salvia ornamental",
@@ -1848,7 +1848,7 @@
       "Jardín de polinizadores junto a lavanda y romero"
     ],
     "placementAvoid": "Riego frecuente y suelo encharcado — la pudre rápidamente.",
-    "whyRationale": "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bordes de bosque seco. Sus espigas florales rojas o violetas son específicamente diseñadas para colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros, una defensa química típica de las salvias."
+    "whyRationale": "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bosque seco. Sus espigas atraen colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros — defensa química típica de las salvias."
   },
   "cala": {
     "name": "Cala",
@@ -1885,7 +1885,7 @@
       "Maceta en patio con luz indirecta abundante"
     ],
     "placementAvoid": "Sol directo intenso y suelo seco — hojas quemadas y rizoma dormido.",
-    "whyRationale": "Endémica de Sudáfrica (Provincia del Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un período de descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil o nula."
+    "whyRationale": "Endémica de Sudáfrica (Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil."
   },
   "copete": {
     "name": "Copete",
@@ -1917,7 +1917,7 @@
       "Jardinera al sol en balcón"
     ],
     "placementAvoid": "Sombra y suelo encharcado — pocas flores y propenso a hongos.",
-    "whyRationale": "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos del suelo — un fungicida natural. Por eso es compañero clásico de la huerta argentina: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas."
+    "whyRationale": "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos — fungicida natural. Compañero clásico de la huerta: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas."
   },
   "verbena": {
     "name": "Verbena",
@@ -1949,7 +1949,7 @@
       "Jardín silvestre que se auto-siembre"
     ],
     "placementAvoid": "Suelo muy fértil y exceso de fertilizante — más hojas, menos flores.",
-    "whyRationale": "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos y delgados con flores violetas son adaptación a polinizadores que buscan altura sobre la vegetación; la auto-siembra la convierte en perenne práctica que se renueva sola cada año."
+    "whyRationale": "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos con flores violetas atraen polinizadores que buscan altura sobre la vegetación; se auto-siembra y renueva sola cada año."
   },
   "romero-rastrero": {
     "name": "Romero rastrero",

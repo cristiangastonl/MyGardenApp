@@ -461,7 +461,7 @@
       "Sunny garden bed in borders and corners"
     ],
     "placementAvoid": "Dense shade — leggy stems and few flowers.",
-    "whyRationale": "An annual native to the Argentine Andes, it evolved in poor volcanic soils under intense high-altitude sun. Its non-stop blooming is the accelerated reproductive strategy of a short-lived plant — every flower is a bet to set seed before the first frost."
+    "whyRationale": "An annual native to the Argentine Andes, it evolved in poor volcanic soils under intense high-altitude sun. Continuous blooming is the accelerated reproductive strategy of a short-lived plant before the first frost."
   },
   "hortensia": {
     "name": "Hydrangea",
@@ -498,7 +498,7 @@
       "Patio with filtered light and ambient humidity"
     ],
     "placementAvoid": "Midday sun and dry soil — leaves wilt instantly.",
-    "whyRationale": "Native to East Asia (Japan, Korea), it evolved in humid valleys of deciduous forest. Its huge inflorescences are an adaptation for generalist pollinators; the blue-vs-pink color shift by pH is real chemistry: anthocyanins change with aluminum availability in acidic soil."
+    "whyRationale": "Native to East Asia (Japan, Korea), it evolved in humid valleys of deciduous forest. The blue-vs-pink color shift by pH is real chemistry: anthocyanins change with aluminum availability, which the plant only absorbs in acidic soil."
   },
   "jazmin": {
     "name": "Jasmine",
@@ -535,7 +535,7 @@
       "Large pot with trellis on a warm patio"
     ],
     "placementAvoid": "Prolonged hard frost and pots without support — collapses without a trellis.",
-    "whyRationale": "A climber from the Caucasus and western Himalayas, it evolved on forest edges of temperate woodland where it scales trees to reach direct light above. Its night fragrance attracts crepuscular moths — that's why the scent intensifies at dusk, when nocturnal pollinators are active."
+    "whyRationale": "A climber from the Caucasus and western Himalayas, it evolved on forest edges scaling trees toward the light. Its night fragrance attracts crepuscular moths — the scent intensifies at dusk, when those pollinators activate."
   },
   "geranio": {
     "name": "Geranium",
@@ -1053,7 +1053,7 @@
       "Border with drip irrigation for deep watering"
     ],
     "placementAvoid": "Shade and stagnant air — favor black spot and fungal disease.",
-    "whyRationale": "Cultivated by humans for over 5000 years, modern roses come from hybridizing Asian and European species. They need winter pruning because they bloom on new wood: each cut stimulates buds that bear flowers. They're deciduous and use winter dormancy to build up reserves."
+    "whyRationale": "Cultivated by humans for over 5000 years, modern roses come from Asian and European hybrids. They bloom on new wood: each winter cut stimulates flower-bearing buds. Deciduous, they use winter dormancy to build up reserves."
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -1089,7 +1089,7 @@
       "Large pot (min. 50L) on a sunny terrace"
     ],
     "placementAvoid": "Frost and excess water — drops bracts and stays plain green.",
-    "whyRationale": "Native to tropical South America (Brazil, Peru), it evolved in seasonally dry forest. Its colorful bracts aren't flowers but modified leaves protecting the tiny flowers within — a pollination strategy that confuses herbivores while attracting birds and butterflies."
+    "whyRationale": "Native to tropical South America (Brazil, Peru), it evolved in seasonally dry forest. Its colorful bracts aren't flowers but modified leaves protecting the tiny flowers within — they attract birds and butterflies while confusing herbivores."
   },
   "hibisco": {
     "name": "Hibiscus",
@@ -1126,7 +1126,7 @@
       "Patio sheltered from cold wind"
     ],
     "placementAvoid": "Frost (below 10°C) and sudden relocation — drops buds.",
-    "whyRationale": "Native to tropical Asia (China, India), it evolved in warm climates without true winter. Each flower lasts only a day because its strategy is to produce large showy flowers in continuous succession to attract specific pollinators like hummingbirds and tropical bees."
+    "whyRationale": "Native to tropical Asia (China, India), it evolved in warm climates without true winter. Each flower lasts a day: the strategy is to produce large showy flowers in continuous succession to attract hummingbirds and tropical bees."
   },
   "margarita": {
     "name": "Daisy",
@@ -1163,7 +1163,7 @@
       "Mixed border alongside other perennials"
     ],
     "placementAvoid": "Dense shade and waterlogged soil — weak stems and powdery mildew.",
-    "whyRationale": "A perennial native to central and southern Europe, it evolved in temperate montane grasslands. Its long bloom period coincides with native bee activity; dividing the clump every 2-3 years mimics the natural rejuvenation by low-intensity fires in its native habitat."
+    "whyRationale": "A perennial native to central and southern Europe, it evolved in temperate montane grasslands. Dividing the clump every 2-3 years mimics the natural rejuvenation by low-intensity fires that cleared its native habitat."
   },
   "perejil": {
     "name": "Parsley",
@@ -1646,7 +1646,7 @@
       "Main garden bed away from pipes"
     ],
     "placementAvoid": "Near foundations or pipes — invasive roots when mature.",
-    "whyRationale": "Endemic to northwestern Argentina and southern Bolivia, it evolved in warm valleys with seasonal droughts. Deciduous in winter, it blooms in spring BEFORE leafing out — a strategy that maximizes the violet flowers' visibility for pollinators in barely-flowered forests."
+    "whyRationale": "Endemic to northwestern Argentina and southern Bolivia, it evolved in warm valleys with seasonal droughts. Deciduous in winter, it blooms in spring BEFORE leafing out — maximizing the violet flowers' visibility for pollinators."
   },
   "ceibo": {
     "name": "Ceibo (Cockspur Coral Tree)",
@@ -1677,7 +1677,7 @@
       "Sunny bed with regular watering"
     ],
     "placementAvoid": "Dense shade and prolonged dry soil — few flowers and weak stems.",
-    "whyRationale": "Argentina's national flower, native to the riverbanks of the NEA, Mesopotamia, and southern Brazil. Its scarlet bloom coincides with the migration peak of hummingbirds and native bees; its roots have nitrogen-fixing nodules that let it grow in poor riverside soils."
+    "whyRationale": "Argentina's national flower, native to the riverbanks of the NEA and southern Brazil. Its scarlet bloom attracts migrating hummingbirds; its roots have nitrogen-fixing nodules that let it grow in poor riverside soils."
   },
   "glicina": {
     "name": "Wisteria",
@@ -1708,7 +1708,7 @@
       "Brick wall with metal anchors"
     ],
     "placementAvoid": "Fragile structures and proximity to pipes — enormous weight and invasive roots.",
-    "whyRationale": "A deciduous climber native to China and Japan, it evolved in temperate mountain valleys. Its fragrant violet flowers are bee-pollinated, and the winter photoperiod (cold + short daylight) is required to induce flower buds — without a cold winter, it won't bloom."
+    "whyRationale": "A deciduous climber native to China and Japan, it evolved in temperate mountain valleys. Its fragrant violet flowers are bee-pollinated; the winter photoperiod (cold + short days) is required to induce flower buds."
   },
   "gardenia": {
     "name": "Gardenia",
@@ -1744,7 +1744,7 @@
       "Pot with acid-loving substrate and rainwater"
     ],
     "placementAvoid": "Strong midday sun and chlorinated tap water — chlorosis and bud drop.",
-    "whyRationale": "Native to southern Asia (China, India, Japan), it evolved in tropical-subtropical understory with acidic, humid soils. Its pH 5-6 requirement comes from native microbiology: it only absorbs iron and magnesium in acidic soils, which is why it yellows in the alkaline soils typical of Buenos Aires."
+    "whyRationale": "Native to southern Asia, it evolved in tropical understory with acidic, humid soils. It only absorbs iron and magnesium at pH 5-6: that's why it yellows (chlorosis) in the alkaline soils typical of Buenos Aires without acidification."
   },
   "camelia": {
     "name": "Camellia",
@@ -1780,7 +1780,7 @@
       "Bed against an east-facing wall"
     ],
     "placementAvoid": "Midday sun — burns flowers and leaves; alkaline soil — chronic chlorosis.",
-    "whyRationale": "Native to East Asia (Japan, China), it evolved in deciduous montane understory. It blooms in winter-spring because its cycle is synced to the dry cold of its habitat: buds need exposure to low temperatures (vernalization) to open properly."
+    "whyRationale": "Native to East Asia, it evolved in deciduous montane understory. It blooms in winter-spring because the buds need exposure to low temperatures (vernalization) to open properly."
   },
   "dalia": {
     "name": "Dahlia",
@@ -1816,7 +1816,7 @@
       "Large pot (min. 30L) with stake for tall varieties"
     ],
     "placementAvoid": "Late frost on planted tubers — rots them before sprouting.",
-    "whyRationale": "Native to Mexico and Central America, the tubers evolved as reserves to survive the dry season. In climates with cold winters, you have to lift them in autumn because hard frosts shatter the cells and rot them — emulating the migration to warm ground they'd make in their natural habitat."
+    "whyRationale": "Native to Mexico and Central America, the tubers evolved as reserves to survive the dry season. In cold winters you have to lift them in autumn: hard frosts shatter the cells and rot them before sprouting."
   },
   "salvia-ornamental": {
     "name": "Ornamental Sage",
@@ -1848,7 +1848,7 @@
       "Pollinator garden alongside lavender and rosemary"
     ],
     "placementAvoid": "Frequent watering and waterlogged soil — rots quickly.",
-    "whyRationale": "Native to Brazil and warm zones of South America, it evolved in savannas and dry-forest edges. Its red or violet flower spikes are specifically designed for hummingbirds; the aromatic leaves contain essential oils that repel herbivores, a chemical defense typical of sages."
+    "whyRationale": "Native to Brazil and warm zones of South America, it evolved in savannas and dry forest. Its red or violet spikes attract hummingbirds; the aromatic leaves contain essential oils that repel herbivores — typical sage chemistry."
   },
   "cala": {
     "name": "Calla Lily",
@@ -1885,7 +1885,7 @@
       "Patio pot with abundant indirect light"
     ],
     "placementAvoid": "Intense direct sun and dry soil — scorched leaves and dormant rhizome.",
-    "whyRationale": "Endemic to South Africa (Cape Province), it evolved in seasonal wetlands with humid summers and cool winters. The rhizome needs a dry-cold rest period to build up reserves; without that autumn pause, the next bloom will be weak or fail."
+    "whyRationale": "Endemic to South Africa (Cape), it evolved in seasonal wetlands with humid summers and cool winters. The rhizome needs a dry-cold rest period to build up reserves; without that autumn pause, the next bloom will be weak."
   },
   "copete": {
     "name": "Marigold",
@@ -1917,7 +1917,7 @@
       "Sunny balcony planter"
     ],
     "placementAvoid": "Shade and waterlogged soil — few flowers and prone to fungus.",
-    "whyRationale": "Native to Mexico and Central America, its roots secrete thiophenes that repel soil nematodes — a natural fungicide. That's why it's a classic companion for the Argentine vegetable garden: it protects tomatoes and peppers while attracting pollinators with its orange-yellow flowers."
+    "whyRationale": "Native to Mexico and Central America, its roots secrete thiophenes that repel soil nematodes — a natural fungicide. A classic companion for the vegetable garden: protects tomatoes and peppers while attracting pollinators."
   },
   "verbena": {
     "name": "Verbena",
@@ -1949,7 +1949,7 @@
       "Wild garden where it can self-seed"
     ],
     "placementAvoid": "Very fertile soil and excess fertilizer — more leaves, fewer flowers.",
-    "whyRationale": "An Argentine native, it evolved in pampas and forest edges with poor soils and dry summers. Its tall, slender stems with violet flowers are an adaptation for pollinators that seek height above the vegetation; self-seeding makes it a practical perennial that renews itself every year."
+    "whyRationale": "An Argentine native, it evolved in pampas and forest edges with poor soils and dry summers. Its tall slender stems with violet flowers attract pollinators seeking height above the vegetation; self-seeding makes it a practical perennial."
   },
   "romero-rastrero": {
     "name": "Trailing Rosemary",
