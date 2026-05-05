@@ -15,6 +15,19 @@ import {
 } from '../utils/migration';
 import { getCatalogEntry } from '../data/plantDatabase';
 
+/**
+ * v1.2 Phase 14 (EDU-06). Fields that represent user-customized values which catalog-source
+ * code paths MUST NOT silently overwrite. Pickers / settings / explicit user-edit flows
+ * pass `{ fromUserEdit: true }` to opt out of the guard. Per CRIT-1 (.planning/research/PITFALLS.md).
+ */
+const PROTECTED_USER_FIELDS = ['waterSchedule', 'lightLevel', 'waterMode'] as const;
+
+interface UpdatePlantOptions {
+  /** Pass `true` ONLY when the caller is a user-edit flow (picker save, settings save).
+   *  Catalog-source code paths MUST omit / pass false. */
+  fromUserEdit?: boolean;
+}
+
 interface StorageState {
   plants: Plant[];
   notes: Record<string, Note[]>;
@@ -40,7 +53,7 @@ interface StorageActions {
   addPlant: (plant: Plant) => void;
   addPlants: (plants: Plant[]) => void;
   deletePlant: (id: string) => void;
-  updatePlant: (id: string, updates: Partial<Plant>) => void;
+  updatePlant: (id: string, updates: Partial<Plant>, options?: UpdatePlantOptions) => void;
   addNote: (dateStr: string, note: Note) => void;
   deleteNote: (dateStr: string, noteId: string) => void;
   addReminder: (dateStr: string, reminder: Reminder) => void;
@@ -375,11 +388,31 @@ export function StorageProvider({ children }: StorageProviderProps) {
     scheduleSave();
   }, [scheduleSave]);
 
-  const updatePlant = useCallback((id: string, updates: Partial<Plant>) => {
+  const updatePlant = useCallback((id: string, updates: Partial<Plant>, options: UpdatePlantOptions = {}) => {
     // Phase 8 (CAT-05): auto-rewrite alias databaseId to canonical on save.
     // Idempotent — if databaseId is already canonical, entry.id === updates.databaseId
     // and no rewrite occurs. ONLY in updatePlant (not addPlant/setPlants) per CONTEXT decision.
     const normalizedUpdates = { ...updates };
+
+    // ─── v1.2 Phase 14 (EDU-06) deep-merge guard ───
+    // Per CRIT-1 (.planning/research/PITFALLS.md): catalog-source code paths must not
+    // silently overwrite user-customized values. Drop protected fields from
+    // `normalizedUpdates` if the existing plant has a non-undefined value AND the
+    // caller did NOT pass `{ fromUserEdit: true }`. Runs BEFORE alias-rewrite.
+    if (!options.fromUserEdit) {
+      const existing = dataRef.current.plants.find(p => p.id === id);
+      if (existing) {
+        for (const key of PROTECTED_USER_FIELDS) {
+          if (existing[key] !== undefined && key in normalizedUpdates) {
+            if (__DEV__) {
+              console.warn(`[updatePlant] EDU-06 guard: dropped catalog-source ${key} update (existing user value preserved). Pass {fromUserEdit:true} to override.`);
+            }
+            delete normalizedUpdates[key];
+          }
+        }
+      }
+    }
+
     if (updates.databaseId) {
       const entry = getCatalogEntry(updates.databaseId);
       if (entry && entry.id !== updates.databaseId) {
