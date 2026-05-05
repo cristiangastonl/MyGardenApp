@@ -4,14 +4,14 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 status: verifying
 stopped_at: "Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)"
-last_updated: "2026-05-05T03:26:13.456Z"
-last_activity: "2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete. Voseo regression count maintained at baseline 2."
+last_updated: "2026-05-05T12:21:09.861Z"
+last_activity: "2026-05-05 — Phase 14 Plan 04 complete (Wave 3a interior catalog content). 3 files: plantDatabase.ts +282 LOC, en/plants.json +125 LOC, es/plants.json +125 LOC. 15 interior entries × 5 educational fields × 2 locales = 225 content units. 100% coverage on all 5 fields per entry. EDU-03 requirement complete."
 progress:
   total_phases: 15
   completed_phases: 4
   total_plans: 25
-  completed_plans: 22
-  percent: 84
+  completed_plans: 23
+  percent: 88
 ---
 
 # Project State
@@ -125,6 +125,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-05T03:25:55.734Z
+Last session: 2026-05-05T12:21:09.858Z
 Stopped at: Completed 14-04-PLAN.md (Wave 3a interior catalog content: 15 entries × 5 educational fields × 2 locales)
 Resume file: None
