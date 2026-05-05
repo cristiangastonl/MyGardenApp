@@ -72,6 +72,39 @@ for (const entry of PLANT_DATABASE) {
         if (!node.nutrients.homemade) errors.push(`[${locale}] "${entry.id}".nutrients.homemade missing`);
       }
     }
+
+    // ─── v1.2 Phase 14 (EDU-07) educational field checks ───
+    // careAction: sub-fields independently conditional
+    if (entry.careAction) {
+      if (!node.careAction || typeof node.careAction !== 'object') {
+        errors.push(`[${locale}] "${entry.id}".careAction missing (entry declares careAction)`);
+      } else {
+        if (entry.careAction.fixed && !node.careAction.fixed) {
+          errors.push(`[${locale}] "${entry.id}".careAction.fixed missing`);
+        }
+        if (entry.careAction.soilCheck && !node.careAction.soilCheck) {
+          errors.push(`[${locale}] "${entry.id}".careAction.soilCheck missing`);
+        }
+      }
+    }
+    // placementRecommended: scalar string — required if entry declares it
+    if (entry.placementRecommended && !node.placementRecommended) {
+      errors.push(`[${locale}] "${entry.id}".placementRecommended missing`);
+    }
+    // placementAlternatives: array — required non-empty if entry declares it
+    if (entry.placementAlternatives) {
+      if (!Array.isArray(node.placementAlternatives) || node.placementAlternatives.length < 1) {
+        errors.push(`[${locale}] "${entry.id}".placementAlternatives missing or empty`);
+      }
+    }
+    // placementAvoid: scalar string
+    if (entry.placementAvoid && !node.placementAvoid) {
+      errors.push(`[${locale}] "${entry.id}".placementAvoid missing`);
+    }
+    // whyRationale: scalar string — drives entire ¿Por qué? section visibility
+    if (entry.whyRationale && !node.whyRationale) {
+      errors.push(`[${locale}] "${entry.id}".whyRationale missing`);
+    }
   }
 }
 
