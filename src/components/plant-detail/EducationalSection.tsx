@@ -39,6 +39,13 @@ export function EducationalSection({
   children,
 }: EducationalSectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
+  // hasInteracted: stays false until user taps toggle. While false, the body renders
+  // with `height: 'auto'` so React Native can measure it naturally. After first toggle,
+  // we switch to the animated height (driven by measuredHeight + open). Without this
+  // gate, the bodyClip starts at height: 0 and overflow: hidden — which on some Android
+  // devices prevents layout entirely, leaving onLayout with h=0 forever (Pitfall 4 from
+  // RESEARCH.md surfacing on real device test 2026-05-06).
+  const [hasInteracted, setHasInteracted] = useState(false);
   const measuredHeight = useSharedValue(0);
   const open = useSharedValue(defaultExpanded ? 1 : 0);
 
@@ -70,6 +77,9 @@ export function EducationalSection({
   }));
 
   const toggle = () => {
+    if (!hasInteracted) {
+      setHasInteracted(true);
+    }
     const next = !expanded;
     setExpanded(next);
     open.value = next ? 1 : 0;
@@ -87,7 +97,7 @@ export function EducationalSection({
         <Text style={styles.title}>{emoji} {title}</Text>
         <Animated.Text style={[styles.chevron, chevronStyle]}>›</Animated.Text>
       </Pressable>
-      <Animated.View style={[styles.bodyClip, bodyStyle]}>
+      <Animated.View style={[styles.bodyClip, hasInteracted ? bodyStyle : styles.bodyAuto]}>
         <View
           style={styles.bodyContent}
           onLayout={(e) => {
@@ -134,6 +144,9 @@ const styles = StyleSheet.create({
   },
   bodyClip: {
     overflow: 'hidden',
+  },
+  bodyAuto: {
+    height: 'auto',
   },
   bodyContent: {
     paddingTop: spacing.md,
