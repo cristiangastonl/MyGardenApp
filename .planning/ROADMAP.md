@@ -41,7 +41,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity` (completed 2026-05-03; DATA-04 FINDING: free-tier API paywall; see 11-03-SUMMARY.md)
 - [x] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings (completed 2026-05-03)
 - [x] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component (completed 2026-05-04)
-- [ ] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard
+- [x] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard (completed 2026-05-06)
 - [ ] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan
 - [ ] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema
 - [ ] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 120 total; smoke asserts count
@@ -124,7 +124,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. After identifying a plant via PlantNet, the light level picker pre-selects the species' recommended level
   4. `npm run check:i18n-keys` passes with the 5 new field validations in place
   5. "Tus ajustes" shows a soft override note when the user's stored value differs from the catalog recommendation
-**Plans:** 8/9 plans executed
+**Plans:** 9/9 plans complete
   - [x] 14-00-PLAN.md — Wave 0 scaffold: smoke-phase14.mjs runner + 2 .tmp-phase14 stubs + npm-script entry + .gitignore line (Nyquist gate; covers EDU-01/02/04/05/06/07 placeholders)
   - [ ] 14-01-PLAN.md — Wave 1: PlantDBEntry extended with 5 EDU-02 fields + getTranslatedPlant surfaces them + check-i18n-keys validator extended (EDU-02, EDU-07)
   - [ ] 14-02-PLAN.md — Wave 1: useStorage.updatePlant deep-merge guard (EDU-06) + compareUserVsCatalog override comparator (EDU-05) + 6 plantDetailModal section labels in common.json (EDU-01 prep)
@@ -264,7 +264,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
-| 14. Educational Detail Modal | 8/9 | In Progress|  | - |
+| 14. Educational Detail Modal | 9/9 | Complete   | 2026-05-06 | - |
 | 15. Catalog Wave A — Interior Tropicals | v1.2 | 0/TBD | Not started | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
