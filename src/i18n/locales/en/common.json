@@ -748,12 +748,14 @@
     "whatToDo": "What to do?",
     "whereToPlace": "Where to place it?",
     "why": "Why?",
-    "yourSettings": "Your settings",
+    "yourSettings": "How you care for it",
     "overrideNote": "Different from the recommendation for this species. Want to adjust?",
-    "notInCatalog": "This plant isn't in our catalog yet.",
+    "notInCatalog": "Here you'll see the best spot for your plant to thrive based on your conditions.",
+    "emptyWhatToDo": "Here you'll see care recommendations and active issues for this plant.",
     "recommended": "Recommended:",
     "alternatives": "Alternatives:",
-    "avoid": "Avoid:"
+    "avoid": "Avoid:",
+    "lightLabel": "Light:"
   },
   "dayDetail": {
     "tasksOfDay": "TODAY'S TASKS",
