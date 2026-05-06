@@ -20,7 +20,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 
-const COLLAPSE_DURATION = 250; // CONTEXT.md lock: ~250ms
+// Tuned 2026-05-06 from device test: 250ms inOut(ease) felt sluggish ("app feels broken").
+// 180ms with out-cubic easing is the iOS/Material standard for "appearing" UI — snappy
+// start, gentle settle. Stays within the CONTEXT.md "~250ms" guardrail (planner discretion).
+const COLLAPSE_DURATION = 180;
 
 interface EducationalSectionProps {
   emoji: string;
@@ -42,19 +45,19 @@ export function EducationalSection({
   const derivedHeight = useDerivedValue(() =>
     withTiming(measuredHeight.value * open.value, {
       duration: COLLAPSE_DURATION,
-      easing: Easing.inOut(Easing.ease),
+      easing: Easing.out(Easing.cubic),
     })
   );
   const opacity = useDerivedValue(() =>
     withTiming(open.value, {
       duration: COLLAPSE_DURATION,
-      easing: Easing.inOut(Easing.ease),
+      easing: Easing.out(Easing.cubic),
     })
   );
   const chevronRotation = useDerivedValue(() =>
     withTiming(open.value * 90, {
       duration: COLLAPSE_DURATION,
-      easing: Easing.inOut(Easing.ease),
+      easing: Easing.out(Easing.cubic),
     })
   );
 
