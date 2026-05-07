@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
-status: verifying
+status: complete
 stopped_at: Completed 15-04-PLAN.md (Phase 15 fully closed — all 4 CAT requirements PASS)
 last_updated: "2026-05-07T14:58:52Z"
-last_activity: "2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed: CAT-09 + CAT-10 + CAT-11 + CAT-12 all PASS. Image upload backlog totals 38 entries (15 v1.1 + 23 Phase 15) — batched at v1.2 milestone end."
+last_activity: "2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed."
 progress:
   total_phases: 15
   completed_phases: 6
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — IN PROGRESS
-Current Plan: 4 of 5
-Plan: 15-03 complete (4/5 plans in Phase 15 — CAT-11 plant identification routing). COMMON_NAMES_ES extended with 26 net new entries (21 Phase 15 canonical mappings + 5 PlantNet synonym aliases). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
-Status: **CAT-11 closed.** PlantNet → curated catalog routing for all 23 Phase 15 species verified intact via either species-qualified key, genus prefix, or PLANT_DATABASE.scientificName match in `findPlantInDatabase`. Existing 64 COMMON_NAMES_ES entries untouched (additive-only diff). Phase 15 smoke runner: 81/81 default (was 57/81), 104/104 --identification (was 80/104) — all 24 CAT-11 + IDENT.CAT-11 SKIPs flipped to PASS. Taxonomic decisions confirmed: costilla-adan = Monstera adansonii (species-qualified); arbol-dinero = Pachira aquatica + Pachira glabra alias; cheflera = Heptapleurum arboricola (POWO 2024) + Schefflera arboricola legacy alias; ficus-lyrata = Ficus lyrata + Ficus pandurata alias. `npx tsc --noEmit` clean. Only Plan 15-04 (CAT-12 image plan documentation, file-disjoint touches CLAUDE.md only) remains to close Phase 15.
-Last activity: 2026-05-07 — Phase 15 Plan 03 complete (CAT-11 plant identification routing). 1 file modified (plantIdentification.ts +36 LOC). 1 task, ~2 min. COMMON_NAMES_ES 64 → 90 entries. Smoke runner: 81/81 default + 104/104 --identification. CAT-11 closed; only CAT-12 remains for Phase 15.
+Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — **COMPLETE**
+Current Plan: 5 of 5
+Plan: 15-04 complete (5/5 plans in Phase 15 — CAT-12 image plan documentation in CLAUDE.md). Plan 15-03 (CAT-11) landed in parallel. **Phase 15 fully closed: all 4 CAT requirements (CAT-09 + CAT-10 + CAT-11 + CAT-12) PASS.** Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
+Status: **CAT-12 closed; Phase 15 complete.** CLAUDE.md +11 LOC: new "Accepted-known failures (Phase 15 Wave A, v1.2 — 23 entries — image upload pending)" block listing all 23 ids across 6 sub-batch lines (anthurium, alocasia, caladium, singonio, aglaonema, costilla-adan, difenbaquia, begonia-rex, croton, fitonia, ficus-lyrata, maranta, zamioculca, cola-burro, hiedra, palmera-areca, palmera-kentia, helecho-boston, helecho-nido, pilea, tradescantia, cheflera, arbol-dinero). Inserted between v1.1 LATAM 15-entry list and shared "Image upload steps" — keeps upload procedure cross-cutting between both backlogs. Existing v1.1 block byte-identical (zero deletes). Phase 15 smoke runner W4.CAT-12 SKIP→PASS flip confirmed. With 15-03 also landed: smoke runner is now 81/81 default. `npm run check:i18n-keys` PASS (87 ids verified). `npx tsc --noEmit` clean. Voseo baseline preserved at 2. Image upload backlog totals 38 entries (15 v1.1 + 23 Phase 15) — batched at v1.2 milestone end per established pattern. **Next:** Phase 16 (CAT Wave B) ready to plan.
+Last activity: 2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed.
 
-Progress: [██████████] 97% (v1.2 in progress — 29/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-03..04 + Phases 16-24 still ahead)
+Progress: [██████████] 100% (v1.2 in progress — 32/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phases 16-24 still ahead)
 
 ## Performance Metrics
 
@@ -64,6 +64,7 @@ Progress: [██████████] 97% (v1.2 in progress — 29/30 plans
 | Phase 15 P01 | 12min | 2 tasks | 3 files |
 | Phase 15 P02 | 10 min | 2 tasks | 3 files |
 | Phase 15 P03 | 2 min | 1 tasks | 1 files |
+| Phase 15 P04 | 3 min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -139,6 +140,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 15]: Plan 15-03: COMMON_NAMES_ES extension is APPEND-ONLY when adding catalog batches — never modify existing entries; verify with git diff |grep '^-' returning 0. Extension closed CAT-11 with 26 net new entries (21 Phase 15 canonical + 5 PlantNet synonym aliases for taxonomic-drift coverage).
 - [Phase 15]: Plan 15-03: Taxonomic disambiguation confirmed — costilla-adan = Monstera adansonii (species-qualified, distinct from existing Monstera deliciosa→Monstera entry); arbol-dinero = Pachira aquatica canonical + Pachira glabra alias; cheflera = Heptapleurum arboricola (POWO 2024) + Schefflera arboricola legacy alias; ficus-lyrata = Ficus lyrata canonical + Ficus pandurata older-synonym alias.
 - [Phase 15]: Plan 15-03: PlantNet → curated catalog routing closure relies on three-tier matching in findPlantInDatabase — exact scientificName, genus prefix, OR species-qualified key — combined with COMMON_NAMES_ES fallback for display-name resolution when PlantNet returns species not in PLANT_DATABASE. Synonym alias pattern (≤2 per entry) absorbs taxonomic drift without diluting canonical mappings.
+- [Phase 15]: Plan 15-04: CAT-12 image plan documentation — single grouped block per phase (NOT 23 individual lines) following v1.1 LATAM 15-entry precedent format. Insert location between v1.1 list end and shared "Image upload steps" numbered list — keeps the upload procedure cross-cutting between Phase 8 and Phase 15 backlogs without duplication.
+- [Phase 15]: Plan 15-04: Sub-batch grouping order in CLAUDE.md block matches Plans 15-01/02 catalog append order — Aroceous (7) + Foliage especial (5) + CAM (2) + Trepadora (1) + Palmera (2) + Helecho (2) + All-rounder (4) = 23 — readers can cross-reference plantDatabase.ts in physiology-grouped reading flow.
+- [Phase 15]: Plan 15-04: Smoke runner sentinel pattern locked: CLAUDE.md substring + ≥N-of-M id-mention threshold flips a SKIP→PASS for documentation-only requirements (no source code change). Phase 15 closure pattern reusable in Phase 16 (CAT Wave B) and beyond when image deferral repeats.
+- [Phase 15]: Plan 15-04: Image upload backlog totals 38 entries (15 v1.1 + 23 v1.2 Phase 15) — batched at v1.2 milestone end per established v1.1 milestone-end batching pattern. `npm run check:images` failures for these 38 entries are NOW documented in CLAUDE.md and explicitly NOT a ship blocker.
 
 ### Pending Todos
 
@@ -149,9 +154,10 @@ None yet for v1.2.
 - **Phase 13 (INFRA):** Active bug reports on `@gorhom/bottom-sheet` v5.2.11+ with Expo SDK 54 (issues #2528, #2471). Code installation + provider wrap + dev-tools test surface all clean (Plans 13-00/01/02). Plan 13-03 (manual device verification checkpoint) is the gate — iOS + Android dev clients need to be rebuilt and the Test bottom sheet exercised. Fallback if regression: custom `Animated.View` + `PanResponder` for 2-3 action-sheet use cases.
 - **Phase 15 (CAT Wave A):** Wave 3.6 trepadoras/colgantes species names are TBD — one research pass needed at Phase 16 planning time.
 - **v1.1 manual ops backlog:** Device tests (~27 scenarios), edge function deploys (`chat-diagnosis` + `diagnose-plant`), 15 catalog image uploads — all batched at milestone end per user preference.
+- **v1.2 image upload backlog (Phase 15 Wave A):** 23 catalog image uploads (anthurium..arbol-dinero) — documented in CLAUDE.md as accepted-known `check:images` failures; batched at v1.2 milestone end alongside v1.1 backlog (38 entries total). NOT a Phase 15 ship blocker.
 
 ## Session Continuity
 
-Last session: 2026-05-07T15:00:38.871Z
-Stopped at: Completed 15-03-PLAN.md
+Last session: 2026-05-07T14:58:52Z
+Stopped at: Completed 15-04-PLAN.md (Phase 15 fully closed — all 4 CAT requirements PASS)
 Resume file: None
