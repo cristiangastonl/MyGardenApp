@@ -184,6 +184,17 @@ npm run check:images      # async network HEAD; ~30-60s; fails on 404 imageUrl
 - romero-rastrero, tomate-cherry
 - lavanda-angustifolia (renamed from lavanda; old lavanda.jpg needs re-upload as lavanda-angustifolia.jpg)
 
+**Accepted-known failures (Phase 15 Wave A, v1.2 — 23 entries — image upload pending):** the following 23 interior-tropical entries are accepted-known failures until manual image upload to Supabase Storage:
+
+- anthurium, alocasia, caladium, singonio, aglaonema, costilla-adan, difenbaquia
+- begonia-rex, croton, fitonia, ficus-lyrata, maranta
+- zamioculca, cola-burro, hiedra
+- palmera-areca, palmera-kentia
+- helecho-boston, helecho-nido
+- pilea, tradescantia, cheflera, arbol-dinero
+
+These follow the same milestone-end batch upload pattern as the v1.1 LATAM 15-entry list. Image upload tracked alongside the v1.2 device-test backlog.
+
 These failures are documented in the v1.1 device-test backlog. Image upload steps:
 1. Source images (CC0/public domain or user-shot photos).
 2. Upload to Supabase Storage bucket `plant-images/catalog/<id>.jpg`.
