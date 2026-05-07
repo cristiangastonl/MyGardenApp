@@ -105,6 +105,42 @@ const COMMON_NAMES_ES: Record<string, string> = {
   'Opuntia': 'Nopal',
   'Mammillaria': 'Mammillaria',
   'Euphorbia': 'Euforbia',
+
+  // ─── v1.2 Phase 15 Wave A — Interior Tropicals (23 entries + ~5 synonym aliases) ───
+  // Note: existing genus-only entries above already cover several Phase 15 species
+  // (Anthurium, Begonia, Codiaeum, Croton, Dieffenbachia, Fittonia, Ficus lyrata,
+  //  Hedera helix, Pachira aquatica, Pilea peperomioides, Schefflera, Tradescantia,
+  //  Zamioculcas zamiifolia). The mappings below ADD species-qualified keys plus
+  //  the genera not yet covered (Maranta, Nephrolepis, Asplenium, Alocasia, Caladium,
+  //  Dypsis, Howea, Syngonium, Aglaonema, Sedum morganianum, Heptapleurum, Monstera adansonii).
+  'Maranta leuconeura': 'Maranta',
+  'Maranta': 'Maranta',                             // genus alias
+  'Nephrolepis exaltata': 'Helecho de Boston',
+  'Nephrolepis': 'Helecho de Boston',               // genus alias
+  'Asplenium nidus': 'Helecho nido de ave',
+  'Alocasia × amazonica': 'Alocasia',
+  'Alocasia': 'Alocasia',                           // genus alias
+  'Caladium bicolor': 'Caladium',
+  'Caladium': 'Caladium',                           // genus alias
+  'Dypsis lutescens': 'Palmera areca',
+  'Howea forsteriana': 'Palmera kentia',
+  'Syngonium podophyllum': 'Singonio',
+  'Syngonium': 'Singonio',                          // genus alias
+  'Aglaonema commutatum': 'Aglaonema',
+  'Aglaonema': 'Aglaonema',                         // genus alias
+  'Sedum morganianum': 'Cola de burro',
+  'Heptapleurum arboricola': 'Cheflera',            // current accepted name (POWO 2024); legacy Schefflera arboricola alias below
+  'Monstera adansonii': 'Costilla de Adán',         // distinct from existing 'Monstera deliciosa' → 'Monstera' (different species)
+  'Begonia rex': 'Begonia rex',                     // species-qualified (existing 'Begonia' genus already mapped above)
+  'Tradescantia zebrina': 'Tradescantia',           // species-qualified (existing 'Tradescantia' genus mapped above)
+  'Anthurium andraeanum': 'Anturio',                // species-qualified (existing 'Anthurium' genus → 'Anturio' above)
+
+  // ─── PlantNet synonym aliases (taxonomic drift coverage; ≤2 per entry) ───
+  'Ficus pandurata': 'Ficus lyrata',                // older synonym sometimes returned by PlantNet
+  'Pachira glabra': 'Árbol del dinero',             // taxonomically more accurate; PlantNet mostly returns Pachira aquatica (already mapped)
+  'Sansevieria': 'Sansevieria',                     // genus alias (Sansevieria trifasciata already mapped above)
+  'Schefflera arboricola': 'Cheflera',              // legacy name — Schefflera genus already mapped above; species-qualified legacy form
+  'Dieffenbachia seguine': 'Difenbaquia',           // species-qualified for Plan 15-01's exact scientificName value
 };
 
 // ============================================================================
