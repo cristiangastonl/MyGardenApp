@@ -145,7 +145,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. All 23 entries have full i18n keyset in EN + ES; `npm run check:i18n-keys` passes
   3. PlantNet identification of any of the 23 species routes to the curated entry (not to unknown-plant fallback)
   4. Each entry's image is either uploaded to Supabase Storage or documented as accepted-known in CLAUDE.md
-**Plans:** 2/5 plans executed
+**Plans:** 3/5 plans executed
   - [x] 15-00-PLAN.md — Wave 0 scaffold: smoke-phase15.cjs runner with CAT-09/10/11/12 SKIP placeholders + npm script + .gitignore (Nyquist gate)
   - [ ] 15-01-PLAN.md — Wave 2: Sub-batch A (12 entries — 7 aroceous + 5 foliage especial) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-09, CAT-10 partial)
   - [ ] 15-02-PLAN.md — Wave 3: Sub-batch B (11 entries — 2 CAM + 1 trepadora + 2 palmeras + 2 helechos + 4 all-rounders) — closes CAT-09 (87 entries) + CAT-10
@@ -271,7 +271,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
-| 15. Catalog Wave A — Interior Tropicals | 2/5 | In Progress|  | - |
+| 15. Catalog Wave A — Interior Tropicals | 3/5 | In Progress|  | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |

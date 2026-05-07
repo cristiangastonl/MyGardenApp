@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 5
+current_plan: 3 of 5
 status: verifying
-stopped_at: Completed 15-01-PLAN.md
-last_updated: "2026-05-07T14:40:56.053Z"
-last_activity: "2026-05-07 — Phase 15 Plan 01 complete (Wave A Sub-batch A — 12 interior-tropical entries). 3 files modified (plantDatabase.ts +411 LOC; es/plants.json +240 LOC; en/plants.json +240 LOC). 2 tasks, 12 min. Catalog 64 → 76 entries. Smoke runner: PASS 34/81. Voseo baseline preserved at 2. Zero deviations — pre-write voseo regex sweep + char-limit-from-draft both worked first try."
+stopped_at: Completed 15-02-PLAN.md
+last_updated: "2026-05-07T14:56:14.386Z"
+last_activity: "2026-05-07 — Phase 15 Plan 02 complete (Wave A Sub-batch B — 11 diverse interior-tropical entries). 3 files modified (plantDatabase.ts +380 LOC; es/plants.json +220 LOC; en/plants.json +220 LOC). 2 tasks, 10 min. Catalog 76 → 87 entries. Smoke runner: PASS 57/81. Voseo baseline preserved at 2. Zero deviations — char-limit-from-draft + voseo pre-sweep maintained discipline."
 progress:
   total_phases: 15
   completed_phases: 5
   total_plans: 30
-  completed_plans: 28
-  percent: 93
+  completed_plans: 29
+  percent: 97
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — IN PROGRESS
-Current Plan: 2 of 5
-Plan: 15-01 complete (2/5 plans in Phase 15 — Wave A Sub-batch A: 12 interior tropicals, Aroceous + Foliage especial). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
-Status: **Phase 15 Wave A Sub-batch A landed.** Catalog grows from 64 → 76 entries. 12 interior-tropical PlantDBEntry rows added (anthurium, alocasia, caladium, singonio, aglaonema, costilla-adan, difenbaquia, begonia-rex, croton, fitonia, ficus-lyrata, maranta) — all with full Phase 14 EDU shape (5 legacy + 5 EDU fields), all `category: "interior"` + `outdoor: false`, all `waterMode: "soil_check"` + `careAction.soilCheck`. ES + EN i18n keysets shipped in lockstep (240 LOC each); voseo discipline preserved at baseline 2 (zero new regressions); whyRationale max 198 chars (ES) / 189 (EN), all ≤250 ceiling. Phase 15 smoke runner: PASS 34/81 (was 10/81), 24 SKIP→PASS flips (12 CAT-09 ids + 12 CAT-10 keysets); CAT-09 count assertion still SKIP at 76 (waits on Plan 15-02 to land remaining 11 ids → 87). `npm run check:i18n-keys` PASS — 76 catalog ids verified across both locales. `npx tsc --noEmit` clean. Plan 15-02 (Wave B Sub-batch B) is unblocked and ready.
-Last activity: 2026-05-07 — Phase 15 Plan 01 complete (Wave A Sub-batch A — 12 interior-tropical entries). 3 files modified (plantDatabase.ts +411 LOC; es/plants.json +240 LOC; en/plants.json +240 LOC). 2 tasks, 12 min. Catalog 64 → 76 entries. Smoke runner: PASS 34/81. Voseo baseline preserved at 2. Zero deviations — pre-write voseo regex sweep + char-limit-from-draft both worked first try.
+Current Plan: 3 of 5
+Plan: 15-02 complete (3/5 plans in Phase 15 — Wave A Sub-batch B: 11 diverse interior tropicals — 2 CAM succulents + 1 trepadora + 2 palmeras + 2 helechos + 4 all-rounders). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
+Status: **Phase 15 Wave A Sub-batch B landed — Phase 15 catalog target REACHED.** Catalog grows from 76 → 87 entries (the locked Phase 15 target). 11 interior-tropical PlantDBEntry rows added (zamioculca, cola-burro, hiedra, palmera-areca, palmera-kentia, helecho-boston, helecho-nido, pilea, tradescantia, cheflera, arbol-dinero) — all with full Phase 14 EDU shape (5 legacy + 5 EDU fields), all `category: "interior"` + `outdoor: false`, all `waterMode: "soil_check"` + `careAction.soilCheck`. ES + EN i18n keysets shipped in lockstep (220 LOC each); voseo discipline preserved at baseline 2 (zero new regressions); whyRationale max 203 chars (ES cheflera) / 204 (EN cheflera), all ≤250 ceiling. **CAT-09 + CAT-10 fully closed.** Phase 15 smoke runner: PASS 57/81 (was 34/81), 23 SKIP→PASS flips (11 CAT-09 ids + 11 CAT-10 keysets + 1 CAT-09 count assertion at 87). `npm run check:i18n-keys` PASS — 87 catalog ids verified across both locales. `npx tsc --noEmit` clean. Plan 15-03 (CAT-11 plant identification routing for 23 species) and Plan 15-04 (CAT-12 image plan documentation) remain to close Phase 15.
+Last activity: 2026-05-07 — Phase 15 Plan 02 complete (Wave A Sub-batch B — 11 diverse interior-tropical entries). 3 files modified (plantDatabase.ts +380 LOC; es/plants.json +220 LOC; en/plants.json +220 LOC). 2 tasks, 10 min. Catalog 76 → 87 entries. Smoke runner: PASS 57/81. Voseo baseline preserved at 2. Zero deviations — char-limit-from-draft + voseo pre-sweep maintained discipline.
 
-Progress: [█████████░] 93% (v1.2 in progress — 28/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-02..04 + Phases 16-24 still ahead)
+Progress: [██████████] 97% (v1.2 in progress — 29/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-03..04 + Phases 16-24 still ahead)
 
 ## Performance Metrics
 
@@ -62,6 +62,7 @@ Progress: [█████████░] 93% (v1.2 in progress — 28/30 plans
 | Phase 14 P07 | 26min | 1 tasks | 3 files |
 | Phase 15 P00 | 3min | 2 tasks | 4 files |
 | Phase 15 P01 | 12min | 2 tasks | 3 files |
+| Phase 15 P02 | 10 min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -131,6 +132,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 15]: Plan 15-01: All 12 Sub-batch A entries use waterMode soil_check + careAction.soilCheck — interior tropics need finger-test discipline because temp/humidity drive evapotranspiration; fixed schedules can't span variable-dormancy entries (alocasia, caladium)
 - [Phase 15]: Plan 15-01: Pre-write voseo regex sweep + char-limit-from-draft both worked first try across 12 entries — zero rewordings, zero post-hoc trims (vs Phase 14-04/06 which caught regressions mid-authoring). Discipline is compounding.
 - [Phase 15]: Plan 15-01: Aroceous (7) physiology rationales kept distinct per genus mechanism (spathes / capillary veins / tuber dormancy / heteroblasty / low-light chlorophyll / fenestrations vs M. deliciosa / oxalate stems); Foliage especial (5) anchored on pigment-vs-light (anthocyanins+carotenoids) + nyctinasty + understory adaptation. No copy-paste rationales.
+- [Phase 15]: Plan 15-02: Sub-batch B 11-entry append uses waterMode soil_check + careAction.soilCheck for ALL 11 entries (no fixed) — interior tropicals need finger-test discipline because temp/humidity drive evapotranspiration variably; fixed schedules can't span palmera-areca's 2x cold/warm spread or helecho-boston's 3-day cycle
+- [Phase 15]: Plan 15-02: Cheflera scientificName = Heptapleurum arboricola per 2024 POWO reclassification (was Schefflera arboricola); whyRationale explicitly cites the reclassification as user-facing anchor. Arbol-dinero scientificName = Pachira aquatica per Open Question 2 lock.
+- [Phase 15]: Plan 15-02: Per-sub-type physiology citation matrix — CAM succulent 2x (rizomas+CAM zamioculca / hojas-carnosas+CAM cola-burro), trepadora 1x (raicillas adventicias hiedra), Arecaceae 2x (sotobosque areca / Lord Howe shaded-forest kentia), helecho 2x (esporofito-sin-almacén boston / epífito-nido nido), all-rounder 4x (Yunnan-rizomas pilea / antocianinas tradescantia / 2024-POWO cheflera / pantanos-tronco arbol-dinero). Zero copy-paste rationales.
 
 ### Pending Todos
 
@@ -144,6 +148,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-07T14:40:56.050Z
-Stopped at: Completed 15-01-PLAN.md
+Last session: 2026-05-07T14:56:14.384Z
+Stopped at: Completed 15-02-PLAN.md
 Resume file: None
