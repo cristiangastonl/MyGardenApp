@@ -4,8 +4,8 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
 status: planning
-stopped_at: Completed 15-04-PLAN.md (Phase 15 fully closed — all 4 CAT requirements PASS)
-last_updated: "2026-05-07T15:08:00.968Z"
+stopped_at: Phase 16 context gathered
+last_updated: "2026-05-07T21:28:59.368Z"
 last_activity: 2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed.
 progress:
   total_phases: 15
@@ -158,6 +158,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-07T14:58:52Z
-Stopped at: Completed 15-04-PLAN.md (Phase 15 fully closed — all 4 CAT requirements PASS)
-Resume file: None
+Last session: 2026-05-07T21:28:59.365Z
+Stopped at: Phase 16 context gathered
+Resume file: .planning/phases/16-catalog-wave-b-suculentas-cactus-trepadoras-trending/16-CONTEXT.md
