@@ -2,8 +2,8 @@
 phase: 15
 slug: catalog-wave-a-interior-tropicals
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-05-07
 ---
 
@@ -23,7 +23,7 @@ created: 2026-05-07
 | **Full suite command** | `npx tsc --noEmit && npm run check:i18n-keys` |
 | **Estimated runtime** | ~5–10 seconds (tsc) + ~2 seconds (i18n) ≈ 12s |
 
-`npm run check:images` is network-bound (~30–60s) and is **not** part of the per-task feedback loop. It is run only at end-of-wave for Wave 4 (image plan registry) and again at end-of-phase as the gate for Success Criterion #4.
+`npm run check:images` is network-bound (~30–60s) and is **not** part of the per-task feedback loop. It is run only at end-of-wave for Wave 3 (Plan 15-04 image plan registry) and again at end-of-phase as the gate for Success Criterion #4.
 
 ---
 
@@ -38,31 +38,36 @@ created: 2026-05-07
 
 ## Per-Task Verification Map
 
-> Plans not yet authored — table populated by gsd-planner per ## Validation Architecture in 15-RESEARCH.md.
+> Populated 2026-05-07 from authored plans. Wave numbering follows `max(deps)+1`: Plan 15-00 = Wave 0; Plan 15-01 = Wave 1; Plan 15-02 = Wave 2; Plans 15-03 + 15-04 = Wave 3.
 > Pattern (from research): every content-authoring task uses fixture-style assertions against `PLANT_DATABASE`, `en/plants.json`, `es/plants.json`, plus `tsc --noEmit` and `npm run check:i18n-keys`. Smoke fixture for the 23 ids lives at `scripts/phase15-smoke.cjs` (Wave 0).
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 15-00-01 | 00 | 0 | CAT-09 / CAT-10 | smoke | `node scripts/phase15-smoke.cjs` | ❌ W0 | ⬜ pending |
-| 15-02-* | 02 | 2 | CAT-09, CAT-10, CAT-12 | static | `npx tsc --noEmit && npm run check:i18n-keys` | ✅ | ⬜ pending |
-| 15-03-* | 03 | 3 | CAT-09, CAT-10, CAT-12 | static | `npx tsc --noEmit && npm run check:i18n-keys` | ✅ | ⬜ pending |
-| 15-01-* | 01 | 1‖3 | CAT-11 | static | `node scripts/phase15-smoke.cjs --identification` | ❌ W0 | ⬜ pending |
-| 15-04-* | 04 | 4 | CAT-12 | network/doc | `npm run check:images` (or accepted-known doc grep) | ✅ | ⬜ pending |
+| 15-00-T1 | 00 | 0 | CAT-09 / CAT-10 / CAT-11 / CAT-12 | smoke (scaffold) | `node scripts/phase15-smoke.cjs` | ✅ (created in this task) | ⬜ pending |
+| 15-00-T2 | 00 | 0 | CAT-09 / CAT-10 / CAT-11 / CAT-12 | smoke (npm wiring) | `npm run smoke:phase15 && git check-ignore scripts/.tmp-phase15/foo.cjs` | ✅ | ⬜ pending |
+| 15-01-T1 | 01 | 1 | CAT-09 | static + smoke | `node scripts/phase15-smoke.cjs && npx tsc --noEmit` | ✅ | ⬜ pending |
+| 15-01-T2 | 01 | 1 | CAT-10 | static + i18n | `npm run check:i18n-keys && node scripts/phase15-smoke.cjs` | ✅ | ⬜ pending |
+| 15-02-T1 | 02 | 2 | CAT-09 | static + smoke | `node scripts/phase15-smoke.cjs && npx tsc --noEmit` | ✅ | ⬜ pending |
+| 15-02-T2 | 02 | 2 | CAT-10 | static + i18n | `npm run check:i18n-keys && node scripts/phase15-smoke.cjs` | ✅ | ⬜ pending |
+| 15-03-T1 | 03 | 3 | CAT-11 | smoke (--identification) | `node scripts/phase15-smoke.cjs --identification && npx tsc --noEmit` | ✅ | ⬜ pending |
+| 15-04-T1 | 04 | 3 | CAT-12 | doc (smoke + grep) | `node scripts/phase15-smoke.cjs && grep -q "Phase 15 Wave A" CLAUDE.md` | ✅ | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+
+**Mid-band exit-0 guarantee:** Plan 15-00's smoke runner encodes partial-landing tolerance for CAT-09 per-id, CAT-09 count, AND IDENT.CAT-11 modes. After Plan 15-01 lands 12/23 ids (catalog at 76), the runner stays exit-0: landed ids PASS, unlanded ids SKIP, count is mid-band SKIP. After Plan 15-02 lands the remaining 11 (catalog at 87), all gates flip to genuine PASS.
 
 ---
 
 ## Wave 0 Requirements
 
-- [ ] `scripts/phase15-smoke.cjs` — fixture asserting:
-  - `PLANT_DATABASE.length === 87` once Waves 2+3 land
-  - All 23 new ids present (deduped, lowercase, kebab-case)
-  - Each new entry has all EDU schema fields populated (Phase 14 fields)
-  - Each new entry has matching keyset in EN + ES `plants.json` (delegates to existing check)
-  - `--identification` flag: each new `scientificName` returns its own entry from `findPlantInDatabase()` (no fallback to unknown-plant)
+- [x] `scripts/phase15-smoke.cjs` — fixture asserting:
+  - `PLANT_DATABASE` id-declaration count === 87 once Plans 15-01 + 15-02 both land (mid-band SKIPs at 65–86)
+  - All 23 new ids present (deduped, lowercase, kebab-case) — partial-landing tolerant
+  - Each new entry's i18n keyset (EN + ES) present (delegates the per-key shape check to `npm run check:i18n-keys`)
+  - `--identification` flag: each new `scientificName` (species-qualified) co-occurs with its id in `plantDatabase.ts` — partial-landing tolerant
+  - Voseo regex baseline (≤2) — runs every invocation as a regression assertion
 
-*Existing infrastructure (`tsc`, `check:i18n-keys`, `check:images`) covers static-shape, i18n-keyset, and image-URL validation — Wave 0 only adds the 23-id fixture + identification round-trip.*
+*Existing infrastructure (`tsc`, `check:i18n-keys`, `check:images`) covers static-shape, i18n-keyset, and image-URL validation — Wave 0 only adds the 23-id fixture + identification round-trip + voseo regression.*
 
 ---
 
@@ -78,11 +83,11 @@ created: 2026-05-07
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references (`scripts/phase15-smoke.cjs`)
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 15s for per-task loop
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references (`scripts/phase15-smoke.cjs`)
+- [x] No watch-mode flags
+- [x] Feedback latency < 15s for per-task loop
+- [x] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** approved (planning-time validation; runtime PASSes recorded as plans execute)

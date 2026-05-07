@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 1 of 5
-status: completed
-stopped_at: Completed 15-00-PLAN.md (Wave 0 smoke runner scaffold)
-last_updated: "2026-05-07T14:23:30.464Z"
-last_activity: "2026-05-07 — Phase 15 Plan 00 complete (Wave 0 smoke runner scaffold). 1 file created (scripts/phase15-smoke.cjs +217 LOC) + 2 modified (package.json +1, .gitignore +1) + 2 auto-generated stubs (gitignored). 2 tasks, 3 min. SKIP→PASS sentinels locked: 15-01/15-02 trip via anyLanded → allLanded; 15-03 trips via Maranta leuconeura in plantIdentification.ts; 15-04 trips via "Phase 15" substring in CLAUDE.md."
+current_plan: 2 of 5
+status: verifying
+stopped_at: Completed 15-01-PLAN.md
+last_updated: "2026-05-07T14:40:56.053Z"
+last_activity: "2026-05-07 — Phase 15 Plan 01 complete (Wave A Sub-batch A — 12 interior-tropical entries). 3 files modified (plantDatabase.ts +411 LOC; es/plants.json +240 LOC; en/plants.json +240 LOC). 2 tasks, 12 min. Catalog 64 → 76 entries. Smoke runner: PASS 34/81. Voseo baseline preserved at 2. Zero deviations — pre-write voseo regex sweep + char-limit-from-draft both worked first try."
 progress:
   total_phases: 15
   completed_phases: 5
   total_plans: 30
-  completed_plans: 27
-  percent: 90
+  completed_plans: 28
+  percent: 93
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — IN PROGRESS
-Current Plan: 1 of 5
-Plan: 15-00 complete (1/5 plans in Phase 15 — Wave 0 smoke runner scaffold). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
-Status: **Phase 15 Wave 0 scaffold complete.** scripts/phase15-smoke.cjs (217 LOC, CJS) encodes all 23 Phase 15 ids + 23 species-qualified scientificNames as constants with partial-landing tolerance gates (anyLanded/allLanded shared window across CAT-09 per-id, CAT-09 count, IDENT.CAT-11). Wave 0 baseline: PASS 10/81 (9 scaffold + 1 voseo regression) / 71 SKIP / 0 FAIL exit 0. With --identification: PASS 10/104 / 94 SKIP. npm run smoke:phase15 wired (alphabetical placement next to smoke:phase14). scripts/.tmp-phase15/ explicitly gitignored (under existing wildcard block — Phase 14 precedent). Voseo regex baseline (≤2 matches against es/plants.json) PASSes immediately and runs every invocation as a regression gate for Plans 15-01/02 ES content authoring. Per-task feedback loop unblocked: `node scripts/phase15-smoke.cjs && npx tsc --noEmit && npm run check:i18n-keys` <15s.
-Last activity: 2026-05-07 — Phase 15 Plan 00 complete (Wave 0 smoke runner scaffold). 1 file created (scripts/phase15-smoke.cjs +217 LOC) + 2 modified (package.json +1, .gitignore +1) + 2 auto-generated stubs (gitignored). 2 tasks, 3 min. SKIP→PASS sentinels locked: 15-01/15-02 trip via anyLanded → allLanded; 15-03 trips via Maranta leuconeura in plantIdentification.ts; 15-04 trips via "Phase 15" substring in CLAUDE.md.
+Current Plan: 2 of 5
+Plan: 15-01 complete (2/5 plans in Phase 15 — Wave A Sub-batch A: 12 interior tropicals, Aroceous + Foliage especial). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
+Status: **Phase 15 Wave A Sub-batch A landed.** Catalog grows from 64 → 76 entries. 12 interior-tropical PlantDBEntry rows added (anthurium, alocasia, caladium, singonio, aglaonema, costilla-adan, difenbaquia, begonia-rex, croton, fitonia, ficus-lyrata, maranta) — all with full Phase 14 EDU shape (5 legacy + 5 EDU fields), all `category: "interior"` + `outdoor: false`, all `waterMode: "soil_check"` + `careAction.soilCheck`. ES + EN i18n keysets shipped in lockstep (240 LOC each); voseo discipline preserved at baseline 2 (zero new regressions); whyRationale max 198 chars (ES) / 189 (EN), all ≤250 ceiling. Phase 15 smoke runner: PASS 34/81 (was 10/81), 24 SKIP→PASS flips (12 CAT-09 ids + 12 CAT-10 keysets); CAT-09 count assertion still SKIP at 76 (waits on Plan 15-02 to land remaining 11 ids → 87). `npm run check:i18n-keys` PASS — 76 catalog ids verified across both locales. `npx tsc --noEmit` clean. Plan 15-02 (Wave B Sub-batch B) is unblocked and ready.
+Last activity: 2026-05-07 — Phase 15 Plan 01 complete (Wave A Sub-batch A — 12 interior-tropical entries). 3 files modified (plantDatabase.ts +411 LOC; es/plants.json +240 LOC; en/plants.json +240 LOC). 2 tasks, 12 min. Catalog 64 → 76 entries. Smoke runner: PASS 34/81. Voseo baseline preserved at 2. Zero deviations — pre-write voseo regex sweep + char-limit-from-draft both worked first try.
 
-Progress: [█████████░] 90% (v1.2 in progress — 27/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-01..04 + Phases 16-24 still ahead)
+Progress: [█████████░] 93% (v1.2 in progress — 28/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-02..04 + Phases 16-24 still ahead)
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [█████████░] 90% (v1.2 in progress — 27/30 plans
 | Phase 14 P06 | 46min | 1 tasks | 3 files |
 | Phase 14 P07 | 26min | 1 tasks | 3 files |
 | Phase 15 P00 | 3min | 2 tasks | 4 files |
+| Phase 15 P01 | 12min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -127,6 +128,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 15]: Plan 15-00: PHASE_15_SCIENTIFIC_NAMES species-qualified ('Dieffenbachia seguine' not 'Dieffenbachia') for IDENT.CAT-11 exact match; CAT-11 COMMON_NAMES_ES gate accepts EITHER species-qualified OR genus-only as legacy compat
 - [Phase 15]: Plan 15-00: Single-source PHASE_15_LANDED_FLAGS array shared across CAT-09 per-id, CAT-09 count (idMatches > 64 && < 87 → SKIP), AND IDENT.CAT-11 — runner stays exit-0 at Plan 15-01 (12 ids → 76) → Plan 15-02 (final 11 → 87) midpoint
 - [Phase 15]: Plan 15-00: Wave 0 baseline PASS 10/81 / 71 SKIP / 0 FAIL exit 0 (10 = 9 scaffold + 1 voseo regression). SKIP→PASS flip sentinels: anyLanded for 15-01/02; 'Maranta leuconeura' in plantIdentification.ts for 15-03; 'Phase 15' substring in CLAUDE.md for 15-04. Runner is NEVER edited again after this plan
+- [Phase 15]: Plan 15-01: All 12 Sub-batch A entries use waterMode soil_check + careAction.soilCheck — interior tropics need finger-test discipline because temp/humidity drive evapotranspiration; fixed schedules can't span variable-dormancy entries (alocasia, caladium)
+- [Phase 15]: Plan 15-01: Pre-write voseo regex sweep + char-limit-from-draft both worked first try across 12 entries — zero rewordings, zero post-hoc trims (vs Phase 14-04/06 which caught regressions mid-authoring). Discipline is compounding.
+- [Phase 15]: Plan 15-01: Aroceous (7) physiology rationales kept distinct per genus mechanism (spathes / capillary veins / tuber dormancy / heteroblasty / low-light chlorophyll / fenestrations vs M. deliciosa / oxalate stems); Foliage especial (5) anchored on pigment-vs-light (anthocyanins+carotenoids) + nyctinasty + understory adaptation. No copy-paste rationales.
 
 ### Pending Todos
 
@@ -140,6 +144,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-07T14:23:30.462Z
-Stopped at: Completed 15-00-PLAN.md (Wave 0 smoke runner scaffold)
+Last session: 2026-05-07T14:40:56.050Z
+Stopped at: Completed 15-01-PLAN.md
 Resume file: None
