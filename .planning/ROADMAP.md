@@ -153,14 +153,15 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [ ] 15-04-PLAN.md — Wave 4 (parallel): CLAUDE.md image plan registry update — 23 entries documented as accepted-known failures (CAT-12)
 
 ### Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending
-**Goal**: 19 more plants across three waves are added with full schema — catalog grows from 87 to 106 entries
+**Goal**: 17 net-new plants + 2 EDU upgrades to existing entries (potus, filodendro) — catalog grows from 87 to 104 entries (CAT-14 includes 2 in-place EDU upgrades on existing v1.0 entries per Phase 16 research finding)
 **Depends on**: Phase 15 (authoring pattern established)
 **Requirements**: CAT-13, CAT-14, CAT-15, CAT-16
 **Success Criteria** (what must be TRUE):
-  1. `PLANT_DATABASE.length === 106` (87 + 19)
-  2. All Wave B entries have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
+  1. `PLANT_DATABASE.length === 104` (87 + 17 net-new; potus + filodendro upgraded in place per Option A, see 16-CONTEXT.md addendum)
+  2. All Wave B entries (19 ids: 17 new + 2 upgraded) have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
   3. Wave B entries appear correctly in identification map and catalog browse
   4. `sansevieria-cilindrica` is distinct from existing `sansevieria` entry with no i18n key collision
+  5. `findPlantInDatabase` exact-match-first routing fix landed; smoke runner asserts each Phase 16 species-qualified scientificName routes to its OWN id (resolves Dracaena genus collision affecting bambu-suerte / sansevieria-cilindrica / sansevieria / dracaena)
 **Plans**: TBD
 
 ### Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales

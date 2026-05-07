@@ -2,6 +2,7 @@
 
 **Gathered:** 2026-05-07
 **Status:** Ready for planning (2 areas captured from user, rest delegated to Claude's discretion mirroring Phase 15)
+**Addendum 2026-05-07:** Two post-research user decisions added below (CAT-14 collision resolution + routing refactor scope). ROADMAP.md success criteria updated.
 
 <domain>
 ## Phase Boundary
@@ -21,6 +22,14 @@ Catalog goes from 87 → 106 entries.
 
 <decisions>
 ## Implementation Decisions
+
+### Post-research addendum (2026-05-07) — locked
+
+Research surfaced two findings that warranted user decisions before planning:
+
+**1. CAT-14 collision resolution: Option A (upgrade in place).** Research found that `potus` (plantDatabase.ts:30) and `filodendro` (plantDatabase.ts:1038) already exist as v1.0/v1.1 entries lacking only the 5 Phase 14 EDU fields. CAT-14 is therefore 2 net-new entries (`hoya`, `mini-monstera`) + 2 in-place EDU upgrades. Catalog target: **87 → 104** (not 106). ROADMAP.md success criterion #1 amended to `PLANT_DATABASE.length === 104`. Both upgraded entries keep their existing ids (`potus`, `filodendro`) so no databaseId persistence issues for users with saved Plants.
+
+**2. Routing refactor in Phase 16 Wave 0.** Research identified an existing latent bug: `findPlantInDatabase` does first-match-wins on genus prefix. Adding `bambu-suerte` (Dracaena sanderiana) and `sansevieria-cilindrica` (Dracaena angolensis) compounds an existing collision — all `Dracaena <species>` PlantNet results currently route to the existing `sansevieria` entry (D. trifasciata) regardless of species. **Fix:** ~5-LOC refactor of `findPlantInDatabase` for exact-match-first, then genus-prefix fallback. Lands as a dedicated task in the Wave 0 plan (alongside the smoke runner scaffold). Smoke runner MUST assert each Phase 16 species-qualified scientificName routes to its own id (this requires a TS-transpile or function-import path — `phase15-smoke.cjs`'s file-content regex is insufficient; planner extends pattern accordingly). New ROADMAP.md success criterion #5 records this requirement.
 
 ### CAT-14 trepadora species selection (locked in discussion)
 
