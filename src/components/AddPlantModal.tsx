@@ -98,11 +98,22 @@ export function AddPlantModal({
 
     const selectedType = getPlantTypes().find((pt) => pt.id === selectedTypeId);
 
+    // Phase 14.1: persist databaseId when prefilledPlant came from the catalog
+    // (PlantNet identification flow OR future catalog browser). Without this,
+    // MyPlantDetailModal's strictDbEntry resolves to null and the 5 EDU-02
+    // educational fields can't render real content. Custom plants (no prefilledPlant
+    // OR prefilledPlant from a non-catalog source) intentionally leave databaseId
+    // undefined — they're not in the catalog.
+    const prefilledDbId = prefilledPlant && 'id' in prefilledPlant && 'category' in prefilledPlant
+      ? (prefilledPlant as PlantDBEntry).id
+      : undefined;
+
     const newPlant: Omit<Plant, "id"> = {
       name: name.trim(),
       typeId: selectedTypeId,
       typeName: selectedType?.name || "Otra",
       icon: selectedType?.icon || "🌻",
+      databaseId: prefilledDbId,
       // v1.1 schema (Phase 7 LIGHT-01, LIGHT-02, WATER-01, WATER-02, WATER-03)
       lightLevel,
       waterSchedule,

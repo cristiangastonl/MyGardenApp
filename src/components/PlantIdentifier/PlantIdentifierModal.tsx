@@ -16,6 +16,7 @@ import { Features } from '../../config/features';
 import { usePremiumGate } from '../../config/premium';
 import { usePremium } from '../../hooks/usePremium';
 import { getPlantCategories } from '../../data/plantDatabase';
+import { findPlantInDatabase } from '../../utils/plantIdentification';
 import { CameraCapture } from './CameraCapture';
 import { AnalyzingState } from './AnalyzingState';
 import { IdentificationResults } from './IdentificationResults';
@@ -95,11 +96,16 @@ export function PlantIdentifierModal({
 
     // Convert IdentifiedPlant to Plant format
     // lightLevel comes from user's picker selection in IdentificationResults (LIGHT-05)
+    // Phase 14.1: persist databaseId when scientificName matches a catalog entry,
+    // so MyPlantDetailModal can resolve strictDbEntry and render the 5 EDU-02
+    // educational fields (careAction / placement* / whyRationale).
+    const matchedCatalogEntry = findPlantInDatabase(selectedPlant.scientificName);
     const plantData: Omit<Plant, 'id'> = {
       name: useEnriched ? data.name : selectedPlant.commonName,
       typeId: selectedPlant.category,
       typeName: getCategoryName(selectedPlant.category),
       icon: selectedPlant.icon,
+      databaseId: matchedCatalogEntry?.id,
       waterEvery: useEnriched ? data.waterEvery : selectedPlant.waterDays,
       sunHours: useEnriched ? data.sunHours : selectedPlant.sunHours,
       sunDays: [], // User can configure later
