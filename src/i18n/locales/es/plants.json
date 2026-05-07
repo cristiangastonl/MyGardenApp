@@ -2306,6 +2306,246 @@
     "placementAvoid": "Heladas tardías y riego irregular — frutos se rajan al recibir agua tras secarse.",
     "whyRationale": "Variante de Solanum lycopersicum con frutos chicos y planta indeterminada (crece hasta la helada). Cosecha casi diaria por el tamaño; los racimos abundantes exigen tutor alto y poda de chupones para concentrar energía en los frutos."
   },
+  "anthurium": {
+    "name": "Anturio",
+    "tip": "Florece todo el año si le das luz indirecta brillante. Mantené la tierra apenas húmeda.",
+    "description": "El Anturio es una aráceas tropical con espatas rojas brillantes (también blancas o rosadas). Sus flores duran semanas y reaparecen si recibe luz constante y humedad alta. Ideal como punto focal en interiores luminosos.",
+    "problems": [
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o agua estancada", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos; revisá el drenaje." },
+      { "symptom": "Sin flores", "cause": "Poca luz", "solution": "Movela cerca de una ventana con luz brillante indirecta — sin sol directo." },
+      { "symptom": "Bordes marrones en hojas", "cause": "Aire muy seco", "solution": "Agrupala con otras plantas o usá humidificador." }
+    ],
+    "nutrients": { "type": "Fósforo (floración)", "homemade": "Cáscara de banana picada en el sustrato cada 3 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm de tierra: si están secos, regá hasta que drene." },
+    "placementRecommended": "Cerca de una ventana al este — luz brillante indirecta y humedad ambiental alta.",
+    "placementAlternatives": [
+      "Baño luminoso (humedad natural alta)",
+      "A 1 m de ventana al norte",
+      "Sala con humidificador cerca"
+    ],
+    "placementAvoid": "Sol directo del mediodía — quema espatas y hojas; aire seco de calefacción.",
+    "whyRationale": "Pertenece a las aráceas del sotobosque amazónico — evolucionó bajo luz tamizada y humedad alta. Las espatas son hojas modificadas para atraer polinizadores en bosques densos."
+  },
+  "alocasia": {
+    "name": "Alocasia",
+    "tip": "Le encanta la humedad alta. Si entra en reposo invernal, reducí el riego — volverá a brotar.",
+    "description": "La Alocasia (oreja de elefante) es una aráceas dramática con hojas oscuras y nervaduras blancas marcadas. Originaria del sudeste asiático tropical. Pierde hojas en invierno si la temperatura baja — es normal, rebrotará.",
+    "problems": [
+      { "symptom": "Hojas caídas en invierno", "cause": "Reposo natural (no muerte)", "solution": "Reducí el riego al mínimo; rebrotará en primavera con tierra apenas húmeda." },
+      { "symptom": "Bordes marrones", "cause": "Humedad ambiental baja", "solution": "Pulverizá las hojas o usá humidificador; agrupala con otras plantas." },
+      { "symptom": "Manchas pegajosas en hojas", "cause": "Cochinillas o ácaros", "solution": "Limpiá las hojas con agua y jabón potásico una vez por semana." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK (crecimiento)", "homemade": "Té de compost cada 3 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; reducí drásticamente en invierno." },
+    "placementRecommended": "Cerca de ventana luminosa con cortina filtrante — luz brillante indirecta y humedad alta.",
+    "placementAlternatives": [
+      "Baño con luz natural",
+      "Habitación cálida con humidificador",
+      "A 1 m de ventana al este"
+    ],
+    "placementAvoid": "Corrientes de aire frío y sol directo — ambas dañan las hojas decorativas.",
+    "whyRationale": "Aráceas tropical adaptada a sotobosques de Borneo y Filipinas — sus hojas grandes capturan luz tamizada y las nervaduras pálidas reflejan humedad capilar."
+  },
+  "caladium": {
+    "name": "Caladio",
+    "tip": "Sus hojas estampadas duran de primavera a otoño. Reposo invernal: dejá secar el bulbo.",
+    "description": "El Caladio (Caladium bicolor) tiene hojas en forma de corazón con manchas rosa, blanco o rojo intenso. Es un tubérculo tropical: pierde todas las hojas en invierno y rebrotará desde el bulbo en primavera si lo mantenés cálido y casi seco.",
+    "problems": [
+      { "symptom": "Hojas marchitas o decoloradas", "cause": "Sustrato seco en pleno crecimiento", "solution": "Mantené tierra apenas húmeda en cálido — el bulbo activo necesita agua constante." },
+      { "symptom": "Hojas perdidas en invierno", "cause": "Dormancia natural del tubérculo", "solution": "Reducí el riego al mínimo; guardá la maceta en lugar cálido y oscuro hasta primavera." },
+      { "symptom": "Bordes marrones", "cause": "Aire seco", "solution": "Pulverizá ambiente alrededor (no las hojas directamente) o usá humidificador." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de plátano cada 3 semanas en temporada cálida" },
+    "careAction": { "soilCheck": "En cálido tocá los primeros 2 cm cada 3-4 días; en frío reducí a riego mínimo." },
+    "placementRecommended": "Lugar cálido con luz brillante indirecta — temperatura mínima 18°C en activo.",
+    "placementAlternatives": [
+      "Cerca de ventana al este",
+      "Habitación con humidificador",
+      "Veranda cubierta cálida"
+    ],
+    "placementAvoid": "Sol directo (decolora estampas) y temperaturas bajo 15°C (induce dormancia anticipada).",
+    "whyRationale": "Tubérculo tropical del Amazonas — almacena energía en bulbo y emite hojas estacionales. Las manchas son tejido sin clorofila que reduce competencia interna por luz."
+  },
+  "singonio": {
+    "name": "Singonio",
+    "tip": "Hojas en forma de flecha que cambian con la edad. Tolerante y de crecimiento rápido.",
+    "description": "El Singonio (Syngonium podophyllum) es una aráceas trepadora con hojas que evolucionan de flechas juveniles a hojas trilobuladas adultas. Variedades verde, rosa o crema. Crece rápido con poda regular.",
+    "problems": [
+      { "symptom": "Tallos largos y desordenados", "cause": "Crecimiento natural — necesita poda", "solution": "Podá los tallos largos cada 2 meses; los esquejes enraízan en agua." },
+      { "symptom": "Hojas pequeñas y pálidas", "cause": "Poca luz", "solution": "Acercala a una ventana — la luz brillante indirecta intensifica el color." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de cáscara de banana cada 3 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene." },
+    "placementRecommended": "A 1-2 m de ventana con luz brillante indirecta — variedades rosa necesitan más luz.",
+    "placementAlternatives": [
+      "Habitación luminosa con cortina filtrante",
+      "Estante alto donde pueda colgar",
+      "Cerca de ventana al este"
+    ],
+    "placementAvoid": "Sol directo (decolora) y rincones oscuros (pierde variegación).",
+    "whyRationale": "Aráceas hemiepífita centroamericana — en su hábitat trepa árboles para alcanzar luz filtrada. La forma de hoja cambia según altura y luz disponible (heteroblastia)."
+  },
+  "aglaonema": {
+    "name": "Aglaonema",
+    "tip": "De las pocas plantas que prosperan en luz baja. Casi indestructible si no la regás de más.",
+    "description": "El Aglaonema es una aráceas asiática tolerante a la sombra. Cultivares modernos con hojas plateadas, rojas o verdes con patrones decorativos. Excelente para oficinas y rincones sin ventana cercana.",
+    "problems": [
+      { "symptom": "Hojas amarillas en la base", "cause": "Exceso de riego o sustrato encharcado", "solution": "Dejá secar bien la tierra entre riegos; revisá drenaje de la maceta." },
+      { "symptom": "Crecimiento lento", "cause": "Normal con poca luz", "solution": "Aceptá el ritmo lento o movela a luz un poco más brillante." },
+      { "symptom": "Bordes marrones", "cause": "Agua con cloro o aire seco", "solution": "Usá agua reposada 24h y pulverizá el ambiente ocasionalmente." }
+    ],
+    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de compost diluido cada 6 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 3 cm: si están secos, regá poco; el aglaonema prefiere de menos que de más." },
+    "placementRecommended": "Rincones con poca luz natural — pasillos, oficinas, dormitorios sin ventana directa.",
+    "placementAlternatives": [
+      "Sala con luz indirecta media",
+      "Habitación con luz fluorescente",
+      "Lejos de ventana (interior profundo)"
+    ],
+    "placementAvoid": "Sol directo (quema hojas variegadas) y corrientes de aire frío bajo 13°C.",
+    "whyRationale": "Aráceas del sotobosque tropical asiático — adaptada a luz mínima del piso de la selva. Tolera baja luz porque su clorofila opera eficientemente con poca radiación."
+  },
+  "costilla-adan": {
+    "name": "Costilla de Adán",
+    "tip": "Versión chica de la Monstera con hojas perforadas. Trepadora ideal para tutor o cesta colgante.",
+    "description": "La Costilla de Adán (Monstera adansonii) tiene hojas más pequeñas y agujereadas que la Monstera deliciosa. Es una hemiepífita centroamericana que crece como trepadora con tutor de musgo o como colgante. Más rápida y compacta que su prima grande.",
+    "problems": [
+      { "symptom": "Hojas sin agujeros", "cause": "Poca luz o planta joven", "solution": "Acercala a luz brillante indirecta; los agujeros aparecen con madurez y buena luz." },
+      { "symptom": "Tallos largos sin hojas", "cause": "Falta de tutor", "solution": "Agregá un tutor de musgo o coco — sus raíces aéreas necesitan agarre." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá los primeros 2 cm de tierra: regá solo cuando estén secos." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene." },
+    "placementRecommended": "Cerca de ventana con luz brillante indirecta — con tutor de musgo si querés hojas grandes.",
+    "placementAlternatives": [
+      "Cesta colgante en sala luminosa",
+      "Estante alto con guías hacia abajo",
+      "Pared con tutor vertical de coco"
+    ],
+    "placementAvoid": "Sol directo (quema agujeros) y rincones muy oscuros (hojas pequeñas y sin perforaciones).",
+    "whyRationale": "Hemiepífita aráceas centroamericana — distinta de la Monstera deliciosa. Trepa árboles del sotobosque y desarrolla agujeros (fenestraciones) para resistir vientos y compartir luz."
+  },
+  "difenbaquia": {
+    "name": "Difenbaquia",
+    "tip": "Tallos gruesos con hojas grandes variegadas. Tóxica si se ingiere — mantenela lejos de mascotas curiosas.",
+    "description": "La Difenbaquia (Dieffenbachia seguine) tiene hojas grandes verdes con manchas crema o blanco. Crece rápido en interiores con luz media. Su savia contiene cristales de oxalato — manejá con guantes al podar.",
+    "problems": [
+      { "symptom": "Tallo largo y desnudo abajo", "cause": "Pérdida natural de hojas viejas", "solution": "Podá el tope para forzar ramificación; los esquejes enraízan en agua o sustrato." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o agua fría", "solution": "Regá con agua a temperatura ambiente; tocá la tierra antes de regar." },
+      { "symptom": "Hojas marchitas", "cause": "Sustrato muy seco", "solution": "Mantené humedad constante (no encharcamiento) — Difenbaquia no tolera sequía prolongada." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; agua a temperatura ambiente." },
+    "placementRecommended": "A 1-2 m de ventana — luz indirecta media, sin sol directo en el follaje.",
+    "placementAlternatives": [
+      "Sala con luz natural difusa",
+      "Pasillo luminoso",
+      "Habitación con luz indirecta brillante"
+    ],
+    "placementAvoid": "Sol directo (quema variegación) y temperaturas bajo 15°C (caída de hojas).",
+    "whyRationale": "Aráceas tropical sudamericana — sus tallos almacenan agua y rebrotan tras poda. La variegación es tejido sin clorofila que requiere más luz para compensar."
+  },
+  "begonia-rex": {
+    "name": "Begonia rex",
+    "tip": "Cultivada por sus hojas pintadas, no por sus flores. Humedad alta sin mojar las hojas.",
+    "description": "La Begonia rex es un cultivar de follaje con hojas asimétricas pintadas en plata, púrpura, rojo y verde. Originaria de los Himalayas tropicales. Más exigente que las begonias floridas: necesita humedad ambiental alta y agua sin tocar las hojas.",
+    "problems": [
+      { "symptom": "Manchas marrones en hojas", "cause": "Agua sobre el follaje o aire seco", "solution": "Regá solo el sustrato (nunca las hojas); usá humidificador." },
+      { "symptom": "Hojas pálidas o sin patrón", "cause": "Poca luz", "solution": "Movela cerca de ventana con luz brillante indirecta — los pigmentos requieren luz para sintetizarse." },
+      { "symptom": "Tallos podridos", "cause": "Sustrato encharcado", "solution": "Usá maceta con drenaje y sustrato aireado; tocá la tierra antes de regar." }
+    ],
+    "nutrients": { "type": "Bajo en nitrógeno (color de hoja)", "homemade": "Té de cáscara de banana cada 4 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no las hojas) cuando estén secos." },
+    "placementRecommended": "Baño o cocina con luz brillante indirecta — humedad natural alta y sin sol directo.",
+    "placementAlternatives": [
+      "Habitación con humidificador cerca",
+      "Estantería luminosa con cortina filtrante",
+      "A 1 m de ventana al este"
+    ],
+    "placementAvoid": "Sol directo (decolora pigmentos) y aire seco de calefacción.",
+    "whyRationale": "Cultivar de Begonia originaria de los Himalayas — antocianinas y carotenoides en hojas requieren luz brillante para expresarse. Sin ella las hojas pierden el patrón decorativo."
+  },
+  "croton": {
+    "name": "Croton",
+    "tip": "Cuanta más luz, más intenso el color. Hoja gomosa, casi escultural.",
+    "description": "El Croton (Codiaeum variegatum) tiene hojas coriáceas con franjas amarillo, naranja, rojo y verde. Originario del Pacífico tropical. Sensible a cambios bruscos: pierde hojas si lo movés mucho. Una vez instalado, dejalo donde esté.",
+    "problems": [
+      { "symptom": "Caída masiva de hojas", "cause": "Cambio de ubicación, corriente o riego", "solution": "Mantenelo estable: misma ubicación, mismo riego, sin corrientes — rebrotará." },
+      { "symptom": "Hojas verdes sin color", "cause": "Poca luz", "solution": "Acercala a luz brillante indirecta — el color requiere intensidad lumínica." },
+      { "symptom": "Bordes marrones", "cause": "Aire seco o riego irregular", "solution": "Pulverizá ambiente; mantené riego constante con sustrato apenas húmedo." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; nunca dejes secar del todo." },
+    "placementRecommended": "Cerca de ventana con luz brillante indirecta o sol filtrado de mañana — color depende de luz.",
+    "placementAlternatives": [
+      "A 50 cm de ventana al este",
+      "Galería luminosa cubierta",
+      "Habitación con sol filtrado de mañana"
+    ],
+    "placementAvoid": "Cambios frecuentes de ubicación y corrientes de aire — el croton es estresado por movimiento.",
+    "whyRationale": "Originario del Pacífico tropical — sus antocianinas y carotenoides requieren luz brillante para sintetizarse. Sin luz suficiente las hojas vuelven a verde uniforme."
+  },
+  "fitonia": {
+    "name": "Fitonia",
+    "tip": "Diminuta y dramática. Si la ves marchita, regala — se recupera rápido pero no perdona sequía repetida.",
+    "description": "La Fitonia (Fittonia albivenis) tiene hojas pequeñas con nervaduras blancas, rosas o rojas marcadas. Originaria del sotobosque amazónico. Ideal para terrarios o macetas con alta humedad ambiental — su tamaño la hace perfecta para mesas y escritorios.",
+    "problems": [
+      { "symptom": "Hojas marchitas y caídas", "cause": "Sustrato seco", "solution": "Regá inmediatamente — la fitonia se recupera rápido pero la sequía repetida la mata." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Reducí el riego; tocá la tierra antes — debe estar apenas seca arriba." },
+      { "symptom": "Bordes marrones", "cause": "Aire seco", "solution": "Movela a un baño o cubrila con domo de vidrio (terrario)." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 4 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos — no dejes que se marchite." },
+    "placementRecommended": "Baño con luz natural indirecta — humedad alta y luz tamizada perfectas.",
+    "placementAlternatives": [
+      "Terrario o pecera abierta",
+      "Mesa de cocina con luz indirecta",
+      "Junto a humidificador"
+    ],
+    "placementAvoid": "Sol directo (quema hojas pequeñas) y rincones oscuros (pierde patrón de venas).",
+    "whyRationale": "Sotobosque amazónico — sus venas blancas reflejan la poca luz que llega al piso de la selva. Hojas finas pierden agua rápido, por eso necesita humedad alta y riego constante."
+  },
+  "ficus-lyrata": {
+    "name": "Ficus lyrata",
+    "tip": "Hojas enormes en forma de violín. Una vez en su lugar, no la muevas — odia los cambios.",
+    "description": "El Ficus lyrata (hoja de violín) es un árbol de interior de África Occidental. Crece varios metros con hojas grandes y coriáceas. Sensible a movimientos y corrientes — se queja con caída masiva de hojas. Estabilidad es la clave.",
+    "problems": [
+      { "symptom": "Caída masiva de hojas", "cause": "Cambio de ubicación, corriente o estrés hídrico", "solution": "Mantené ubicación fija, sin corrientes; regá con consistencia — no de más ni de menos." },
+      { "symptom": "Manchas marrones en hojas", "cause": "Riego irregular o agua con cloro", "solution": "Usá agua reposada 24h; mantené ritmo constante de riego." },
+      { "symptom": "Hojas opacas y polvorientas", "cause": "Acumulación de polvo", "solution": "Limpiá las hojas grandes con paño húmedo cada 2 semanas — el polvo bloquea fotosíntesis." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá hasta que drene; nunca dejes seca completamente." },
+    "placementRecommended": "Cerca de ventana grande con luz brillante indirecta — sol filtrado de mañana es ideal.",
+    "placementAlternatives": [
+      "A 1 m de ventana al este",
+      "Habitación luminosa con cortina filtrante",
+      "Galería cubierta con sol filtrado"
+    ],
+    "placementAvoid": "Corrientes de aire (puerta, AC) y cambios frecuentes de ubicación — pierde hojas por estrés.",
+    "whyRationale": "Originario de la selva tropical de África Occidental — crece como hemiepífita y luego enraíza. Sus hojas grandes en forma de lira capturan luz tamizada del dosel y son sensibles al estrés ambiental."
+  },
+  "maranta": {
+    "name": "Maranta",
+    "tip": "Llamada planta de oración: pliega hojas al anochecer. Humedad alta y agua sin cloro.",
+    "description": "La Maranta (Maranta leuconeura) tiene hojas ovaladas con nervaduras rojas o púrpura sobre verde claro. Originaria de selvas brasileñas. Pliega sus hojas al anochecer (nictinastia) y las despliega de día — un movimiento visible.",
+    "problems": [
+      { "symptom": "Bordes marrones", "cause": "Agua con cloro o aire seco", "solution": "Usá agua reposada o de lluvia; pulverizá ambiente o usá humidificador." },
+      { "symptom": "Hojas no pliegan", "cause": "Estrés (luz inadecuada o riego irregular)", "solution": "Verificá luz indirecta media y riego constante — el plegado nocturno indica salud." },
+      { "symptom": "Hojas pálidas", "cause": "Demasiada luz directa", "solution": "Alejala de la ventana — la maranta prefiere luz indirecta media." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost cada 4 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos; nunca dejes secar completamente." },
+    "placementRecommended": "Habitación con luz indirecta media — baño o cocina con humedad natural alta.",
+    "placementAlternatives": [
+      "A 2 m de ventana",
+      "Habitación con humidificador",
+      "Estantería interior alejada de ventana"
+    ],
+    "placementAvoid": "Sol directo (decolora) y aire seco — la maranta no tolera ambientes secos.",
+    "whyRationale": "Marantáceas de la selva brasileña — su nictinastia (plegado nocturno por pulvinos en el peciolo) reduce pérdida de agua y exposición a depredadores nocturnos. Patrón de venas refleja luz tamizada."
+  },
   "humidity": {
     "baja": "Baja",
     "media": "Media",

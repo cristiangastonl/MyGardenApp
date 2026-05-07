@@ -2306,6 +2306,246 @@
     "placementAvoid": "Late frost and irregular watering — fruits split when water hits dry soil.",
     "whyRationale": "A Solanum lycopersicum variant with small fruit and an indeterminate growth habit (it keeps going until frost). Same genetics as the large tomato, but you harvest almost daily; abundant clusters need a tall stake and sucker pruning to focus energy on the fruit."
   },
+  "anthurium": {
+    "name": "Anthurium",
+    "tip": "Blooms year-round with bright indirect light. Keep soil barely damp.",
+    "description": "Anthurium is a tropical aroid with vivid red spathes (also white or pink). Its flowers last for weeks and return continuously with steady light and high humidity. Ideal as a focal point in bright interiors.",
+    "problems": [
+      { "symptom": "Yellow leaves", "cause": "Overwatering or pooled water", "solution": "Touch the soil: water only when the top 2 cm are dry; check drainage." },
+      { "symptom": "No flowers", "cause": "Insufficient light", "solution": "Move near a bright indirect window — no direct sun." },
+      { "symptom": "Brown leaf edges", "cause": "Dry air", "solution": "Group with other plants or run a humidifier." }
+    ],
+    "nutrients": { "type": "Phosphorus (bloom)", "homemade": "Chopped banana peel in substrate every 3 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm of soil: if dry, water until it drains." },
+    "placementRecommended": "Near an east window — bright indirect light and high ambient humidity.",
+    "placementAlternatives": [
+      "Bright bathroom (natural humidity)",
+      "1 m from a north-facing window",
+      "Living room near a humidifier"
+    ],
+    "placementAvoid": "Midday direct sun — scorches spathes and leaves; dry heater air.",
+    "whyRationale": "Belongs to the Araceae understory of the Amazon — evolved under filtered light and high humidity. Spathes are modified leaves that attract pollinators in dense forest."
+  },
+  "alocasia": {
+    "name": "Alocasia",
+    "tip": "Loves high humidity. If it goes dormant in winter, ease off watering — it will return.",
+    "description": "Alocasia (elephant ear) is a dramatic aroid with dark leaves and pronounced white veins. Native to tropical Southeast Asia. May drop leaves in winter dormancy — normal; new shoots return in spring.",
+    "problems": [
+      { "symptom": "Leaves drop in winter", "cause": "Natural dormancy (not death)", "solution": "Reduce watering to minimum; new shoots return in spring with barely damp soil." },
+      { "symptom": "Brown edges", "cause": "Low ambient humidity", "solution": "Mist the leaves or run a humidifier; group with other plants." },
+      { "symptom": "Sticky spots on leaves", "cause": "Mealybugs or mites", "solution": "Wipe leaves with water and potassium soap once a week." }
+    ],
+    "nutrients": { "type": "Balanced NPK (growth)", "homemade": "Compost tea every 3 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; reduce drastically in winter." },
+    "placementRecommended": "Near a bright window with a sheer curtain — bright indirect light and high humidity.",
+    "placementAlternatives": [
+      "Bathroom with natural light",
+      "Warm room with a humidifier",
+      "1 m from an east-facing window"
+    ],
+    "placementAvoid": "Cold drafts and direct sun — both damage the showcase leaves.",
+    "whyRationale": "Tropical aroid from Borneo and Philippine understories — its large leaves capture filtered light and the pale veins reflect capillary humidity."
+  },
+  "caladium": {
+    "name": "Caladium",
+    "tip": "Patterned leaves last spring through fall. Winter dormancy: let the tuber dry out.",
+    "description": "Caladium (Caladium bicolor) has heart-shaped leaves splashed with pink, white, or deep red. It's a tropical tuber: it drops all leaves in winter and re-sprouts from the bulb in spring if kept warm and nearly dry.",
+    "problems": [
+      { "symptom": "Wilting or fading leaves", "cause": "Dry substrate during active growth", "solution": "Keep soil barely damp in warm season — the active tuber needs steady water." },
+      { "symptom": "Leaves lost in winter", "cause": "Natural tuber dormancy", "solution": "Reduce watering to minimum; store the pot warm and dark until spring." },
+      { "symptom": "Brown edges", "cause": "Dry air", "solution": "Mist the surrounding area (not the leaves directly) or run a humidifier." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Banana tea every 3 weeks in warm season" },
+    "careAction": { "soilCheck": "In warm season touch top 2 cm every 3-4 days; reduce to minimum in cold season." },
+    "placementRecommended": "Warm spot with bright indirect light — minimum 18°C while active.",
+    "placementAlternatives": [
+      "Near east-facing window",
+      "Room with a humidifier",
+      "Warm covered porch"
+    ],
+    "placementAvoid": "Direct sun (fades the patterns) and temperatures below 15°C (triggers early dormancy).",
+    "whyRationale": "Tropical tuber from the Amazon — stores energy in the bulb and emits seasonal leaves. The variegated patches are tissue without chlorophyll, reducing internal competition for light."
+  },
+  "singonio": {
+    "name": "Arrowhead Plant",
+    "tip": "Arrow-shaped leaves change with age. Tolerant and fast-growing.",
+    "description": "Syngonium podophyllum is a climbing aroid whose leaves evolve from juvenile arrows to adult three-lobed forms. Available in green, pink, or cream cultivars. Grows fast with regular pruning.",
+    "problems": [
+      { "symptom": "Long, unruly stems", "cause": "Natural growth — needs pruning", "solution": "Prune long stems every 2 months; cuttings root in water." },
+      { "symptom": "Small, pale leaves", "cause": "Low light", "solution": "Move closer to a window — bright indirect light intensifies color." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the soil: water only when the top 2 cm are dry." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Banana peel tea every 3 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains." },
+    "placementRecommended": "1-2 m from a window with bright indirect light — pink cultivars need more light.",
+    "placementAlternatives": [
+      "Bright room with sheer curtain",
+      "High shelf where it can trail",
+      "Near an east-facing window"
+    ],
+    "placementAvoid": "Direct sun (fades color) and dark corners (loses variegation).",
+    "whyRationale": "Central American hemi-epiphytic aroid — in habitat it climbs trees toward filtered light. Leaf shape shifts with height and available light (heteroblasty)."
+  },
+  "aglaonema": {
+    "name": "Chinese Evergreen",
+    "tip": "One of the few plants that thrives in low light. Nearly indestructible if not overwatered.",
+    "description": "Aglaonema is a shade-tolerant Asian aroid. Modern cultivars feature silver, red, or green leaves with decorative patterns. Excellent for offices and corners far from windows.",
+    "problems": [
+      { "symptom": "Yellow leaves at the base", "cause": "Overwatering or waterlogged substrate", "solution": "Let the soil dry well between waterings; check pot drainage." },
+      { "symptom": "Slow growth", "cause": "Normal in low light", "solution": "Accept the slow pace or move to slightly brighter indirect light." },
+      { "symptom": "Brown edges", "cause": "Chlorinated water or dry air", "solution": "Use water rested for 24h and mist the surrounding air occasionally." }
+    ],
+    "nutrients": { "type": "Low nitrogen", "homemade": "Diluted compost tea every 6 weeks" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: if dry, water sparingly; aglaonema prefers less than more." },
+    "placementRecommended": "Low-light corners — hallways, offices, bedrooms without a direct window.",
+    "placementAlternatives": [
+      "Living room with medium indirect light",
+      "Room with fluorescent lighting",
+      "Far from windows (deep interior)"
+    ],
+    "placementAvoid": "Direct sun (scorches variegated leaves) and cold drafts below 13°C.",
+    "whyRationale": "Aroid from Asian tropical understory — adapted to minimal forest-floor light. Tolerates low light because its chlorophyll operates efficiently with reduced radiation."
+  },
+  "costilla-adan": {
+    "name": "Swiss Cheese Vine",
+    "tip": "Smaller cousin of Monstera deliciosa with perforated leaves. Climber ideal for moss pole or hanging basket.",
+    "description": "Swiss Cheese Vine (Monstera adansonii) has smaller, more perforated leaves than Monstera deliciosa. A Central American hemi-epiphyte that grows as a climber on a moss pole or trails from a hanging basket. Faster and more compact than its larger cousin.",
+    "problems": [
+      { "symptom": "No holes in leaves", "cause": "Low light or young plant", "solution": "Move closer to bright indirect light; holes appear with maturity and good light." },
+      { "symptom": "Long bare stems", "cause": "Lack of support", "solution": "Add a moss or coir pole — its aerial roots need grip." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the top 2 cm: water only when dry." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains." },
+    "placementRecommended": "Near a bright indirect window — with a moss pole if you want larger leaves.",
+    "placementAlternatives": [
+      "Hanging basket in bright room",
+      "High shelf with stems trailing down",
+      "Wall with vertical coir pole"
+    ],
+    "placementAvoid": "Direct sun (scorches the holed leaves) and very dark corners (small leaves with no perforations).",
+    "whyRationale": "Central American hemi-epiphytic aroid — distinct from Monstera deliciosa. Climbs understory trees and develops fenestrations to resist winds and share light with lower leaves."
+  },
+  "difenbaquia": {
+    "name": "Dumb Cane",
+    "tip": "Thick stems with large variegated leaves. Toxic if ingested — keep away from curious pets.",
+    "description": "Dumb Cane (Dieffenbachia seguine) has large green leaves with cream or white markings. Grows quickly indoors in medium light. Its sap contains oxalate crystals — handle with gloves when pruning.",
+    "problems": [
+      { "symptom": "Long bare stem at the base", "cause": "Natural loss of old leaves", "solution": "Prune the top to force branching; cuttings root in water or substrate." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering or cold water", "solution": "Water at room temperature; touch the soil before watering." },
+      { "symptom": "Wilting leaves", "cause": "Soil too dry", "solution": "Keep steady moisture (not waterlogged) — dumb cane doesn't tolerate prolonged drought." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains; use room-temperature water." },
+    "placementRecommended": "1-2 m from a window — medium indirect light, no direct sun on foliage.",
+    "placementAlternatives": [
+      "Living room with diffuse natural light",
+      "Bright hallway",
+      "Room with bright indirect light"
+    ],
+    "placementAvoid": "Direct sun (scorches variegation) and temperatures below 15°C (leaf drop).",
+    "whyRationale": "South American tropical aroid — its stems store water and re-sprout after pruning. The variegation is chlorophyll-free tissue that requires more light to compensate."
+  },
+  "begonia-rex": {
+    "name": "Rex Begonia",
+    "tip": "Grown for its painted leaves, not its flowers. High humidity, no water on the foliage.",
+    "description": "Rex Begonia is a foliage cultivar with asymmetric leaves painted in silver, purple, red, and green. Native to the tropical Himalayas. More demanding than flowering begonias: needs high ambient humidity and water that never touches the leaves.",
+    "problems": [
+      { "symptom": "Brown spots on leaves", "cause": "Water on foliage or dry air", "solution": "Water the substrate only (never the leaves); use a humidifier." },
+      { "symptom": "Pale leaves or no pattern", "cause": "Low light", "solution": "Move near a bright indirect window — pigments need light to synthesize." },
+      { "symptom": "Rotted stems", "cause": "Waterlogged substrate", "solution": "Use a pot with drainage and an airy substrate; touch the soil before watering." }
+    ],
+    "nutrients": { "type": "Low nitrogen (leaf color)", "homemade": "Banana peel tea every 4 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water the substrate (not the leaves) when dry." },
+    "placementRecommended": "Bathroom or kitchen with bright indirect light — high natural humidity and no direct sun.",
+    "placementAlternatives": [
+      "Room with a humidifier nearby",
+      "Bright shelf behind a sheer curtain",
+      "1 m from an east-facing window"
+    ],
+    "placementAvoid": "Direct sun (fades pigments) and dry heater air.",
+    "whyRationale": "Begonia cultivar from the Himalayas — anthocyanins and carotenoids in leaves require bright light to express. Without it the leaves lose their decorative pattern."
+  },
+  "croton": {
+    "name": "Croton",
+    "tip": "More light, more intense color. Glossy leaves, almost sculptural.",
+    "description": "Croton (Codiaeum variegatum) has leathery leaves striped in yellow, orange, red, and green. Native to the tropical Pacific. Sensitive to abrupt changes: drops leaves if moved often. Once settled, leave it where it is.",
+    "problems": [
+      { "symptom": "Massive leaf drop", "cause": "Location change, draft, or irregular watering", "solution": "Keep it stable: same spot, same watering, no drafts — it will re-leaf." },
+      { "symptom": "Green leaves with no color", "cause": "Low light", "solution": "Move closer to bright indirect light — color requires light intensity." },
+      { "symptom": "Brown edges", "cause": "Dry air or irregular watering", "solution": "Mist the surrounding air; keep watering steady with barely damp substrate." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains; never let it dry out completely." },
+    "placementRecommended": "Near a bright indirect window or filtered morning sun — color depends on light.",
+    "placementAlternatives": [
+      "50 cm from an east window",
+      "Bright covered porch",
+      "Room with filtered morning sun"
+    ],
+    "placementAvoid": "Frequent location changes and drafts — croton is stressed by movement.",
+    "whyRationale": "Native to the tropical Pacific — its anthocyanins and carotenoids need bright light to synthesize. Without enough light the leaves revert to uniform green."
+  },
+  "fitonia": {
+    "name": "Nerve Plant",
+    "tip": "Tiny and dramatic. If you see it wilted, water it — it recovers quickly but doesn't forgive repeated drought.",
+    "description": "Nerve Plant (Fittonia albivenis) has small leaves with bold white, pink, or red veins. Native to the Amazon understory. Ideal for terrariums or pots with high ambient humidity — its size makes it perfect for tables and desks.",
+    "problems": [
+      { "symptom": "Wilted, drooping leaves", "cause": "Dry substrate", "solution": "Water immediately — fittonia recovers quickly but repeated drought kills it." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Reduce watering; touch the soil — top should be barely dry." },
+      { "symptom": "Brown edges", "cause": "Dry air", "solution": "Move to a bathroom or cover with a glass dome (terrarium)." }
+    ],
+    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as it feels dry — never let it wilt." },
+    "placementRecommended": "Bathroom with indirect natural light — high humidity and filtered light are perfect.",
+    "placementAlternatives": [
+      "Terrarium or open glass tank",
+      "Kitchen table with indirect light",
+      "Next to a humidifier"
+    ],
+    "placementAvoid": "Direct sun (scorches small leaves) and dark corners (loses vein pattern).",
+    "whyRationale": "Amazon understory — its white veins reflect the scarce light that reaches the forest floor. Thin leaves lose water fast, so it needs high humidity and steady watering."
+  },
+  "ficus-lyrata": {
+    "name": "Fiddle Leaf Fig",
+    "tip": "Huge fiddle-shaped leaves. Once in its place, don't move it — it hates change.",
+    "description": "Fiddle Leaf Fig (Ficus lyrata) is an indoor tree from West Africa. Grows several meters with large, leathery leaves. Sensitive to movement and drafts — it complains with massive leaf drop. Stability is key.",
+    "problems": [
+      { "symptom": "Massive leaf drop", "cause": "Location change, draft, or watering stress", "solution": "Keep a fixed spot, no drafts; water consistently — neither too much nor too little." },
+      { "symptom": "Brown spots on leaves", "cause": "Irregular watering or chlorinated water", "solution": "Use water rested for 24h; keep a steady watering rhythm." },
+      { "symptom": "Dull, dusty leaves", "cause": "Dust accumulation", "solution": "Wipe the large leaves with a damp cloth every 2 weeks — dust blocks photosynthesis." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: water until it drains; never let it go fully dry." },
+    "placementRecommended": "Near a large window with bright indirect light — filtered morning sun is ideal.",
+    "placementAlternatives": [
+      "1 m from an east window",
+      "Bright room with sheer curtain",
+      "Covered porch with filtered sun"
+    ],
+    "placementAvoid": "Drafts (door, AC) and frequent location changes — drops leaves from stress.",
+    "whyRationale": "Native to West African tropical rainforest — grows as a hemi-epiphyte before rooting. Its large fiddle-shaped leaves capture filtered canopy light and are sensitive to environmental stress."
+  },
+  "maranta": {
+    "name": "Prayer Plant",
+    "tip": "Called prayer plant: folds leaves at dusk. High humidity and chlorine-free water.",
+    "description": "Prayer Plant (Maranta leuconeura) has oval leaves with red or purple veins on light green. Native to Brazilian rainforests. It folds its leaves at dusk (nyctinasty) and unfolds them by day — a visible movement.",
+    "problems": [
+      { "symptom": "Brown edges", "cause": "Chlorinated water or dry air", "solution": "Use rested or rainwater; mist the air or run a humidifier." },
+      { "symptom": "Leaves don't fold", "cause": "Stress (poor light or irregular watering)", "solution": "Check medium indirect light and steady watering — nightly folding indicates health." },
+      { "symptom": "Pale leaves", "cause": "Too much direct light", "solution": "Move away from the window — maranta prefers medium indirect light." }
+    ],
+    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as dry; never let it fully dry out." },
+    "placementRecommended": "Room with medium indirect light — bathroom or kitchen with high natural humidity.",
+    "placementAlternatives": [
+      "2 m from a window",
+      "Room with a humidifier",
+      "Interior shelf away from windows"
+    ],
+    "placementAvoid": "Direct sun (fades color) and dry air — maranta doesn't tolerate dry environments.",
+    "whyRationale": "Marantaceae from Brazilian rainforest — its nyctinasty (nightly folding via petiole pulvini) reduces water loss and predator exposure. Vein patterns reflect filtered understory light."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",
