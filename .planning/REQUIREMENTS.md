@@ -46,10 +46,10 @@
 
 ### Catalog Expansion Wave A — Interior Tropicales (CAT, continuing v1.1 numbering)
 
-- [ ] **CAT-09**: 23 new interior/tropical entries added to `plantDatabase.ts` with full v1.1 + EDU schema: zamioculca, pilea, tradescantia, hiedra, croton, difenbaquia, fitonia, cheflera, anthurium, begonia-rex, arbol-dinero, maranta, helecho-boston, helecho-nido, alocasia, caladium, palmera-areca, palmera-kentia, costilla-adan, singonio, aglaonema, ficus-lyrata, cola-burro
-- [ ] **CAT-10**: All 23 Wave A entries have full keyset in EN + ES (`name`, `tip` (voseo for ES), `description`, `problems[]` length ≥1, `nutrients`); `npm run check:i18n-keys` passes
-- [ ] **CAT-11**: All 23 Wave A entries are added to `PLANT_TYPE_MAP` and `COMMON_NAMES_ES` in `plantIdentification.ts` so PlantNet identification routes them to the curated entry
-- [ ] **CAT-12**: All 23 Wave A entries' images are uploaded to Supabase Storage `plant-images/catalog/<id>.jpg` OR documented as accepted-known failure in CLAUDE.md (mirrors v1.1 stance for the 14 LATAM)
+- [x] **CAT-09**: 23 new interior/tropical entries added to `plantDatabase.ts` with full v1.1 + EDU schema: zamioculca, pilea, tradescantia, hiedra, croton, difenbaquia, fitonia, cheflera, anthurium, begonia-rex, arbol-dinero, maranta, helecho-boston, helecho-nido, alocasia, caladium, palmera-areca, palmera-kentia, costilla-adan, singonio, aglaonema, ficus-lyrata, cola-burro
+- [x] **CAT-10**: All 23 Wave A entries have full keyset in EN + ES (`name`, `tip` (voseo for ES), `description`, `problems[]` length ≥1, `nutrients`); `npm run check:i18n-keys` passes
+- [x] **CAT-11**: All 23 Wave A entries are added to `PLANT_TYPE_MAP` and `COMMON_NAMES_ES` in `plantIdentification.ts` so PlantNet identification routes them to the curated entry
+- [x] **CAT-12**: All 23 Wave A entries' images are uploaded to Supabase Storage `plant-images/catalog/<id>.jpg` OR documented as accepted-known failure in CLAUDE.md (mirrors v1.1 stance for the 14 LATAM)
 
 ### Catalog Expansion Wave B — Suculentas/Cactus + Trepadoras + Trending (CAT)
 
@@ -210,10 +210,10 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | EDU-05 | Phase 14 | Complete |
 | EDU-06 | Phase 14 | Complete |
 | EDU-07 | Phase 14 | Complete |
-| CAT-09 | Phase 15 | Pending |
-| CAT-10 | Phase 15 | Pending |
-| CAT-11 | Phase 15 | Pending |
-| CAT-12 | Phase 15 | Pending |
+| CAT-09 | Phase 15 | Complete |
+| CAT-10 | Phase 15 | Complete |
+| CAT-11 | Phase 15 | Complete |
+| CAT-12 | Phase 15 | Complete |
 | CAT-13 | Phase 16 | Pending |
 | CAT-14 | Phase 16 | Pending |
 | CAT-15 | Phase 16 | Pending |

@@ -2,16 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-status: verifying
-stopped_at: Phase 15 context captured (delegated)
-last_updated: "2026-05-07T01:17:11.618Z"
-last_activity: "2026-05-05 — Phase 14 Plan 07 complete (Wave 3d frutales+suculentas catalog content — FINAL content wave). 3 files: plantDatabase.ts +110 LOC, en/plants.json +110 LOC, es/plants.json +110 LOC. 10 entries × 5 educational fields × 2 locales = 150 content units. **FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.**"
+current_plan: 1 of 5
+status: completed
+stopped_at: Completed 15-00-PLAN.md (Wave 0 smoke runner scaffold)
+last_updated: "2026-05-07T14:23:30.464Z"
+last_activity: "2026-05-07 — Phase 15 Plan 00 complete (Wave 0 smoke runner scaffold). 1 file created (scripts/phase15-smoke.cjs +217 LOC) + 2 modified (package.json +1, .gitignore +1) + 2 auto-generated stubs (gitignored). 2 tasks, 3 min. SKIP→PASS sentinels locked: 15-01/15-02 trip via anyLanded → allLanded; 15-03 trips via Maranta leuconeura in plantIdentification.ts; 15-04 trips via "Phase 15" substring in CLAUDE.md."
 progress:
   total_phases: 15
   completed_phases: 5
-  total_plans: 25
-  completed_plans: 26
-  percent: 100
+  total_plans: 30
+  completed_plans: 27
+  percent: 90
 ---
 
 # Project State
@@ -25,12 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 14 of 24 (Educational Detail Modal) — IN PROGRESS
-Plan: 14-00, 14-01, 14-02, 14-03, 14-04, 14-05, 14-06, 14-07 complete (8/9 plans in Phase 14 — Wave 0 scaffold + Wave 1 foundation + Wave 1 storage guard + Wave 2 modal restructure + Wave 3a/b/c/d content authoring). Plan 13-03 (manual device verification) still pending. Plan 14-08 (Wave 7 — manual device verification checkpoint, autonomous: false) is the final plan in Phase 14.
-Status: **Phase 14 EDU-02/03 content authoring is COMPLETE — FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.** Plan 14-07 added the final 10 entries (5 frutales: aguacate, higuera, limonero, mandarino, naranjo + 5 suculentas: cactus, echeveria, haworthia, sedum, suculenta-generica) × 5 educational fields populated in src/data/plantDatabase.ts AND mirrored to both en/plants.json (50 EN strings) and es/plants.json (50 ES voseo strings) — 150 new content units total. Frutales tone: cítrico-shared family lexicon (Rutáceas) + per-species cycle differentiation (limonero perpetual; mandarino+naranjo seasonal); 3 citrus rationales distinct (limonero ≠ mandarino ≠ naranjo). Suculentas tone: CAM photosynthesis as the marquee whyRationale mechanism (cited explicitly in 5/5); careAction.soilCheck (5/5) per waterMode discipline; haworthia is the rare shade-tolerant exception with translucent leaf-windows mechanism. Aguacate (Lauráceas, Mesoamerica, cross-pollination, shallow roots), higuera (Moráceas, mediterranean deciduous, brevas+higos dual crop, white látex). Char-limit-from-draft + inline-trim discipline applied: 9 of 10 initial drafts ran 251-312 chars; trimmed catalog defaults inline BEFORE mirroring to JSON (avoiding the 14-04 trim-the-i18n-after-the-fact pattern). Final max = 249 chars (naranjo). Voseo grep guard maintained at baseline 2. Locale parity 10/10 verified. Smoke runner PASS 19/19. **Cumulative content waves 14-04..07: 320 ES strings + 320 EN strings + 320 catalog defaults = 960 content units. EDU-01 through EDU-07 all marked complete in REQUIREMENTS.md.**
-Last activity: 2026-05-05 — Phase 14 Plan 07 complete (Wave 3d frutales+suculentas catalog content — FINAL content wave). 3 files: plantDatabase.ts +110 LOC, en/plants.json +110 LOC, es/plants.json +110 LOC. 10 entries × 5 educational fields × 2 locales = 150 content units. **FULL CATALOG COVERAGE: 64/64 entries (100%) declare all 5 EDU-02/03 educational fields.**
+Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — IN PROGRESS
+Current Plan: 1 of 5
+Plan: 15-00 complete (1/5 plans in Phase 15 — Wave 0 smoke runner scaffold). Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
+Status: **Phase 15 Wave 0 scaffold complete.** scripts/phase15-smoke.cjs (217 LOC, CJS) encodes all 23 Phase 15 ids + 23 species-qualified scientificNames as constants with partial-landing tolerance gates (anyLanded/allLanded shared window across CAT-09 per-id, CAT-09 count, IDENT.CAT-11). Wave 0 baseline: PASS 10/81 (9 scaffold + 1 voseo regression) / 71 SKIP / 0 FAIL exit 0. With --identification: PASS 10/104 / 94 SKIP. npm run smoke:phase15 wired (alphabetical placement next to smoke:phase14). scripts/.tmp-phase15/ explicitly gitignored (under existing wildcard block — Phase 14 precedent). Voseo regex baseline (≤2 matches against es/plants.json) PASSes immediately and runs every invocation as a regression gate for Plans 15-01/02 ES content authoring. Per-task feedback loop unblocked: `node scripts/phase15-smoke.cjs && npx tsc --noEmit && npm run check:i18n-keys` <15s.
+Last activity: 2026-05-07 — Phase 15 Plan 00 complete (Wave 0 smoke runner scaffold). 1 file created (scripts/phase15-smoke.cjs +217 LOC) + 2 modified (package.json +1, .gitignore +1) + 2 auto-generated stubs (gitignored). 2 tasks, 3 min. SKIP→PASS sentinels locked: 15-01/15-02 trip via anyLanded → allLanded; 15-03 trips via Maranta leuconeura in plantIdentification.ts; 15-04 trips via "Phase 15" substring in CLAUDE.md.
 
-Progress: [██████████] 100% (v1.2 in progress — 25/25 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phases 15-24 still ahead)
+Progress: [█████████░] 90% (v1.2 in progress — 27/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phase 15 Plans 15-01..04 + Phases 16-24 still ahead)
 
 ## Performance Metrics
 
@@ -58,6 +60,7 @@ Progress: [██████████] 100% (v1.2 in progress — 25/25 plan
 | Phase 14 P04 | 22min | 1 tasks | 3 files |
 | Phase 14 P06 | 46min | 1 tasks | 3 files |
 | Phase 14 P07 | 26min | 1 tasks | 3 files |
+| Phase 15 P00 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -120,6 +123,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 14-educational-detail-modal]: Plan 14-07: FULL CATALOG COVERAGE achieved — 64/64 entries (100%) declare all 5 EDU-02/03 educational fields. 10 frutales+suculentas × 5 fields × 2 locales = 150 content units. Frutales family-lexicon framing (Rutáceas/Lauráceas/Moráceas, 5 citations); suculentas CAM-photosynthesis marquee mechanism (cited in 5/5).
 - [Phase 14-educational-detail-modal]: Plan 14-07: 3 citrus rationales distinct (limonero perpetual; naranjo seasonal+heat; mandarino compact+early). All 5 suculentas use careAction.soilCheck per waterMode discipline; all 5 frutales use careAction.fixed. haworthia is the rare shade-tolerant exception with translucent leaf-windows mechanism layered on top of CAM.
 - [Phase 14-educational-detail-modal]: Plan 14-07: Char-limit-from-draft + inline-trim discipline applied. 9 of 10 initial drafts ran 251-312 chars; trimmed catalog defaults inline BEFORE mirroring to JSON (avoiding the 14-04 trim-the-i18n-after-the-fact pattern). Final max = 249 chars (naranjo).
+- [Phase 15]: Plan 15-00: CJS smoke runner (.cjs) per VALIDATION.md lock — Phase 15 is content-only so file-content asserts via readFileSync + regex are sufficient (no ts.transpileModule unlike Phase 14)
+- [Phase 15]: Plan 15-00: PHASE_15_SCIENTIFIC_NAMES species-qualified ('Dieffenbachia seguine' not 'Dieffenbachia') for IDENT.CAT-11 exact match; CAT-11 COMMON_NAMES_ES gate accepts EITHER species-qualified OR genus-only as legacy compat
+- [Phase 15]: Plan 15-00: Single-source PHASE_15_LANDED_FLAGS array shared across CAT-09 per-id, CAT-09 count (idMatches > 64 && < 87 → SKIP), AND IDENT.CAT-11 — runner stays exit-0 at Plan 15-01 (12 ids → 76) → Plan 15-02 (final 11 → 87) midpoint
+- [Phase 15]: Plan 15-00: Wave 0 baseline PASS 10/81 / 71 SKIP / 0 FAIL exit 0 (10 = 9 scaffold + 1 voseo regression). SKIP→PASS flip sentinels: anyLanded for 15-01/02; 'Maranta leuconeura' in plantIdentification.ts for 15-03; 'Phase 15' substring in CLAUDE.md for 15-04. Runner is NEVER edited again after this plan
 
 ### Pending Todos
 
@@ -133,6 +140,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-07T01:17:11.609Z
-Stopped at: Phase 15 context captured (delegated)
-Resume file: .planning/phases/15-catalog-wave-a-interior-tropicals/15-CONTEXT.md
+Last session: 2026-05-07T14:23:30.462Z
+Stopped at: Completed 15-00-PLAN.md (Wave 0 smoke runner scaffold)
+Resume file: None
