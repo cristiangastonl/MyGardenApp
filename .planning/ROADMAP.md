@@ -42,6 +42,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings (completed 2026-05-03)
 - [x] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component (completed 2026-05-04)
 - [x] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard (completed 2026-05-06)
+- [x] **Phase 14.1: databaseId Persistence Fix** — gap-closure: AddPlantModal + PlantIdentifierModal persist `plant.databaseId` so MyPlantDetailModal can resolve catalog entries (~10 LOC, single atomic commit) (completed 2026-05-07)
 - [ ] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan
 - [ ] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema
 - [ ] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 120 total; smoke asserts count
