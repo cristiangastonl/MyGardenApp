@@ -271,7 +271,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
-| 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete   | 2026-05-07 | - |
+| 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |
