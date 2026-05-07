@@ -2546,6 +2546,226 @@
     "placementAvoid": "Direct sun (fades color) and dry air — maranta doesn't tolerate dry environments.",
     "whyRationale": "Marantaceae from Brazilian rainforest — its nyctinasty (nightly folding via petiole pulvini) reduces water loss and predator exposure. Vein patterns reflect filtered understory light."
   },
+  "zamioculca": {
+    "name": "ZZ Plant",
+    "tip": "Nearly indestructible. The most common mistake is overwatering.",
+    "description": "ZZ Plant is a resilient species with succulent stems and water-storing rhizomes. Native to semi-arid East Africa. Tolerates low light and missed waterings — the best plant for beginners and dark offices.",
+    "problems": [
+      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Let the soil dry well between waterings." },
+      { "symptom": "Soft stems", "cause": "Rhizome rot from water", "solution": "Unpot, cut away soft tissue, and replant in dry substrate." },
+      { "symptom": "Slow winter growth", "cause": "Natural dormancy", "solution": "Reduce watering to minimum; new growth resumes in spring." }
+    ],
+    "nutrients": { "type": "Low nitrogen", "homemade": "Banana peel tea every 2 months" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: water only if completely dry. Less is more." },
+    "placementRecommended": "Any corner with indirect light — even low-light spots.",
+    "placementAlternatives": [
+      "Hallway or corner without a nearby window",
+      "Office with fluorescent lighting",
+      "Bedroom with low natural light"
+    ],
+    "placementAvoid": "Constantly damp soil and pots without drainage — rhizome rot is irreversible.",
+    "whyRationale": "Native to semi-arid East Africa — its rhizomes store water and nutrients. Its CAM metabolism enables low-light and drought tolerance, but rot from overwatering is irreversible."
+  },
+  "cola-burro": {
+    "name": "Donkey Tail",
+    "tip": "Fragile leaves that fall off at the slightest touch. Place where no one will brush past.",
+    "description": "Donkey Tail (Sedum morganianum) is a trailing succulent with stems covered in plump blue-green leaves. Native to Mexico. Its leaves drop at any contact — and each one can root in dry substrate.",
+    "problems": [
+      { "symptom": "Leaves fall when touched", "cause": "Naturally fragile", "solution": "Place out of traffic; each fallen leaf can be planted to propagate." },
+      { "symptom": "Soft stems", "cause": "Overwatering", "solution": "Reduce watering drastically; cut soft sections and replant in well-draining substrate." },
+      { "symptom": "Wrinkled leaves", "cause": "Prolonged underwatering", "solution": "Water slowly with small amounts several times until the succulent rehydrates." }
+    ],
+    "nutrients": { "type": "Low nitrogen (high potassium)", "homemade": "Crushed eggshell every 3 months" },
+    "careAction": { "soilCheck": "Touch the soil down to the drainage hole: if completely dry, water sparingly. It survives drought better than excess." },
+    "placementRecommended": "Hanging pot in a bright but out-of-traffic spot — near a south-facing window with a sheer curtain.",
+    "placementAlternatives": [
+      "High shelf with filtered sun",
+      "Hanging basket on a warm covered patio",
+      "Bright shelf away from people"
+    ],
+    "placementAvoid": "High-traffic areas (loses leaves) and constantly damp soil (stem rot).",
+    "whyRationale": "Mexican succulent from rocky habitats — stores water in fleshy leaves and uses CAM metabolism to minimize daytime water loss. The fragile leaves enable vegetative propagation by detachment."
+  },
+  "hiedra": {
+    "name": "English Ivy",
+    "tip": "Versatile climber. Variegated varieties need more light to keep their color.",
+    "description": "English Ivy (Hedera helix) is a European climber with lobed green or variegated leaves. Adaptable to cool interiors or sheltered outdoors. Grows in hanging baskets, on supports, or as a groundcover. Tolerates more cold than most houseplants.",
+    "problems": [
+      { "symptom": "Pale leaves or no variegation", "cause": "Low light (variegated varieties)", "solution": "Move to bright indirect light — cream and gold tones require more light." },
+      { "symptom": "Crispy, dry leaves", "cause": "Dry heater air", "solution": "Mist the air or group with other plants; lower the temperature if you can." },
+      { "symptom": "Spider webs between leaves", "cause": "Spider mites (love dry air)", "solution": "Shower the plant with lukewarm water; increase ambient humidity." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; less in winter." },
+    "placementRecommended": "Cool room with bright indirect light — variegated varieties near an east-facing window.",
+    "placementAlternatives": [
+      "Hanging basket in a bright room",
+      "On a vertical support in a hallway",
+      "Cool covered porch"
+    ],
+    "placementAvoid": "Direct heater air (dries leaves) and prolonged direct sun.",
+    "whyRationale": "European climber from temperate forests — its adventitious rootlets cling to surfaces to climb and share light. Tolerates cold to 5°C because its origin is temperate, not tropical."
+  },
+  "palmera-areca": {
+    "name": "Areca Palm",
+    "tip": "Long arching leaves. Needs bright indirect light and steadily moist substrate.",
+    "description": "Areca Palm (Dypsis lutescens) is a tropical palm from Madagascar with light-green pinnate leaves and multiple stems. Grows several meters indoors in bright light. Sensitive to drought and also to waterlogging — constant balance.",
+    "problems": [
+      { "symptom": "Brown leaf tips", "cause": "Dry air or chlorinated water", "solution": "Use water rested for 24h; mist the air or run a humidifier." },
+      { "symptom": "Yellow leaves overall", "cause": "Overwatering", "solution": "Improve drainage; touch the soil before watering — top should be barely dry." },
+      { "symptom": "Stalled growth", "cause": "Insufficient light", "solution": "Move near a large window with bright indirect light." }
+    ],
+    "nutrients": { "type": "Balanced NPK with iron", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; keep steady moisture without waterlogging." },
+    "placementRecommended": "Near a large window with bright indirect light — stable warm temperature.",
+    "placementAlternatives": [
+      "Bright living room with sheer curtain",
+      "Warm covered porch",
+      "1 m from a filtered south window"
+    ],
+    "placementAvoid": "Midday direct sun (scorches fronds) and temperatures below 12°C.",
+    "whyRationale": "Palm from Madagascar — Arecaceae adapted to tropical understory. Tolerates dispersed light but requires fast drainage and steady humidity; its roots can't tolerate prolonged waterlogging."
+  },
+  "palmera-kentia": {
+    "name": "Kentia Palm",
+    "tip": "More shade-tolerant than the areca. Slow growth — patience is key.",
+    "description": "Kentia Palm (Howea forsteriana) is an elegant palm from Lord Howe Island, Australia. Dark-green pinnate leaves and very slow growth. More tolerant of low-light interiors than other palms — ideal for hotels and offices.",
+    "problems": [
+      { "symptom": "Very slow growth", "cause": "Normal — kentia grows slowly", "solution": "Accept the pace: 1-2 new fronds per year. Patience." },
+      { "symptom": "Brown tips", "cause": "Dry air or salt in water", "solution": "Mist the air; use rested or rainwater." },
+      { "symptom": "Yellow old leaves", "cause": "Natural loss of older leaves", "solution": "Cut yellow fronds at the base — the plant remains vigorous." }
+    ],
+    "nutrients": { "type": "Low nitrogen", "homemade": "Compost tea every 6 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry; reduce greatly in winter." },
+    "placementRecommended": "Living room with medium to bright indirect light — tolerates even deep interiors better than the areca.",
+    "placementAlternatives": [
+      "Bright hallway",
+      "Hotel/office with mixed natural and artificial light",
+      "Spacious room away from windows"
+    ],
+    "placementAvoid": "Prolonged direct sun (scorches fronds) and overwatering (root rot).",
+    "whyRationale": "Palm from Lord Howe (Australia) — endemic to shaded forests. Its low-light tolerance comes from understory adaptation, making it exceptional as a deep-interior palm."
+  },
+  "helecho-boston": {
+    "name": "Boston Fern",
+    "tip": "Needs high ambient humidity. If you can't sustain it, choose another plant.",
+    "description": "Boston Fern (Nephrolepis exaltata) is an elegant fern with long, arching fronds. Native to American tropical forests. Demanding for ambient humidity — below 50% it starts losing fronds. Ideal for bright bathrooms.",
+    "problems": [
+      { "symptom": "Brown, crispy fronds", "cause": "Insufficient ambient humidity", "solution": "Move to a bathroom or run a continuous humidifier; mist the fronds daily." },
+      { "symptom": "Yellow fronds", "cause": "Substrate too dry between waterings", "solution": "Keep soil barely damp — the fern doesn't tolerate drying out." },
+      { "symptom": "Massive leaflet drop", "cause": "Abrupt environmental change", "solution": "Stabilize location and humidity; new growth returns in weeks." }
+    ],
+    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as dry. Soil always barely damp." },
+    "placementRecommended": "Bright bathroom with high natural humidity — medium indirect light.",
+    "placementAlternatives": [
+      "Kitchen with natural light and cooking humidity",
+      "Room with a continuous humidifier",
+      "Hanging basket in a humid spot"
+    ],
+    "placementAvoid": "Dry heater air (crispy fronds) and direct sun (scorches).",
+    "whyRationale": "American tropical fern — its sporophyte needs ambient humidity above 60% to maintain leaf turgor. Without it the fronds dry out irreversibly because the plant stores no water."
+  },
+  "helecho-nido": {
+    "name": "Bird's Nest Fern",
+    "tip": "Entire wavy fronds — don't mist them, water only the substrate. More tolerant than Boston fern.",
+    "description": "Bird's Nest Fern (Asplenium nidus) has entire (undivided) fronds that grow forming a central nest. Native to Asian rainforests. Easier than Boston fern because it tolerates dry air better — but it still needs medium-high humidity and indirect light.",
+    "problems": [
+      { "symptom": "Brown or slimy center", "cause": "Water pooled in the central nest", "solution": "Water the substrate only — never the rosette center." },
+      { "symptom": "Pale fronds", "cause": "Too much light", "solution": "Move away from the window — medium indirect light is ideal." },
+      { "symptom": "Frond edges turning brown", "cause": "Very dry air", "solution": "Mist the surrounding air (not the fronds) or group with other plants." }
+    ],
+    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 5 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water the substrate (not the center) when dry." },
+    "placementRecommended": "Room with medium indirect light and high ambient humidity — bathroom works great.",
+    "placementAlternatives": [
+      "Bright room with a humidifier",
+      "2 m from a north-facing window",
+      "Kitchen with natural light"
+    ],
+    "placementAvoid": "Direct sun (scorches fronds) and water in the central nest (rot).",
+    "whyRationale": "Asian epiphytic fern — in habitat it grows in tree forks, collecting rainwater and debris in its nest. Its entire fronds evolved for that water-harvesting role."
+  },
+  "pilea": {
+    "name": "Chinese Money Plant",
+    "tip": "Round coin-like leaves. Produces shareable pups — the friendship plant.",
+    "description": "Pilea peperomioides is native to southern China. Its round, flat leaves perch on slender stems. It produces baby shoots at the base that you can separate and gift — hence its names money plant and friendship plant.",
+    "problems": [
+      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the soil: water only when the top 2 cm are dry." },
+      { "symptom": "Excessively curling leaves", "cause": "Light changes or irregular watering", "solution": "Keep a stable location with bright indirect light." },
+      { "symptom": "Long bare stem", "cause": "Lack of side light", "solution": "Rotate the pot weekly for even growth." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry. Rotate the pot weekly for symmetric form." },
+    "placementRecommended": "Near a window with bright indirect light — rotate the pot weekly.",
+    "placementAlternatives": [
+      "Table near an east-facing window",
+      "Bright shelf with sheer curtain",
+      "Kitchen with natural light"
+    ],
+    "placementAvoid": "Direct sun (scorches the round leaves) and dark corners (long, weak stem).",
+    "whyRationale": "Native to Yunnan province, China — a temperate mountain habitat. Its round leaves are shields for bright indirect light. The rhizomatous pups enable easy clonal propagation."
+  },
+  "tradescantia": {
+    "name": "Wandering Dude",
+    "tip": "Grows fast. Cuttings root in water in 2 weeks — propagation is effortless.",
+    "description": "Tradescantia zebrina is a Mexican trailing plant with leaves striped in purple, silver, and green. Fast growth, super-easy propagation from cuttings. Ideal in a hanging basket or on a high shelf where its stems can drape down.",
+    "problems": [
+      { "symptom": "Green leaves with no variegation", "cause": "Low light", "solution": "Move to bright indirect light — purple requires light to express." },
+      { "symptom": "Long bare stems", "cause": "Growth without pruning", "solution": "Prune stems every 1-2 months; use the cuttings to root and refill the pot." },
+      { "symptom": "Wilted leaves", "cause": "Dry substrate", "solution": "Water generously — recovers fast but doesn't tolerate repeated drought." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; keep a steady rhythm." },
+    "placementRecommended": "Hanging basket or high shelf near a window with bright indirect light.",
+    "placementAlternatives": [
+      "Hanging pot on a warm covered patio",
+      "High shelf in a bright room",
+      "Ledge with filtered morning sun"
+    ],
+    "placementAvoid": "Midday direct sun (fades color) and dark corners (loses purple).",
+    "whyRationale": "Native to tropical Mexico — its anthocyanins in purple stripes need bright light to express. Fast vegetative propagation is an adaptation to disturbed environments."
+  },
+  "cheflera": {
+    "name": "Dwarf Umbrella Tree",
+    "tip": "Umbrella-shaped leaves. Tolerant and fast-growing — good for beginners.",
+    "description": "Dwarf Umbrella Tree (Heptapleurum arboricola, formerly Schefflera) has digitate leaves that look like umbrellas. Native to Taiwan and Hainan. Tolerates low light but grows faster in bright light. Excellent starter plant for homes and offices.",
+    "problems": [
+      { "symptom": "Lower leaf drop", "cause": "Low light or overwatering", "solution": "Move closer to bright light; touch the soil before watering." },
+      { "symptom": "Sticky leaves or aphids", "cause": "Common pests", "solution": "Wipe leaves with soapy water; inspect undersides weekly." },
+      { "symptom": "Long, thin stem", "cause": "Insufficient light", "solution": "Move to bright indirect light; prune the top to force branching." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry. Reduce greatly in winter." },
+    "placementRecommended": "Spot with bright indirect light — tolerates light variations better than most tropicals.",
+    "placementAlternatives": [
+      "Living room with mixed natural light",
+      "Bright hallway",
+      "Office with mixed natural and artificial light"
+    ],
+    "placementAvoid": "Prolonged direct sun (scorches variegation) and temperatures below 12°C.",
+    "whyRationale": "Formerly Schefflera arboricola — reclassified to Heptapleurum in 2024 (POWO). Native to Taiwan and Hainan, its tolerance to variable light comes from its origin in transitional tropical-temperate forests."
+  },
+  "arbol-dinero": {
+    "name": "Money Tree",
+    "tip": "Braided trunk and digitate leaves. Tolerant with watering — less is more.",
+    "description": "Money Tree (Pachira aquatica) is native to Central American wetlands. Often sold with a decoratively braided trunk. Glossy green digitate leaves. Resilient and tolerant — its name comes from the popular belief that it attracts prosperity.",
+    "problems": [
+      { "symptom": "Yellow leaves and drop", "cause": "Overwatering", "solution": "Reduce watering; touch the soil before — top should be quite dry." },
+      { "symptom": "Crispy leaves", "cause": "Dry air or direct sun", "solution": "Move to indirect light and mist the surrounding air." },
+      { "symptom": "Wrinkled trunk", "cause": "Prolonged underwatering", "solution": "Water generously and keep steady moisture for 2 weeks." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry. Its trunk stores water — less is more." },
+    "placementRecommended": "Living room with bright indirect light or filtered sun — medium-high humidity helps but isn't essential.",
+    "placementAlternatives": [
+      "1 m from a filtered east or south window",
+      "Room with mixed light",
+      "Bright hallway"
+    ],
+    "placementAvoid": "Constantly damp soil (root rot) and midday direct sun (leaf scorch).",
+    "whyRationale": "Native to Central American wetlands — its swollen trunk stores water to tolerate seasonal drought. Its tolerance to missed waterings comes from that adaptation to cyclic flooding-drought."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",

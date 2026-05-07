@@ -2546,6 +2546,226 @@
     "placementAvoid": "Sol directo (decolora) y aire seco — la maranta no tolera ambientes secos.",
     "whyRationale": "Marantáceas de la selva brasileña — su nictinastia (plegado nocturno por pulvinos en el peciolo) reduce pérdida de agua y exposición a depredadores nocturnos. Patrón de venas refleja luz tamizada."
   },
+  "zamioculca": {
+    "name": "Zamioculca",
+    "tip": "Casi indestructible. El error más común es regarla demasiado.",
+    "description": "La Zamioculca es una planta resistente con tallos suculentos y rizomas almacenadores de agua. Originaria del este de África semi-árida. Tolera baja luz y olvidos de riego — la mejor planta para principiantes y oficinas oscuras.",
+    "problems": [
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Dejá secar bien la tierra entre riegos." },
+      { "symptom": "Tallos blandos", "cause": "Pudrición de rizomas por agua", "solution": "Sacala de la maceta, cortá zonas blandas y replantá en sustrato seco." },
+      { "symptom": "Crecimiento lento en invierno", "cause": "Reposo natural", "solution": "Reducí el riego al mínimo; volverá a brotar en primavera." }
+    ],
+    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de cáscara de banana cada 2 meses" },
+    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá solo si están completamente secos. Mejor de menos que de más." },
+    "placementRecommended": "Cualquier rincón con luz indirecta — incluso poca luz.",
+    "placementAlternatives": [
+      "Pasillo o rincón sin ventana cercana",
+      "Oficina con luz fluorescente",
+      "Dormitorio de poca luz natural"
+    ],
+    "placementAvoid": "Sustrato siempre húmedo y maceta sin drenaje — pudrición de rizomas es irreversible.",
+    "whyRationale": "Originaria del este de África semi-árida — sus rizomas almacenan agua y nutrientes. Su metabolismo CAM le permite tolerar baja luz y olvidos de riego, pero la pudrición por exceso es irreversible."
+  },
+  "cola-burro": {
+    "name": "Cola de burro",
+    "tip": "Hojas frágiles que se desprenden al rozar. Colocala donde nadie la toque.",
+    "description": "La Cola de burro (Sedum morganianum) es una suculenta colgante con tallos cubiertos de hojitas carnosas verde azulado. Originaria de México. Sus hojas se desprenden con cualquier roce — y cada una puede enraizar en sustrato seco.",
+    "problems": [
+      { "symptom": "Hojas que se caen al tocarla", "cause": "Frágil por naturaleza", "solution": "Colocala fuera de tránsito; cada hoja caída se puede plantar para multiplicarla." },
+      { "symptom": "Tallos blandos", "cause": "Exceso de riego", "solution": "Reducí el riego drásticamente; cortá zonas blandas y replantá en sustrato muy drenante." },
+      { "symptom": "Hojas arrugadas", "cause": "Falta de riego prolongado", "solution": "Regá lentamente con poca agua varias veces hasta que la suculenta se hidrate." }
+    ],
+    "nutrients": { "type": "Bajo en nitrógeno (alto en potasio)", "homemade": "Cáscara de huevo molida cada 3 meses" },
+    "careAction": { "soilCheck": "Tocá la tierra hasta el fondo del agujero: si está completamente seca, regá poco. Sobrevive sequía mejor que exceso." },
+    "placementRecommended": "Macetero colgante en lugar luminoso pero fuera de tránsito — cerca de ventana al sur con cortina filtrante.",
+    "placementAlternatives": [
+      "Estante alto con sol filtrado",
+      "Cesta colgante en patio cubierto cálido",
+      "Repisa luminosa lejos de personas"
+    ],
+    "placementAvoid": "Lugares de paso (pierde hojas) y sustrato siempre húmedo (pudrición de tallos).",
+    "whyRationale": "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y usa metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento."
+  },
+  "hiedra": {
+    "name": "Hiedra",
+    "tip": "Trepadora versátil. Variedades variegadas necesitan más luz para mantener color.",
+    "description": "La Hiedra (Hedera helix) es una trepadora europea de hojas lobuladas verdes o variegadas. Adaptable a interior fresco o exterior protegido. Crece en cesta colgante, sobre tutor o como tapizante. Tolera más frío que la mayoría de plantas de interior.",
+    "problems": [
+      { "symptom": "Hojas pálidas o sin variegación", "cause": "Poca luz (variedades variegadas)", "solution": "Movela a luz indirecta brillante — los tonos crema y dorado requieren más luz." },
+      { "symptom": "Hojas crujientes y secas", "cause": "Aire seco de calefacción", "solution": "Pulverizá ambiente o agrupala con otras plantas; bajá la temperatura si podés." },
+      { "symptom": "Telaraña entre hojas", "cause": "Ácaros (favor de aire seco)", "solution": "Duchá la planta con agua tibia; aumentá humedad ambiental." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; menos en invierno." },
+    "placementRecommended": "Habitación fresca con luz indirecta brillante — variedades variegadas cerca de ventana al este.",
+    "placementAlternatives": [
+      "Cesta colgante en sala luminosa",
+      "Sobre tutor vertical en pasillo",
+      "Galería cubierta fresca"
+    ],
+    "placementAvoid": "Calefacción directa (aire seco quema hojas) y sol directo prolongado.",
+    "whyRationale": "Trepadora europea de bosques templados — sus raicillas adventicias se adhieren a superficies para trepar y compartir luz. Tolera frío hasta 5°C porque su origen es templado, no tropical."
+  },
+  "palmera-areca": {
+    "name": "Palmera areca",
+    "tip": "Hojas largas y arqueadas. Necesita luz brillante indirecta y sustrato siempre apenas húmedo.",
+    "description": "La Palmera areca (Dypsis lutescens) es una palmera tropical de Madagascar con hojas pinadas verde claro y tallos múltiples. Crece varios metros en interior con luz brillante. Sensible a sequía pero también a encharcamiento — equilibrio constante.",
+    "problems": [
+      { "symptom": "Puntas de hojas marrones", "cause": "Aire seco o agua con cloro", "solution": "Usá agua reposada 24h; pulverizá ambiente o usá humidificador." },
+      { "symptom": "Hojas amarillas en general", "cause": "Exceso de riego", "solution": "Mejorá drenaje; tocá la tierra antes de regar — debe estar apenas seca arriba." },
+      { "symptom": "Crecimiento detenido", "cause": "Falta de luz", "solution": "Movela cerca de ventana grande con luz brillante indirecta." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK con hierro", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené humedad constante sin encharcar." },
+    "placementRecommended": "Cerca de ventana grande con luz brillante indirecta — temperatura cálida estable.",
+    "placementAlternatives": [
+      "Sala luminosa con cortina filtrante",
+      "Galería cubierta cálida",
+      "A 1 m de ventana al sur con filtro"
+    ],
+    "placementAvoid": "Sol directo del mediodía (quema frondas) y temperaturas bajo 12°C.",
+    "whyRationale": "Palmera de Madagascar — Arecaceae adaptada a sotobosque tropical. Tolera luz dispersa pero requiere drenaje rápido y humedad constante; sus raíces no soportan encharcamiento prolongado."
+  },
+  "palmera-kentia": {
+    "name": "Palmera kentia",
+    "tip": "Más tolerante a poca luz que la areca. Crecimiento lento — paciencia es clave.",
+    "description": "La Palmera kentia (Howea forsteriana) es una palmera elegante de la Isla Lord Howe, Australia. Hojas pinadas verde oscuro y crecimiento muy lento. Más tolerante a interiores con poca luz que otras palmeras — ideal para hoteles y oficinas.",
+    "problems": [
+      { "symptom": "Crecimiento muy lento", "cause": "Normal — la kentia crece despacio", "solution": "Aceptá el ritmo: emite 1-2 frondas nuevas por año. Paciencia." },
+      { "symptom": "Puntas marrones", "cause": "Aire seco o sal en agua", "solution": "Pulverizá ambiente; usá agua reposada o de lluvia." },
+      { "symptom": "Hojas amarillas viejas", "cause": "Pérdida natural de hojas más viejas", "solution": "Cortá las frondas amarillas en la base — la planta sigue vigorosa." }
+    ],
+    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de compost cada 6 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos; reducí mucho en invierno." },
+    "placementRecommended": "Sala con luz indirecta media a brillante — tolera incluso interiores profundos mejor que la areca.",
+    "placementAlternatives": [
+      "Pasillo luminoso",
+      "Hotel/oficina con luz mixta natural y artificial",
+      "Habitación amplia lejos de ventana"
+    ],
+    "placementAvoid": "Sol directo prolongado (quema frondas) y exceso de riego (pudrición de raíces).",
+    "whyRationale": "Palmera de Lord Howe (Australia) — endémica de bosques sombreados. Su tolerancia a poca luz proviene de adaptación al sotobosque, lo que la hace excepcional como palmera de interior profundo."
+  },
+  "helecho-boston": {
+    "name": "Helecho de Boston",
+    "tip": "Necesita humedad ambiental alta. Si no podés sostenerla, optá por otra planta.",
+    "description": "El Helecho de Boston (Nephrolepis exaltata) es un helecho elegante con frondas largas y arqueadas. Originario de selvas tropicales americanas. Demandante con la humedad ambiental — bajo 50% empieza a perder frondas. Ideal para baños luminosos.",
+    "problems": [
+      { "symptom": "Frondas marrones y crujientes", "cause": "Humedad ambiental insuficiente", "solution": "Movela a un baño o usá humidificador continuo; pulverizá las frondas a diario." },
+      { "symptom": "Frondas amarillas", "cause": "Sustrato muy seco entre riegos", "solution": "Mantené tierra apenas húmeda — el helecho no tolera secarse." },
+      { "symptom": "Caída masiva de hojitas", "cause": "Cambio brusco de ambiente", "solution": "Estabilizá ubicación y humedad; rebrotará en semanas." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 4 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos. Sustrato siempre apenas húmedo." },
+    "placementRecommended": "Baño luminoso con humedad natural alta — luz indirecta media.",
+    "placementAlternatives": [
+      "Cocina con luz natural y humedad de cocción",
+      "Habitación con humidificador continuo",
+      "Cesta colgante en lugar húmedo"
+    ],
+    "placementAvoid": "Aire seco de calefacción (frondas crujientes) y sol directo (quema).",
+    "whyRationale": "Helecho tropical americano — su esporofito requiere humedad ambiental >60% para mantener turgencia foliar. Sin ella las frondas se secan irreversiblemente porque no almacena agua."
+  },
+  "helecho-nido": {
+    "name": "Helecho nido de ave",
+    "tip": "Frondas enteras y onduladas — no las pulverices, regá solo el sustrato. Más tolerante que el de Boston.",
+    "description": "El Helecho nido de ave (Asplenium nidus) tiene frondas enteras (no divididas) que crecen formando un nido central. Originario de selvas asiáticas. Más fácil que el helecho de Boston porque tolera mejor el aire seco — pero necesita humedad media-alta y luz indirecta.",
+    "problems": [
+      { "symptom": "Centro marrón o pegajoso", "cause": "Agua acumulada en el nido central", "solution": "Regá solo el sustrato — nunca el centro de la roseta." },
+      { "symptom": "Frondas pálidas", "cause": "Demasiada luz", "solution": "Alejala de la ventana — luz indirecta media es ideal." },
+      { "symptom": "Frondas con bordes marrones", "cause": "Aire muy seco", "solution": "Pulverizá ambiente alrededor (no las frondas) o agrupala con otras plantas." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 5 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no el centro) cuando estén secos." },
+    "placementRecommended": "Habitación con luz indirecta media y humedad ambiental alta — baño funciona muy bien.",
+    "placementAlternatives": [
+      "Sala luminosa con humidificador",
+      "A 2 m de ventana al norte",
+      "Cocina con luz natural"
+    ],
+    "placementAvoid": "Sol directo (quema frondas) y agua en el nido central (pudrición).",
+    "whyRationale": "Helecho epífito asiático — en su hábitat crece en horquillas de árboles, recogiendo agua de lluvia y detritos en su nido. Sus frondas enteras evolucionaron para esa colecta hídrica."
+  },
+  "pilea": {
+    "name": "Pilea",
+    "tip": "Hojas redondas como monedas. Producirá brotes hijos compartibles — la planta de la amistad.",
+    "description": "La Pilea peperomioides es originaria del sur de China. Sus hojas redondas y planas se sostienen sobre tallos delgados. Produce brotes hijos en la base que podés separar y regalar — por eso se llama planta del dinero o de la amistad.",
+    "problems": [
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos." },
+      { "symptom": "Hojas con curvatura excesiva", "cause": "Cambios de luz o riego irregular", "solution": "Mantené ubicación estable con luz indirecta brillante." },
+      { "symptom": "Tallo largo y desnudo", "cause": "Falta de luz lateral", "solution": "Rotá la maceta cada semana para crecimiento parejo." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Rotá la maceta semanalmente para forma simétrica." },
+    "placementRecommended": "Cerca de ventana con luz brillante indirecta — rotá la maceta semanalmente.",
+    "placementAlternatives": [
+      "Mesa cerca de ventana al este",
+      "Estante luminoso con cortina filtrante",
+      "Cocina con luz natural"
+    ],
+    "placementAvoid": "Sol directo (quema hojas redondas) y rincones oscuros (tallo largo y débil).",
+    "whyRationale": "Originaria de la provincia china de Yunnan, hábitat templado de montaña — sus hojas redondas son escudos para luz brillante indirecta. Los brotes hijos rizomatosos permiten propagación clonal fácil."
+  },
+  "tradescantia": {
+    "name": "Tradescantia",
+    "tip": "Crece rápido. Esquejes enraízan en agua en 2 semanas — multiplicación fácil.",
+    "description": "La Tradescantia zebrina es una colgante mexicana de hojas con franjas púrpura, plata y verde. Crecimiento rápido, propagación facilísima por esquejes. Ideal en cesta colgante o estante alto donde sus tallos puedan caer.",
+    "problems": [
+      { "symptom": "Hojas verdes sin variegación", "cause": "Poca luz", "solution": "Movela a luz indirecta brillante — el púrpura requiere luz para expresarse." },
+      { "symptom": "Tallos largos y desnudos", "cause": "Crecimiento sin poda", "solution": "Podá los tallos cada 1-2 meses; usá los esquejes para enraizar y rellenar la maceta." },
+      { "symptom": "Hojas marchitas", "cause": "Sustrato seco", "solution": "Regá generosamente — se recupera rápido pero no tolera sequía repetida." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené ritmo constante." },
+    "placementRecommended": "Cesta colgante o estante alto cerca de ventana con luz indirecta brillante.",
+    "placementAlternatives": [
+      "Macetero colgante en patio cubierto cálido",
+      "Estante alto en sala luminosa",
+      "Repisa con sol filtrado de mañana"
+    ],
+    "placementAvoid": "Sol directo del mediodía (decolora) y rincones oscuros (pierde púrpura).",
+    "whyRationale": "Originaria de México tropical — sus antocianinas en franjas púrpura requieren luz brillante para expresarse. La rápida propagación vegetativa es adaptación a ambientes perturbados."
+  },
+  "cheflera": {
+    "name": "Cheflera",
+    "tip": "Hojas en forma de paraguas. Tolerante y de crecimiento rápido — buena para principiantes.",
+    "description": "La Cheflera (Heptapleurum arboricola, antes Schefflera) tiene hojas digitadas que parecen paraguas. Originaria de Taiwán y Hainan. Tolerante a poca luz pero crece más rápido con luz brillante. Excelente planta de inicio para hogares u oficinas.",
+    "problems": [
+      { "symptom": "Caída de hojas inferiores", "cause": "Poca luz o exceso de riego", "solution": "Acercala a luz brillante; tocá la tierra antes de regar." },
+      { "symptom": "Hojas pegajosas o pulgones", "cause": "Plagas comunes", "solution": "Limpiá hojas con agua jabonosa; revisá envés semanalmente." },
+      { "symptom": "Tallo largo y delgado", "cause": "Falta de luz", "solution": "Movela a luz brillante indirecta; podá el tope para forzar ramificación." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Reducí mucho en invierno." },
+    "placementRecommended": "Lugar con luz brillante indirecta — tolera variaciones de luz mejor que la mayoría de plantas tropicales.",
+    "placementAlternatives": [
+      "Sala con luz natural mixta",
+      "Pasillo luminoso",
+      "Oficina con luz mixta natural y artificial"
+    ],
+    "placementAvoid": "Sol directo prolongado (quema variegación) y temperaturas bajo 12°C.",
+    "whyRationale": "Antes Schefflera arboricola — reclasificada como Heptapleurum en 2024 (POWO). Originaria de Taiwán y Hainan, su tolerancia a luz variable proviene de su origen en bosques de transición tropical-templado."
+  },
+  "arbol-dinero": {
+    "name": "Árbol del dinero",
+    "tip": "Tronco trenzado y hojas digitadas. Tolerante con riego — mejor de menos que de más.",
+    "description": "El Árbol del dinero (Pachira aquatica) es originario de los pantanos de Centroamérica. Vendido a menudo con tronco trenzado decorativo. Hojas digitadas verdes brillantes. Resiliente y tolerante — su nombre por la creencia popular de atraer prosperidad.",
+    "problems": [
+      { "symptom": "Hojas amarillas y caída", "cause": "Exceso de riego", "solution": "Reducí el riego; tocá la tierra antes — debe estar bien seca arriba." },
+      { "symptom": "Hojas crujientes", "cause": "Aire seco o sol directo", "solution": "Movela a luz indirecta y pulverizá ambiente." },
+      { "symptom": "Tronco arrugado", "cause": "Falta de riego prolongado", "solution": "Regá generosamente y mantené humedad constante por 2 semanas." }
+    ],
+    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
+    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos. Su tronco almacena agua — mejor de menos que de más." },
+    "placementRecommended": "Sala con luz brillante indirecta o sol filtrado — humedad media-alta favorece pero no es indispensable.",
+    "placementAlternatives": [
+      "A 1 m de ventana al este o sur con filtro",
+      "Sala con luz mixta",
+      "Pasillo luminoso"
+    ],
+    "placementAvoid": "Sustrato siempre húmedo (pudrición de raíces) y sol directo del mediodía (quema hojas).",
+    "whyRationale": "Originaria de pantanos centroamericanos — su tronco engrosado almacena agua para tolerar sequías estacionales. Su tolerancia a olvidos de riego viene de esa adaptación a inundaciones-sequías cíclicas."
+  },
   "humidity": {
     "baja": "Baja",
     "media": "Media",
