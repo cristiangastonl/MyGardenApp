@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 5
-status: "**Phase 16 CLOSED.** Plan 16-03 appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage. Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). **Next:** Phase 17 (Plan Structure A) per ROADMAP."
-stopped_at: Phase 17 context gathered
-last_updated: "2026-05-08T14:25:32.546Z"
-last_activity: 2026-05-08 — Phase 16 Plan 03 complete (COMMON_NAMES_ES Phase 16 routing closure — 30 net-add entries; 19 W3.CAT-16.commonNames SKIPs→PASS). 1 file. 1 task, 12 min.
+current_plan: 1 of 5
+status: "**Phase 17 STARTED.** Plan 17-00 landed Wave 0 smoke-runner scaffold (scripts/phase17-smoke.cjs, 337 LOC) with CAT-17/18/19/20/21 SKIP placeholders + final CAT-21 count gate at idMatches === 118 (closes v1.2 catalog expansion). Authored as textual delta from phase16-smoke.cjs per RESEARCH §Example 3 — Phase 16 exact-match-first refactor inherited unchanged as routing-fix regression sentinel (no refactor task in this plan). 14 PHASE_17_IDS encoded across CAT-17 (8 exterior flores) + CAT-18 (3 aromáticas) + CAT-19 (3 frutales/huerta). Wave 0 baseline: PASS 10/54 default / 10/68 --identification / 10/68 --routing-fix; Phase 15+16 cross-phase regression clean; tsc 0 errors. npm run smoke:phase17 wired; .tmp-phase17/ gitignored. 4 open questions surfaced for user review before Plan 17-01/02 execute. **Next:** Plan 17-01 (8 CAT-17 exterior flores)."
+stopped_at: Completed 17-00-PLAN.md
+last_updated: "2026-05-08T15:52:47.920Z"
+last_activity: 2026-05-08 — Phase 17 Plan 00 complete (Wave 0 smoke-runner scaffold; 337 LOC; final CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion). 3 files, 2 tasks, 4 min.
 progress:
   total_phases: 15
   completed_phases: 7
-  total_plans: 35
-  completed_plans: 36
+  total_plans: 40
+  completed_plans: 37
   percent: 100
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **CLOSED**
-Current Plan: 5 of 5
-Plan: 16-03 complete (CAT-16 routing closure — 30 net-new COMMON_NAMES_ES entries). Plan 16-04 (parallel, file-disjoint CLAUDE.md) also complete. **Phase 16 fully closed: CAT-13/14/15/16 all PASS.**
-Status: **Phase 16 CLOSED.** Plan 16-03 appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage. Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). **Next:** Phase 17 (Plan Structure A) per ROADMAP.
-Last activity: 2026-05-08 — Phase 16 Plan 03 complete (COMMON_NAMES_ES Phase 16 routing closure — 30 net-add entries; 19 W3.CAT-16.commonNames SKIPs→PASS). 1 file. 1 task, 12 min.
+Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **IN PROGRESS**
+Current Plan: 1 of 5
+Plan: 17-00 complete (Wave 0 smoke-runner scaffold; CAT-17/18/19/20/21 SKIPs in place; CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion).
+Status: **Phase 17 STARTED.** Plan 17-00 landed Wave 0 smoke-runner scaffold (scripts/phase17-smoke.cjs, 337 LOC) with CAT-17/18/19/20/21 SKIP placeholders + final CAT-21 count gate at idMatches === 118 (closes v1.2 catalog expansion). Authored as textual delta from phase16-smoke.cjs per RESEARCH §Example 3 — Phase 16 exact-match-first refactor inherited unchanged as routing-fix regression sentinel (no refactor task in this plan). 14 PHASE_17_IDS encoded across CAT-17 (8 exterior flores) + CAT-18 (3 aromáticas) + CAT-19 (3 frutales/huerta). Wave 0 baseline: PASS 10/54 default / 10/68 --identification / 10/68 --routing-fix; Phase 15+16 cross-phase regression clean; tsc 0 errors. npm run smoke:phase17 wired; .tmp-phase17/ gitignored. 4 open questions surfaced for user review before Plan 17-01/02 execute. **Next:** Plan 17-01 (8 CAT-17 exterior flores).
+Last activity: 2026-05-08 — Phase 17 Plan 00 complete (Wave 0 smoke-runner scaffold; 337 LOC; final CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion). 3 files, 2 tasks, 4 min.
 
 Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
@@ -70,6 +70,7 @@ Progress: [██████████] 100% (v1.2 in progress — Phase 16 f
 | Phase 16 P02 | 32min | 2 tasks | 3 files |
 | Phase 16 P03 | 12min | 1 tasks | 1 files |
 | Phase 16 P04 | 3min | 1 tasks | 1 files |
+| Phase 17 P00 | 4min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -171,6 +172,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 16]: Plan 16-03: Species-qualified override pattern via Plan 16-00 exact-match-first refactor — Euphorbia milii→'Corona de espinas' (overrides genus 'Euphorbia'→'Euforbia'); Dracaena sanderiana/angolensis→species-specific names (override genus 'Dracaena'→'Dracena'). Refactor sentinel verified post-edit (grep count 1).
 - [Phase 16]: Plan 16-03: 8 legacy synonym aliases for taxonomic-drift coverage (≤2 per entry pattern from Phase 15 Plan 15-03): Senecio rowleyanus, Trichocereus pachanoi, Sansevieria cylindrica, Schlumbergera truncata, Pothos aureus, Philodendron scandens, Dracaena braunii, Corymbia citriodora. Pattern absorbs PlantNet's lagging API responses without diluting POWO canonical mappings.
 - [Phase 16]: Plan 16-03: Sempervivum tectorum literal pre-existed at line 479 (mock data array in getMockIdentificationResult), NOT in COMMON_NAMES_ES Record — Step B duplicate-watch verified the new COMMON_NAMES_ES key is a distinct first occurrence in that Record (zero conflict).
+- [Phase 17]: Plan 17-00: Wave 0 smoke runner authored as textual delta from phase16-smoke.cjs per RESEARCH §Example 3 — 337 LOC, max code-reuse, minimal drift; reusable Phase-N delta pattern for catalog phases
+- [Phase 17]: Plan 17-00: NO findPlantInDatabase refactor task — Phase 16 Plan 16-00 exact-match-first refactor inherited unchanged as routing-fix regression sentinel (refactorLanded literal-substring gate)
+- [Phase 17]: Plan 17-00: PHASE_17_NEW_IDS === PHASE_17_IDS (no in-place upgrades unlike Phase 16 potus/filodendro); hasEduFieldsForId helper removed entirely from runner
+- [Phase 17]: Plan 17-00: Final CAT-21 count gate at idMatches === 118 (104 + 14 net-new) closes v1.2 catalog expansion when Plan 17-02 lands the last 6 entries; mid-band SKIP window > 104 && < 118 keeps runner exit-0 between Plans 17-01 and 17-02
+- [Phase 17]: Plan 17-00: 4 open questions surfaced (Q1 aromáticas outdoor flag, Q2 PlantCategory enum count, Q3 arandano category, Q4 magnolia variant) — each has researcher-recommended default; Plan 17-00 is content-agnostic, propagation to Plans 17-01/02/03/04 trivial via per-token edits
 
 ### Pending Todos
 
@@ -185,6 +191,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T14:25:32.543Z
-Stopped at: Phase 17 context gathered
-Resume file: .planning/phases/17-catalog-wave-c-exterior-arom-ticas-frutales/17-CONTEXT.md
+Last session: 2026-05-08T15:51:42.684Z
+Stopped at: Completed 17-00-PLAN.md
+Resume file: .planning/phases/17-catalog-wave-c-exterior-arom-ticas-frutales/17-01-PLAN.md
