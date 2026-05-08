@@ -13,6 +13,7 @@
     "smoke:phase14": "node scripts/smoke-phase14.mjs",
     "smoke:phase15": "node scripts/phase15-smoke.cjs",
     "smoke:phase16": "node scripts/phase16-smoke.cjs",
+    "smoke:phase17": "node scripts/phase17-smoke.cjs",
     "typecheck": "tsc --noEmit",
     "web": "expo start --web"
   },
