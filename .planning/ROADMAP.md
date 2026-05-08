@@ -45,7 +45,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 14.1: databaseId Persistence Fix** — gap-closure: AddPlantModal + PlantIdentifierModal persist `plant.databaseId` so MyPlantDetailModal can resolve catalog entries (~10 LOC, single atomic commit) (completed 2026-05-07)
 - [x] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan (completed 2026-05-07)
 - [x] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema (completed 2026-05-08)
-- [ ] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 120 total; smoke asserts count
+- [ ] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 118 total; smoke asserts count (5 plans)
 - [ ] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge
 - [ ] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter
 - [ ] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications
@@ -178,7 +178,12 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. All Wave C entries have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
   3. `salvia-officinalis` is clearly distinguished from existing `salvia-ornamental` in both name and description (distinct top-level i18n namespace, mirroring sansevieria/sansevieria-cilindrica precedent)
   4. `npm run check:i18n-keys` passes across all 118 entries end-to-end
-**Plans**: TBD
+**Plans:** 5 plans
+  - [ ] 17-00-PLAN.md — Wave 0 scaffold: scripts/phase17-smoke.cjs (CJS + ts.transpileModule routing path inheriting Phase 16 exact-match-first refactor) + npm wiring + .gitignore — closes Wave 0 baseline at idMatches=104 mid-band SKIP
+  - [ ] 17-01-PLAN.md — Wave 1: Sub-batch A (8 exterior flores — azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-17)
+  - [ ] 17-02-PLAN.md — Wave 2: Sub-batch B (6 entries: 3 aromáticas + 3 frutales/huerta — salvia-officinalis, eneldo, stevia, olivo, arandano, espinaca) — closes CAT-17/18/19 (118 entries) + CAT-20 keysets + CAT-21 final count assertion
+  - [ ] 17-03-PLAN.md — Wave 3 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts — 14 species-qualified mappings + 8 selective genus aliases + 5 legacy synonym aliases (CAT-20 routing)
+  - [ ] 17-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 14 NEW Phase 17 entries documented as accepted-known failures (CAT-20 image plan)
 
 ### Phase 18: PlantCard Cleanup + Mood Emoji
 **Goal**: PlantCard is reduced to 5 visual elements; swipe-to-delete and long-press menu replace the in-card trash button; mood emoji is always visible as the health affordance
@@ -279,7 +284,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
-| 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
+| 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/5 | Not started | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
