@@ -153,11 +153,14 @@ const COMMON_NAMES_ES: Record<string, string> = {
 export function findPlantInDatabase(scientificName: string): PlantDBEntry | undefined {
   const searchName = scientificName.toLowerCase();
 
+  // First pass: exact match (case-insensitive) — fixes genus-prefix collision (Dracaena/Sedum/etc.)
+  const exactMatch = PLANT_DATABASE.find(p => p.scientificName.toLowerCase() === searchName);
+  if (exactMatch) return exactMatch;
+
+  // Second pass: genus prefix (legacy fuzzy fallback)
   return PLANT_DATABASE.find(plant => {
     const dbName = plant.scientificName.toLowerCase();
-    // Coincidencia exacta o parcial (género)
-    return dbName === searchName ||
-           dbName.startsWith(searchName.split(' ')[0]) ||
+    return dbName.startsWith(searchName.split(' ')[0]) ||
            searchName.startsWith(dbName.split(' ')[0]);
   });
 }
