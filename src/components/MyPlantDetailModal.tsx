@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, PlantPhoto, WeatherData, SavedDiagnosis, Location } from '../types';
 import { getPlantCategories, getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
+import { getPlantTypes } from '../data/constants';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
@@ -95,6 +96,14 @@ export function MyPlantDetailModal({
     const raw = getCatalogEntry(plant.databaseId);
     return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
+
+  // Phase 18 CARD-03: tip relocated from PlantCard. Preserve the 3-rung fallback
+  // chain (Pitfall 9): catalog entry → plantType.tip → ''. Custom plants without
+  // databaseId still get plantType.tip; plants with stale plantType still get ''.
+  const relocatedCatalogEntry = plant?.databaseId ? getCatalogEntry(plant.databaseId) : null;
+  const relocatedTranslatedEntry = relocatedCatalogEntry ? getTranslatedPlant(relocatedCatalogEntry) : null;
+  const relocatedPlantType = plant ? getPlantTypes().find(pt => pt.id === plant.typeId) : undefined;
+  const relocatedTip = relocatedTranslatedEntry?.tip ?? relocatedPlantType?.tip ?? '';
 
   // Override detection (EDU-05) — feeds the ⚙️ Tus ajustes section's inline override notes.
   // Compares against strict entry only (canonical recommendation, no false positives from fuzzy).
@@ -249,7 +258,8 @@ export function MyPlantDetailModal({
                 const hasDiagnoses = allPlantDiagnoses.length > 0;
                 const hasCareAction = !!(strictDbEntry?.careAction?.fixed || strictDbEntry?.careAction?.soilCheck);
                 const hasNutrients = !!dbEntry?.nutrients;
-                if (!hasDiagnoses && !hasCareAction && !hasNutrients) {
+                const hasRelocatedTip = relocatedTip.length > 0;
+                if (!hasDiagnoses && !hasCareAction && !hasNutrients && !hasRelocatedTip) {
                   return <Text style={styles.placeholderCopy}>{t('plantDetailModal.emptyWhatToDo')}</Text>;
                 }
                 return (
@@ -276,6 +286,9 @@ export function MyPlantDetailModal({
                         </Text>
                       </View>
                     )}
+                    {relocatedTip ? (
+                      <Text style={styles.relocatedTip}>{relocatedTip}</Text>
+                    ) : null}
                   </>
                 );
               })()}
@@ -687,6 +700,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.03)',
     borderRadius: borderRadius.md,
     padding: spacing.sm,
+    marginTop: spacing.sm,
+  },
+  relocatedTip: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
     marginTop: spacing.sm,
   },
 });
