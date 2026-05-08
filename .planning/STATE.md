@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 1 of 5
+current_plan: 2 of 5
 status: verifying
-stopped_at: Completed 18-01-PLAN.md
-last_updated: "2026-05-08T20:20:58.995Z"
-last_activity: 2026-05-08 — Phase 18 Plan 01 complete (Wave 0 scaffold). 7 files, 2 tasks, ~3 min.
+stopped_at: Completed 18-02-PLAN.md
+last_updated: "2026-05-08T20:28:15.678Z"
+last_activity: 2026-05-08 — Phase 18 Plan 02 complete (Toast Reanimated v4 impl + tip relocation to modal). 2 files, 2 tasks, ~4 min.
 progress:
   total_phases: 15
   completed_phases: 8
   total_plans: 45
-  completed_plans: 42
-  percent: 93
+  completed_plans: 43
+  percent: 96
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **IN PROGRESS**
-Current Plan: 1 of 5
-Plan: 18-01 complete (Wave 0 scaffold — smoke-phase18.cjs 159 LOC w/ 35 PASS / 21 SKIP / 0 FAIL exit 0 baseline; 13 i18n keys plantCard.menu/menuSheet/deleteHint/undoToast/moodA11y w/ EN+ES voseo parity; Toast.tsx skeleton w/ ToastProps interface + no-op render; index.ts re-export; npm run smoke:phase18 wired; .gitignore reserves scripts/.tmp-phase18/).
-Status: **Phase 18 Plan 01 COMPLETE.** Wave 0 scaffold landed in 2 atomic commits (Task 1 chore: smoke runner + npm script + .gitignore; Task 2 feat: i18n keys + Toast skeleton + index re-export). Smoke runner is the lightest of Phases 11-18 (159 LOC vs Phase 17's 337 LOC) — Phase 18 is JSX-restructure only, no ts.transpileModule + Module._resolveFilename intercept + runtime stubs needed. 21 SKIP placeholders (CARD-01/02/03/04/05 + GAM-03/04 + Toast.impl) flip to PASS as Plans 02-04 land concrete code. 3 STRICT (non-skippable) GAM-04 regression sentinels guarantee PlantHealthBadge survives unchanged outside PlantCard scope (modal usage + index re-export + file existence). 1 deviation auto-fixed (Rule 1): Toast return type JSX.Element → React.ReactElement (React 19 has no global JSX namespace by default; codebase pattern is to NOT type component returns). All verification gates green: tsc 0 errors, check:i18n-keys 118 catalog ids PASS, smoke:phase18 exit 0, locale parity verified for all 13 new keys. **Next:** Plan 18-02 (Toast Reanimated v4 impl + undo flow consumers) or Plan 18-03 (PlantCard JSX restructure: Gesture.Pan swipe + Gesture.LongPress + Gesture.Race + 5-element layout + mood emoji + scoped PlantHealthBadge removal from card face).
-Last activity: 2026-05-08 — Phase 18 Plan 01 complete (Wave 0 scaffold). 7 files, 2 tasks, ~3 min.
+Current Plan: 2 of 5
+Plan: 18-02 complete (Toast Reanimated v4 impl + tip relocation to modal — Toast.tsx 86 LOC w/ useSharedValue×2 + useAnimatedStyle + withTiming×7 + accessibilityLiveRegion=polite + accessibilityRole=alert + spacing.xxl + spacing.fabClearance positioning; MyPlantDetailModal.tsx +21/-1 — getPlantTypes import + 3-rung relocatedTip fallback + emptyWhatToDo gate extension + relocatedTip render after nutrientsCardEdu + relocatedTip style; smoke-phase18 PASS=37 / FAIL=0 / SKIP=19, 2 SKIP→PASS flips: Toast.impl.uses-reanimated + CARD-03.tip-relocated-to-modal; check:i18n-keys 118 catalog ids PASS).
+Status: **Phase 18 Plan 02 COMPLETE.** Two file-disjoint deliverables landed in 2 atomic commits (Task 1 feat: Toast full impl 187ec68; Task 2 feat: tip relocation to modal 6d238ab). Toast skeleton-then-impl two-plan split honored — ToastProps interface preserved verbatim from Plan 01 lock for Plan 18-04 consumer. Tip 3-rung fallback ported VERBATIM from PlantCard.tsx:73-79 with distinct relocated* names to coexist with legacy dbEntry (fuzzy) and strict strictDbEntry — Pitfall 9 averted (no dbEntry?.tip substitution). Empty-state gate extended w/ hasRelocatedTip 4th condition, preventing false-positive emptyWhatToDo placeholder when only the tip is present (custom plants w/ typeId but no databaseId + no diagnoses). PlantHealthBadge:203 modal usage UNTOUCHED (out-of-scope per CONTEXT.md PlantCard-only lock — GAM-04 STRICT regression sentinel intact). 0 deviations; 3 documentation/clarification notes in SUMMARY.md (plan-level "SKIP drops by 4" expectation revised to 2 because skeleton already exposed interface + a11y; optional-chaining on plant?.databaseId required for tsc strict; node -e require runtime check skipped because TSX needs Metro). All verification gates green: tsc 0 errors, smoke-phase18 exit 0, check:i18n-keys PASS. **Next:** Plan 18-03 (PlantCard JSX restructure: Gesture.Pan swipe + Gesture.LongPress + Gesture.Race + 5-element layout + mood emoji + scoped PlantHealthBadge removal from card face) — unblocked because modal-side tip surface now locked, PlantCard tip block at L73-79 + L328-334 safe to remove.
+Last activity: 2026-05-08 — Phase 18 Plan 02 complete (Toast Reanimated v4 impl + tip relocation to modal). 2 files, 2 tasks, ~4 min.
 
-Progress: [█████████░] 93% (v1.2 in progress — Phase 18 Wave 0 scaffold landed; Plans 18-02/03/04/05 still ahead, plus Phases 19-24)
+Progress: [██████████] 96% (v1.2 in progress — Phase 18 Plans 18-01/02 landed; Plans 18-03/04/05 ahead, plus Phases 19-24)
 
 ## Performance Metrics
 
@@ -76,6 +76,7 @@ Progress: [█████████░] 93% (v1.2 in progress — Phase 18 Wa
 | Phase 17 P04 | 2min | 1 tasks | 1 files |
 | Phase 17 P03 | 1min | 1 tasks | 1 files |
 | Phase 18 P01 | 3min | 2 tasks | 7 files |
+| Phase 18 P02 | 4min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -198,6 +199,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-01: GAM-04 PlantHealthBadge preservation enforced via 3 STRICT (non-skippable) regression sentinels in smoke runner — modal usage in MyPlantDetailModal + index.ts re-export + PlantHealthBadge.tsx file existence. Plan 18-03 cannot accidentally over-remove the badge during scoped PlantCard removal. Three-tier discipline (PASS-always / SKIP-then-PASS / PASS-or-FAIL) coexists in same runner.
 - [Phase 18]: Plan 18-01: Toast skeleton uses React.ReactElement return type (not JSX.Element). Rule 1 auto-fix during Task 2 verification — React 19 + react-native types provide no global JSX namespace, so JSX.Element fails tsc. Codebase-wide convention is to NOT type component returns at all; React.ReactElement here keeps the props contract self-documenting for Plan 18-02 consumers without depending on the global namespace. Pattern reusable for all future typed-return components in this codebase.
 - [Phase 18]: Plan 18-01: Voseo strings ES-locale follow Phase 14-17 conventions — Deslizá (vos imperative of deslizar, matches Regá/Chequeá/Sacá precedent), eliminada (feminine agreement with planta), Deshacer (voseo-neutral infinitive button label per cancelButton precedent), Sacar de favoritos (voseo-neutral infinitive, mirrors Sacar afuera plantCard.outdoor).
+- [Phase 18]: Plan 18-02: Skeleton-then-impl two-plan split honored — ToastProps interface preserved verbatim from Plan 01 lock; Toast Reanimated v4 ships behind locked contract for Plan 18-04 consumer. Pattern reusable for any future shared primitive where consumer plans run in later waves.
+- [Phase 18]: Plan 18-02: 3-rung tip fallback (translatedEntry → plantType.tip → '') ported VERBATIM from PlantCard.tsx:73-79 with distinct relocated* variable names to coexist w/ legacy dbEntry (fuzzy) + strict strictDbEntry — Pitfall 9 averted (no dbEntry?.tip substitution). Variable-name disambiguation discipline reusable when porting logic between components that already share an entry name.
+- [Phase 18]: Plan 18-02: empty-state gate extension pattern — adding a relocated content signal (hasRelocatedTip) extends an existing OR-of-presence guard (hasDiagnoses/hasCareAction/hasNutrients) without restructuring the gate. Prevents false-positive emptyWhatToDo placeholder for custom plants w/ typeId but no databaseId.
+- [Phase 18]: Plan 18-02: optional-chaining on plant?.databaseId / plant ? getPlantTypes().find(...) : undefined — plan code samples used plant.databaseId directly but tsc strict requires the guard since plant null-check happens at L129 (after the relocated* declarations). Mirrors strictDbEntry useMemo pattern.
+- [Phase 18]: Plan 18-02: smoke-phase18 SKIP→PASS flip count revised from plan-level expectation 4 to actual 2 — Toast.props.interface-defined + Toast.a11y.liveRegion already PASSed at Plan 01 baseline (skeleton exposed both forward-compat). Only Toast.impl.uses-reanimated + CARD-03.tip-relocated-to-modal flip in Plan 02. Smoke runner regex sentinels are PASS-on-presence, not PASS-on-implementation-completeness.
 
 ### Pending Todos
 
@@ -212,6 +218,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T20:20:58.991Z
-Stopped at: Completed 18-01-PLAN.md
+Last session: 2026-05-08T20:28:15.675Z
+Stopped at: Completed 18-02-PLAN.md
 Resume file: None
