@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 5
-status: planning
-stopped_at: Completed 16-01-PLAN.md
-last_updated: "2026-05-08T05:16:35.942Z"
-last_activity: 2026-05-08 — Phase 16 Plan 01 complete (10 cactus/suculentas Sub-batch A). 4 files. 2 tasks, 18 min.
+current_plan: 3 of 5
+status: "**Wave 2 (Sub-batch B) closed.** 7 net-new entries (hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) appended with full Phase 14 EDU schema. POWO 2024 canonical names (Echinopsis pachanoi, Dracaena angolensis) cited at-source with trade-name acknowledgment. cactus-san-pedro framed PURELY as horticulture (0 ceremonial refs in either locale). sansevieria-cilindrica distinct namespace from sansevieria. bambu-suerte water-culture variant in description. Catalog 97 → **104 (Phase 16 final target)**. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=228, EN=224 (≤250 from draft). phase16 PASS 34→49 default / 53→68 --identification / 57→72 --routing-fix. CAT-13/14/15 fully closed; CAT-16 keysets + identification routing PASS. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings)."
+stopped_at: Completed 16-02-PLAN.md
+last_updated: "2026-05-08T11:01:54.404Z"
+last_activity: 2026-05-08 — Phase 16 Plan 02 complete (7 trepadoras+trending Sub-batch B). 3 files. 2 tasks, 32 min.
 progress:
   total_phases: 15
   completed_phases: 6
   total_plans: 35
-  completed_plans: 33
+  completed_plans: 34
   percent: 97
 ---
 
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **IN PROGRESS**
-Current Plan: 2 of 5
-Plan: 16-01 complete (Wave 1 — 10 cactus/suculentas content authoring). Plans 16-02..04 remaining.
-Status: **Wave 1 (Sub-batch A) closed.** 10 cactus/suculentas entries (3 cactus + 3 crassulaceae + 1 mesemb + 1 asteraceae + 2 outliers) appended with full Phase 14 EDU schema; catalog 87 → 97 (mid-band toward Plan 16-02's 104). Lithops gets custom dormancy whyRationale + only careAction.soilCheck in batch. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=221, EN=216 (≤250 from draft). phase16 PASS 14→34 default / 16→46 --identification / 20→50 --routing-fix. phase15 smoke runner made forward-compat (>= 87 floor instead of === 87) — Rule 3 deviation, preserves Phase 15 invariants without manufacturing false regressions. **Next:** Plan 16-02 (Wave 1 — remaining 7 net-new entries: hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro).
-Last activity: 2026-05-08 — Phase 16 Plan 01 complete (10 cactus/suculentas Sub-batch A). 4 files. 2 tasks, 18 min.
+Current Plan: 3 of 5
+Plan: 16-02 complete (Wave 2 — 7 trepadoras+trending content authoring; catalog at 104). Plans 16-03..04 remaining.
+Status: **Wave 2 (Sub-batch B) closed.** 7 net-new entries (hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) appended with full Phase 14 EDU schema. POWO 2024 canonical names (Echinopsis pachanoi, Dracaena angolensis) cited at-source with trade-name acknowledgment. cactus-san-pedro framed PURELY as horticulture (0 ceremonial refs in either locale). sansevieria-cilindrica distinct namespace from sansevieria. bambu-suerte water-culture variant in description. Catalog 97 → **104 (Phase 16 final target)**. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=228, EN=224 (≤250 from draft). phase16 PASS 34→49 default / 53→68 --identification / 57→72 --routing-fix. CAT-13/14/15 fully closed; CAT-16 keysets + identification routing PASS. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings).
+Last activity: 2026-05-08 — Phase 16 Plan 02 complete (7 trepadoras+trending Sub-batch B). 3 files. 2 tasks, 32 min.
 
-Progress: [█████████▉] 97% (v1.2 in progress — 34/35 plans complete; Phase 16 Plans 16-02..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
+Progress: [██████████] 97% (v1.2 in progress — 34/35 plans complete; Phase 16 Plans 16-03..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
 ## Performance Metrics
 
@@ -67,6 +67,7 @@ Progress: [█████████▉] 97% (v1.2 in progress — 34/35 plans
 | Phase 15 P04 | 3 min | 1 tasks | 1 files |
 | Phase 16 P00 | 7min | 3 tasks | 5 files |
 | Phase 16 P01 | 18min | 2 tasks | 4 files |
+| Phase 16 P02 | 32min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -156,6 +157,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 16]: Plan 16-01: Voseo regression on `te toca` (matches `\btoca\b`) and `tenés` (matches `\bten\b`) caught at pre-commit grep sweep — false positives on legitimate voseo verb forms. Reworded inline (corona-espinas: "ante contacto con piel"; agave: "si queda en zona de paso") to keep plantDatabase.ts voseo regex baseline at 0. Recurring pattern across Phase 14-04/06 + 15-01 + 16-01.
 - [Phase 16]: Plan 16-01: Char-limit-from-draft + voseo-pre-sweep continued from Phase 15. whyRationale max ES=221 (mammillaria), max EN=216 (agave) — comfortable margin under 250 ceiling, zero post-hoc trims required.
 - [Phase 16]: Plan 16-01: Rule 3 deviation — scripts/phase15-smoke.cjs CAT-09.count assertion changed from `idMatches === 87` to `idMatches >= 87` (Phase 15 floor semantics). Frozen-phase smoke runners with growable-quantity assertions need >= floor instead of === exact-equals to avoid manufacturing false regressions on natural forward catalog growth. Pattern reusable in future phases when growable assertions span phase boundaries.
+- [Phase 16]: Plan 16-02: 7 net-new entries (hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) appended; catalog 97 → 104 (Phase 16 final target). POWO 2024 canonical names cited at-source: Echinopsis pachanoi (was Trichocereus pachanoi); Dracaena angolensis (was Sansevieria cylindrica). Description text acknowledges trade-name persistence to avoid user confusion at point of sale.
+- [Phase 16]: Plan 16-02: cactus-san-pedro framed PURELY as horticulture per CONTEXT.md lock — 0 ceremonial/psychoactive references in description, tip, or whyRationale of either locale. Verified by per-locale grep counter (==0). Pattern reusable for any future ethnobotanical entries with cultural associations.
+- [Phase 16]: Plan 16-02: sansevieria-cilindrica i18n key uses distinct top-level namespace from sansevieria — both coexist as separate parents (verified by Node parse). Pattern: distinct top-level keys for species splits, never nested under shared parent. Prevents getTranslatedPlant runtime collisions.
+- [Phase 16]: Plan 16-02: bambu-suerte waterMode 'fixed' preserved while description/tip/careAction.fixed all flag water-culture cultivation context (cultivo hidropónico, agua filtrada, cambio cada 10-14 días). Pattern: water-culture variants documented in copy without changing schedule semantics.
+- [Phase 16]: Plan 16-02: All 7 whyRationale rationales DISTINCT (zero copy-paste); each cites per-entry physiology mechanism: Asclepiadácea CAM-corazón / Aroide heteroblastia / Strelitziacea paddle-leaves / Mirtácea citronellal / Asparagácea hidropónica-flúor / Asparagácea cilíndrica CAM / Cactácea columnar Andes-precordillera. whyRationale max ES=228, EN=224 chars (≤250 ceiling — zero trims required, pre-emptive char-limit-from-draft discipline carried forward from Phase 15).
 
 ### Pending Todos
 
@@ -170,6 +176,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T05:15:31.151Z
-Stopped at: Completed 16-01-PLAN.md
+Last session: 2026-05-08T11:00:52.670Z
+Stopped at: Completed 16-02-PLAN.md
 Resume file: None

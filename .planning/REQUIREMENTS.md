@@ -54,8 +54,8 @@
 ### Catalog Expansion Wave B — Suculentas/Cactus + Trepadoras + Trending (CAT)
 
 - [x] **CAT-13**: Wave 3.2 — 10 succulents/cactus added: kalanchoe, siempreviva, piedras-vivas, nopal, mammillaria, corona-espinas, gasteria, senecio-rowleyanus, cactus-navidad, agave
-- [ ] **CAT-14**: Wave 3.6 — 4 trepadoras/colgantes added (species names finalized during research at planning time)
-- [ ] **CAT-15**: Wave 3.7 — 5 trending entries added: strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica (Dracaena angolensis — distinguished from existing `sansevieria`), cactus-san-pedro
+- [x] **CAT-14**: Wave 3.6 — 4 trepadoras/colgantes added (species names finalized during research at planning time)
+- [x] **CAT-15**: Wave 3.7 — 5 trending entries added: strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica (Dracaena angolensis — distinguished from existing `sansevieria`), cactus-san-pedro
 - [ ] **CAT-16**: Waves B all have full v1.1 + EDU keyset, identification map entries, and image plan (uploaded or accepted-known) — 10/19 keysets landed in Plan 16-01; remaining 9 keysets + COMMON_NAMES_ES extension + image plan land in Plans 16-02/03/04
 
 ### Catalog Expansion Wave C — Exterior + Aromáticas + Frutales (CAT)
