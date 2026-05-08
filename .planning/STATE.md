@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 5
+current_plan: 3 of 5
 status: verifying
-stopped_at: Completed 18-02-PLAN.md
-last_updated: "2026-05-08T20:28:15.678Z"
-last_activity: 2026-05-08 — Phase 18 Plan 02 complete (Toast Reanimated v4 impl + tip relocation to modal). 2 files, 2 tasks, ~4 min.
+stopped_at: Completed 18-03-PLAN.md
+last_updated: "2026-05-08T20:38:50.650Z"
+last_activity: 2026-05-08 — Phase 18 Plan 03 complete (PlantCard JSX restructure). 1 file, 2 tasks, ~5 min.
 progress:
   total_phases: 15
   completed_phases: 8
   total_plans: 45
-  completed_plans: 43
-  percent: 96
+  completed_plans: 44
+  percent: 98
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **IN PROGRESS**
-Current Plan: 2 of 5
-Plan: 18-02 complete (Toast Reanimated v4 impl + tip relocation to modal — Toast.tsx 86 LOC w/ useSharedValue×2 + useAnimatedStyle + withTiming×7 + accessibilityLiveRegion=polite + accessibilityRole=alert + spacing.xxl + spacing.fabClearance positioning; MyPlantDetailModal.tsx +21/-1 — getPlantTypes import + 3-rung relocatedTip fallback + emptyWhatToDo gate extension + relocatedTip render after nutrientsCardEdu + relocatedTip style; smoke-phase18 PASS=37 / FAIL=0 / SKIP=19, 2 SKIP→PASS flips: Toast.impl.uses-reanimated + CARD-03.tip-relocated-to-modal; check:i18n-keys 118 catalog ids PASS).
-Status: **Phase 18 Plan 02 COMPLETE.** Two file-disjoint deliverables landed in 2 atomic commits (Task 1 feat: Toast full impl 187ec68; Task 2 feat: tip relocation to modal 6d238ab). Toast skeleton-then-impl two-plan split honored — ToastProps interface preserved verbatim from Plan 01 lock for Plan 18-04 consumer. Tip 3-rung fallback ported VERBATIM from PlantCard.tsx:73-79 with distinct relocated* names to coexist with legacy dbEntry (fuzzy) and strict strictDbEntry — Pitfall 9 averted (no dbEntry?.tip substitution). Empty-state gate extended w/ hasRelocatedTip 4th condition, preventing false-positive emptyWhatToDo placeholder when only the tip is present (custom plants w/ typeId but no databaseId + no diagnoses). PlantHealthBadge:203 modal usage UNTOUCHED (out-of-scope per CONTEXT.md PlantCard-only lock — GAM-04 STRICT regression sentinel intact). 0 deviations; 3 documentation/clarification notes in SUMMARY.md (plan-level "SKIP drops by 4" expectation revised to 2 because skeleton already exposed interface + a11y; optional-chaining on plant?.databaseId required for tsc strict; node -e require runtime check skipped because TSX needs Metro). All verification gates green: tsc 0 errors, smoke-phase18 exit 0, check:i18n-keys PASS. **Next:** Plan 18-03 (PlantCard JSX restructure: Gesture.Pan swipe + Gesture.LongPress + Gesture.Race + 5-element layout + mood emoji + scoped PlantHealthBadge removal from card face) — unblocked because modal-side tip surface now locked, PlantCard tip block at L73-79 + L328-334 safe to remove.
-Last activity: 2026-05-08 — Phase 18 Plan 02 complete (Toast Reanimated v4 impl + tip relocation to modal). 2 files, 2 tasks, ~4 min.
+Current Plan: 3 of 5
+Plan: 18-03 complete (PlantCard.tsx JSX restructure: 350 → 474 LOC; Task 1 refactor a293bc1 +5/-70 — removed PlantHealthBadge import + showHealthBadge gate + JSX block + Alert.alert delete + trash button + favorite heart + tip render + 4 orphan styles + 5 unused-only-in-card imports; Task 2 feat f60011c +282/-92 — added Gesture.Pan().activeOffsetX([-15,15]).failOffsetY([-10,10]) + Gesture.LongPress().minDuration(500) + Gesture.Race(longPress, pan) + Animated.View foreground + 88px right-anchored actionLayer reveal + Greg-style 22×22 mood-badge with 2px colors.card ring + getHealthBgColor(level) fill + moodEmojiByLevel module-scope const + onLongPress(plant) + onSwipeCommitted() prop callbacks + handleCommitDelete/handleLongPressFire JS bridges + useEffect Pitfall 5 reset keyed on plant.id + hapticFired Pitfall 2 one-shot guard + runOnJS(triggerHaptic)('impactMedium'/'impactLight') + cardWidth onLayout measurement; smoke-phase18 PASS=37→52 / FAIL=0 / SKIP=19→4, 16 SKIP→PASS flips spanning CARD-01/02/03/05 + GAM-03/04; check:i18n-keys 118 catalog ids PASS; phase17 regression PASS 54/54).
+Status: **Phase 18 Plan 03 COMPLETE.** Heaviest plan of the phase (single-file ~190 LOC delta) landed in 2 atomic commits per planned subtraction-then-addition split. Two-half restructure pattern proven viable for heavy single-file plans: Task 1 makes file compile but visually incomplete; Task 2 lands additions atomically. Pitfalls 1/2/3/5/7 all handled per RESEARCH.md. GAM-04 STRICT preservation sentinels green (MyPlantDetailModal:212 + index.ts:20 + PlantHealthBadge.tsx file all UNTOUCHED). 2 in-task auto-fixes (Rule 1 comment-text contained literal "PlantHealthBadge" failing strict grep — reworded; Rule 4-resolved-without-checkpoint colors.danger missing from theme.ts — substituted colors.dangerText per WeatherAlerts.tsx:223 precedent, no new token introduced). All verification gates green: tsc 0 errors, smoke-phase18 exit 0, check:i18n-keys PASS, phase17-smoke regression PASS. 4 remaining SKIPs all owned by Plan 04 (file-disjoint). **Next:** Plan 18-04 (PlantsScreen + TodayScreen — host BottomSheetModal long-press menu container + optimistic-delete + Toast undo flow + CARD-04 first-card affordance hint with @plantcard_swipe_discovered AsyncStorage flag).
+Last activity: 2026-05-08 — Phase 18 Plan 03 complete (PlantCard JSX restructure). 1 file, 2 tasks, ~5 min.
 
-Progress: [██████████] 96% (v1.2 in progress — Phase 18 Plans 18-01/02 landed; Plans 18-03/04/05 ahead, plus Phases 19-24)
+Progress: [██████████] 98% (v1.2 in progress — Phase 18 Plans 18-01/02/03 landed; Plans 18-04/05 ahead, plus Phases 19-24)
 
 ## Performance Metrics
 
@@ -77,6 +77,7 @@ Progress: [██████████] 96% (v1.2 in progress — Phase 18 Pl
 | Phase 17 P03 | 1min | 1 tasks | 1 files |
 | Phase 18 P01 | 3min | 2 tasks | 7 files |
 | Phase 18 P02 | 4min | 2 tasks | 2 files |
+| Phase 18 P03 | 5min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -204,6 +205,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-02: empty-state gate extension pattern — adding a relocated content signal (hasRelocatedTip) extends an existing OR-of-presence guard (hasDiagnoses/hasCareAction/hasNutrients) without restructuring the gate. Prevents false-positive emptyWhatToDo placeholder for custom plants w/ typeId but no databaseId.
 - [Phase 18]: Plan 18-02: optional-chaining on plant?.databaseId / plant ? getPlantTypes().find(...) : undefined — plan code samples used plant.databaseId directly but tsc strict requires the guard since plant null-check happens at L129 (after the relocated* declarations). Mirrors strictDbEntry useMemo pattern.
 - [Phase 18]: Plan 18-02: smoke-phase18 SKIP→PASS flip count revised from plan-level expectation 4 to actual 2 — Toast.props.interface-defined + Toast.a11y.liveRegion already PASSed at Plan 01 baseline (skeleton exposed both forward-compat). Only Toast.impl.uses-reanimated + CARD-03.tip-relocated-to-modal flip in Plan 02. Smoke runner regex sentinels are PASS-on-presence, not PASS-on-implementation-completeness.
+- [Phase 18]: Plan 18-03: Two-half subtraction-then-addition commit pattern for heavy single-file restructures (~180+ LOC delta) — Task 1 = removals (file compiles, visual incomplete); Task 2 = additions (atomic visual + gesture layer). Reusable for any future heavy single-file plan.
+- [Phase 18]: Plan 18-03: colors.dangerText (#7a2d2d) used as reveal-action background — colors.danger does NOT exist in theme.ts; precedent at WeatherAlerts.tsx:223 (vivid-red alert dot). Did NOT introduce a new token per plan §'theme tokens used' lock. Pattern reusable for any future destructive-red action background.
+- [Phase 18]: Plan 18-03: Gesture.Race(longPressGesture, panGesture) — first-to-activate wins; canonical lock per Pitfall 3 (NEVER Gesture.Simultaneous for swipe-and-long-press on the same target). Reusable for any future swipeable list rows requiring secondary long-press menu.
+- [Phase 18]: Plan 18-03: Greg-style mood-badge overlay anchored on imageContainer (relative-positioned wrapper) with 2px colors.card ring + getHealthBgColor(level) fill — Pitfall 7. Reusable on-thumbnail badge pattern for Phase 19 toxicity (TOX-03) + Phase 20 fertilize (FERT-06).
+- [Phase 18]: Plan 18-03: onDelete prop name kept (NOT renamed to onCommitDelete) — semantics re-purposed via inline JSDoc to swipe-commit. Simpler diff path; existing PlantsScreen + TodayScreen consumers pass onDelete unchanged. Plan 04 wires the new optimistic-delete + Toast undo flow to the same prop name.
 
 ### Pending Todos
 
@@ -218,6 +224,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T20:28:15.675Z
-Stopped at: Completed 18-02-PLAN.md
+Last session: 2026-05-08T20:38:50.647Z
+Stopped at: Completed 18-03-PLAN.md
 Resume file: None
