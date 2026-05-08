@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 1 of 5
-status: "**Phase 17 STARTED.** Plan 17-00 landed Wave 0 smoke-runner scaffold (scripts/phase17-smoke.cjs, 337 LOC) with CAT-17/18/19/20/21 SKIP placeholders + final CAT-21 count gate at idMatches === 118 (closes v1.2 catalog expansion). Authored as textual delta from phase16-smoke.cjs per RESEARCH §Example 3 — Phase 16 exact-match-first refactor inherited unchanged as routing-fix regression sentinel (no refactor task in this plan). 14 PHASE_17_IDS encoded across CAT-17 (8 exterior flores) + CAT-18 (3 aromáticas) + CAT-19 (3 frutales/huerta). Wave 0 baseline: PASS 10/54 default / 10/68 --identification / 10/68 --routing-fix; Phase 15+16 cross-phase regression clean; tsc 0 errors. npm run smoke:phase17 wired; .tmp-phase17/ gitignored. 4 open questions surfaced for user review before Plan 17-01/02 execute. **Next:** Plan 17-01 (8 CAT-17 exterior flores)."
-stopped_at: Completed 17-00-PLAN.md
-last_updated: "2026-05-08T15:52:47.920Z"
-last_activity: 2026-05-08 — Phase 17 Plan 00 complete (Wave 0 smoke-runner scaffold; 337 LOC; final CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion). 3 files, 2 tasks, 4 min.
+current_plan: 2 of 5
+status: "**Phase 17 IN PROGRESS.** Plan 17-01 landed Sub-batch A (8 CAT-17 exterior flores: tulipan/ciclamen/crisantemo bulb-dormancy soil_check + azalea/clavel/fucsia ericaceous/caryophyllaceae/onagraceae shrubs + girasol/magnolia annual+tree). PLANT_DATABASE 104 → 112 (mid-band SKIP); 8 W1.CAT-17 + 8 W2.CAT-20.keyset + 8 IDENT.CAT-20 + 8 W2.ROUTING-FIX SKIPs flipped to PASS. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline carried forward (max ES=243, max EN=243; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). LATAM ciclamen indoor-pot lock honored (outdoor:false + category:'interior'). Magnolia stellata Q4 default + tree-realism framing locked. Pitfall locks 3/5/7/8 all cited per-entry. Rule 3 deviation: phase16-smoke.cjs CAT-counts.total `=== 104` → `>= 104` floor (forward-compat for natural catalog growth, same pattern as Phase 16's fix to phase15-smoke). **Next:** Plan 17-02 (3 CAT-18 aromáticas + 3 CAT-19 frutales/huerta — closes CAT-21 final assertion idMatches === 118 + the entire v1.2 catalog expansion)."
+stopped_at: Completed 17-01-PLAN.md
+last_updated: "2026-05-08T16:07:17.454Z"
+last_activity: 2026-05-08 — Phase 17 Plan 01 complete (Sub-batch A — 8 CAT-17 exterior flores; 104 → 112 entries; Rule 3 phase16-smoke deviation). 4 files, 2 tasks, 8 min.
 progress:
   total_phases: 15
   completed_phases: 7
   total_plans: 40
-  completed_plans: 37
+  completed_plans: 38
   percent: 100
 ---
 
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **IN PROGRESS**
-Current Plan: 1 of 5
-Plan: 17-00 complete (Wave 0 smoke-runner scaffold; CAT-17/18/19/20/21 SKIPs in place; CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion).
-Status: **Phase 17 STARTED.** Plan 17-00 landed Wave 0 smoke-runner scaffold (scripts/phase17-smoke.cjs, 337 LOC) with CAT-17/18/19/20/21 SKIP placeholders + final CAT-21 count gate at idMatches === 118 (closes v1.2 catalog expansion). Authored as textual delta from phase16-smoke.cjs per RESEARCH §Example 3 — Phase 16 exact-match-first refactor inherited unchanged as routing-fix regression sentinel (no refactor task in this plan). 14 PHASE_17_IDS encoded across CAT-17 (8 exterior flores) + CAT-18 (3 aromáticas) + CAT-19 (3 frutales/huerta). Wave 0 baseline: PASS 10/54 default / 10/68 --identification / 10/68 --routing-fix; Phase 15+16 cross-phase regression clean; tsc 0 errors. npm run smoke:phase17 wired; .tmp-phase17/ gitignored. 4 open questions surfaced for user review before Plan 17-01/02 execute. **Next:** Plan 17-01 (8 CAT-17 exterior flores).
-Last activity: 2026-05-08 — Phase 17 Plan 00 complete (Wave 0 smoke-runner scaffold; 337 LOC; final CAT-21 gate at idMatches === 118 closes v1.2 catalog expansion). 3 files, 2 tasks, 4 min.
+Current Plan: 2 of 5
+Plan: 17-01 complete (Sub-batch A — 8 CAT-17 exterior flores; PLANT_DATABASE 104 → 112; CAT-counts.total stays SKIP at mid-band; CAT-17 fully closed).
+Status: **Phase 17 IN PROGRESS.** Plan 17-01 landed Sub-batch A (8 CAT-17 exterior flores: tulipan/ciclamen/crisantemo bulb-dormancy soil_check + azalea/clavel/fucsia ericaceous/caryophyllaceae/onagraceae shrubs + girasol/magnolia annual+tree). PLANT_DATABASE 104 → 112 (mid-band SKIP); 8 W1.CAT-17 + 8 W2.CAT-20.keyset + 8 IDENT.CAT-20 + 8 W2.ROUTING-FIX SKIPs flipped to PASS. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline carried forward (max ES=243, max EN=243; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). LATAM ciclamen indoor-pot lock honored (outdoor:false + category:'interior'). Magnolia stellata Q4 default + tree-realism framing locked. Pitfall locks 3/5/7/8 all cited per-entry. Rule 3 deviation: phase16-smoke.cjs CAT-counts.total `=== 104` → `>= 104` floor (forward-compat for natural catalog growth, same pattern as Phase 16's fix to phase15-smoke). **Next:** Plan 17-02 (3 CAT-18 aromáticas + 3 CAT-19 frutales/huerta — closes CAT-21 final assertion idMatches === 118 + the entire v1.2 catalog expansion).
+Last activity: 2026-05-08 — Phase 17 Plan 01 complete (Sub-batch A — 8 CAT-17 exterior flores; 104 → 112 entries; Rule 3 phase16-smoke deviation). 4 files, 2 tasks, 8 min.
 
 Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
@@ -71,6 +71,7 @@ Progress: [██████████] 100% (v1.2 in progress — Phase 16 f
 | Phase 16 P03 | 12min | 1 tasks | 1 files |
 | Phase 16 P04 | 3min | 1 tasks | 1 files |
 | Phase 17 P00 | 4min | 2 tasks | 3 files |
+| Phase 17 P01 | 8min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -177,6 +178,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 17]: Plan 17-00: PHASE_17_NEW_IDS === PHASE_17_IDS (no in-place upgrades unlike Phase 16 potus/filodendro); hasEduFieldsForId helper removed entirely from runner
 - [Phase 17]: Plan 17-00: Final CAT-21 count gate at idMatches === 118 (104 + 14 net-new) closes v1.2 catalog expansion when Plan 17-02 lands the last 6 entries; mid-band SKIP window > 104 && < 118 keeps runner exit-0 between Plans 17-01 and 17-02
 - [Phase 17]: Plan 17-00: 4 open questions surfaced (Q1 aromáticas outdoor flag, Q2 PlantCategory enum count, Q3 arandano category, Q4 magnolia variant) — each has researcher-recommended default; Plan 17-00 is content-agnostic, propagation to Plans 17-01/02/03/04 trivial via per-token edits
+- [Phase 17]: Plan 17-01: Sub-batch A appended (8 CAT-17 exterior flores; 104 → 112). Bulb/dormancy + ericaceous (4 entries) use waterMode soil_check + careAction.soilCheck; Mediterranean/annual/tree (4 entries) use fixed. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline preserved (max whyRationale ES=243 EN=243 chars; voseo regex unchanged at es/plants.json=2 + plantDatabase.ts=0).
+- [Phase 17]: Plan 17-01: Rule 3 deviation — phase16-smoke.cjs CAT-counts.total assertion bumped from `=== 104` to `>= 104` floor (forward-compat for natural catalog growth across phases). Same pattern as Phase 16's earlier Rule 3 fix to phase15-smoke (`=== 87` → `>= 87`). Reusable cross-phase pattern: every phase that grows the catalog must bump the previous phase's smoke runner CAT-counts gate to `>= floor`.
+- [Phase 17]: Plan 17-01: ciclamen LATAM indoor-pot lock honored (category:'interior' + outdoor:false despite phase name 'Exterior + Aromáticas + Frutales'); description explicitly notes 'En LATAM se cultiva como pot interior de flor invernal-primaveral, no como planta de jardín'. Magnolia stellata locked as canonical (Q4 default — RHS small-garden 3m dwarf form); M. grandiflora 20m mentioned in description for context, scheduled as legacy alias in Plan 17-03.
 
 ### Pending Todos
 
@@ -191,6 +195,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T15:51:42.684Z
-Stopped at: Completed 17-00-PLAN.md
-Resume file: .planning/phases/17-catalog-wave-c-exterior-arom-ticas-frutales/17-01-PLAN.md
+Last session: 2026-05-08T16:07:17.452Z
+Stopped at: Completed 17-01-PLAN.md
+Resume file: None

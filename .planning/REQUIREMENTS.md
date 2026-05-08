@@ -60,7 +60,7 @@
 
 ### Catalog Expansion Wave C — Exterior + Aromáticas + Frutales (CAT)
 
-- [ ] **CAT-17**: Wave 3.3 — 8 exterior flores added: azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia
+- [x] **CAT-17**: Wave 3.3 — 8 exterior flores added: azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia
 - [ ] **CAT-18**: Wave 3.4 — 3 aromáticas added: salvia-officinalis (distinct from existing `salvia-ornamental`, `name` and `description` make this clear), eneldo, stevia
 - [ ] **CAT-19**: Wave 3.5 — 3 frutales/huerta added: olivo, arandano, espinaca
 - [ ] **CAT-20**: All Wave C entries have full v1.1 + EDU keyset, identification map entries, and image plan
@@ -218,7 +218,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | CAT-14 | Phase 16 | Complete |
 | CAT-15 | Phase 16 | Complete |
 | CAT-16 | Phase 16 | Complete |
-| CAT-17 | Phase 17 | Pending |
+| CAT-17 | Phase 17 | Complete |
 | CAT-18 | Phase 17 | Pending |
 | CAT-19 | Phase 17 | Pending |
 | CAT-20 | Phase 17 | Pending |

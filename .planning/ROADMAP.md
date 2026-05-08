@@ -178,7 +178,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   2. All Wave C entries have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
   3. `salvia-officinalis` is clearly distinguished from existing `salvia-ornamental` in both name and description (distinct top-level i18n namespace, mirroring sansevieria/sansevieria-cilindrica precedent)
   4. `npm run check:i18n-keys` passes across all 118 entries end-to-end
-**Plans:** 1/5 plans executed
+**Plans:** 2/5 plans executed
   - [ ] 17-00-PLAN.md — Wave 0 scaffold: scripts/phase17-smoke.cjs (CJS + ts.transpileModule routing path inheriting Phase 16 exact-match-first refactor) + npm wiring + .gitignore — closes Wave 0 baseline at idMatches=104 mid-band SKIP
   - [ ] 17-01-PLAN.md — Wave 1: Sub-batch A (8 exterior flores — azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-17)
   - [ ] 17-02-PLAN.md — Wave 2: Sub-batch B (6 entries: 3 aromáticas + 3 frutales/huerta — salvia-officinalis, eneldo, stevia, olivo, arandano, espinaca) — closes CAT-17/18/19 (118 entries) + CAT-20 keysets + CAT-21 final count assertion
@@ -284,7 +284,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
-| 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 1/5 | In Progress|  | - |
+| 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 2/5 | In Progress|  | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
