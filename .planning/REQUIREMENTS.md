@@ -214,10 +214,10 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | CAT-10 | Phase 15 | Complete |
 | CAT-11 | Phase 15 | Complete |
 | CAT-12 | Phase 15 | Complete |
-| CAT-13 | Phase 16 | In Progress |
-| CAT-14 | Phase 16 | In Progress |
-| CAT-15 | Phase 16 | In Progress |
-| CAT-16 | Phase 16 | In Progress |
+| CAT-13 | Phase 16 | Complete |
+| CAT-14 | Phase 16 | Complete |
+| CAT-15 | Phase 16 | Complete |
+| CAT-16 | Phase 16 | Complete |
 | CAT-17 | Phase 17 | Pending |
 | CAT-18 | Phase 17 | Pending |
 | CAT-19 | Phase 17 | Pending |

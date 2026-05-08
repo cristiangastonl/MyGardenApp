@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 4 of 5
-status: "**CAT-16 image plan documented.** Plan 16-04 closes the CAT-16 image-plan portion: CLAUDE.md gains a Phase 16 Wave B accepted-known block (17 net-new ids: nopal, mammillaria, cactus-navidad, kalanchoe, siempreviva, gasteria, piedras-vivas, senecio-rowleyanus, corona-espinas, agave, hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro). potus + filodendro DELIBERATELY EXCLUDED (CAT-14 in-place EDU upgrades; existing imageUrls). W3.CAT-16.imagePlan SKIP→PASS in all 3 phase16-smoke modes (49→50 default / 68→69 --identification / 72→73 --routing-fix). Cumulative v1.2 image-upload backlog: 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16) — batched at v1.2 milestone end. Phase 15 regression PASS 81/81; tsc 0 errors; check:i18n-keys 104 ids; voseo baseline=2; catalog=104. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings) — runs in parallel; this plan's file-set (CLAUDE.md only) is disjoint from 16-03's (src/utils/plantIdentification.ts only)."
-stopped_at: Completed 16-04-PLAN.md
-last_updated: "2026-05-08T11:09:39.192Z"
-last_activity: 2026-05-08 — Phase 16 Plan 04 complete (CAT-16 image plan documentation in CLAUDE.md). 1 file. 1 task, 3 min.
+current_plan: 5 of 5
+status: "**Phase 16 CLOSED.** Plan 16-03 (CAT-16 routing closure) appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage (Senecio rowleyanus, Trichocereus pachanoi, Sansevieria cylindrica, Schlumbergera truncata, Pothos aureus, Philodendron scandens, Dracaena braunii, Corymbia citriodora). Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). 16-04 was executed in parallel (file-disjoint CLAUDE.md). **Phase 16 complete: CAT-13/14/15/16 all closed.** **Next:** Phase 17 (Plan Structure A — ROADMAP next phase)."
+stopped_at: Completed 16-03-PLAN.md (Phase 16 closed; 16-04 ran in parallel)
+last_updated: "2026-05-08T13:26:31Z"
+last_activity: 2026-05-08 — Phase 16 Plan 03 complete (COMMON_NAMES_ES Phase 16 routing closure — 30 net-add entries; 19 W3.CAT-16.commonNames SKIPs→PASS). 1 file. 1 task, 12 min.
 progress:
   total_phases: 15
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 35
-  completed_plans: 35
-  percent: 97
+  completed_plans: 37
+  percent: 100
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **IN PROGRESS**
-Current Plan: 4 of 5
-Plan: 16-04 complete (CAT-16 image plan documentation in CLAUDE.md). Plan 16-03 (parallel, file-disjoint) remains.
-Status: **CAT-16 image plan documented.** Plan 16-04 closes the CAT-16 image-plan portion: CLAUDE.md gains a Phase 16 Wave B accepted-known block (17 net-new ids: nopal, mammillaria, cactus-navidad, kalanchoe, siempreviva, gasteria, piedras-vivas, senecio-rowleyanus, corona-espinas, agave, hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro). potus + filodendro DELIBERATELY EXCLUDED (CAT-14 in-place EDU upgrades; existing imageUrls). W3.CAT-16.imagePlan SKIP→PASS in all 3 phase16-smoke modes (49→50 default / 68→69 --identification / 72→73 --routing-fix). Cumulative v1.2 image-upload backlog: 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16) — batched at v1.2 milestone end. Phase 15 regression PASS 81/81; tsc 0 errors; check:i18n-keys 104 ids; voseo baseline=2; catalog=104. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings) — runs in parallel; this plan's file-set (CLAUDE.md only) is disjoint from 16-03's (src/utils/plantIdentification.ts only).
-Last activity: 2026-05-08 — Phase 16 Plan 04 complete (CAT-16 image plan documentation in CLAUDE.md). 1 file. 1 task, 3 min.
+Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **CLOSED**
+Current Plan: 5 of 5
+Plan: 16-03 complete (CAT-16 routing closure — 30 net-new COMMON_NAMES_ES entries). Plan 16-04 (parallel, file-disjoint CLAUDE.md) also complete. **Phase 16 fully closed: CAT-13/14/15/16 all PASS.**
+Status: **Phase 16 CLOSED.** Plan 16-03 appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage. Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). **Next:** Phase 17 (Plan Structure A) per ROADMAP.
+Last activity: 2026-05-08 — Phase 16 Plan 03 complete (COMMON_NAMES_ES Phase 16 routing closure — 30 net-add entries; 19 W3.CAT-16.commonNames SKIPs→PASS). 1 file. 1 task, 12 min.
 
-Progress: [██████████] 100% (v1.2 in progress — 35/35 plans complete; Plan 16-03 still in flight in parallel; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
+Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Progress: [██████████] 100% (v1.2 in progress — 35/35 plan
 | Phase 16 P00 | 7min | 3 tasks | 5 files |
 | Phase 16 P01 | 18min | 2 tasks | 4 files |
 | Phase 16 P02 | 32min | 2 tasks | 3 files |
+| Phase 16 P03 | 12min | 1 tasks | 1 files |
 | Phase 16 P04 | 3min | 1 tasks | 1 files |
 
 ## Accumulated Context
@@ -165,6 +166,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 16]: Plan 16-02: All 7 whyRationale rationales DISTINCT (zero copy-paste); each cites per-entry physiology mechanism: Asclepiadácea CAM-corazón / Aroide heteroblastia / Strelitziacea paddle-leaves / Mirtácea citronellal / Asparagácea hidropónica-flúor / Asparagácea cilíndrica CAM / Cactácea columnar Andes-precordillera. whyRationale max ES=228, EN=224 chars (≤250 ceiling — zero trims required, pre-emptive char-limit-from-draft discipline carried forward from Phase 15).
 - [Phase 16]: Plan 16-04: CAT-16 image plan documentation — single grouped Phase 16 Wave B block in CLAUDE.md (17 net-new ids); potus + filodendro deliberately excluded with in-block note (CAT-14 in-place EDU upgrades); cumulative v1.2 image-upload backlog totals 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16)
 - [Phase 16]: Plan 16-04: imagePlan SKIP→PASS sentinel pattern (CLAUDE.md substring 'Phase 16 Wave B' + ≥N-of-M id-mention threshold) carries forward from Phase 15 Plan 15-04 — reusable for any future documentation-only requirement closure with deliberately-excluded entries
+- [Phase 16]: Plan 16-03: COMMON_NAMES_ES extension is APPEND-ONLY when adding catalog batches (mirrors Phase 15 Plan 15-03); 30 net-new entries (13 species-qualified + 5 net-new genus aliases + 8 legacy synonym aliases) appended before closing `};`; existing 88+ entries verbatim — git diff |grep '^-' returns 0.
+- [Phase 16]: Plan 16-03: Selective genus alias pattern locked — add genus alias when single-species genus or all species share display name (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera ✓); deliberately omit when genus is large with divergent species (Echinopsis ✗, ~135 species; routing all to 'Cactus San Pedro' would mis-route). Documented inline in source via comment block.
+- [Phase 16]: Plan 16-03: Species-qualified override pattern via Plan 16-00 exact-match-first refactor — Euphorbia milii→'Corona de espinas' (overrides genus 'Euphorbia'→'Euforbia'); Dracaena sanderiana/angolensis→species-specific names (override genus 'Dracaena'→'Dracena'). Refactor sentinel verified post-edit (grep count 1).
+- [Phase 16]: Plan 16-03: 8 legacy synonym aliases for taxonomic-drift coverage (≤2 per entry pattern from Phase 15 Plan 15-03): Senecio rowleyanus, Trichocereus pachanoi, Sansevieria cylindrica, Schlumbergera truncata, Pothos aureus, Philodendron scandens, Dracaena braunii, Corymbia citriodora. Pattern absorbs PlantNet's lagging API responses without diluting POWO canonical mappings.
+- [Phase 16]: Plan 16-03: Sempervivum tectorum literal pre-existed at line 479 (mock data array in getMockIdentificationResult), NOT in COMMON_NAMES_ES Record — Step B duplicate-watch verified the new COMMON_NAMES_ES key is a distinct first occurrence in that Record (zero conflict).
 
 ### Pending Todos
 
@@ -179,6 +185,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T11:09:39.190Z
-Stopped at: Completed 16-04-PLAN.md
+Last session: 2026-05-08T13:26:31Z
+Stopped at: Completed 16-03-PLAN.md (Phase 16 closed)
 Resume file: None
