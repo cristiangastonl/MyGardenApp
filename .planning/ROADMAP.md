@@ -187,7 +187,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 
 ### Phase 18: PlantCard Cleanup + Mood Emoji
 **Goal**: PlantCard is reduced to 5 visual elements; swipe-to-delete and long-press menu replace the in-card trash button; mood emoji is always visible as the health affordance
-**Depends on**: Phase 13 (gesture infrastructure), Phase 17 (full 120-entry catalog for toxicity badges)
+**Depends on**: Phase 13 (gesture infrastructure), Phase 17 (full 118-entry catalog)
 **Requirements**: CARD-01, CARD-02, CARD-03, CARD-04, CARD-05, GAM-03, GAM-04
 **Success Criteria** (what must be TRUE):
   1. Swiping left on a PlantCard reveals a delete affordance; completing the swipe triggers a haptic and a confirmation step — the plant is not instantly deleted
@@ -195,7 +195,12 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Every PlantCard shows a mood emoji (🌱/😊/😐/😟) derived from health score — always visible, not conditional on score threshold
   4. The legacy conditional `PlantHealthBadge` (shown only when score < 80) is removed from PlantCard
   5. First-render swipe affordance hint is shown on the first card in PlantsScreen (dismissible)
-**Plans**: TBD
+**Plans:** 5 plans
+  - [ ] 18-01-PLAN.md — Wave 0 scaffold: smoke-phase18.cjs runner + npm script + 13 i18n keys (EN+ES parity) + Toast.tsx skeleton + index.ts re-export (Nyquist gate)
+  - [ ] 18-02-PLAN.md — Wave 2 (parallel): Toast.tsx full Reanimated v4 impl + tip relocation into MyPlantDetailModal '¿Qué hacer?' section with 3-rung fallback (CARD-03 modal side)
+  - [ ] 18-03-PLAN.md — Wave 3: PlantCard.tsx restructure — remove PlantHealthBadge/Alert/trash/heart/tip + add Gesture.Pan/LongPress/Race + mood emoji overlay + onLongPress/onSwipeCommitted props (CARD-01/02/03/05, GAM-03/04)
+  - [ ] 18-04-PLAN.md — Wave 4: PlantsScreen + TodayScreen integration — Toast undo flow + BottomSheetModal long-press menu + CARD-04 first-card affordance hint (PlantsScreen only)
+  - [ ] 18-05-PLAN.md — Wave 5: MANUAL CHECKPOINT (autonomous: false) — iOS + Android device verification of swipe gestures, haptics, BottomSheetModal z-order, mood emoji, Toast positioning, affordance hint persistence
 
 ### Phase 19: Pet Toxicity
 **Goal**: Every catalog entry is classified for cat and dog toxicity against the ASPCA list; users can see pet safety information in plant detail and filter the catalog to pet-safe plants
