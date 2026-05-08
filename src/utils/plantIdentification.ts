@@ -141,6 +141,55 @@ const COMMON_NAMES_ES: Record<string, string> = {
   'Sansevieria': 'Sansevieria',                     // genus alias (Sansevieria trifasciata already mapped above)
   'Schefflera arboricola': 'Cheflera',              // legacy name — Schefflera genus already mapped above; species-qualified legacy form
   'Dieffenbachia seguine': 'Difenbaquia',           // species-qualified for Plan 15-01's exact scientificName value
+
+  // ─── v1.2 Phase 16 Wave B — Suculentas/Cactus + Trepadoras + Trending (19 species + ~7 synonym aliases) ───
+  // Note: existing genus-only entries above already cover several Phase 16 species
+  // (Kalanchoe, Sempervivum, Lithops, Opuntia, Mammillaria, Gasteria, Epipremnum aureum, Philodendron).
+  // The mappings below ADD species-qualified keys plus genera not yet covered (Hoya, Rhaphidophora,
+  // Strelitzia, Eucalyptus/Corymbia, Echinopsis, Curio, Schlumbergera, Agave). Two species OVERRIDE
+  // genus aliases (Euphorbia milii ≠ Euforbia for corona-espinas; Dracaena sanderiana/angolensis ≠ Dracena
+  // for bambu-suerte/sansevieria-cilindrica) — exact-match-first refactor (Plan 16-00) ensures the
+  // species-qualified keys take precedence over genus prefix matching in findPlantInDatabase.
+
+  // NEW canonical species-qualified mappings (CAT-13 cactus + suculentas):
+  'Kalanchoe blossfeldiana': 'Kalanchoe',
+  'Sempervivum tectorum': 'Siempreviva',
+  'Lithops lesliei': 'Piedras vivas',
+  'Opuntia ficus-indica': 'Nopal',
+  'Mammillaria elongata': 'Mammillaria',
+  'Euphorbia milii': 'Corona de espinas',           // species-qualified (overrides genus 'Euforbia')
+  'Gasteria bicolor': 'Gasteria',
+  'Curio rowleyanus': 'Senecio colgante',           // POWO accepted (since 1999)
+  'Schlumbergera × buckleyi': 'Cactus de Navidad',
+  'Schlumbergera': 'Cactus de Navidad',             // genus alias
+  'Agave americana': 'Agave',
+  'Agave': 'Agave',                                 // genus alias (NEW — Agave was not previously in COMMON_NAMES_ES)
+
+  // NEW canonical species-qualified mappings (CAT-14 trepadoras NET-NEW):
+  'Hoya kerrii': 'Hoya corazón',
+  'Hoya': 'Hoya',                                   // genus fallback for other Hoya species
+  'Rhaphidophora tetrasperma': 'Mini Monstera',
+
+  // NEW canonical species-qualified mappings (CAT-15 trending):
+  'Strelitzia reginae': 'Strelitzia',
+  'Strelitzia': 'Strelitzia',                       // genus alias
+  'Eucalyptus citriodora': 'Eucalipto limón',
+  'Eucalyptus': 'Eucalipto',                        // genus alias
+  'Dracaena sanderiana': 'Bambú de la suerte',      // species-qualified (overrides genus 'Dracena')
+  'Dracaena angolensis': 'Sansevieria cilíndrica',  // species-qualified (overrides genus 'Dracena')
+  'Echinopsis pachanoi': 'Cactus San Pedro',        // POWO 2024 canonical
+  // NOTE: do NOT add 'Echinopsis' genus alias — Echinopsis is a large genus with many species
+  // (E. oxygona, E. multiplex, etc.). Routing all to "San Pedro" is incorrect for non-pachanoi species.
+
+  // ─── PlantNet synonym aliases (taxonomic drift coverage; ≤2 per entry) ───
+  'Senecio rowleyanus': 'Senecio colgante',         // legacy synonym (still heavy use in trade)
+  'Trichocereus pachanoi': 'Cactus San Pedro',      // legacy synonym (POWO 2024 reduced Trichocereus)
+  'Sansevieria cylindrica': 'Sansevieria cilíndrica', // legacy synonym (very common in trade)
+  'Schlumbergera truncata': 'Cactus de Navidad',    // Thanksgiving cactus often mis-sold as Christmas
+  'Pothos aureus': 'Potus',                         // legacy Epipremnum aureum synonym
+  'Philodendron scandens': 'Filodendro',            // legacy Philodendron hederaceum synonym
+  'Dracaena braunii': 'Bambú de la suerte',         // contested synonym for D. sanderiana
+  'Corymbia citriodora': 'Eucalipto limón',         // POWO new genus (since 2000s); PlantNet still uses Eucalyptus
 };
 
 // ============================================================================
