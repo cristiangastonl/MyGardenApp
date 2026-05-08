@@ -202,8 +202,8 @@ assertSkippable(() => {
   if (idMatches < 87) return undefined;       // pre-baseline catalog drift — SKIP
   if (idMatches === 87) return undefined;     // baseline = pre-W1 — SKIP
   if (idMatches > 87 && idMatches < 104) return undefined;  // mid-band Plan 16-01 → 16-02 — SKIP
-  return idMatches === 104;
-}, 'W2.CAT-counts.total: plantDatabase.ts has exactly 104 entry id declarations (87 + 17 net-new; potus/filodendro upgrades counted in 87)');
+  return idMatches >= 104;  // Phase 16 floor — Phase 17+ may grow catalog further; >= preserves forward compat
+}, 'W2.CAT-counts.total: plantDatabase.ts has at least 104 entry id declarations (Phase 16 floor; 87 + 17 net-new; potus/filodendro upgrades counted in 87)');
 
 // ─── CAT-16 (i18n keysets — Plan 16-01 + 16-02 land 19 entry blocks) ───
 PHASE_16_IDS.forEach(id => {
