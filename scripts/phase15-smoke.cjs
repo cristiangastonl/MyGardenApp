@@ -130,15 +130,17 @@ PHASE_15_IDS.forEach((id, i) => {
   }, `W2-3.CAT-09.${id}: entry id '${id}' present in plantDatabase.ts`);
 });
 
-// ─── CAT-09 secondary: PLANT_DATABASE.length === 87 via id-declaration count (PARTIAL-LANDING TOLERANT) ───
+// ─── CAT-09 secondary: PLANT_DATABASE.length >= 87 via id-declaration count (PARTIAL-LANDING TOLERANT + FORWARD-COMPATIBLE) ───
+// Phase 15 floor semantics: once Phase 15 has fully landed (87 entries), the count must be at least 87.
+// Phase 16+ catalog growth (>87) keeps this PASS — exact-count assertion would create a false regression for forward phases.
 assertSkippable(() => {
   const idMatches = (dbSrc.match(/^\s{4}id:\s*['"][^'"]+['"]/gm) || []).length;
   if (idMatches < 64) return undefined;     // pre-baseline catalog drift — SKIP
   if (idMatches === 64) return undefined;   // baseline = pre-W2 — SKIP
   // Mid-band: between Plan 15-01 (lands 12 → 76) and Plan 15-02 (lands 11 → 87) the count is 65..86 — SKIP.
   if (idMatches > 64 && idMatches < 87) return undefined;
-  return idMatches === 87;
-}, 'W2-3.CAT-09.count: plantDatabase.ts has exactly 87 entry id declarations (64 + 23)');
+  return idMatches >= 87;
+}, 'W2-3.CAT-09.count: plantDatabase.ts has at least 87 entry id declarations (Phase 15 floor; +1 per Phase 16 entry)');
 
 // ─── CAT-10 placeholders (each id has en + es key block) ───
 PHASE_15_IDS.forEach(id => {

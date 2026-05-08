@@ -2766,6 +2766,206 @@
     "placementAvoid": "Constantly damp soil (root rot) and midday direct sun (leaf scorch).",
     "whyRationale": "Native to Central American wetlands — its swollen trunk stores water to tolerate seasonal drought. Its tolerance to missed waterings comes from that adaptation to cyclic flooding-drought."
   },
+  "nopal": {
+    "name": "Prickly Pear (Nopal)",
+    "tip": "Heavy, infrequent watering; full sun; tolerates light frosts.",
+    "description": "The Prickly Pear (Opuntia ficus-indica) is a shrubby cactus native to Mexico with fleshy pads (cladodes) that store water. It produces yellow flowers and the well-known edible fruits called tunas. Lives outdoors or in very large pots; perfect for arid climates and sunny patios.",
+    "problems": [
+      { "symptom": "Rot at the base", "cause": "Overwatering or waterlogged substrate", "solution": "Drastically reduce watering and improve drainage (mix with perlite and coarse sand)." },
+      { "symptom": "Cottony scale", "cause": "Typical Opuntia pest", "solution": "Clean with a brush and 70% isopropyl alcohol on affected areas; treat with potassium soap." },
+      { "symptom": "Cold damage below 0°C prolonged", "cause": "Frost", "solution": "Cover with frost cloth on freezing nights, or move it under cover if potted." }
+    ],
+    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted worm compost every 3 months in warm season" },
+    "careAction": { "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings." },
+    "placementRecommended": "Full outdoor sun — patio, terrace, balcony with direct midday sun.",
+    "placementAlternatives": [
+      "Large pot with generous drainage",
+      "Bed in sandy or gravelly soil",
+      "Wall facing north (SH) or south (NH) with full sun all day"
+    ],
+    "placementAvoid": "Waterlogged substrate and prolonged temperatures below 5°C.",
+    "whyRationale": "Cactus from Mexican arid lands — CAM metabolism closes stomata by day and fixes CO2 at night; its pads are modified stems that store water. Nocturnal photosynthesis is the key to its desert tolerance."
+  },
+  "mammillaria": {
+    "name": "Ladyfinger Cactus (Mammillaria)",
+    "tip": "Ladyfinger cactus: full sun and spaced watering; flowers in an apical crown in spring.",
+    "description": "Mammillaria elongata (ladyfinger cactus) is a clumping Mexican cactus: its cylindrical stems covered in golden spines form dense colonies. It blooms in a crown at the top as days lengthen. Ideal for sunny indoor shelves.",
+    "problems": [
+      { "symptom": "Stretched and pale stems", "cause": "Lack of direct light", "solution": "Move closer to a window with direct morning sun for at least 4-6 hours." },
+      { "symptom": "Rot at the base", "cause": "Overwatering or heavy substrate", "solution": "Let dry completely between waterings; use cactus substrate with perlite and coarse sand." },
+      { "symptom": "Mealybugs between tubercles", "cause": "Frequent pest", "solution": "Apply 70% alcohol with a swab on affected areas and ventilate the plant." }
+    ],
+    "nutrients": { "type": "Low NPK specific for cactus", "homemade": "Heavily diluted compost tea every 2 months in warm season" },
+    "careAction": { "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings." },
+    "placementRecommended": "Near a south window (NH) or north window (SH) with direct morning sun.",
+    "placementAlternatives": [
+      "Bright shelf with filtered midday sun",
+      "Kitchen counter with good natural light",
+      "Covered balcony with direct morning sun"
+    ],
+    "placementAvoid": "Corners without direct light and damp substrate for more than 7 days in a row.",
+    "whyRationale": "Mexican clumping cactus — its tubercles store water and its spines reflect light to reduce transpiration. Blooms in an apical crown as days lengthen: photoperiod triggers spring flowering."
+  },
+  "cactus-navidad": {
+    "name": "Christmas Cactus",
+    "tip": "Reduce watering in autumn to induce flowering; needs long nights (>13h darkness).",
+    "description": "Christmas Cactus (Schlumbergera × buckleyi) is NOT a desert cactus: it's an epiphyte from Brazilian forests that grows on trees in partial shade. Its segmented stems are photosynthetic and it blooms in December-January if given the long-night cue in autumn.",
+    "problems": [
+      { "symptom": "Flower bud drop", "cause": "Sudden temperature or light shifts", "solution": "Don't move it during flowering; keep environment stable between 15-22°C." },
+      { "symptom": "Wrinkled stems and rot", "cause": "Overwatering in heavy substrate", "solution": "Let the top layer dry between waterings; use airy substrate with bark." },
+      { "symptom": "No flowers", "cause": "Insufficient long-night cue", "solution": "In autumn, give it 13-14h of nightly darkness for 6 weeks and reduce watering." }
+    ],
+    "nutrients": { "type": "Low nitrogen; high phosphorus and potassium (flowering)", "homemade": "Banana peel tea every 3 weeks in autumn-winter" },
+    "careAction": { "fixed": "Water every 7 days in warm season; every 14 in cold. Reduce in autumn to induce flowering." },
+    "placementRecommended": "Near an east window — bright indirect light, soft mornings.",
+    "placementAlternatives": [
+      "High shelf where its stems can hang",
+      "Bright room with filtering curtain",
+      "Covered porch without direct sun"
+    ],
+    "placementAvoid": "Direct midday sun (burns the segments) and temperatures below 10°C.",
+    "whyRationale": "Not a desert cactus: an epiphyte from Brazilian forest — grows on trees in partial shade. Its segmented stems are photosynthetic and it blooms with long nights (>13h darkness) in autumn."
+  },
+  "kalanchoe": {
+    "name": "Kalanchoe",
+    "tip": "Blooms with short days. For flowers, give it 14 hours of darkness per night.",
+    "description": "Kalanchoe blossfeldiana is a Madagascan crassulaceous succulent with toothed fleshy leaves and showy pink, red, orange, or white flower clusters. Tolerates missed waterings but needs prolonged nightly darkness to flower again.",
+    "problems": [
+      { "symptom": "No flowers", "cause": "Insufficient night darkness", "solution": "Cover for 14h per night for 6 weeks to induce flowering." },
+      { "symptom": "Soft, translucent leaves", "cause": "Overwatering", "solution": "Let the substrate dry out; its rhizomes rot quickly with constant moisture." },
+      { "symptom": "Leggy growth between leaves", "cause": "Insufficient light", "solution": "Move closer to a window with bright indirect sun." }
+    ],
+    "nutrients": { "type": "Low nitrogen, high phosphorus (flowering)", "homemade": "Banana peel tea every 3 weeks during flowering" },
+    "careAction": { "fixed": "Water every 10 days in warm season; every 21 days in cold. Let dry well between waterings." },
+    "placementRecommended": "Window with filtered sun or bright indirect light.",
+    "placementAlternatives": [
+      "Shelf near south window (SH) with translucent curtain",
+      "Covered balcony without direct midday sun",
+      "Kitchen counter with good natural light"
+    ],
+    "placementAvoid": "Constantly moist substrate and low light.",
+    "whyRationale": "Madagascan crassulaceous succulent with CAM photosynthesis: closes stomata by day, fixes CO2 at night. Blooms with long nights (>14h darkness) — its photoperiodic clock needs that contrast to set buds."
+  },
+  "siempreviva": {
+    "name": "Common Houseleek",
+    "tip": "Tolerates extreme cold; after flowering, the mother rosette dies but leaves many offsets.",
+    "description": "Common Houseleek (Sempervivum tectorum) is a crassulaceous from the European Alps and Pyrenees with dense rosettes that produce offsets around the mother. It's monocarpic: the matrix flowers once and dies, but its offspring continue the colony. Withstands frosts down to -10°C.",
+    "problems": [
+      { "symptom": "Stretching from the center", "cause": "Lack of direct light", "solution": "Move to a spot with full sun or bright indirect light at least 6h daily." },
+      { "symptom": "Rot in the central rosette", "cause": "Waterlogged substrate", "solution": "Let dry between waterings and use a clay pot with full drainage." },
+      { "symptom": "Mother rosette dries after flowering", "cause": "Normal monocarpic behavior", "solution": "It's not death: cut the dry stalk; the offsets around it will continue." }
+    ],
+    "nutrients": { "type": "Very low NPK", "homemade": "Diluted compost tea every 4 months in warm season" },
+    "careAction": { "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings." },
+    "placementRecommended": "Full sun or bright indirect — tolerates frosts down to -10°C outdoors.",
+    "placementAlternatives": [
+      "Clay pot with full drainage",
+      "Rocky bed in full sun",
+      "Bright shelf facing south (NH) or north (SH)"
+    ],
+    "placementAvoid": "Waterlogged substrate and corners without direct light.",
+    "whyRationale": "European mountain crassulaceous — its rosette habit retains water and minimizes cold-exposed surface. It's monocarpic: the mother flowers once and dies, but leaves dozens of offsets that replace her."
+  },
+  "gasteria": {
+    "name": "Lawyer's Tongue (Gasteria)",
+    "tip": "Lawyer's tongue: tolerates more shade than a cactus; ideal for bright desks.",
+    "description": "Gasteria bicolor is a South African asphodelaceous succulent related to Aloe; its fleshy leaves are arranged in two rows (distichous) and are mottled. Unlike most succulents, it tolerates bright indirect light — a rare exception that makes it ideal for less-sunny interiors.",
+    "problems": [
+      { "symptom": "Burned leaves with brown patches", "cause": "Direct midday sun", "solution": "Move to bright indirect light; tolerates less sun than most cactaceae." },
+      { "symptom": "Rot at the base", "cause": "Overwatering", "solution": "Let dry completely between waterings; use succulent substrate with perlite." },
+      { "symptom": "Scale on leaf undersides", "cause": "Common pest", "solution": "Clean with a swab and 70% alcohol; check between the distichous leaves." }
+    ],
+    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted compost tea every 3 months in warm season" },
+    "careAction": { "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings." },
+    "placementRecommended": "Bright indirect light — more shade than a typical cactus.",
+    "placementAlternatives": [
+      "Shelf near an east-facing window",
+      "Counter with light filtered through a curtain",
+      "Bright office shelf or hallway"
+    ],
+    "placementAvoid": "Direct midday sun and waterlogged substrate.",
+    "whyRationale": "South African asphodelaceous succulent of arid understories — distichous (two-row) leaves store water and tolerate partial shade. Its modified CAM lets it thrive where a full-sun cactus could not."
+  },
+  "piedras-vivas": {
+    "name": "Living Stones (Lithops)",
+    "tip": "Almost never water: absolute summer dormancy; touch the soil only in autumn-winter.",
+    "description": "Living Stones (Lithops lesliei) are South African Aizoaceae mesembs that mimic stones in their habitat. They have an annual leaf-replacement cycle: the new pair absorbs water from the old pair. Absolute summer dormancy — a single warm-season watering can split them open.",
+    "problems": [
+      { "symptom": "Split or cracked leaves", "cause": "Watering during summer dormancy", "solution": "Suspend watering completely from November to March (SH); old leaves should absorb on their own." },
+      { "symptom": "Wrinkled leaves in autumn-winter", "cause": "Insufficient watering during active period", "solution": "In autumn-winter water every 30 days after the soil is completely dry." },
+      { "symptom": "Fungal rot at the base", "cause": "Prolonged humid air", "solution": "Ventilate the pot and keep substrate very mineral; repot if rot has progressed." }
+    ],
+    "nutrients": { "type": "No supplemental fertilization needed", "homemade": "Not applicable — mineral substrate is enough" },
+    "careAction": { "soilCheck": "Touch the soil only in autumn-winter; keep completely dry all summer (dormancy)." },
+    "placementRecommended": "Direct morning sun — east-facing window, covered balcony with morning sun.",
+    "placementAlternatives": [
+      "Shallow pot with full drainage",
+      "Shelf facing south (NH) with translucent curtain",
+      "Kitchen counter with direct light"
+    ],
+    "placementAvoid": "Watering in midsummer (absolute dormancy) and prolonged humid air.",
+    "whyRationale": "South African Aizoaceae mesemb — annual leaf-replacement cycle: the new pair absorbs water from the old pair. Absolute summer dormancy — a single summer watering can split it open as old leaves rehydrate and burst."
+  },
+  "senecio-rowleyanus": {
+    "name": "String of Pearls (Curio rowleyanus)",
+    "tip": "Hanging basket with bright indirect light; reclassified as Curio (formerly Senecio).",
+    "description": "String of Pearls (Curio rowleyanus, formerly Senecio rowleyanus) is a South African Asteraceae succulent with spherical leaves that look like pearls. They store water and limit evaporative surface. Trailing habit ideal for hanging baskets; tolerates forgetfulness but hates waterlogging.",
+    "problems": [
+      { "symptom": "Wrinkled, dry pearls", "cause": "Prolonged underwatering", "solution": "Water deeply when pearls look soft; they recover turgor in 2-3 days." },
+      { "symptom": "Soft, mushy pearls", "cause": "Overwatering", "solution": "Let dry completely between waterings; check that the substrate drains well." },
+      { "symptom": "Pearl drop in cold", "cause": "Drafts below 10°C", "solution": "Move away from cold windows and doors in winter; keep above 12°C." }
+    ],
+    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted compost tea every 3 months in warm season" },
+    "careAction": { "fixed": "Water every 10 days in warm season; every 21 in cold. Let dry well between waterings." },
+    "placementRecommended": "Hanging basket with bright indirect light — near an east-facing window.",
+    "placementAlternatives": [
+      "High shelf where pearls can drape",
+      "Bright shelf with filtering curtain",
+      "Hanging planter in a lit room"
+    ],
+    "placementAvoid": "Direct midday sun (burns pearls) and cold drafts below 10°C.",
+    "whyRationale": "South African Asteraceae succulent — its spherical leaves (pearls) store water and limit evaporative surface. Grows under arid canopy: tolerates forgetfulness but hates waterlogging."
+  },
+  "corona-espinas": {
+    "name": "Crown of Thorns",
+    "tip": "Toxic when cut (white latex) — wear gloves when pruning; near-continuous flowering with sun.",
+    "description": "Crown of Thorns (Euphorbia milii) is a Madagascan thorny spurge with a cactus-like appearance — but it's NOT Cactaceae: it's evolutionary convergence. Its small, showy bracts (pink, red, yellow) replace petals. Its white sap is toxic when cut.",
+    "problems": [
+      { "symptom": "Leaf drop", "cause": "Lack of direct light", "solution": "Move it closer to a very bright window; it tolerates and prefers direct sun." },
+      { "symptom": "Rot at the base", "cause": "Overwatering", "solution": "Let dry completely between waterings; use very well-draining substrate." },
+      { "symptom": "Skin irritation when pruning", "cause": "Toxic latex", "solution": "Always wear gloves; on skin contact, wash with plenty of soap. Don't cut with children nearby." }
+    ],
+    "nutrients": { "type": "Low-moderate NPK with extra phosphorus (flowering)", "homemade": "Banana peel tea every 4 weeks in warm season" },
+    "careAction": { "fixed": "Water every 10 days in warm season; every 21 in cold. Wear gloves when handling or pruning." },
+    "placementRecommended": "Full sun or direct light — south window (NH) or north (SH) with plenty of sun.",
+    "placementAlternatives": [
+      "Covered balcony in direct sun",
+      "Clay pot with generous drainage",
+      "Bright shelf with morning and mid-afternoon sun"
+    ],
+    "placementAvoid": "Dark corners (no flowering) and waterlogged substrate.",
+    "whyRationale": "Madagascan thorny spurge — its cactus-like appearance is evolutionary convergence, not true Cactaceae. White milky sap is toxic when cut. Near-continuous bloom in direct light because its bracts replace petals."
+  },
+  "agave": {
+    "name": "Century Plant (Agave)",
+    "tip": "One-time monocarpic flowering after decades — the mother rosette dies after but leaves offsets.",
+    "description": "Agave americana is a Mexican Asparagaceae monocot with a giant rosette of fleshy leaves bearing marginal spines and a terminal spine. Combines CAM photosynthesis with water storage in leaves. It's monocarpic: after decades it sends up a giant stalk, blooms, seeds, and dies.",
+    "problems": [
+      { "symptom": "Rot in the center of the rosette", "cause": "Waterlogged substrate", "solution": "Drastically reduce watering; improve drainage with coarse sand and perlite." },
+      { "symptom": "Scale at the base of leaves", "cause": "Common outdoor pest", "solution": "Clean with brush and soapy water; treat with potassium soap if it persists." },
+      { "symptom": "Painful prick when handling", "cause": "Sharp marginal and terminal spines", "solution": "Use thick gloves; cut the terminal spine if it ends up in a walking area." }
+    ],
+    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted worm compost once a year in warm season" },
+    "careAction": { "fixed": "Water every 21 days in warm season; every 60 in cold. Let dry completely between waterings." },
+    "placementRecommended": "Full outdoor sun — patio, terrace, garden.",
+    "placementAlternatives": [
+      "Large pot with full drainage",
+      "Rocky bed in full sun",
+      "South wall (NH) with direct sun all day"
+    ],
+    "placementAvoid": "Waterlogged substrate and corners without full sun.",
+    "whyRationale": "Xerophytic rosette succulent — CAM photosynthesis + water storage in fleshy leaves. One-time monocarpic flowering after decades: the mother sends up a giant stalk, blooms, seeds, and dies — but leaves offsets behind."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",
