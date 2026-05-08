@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
-status: phase-complete
-stopped_at: Completed 17-04-PLAN.md
-last_updated: "2026-05-08T16:28:06.780Z"
-last_activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation — Phase 17 Wave C accepted-known block appended to CLAUDE.md; cumulative v1.2 image backlog 69 entries; v1.2 catalog expansion fully closed at 118 entries). 1 file, 1 task, ~2 min.
+status: completed
+stopped_at: Completed 17-03-PLAN.md (parallel with 17-04)
+last_updated: "2026-05-08T16:30:30.482Z"
+last_activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation; Phase 17 Wave C accepted-known block appended to CLAUDE.md; v1.2 catalog expansion fully closed at 118 entries; Phase 17 fully closed). 1 file, 1 task, ~2 min.
 progress:
   total_phases: 15
   completed_phases: 8
@@ -187,6 +187,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 17]: Plan 17-02: Sub-batch B appended (6 CAT-18 + CAT-19 entries; 112 → 118 — CAT-21 closes). 3 aromáticas (salvia-officinalis/eneldo/stevia) + 3 frutales/huerta (olivo/arandano/espinaca). Aromáticas outdoor:false honored per CONTEXT lock despite researcher discrepancy with existing aromáticas precedent (albahaca/romero/menta/cilantro/perejil/ciboulette all use outdoor:true) — surfaced for user awareness, no unilateral flip. arandano frutales (Q3 default — woody perennial like limonero) + soil_check + ericaceous lexicon cross-referenced from azalea Plan 17-01. olivo tree-realism framing carried forward from magnolia Plan 17-01. espinaca tempMax:25 (Pitfall 4 bolt-flag).
 - [Phase 17]: Plan 17-02: salvia-officinalis distinct top-level i18n namespace from salvia-ornamental (Phase 16 sansevieria-cilindrica precedent applied verbatim) — both keys coexist as siblings in plants.json, never nested under shared parent. Verified via Node parse: salvia-officinalis ✓ + salvia-ornamental ✓ + shared salvia parent ✗ in BOTH en + es. salvia-ornamental entry at plantDatabase.ts:2110 + plants.json:2107 untouched (git diff ADDS only). scientificNames distinct: Salvia officinalis vs Salvia splendens — zero collision. Phase 16 exact-match-first refactor (inherited unchanged) protects routing. Pattern reusable for any future genus-level species splits.
 - [Phase 17]: Plan 17-02: CAT-21 final assertion idMatches===118 satisfied — closes the entire v1.2 catalog expansion content layer (Phases 15 + 16 + 17 = 54 net-new entries from v1.1 baseline 64 → 118). Phase 17 W2 closed (CAT-17/18/19 fully + CAT-20 keyset + CAT-21 all PASS). Only documentation-only requirements remain: CAT-20 routing in Plan 17-03 (COMMON_NAMES_ES extension for 14 Phase 17 entries) + CAT-20 image plan in Plan 17-04 (CLAUDE.md "Phase 17 Wave C" image-deferral block). Plans 17-03 + 17-04 are file-disjoint (plantIdentification.ts vs CLAUDE.md) and parallelizable. Cumulative v1.2 image-upload backlog will reach 69 entries after Plan 17-04 (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17).
+- [Phase 17]: Plan 17-03: COMMON_NAMES_ES extension is APPEND-ONLY when adding catalog batches (mirrors Phase 15 Plan 15-03 + Phase 16 Plan 16-03); 27 net-new entries (14 species-qualified canonical + 8 net-new genus aliases + 5 legacy synonym aliases) appended before closing `};`; existing 100+ entries verbatim — git diff |grep '^-' returns 0 (49 insertions only).
+- [Phase 17]: Plan 17-03: Selective genus alias pattern reinforced — 8 ADD (Dianthus/Chrysanthemum/Tulipa/Helianthus/Magnolia/Anethum/Olea/Spinacia — single display name / monotypic / cultivated-only) + 3 OMIT (Stevia ~240 spp / Vaccinium divergent display names — V. myrtillus = European blueberry, V. macrocarpon = cranberry / Salvia >900 spp + collision-with-salvia-ornamental Salvia splendens). Mirrors Phase 16 Echinopsis pattern. Pattern reusable for any future catalog wave needing same large/divergent-genus discipline.
+- [Phase 17]: Plan 17-03: POWO 2024 × Unicode hybrid symbols preserved verbatim at-source — Chrysanthemum × morifolium and Fuchsia × hybrida use actual × character (U+00D7 Multiplication Sign), continuing the Phase 16 Schlumbergera × buckleyi convention. POWO canonical names sourced at-key.
+- [Phase 17]: Plan 17-03: Existing 'Rhododendron' (line 88) / 'Cyclamen' (line 89) / 'Fuchsia' (line 84) genus mappings cover fallback for azalea/ciclamen/fucsia even without species-qualified additions — but Plan 17-03 ADDS species-qualified keys ('Rhododendron simsii' / 'Cyclamen persicum' / 'Fuchsia magellanica') on top to lock canonical routing via Phase 16-00 exact-match-first refactor (sentinel `const exactMatch = PLANT_DATABASE.find` count = 1 preserved post-edit). Magnolia stellata canonical (Q4 default — RHS small-garden 3m dwarf form per Plan 17-01) + Magnolia grandiflora retained as legacy synonym alias to absorb PlantNet drift if user identifies a grandiflora variety.
+- [Phase 17]: Plan 17-03: Salvia officinalis species-qualified ONLY (Pitfall 1 — DO NOT add 'Salvia' genus alias). Mirrors existing 'Salvia rosmarinus' species-qualified pattern at line 65 — multiply-routed-genus is established safe approach. Phase 16 exact-match-first refactor (inherited unchanged) protects against genus collision with salvia-ornamental (Salvia splendens). 5 legacy synonym aliases (≤2 per entry budget): Rhododendron indicum (Japanese-azalea drift), Tulipa hybrida (older horticultural designation), Magnolia grandiflora (Q4 alternative variant), Fuchsia × hybrida (commercial cultivar mix), Chrysanthemum indicum (parent species — sometimes returned by PlantNet). Phase 17 species are taxonomically more stable than Phase 16's (5 synonym aliases vs Phase 16's 8).
 - [Phase 17]: Plan 17-04: Phase 17 Wave C accepted-known image-upload backlog appended to CLAUDE.md (14 net-new ids in 3 sub-batch lines: 8 exterior flores + 3 aromáticas + 3 frutales/huerta). Cumulative v1.2 image-upload backlog now 69 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17). Closing paragraph cites 'Phase 17 closes the v1.2 catalog expansion at 118 entries' as milestone-closure marker. 4 separate Accepted-known blocks now coexist; shared 'Image upload steps' procedure remains cross-cutting. CAT-20 image-plan portion CLOSED — W3.CAT-20.imagePlan SKIP→PASS in all 3 phase17-smoke modes (default 40/54, --identification 54/68, --routing-fix 68/68 full PASS). +8 LOC, 0 deletions. Phase 17 documentation side fully closed; 14 W3.CAT-20.* per-id SKIPs owned by parallel Plan 17-03 (file-disjoint). v1.2 catalog expansion fully closed — Phase 17 is the final catalog wave; ROADMAP next phase = Phase 18 (PlantCard Cleanup + Mood Emoji).
 
 ### Pending Todos
@@ -202,6 +207,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T16:28:06.777Z
-Stopped at: Completed 17-04-PLAN.md
+Last session: 2026-05-08T16:30:30.479Z
+Stopped at: Completed 17-03-PLAN.md (parallel with 17-04)
 Resume file: None

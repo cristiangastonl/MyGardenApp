@@ -183,7 +183,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [ ] 17-01-PLAN.md — Wave 1: Sub-batch A (8 exterior flores — azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-17)
   - [ ] 17-02-PLAN.md — Wave 2: Sub-batch B (6 entries: 3 aromáticas + 3 frutales/huerta — salvia-officinalis, eneldo, stevia, olivo, arandano, espinaca) — closes CAT-17/18/19 (118 entries) + CAT-20 keysets + CAT-21 final count assertion
   - [ ] 17-03-PLAN.md — Wave 3 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts — 14 species-qualified mappings + 8 selective genus aliases + 5 legacy synonym aliases (CAT-20 routing)
-  - [ ] 17-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 14 NEW Phase 17 entries documented as accepted-known failures (CAT-20 image plan)
+  - [x] 17-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 14 NEW Phase 17 entries documented as accepted-known failures (CAT-20 image plan) (completed 2026-05-08)
 
 ### Phase 18: PlantCard Cleanup + Mood Emoji
 **Goal**: PlantCard is reduced to 5 visual elements; swipe-to-delete and long-press menu replace the in-card trash button; mood emoji is always visible as the health affordance
