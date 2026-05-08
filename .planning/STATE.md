@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 5
-status: "**Phase 17 IN PROGRESS.** Plan 17-01 landed Sub-batch A (8 CAT-17 exterior flores: tulipan/ciclamen/crisantemo bulb-dormancy soil_check + azalea/clavel/fucsia ericaceous/caryophyllaceae/onagraceae shrubs + girasol/magnolia annual+tree). PLANT_DATABASE 104 → 112 (mid-band SKIP); 8 W1.CAT-17 + 8 W2.CAT-20.keyset + 8 IDENT.CAT-20 + 8 W2.ROUTING-FIX SKIPs flipped to PASS. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline carried forward (max ES=243, max EN=243; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). LATAM ciclamen indoor-pot lock honored (outdoor:false + category:'interior'). Magnolia stellata Q4 default + tree-realism framing locked. Pitfall locks 3/5/7/8 all cited per-entry. Rule 3 deviation: phase16-smoke.cjs CAT-counts.total `=== 104` → `>= 104` floor (forward-compat for natural catalog growth, same pattern as Phase 16's fix to phase15-smoke). **Next:** Plan 17-02 (3 CAT-18 aromáticas + 3 CAT-19 frutales/huerta — closes CAT-21 final assertion idMatches === 118 + the entire v1.2 catalog expansion)."
-stopped_at: Completed 17-01-PLAN.md
-last_updated: "2026-05-08T16:07:17.454Z"
-last_activity: 2026-05-08 — Phase 17 Plan 01 complete (Sub-batch A — 8 CAT-17 exterior flores; 104 → 112 entries; Rule 3 phase16-smoke deviation). 4 files, 2 tasks, 8 min.
+current_plan: 3 of 5
+status: executing
+stopped_at: Completed 17-02-PLAN.md
+last_updated: "2026-05-08T16:22:48.963Z"
+last_activity: 2026-05-08 — Phase 17 Plan 02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; 112 → 118 entries; CAT-21 closed; v1.2 catalog expansion content layer complete). 3 files, 2 tasks, 7 min.
 progress:
   total_phases: 15
   completed_phases: 7
   total_plans: 40
-  completed_plans: 38
+  completed_plans: 39
   percent: 100
 ---
 
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **IN PROGRESS**
-Current Plan: 2 of 5
-Plan: 17-01 complete (Sub-batch A — 8 CAT-17 exterior flores; PLANT_DATABASE 104 → 112; CAT-counts.total stays SKIP at mid-band; CAT-17 fully closed).
-Status: **Phase 17 IN PROGRESS.** Plan 17-01 landed Sub-batch A (8 CAT-17 exterior flores: tulipan/ciclamen/crisantemo bulb-dormancy soil_check + azalea/clavel/fucsia ericaceous/caryophyllaceae/onagraceae shrubs + girasol/magnolia annual+tree). PLANT_DATABASE 104 → 112 (mid-band SKIP); 8 W1.CAT-17 + 8 W2.CAT-20.keyset + 8 IDENT.CAT-20 + 8 W2.ROUTING-FIX SKIPs flipped to PASS. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline carried forward (max ES=243, max EN=243; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). LATAM ciclamen indoor-pot lock honored (outdoor:false + category:'interior'). Magnolia stellata Q4 default + tree-realism framing locked. Pitfall locks 3/5/7/8 all cited per-entry. Rule 3 deviation: phase16-smoke.cjs CAT-counts.total `=== 104` → `>= 104` floor (forward-compat for natural catalog growth, same pattern as Phase 16's fix to phase15-smoke). **Next:** Plan 17-02 (3 CAT-18 aromáticas + 3 CAT-19 frutales/huerta — closes CAT-21 final assertion idMatches === 118 + the entire v1.2 catalog expansion).
-Last activity: 2026-05-08 — Phase 17 Plan 01 complete (Sub-batch A — 8 CAT-17 exterior flores; 104 → 112 entries; Rule 3 phase16-smoke deviation). 4 files, 2 tasks, 8 min.
+Current Plan: 3 of 5
+Plan: 17-02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; PLANT_DATABASE 112 → 118; CAT-21 final assertion idMatches===118 PASS; CAT-18 + CAT-19 fully closed; CAT-20 keyset fully closed for 14 entries; v1.2 catalog expansion content layer complete).
+Status: **Phase 17 IN PROGRESS.** Plan 17-02 landed Sub-batch B (3 CAT-18 aromáticas: salvia-officinalis/eneldo/stevia + 3 CAT-19 frutales/huerta: olivo/arandano/espinaca). PLANT_DATABASE 112 → 118; CAT-21 final assertion idMatches===118 satisfied — closes the entire v1.2 catalog expansion content layer. salvia-officinalis distinct top-level i18n namespace from salvia-ornamental (Phase 16 sansevieria-cilindrica precedent applied verbatim). arandano ericaceous soil_check + cross-references azalea Plan 17-01 lexicon (pH 4.5-5.5 + agua blanda + micorrizas obligadas). olivo tree-realism framing + Mendoza/Cuyo Arauco endémico nacional. espinaca cool-season bolt risk locked tempMax:25 (Pitfall 4). Aromáticas outdoor:false honored per CONTEXT lock; researcher discrepancy with existing aromáticas precedent (albahaca/romero/menta/cilantro/perejil/ciboulette all use outdoor:true) surfaced for user awareness — no unilateral flip. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline preserved (max ES=212 eneldo, max EN=217 olivo; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). 6 W2.CAT-18/19 + 6 W2.CAT-20.keyset + 6 IDENT.CAT-20 + 6 W2.ROUTING-FIX + 1 CAT-counts.total SKIPs flipped to PASS (phase17-smoke 39/54 → was 26/54). Cross-phase regressions clean: phase15 81/81, phase16 69/69, phase16 --routing-fix 92/92. **Next:** Plans 17-03 + 17-04 in parallel (COMMON_NAMES_ES routing closure for 14 Phase 17 entries + CLAUDE.md "Phase 17 Wave C" image-plan documentation — file-disjoint).
+Last activity: 2026-05-08 — Phase 17 Plan 02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; 112 → 118 entries; CAT-21 closed; v1.2 catalog expansion content layer complete). 3 files, 2 tasks, 7 min.
 
 Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
@@ -72,6 +72,7 @@ Progress: [██████████] 100% (v1.2 in progress — Phase 16 f
 | Phase 16 P04 | 3min | 1 tasks | 1 files |
 | Phase 17 P00 | 4min | 2 tasks | 3 files |
 | Phase 17 P01 | 8min | 2 tasks | 4 files |
+| Phase 17 P02 | 7min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -181,6 +182,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 17]: Plan 17-01: Sub-batch A appended (8 CAT-17 exterior flores; 104 → 112). Bulb/dormancy + ericaceous (4 entries) use waterMode soil_check + careAction.soilCheck; Mediterranean/annual/tree (4 entries) use fixed. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline preserved (max whyRationale ES=243 EN=243 chars; voseo regex unchanged at es/plants.json=2 + plantDatabase.ts=0).
 - [Phase 17]: Plan 17-01: Rule 3 deviation — phase16-smoke.cjs CAT-counts.total assertion bumped from `=== 104` to `>= 104` floor (forward-compat for natural catalog growth across phases). Same pattern as Phase 16's earlier Rule 3 fix to phase15-smoke (`=== 87` → `>= 87`). Reusable cross-phase pattern: every phase that grows the catalog must bump the previous phase's smoke runner CAT-counts gate to `>= floor`.
 - [Phase 17]: Plan 17-01: ciclamen LATAM indoor-pot lock honored (category:'interior' + outdoor:false despite phase name 'Exterior + Aromáticas + Frutales'); description explicitly notes 'En LATAM se cultiva como pot interior de flor invernal-primaveral, no como planta de jardín'. Magnolia stellata locked as canonical (Q4 default — RHS small-garden 3m dwarf form); M. grandiflora 20m mentioned in description for context, scheduled as legacy alias in Plan 17-03.
+- [Phase 17]: Plan 17-02: Sub-batch B appended (6 CAT-18 + CAT-19 entries; 112 → 118 — CAT-21 closes). 3 aromáticas (salvia-officinalis/eneldo/stevia) + 3 frutales/huerta (olivo/arandano/espinaca). Aromáticas outdoor:false honored per CONTEXT lock despite researcher discrepancy with existing aromáticas precedent (albahaca/romero/menta/cilantro/perejil/ciboulette all use outdoor:true) — surfaced for user awareness, no unilateral flip. arandano frutales (Q3 default — woody perennial like limonero) + soil_check + ericaceous lexicon cross-referenced from azalea Plan 17-01. olivo tree-realism framing carried forward from magnolia Plan 17-01. espinaca tempMax:25 (Pitfall 4 bolt-flag).
+- [Phase 17]: Plan 17-02: salvia-officinalis distinct top-level i18n namespace from salvia-ornamental (Phase 16 sansevieria-cilindrica precedent applied verbatim) — both keys coexist as siblings in plants.json, never nested under shared parent. Verified via Node parse: salvia-officinalis ✓ + salvia-ornamental ✓ + shared salvia parent ✗ in BOTH en + es. salvia-ornamental entry at plantDatabase.ts:2110 + plants.json:2107 untouched (git diff ADDS only). scientificNames distinct: Salvia officinalis vs Salvia splendens — zero collision. Phase 16 exact-match-first refactor (inherited unchanged) protects routing. Pattern reusable for any future genus-level species splits.
+- [Phase 17]: Plan 17-02: CAT-21 final assertion idMatches===118 satisfied — closes the entire v1.2 catalog expansion content layer (Phases 15 + 16 + 17 = 54 net-new entries from v1.1 baseline 64 → 118). Phase 17 W2 closed (CAT-17/18/19 fully + CAT-20 keyset + CAT-21 all PASS). Only documentation-only requirements remain: CAT-20 routing in Plan 17-03 (COMMON_NAMES_ES extension for 14 Phase 17 entries) + CAT-20 image plan in Plan 17-04 (CLAUDE.md "Phase 17 Wave C" image-deferral block). Plans 17-03 + 17-04 are file-disjoint (plantIdentification.ts vs CLAUDE.md) and parallelizable. Cumulative v1.2 image-upload backlog will reach 69 entries after Plan 17-04 (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17).
 
 ### Pending Todos
 
@@ -195,6 +199,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T16:07:17.452Z
-Stopped at: Completed 17-01-PLAN.md
+Last session: 2026-05-08T16:21:49.993Z
+Stopped at: Completed 17-02-PLAN.md
 Resume file: None
