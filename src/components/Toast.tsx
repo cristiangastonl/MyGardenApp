@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { Pressable, Text, StyleSheet } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 
 export interface ToastProps {
@@ -7,7 +8,7 @@ export interface ToastProps {
   message: string;
   actionLabel?: string;
   onAction?: () => void;
-  durationMs?: number;
+  durationMs?: number;   // default 4000
   onDismiss?: () => void;
 }
 
@@ -16,30 +17,59 @@ export interface ToastProps {
  * Phase 18 consumer: swipe-to-delete undo flow (PlantsScreen + TodayScreen).
  * Phase 22 consumer (forward-looking): GAM-01 celebration toasts.
  *
- * Skeleton landed in Plan 18-01 (Wave 0 scaffold). Full implementation
- * (Reanimated v4 slide-in, accessibilityLiveRegion, action button, auto-dismiss)
- * lands in Plan 18-02. Do NOT consume Toast at runtime until Plan 18-02 is complete.
+ * Slide-in from bottom via Reanimated v4. Auto-dismisses on durationMs.
+ * Optional action button (e.g., "Undo"). Announces via accessibilityLiveRegion.
+ *
+ * Placement: render at screen level (PlantsScreen / TodayScreen) — sibling of FlatList.
  */
-export function Toast(props: ToastProps): React.ReactElement | null {
-  // SKELETON — Plan 18-02 replaces with full Reanimated impl.
-  // Exporting a no-op render keeps the module loadable for tsc + smoke baseline.
-  if (!props.visible) return null;
+export function Toast({ visible, message, actionLabel, onAction, durationMs = 4000, onDismiss }: ToastProps) {
+  const translateY = useSharedValue(80);
+  const opacity = useSharedValue(0);
+
+  useEffect(() => {
+    if (visible) {
+      translateY.value = withTiming(0, { duration: 220, easing: Easing.out(Easing.cubic) });
+      opacity.value = withTiming(1, { duration: 220 });
+      const timer = setTimeout(() => {
+        translateY.value = withTiming(80, { duration: 180 });
+        opacity.value = withTiming(0, { duration: 180 });
+        onDismiss?.();
+      }, durationMs);
+      return () => clearTimeout(timer);
+    } else {
+      translateY.value = withTiming(80, { duration: 180 });
+      opacity.value = withTiming(0, { duration: 180 });
+    }
+  }, [visible, durationMs, onDismiss, translateY, opacity]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+    opacity: opacity.value,
+  }));
+
+  if (!visible) return null;
+
   return (
-    <View
-      style={styles.toast}
+    <Animated.View
+      style={[styles.toast, animatedStyle]}
       pointerEvents="auto"
       accessibilityLiveRegion="polite"
       accessibilityRole="alert"
     >
-      <Text style={styles.message}>{props.message}</Text>
-    </View>
+      <Text style={styles.message}>{message}</Text>
+      {actionLabel && (
+        <Pressable onPress={onAction} hitSlop={8}>
+          <Text style={styles.actionLabel}>{actionLabel}</Text>
+        </Pressable>
+      )}
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   toast: {
     position: 'absolute',
-    bottom: spacing.xxl + spacing.fabClearance,
+    bottom: spacing.xxl + spacing.fabClearance, // clears bottom tab + ExpandedFAB
     left: spacing.lg,
     right: spacing.lg,
     flexDirection: 'row',
@@ -52,4 +82,5 @@ const styles = StyleSheet.create({
     ...shadows.lg,
   },
   message: { fontFamily: fonts.body, fontSize: 14, color: colors.white, flex: 1 },
+  actionLabel: { fontFamily: fonts.bodySemiBold, fontSize: 14, color: colors.green, marginLeft: spacing.md },
 });
