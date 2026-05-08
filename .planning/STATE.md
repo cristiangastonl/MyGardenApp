@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 1 of 5
+current_plan: 2 of 5
 status: planning
-stopped_at: Completed 16-00-PLAN.md
-last_updated: "2026-05-08T03:41:22.169Z"
-last_activity: 2026-05-08 — Phase 16 Plan 00 complete (Wave 0 smoke runner + findPlantInDatabase refactor). 5 files. 3 tasks, 7 min.
+stopped_at: Completed 16-01-PLAN.md
+last_updated: "2026-05-08T05:16:35.942Z"
+last_activity: 2026-05-08 — Phase 16 Plan 01 complete (10 cactus/suculentas Sub-batch A). 4 files. 2 tasks, 18 min.
 progress:
   total_phases: 15
   completed_phases: 6
   total_plans: 35
-  completed_plans: 32
-  percent: 91
+  completed_plans: 33
+  percent: 97
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **IN PROGRESS**
-Current Plan: 1 of 5
-Plan: 16-00 complete (Wave 0 smoke runner + findPlantInDatabase exact-match-first refactor). Plans 16-01..04 remaining.
-Status: **Wave 0 closed.** scripts/phase16-smoke.cjs (396 LOC) wired with --identification + --routing-fix flags. Per-task feedback loop unblocked. findPlantInDatabase refactor closes Dracaena fragrans → sansevieria pre-existing collision (now correctly routes to dracaena). 6 W0.ROUTING-FIX probes PASS via ts.transpileModule + Module._resolveFilename intercept. Wave 0 baseline: 14/69 default, 16/88 --identification, 20/92 --routing-fix (post-refactor). Phase 15 smoke runner remains 81/81 + 104/104 (zero regression). Voseo baseline preserved at 2. **Next:** Plan 16-01 (Wave 1 — 10 cactus/suculentas content authoring) ready to plan.
-Last activity: 2026-05-08 — Phase 16 Plan 00 complete (Wave 0 smoke runner + findPlantInDatabase refactor). 5 files. 3 tasks, 7 min.
+Current Plan: 2 of 5
+Plan: 16-01 complete (Wave 1 — 10 cactus/suculentas content authoring). Plans 16-02..04 remaining.
+Status: **Wave 1 (Sub-batch A) closed.** 10 cactus/suculentas entries (3 cactus + 3 crassulaceae + 1 mesemb + 1 asteraceae + 2 outliers) appended with full Phase 14 EDU schema; catalog 87 → 97 (mid-band toward Plan 16-02's 104). Lithops gets custom dormancy whyRationale + only careAction.soilCheck in batch. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=221, EN=216 (≤250 from draft). phase16 PASS 14→34 default / 16→46 --identification / 20→50 --routing-fix. phase15 smoke runner made forward-compat (>= 87 floor instead of === 87) — Rule 3 deviation, preserves Phase 15 invariants without manufacturing false regressions. **Next:** Plan 16-02 (Wave 1 — remaining 7 net-new entries: hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro).
+Last activity: 2026-05-08 — Phase 16 Plan 01 complete (10 cactus/suculentas Sub-batch A). 4 files. 2 tasks, 18 min.
 
-Progress: [█████████░] 91% (v1.2 in progress — 33/35 plans complete; Phase 16 Plans 16-01..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
+Progress: [█████████▉] 97% (v1.2 in progress — 34/35 plans complete; Phase 16 Plans 16-02..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
 ## Performance Metrics
 
@@ -66,6 +66,7 @@ Progress: [█████████░] 91% (v1.2 in progress — 33/35 plans
 | Phase 15 P03 | 2 min | 1 tasks | 1 files |
 | Phase 15 P04 | 3 min | 1 tasks | 1 files |
 | Phase 16 P00 | 7min | 3 tasks | 5 files |
+| Phase 16 P01 | 18min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -150,6 +151,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 16]: Plan 16-00: findPlantInDatabase refactored to exact-match-first (5 net-new lines) — fixes pre-existing Dracaena fragrans → sansevieria latent collision; pre-locks routing for Phase 16 Dracaena entries (bambu-suerte, sansevieria-cilindrica) arriving in Plan 16-02
 - [Phase 16]: Plan 16-00: Mid-band SKIP window for catalog count (idMatches > 87 && idMatches < 104 → undefined) mirrors Phase 15's 64→87 pattern verbatim; Plan 16-01 lands 10 ids → mid-band SKIP at 97; Plan 16-02 lands final 7 → PASS at 104
 - [Phase 16]: Plan 16-00: Phase-15-era Sedum duplicate (sedum line 1842 + cola-burro line 2761 both → Sedum morganianum) NOT fixed in Phase 16 per RESEARCH §Pitfall 9 — out of scope, future maintenance work
+- [Phase 16]: Plan 16-01: Sub-batch A 10-entry append uses waterMode fixed for 9 (predictable cactus/suculenta schedules with low humidity dependence) + soilCheck for piedras-vivas only (Lithops dormancy cycle requires touch-test discipline tied to autumn-winter active period vs absolute summer dormancy). nopal+agave outdoor:true (xerophyte arid-zone scale); the other 8 outdoor:false per CONTEXT.md user_constraints lock.
+- [Phase 16]: Plan 16-01: Lithops (piedras-vivas) gets CUSTOM whyRationale citing Aizoácea mesemb + annual leaf-replacement cycle + absolute summer dormancy (NOT generic CAM template). Generic CAM would mislead users about the unique annual leaf-replacement physiology and the fatal-summer-watering rule. Sub-typology citation matrix has zero copy-paste rationales across the 10 entries.
+- [Phase 16]: Plan 16-01: Voseo regression on `te toca` (matches `\btoca\b`) and `tenés` (matches `\bten\b`) caught at pre-commit grep sweep — false positives on legitimate voseo verb forms. Reworded inline (corona-espinas: "ante contacto con piel"; agave: "si queda en zona de paso") to keep plantDatabase.ts voseo regex baseline at 0. Recurring pattern across Phase 14-04/06 + 15-01 + 16-01.
+- [Phase 16]: Plan 16-01: Char-limit-from-draft + voseo-pre-sweep continued from Phase 15. whyRationale max ES=221 (mammillaria), max EN=216 (agave) — comfortable margin under 250 ceiling, zero post-hoc trims required.
+- [Phase 16]: Plan 16-01: Rule 3 deviation — scripts/phase15-smoke.cjs CAT-09.count assertion changed from `idMatches === 87` to `idMatches >= 87` (Phase 15 floor semantics). Frozen-phase smoke runners with growable-quantity assertions need >= floor instead of === exact-equals to avoid manufacturing false regressions on natural forward catalog growth. Pattern reusable in future phases when growable assertions span phase boundaries.
 
 ### Pending Todos
 
@@ -164,6 +170,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T03:41:22.164Z
-Stopped at: Completed 16-00-PLAN.md
+Last session: 2026-05-08T05:15:31.151Z
+Stopped at: Completed 16-01-PLAN.md
 Resume file: None
