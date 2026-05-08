@@ -31,3 +31,4 @@ export { MyPlantDetailModal } from './MyPlantDetailModal';
 export { DiagnosisFollowUp } from './DiagnosisFollowUp';
 export { MigrationBanner } from './MigrationBanner';
 export { MigrationTooltip } from './MigrationTooltip';
+export { Toast } from './Toast';

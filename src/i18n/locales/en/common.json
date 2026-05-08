@@ -315,6 +315,27 @@
     "a11y": {
       "needsWater": "needs water",
       "needsSun": "needs sun"
+    },
+    "menu": {
+      "favorite": "Favorite",
+      "unfavorite": "Remove favorite",
+      "delete": "Delete",
+      "edit": "Edit"
+    },
+    "menuSheet": {
+      "title": "Plant actions",
+      "cancel": "Cancel"
+    },
+    "deleteHint": "Swipe to delete",
+    "undoToast": {
+      "deletedMessage": "{{name}} deleted",
+      "undoLabel": "Undo"
+    },
+    "moodA11y": {
+      "excellent": "Excellent health",
+      "good": "Good health",
+      "warning": "Needs attention",
+      "danger": "In danger"
     }
   },
   "addPlant": {
