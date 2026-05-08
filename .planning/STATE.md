@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 5
+current_plan: 1 of 5
 status: planning
-stopped_at: Phase 16 context gathered
-last_updated: "2026-05-07T21:28:59.368Z"
-last_activity: 2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed.
+stopped_at: Completed 16-00-PLAN.md
+last_updated: "2026-05-08T03:41:22.169Z"
+last_activity: 2026-05-08 — Phase 16 Plan 00 complete (Wave 0 smoke runner + findPlantInDatabase refactor). 5 files. 3 tasks, 7 min.
 progress:
   total_phases: 15
   completed_phases: 6
-  total_plans: 30
-  completed_plans: 31
-  percent: 100
+  total_plans: 35
+  completed_plans: 32
+  percent: 91
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 15 of 24 (Catalog Wave A — Interior Tropicals) — **COMPLETE**
-Current Plan: 5 of 5
-Plan: 15-04 complete (5/5 plans in Phase 15 — CAT-12 image plan documentation in CLAUDE.md). Plan 15-03 (CAT-11) landed in parallel. **Phase 15 fully closed: all 4 CAT requirements (CAT-09 + CAT-10 + CAT-11 + CAT-12) PASS.** Phase 14 Plan 14-08 (manual device verification checkpoint, autonomous: false) and Plan 13-03 (manual device verification) still pending.
-Status: **CAT-12 closed; Phase 15 complete.** CLAUDE.md +11 LOC: new "Accepted-known failures (Phase 15 Wave A, v1.2 — 23 entries — image upload pending)" block listing all 23 ids across 6 sub-batch lines (anthurium, alocasia, caladium, singonio, aglaonema, costilla-adan, difenbaquia, begonia-rex, croton, fitonia, ficus-lyrata, maranta, zamioculca, cola-burro, hiedra, palmera-areca, palmera-kentia, helecho-boston, helecho-nido, pilea, tradescantia, cheflera, arbol-dinero). Inserted between v1.1 LATAM 15-entry list and shared "Image upload steps" — keeps upload procedure cross-cutting between both backlogs. Existing v1.1 block byte-identical (zero deletes). Phase 15 smoke runner W4.CAT-12 SKIP→PASS flip confirmed. With 15-03 also landed: smoke runner is now 81/81 default. `npm run check:i18n-keys` PASS (87 ids verified). `npx tsc --noEmit` clean. Voseo baseline preserved at 2. Image upload backlog totals 38 entries (15 v1.1 + 23 Phase 15) — batched at v1.2 milestone end per established pattern. **Next:** Phase 16 (CAT Wave B) ready to plan.
-Last activity: 2026-05-07 — Phase 15 Plan 04 complete (CAT-12 image plan documentation in CLAUDE.md). 1 file modified (CLAUDE.md +11 LOC — new Phase 15 Wave A accepted-known failures block listing all 23 ids). 1 task, 3 min. W4.CAT-12 SKIP→PASS flip confirmed. Phase 15 fully closed.
+Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **IN PROGRESS**
+Current Plan: 1 of 5
+Plan: 16-00 complete (Wave 0 smoke runner + findPlantInDatabase exact-match-first refactor). Plans 16-01..04 remaining.
+Status: **Wave 0 closed.** scripts/phase16-smoke.cjs (396 LOC) wired with --identification + --routing-fix flags. Per-task feedback loop unblocked. findPlantInDatabase refactor closes Dracaena fragrans → sansevieria pre-existing collision (now correctly routes to dracaena). 6 W0.ROUTING-FIX probes PASS via ts.transpileModule + Module._resolveFilename intercept. Wave 0 baseline: 14/69 default, 16/88 --identification, 20/92 --routing-fix (post-refactor). Phase 15 smoke runner remains 81/81 + 104/104 (zero regression). Voseo baseline preserved at 2. **Next:** Plan 16-01 (Wave 1 — 10 cactus/suculentas content authoring) ready to plan.
+Last activity: 2026-05-08 — Phase 16 Plan 00 complete (Wave 0 smoke runner + findPlantInDatabase refactor). 5 files. 3 tasks, 7 min.
 
-Progress: [██████████] 100% (v1.2 in progress — 32/30 plans complete in tracked window; Phase 14 Plan 14-08 + Phase 13 Plan 03 + Phases 16-24 still ahead)
+Progress: [█████████░] 91% (v1.2 in progress — 33/35 plans complete; Phase 16 Plans 16-01..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Progress: [██████████] 100% (v1.2 in progress — 32/30 plan
 | Phase 15 P02 | 10 min | 2 tasks | 3 files |
 | Phase 15 P03 | 2 min | 1 tasks | 1 files |
 | Phase 15 P04 | 3 min | 1 tasks | 1 files |
+| Phase 16 P00 | 7min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -144,6 +145,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 15]: Plan 15-04: Sub-batch grouping order in CLAUDE.md block matches Plans 15-01/02 catalog append order — Aroceous (7) + Foliage especial (5) + CAM (2) + Trepadora (1) + Palmera (2) + Helecho (2) + All-rounder (4) = 23 — readers can cross-reference plantDatabase.ts in physiology-grouped reading flow.
 - [Phase 15]: Plan 15-04: Smoke runner sentinel pattern locked: CLAUDE.md substring + ≥N-of-M id-mention threshold flips a SKIP→PASS for documentation-only requirements (no source code change). Phase 15 closure pattern reusable in Phase 16 (CAT Wave B) and beyond when image deferral repeats.
 - [Phase 15]: Plan 15-04: Image upload backlog totals 38 entries (15 v1.1 + 23 v1.2 Phase 15) — batched at v1.2 milestone end per established v1.1 milestone-end batching pattern. `npm run check:images` failures for these 38 entries are NOW documented in CLAUDE.md and explicitly NOT a ship blocker.
+- [Phase 16]: Plan 16-00: phase16-smoke.cjs adds ts.transpileModule + Module._resolveFilename intercept path for runtime findPlantInDatabase routing assertions (Phase 15 was file-content only) — only way to verify exact-match-first behavior
+- [Phase 16]: Plan 16-00: 6 W0.ROUTING-FIX probes locked (Pachira/Epipremnum/Heptapleurum/Philodendron/Dracaena fragrans BUG-FIX/Dracaena trifasciata) — refactor sentinel = literal 'const exactMatch = PLANT_DATABASE.find' substring in idSrc
+- [Phase 16]: Plan 16-00: findPlantInDatabase refactored to exact-match-first (5 net-new lines) — fixes pre-existing Dracaena fragrans → sansevieria latent collision; pre-locks routing for Phase 16 Dracaena entries (bambu-suerte, sansevieria-cilindrica) arriving in Plan 16-02
+- [Phase 16]: Plan 16-00: Mid-band SKIP window for catalog count (idMatches > 87 && idMatches < 104 → undefined) mirrors Phase 15's 64→87 pattern verbatim; Plan 16-01 lands 10 ids → mid-band SKIP at 97; Plan 16-02 lands final 7 → PASS at 104
+- [Phase 16]: Plan 16-00: Phase-15-era Sedum duplicate (sedum line 1842 + cola-burro line 2761 both → Sedum morganianum) NOT fixed in Phase 16 per RESEARCH §Pitfall 9 — out of scope, future maintenance work
 
 ### Pending Todos
 
@@ -158,6 +164,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-07T21:28:59.365Z
-Stopped at: Phase 16 context gathered
-Resume file: .planning/phases/16-catalog-wave-b-suculentas-cactus-trepadoras-trending/16-CONTEXT.md
+Last session: 2026-05-08T03:41:22.164Z
+Stopped at: Completed 16-00-PLAN.md
+Resume file: None

@@ -162,7 +162,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Wave B entries appear correctly in identification map and catalog browse
   4. `sansevieria-cilindrica` is distinct from existing `sansevieria` entry with no i18n key collision
   5. `findPlantInDatabase` exact-match-first routing fix landed; smoke runner asserts each Phase 16 species-qualified scientificName routes to its OWN id (resolves Dracaena genus collision affecting bambu-suerte / sansevieria-cilindrica / sansevieria / dracaena)
-**Plans:** 5 plans
+**Plans:** 1/5 plans executed
   - [ ] 16-00-PLAN.md — Wave 0 scaffold: scripts/phase16-smoke.cjs (CJS + ts.transpileModule routing path) + npm wiring + .gitignore + findPlantInDatabase exact-match-first refactor (5 LOC) — closes routing fix at Wave 0
   - [ ] 16-01-PLAN.md — Wave 1: Sub-batch A (10 cactus/suculentas — kalanchoe, siempreviva, piedras-vivas, nopal, mammillaria, corona-espinas, gasteria, senecio-rowleyanus, cactus-navidad, agave) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-13)
   - [ ] 16-02-PLAN.md — Wave 2: Sub-batch B (7 net-new — hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) — closes CAT-13/14/15 (104 entries; potus + filodendro counted as upgrades)
@@ -278,7 +278,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
-| 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | v1.2 | 0/TBD | Not started | - |
+| 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 1/5 | In Progress|  | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
