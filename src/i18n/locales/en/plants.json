@@ -2966,6 +2966,146 @@
     "placementAvoid": "Waterlogged substrate and corners without full sun.",
     "whyRationale": "Xerophytic rosette succulent — CAM photosynthesis + water storage in fleshy leaves. One-time monocarpic flowering after decades: the mother sends up a giant stalk, blooms, seeds, and dies — but leaves offsets behind."
   },
+  "hoya": {
+    "name": "Sweetheart Plant (Hoya kerrii)",
+    "tip": "Very slow grower. Forgiving, loves high humidity.",
+    "description": "Hoya kerrii (also called heart plant or Sweetheart Plant) is a Southeast Asian asclepiadaceous succulent vine with thick heart-shaped leaves. Often sold as a single-leaf gift; given time, it can develop long climbing or trailing tendrils. It is very slow — patience required.",
+    "problems": [
+      { "symptom": "Very slow growth", "cause": "Its natural rhythm — Hoya pace", "solution": "Patience: 2-3 new leaves per year is normal." },
+      { "symptom": "Wrinkled, thin leaves", "cause": "Prolonged underwatering", "solution": "Water thoroughly and wait days for rehydration; its leaves store water." },
+      { "symptom": "Yellow leaves with rot", "cause": "Overwatering or cold drafts", "solution": "Reduce watering; check drainage; move away from cold drafts." }
+    ],
+    "nutrients": { "type": "Low NPK (slow grower)", "homemade": "Heavily diluted compost tea every 2 months in warm season" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: if dry, water; in cold reduce to almost nothing." },
+    "placementRecommended": "Hanging basket with bright indirect light — near an east-facing or north-facing window (SH).",
+    "placementAlternatives": [
+      "High shelf where its tendrils can hang",
+      "Bright shelf with high ambient humidity",
+      "Pot with a support to climb"
+    ],
+    "placementAvoid": "Direct sun (burns its fleshy leaves) and prolonged dry heater air.",
+    "whyRationale": "Climbing Southeast Asian asclepiadaceous succulent — heart-shaped leaves with modified CAM tissue. Tolerates forgetfulness but grows very slowly: years of patience are built into its natural rhythm."
+  },
+  "mini-monstera": {
+    "name": "Mini Monstera (Rhaphidophora)",
+    "tip": "Needs a support to fenestrate. Without a pole, stays juvenile and hole-less.",
+    "description": "Rhaphidophora tetrasperma is a hemi-epiphytic climbing aroid from Malaysia and Thailand, often confused and mis-sold as Monstera minima, Philodendron Ginny, or Philodendron Piccolo (none of which are valid Latin names). It develops fenestrations (heart-shaped holes) ONLY when it matures climbing a support; without a moss pole it stays in juvenile small-leaf form.",
+    "problems": [
+      { "symptom": "Small, hole-less leaves", "cause": "Lack of vertical support to climb", "solution": "Add a moss pole or stake so the plant can mature and develop fenestrations." },
+      { "symptom": "Yellowing leaves", "cause": "Overwatering or waterlogged substrate", "solution": "Reduce frequency; check drainage; let the top centimeters dry out." },
+      { "symptom": "Aerial roots searching for support", "cause": "Natural climbing habit", "solution": "Guide them toward the moss pole or mist them to keep them hydrated." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Diluted compost tea once a month in warm season" },
+    "careAction": { "soilCheck": "Touch the top 2 cm: water until it drains." },
+    "placementRecommended": "Near a window with bright indirect light + a moss pole if you want big leaves with holes.",
+    "placementAlternatives": [
+      "Bright room with humidifier",
+      "Hanging basket where it can climb a wall",
+      "High shelf with a vertical support"
+    ],
+    "placementAvoid": "Direct sun and dark corners (no support, no fenestrations).",
+    "whyRationale": "Climbing hemi-epiphytic aroid from Southeast Asia — fenestrations appear once it reaches vertical support (heteroblasty). Without a pole it stays juvenile without holes. Hence confusion with Monstera, but it's Rhaphidophora."
+  },
+  "strelitzia": {
+    "name": "Bird of Paradise (Strelitzia)",
+    "tip": "Flowers after 3-4 years. Needs lots of sun and maturity.",
+    "description": "Strelitzia reginae compact (~1-1.5m) is a South African strelitziaceous species known as Bird of Paradise for its iconic flower (orange, blue, and cream sepals shaped like a tropical bird). It has large paddle-shaped leaves; needs YEARS of bright indirect light to flower indoors. Do NOT confuse with the giant S. nicolai (2-3m, white flowers — a different species not covered by this entry).",
+    "problems": [
+      { "symptom": "Lengthwise split leaves", "cause": "Natural adaptation to wind", "solution": "It's normal — not damage; the leaf splits along veins to resist gusts." },
+      { "symptom": "No flowers", "cause": "Insufficient light or immature plant", "solution": "Move closer to a large window with morning sun; wait 3-4 years from seed." },
+      { "symptom": "Brown leaf tips", "cause": "Low ambient humidity or dry air", "solution": "Mist the leaves; move away from heaters; group with other plants." }
+    ],
+    "nutrients": { "type": "Balanced NPK in warm season", "homemade": "Diluted compost tea every 4 weeks during the growing season" },
+    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry. Reduce drastically in winter." },
+    "placementRecommended": "Near a large window with bright indirect light — direct morning sun helps it flower.",
+    "placementAlternatives": [
+      "Bright room with sheer curtain on midday direct sun",
+      "East-facing veranda with many hours of light",
+      "Sheltered outdoor bed in temperate climate (SH)"
+    ],
+    "placementAvoid": "Dark corners (won't flower) and prolonged temperatures below 8°C.",
+    "whyRationale": "South African strelitziaceous savanna species — paddle-shaped leaves reduce water loss. Flowering needs prolonged bright light + 3-4 years of maturity. The bird-beak-shaped sepal evolved for sunbird pollination."
+  },
+  "eucalipto": {
+    "name": "Lemon Eucalyptus",
+    "tip": "Strong citrus aroma from citronellal. Use leaves for infusions; full outdoor sun.",
+    "description": "Eucalyptus citriodora (POWO synonym Corymbia citriodora since the 2000s) is an Australian myrtaceous tree with intensely citrus-scented leaves due to the volatile compound citronellal (anti-herbivory defense and natural insect repellent). Very fast outdoor growth (>1m per year); difficult to maintain in a pot long-term — better planted in ground. The Argentine market mostly sells it under the Eucalyptus name.",
+    "problems": [
+      { "symptom": "Explosive pot growth", "cause": "Invasive roots seeking deep soil", "solution": "Transplant to an extra-large pot or plant directly in the ground if possible." },
+      { "symptom": "Chlorosis (yellow leaves with green veins)", "cause": "Alkaline soil — iron lockout", "solution": "Apply chelated iron amendment; acidify substrate with peat." },
+      { "symptom": "Scale on new shoots", "cause": "Common outdoor pest", "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists." }
+    ],
+    "nutrients": { "type": "Balanced NPK", "homemade": "Compost at the base in spring; iron amendment if leaves yellow" },
+    "careAction": { "fixed": "Water every 5 days in warm season thoroughly; every 10 in cold. Fast growth." },
+    "placementRecommended": "Full outdoor sun — patio, garden, large terrace with deep substrate.",
+    "placementAlternatives": [
+      "Bed in well-drained sandy-clay soil",
+      "Extra-large pot (50+ liters) with full drainage",
+      "North-facing wall (SH) with all-day sun"
+    ],
+    "placementAvoid": "Small pots (invasive roots) and waterlogged soil.",
+    "whyRationale": "Australian myrtaceous tree — leaves carry volatile citronellal (anti-herbivory defense). Very fast outdoor growth: the tree races for height, which is why long-term pot confinement is hard."
+  },
+  "bambu-suerte": {
+    "name": "Lucky Bamboo",
+    "tip": "Grows in either water or soil. In water, change every 10-14 days with filtered water.",
+    "description": "Dracaena sanderiana (NOT a true bamboo despite the name) is a West African asparagaceous, commonly sold as lucky bamboo in water culture (no substrate, only filtered water). It also grows in soil. Tolerates very low light. Sensitive to fluoride and chlorine in tap water — use filtered water or water settled 24h. The decorative spirals and braids are commercially shaped, not natural.",
+    "problems": [
+      { "symptom": "Yellow leaves with burned tips", "cause": "Fluoride or chlorine from tap water", "solution": "Switch to filtered water or water settled 24h; fluoride accumulates in the tips." },
+      { "symptom": "Black or mushy stems", "cause": "Rot from old water in water culture", "solution": "Change water every 10-14 days; rinse roots; trim rotted stems." },
+      { "symptom": "Dry brown tips", "cause": "Low ambient humidity", "solution": "Mist leaves; move away from heaters; group with other plants." }
+    ],
+    "nutrients": { "type": "Very low NPK", "homemade": "In water culture, a few drops of diluted liquid fertilizer once a month" },
+    "careAction": { "fixed": "If in water: change every 10-14 days with filtered water. If in soil: water every 14 days." },
+    "placementRecommended": "Medium indirect light — desk, office shelf, counter with little natural light.",
+    "placementAlternatives": [
+      "Room with fluorescent or LED light",
+      "Lit hallway with indirect light",
+      "Bright bathroom counter (high humidity)"
+    ],
+    "placementAvoid": "Direct sun (burns leaves) and unfiltered tap water with chlorine or fluoride.",
+    "whyRationale": "African asparagaceous from riparian zones — adapted to high humidity, grows well in water culture. Sensitive to tap-water fluoride because its native habitat has soft water: fluoride accumulates in the tips and burns them."
+  },
+  "sansevieria-cilindrica": {
+    "name": "Cylindrical Sansevieria",
+    "tip": "Nearly indestructible. More tolerant than the common sansevieria.",
+    "description": "Dracaena angolensis (POWO reclassified from Sansevieria cylindrica in 2018; the trade still uses the Sansevieria name) is an Angolan asparagaceous with cylindrical tubular leaves growing upright. Combines CAM photosynthesis with extreme drought tolerance. Tolerates very low light — one of the most forgiving houseplants. Often sold with leaves decoratively braided.",
+    "problems": [
+      { "symptom": "Rot at the base", "cause": "Overwatering — the most common cause of death", "solution": "Reduce drastically; let dry completely; improve drainage with perlite." },
+      { "symptom": "Soft, wrinkled bases", "cause": "Chronic overwatering", "solution": "Suspend watering for several days; repot if substrate stays wet." },
+      { "symptom": "Extremely slow growth", "cause": "Low light — normal in its nature", "solution": "It's expected; if you want faster growth, move to bright indirect light." }
+    ],
+    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted compost tea once or twice a year in warm season" },
+    "careAction": { "fixed": "Water every 21 days in warm season; every 45 in cold. Forget about it without guilt — it prefers drought." },
+    "placementRecommended": "Bright indirect or medium light — versatile; tolerates office, hallway, bedroom.",
+    "placementAlternatives": [
+      "Bright shelf with filtered light",
+      "Office corner with low natural light",
+      "Counter with indirect light"
+    ],
+    "placementAvoid": "Waterlogged substrate and prolonged temperatures below 8°C.",
+    "whyRationale": "Angolan asparagaceous — cylindrical tubular leaves with water-storage tissue and CAM photosynthesis. Extreme tolerance to low light, drought, and neglect: in habitat it survives semi-arid savanna with little rain."
+  },
+  "cactus-san-pedro": {
+    "name": "San Pedro Cactus",
+    "tip": "Fast vertical growth. Full sun and minimal watering.",
+    "description": "Echinopsis pachanoi (POWO reclassified from Trichocereus pachanoi in 2024; the trade still mostly uses Trichocereus) is a columnar cactus from the Andean foothills (Peru, Ecuador, Bolivia, Chile). It has rapid vertical growth (>1cm per year), full outdoor sun, and develops impressive height (2-6m at maturity). Large, white, nocturnal flowers appear on mature specimens. This entry is purely horticultural — about plant care as a columnar ornamental.",
+    "problems": [
+      { "symptom": "Rot at the base", "cause": "Overwatering — most common indoor failure", "solution": "Suspend watering; cut the rotten zone back to healthy tissue; let it callus before resuming." },
+      { "symptom": "Scale on the stem", "cause": "Common pest in outdoor cacti", "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists." },
+      { "symptom": "Frost damage below -5°C", "cause": "Prolonged cold beyond its tolerance", "solution": "Shelter from severe winter; move to a porch or cover if frost is forecast." }
+    ],
+    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted compost once a year at the start of warm season" },
+    "careAction": { "fixed": "Water every 14 days in warm season thoroughly; every 30 in cold. Let dry completely." },
+    "placementRecommended": "Full outdoor sun — patio, terrace, garden with all-day direct sun.",
+    "placementAlternatives": [
+      "Large pot with full drainage",
+      "Rocky bed in full sun",
+      "South-facing wall (NH) with direct sun"
+    ],
+    "placementAvoid": "Waterlogged substrate and indoor corners without full sun (stretching + weakness).",
+    "whyRationale": "Andean foothills columnar cactus — CAM metabolism and rapid vertical growth (>1cm/year). Full outdoor sun, minimal watering. The column rises seeking direct light, characteristic of Echinopsis."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",
