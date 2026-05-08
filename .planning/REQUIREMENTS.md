@@ -63,7 +63,7 @@
 - [x] **CAT-17**: Wave 3.3 — 8 exterior flores added: azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia
 - [x] **CAT-18**: Wave 3.4 — 3 aromáticas added: salvia-officinalis (distinct from existing `salvia-ornamental`, `name` and `description` make this clear), eneldo, stevia
 - [x] **CAT-19**: Wave 3.5 — 3 frutales/huerta added: olivo, arandano, espinaca
-- [ ] **CAT-20**: All Wave C entries have full v1.1 + EDU keyset, identification map entries, and image plan
+- [x] **CAT-20**: All Wave C entries have full v1.1 + EDU keyset, identification map entries, and image plan
 - [x] **CAT-21**: Final `PLANT_DATABASE.length === 118` (64 v1.1 + 54 v1.2 = 23 Phase 15 + 17 Phase 16 + 14 Phase 17; potus + filodendro upgraded in place at Phase 16 per CAT-14 addendum, not counted as net-new); smoke runner asserts the count. *Amended 2026-05-08 from original 120 target during Phase 17 context discussion — see `.planning/phases/17-catalog-wave-c-exterior-arom-ticas-frutales/17-CONTEXT.md` §"Catalog count target".*
 
 ### PlantCard Cleanup + Swipe (CARD)
@@ -221,7 +221,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | CAT-17 | Phase 17 | Complete |
 | CAT-18 | Phase 17 | Complete |
 | CAT-19 | Phase 17 | Complete |
-| CAT-20 | Phase 17 | Pending |
+| CAT-20 | Phase 17 | Complete |
 | CAT-21 | Phase 17 | Complete |
 | CARD-01 | Phase 18 | Pending |
 | CARD-02 | Phase 18 | Pending |

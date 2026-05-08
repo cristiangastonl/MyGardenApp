@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 5
-status: executing
-stopped_at: Completed 17-02-PLAN.md
-last_updated: "2026-05-08T16:22:48.963Z"
-last_activity: 2026-05-08 — Phase 17 Plan 02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; 112 → 118 entries; CAT-21 closed; v1.2 catalog expansion content layer complete). 3 files, 2 tasks, 7 min.
+current_plan: 5 of 5
+status: phase-complete
+stopped_at: Completed 17-04-PLAN.md
+last_updated: "2026-05-08T16:28:06.780Z"
+last_activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation — Phase 17 Wave C accepted-known block appended to CLAUDE.md; cumulative v1.2 image backlog 69 entries; v1.2 catalog expansion fully closed at 118 entries). 1 file, 1 task, ~2 min.
 progress:
   total_phases: 15
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 40
-  completed_plans: 39
+  completed_plans: 41
   percent: 100
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **IN PROGRESS**
-Current Plan: 3 of 5
-Plan: 17-02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; PLANT_DATABASE 112 → 118; CAT-21 final assertion idMatches===118 PASS; CAT-18 + CAT-19 fully closed; CAT-20 keyset fully closed for 14 entries; v1.2 catalog expansion content layer complete).
-Status: **Phase 17 IN PROGRESS.** Plan 17-02 landed Sub-batch B (3 CAT-18 aromáticas: salvia-officinalis/eneldo/stevia + 3 CAT-19 frutales/huerta: olivo/arandano/espinaca). PLANT_DATABASE 112 → 118; CAT-21 final assertion idMatches===118 satisfied — closes the entire v1.2 catalog expansion content layer. salvia-officinalis distinct top-level i18n namespace from salvia-ornamental (Phase 16 sansevieria-cilindrica precedent applied verbatim). arandano ericaceous soil_check + cross-references azalea Plan 17-01 lexicon (pH 4.5-5.5 + agua blanda + micorrizas obligadas). olivo tree-realism framing + Mendoza/Cuyo Arauco endémico nacional. espinaca cool-season bolt risk locked tempMax:25 (Pitfall 4). Aromáticas outdoor:false honored per CONTEXT lock; researcher discrepancy with existing aromáticas precedent (albahaca/romero/menta/cilantro/perejil/ciboulette all use outdoor:true) surfaced for user awareness — no unilateral flip. Char-limit-from-draft + voseo-pre-sweep zero-trim discipline preserved (max ES=212 eneldo, max EN=217 olivo; baseline regex preserved at es/plants.json=2 + plantDatabase.ts=0). 6 W2.CAT-18/19 + 6 W2.CAT-20.keyset + 6 IDENT.CAT-20 + 6 W2.ROUTING-FIX + 1 CAT-counts.total SKIPs flipped to PASS (phase17-smoke 39/54 → was 26/54). Cross-phase regressions clean: phase15 81/81, phase16 69/69, phase16 --routing-fix 92/92. **Next:** Plans 17-03 + 17-04 in parallel (COMMON_NAMES_ES routing closure for 14 Phase 17 entries + CLAUDE.md "Phase 17 Wave C" image-plan documentation — file-disjoint).
-Last activity: 2026-05-08 — Phase 17 Plan 02 complete (Sub-batch B — 6 CAT-18 + CAT-19 entries; 112 → 118 entries; CAT-21 closed; v1.2 catalog expansion content layer complete). 3 files, 2 tasks, 7 min.
+Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **COMPLETE**
+Current Plan: 5 of 5
+Plan: 17-04 complete (CAT-20 image-plan documentation closure — Phase 17 Wave C accepted-known block appended to CLAUDE.md, +8 LOC; cumulative v1.2 image backlog 69 entries: 15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17; W3.CAT-20.imagePlan SKIP→PASS in all 3 phase17-smoke modes). Phase 17 fully closed in parallel with Plan 17-03 (COMMON_NAMES_ES routing closure landed first, file-disjoint).
+Status: **Phase 17 COMPLETE.** Plan 17-04 (this plan) appended the "Phase 17 Wave C, v1.2 — 14 entries — image upload pending" accepted-known block to CLAUDE.md between the Phase 16 Wave B closing paragraph and the shared "Image upload steps:" numbered list. 14 ids in 3 sub-batch lines: 8 exterior flores (azalea/ciclamen/fucsia/clavel/crisantemo/tulipan/girasol/magnolia) + 3 aromáticas (salvia-officinalis/eneldo/stevia) + 3 frutales/huerta (olivo/arandano/espinaca). Closing paragraph cites cumulative 69-entry v1.2 backlog and explicit milestone-closure language ("Phase 17 closes the v1.2 catalog expansion at 118 entries"). 4 separate Accepted-known blocks now coexist in CLAUDE.md (Phase 8 v1.1 + Phase 15 Wave A + Phase 16 Wave B + Phase 17 Wave C); shared Image upload steps numbered list remains cross-cutting. CAT-20 image-plan portion CLOSED: phase17-smoke default 40/54, --identification 54/68, --routing-fix 68/68 full PASS (was 39/54 / 53/68 / 67/68 pre-plan — +1 PASS each). Cross-phase regressions clean: phase15 81/81, phase16 69/69, tsc 0 errors, check:i18n-keys PASS at 118 ids, voseo regex baseline preserved at 2. **v1.2 catalog expansion FULLY CLOSED** — Phase 17 is the final catalog wave; PLANT_DATABASE locked at 118 entries (64 v1.1 + 54 v1.2 net-add: 23 Phase 15 + 17 Phase 16 + 14 Phase 17). All 5 Phase 17 requirements PASS (CAT-17/18/19/20/21). **Next:** Phase 18 (PlantCard Cleanup + Mood Emoji) — depends on Phase 17 (full 118-entry catalog ✓) + Phase 13 (gesture infrastructure ✓ already landed).
+Last activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation; Phase 17 Wave C accepted-known block appended to CLAUDE.md; v1.2 catalog expansion fully closed at 118 entries; Phase 17 fully closed). 1 file, 1 task, ~2 min.
 
 Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
@@ -73,6 +73,8 @@ Progress: [██████████] 100% (v1.2 in progress — Phase 16 f
 | Phase 17 P00 | 4min | 2 tasks | 3 files |
 | Phase 17 P01 | 8min | 2 tasks | 4 files |
 | Phase 17 P02 | 7min | 2 tasks | 3 files |
+| Phase 17 P04 | 2min | 1 tasks | 1 files |
+| Phase 17 P03 | 1min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -185,6 +187,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 17]: Plan 17-02: Sub-batch B appended (6 CAT-18 + CAT-19 entries; 112 → 118 — CAT-21 closes). 3 aromáticas (salvia-officinalis/eneldo/stevia) + 3 frutales/huerta (olivo/arandano/espinaca). Aromáticas outdoor:false honored per CONTEXT lock despite researcher discrepancy with existing aromáticas precedent (albahaca/romero/menta/cilantro/perejil/ciboulette all use outdoor:true) — surfaced for user awareness, no unilateral flip. arandano frutales (Q3 default — woody perennial like limonero) + soil_check + ericaceous lexicon cross-referenced from azalea Plan 17-01. olivo tree-realism framing carried forward from magnolia Plan 17-01. espinaca tempMax:25 (Pitfall 4 bolt-flag).
 - [Phase 17]: Plan 17-02: salvia-officinalis distinct top-level i18n namespace from salvia-ornamental (Phase 16 sansevieria-cilindrica precedent applied verbatim) — both keys coexist as siblings in plants.json, never nested under shared parent. Verified via Node parse: salvia-officinalis ✓ + salvia-ornamental ✓ + shared salvia parent ✗ in BOTH en + es. salvia-ornamental entry at plantDatabase.ts:2110 + plants.json:2107 untouched (git diff ADDS only). scientificNames distinct: Salvia officinalis vs Salvia splendens — zero collision. Phase 16 exact-match-first refactor (inherited unchanged) protects routing. Pattern reusable for any future genus-level species splits.
 - [Phase 17]: Plan 17-02: CAT-21 final assertion idMatches===118 satisfied — closes the entire v1.2 catalog expansion content layer (Phases 15 + 16 + 17 = 54 net-new entries from v1.1 baseline 64 → 118). Phase 17 W2 closed (CAT-17/18/19 fully + CAT-20 keyset + CAT-21 all PASS). Only documentation-only requirements remain: CAT-20 routing in Plan 17-03 (COMMON_NAMES_ES extension for 14 Phase 17 entries) + CAT-20 image plan in Plan 17-04 (CLAUDE.md "Phase 17 Wave C" image-deferral block). Plans 17-03 + 17-04 are file-disjoint (plantIdentification.ts vs CLAUDE.md) and parallelizable. Cumulative v1.2 image-upload backlog will reach 69 entries after Plan 17-04 (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17).
+- [Phase 17]: Plan 17-04: Phase 17 Wave C accepted-known image-upload backlog appended to CLAUDE.md (14 net-new ids in 3 sub-batch lines: 8 exterior flores + 3 aromáticas + 3 frutales/huerta). Cumulative v1.2 image-upload backlog now 69 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17). Closing paragraph cites 'Phase 17 closes the v1.2 catalog expansion at 118 entries' as milestone-closure marker. 4 separate Accepted-known blocks now coexist; shared 'Image upload steps' procedure remains cross-cutting. CAT-20 image-plan portion CLOSED — W3.CAT-20.imagePlan SKIP→PASS in all 3 phase17-smoke modes (default 40/54, --identification 54/68, --routing-fix 68/68 full PASS). +8 LOC, 0 deletions. Phase 17 documentation side fully closed; 14 W3.CAT-20.* per-id SKIPs owned by parallel Plan 17-03 (file-disjoint). v1.2 catalog expansion fully closed — Phase 17 is the final catalog wave; ROADMAP next phase = Phase 18 (PlantCard Cleanup + Mood Emoji).
 
 ### Pending Todos
 
@@ -199,6 +202,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T16:21:49.993Z
-Stopped at: Completed 17-02-PLAN.md
+Last session: 2026-05-08T16:28:06.777Z
+Stopped at: Completed 17-04-PLAN.md
 Resume file: None
