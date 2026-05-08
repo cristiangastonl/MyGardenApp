@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle, Image, ImageStyle } from 'react-native';
 import { Plant, WeatherData, SavedDiagnosis, TrackingStatus, Location } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { TRACKING_STATUS_CONFIG } from '../services/problemTrackingService';
@@ -10,10 +10,8 @@ import { isSameDay, formatDate } from '../utils/dates';
 import { calculatePlantHealth } from '../utils/plantHealth';
 import { useTranslation } from 'react-i18next';
 import { TaskButton } from './TaskButton';
-import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantHealthDetail } from './PlantHealthDetail';
-import { getPlantTypes } from '../data/constants';
-import { getPlantCategories, getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
+import { getPlantCategories } from '../data/plantDatabase';
 
 interface PlantCardProps {
   plant: Plant;
@@ -69,14 +67,8 @@ export function PlantCard({
 
   const hasTasks = needsWaterToday || needsSunToday || needsOutdoorToday;
 
-  // Phase 8 (CAT-04): live catalog lookup — patch updates to PLANT_DATABASE propagate on next render.
-  // Defensive 3-rung fallback: translatedEntry → legacy plant field → empty string.
-  const catalogEntry = plant.databaseId ? getCatalogEntry(plant.databaseId) : null;
-  const translatedEntry = catalogEntry ? getTranslatedPlant(catalogEntry) : null;
-
-  const plantType = getPlantTypes().find(pt => pt.id === plant.typeId);
-  // Prefer per-plant catalog tip; fall back to generic category tip; then empty.
-  const tip = translatedEntry?.tip ?? plantType?.tip ?? '';
+  // Phase 18 (CARD-03): per-plant catalog tip relocated to MyPlantDetailModal "¿Qué hacer?" section.
+  // The catalog/translatedEntry/plantType lookups + inline tip render were removed from PlantCard.
 
   const waterInterval = getSeasonalInterval(plant, currentSeason);
   const isCheckMode = plant.waterMode === 'soil_check';
@@ -87,8 +79,7 @@ export function PlantCard({
     [plant, today, weather, diagnoses, currentSeason]
   );
 
-  // Show health badge if health is not excellent (score < 80)
-  const showHealthBadge = healthStatus.score < 80;
+  // Phase 18 (GAM-04): legacy score-based health-badge gate removed — replaced by always-visible mood emoji in Task 2.
 
   return (
     <TouchableOpacity
@@ -113,14 +104,6 @@ export function PlantCard({
           <View style={styles.info}>
             <View style={styles.nameRow}>
               <Text style={styles.name} numberOfLines={1}>{plant.name}</Text>
-              {onToggleFavorite && (
-                <TouchableOpacity
-                  onPress={() => onToggleFavorite(plant.id)}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                >
-                  <Text style={styles.favoriteIcon}>{plant.favorite ? '❤️' : '🤍'}</Text>
-                </TouchableOpacity>
-              )}
             </View>
             <Text style={styles.type} numberOfLines={1}>{getPlantCategories().find(c => c.id === plant.typeId)?.name || plant.typeName}</Text>
           </View>
@@ -135,31 +118,8 @@ export function PlantCard({
               </Text>
             </View>
           )}
-          {showHealthBadge && (
-            <PlantHealthBadge
-              healthStatus={healthStatus}
-              onPress={() => setShowHealthDetail(true)}
-            />
-          )}
-          <TouchableOpacity
-            onPress={() => {
-              Alert.alert(
-                t('plantCard.deletePlant'),
-                t('plantCard.deleteConfirm', { name: plant.name }),
-                [
-                  { text: t('plantCard.cancelButton'), style: 'cancel' },
-                  { text: t('plantCard.deleteButton'), style: 'destructive', onPress: () => onDelete(plant.id) },
-                ]
-              );
-            }}
-            style={styles.deleteButton}
-          >
-            <Text style={styles.deleteIcon}>🗑️</Text>
-          </TouchableOpacity>
         </View>
       </View>
-
-      {tip ? <Text style={styles.tip}>{tip}</Text> : null}
 
       {mode === 'tasks' && hasTasks && (
         <View style={styles.tasks}>
@@ -231,13 +191,9 @@ interface Styles {
   info: ViewStyle;
   nameRow: ViewStyle;
   name: TextStyle;
-  favoriteIcon: TextStyle;
   type: TextStyle;
   diagnosisBadge: ViewStyle;
   diagnosisBadgeText: TextStyle;
-  deleteButton: ViewStyle;
-  deleteIcon: TextStyle;
-  tip: TextStyle;
   tasks: ViewStyle;
   waterBadge: ViewStyle;
   waterBadgeText: TextStyle;
@@ -295,9 +251,6 @@ const styles = StyleSheet.create<Styles>({
     color: colors.textPrimary,
     flex: 1,
   },
-  favoriteIcon: {
-    fontSize: 18,
-  },
   type: {
     fontFamily: fonts.body,
     fontSize: 13,
@@ -313,24 +266,6 @@ const styles = StyleSheet.create<Styles>({
   },
   diagnosisBadgeText: {
     fontSize: 14,
-  },
-  deleteButton: {
-    padding: spacing.xs,
-    minWidth: 44,
-    minHeight: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  deleteIcon: {
-    fontSize: 18,
-    opacity: 0.6,
-  },
-  tip: {
-    fontFamily: fonts.body,
-    fontSize: 13,
-    color: colors.textSecondary,
-    fontStyle: 'italic',
-    marginBottom: spacing.md,
   },
   tasks: {
     marginTop: spacing.sm,
