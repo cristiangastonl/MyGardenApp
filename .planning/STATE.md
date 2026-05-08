@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 5
-status: verifying
-stopped_at: Completed 18-03-PLAN.md
-last_updated: "2026-05-08T20:38:50.650Z"
-last_activity: 2026-05-08 — Phase 18 Plan 03 complete (PlantCard JSX restructure). 1 file, 2 tasks, ~5 min.
+current_plan: 4 of 5
+status: completed
+stopped_at: Completed 18-04-PLAN.md
+last_updated: "2026-05-08T20:49:36.571Z"
+last_activity: 2026-05-08 — Phase 18 Plan 04 complete (PlantsScreen + TodayScreen integration). 2 files, 2 tasks, ~5.5 min.
 progress:
   total_phases: 15
   completed_phases: 8
   total_plans: 45
-  completed_plans: 44
-  percent: 98
+  completed_plans: 45
+  percent: 100
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **IN PROGRESS**
-Current Plan: 3 of 5
-Plan: 18-03 complete (PlantCard.tsx JSX restructure: 350 → 474 LOC; Task 1 refactor a293bc1 +5/-70 — removed PlantHealthBadge import + showHealthBadge gate + JSX block + Alert.alert delete + trash button + favorite heart + tip render + 4 orphan styles + 5 unused-only-in-card imports; Task 2 feat f60011c +282/-92 — added Gesture.Pan().activeOffsetX([-15,15]).failOffsetY([-10,10]) + Gesture.LongPress().minDuration(500) + Gesture.Race(longPress, pan) + Animated.View foreground + 88px right-anchored actionLayer reveal + Greg-style 22×22 mood-badge with 2px colors.card ring + getHealthBgColor(level) fill + moodEmojiByLevel module-scope const + onLongPress(plant) + onSwipeCommitted() prop callbacks + handleCommitDelete/handleLongPressFire JS bridges + useEffect Pitfall 5 reset keyed on plant.id + hapticFired Pitfall 2 one-shot guard + runOnJS(triggerHaptic)('impactMedium'/'impactLight') + cardWidth onLayout measurement; smoke-phase18 PASS=37→52 / FAIL=0 / SKIP=19→4, 16 SKIP→PASS flips spanning CARD-01/02/03/05 + GAM-03/04; check:i18n-keys 118 catalog ids PASS; phase17 regression PASS 54/54).
-Status: **Phase 18 Plan 03 COMPLETE.** Heaviest plan of the phase (single-file ~190 LOC delta) landed in 2 atomic commits per planned subtraction-then-addition split. Two-half restructure pattern proven viable for heavy single-file plans: Task 1 makes file compile but visually incomplete; Task 2 lands additions atomically. Pitfalls 1/2/3/5/7 all handled per RESEARCH.md. GAM-04 STRICT preservation sentinels green (MyPlantDetailModal:212 + index.ts:20 + PlantHealthBadge.tsx file all UNTOUCHED). 2 in-task auto-fixes (Rule 1 comment-text contained literal "PlantHealthBadge" failing strict grep — reworded; Rule 4-resolved-without-checkpoint colors.danger missing from theme.ts — substituted colors.dangerText per WeatherAlerts.tsx:223 precedent, no new token introduced). All verification gates green: tsc 0 errors, smoke-phase18 exit 0, check:i18n-keys PASS, phase17-smoke regression PASS. 4 remaining SKIPs all owned by Plan 04 (file-disjoint). **Next:** Plan 18-04 (PlantsScreen + TodayScreen — host BottomSheetModal long-press menu container + optimistic-delete + Toast undo flow + CARD-04 first-card affordance hint with @plantcard_swipe_discovered AsyncStorage flag).
-Last activity: 2026-05-08 — Phase 18 Plan 03 complete (PlantCard JSX restructure). 1 file, 2 tasks, ~5 min.
+Current Plan: 4 of 5
+Plan: 18-04 complete (PlantsScreen + TodayScreen screen-level integration; +358 net LOC across 2 files; Task 1 feat 1fd6c63 +225/-16 — PlantsScreen Toast undo flow with handleCommitDelete/handleUndo/handleToastDismissed + 4s setTimeout dismissTimeoutRef + pendingDelete Plant memory + addPlant restore-on-undo; long-press BottomSheetModal at screen-component level with useDismissOnPaywall(longPressSheetRef) Pitfall 10 paywall z-order + Favorite/Edit/Delete items + handleMenuDelete sheet→requestAnimationFrame→handleCommitDelete deferral; CARD-04 chevron-peek affordance hint via showSwipeHint state + hintTranslateX useSharedValue + hintAnimatedStyle always-call + conditional-apply via Animated.View on first card index===0; @plantcard_swipe_discovered AsyncStorage flag mount-read with cancelled guard + onSwipeCommitted callback flips flag to 'true'; Task 2 feat a1f26cc +151/-2 — TodayScreen mirrors Task 1 MINUS CARD-04 hint per CONTEXT.md mode parity lock; addPlant added to existing useStorage destructure; menu Edit reuses existing setDetailPlant→MyPlantDetailModal already rendered at L527-539 — no new modal added; menu styles cloned verbatim from PlantsScreen for visual consistency; smoke-phase18 PASS=52→56 / FAIL=0 / SKIP=4→0 — all 4 Phase 18 SKIPs flipped to PASS in this plan; check:i18n-keys 118 catalog ids PASS; phase17 regression PASS 54/54; tsc 0 errors).
+Status: **Phase 18 Plan 04 COMPLETE.** All 7 Phase 18 requirement IDs (CARD-01..05, GAM-03/04) closed across Plans 01-04. Smoke runner shows zero unexplained SKIPs. Per-screen Toast portal pattern locked (NOT global context — RESEARCH.md Open Question 4 YAGNI lock; refactor to context only when cross-cutting Toast triggers arrive in future phase). Mode parity divergence pattern locked: PlantsScreen owns onboarding affordance state (CARD-04), TodayScreen does NOT replicate, both share identical gesture+menu+Toast surface. Always-call useAnimatedStyle + conditional-apply pattern locked for hooks-rule compliance with first-row-only animations. Optimistic delete + memory-only restore pattern locked (no deletedAt tombstone, 4s window). Sheet-then-Toast deferral via requestAnimationFrame locked for any sheet-dismiss-then-overlay sequence. **Next:** Plan 18-05 (manual device-test checkpoint per 18-VALIDATION.md — visual swipe-feel, haptic strength, BottomSheetModal panDownToClose feel, Toast slide-in tightness, chevron-peek timing on first launch). All file-content gates green; only manual checkpoints remain in Phase 18.
+Last activity: 2026-05-08 — Phase 18 Plan 04 complete (PlantsScreen + TodayScreen integration). 2 files, 2 tasks, ~5.5 min.
 
-Progress: [██████████] 98% (v1.2 in progress — Phase 18 Plans 18-01/02/03 landed; Plans 18-04/05 ahead, plus Phases 19-24)
+Progress: [██████████] 100% (v1.2 milestone progress at base level; Phase 18 4-of-5 plans landed; Plan 05 manual checkpoint + Phases 19-24 ahead)
 
 ## Performance Metrics
 
@@ -78,6 +78,7 @@ Progress: [██████████] 98% (v1.2 in progress — Phase 18 Pl
 | Phase 18 P01 | 3min | 2 tasks | 7 files |
 | Phase 18 P02 | 4min | 2 tasks | 2 files |
 | Phase 18 P03 | 5min | 2 tasks | 1 files |
+| Phase 18 P04 | 6min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -210,6 +211,12 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-03: Gesture.Race(longPressGesture, panGesture) — first-to-activate wins; canonical lock per Pitfall 3 (NEVER Gesture.Simultaneous for swipe-and-long-press on the same target). Reusable for any future swipeable list rows requiring secondary long-press menu.
 - [Phase 18]: Plan 18-03: Greg-style mood-badge overlay anchored on imageContainer (relative-positioned wrapper) with 2px colors.card ring + getHealthBgColor(level) fill — Pitfall 7. Reusable on-thumbnail badge pattern for Phase 19 toxicity (TOX-03) + Phase 20 fertilize (FERT-06).
 - [Phase 18]: Plan 18-03: onDelete prop name kept (NOT renamed to onCommitDelete) — semantics re-purposed via inline JSDoc to swipe-commit. Simpler diff path; existing PlantsScreen + TodayScreen consumers pass onDelete unchanged. Plan 04 wires the new optimistic-delete + Toast undo flow to the same prop name.
+- [Phase 18]: Plan 18-04: Per-screen Toast portal pattern — <Toast/> rendered as sibling of MyPlantDetailModal at screen-component level on BOTH PlantsScreen and TodayScreen (NOT global context per RESEARCH.md Open Question 4 YAGNI lock). Refactor to context deferred until future phase needs cross-cutting Toast triggers.
+- [Phase 18]: Plan 18-04: Optimistic delete + memory-only restore pattern locked — pendingDelete Plant retained in screen-component state for 4s window + addPlant(pendingDelete) on undo. NO deletedAt tombstone field, NO schema change. Trade-off: app-close mid-window = final delete (acceptable per CONTEXT.md). Reusable for any future destructive-action UX needing undo.
+- [Phase 18]: Plan 18-04: Sheet-then-Toast deferral via requestAnimationFrame — handleMenuDelete dismisses BottomSheetModal first, defers handleCommitDelete to next frame to prevent visual race on iOS where sheet+Toast appear simultaneously. Reusable for any sheet-dismiss-then-overlay sequence.
+- [Phase 18]: Plan 18-04: Always-call useAnimatedStyle + conditional-apply via JSX — hookAnimatedStyle declared unconditionally at component-body level, applied via Animated.View style={isFirstWithHint ? hintAnimatedStyle : undefined}. Hooks-rule compliant alternative to inline-conditional-hook calls. Reusable for first-row-only animations driven by parent state.
+- [Phase 18]: Plan 18-04: Mode parity divergence locked — PlantsScreen owns @plantcard_swipe_discovered AsyncStorage flag + showSwipeHint + hintAnimatedStyle (CARD-04 affordance hint). TodayScreen does NOT replicate. Both share identical gesture+menu+Toast surface. Pattern reusable when one mode requires onboarding affordance the other does not.
+- [Phase 18]: Plan 18-04: TodayScreen menu Edit reuses existing setDetailPlant→MyPlantDetailModal flow already rendered at L527-539 — NO new modal, NO new state, NO new render block. Implements CONTEXT.md 'simplest option present' recommendation. addPlant added to TodayScreen useStorage destructure (was missing — only deletePlant + updatePlant present).
 
 ### Pending Todos
 
@@ -224,6 +231,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T20:38:50.647Z
-Stopped at: Completed 18-03-PLAN.md
+Last session: 2026-05-08T20:49:36.568Z
+Stopped at: Completed 18-04-PLAN.md
 Resume file: None

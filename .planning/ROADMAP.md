@@ -195,11 +195,11 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Every PlantCard shows a mood emoji (🌱/😊/😐/😟) derived from health score — always visible, not conditional on score threshold
   4. The legacy conditional `PlantHealthBadge` (shown only when score < 80) is removed from PlantCard
   5. First-render swipe affordance hint is shown on the first card in PlantsScreen (dismissible)
-**Plans:** 3/5 plans executed
-  - [ ] 18-01-PLAN.md — Wave 0 scaffold: smoke-phase18.cjs runner + npm script + 13 i18n keys (EN+ES parity) + Toast.tsx skeleton + index.ts re-export (Nyquist gate)
-  - [ ] 18-02-PLAN.md — Wave 2 (parallel): Toast.tsx full Reanimated v4 impl + tip relocation into MyPlantDetailModal '¿Qué hacer?' section with 3-rung fallback (CARD-03 modal side)
-  - [ ] 18-03-PLAN.md — Wave 3: PlantCard.tsx restructure — remove PlantHealthBadge/Alert/trash/heart/tip + add Gesture.Pan/LongPress/Race + mood emoji overlay + onLongPress/onSwipeCommitted props (CARD-01/02/03/05, GAM-03/04)
-  - [ ] 18-04-PLAN.md — Wave 4: PlantsScreen + TodayScreen integration — Toast undo flow + BottomSheetModal long-press menu + CARD-04 first-card affordance hint (PlantsScreen only)
+**Plans:** 4/5 plans executed
+  - [x] 18-01-PLAN.md — Wave 0 scaffold: smoke-phase18.cjs runner + npm script + 13 i18n keys (EN+ES parity) + Toast.tsx skeleton + index.ts re-export (Nyquist gate)
+  - [x] 18-02-PLAN.md — Wave 2 (parallel): Toast.tsx full Reanimated v4 impl + tip relocation into MyPlantDetailModal '¿Qué hacer?' section with 3-rung fallback (CARD-03 modal side)
+  - [x] 18-03-PLAN.md — Wave 3: PlantCard.tsx restructure — remove PlantHealthBadge/Alert/trash/heart/tip + add Gesture.Pan/LongPress/Race + mood emoji overlay + onLongPress/onSwipeCommitted props (CARD-01/02/03/05, GAM-03/04)
+  - [x] 18-04-PLAN.md — Wave 4: PlantsScreen + TodayScreen integration — Toast undo flow + BottomSheetModal long-press menu + CARD-04 first-card affordance hint (PlantsScreen only)
   - [ ] 18-05-PLAN.md — Wave 5: MANUAL CHECKPOINT (autonomous: false) — iOS + Android device verification of swipe gestures, haptics, BottomSheetModal z-order, mood emoji, Toast positioning, affordance hint persistence
 
 ### Phase 19: Pet Toxicity
@@ -290,7 +290,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
-| 18. PlantCard Cleanup + Mood Emoji | 3/5 | In Progress|  | - |
+| 18. PlantCard Cleanup + Mood Emoji | 4/5 | In Progress|  | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
