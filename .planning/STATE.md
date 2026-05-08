@@ -2,11 +2,11 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 4 of 5
+current_plan: 5 of 5
 status: completed
-stopped_at: Completed 18-04-PLAN.md
-last_updated: "2026-05-08T20:49:36.571Z"
-last_activity: 2026-05-08 — Phase 18 Plan 04 complete (PlantsScreen + TodayScreen integration). 2 files, 2 tasks, ~5.5 min.
+stopped_at: Completed 18-05-PLAN.md (Phase 18 closed; manual checkpoint approved with deferral to v1.2 device-test backlog)
+last_updated: "2026-05-08T20:57:30Z"
+last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual verification gate; user 'approved' Option B deferral; 38-item device-test checklist appended to v1_2_test_backlog memory). Phase 18 CLOSED.
 progress:
   total_phases: 15
   completed_phases: 8
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **IN PROGRESS**
-Current Plan: 4 of 5
-Plan: 18-04 complete (PlantsScreen + TodayScreen screen-level integration; +358 net LOC across 2 files; Task 1 feat 1fd6c63 +225/-16 — PlantsScreen Toast undo flow with handleCommitDelete/handleUndo/handleToastDismissed + 4s setTimeout dismissTimeoutRef + pendingDelete Plant memory + addPlant restore-on-undo; long-press BottomSheetModal at screen-component level with useDismissOnPaywall(longPressSheetRef) Pitfall 10 paywall z-order + Favorite/Edit/Delete items + handleMenuDelete sheet→requestAnimationFrame→handleCommitDelete deferral; CARD-04 chevron-peek affordance hint via showSwipeHint state + hintTranslateX useSharedValue + hintAnimatedStyle always-call + conditional-apply via Animated.View on first card index===0; @plantcard_swipe_discovered AsyncStorage flag mount-read with cancelled guard + onSwipeCommitted callback flips flag to 'true'; Task 2 feat a1f26cc +151/-2 — TodayScreen mirrors Task 1 MINUS CARD-04 hint per CONTEXT.md mode parity lock; addPlant added to existing useStorage destructure; menu Edit reuses existing setDetailPlant→MyPlantDetailModal already rendered at L527-539 — no new modal added; menu styles cloned verbatim from PlantsScreen for visual consistency; smoke-phase18 PASS=52→56 / FAIL=0 / SKIP=4→0 — all 4 Phase 18 SKIPs flipped to PASS in this plan; check:i18n-keys 118 catalog ids PASS; phase17 regression PASS 54/54; tsc 0 errors).
-Status: **Phase 18 Plan 04 COMPLETE.** All 7 Phase 18 requirement IDs (CARD-01..05, GAM-03/04) closed across Plans 01-04. Smoke runner shows zero unexplained SKIPs. Per-screen Toast portal pattern locked (NOT global context — RESEARCH.md Open Question 4 YAGNI lock; refactor to context only when cross-cutting Toast triggers arrive in future phase). Mode parity divergence pattern locked: PlantsScreen owns onboarding affordance state (CARD-04), TodayScreen does NOT replicate, both share identical gesture+menu+Toast surface. Always-call useAnimatedStyle + conditional-apply pattern locked for hooks-rule compliance with first-row-only animations. Optimistic delete + memory-only restore pattern locked (no deletedAt tombstone, 4s window). Sheet-then-Toast deferral via requestAnimationFrame locked for any sheet-dismiss-then-overlay sequence. **Next:** Plan 18-05 (manual device-test checkpoint per 18-VALIDATION.md — visual swipe-feel, haptic strength, BottomSheetModal panDownToClose feel, Toast slide-in tightness, chevron-peek timing on first launch). All file-content gates green; only manual checkpoints remain in Phase 18.
-Last activity: 2026-05-08 — Phase 18 Plan 04 complete (PlantsScreen + TodayScreen integration). 2 files, 2 tasks, ~5.5 min.
+Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **CLOSED**
+Current Plan: 5 of 5
+Plan: 18-05 complete (manual verification gate; Task 1 automation gate green pre-checkpoint — tsc 0 / check:i18n-keys 118 ids / smoke-phase18 PASS=56 SKIP=0 / smoke-phase17 PASS 54/54; Task 2 manual checkpoint paused for human-verify, user responded "approved" with Option B deferral to v1.2 device-test backlog memory per CLAUDE.md milestone-end batching pattern; 38-item device-test checklist across 9 blocks A-I appended to v1_2_test_backlog memory file; SUMMARY.md created; no source code commits this plan — metadata-only commit captures SUMMARY + STATE + ROADMAP + REQUIREMENTS + memory updates atomically).
+Status: **Phase 18 CLOSED.** All 7 Phase 18 requirement IDs (CARD-01..05, GAM-03/04) reach closing PASS state via Plans 01-04 implementation + Plan 05 file-content gate verification + user-approved deferral. Manual deferral pattern locked: when user approves manual checkpoint with Option B deferral, executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier (hard/soft), (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. Phase closes at code level despite device-only deferral — file-content gates green + smoke runners exit-0 + GAM-04 STRICT preservation sentinels green + cross-phase regression sentinels green = the 7 requirement IDs reach closing PASS state in implementation surface area. The deferred 38-item device-test checklist remains a ship-blocker for v1.2 store submission, NOT for Phase 18 closure. Toast primitive at src/components/Toast.tsx ready for Phase 22 GAM-01 reuse. PlantCard mood-badge overlay pattern from Plan 18-03 ready for Phase 19 TOX-03 reuse. **Next:** Phase 19 (Pet Toxicity Badge — TOX-03 on PlantCard). v1.2 milestone-end submission gate consolidates Phase 18 38-item checklist + Phase 13 iOS verification + Phase 14 e2e re-verify + PaywallModal Z-order + 69-entry image upload backlog into single device-test session.
+Last activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
 
 Progress: [██████████] 100% (v1.2 milestone progress at base level; Phase 18 4-of-5 plans landed; Plan 05 manual checkpoint + Phases 19-24 ahead)
 
@@ -79,6 +79,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 18 P02 | 4min | 2 tasks | 2 files |
 | Phase 18 P03 | 5min | 2 tasks | 1 files |
 | Phase 18 P04 | 6min | 2 tasks | 2 files |
+| Phase 18 P05 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -217,6 +218,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-04: Always-call useAnimatedStyle + conditional-apply via JSX — hookAnimatedStyle declared unconditionally at component-body level, applied via Animated.View style={isFirstWithHint ? hintAnimatedStyle : undefined}. Hooks-rule compliant alternative to inline-conditional-hook calls. Reusable for first-row-only animations driven by parent state.
 - [Phase 18]: Plan 18-04: Mode parity divergence locked — PlantsScreen owns @plantcard_swipe_discovered AsyncStorage flag + showSwipeHint + hintAnimatedStyle (CARD-04 affordance hint). TodayScreen does NOT replicate. Both share identical gesture+menu+Toast surface. Pattern reusable when one mode requires onboarding affordance the other does not.
 - [Phase 18]: Plan 18-04: TodayScreen menu Edit reuses existing setDetailPlant→MyPlantDetailModal flow already rendered at L527-539 — NO new modal, NO new state, NO new render block. Implements CONTEXT.md 'simplest option present' recommendation. addPlant added to TodayScreen useStorage destructure (was missing — only deletePlant + updatePlant present).
+- [Phase 18]: Plan 18-05: Manual checkpoint deferral pattern — user approved with Option B (defer to v1.2 device-test backlog memory per CLAUDE.md milestone-end batching pattern); executor appended 38-item device-test checklist (9 blocks A-I, hard-fail vs soft-fail classifier) to v1_2_test_backlog.md memory file; phase closes at code level despite device-only deferral because all file-content gates green + smoke runners exit-0 + GAM-04 STRICT preservation sentinels green + cross-phase regression sentinels green. Deferred items remain ship-blocker for v1.2 store submission, NOT for Phase 18 closure.
+- [Phase 18]: Plan 18-05: Manual deferral discipline locked — when user approves manual checkpoint with Option B deferral (vs run-now), executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier, (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. Reusable for any future autonomous:false manual-checkpoint plan whose device-only gates are blocked by Xcode/RevenueCat/Apple ID friction.
+- [Phase 18]: Plan 18-05: Phase 18 cumulative metrics — 5 plans, 10 tasks, ~14 unique files modified, 12 git commits across Plans 01-04 (each contributing 2 source commits + 1 docs commit) + 1 metadata commit at Plan 05. ~20 min total execution time across phase. Heavy single-file LOC concentrated in PlantCard (Plan 03) + 2 screens (Plan 04). Toast primitive at src/components/Toast.tsx canonical for Phase 22 reuse.
+- [Phase 18]: Plan 18-05: 9-block device-test checklist (Block A smoke / B haptic / C long-press menu / D mood emoji / E Toast positioning / F FlatList recycling / G mode parity / H persistence / I i18n parity) is the reusable template for any future PlantCard or list-row UX phase. Each block maps to ≥1 phase requirement ID for closure traceability.
 
 ### Pending Todos
 
@@ -231,6 +236,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T20:49:36.568Z
-Stopped at: Completed 18-04-PLAN.md
+Last session: 2026-05-08T20:57:30Z
+Stopped at: Completed 18-05-PLAN.md (Phase 18 closed; manual checkpoint approved with deferral to v1.2 device-test backlog)
 Resume file: None

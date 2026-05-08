@@ -46,7 +46,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan (completed 2026-05-07)
 - [x] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema (completed 2026-05-08)
 - [x] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 118 total; smoke asserts count (5 plans) (completed 2026-05-08)
-- [ ] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge
+- [x] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge (completed 2026-05-08)
 - [ ] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter
 - [ ] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications
 - [ ] **Phase 21: Plant Journal** — Per-plant `JournalEntry[]` with file-system photo storage; bottom-sheet quick-add; reverse-chronological timeline; orphan cleanup on plant delete
@@ -195,7 +195,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Every PlantCard shows a mood emoji (🌱/😊/😐/😟) derived from health score — always visible, not conditional on score threshold
   4. The legacy conditional `PlantHealthBadge` (shown only when score < 80) is removed from PlantCard
   5. First-render swipe affordance hint is shown on the first card in PlantsScreen (dismissible)
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
   - [x] 18-01-PLAN.md — Wave 0 scaffold: smoke-phase18.cjs runner + npm script + 13 i18n keys (EN+ES parity) + Toast.tsx skeleton + index.ts re-export (Nyquist gate)
   - [x] 18-02-PLAN.md — Wave 2 (parallel): Toast.tsx full Reanimated v4 impl + tip relocation into MyPlantDetailModal '¿Qué hacer?' section with 3-rung fallback (CARD-03 modal side)
   - [x] 18-03-PLAN.md — Wave 3: PlantCard.tsx restructure — remove PlantHealthBadge/Alert/trash/heart/tip + add Gesture.Pan/LongPress/Race + mood emoji overlay + onLongPress/onSwipeCommitted props (CARD-01/02/03/05, GAM-03/04)
@@ -290,7 +290,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
-| 18. PlantCard Cleanup + Mood Emoji | 4/5 | In Progress|  | - |
+| 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete   | 2026-05-08 | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
