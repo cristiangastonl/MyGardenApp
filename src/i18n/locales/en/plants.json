@@ -3106,6 +3106,166 @@
     "placementAvoid": "Waterlogged substrate and indoor corners without full sun (stretching + weakness).",
     "whyRationale": "Andean foothills columnar cactus — CAM metabolism and rapid vertical growth (>1cm/year). Full outdoor sun, minimal watering. The column rises seeking direct light, characteristic of Echinopsis."
   },
+  "tulipan": {
+    "name": "Tulip",
+    "tip": "If your zone doesn't drop below 5°C in winter, chill the bulbs in the fridge 6-8 weeks before planting.",
+    "description": "Tulip (Tulipa gesneriana) is a Liliaceae with a subterranean bulb. It needs ~12 weeks below 8°C in winter to develop the flower bud. In cool-temperate Argentina (Buenos Aires south, Patagonia) it blooms naturally; in subtropical NEA-NOA, fridge pre-chill is mandatory. The aboveground portion dies back in summer; the bulb enters dormancy until next spring.",
+    "problems": [
+      { "symptom": "No flowers", "cause": "Insufficient vernalization", "solution": "Pre-chill bulbs in the fridge 6-8 weeks before planting or switch zones." },
+      { "symptom": "Leaves but no flower", "cause": "Young or depleted bulb", "solution": "Fertilize after flowering so the bulb rebuilds reserves." },
+      { "symptom": "Rotten bulb in summer", "cause": "Watering during dormancy", "solution": "Stop watering when leaves wilt after blooming." }
+    ],
+    "nutrients": { "type": "Balanced at sprouting and after flowering", "homemade": "Bone meal at planting" },
+    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water. When leaves wilt after flowering, stop watering entirely — the bulb enters rest." },
+    "placementRecommended": "Deep planter or bed in full sun — the bulb needs winter cold and spring sun.",
+    "placementAlternatives": [
+      "25+ cm planter with generous drainage",
+      "Bed alongside other spring bulbs (daffodil, hyacinth)",
+      "Open patio with direct morning sun"
+    ],
+    "placementAvoid": "Waterlogged substrate during dormancy and warm zones without cold winter — the bulb won't accumulate chill hours and won't flower.",
+    "whyRationale": "Liliaceae with subterranean bulb — needs ~12 weeks below 8°C to develop the flower bud. Cool-temperate Argentina works naturally; in subtropical NEA-NOA, fridge pre-chill 6-8 weeks is mandatory or no flowering. Aboveground dies; bulb persists."
+  },
+  "ciclamen": {
+    "name": "Cyclamen",
+    "tip": "When leaves yellow in summer, suspend watering — the corm enters rest.",
+    "description": "Cyclamen (Cyclamen persicum) is a Primulaceae with a subterranean corm. In LATAM it's grown as a winter-spring flowering indoor pot plant, not a garden plant. It loves cool 13-18°C and drops leaves in summer (corm dormancy). Never water the corm from above (rots it); bottom-water by immersion 10 minutes and let drain.",
+    "problems": [
+      { "symptom": "Yellow leaves in summer", "cause": "Normal corm dormancy", "solution": "Do NOT water; when new shoots appear in autumn, resume watering." },
+      { "symptom": "Soft corm", "cause": "Standing water in the crown", "solution": "Bottom-water by immersion 10 minutes, NOT from above onto the corm." },
+      { "symptom": "Flowers drop quickly", "cause": "Warm environment", "solution": "Move to a cool room below 20°C and away from heaters." }
+    ],
+    "nutrients": { "type": "Low nitrogen; bloom-balanced during flowering", "homemade": "Banana peel every 3 weeks during flowering" },
+    "careAction": { "soilCheck": "Touch surface soil: if dry, bottom-water by immersion 10 minutes. In summer (dormancy), suspend completely until new shoots appear." },
+    "placementRecommended": "Near a cool window with bright indirect light, away from heaters.",
+    "placementAlternatives": [
+      "Kitchen or laundry with good natural light and no direct sun",
+      "Table near a north (SH) or south (NH) window",
+      "Cool room below 18°C in winter-spring"
+    ],
+    "placementAvoid": "Intense direct sun, nearby heaters and water on the corm — all push it into dormancy or rot.",
+    "whyRationale": "Primulaceae with subterranean corm — stores reserves to survive summer dormancy (Mediterranean dry cycle). Blooms in fall-winter when the corm rehydrates. Watering over the corm rots it; always bottom-water."
+  },
+  "crisantemo": {
+    "name": "Chrysanthemum",
+    "tip": "Pinch tips through summer for more autumn blooms with short days.",
+    "description": "Chrysanthemum (Chrysanthemum × morifolium) is an Asteraceae perennial with an overwintering crown. Autumn flower in LATAM (Day of the Dead in Mexico; classic Mother's Day in SH). Pinching tips in spring-summer forces branching and multiplies heads. The crown stays dormant in winter; full sun + drainage are critical.",
+    "problems": [
+      { "symptom": "Long stems without flowers", "cause": "Long summer days — not yet flowering", "solution": "Patience; it blooms in autumn with short days (photoperiod)." },
+      { "symptom": "Leaves with dark spots", "cause": "Fungus from humidity on foliage", "solution": "Water at the base, avoid wetting foliage, improve ventilation." },
+      { "symptom": "Small plants with few flowers", "cause": "Lack of spring pinching", "solution": "Pinch tips through January (SH) to force branching." }
+    ],
+    "nutrients": { "type": "Balanced during growth; high phosphorus in pre-bloom", "homemade": "Banana peel tea every 3 weeks" },
+    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water at the base. Pinch tips through January (SH). In winter, reduce watering with the dormant crown." },
+    "placementRecommended": "Bed or large planter in full sun — at least 6 direct hours for dense flowering.",
+    "placementAlternatives": [
+      "30+ cm planter on sunny patio",
+      "Bed alongside other autumn perennials",
+      "Garden border with fast drainage"
+    ],
+    "placementAvoid": "Shade and waterlogged soil — without full sun makes thin stems without buds; with stagnant moisture rots the crown.",
+    "whyRationale": "Asteraceae perennial with overwintering crown — its heads are composite inflorescences of hundreds of florets. Blooms with short days (autumn photoperiod); spring pinching forces branching and multiplies heads."
+  },
+  "azalea": {
+    "name": "Azalea",
+    "tip": "Use rainwater or filtered water — hard water raises pH and kills mycorrhizal symbiosis.",
+    "description": "Azalea (Rhododendron simsii) is an Ericaceae native to southwestern China. Shrub with abundant spring flowering (pink, red, white, lilac). Requires acidic soil pH 4.5-5.5 and soft water. It's understory-adapted: filtered sun, not full. With alkaline soil or hard water, it develops iron chlorosis and dies within months.",
+    "problems": [
+      { "symptom": "Yellow leaves with green veins", "cause": "Chlorosis from high pH or hard water", "solution": "Rainwater + aluminum sulfate or peat to acidify the substrate." },
+      { "symptom": "Wilted leaves with moist soil", "cause": "Root rot from fungi", "solution": "Improve drainage + reduce watering; treat with systemic fungicide." },
+      { "symptom": "No flowers", "cause": "Mistimed pruning or insufficient sun", "solution": "Prune as soon as flowering ends; move to filtered morning sun." }
+    ],
+    "nutrients": { "type": "Ericaceous-specific (acidic)", "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly" },
+    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months." },
+    "placementRecommended": "Patio with filtered morning sun or light shade — understory-adapted, NOT full midday sun.",
+    "placementAlternatives": [
+      "Bed under a tree with dappled shade",
+      "Large planter with acidic substrate in a cool spot",
+      "East-facing corner (SH) with soft morning sun"
+    ],
+    "placementAvoid": "Full midday sun + alkaline soil + hard water — the combination burns leaves and kills the obligate mycorrhizae.",
+    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Chinese understory native: filtered sun, NOT full midday sun."
+  },
+  "clavel": {
+    "name": "Carnation",
+    "tip": "Pinch young tips to branch out; deadhead to force re-bloom.",
+    "description": "Carnation (Dianthus caryophyllus) is a Mediterranean Caryophyllaceae with jointed gray-blue stems. Highly fragrant flowers (pink, red, white, variegated). Classic European garden plant that prefers full sun + fast drainage + neutral-alkaline pH (the opposite of azalea). Gray leaves have trichomes that reduce evaporation.",
+    "problems": [
+      { "symptom": "Thin, drooping stems", "cause": "Insufficient sun or excess nitrogen", "solution": "6+ hours direct sun + reduce nitrogen fertilizer to strengthen stems." },
+      { "symptom": "Yellow leaves at the base", "cause": "Overwatering", "solution": "Water less, improve drainage, let it dry between waterings." },
+      { "symptom": "Papery petals", "cause": "Water on flowers exposed to sun", "solution": "Water at the base, not from above — protect flowers from direct watering." }
+    ],
+    "nutrients": { "type": "Balanced low-nitrogen; high potassium", "homemade": "Wood ash (potassium + slight alkalinity) every 6 weeks" },
+    "careAction": { "fixed": "Water every 5 days in warm; every 12 in cold. Pinch young tips to branch out; deadhead to force re-bloom." },
+    "placementRecommended": "Sunny bed or planter — at least 6 hours of direct sun and well-drained soil.",
+    "placementAlternatives": [
+      "Mediterranean garden border",
+      "Balcony planter facing north (SH) or south (NH)",
+      "Bed alongside rosemary, lavender and sage"
+    ],
+    "placementAvoid": "Dense shade and waterlogged soil — without full sun and with excess moisture, stems rot at the base.",
+    "whyRationale": "Mediterranean Caryophyllaceae with jointed stems — flora of dry-warm origins; drained soil and full sun are its native niche. Gray leaves with trichomes reduce evaporation; defense against summer heat + drought."
+  },
+  "fucsia": {
+    "name": "Hardy Fuchsia",
+    "tip": "Native to Patagonia — prefers partial shade, not full midday sun.",
+    "description": "Hardy Fuchsia (Fuchsia magellanica) is an Onagraceae native to Argentina (Patagonia, humid forest understory). Hanging shrub with characteristic pendulous red-purple flowers; ideal for hanging planters in shaded patios. Tolerates light frosts. In the southern hemisphere it blooms November to March. It needs ambient humidity, NOT full midday sun.",
+    "problems": [
+      { "symptom": "Flower bud drop", "cause": "Sudden temperature change or drought", "solution": "Maintain steady humidity + regular watering; avoid moving it during flowering." },
+      { "symptom": "Pale, drooping leaves", "cause": "Intense midday sun", "solution": "Move to partial shade or a spot with morning sun only." },
+      { "symptom": "Few flowers", "cause": "Too little fertilizer during flowering", "solution": "Biweekly potassium feed during the flowering season." }
+    ],
+    "nutrients": { "type": "High potassium during flowering", "homemade": "Wood ash + banana peel every 2 weeks during flowering" },
+    "careAction": { "fixed": "Water every 4 days in warm; every 10 in cold. Maintain ambient humidity and remove faded flowers to promote new ones." },
+    "placementRecommended": "Hanging planter or east-facing bed (SH) — soft morning sun and midday shade.",
+    "placementAlternatives": [
+      "Shaded gallery with bright indirect light",
+      "Bed under a tree with dappled shade",
+      "Cool patio with good ventilation"
+    ],
+    "placementAvoid": "Direct midday sun and dry hot air — burns flowers and dehydrates leaves.",
+    "whyRationale": "Patagonian humid-forest Onagraceae — Fuchsia magellanica is Argentine native; tolerates light frosts and prefers humid air with partial shade. Understory-adapted: dappled sun, not full midday."
+  },
+  "girasol": {
+    "name": "Sunflower",
+    "tip": "Young heads track the sun (heliotropism); mature heads stay east-facing.",
+    "description": "Sunflower (Helianthus annuus) is an Asteraceae long-day annual, native to North America and massively cultivated in Argentina (Pampas). Height 1-3m by cultivar. The head (capitulum) is composed of hundreds of florets. Sow in spring (Sept-Nov in SH); harvest seeds at end of summer when the back of the head yellows.",
+    "problems": [
+      { "symptom": "Small plants with small heads", "cause": "Too little sun or poor soil", "solution": "8h full sun + sow in deep, organic-rich soil." },
+      { "symptom": "Bent or broken stem", "cause": "Wind + lack of stake on tall plants", "solution": "Stake tall varieties with a 1m cane." },
+      { "symptom": "Leaves with dark spots", "cause": "Fungus from humidity on foliage", "solution": "Water at the base, not from above; improve ventilation." }
+    ],
+    "nutrients": { "type": "Balanced at sowing; high phosphorus during head formation", "homemade": "Bone meal at sowing" },
+    "careAction": { "fixed": "Water every 3 days in warm (high need); every 7 in cold. Stake if over 1m. Harvest seeds when the back of the head yellows." },
+    "placementRecommended": "Deep bed or planter in full sun — at least 8 direct hours and vertical space.",
+    "placementAlternatives": [
+      "Family vegetable garden (companion to corn and squash — milpa)",
+      "North-facing (SH) or south-facing (NH) garden border",
+      "40+ cm planter for dwarf varieties (max 60cm)"
+    ],
+    "placementAvoid": "Shade and shallow soil — without 8h sun and root depth, makes small plants with poor heads.",
+    "whyRationale": "Asteraceae long-day annual — its head is a composite inflorescence of hundreds of florets. Juvenile heliotropism: bud tracks the sun; once mature, locks east-facing. Argentine Pampas is ideal niche."
+  },
+  "magnolia": {
+    "name": "Star Magnolia",
+    "tip": "Magnolia is a tree — M. stellata dwarf 3m fits a small patio; M. grandiflora reaches 20m.",
+    "description": "Star Magnolia (Magnolia stellata) is a Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). It's the dwarf form (3m max) ideal for small Argentine patios or gardens. Spring flowering before leaves (July-Sept SH) in white-pink stars. M. grandiflora (20m) is the iconic large variant. Honest about trajectory: large planter first, eventual ground transplant.",
+    "problems": [
+      { "symptom": "Flower buds drop", "cause": "Late frosts on exposed buds", "solution": "Cover on cold nights when buds are about to open." },
+      { "symptom": "Slow growth", "cause": "Normal — magnolia grows slowly", "solution": "Patience; don't over-fertilize, the slow rhythm is natural." },
+      { "symptom": "Strangled roots", "cause": "Small planter held too long", "solution": "Eventually transplant to firm ground or use 50+ liter planter as a bridge." }
+    ],
+    "nutrients": { "type": "Balanced annual spring; slightly acidic tolerated but not required", "homemade": "Annual organic compost at the base of the tree" },
+    "careAction": { "fixed": "Water every 7 days in warm; every 14 in cold. Mulch the base with bark to retain moisture and protect surface roots." },
+    "placementRecommended": "50+ liter planter as a bridge, eventually transplant to firm ground with morning sun and deep soil.",
+    "placementAlternatives": [
+      "Small patio or garden with partial sun",
+      "Bed alongside other small ornamental trees",
+      "Garden corner as a focal point — first tree to bloom at end of winter"
+    ],
+    "placementAvoid": "Permanent planter under 50 liters and persistently dry soil — Magnoliaceae are trees, extensive surface roots require ground for the long term.",
+    "whyRationale": "Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). M. stellata is the dwarf 3m form ideal for small gardens; M. grandiflora reaches 20m. Pot is temporary; ground eventually required."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",
