@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
-status: "**Phase 16 CLOSED.** Plan 16-03 (CAT-16 routing closure) appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage (Senecio rowleyanus, Trichocereus pachanoi, Sansevieria cylindrica, Schlumbergera truncata, Pothos aureus, Philodendron scandens, Dracaena braunii, Corymbia citriodora). Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). 16-04 was executed in parallel (file-disjoint CLAUDE.md). **Phase 16 complete: CAT-13/14/15/16 all closed.** **Next:** Phase 17 (Plan Structure A — ROADMAP next phase)."
-stopped_at: Completed 16-03-PLAN.md (Phase 16 closed; 16-04 ran in parallel)
-last_updated: "2026-05-08T13:26:31Z"
+status: "**Phase 16 CLOSED.** Plan 16-03 appended 30 net-new COMMON_NAMES_ES entries to src/utils/plantIdentification.ts: 13 species-qualified mappings (Hoya kerrii, Rhaphidophora tetrasperma, Strelitzia reginae, Eucalyptus citriodora, Dracaena sanderiana, Dracaena angolensis, Echinopsis pachanoi, Curio rowleyanus, Schlumbergera × buckleyi, Agave americana, Kalanchoe blossfeldiana, Sempervivum tectorum, Lithops lesliei, Opuntia ficus-indica, Mammillaria elongata, Euphorbia milii, Gasteria bicolor) + 5 net-new genus aliases (Agave/Hoya/Strelitzia/Eucalyptus/Schlumbergera) + 8 legacy synonym aliases for taxonomic-drift coverage. Echinopsis genus alias DELIBERATELY OMITTED (large genus, mis-routes non-pachanoi). 19 W3.CAT-16.commonNames SKIPs flipped to PASS — phase16 50→69 default / 69→88 --identification / 72→92 --routing-fix; phase15 regression clean (81/81 + 104/104); tsc 0 errors; 0 deletions in git diff (append-only discipline). **Next:** Phase 17 (Plan Structure A) per ROADMAP."
+stopped_at: Completed 16-03-PLAN.md (Phase 16 closed)
+last_updated: "2026-05-08T13:42:18.267Z"
 last_activity: 2026-05-08 — Phase 16 Plan 03 complete (COMMON_NAMES_ES Phase 16 routing closure — 30 net-add entries; 19 W3.CAT-16.commonNames SKIPs→PASS). 1 file. 1 task, 12 min.
 progress:
   total_phases: 15
   completed_phases: 7
   total_plans: 35
-  completed_plans: 37
+  completed_plans: 36
   percent: 100
 ---
 

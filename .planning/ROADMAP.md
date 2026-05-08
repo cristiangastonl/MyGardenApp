@@ -167,7 +167,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [ ] 16-01-PLAN.md — Wave 1: Sub-batch A (10 cactus/suculentas — kalanchoe, siempreviva, piedras-vivas, nopal, mammillaria, corona-espinas, gasteria, senecio-rowleyanus, cactus-navidad, agave) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-13)
   - [ ] 16-02-PLAN.md — Wave 2: Sub-batch B (7 net-new — hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) — closes CAT-13/14/15 (104 entries; potus + filodendro counted as upgrades)
   - [ ] 16-03-PLAN.md — Wave 3 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts — 19 species-qualified mappings + 7-8 legacy synonym aliases (CAT-16 routing)
-  - [ ] 16-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 17 NEW Phase 16 entries documented as accepted-known failures (CAT-16 image plan)
+  - [x] 16-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 17 NEW Phase 16 entries documented as accepted-known failures (CAT-16 image plan) (completed 2026-05-08)
 
 ### Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales
 **Goal**: The final 14 catalog entries land and the catalog reaches exactly 120 entries — the v1.2 expansion target
@@ -278,7 +278,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
 | 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
 | 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
-| 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete   | 2026-05-08 | - |
+| 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | v1.2 | 0/TBD | Not started | - |
 | 18. PlantCard Cleanup + Mood Emoji | v1.2 | 0/TBD | Not started | - |
 | 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
