@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useEffect } from 'react';
+import React, { useState, useMemo, useContext, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -11,11 +11,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
+import { useDismissOnPaywall } from '../hooks/useDismissOnPaywall';
 import { formatDate, isSameDay, daysBetween } from '../utils/dates';
 import { getNextWaterDate } from '../utils/plantLogic';
 import { getEffectiveSeason } from '../utils/seasonality';
@@ -35,6 +37,7 @@ import {
   SettingsPanel,
   MyPlantDetailModal,
   DiagnosisFollowUp,
+  Toast,
 } from '../components';
 import { trackEvent } from '../services/analyticsService';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -68,6 +71,7 @@ export default function TodayScreen() {
     loading: storageLoading,
     updatePlant,
     deletePlant,
+    addPlant,
     deleteNote,
     deleteReminder,
     updateReminder,
@@ -230,6 +234,83 @@ export default function TodayScreen() {
     const diagnoses = diagnosisHistory[plantId] || [];
     const tracked = diagnoses.find(d => d.isTracked && d.trackingStatus && d.trackingStatus !== 'resolved');
     return tracked?.trackingStatus;
+  };
+
+  // Phase 18 CARD-01: optimistic delete + Toast undo flow (Pattern 2 + Pitfall 4 cleanup)
+  const [pendingDelete, setPendingDelete] = useState<Plant | null>(null);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const dismissTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Phase 18 CARD-02: long-press BottomSheetModal
+  const longPressSheetRef = useRef<BottomSheetModal>(null);
+  const [longPressTarget, setLongPressTarget] = useState<Plant | null>(null);
+  useDismissOnPaywall(longPressSheetRef); // Pitfall 10 — paywall z-order
+
+  const handleCommitDelete = (plant: Plant) => {
+    // Pitfall 4 — clear any pending dismiss timer when overlapping deletes occur.
+    if (dismissTimeoutRef.current) clearTimeout(dismissTimeoutRef.current);
+    setPendingDelete(plant);
+    deletePlant(plant.id);
+    setToastMessage(t('plantCard.undoToast.deletedMessage', { name: plant.name }));
+    setToastVisible(true);
+    dismissTimeoutRef.current = setTimeout(() => {
+      setToastVisible(false);
+      setPendingDelete(null);
+    }, 4000);
+    trackEvent('plant_deleted', { plant_id: plant.id });
+  };
+
+  const handleUndo = () => {
+    if (dismissTimeoutRef.current) {
+      clearTimeout(dismissTimeoutRef.current);
+      dismissTimeoutRef.current = null;
+    }
+    if (pendingDelete) {
+      addPlant(pendingDelete);
+      setPendingDelete(null);
+    }
+    setToastVisible(false);
+  };
+
+  const handleToastDismissed = () => {
+    // Called by Toast onDismiss after slide-out animation completes; finalize pendingDelete state cleanup.
+    setToastVisible(false);
+    setPendingDelete(null);
+  };
+
+  useEffect(() => {
+    // Pitfall 4 — clean up timeout on unmount.
+    return () => {
+      if (dismissTimeoutRef.current) clearTimeout(dismissTimeoutRef.current);
+    };
+  }, []);
+
+  const handleLongPress = (plant: Plant) => {
+    setLongPressTarget(plant);
+    longPressSheetRef.current?.present();
+  };
+
+  const handleMenuFavorite = () => {
+    if (!longPressTarget) return;
+    updatePlant(longPressTarget.id, { favorite: !longPressTarget.favorite });
+    longPressSheetRef.current?.dismiss();
+  };
+
+  const handleMenuDelete = () => {
+    if (!longPressTarget) return;
+    const plant = longPressTarget;
+    longPressSheetRef.current?.dismiss();
+    // Defer commit to after the sheet is dismissed so the Toast and the sheet do not overlap visually.
+    requestAnimationFrame(() => handleCommitDelete(plant));
+  };
+
+  const handleMenuEdit = () => {
+    if (!longPressTarget) return;
+    const plant = longPressTarget;
+    longPressSheetRef.current?.dismiss();
+    // Reuse existing TodayScreen detailPlant flow → MyPlantDetailModal (rendered at bottom of return).
+    setDetailPlant(plant);
   };
 
   if (storageLoading) {
@@ -396,11 +477,15 @@ export default function TodayScreen() {
                 onWater={handleWater}
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
-                onDelete={handleDeletePlant}
+                onDelete={(id) => {
+                  const target = plants.find(p => p.id === id);
+                  if (target) handleCommitDelete(target);
+                }}
                 onPress={setDetailPlant}
                 diagnoses={diagnosisHistory[plant.id]}
                 hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
                 activeTrackingStatus={getActiveTrackingStatus(plant.id)}
+                onLongPress={handleLongPress}
               />
             ))}
           </View>
@@ -536,6 +621,41 @@ export default function TodayScreen() {
         }}
         onAddPhoto={addPhotoToPlant}
         onDeletePhoto={removePhotoFromPlant}
+      />
+
+      {/* Phase 18 CARD-02 — long-press overflow menu */}
+      <BottomSheetModal
+        ref={longPressSheetRef}
+        snapPoints={['30%']}
+        enablePanDownToClose
+        backdropComponent={(props) => (
+          <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
+        )}
+      >
+        <BottomSheetView style={styles.menuSheet}>
+          <Text style={styles.menuTitle}>{t('plantCard.menuSheet.title')}</Text>
+          <TouchableOpacity onPress={handleMenuFavorite} style={styles.menuItem}>
+            <Text style={styles.menuItemText}>
+              {longPressTarget?.favorite ? t('plantCard.menu.unfavorite') : t('plantCard.menu.favorite')}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleMenuEdit} style={styles.menuItem}>
+            <Text style={styles.menuItemText}>{t('plantCard.menu.edit')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleMenuDelete} style={[styles.menuItem, styles.menuItemDestructive]}>
+            <Text style={[styles.menuItemText, styles.menuItemTextDestructive]}>{t('plantCard.menu.delete')}</Text>
+          </TouchableOpacity>
+        </BottomSheetView>
+      </BottomSheetModal>
+
+      {/* Phase 18 CARD-01 — undo Toast for swipe-delete */}
+      <Toast
+        visible={toastVisible}
+        message={toastMessage}
+        actionLabel={t('plantCard.undoToast.undoLabel')}
+        onAction={handleUndo}
+        durationMs={4000}
+        onDismiss={handleToastDismissed}
       />
     </SafeAreaView>
   );
@@ -700,5 +820,34 @@ const styles = StyleSheet.create({
   },
   bottomPadding: {
     height: 100,
+  },
+  menuSheet: {
+    flex: 1,
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.xl,
+  },
+  menuTitle: {
+    fontFamily: fonts.heading,
+    fontSize: 18,
+    color: colors.textPrimary,
+    marginBottom: spacing.lg,
+    marginTop: spacing.sm,
+  },
+  menuItem: {
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderLight,
+  },
+  menuItemText: {
+    fontFamily: fonts.body,
+    fontSize: 16,
+    color: colors.textPrimary,
+  },
+  menuItemDestructive: {
+    borderBottomWidth: 0,
+  },
+  menuItemTextDestructive: {
+    color: colors.dangerText,
+    fontFamily: fonts.bodySemiBold,
   },
 });
