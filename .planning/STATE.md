@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 5
-status: completed
-stopped_at: Phase 18 context gathered
-last_updated: "2026-05-08T18:14:24.995Z"
-last_activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation; Phase 17 Wave C accepted-known block appended to CLAUDE.md; v1.2 catalog expansion fully closed at 118 entries; Phase 17 fully closed). 1 file, 1 task, ~2 min.
+current_plan: 1 of 5
+status: verifying
+stopped_at: Completed 18-01-PLAN.md
+last_updated: "2026-05-08T20:20:58.995Z"
+last_activity: 2026-05-08 — Phase 18 Plan 01 complete (Wave 0 scaffold). 7 files, 2 tasks, ~3 min.
 progress:
   total_phases: 15
   completed_phases: 8
-  total_plans: 40
-  completed_plans: 41
-  percent: 100
+  total_plans: 45
+  completed_plans: 42
+  percent: 93
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 17 of 24 (Catalog Wave C — Exterior + Aromáticas + Frutales) — **COMPLETE**
-Current Plan: 5 of 5
-Plan: 17-04 complete (CAT-20 image-plan documentation closure — Phase 17 Wave C accepted-known block appended to CLAUDE.md, +8 LOC; cumulative v1.2 image backlog 69 entries: 15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17; W3.CAT-20.imagePlan SKIP→PASS in all 3 phase17-smoke modes). Phase 17 fully closed in parallel with Plan 17-03 (COMMON_NAMES_ES routing closure landed first, file-disjoint).
-Status: **Phase 17 COMPLETE.** Plan 17-04 (this plan) appended the "Phase 17 Wave C, v1.2 — 14 entries — image upload pending" accepted-known block to CLAUDE.md between the Phase 16 Wave B closing paragraph and the shared "Image upload steps:" numbered list. 14 ids in 3 sub-batch lines: 8 exterior flores (azalea/ciclamen/fucsia/clavel/crisantemo/tulipan/girasol/magnolia) + 3 aromáticas (salvia-officinalis/eneldo/stevia) + 3 frutales/huerta (olivo/arandano/espinaca). Closing paragraph cites cumulative 69-entry v1.2 backlog and explicit milestone-closure language ("Phase 17 closes the v1.2 catalog expansion at 118 entries"). 4 separate Accepted-known blocks now coexist in CLAUDE.md (Phase 8 v1.1 + Phase 15 Wave A + Phase 16 Wave B + Phase 17 Wave C); shared Image upload steps numbered list remains cross-cutting. CAT-20 image-plan portion CLOSED: phase17-smoke default 40/54, --identification 54/68, --routing-fix 68/68 full PASS (was 39/54 / 53/68 / 67/68 pre-plan — +1 PASS each). Cross-phase regressions clean: phase15 81/81, phase16 69/69, tsc 0 errors, check:i18n-keys PASS at 118 ids, voseo regex baseline preserved at 2. **v1.2 catalog expansion FULLY CLOSED** — Phase 17 is the final catalog wave; PLANT_DATABASE locked at 118 entries (64 v1.1 + 54 v1.2 net-add: 23 Phase 15 + 17 Phase 16 + 14 Phase 17). All 5 Phase 17 requirements PASS (CAT-17/18/19/20/21). **Next:** Phase 18 (PlantCard Cleanup + Mood Emoji) — depends on Phase 17 (full 118-entry catalog ✓) + Phase 13 (gesture infrastructure ✓ already landed).
-Last activity: 2026-05-08 — Phase 17 Plan 04 complete (CAT-20 image-plan documentation; Phase 17 Wave C accepted-known block appended to CLAUDE.md; v1.2 catalog expansion fully closed at 118 entries; Phase 17 fully closed). 1 file, 1 task, ~2 min.
+Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **IN PROGRESS**
+Current Plan: 1 of 5
+Plan: 18-01 complete (Wave 0 scaffold — smoke-phase18.cjs 159 LOC w/ 35 PASS / 21 SKIP / 0 FAIL exit 0 baseline; 13 i18n keys plantCard.menu/menuSheet/deleteHint/undoToast/moodA11y w/ EN+ES voseo parity; Toast.tsx skeleton w/ ToastProps interface + no-op render; index.ts re-export; npm run smoke:phase18 wired; .gitignore reserves scripts/.tmp-phase18/).
+Status: **Phase 18 Plan 01 COMPLETE.** Wave 0 scaffold landed in 2 atomic commits (Task 1 chore: smoke runner + npm script + .gitignore; Task 2 feat: i18n keys + Toast skeleton + index re-export). Smoke runner is the lightest of Phases 11-18 (159 LOC vs Phase 17's 337 LOC) — Phase 18 is JSX-restructure only, no ts.transpileModule + Module._resolveFilename intercept + runtime stubs needed. 21 SKIP placeholders (CARD-01/02/03/04/05 + GAM-03/04 + Toast.impl) flip to PASS as Plans 02-04 land concrete code. 3 STRICT (non-skippable) GAM-04 regression sentinels guarantee PlantHealthBadge survives unchanged outside PlantCard scope (modal usage + index re-export + file existence). 1 deviation auto-fixed (Rule 1): Toast return type JSX.Element → React.ReactElement (React 19 has no global JSX namespace by default; codebase pattern is to NOT type component returns). All verification gates green: tsc 0 errors, check:i18n-keys 118 catalog ids PASS, smoke:phase18 exit 0, locale parity verified for all 13 new keys. **Next:** Plan 18-02 (Toast Reanimated v4 impl + undo flow consumers) or Plan 18-03 (PlantCard JSX restructure: Gesture.Pan swipe + Gesture.LongPress + Gesture.Race + 5-element layout + mood emoji + scoped PlantHealthBadge removal from card face).
+Last activity: 2026-05-08 — Phase 18 Plan 01 complete (Wave 0 scaffold). 7 files, 2 tasks, ~3 min.
 
-Progress: [██████████] 100% (v1.2 in progress — Phase 16 fully closed; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
+Progress: [█████████░] 93% (v1.2 in progress — Phase 18 Wave 0 scaffold landed; Plans 18-02/03/04/05 still ahead, plus Phases 19-24)
 
 ## Performance Metrics
 
@@ -75,6 +75,7 @@ Progress: [██████████] 100% (v1.2 in progress — Phase 16 f
 | Phase 17 P02 | 7min | 2 tasks | 3 files |
 | Phase 17 P04 | 2min | 1 tasks | 1 files |
 | Phase 17 P03 | 1min | 1 tasks | 1 files |
+| Phase 18 P01 | 3min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -193,6 +194,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 17]: Plan 17-03: Existing 'Rhododendron' (line 88) / 'Cyclamen' (line 89) / 'Fuchsia' (line 84) genus mappings cover fallback for azalea/ciclamen/fucsia even without species-qualified additions — but Plan 17-03 ADDS species-qualified keys ('Rhododendron simsii' / 'Cyclamen persicum' / 'Fuchsia magellanica') on top to lock canonical routing via Phase 16-00 exact-match-first refactor (sentinel `const exactMatch = PLANT_DATABASE.find` count = 1 preserved post-edit). Magnolia stellata canonical (Q4 default — RHS small-garden 3m dwarf form per Plan 17-01) + Magnolia grandiflora retained as legacy synonym alias to absorb PlantNet drift if user identifies a grandiflora variety.
 - [Phase 17]: Plan 17-03: Salvia officinalis species-qualified ONLY (Pitfall 1 — DO NOT add 'Salvia' genus alias). Mirrors existing 'Salvia rosmarinus' species-qualified pattern at line 65 — multiply-routed-genus is established safe approach. Phase 16 exact-match-first refactor (inherited unchanged) protects against genus collision with salvia-ornamental (Salvia splendens). 5 legacy synonym aliases (≤2 per entry budget): Rhododendron indicum (Japanese-azalea drift), Tulipa hybrida (older horticultural designation), Magnolia grandiflora (Q4 alternative variant), Fuchsia × hybrida (commercial cultivar mix), Chrysanthemum indicum (parent species — sometimes returned by PlantNet). Phase 17 species are taxonomically more stable than Phase 16's (5 synonym aliases vs Phase 16's 8).
 - [Phase 17]: Plan 17-04: Phase 17 Wave C accepted-known image-upload backlog appended to CLAUDE.md (14 net-new ids in 3 sub-batch lines: 8 exterior flores + 3 aromáticas + 3 frutales/huerta). Cumulative v1.2 image-upload backlog now 69 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17). Closing paragraph cites 'Phase 17 closes the v1.2 catalog expansion at 118 entries' as milestone-closure marker. 4 separate Accepted-known blocks now coexist; shared 'Image upload steps' procedure remains cross-cutting. CAT-20 image-plan portion CLOSED — W3.CAT-20.imagePlan SKIP→PASS in all 3 phase17-smoke modes (default 40/54, --identification 54/68, --routing-fix 68/68 full PASS). +8 LOC, 0 deletions. Phase 17 documentation side fully closed; 14 W3.CAT-20.* per-id SKIPs owned by parallel Plan 17-03 (file-disjoint). v1.2 catalog expansion fully closed — Phase 17 is the final catalog wave; ROADMAP next phase = Phase 18 (PlantCard Cleanup + Mood Emoji).
+- [Phase 18]: Plan 18-01: Phase 18 smoke runner (smoke-phase18.cjs) intentionally drops ts.transpileModule + Module._resolveFilename intercept + runtime stubs (vs Phase 11-17). Phase 18 is JSX-restructure only — file-content asserts via readFileSync + regex are sufficient (~5x faster, 159 LOC vs 337 LOC). Pattern reusable for any future JSX-restructure phase.
+- [Phase 18]: Plan 18-01: GAM-04 PlantHealthBadge preservation enforced via 3 STRICT (non-skippable) regression sentinels in smoke runner — modal usage in MyPlantDetailModal + index.ts re-export + PlantHealthBadge.tsx file existence. Plan 18-03 cannot accidentally over-remove the badge during scoped PlantCard removal. Three-tier discipline (PASS-always / SKIP-then-PASS / PASS-or-FAIL) coexists in same runner.
+- [Phase 18]: Plan 18-01: Toast skeleton uses React.ReactElement return type (not JSX.Element). Rule 1 auto-fix during Task 2 verification — React 19 + react-native types provide no global JSX namespace, so JSX.Element fails tsc. Codebase-wide convention is to NOT type component returns at all; React.ReactElement here keeps the props contract self-documenting for Plan 18-02 consumers without depending on the global namespace. Pattern reusable for all future typed-return components in this codebase.
+- [Phase 18]: Plan 18-01: Voseo strings ES-locale follow Phase 14-17 conventions — Deslizá (vos imperative of deslizar, matches Regá/Chequeá/Sacá precedent), eliminada (feminine agreement with planta), Deshacer (voseo-neutral infinitive button label per cancelButton precedent), Sacar de favoritos (voseo-neutral infinitive, mirrors Sacar afuera plantCard.outdoor).
 
 ### Pending Todos
 
@@ -207,6 +212,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T18:14:24.992Z
-Stopped at: Phase 18 context gathered
-Resume file: .planning/phases/18-plantcard-cleanup-mood-emoji/18-CONTEXT.md
+Last session: 2026-05-08T20:20:58.991Z
+Stopped at: Completed 18-01-PLAN.md
+Resume file: None

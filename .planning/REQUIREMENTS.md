@@ -68,11 +68,11 @@
 
 ### PlantCard Cleanup + Swipe (CARD)
 
-- [ ] **CARD-01**: Delete trash 🗑️ removed from PlantCard JSX; deletion now via swipe-left gesture using `Gesture.Pan()` from react-native-gesture-handler (NOT `ReanimatedSwipeable` per Pitfall research — iOS crash bug)
-- [ ] **CARD-02**: Long-press on PlantCard reveals overflow menu (favorite, delete, edit) as fallback for users who don't discover swipe
-- [ ] **CARD-03**: Tip italic moved from PlantCard to MyPlantDetailModal "¿Qué hacer?" section; PlantCard now shows: image + name + 1 task (or none) + water badge + mood emoji (always visible per GAM-03/04) — 5 elements max. Mood emoji REPLACES the legacy conditional `PlantHealthBadge`.
-- [ ] **CARD-04**: Swipe action shows visual affordance (chevron peek on first card render in PlantsScreen, dismissible) so users discover the gesture
-- [ ] **CARD-05**: Haptic feedback (`Haptics.ImpactFeedbackStyle.Medium`) on swipe-completion threshold
+- [x] **CARD-01**: Delete trash 🗑️ removed from PlantCard JSX; deletion now via swipe-left gesture using `Gesture.Pan()` from react-native-gesture-handler (NOT `ReanimatedSwipeable` per Pitfall research — iOS crash bug)
+- [x] **CARD-02**: Long-press on PlantCard reveals overflow menu (favorite, delete, edit) as fallback for users who don't discover swipe
+- [x] **CARD-03**: Tip italic moved from PlantCard to MyPlantDetailModal "¿Qué hacer?" section; PlantCard now shows: image + name + 1 task (or none) + water badge + mood emoji (always visible per GAM-03/04) — 5 elements max. Mood emoji REPLACES the legacy conditional `PlantHealthBadge`.
+- [x] **CARD-04**: Swipe action shows visual affordance (chevron peek on first card render in PlantsScreen, dismissible) so users discover the gesture
+- [x] **CARD-05**: Haptic feedback (`Haptics.ImpactFeedbackStyle.Medium`) on swipe-completion threshold
 
 ### Pet Toxicity (TOX)
 
@@ -105,8 +105,8 @@
 
 - [ ] **GAM-01**: Toast component shown on task completion ("¡Vas bien! 🌱") — positive-only, NEVER a broken-streak penalty
 - [ ] **GAM-02**: Haptic feedback (`Haptics.NotificationFeedbackType.Success`) on water/sun/outdoor/fertilize task done
-- [ ] **GAM-03**: Per-plant happiness mood emoji ALWAYS visible on PlantCard (Greg-style). Derived from existing `calculatePlantHealth(plant).healthLevel` — `excellent`→🌱, `good`→😊, `warning`→😐, `danger`→😟. Tap opens existing `PlantHealthDetail` modal (preserves current behavior).
-- [ ] **GAM-04**: Mood emoji REPLACES the conditional `PlantHealthBadge` (currently shown only when score<80). Card stays at 5 elements per CARD-03 — mood emoji is the always-visible health affordance, healthBadge component deprecated. NO numeric score on the card itself; numbers only inside HealthDetail modal.
+- [x] **GAM-03**: Per-plant happiness mood emoji ALWAYS visible on PlantCard (Greg-style). Derived from existing `calculatePlantHealth(plant).healthLevel` — `excellent`→🌱, `good`→😊, `warning`→😐, `danger`→😟. Tap opens existing `PlantHealthDetail` modal (preserves current behavior).
+- [x] **GAM-04**: Mood emoji REPLACES the conditional `PlantHealthBadge` (currently shown only when score<80). Card stays at 5 elements per CARD-03 — mood emoji is the always-visible health affordance, healthBadge component deprecated. NO numeric score on the card itself; numbers only inside HealthDetail modal.
 - [ ] **GAM-05**: NO persistent streak counter in primary UI (anti-pattern per research — creates anxiety; missing a watering day is sometimes horticulturally correct). Mood emoji communicates state without requiring sustained streaks.
 
 ### Polish — UAT Bug Fixes + Brand Voice (POLISH)
@@ -223,13 +223,13 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | CAT-19 | Phase 17 | Complete |
 | CAT-20 | Phase 17 | Complete |
 | CAT-21 | Phase 17 | Complete |
-| CARD-01 | Phase 18 | Pending |
-| CARD-02 | Phase 18 | Pending |
-| CARD-03 | Phase 18 | Pending |
-| CARD-04 | Phase 18 | Pending |
-| CARD-05 | Phase 18 | Pending |
-| GAM-03 | Phase 18 | Pending |
-| GAM-04 | Phase 18 | Pending |
+| CARD-01 | Phase 18 | Complete |
+| CARD-02 | Phase 18 | Complete |
+| CARD-03 | Phase 18 | Complete |
+| CARD-04 | Phase 18 | Complete |
+| CARD-05 | Phase 18 | Complete |
+| GAM-03 | Phase 18 | Complete |
+| GAM-04 | Phase 18 | Complete |
 | TOX-01 | Phase 19 | Pending |
 | TOX-02 | Phase 19 | Pending |
 | TOX-03 | Phase 19 | Pending |
