@@ -64,7 +64,7 @@
 - [ ] **CAT-18**: Wave 3.4 — 3 aromáticas added: salvia-officinalis (distinct from existing `salvia-ornamental`, `name` and `description` make this clear), eneldo, stevia
 - [ ] **CAT-19**: Wave 3.5 — 3 frutales/huerta added: olivo, arandano, espinaca
 - [ ] **CAT-20**: All Wave C entries have full v1.1 + EDU keyset, identification map entries, and image plan
-- [ ] **CAT-21**: Final `PLANT_DATABASE.length === 120` (64 v1.1 + 56 v1.2); smoke runner asserts the count
+- [ ] **CAT-21**: Final `PLANT_DATABASE.length === 118` (64 v1.1 + 54 v1.2 = 23 Phase 15 + 17 Phase 16 + 14 Phase 17; potus + filodendro upgraded in place at Phase 16 per CAT-14 addendum, not counted as net-new); smoke runner asserts the count. *Amended 2026-05-08 from original 120 target during Phase 17 context discussion — see `.planning/phases/17-catalog-wave-c-exterior-arom-ticas-frutales/17-CONTEXT.md` §"Catalog count target".*
 
 ### PlantCard Cleanup + Swipe (CARD)
 
@@ -264,6 +264,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 
 **Coverage:**
 - v1.2 requirements: 74 total (5 SEC + 4 DATA + 3 TRACK + 4 INFRA + 7 EDU + 13 CAT + 5 CARD + 6 TOX + 7 FERT + 5 JOURNAL + 5 GAM + 8 POLISH + 2 DOCS)
+- Catalog final count: 118 entries (64 v1.1 + 54 v1.2). Original 120/56 v1.2 target amended 2026-05-08 — see CAT-21 wording.
 - Mapped to phases: 74/74 — complete
 
 **Note on GAM split:** GAM-03 and GAM-04 (mood emoji replacing health badge) are mapped to Phase 18 (PlantCard Cleanup) because they define PlantCard's 5-element layout and the CARD requirements explicitly reference them. GAM-01, GAM-02, and GAM-05 (toasts, haptics, streak policy) are mapped to Phase 22 after all task types exist.

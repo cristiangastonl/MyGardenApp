@@ -170,14 +170,14 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [x] 16-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 17 NEW Phase 16 entries documented as accepted-known failures (CAT-16 image plan) (completed 2026-05-08)
 
 ### Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales
-**Goal**: The final 14 catalog entries land and the catalog reaches exactly 120 entries — the v1.2 expansion target
+**Goal**: The final 14 catalog entries land and the catalog reaches exactly 118 entries — the v1.2 expansion target (amended 2026-05-08 from original 120 per Phase 17 CONTEXT addendum; potus + filodendro Phase 16 in-place upgrades reduce v1.2 net-add from 56 to 54)
 **Depends on**: Phase 16 (authoring pattern established)
 **Requirements**: CAT-17, CAT-18, CAT-19, CAT-20, CAT-21
 **Success Criteria** (what must be TRUE):
-  1. `PLANT_DATABASE.length === 120` (106 + 14); smoke runner asserts this count
+  1. `PLANT_DATABASE.length === 118` (104 + 14); smoke runner asserts this count
   2. All Wave C entries have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
-  3. `salvia-officinalis` is clearly distinguished from existing `salvia-ornamental` in both name and description
-  4. `npm run check:i18n-keys` passes across all 120 entries end-to-end
+  3. `salvia-officinalis` is clearly distinguished from existing `salvia-ornamental` in both name and description (distinct top-level i18n namespace, mirroring sansevieria/sansevieria-cilindrica precedent)
+  4. `npm run check:i18n-keys` passes across all 118 entries end-to-end
 **Plans**: TBD
 
 ### Phase 18: PlantCard Cleanup + Mood Emoji
