@@ -3266,6 +3266,126 @@
     "placementAvoid": "Maceta permanente menor de 50 litros y suelo seco persistente — Magnoliáceas son árboles, raíz superficial extensa requiere tierra a largo plazo.",
     "whyRationale": "Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). M. stellata es la versión enana 3m, ideal patio chico; M. grandiflora alcanza 20m. Pot temporario; tierra eventualidad."
   },
+  "salvia-officinalis": {
+    "name": "Salvia oficinal",
+    "tip": "Pellizcá las hojas frescas para cocinar; podala anualmente para mantener forma compacta.",
+    "description": "La Salvia oficinal o salvia culinaria (Salvia officinalis) es una hierba aromática mediterránea perenne (Lamiácea). Sus hojas grises-verdes aromáticas se usan en carnes, sopas y rellenos. Resistente a la sequía una vez establecida; ideal en macetas en cocina con sol. DISTINCT del salvia-ornamental (Salvia splendens) — esta es la culinaria, aquélla es la decorativa.",
+    "problems": [
+      { "symptom": "Hojas amarillas en la base", "cause": "Exceso de riego", "solution": "Dejá secar la tierra entre riegos." },
+      { "symptom": "Tallos leñosos sin hojas", "cause": "Falta de poda", "solution": "Podá un tercio en primavera para forzar brotes nuevos." },
+      { "symptom": "Sabor poco aromático", "cause": "Exceso de agua o sombra", "solution": "6h sol pleno + riego escaso intensifican aceites esenciales." }
+    ],
+    "nutrients": { "type": "Bajo, evitá excesos de nitrógeno", "homemade": "Compost ligero anual en primavera" },
+    "careAction": { "fixed": "Regá cada 5 días en cálido; cada 12 en frío. Pellizcá hojas para cocinar; podá un tercio anualmente en primavera." },
+    "placementRecommended": "Maceta soleada en cocina o balcón — al menos 5 horas de sol directo.",
+    "placementAlternatives": [
+      "Cantero junto a romero y tomillo (compañeras mediterráneas)",
+      "Maceta en patio con drenaje rápido",
+      "Mesada de cocina con ventana al sur (HS)"
+    ],
+    "placementAvoid": "Tierra encharcada o sombra profunda — pudre la corona y se va a hojas chicas sin aroma.",
+    "whyRationale": "Lamiácea originaria del Mediterráneo, evolucionó en suelos pobres y secos. Las hojas grises tienen tricomas que reflejan luz y reducen evaporación — defensa contra calor + sequía. Riego escaso es la clave."
+  },
+  "eneldo": {
+    "name": "Eneldo",
+    "tip": "Cosechá hojas tiernas regularmente; cortá tallos florales para prolongar el follaje aromático.",
+    "description": "El Eneldo (Anethum graveolens) es una Apiácea anual mediterránea de hojas filiformes verde-azuladas y semillas aromáticas; usada en pescados, ensaladas y encurtidos. Ciclo corto (3-4 meses); en verano argentino caliente se va a flor rápido — sembrá en otoño-invierno o mantené a sombra parcial en verano.",
+    "problems": [
+      { "symptom": "Floración prematura", "cause": "Calor estival + días largos", "solution": "Cosechá hojas regularmente y sembrá en otoño-invierno-comienzo-primavera." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o suelo encharcado", "solution": "Regá cuando se sienta seco y mejorá drenaje." },
+      { "symptom": "Plantas débiles caídas", "cause": "Tutorado deficiente o suelo pobre", "solution": "Tutorá si supera 60cm + abono ligero quincenal." }
+    ],
+    "nutrients": { "type": "Bajo-medio; balanceado en crecimiento", "homemade": "Compost orgánico al sembrar" },
+    "careAction": { "fixed": "Regá cada 3 días en cálido; cada 7 en frío. Cosechá hojas externas regularmente; cortá tallos florales para prolongar follaje aromático." },
+    "placementRecommended": "Maceta o cantero en cocina/balcón soleado — al menos 5 horas de luz indirecta brillante.",
+    "placementAlternatives": [
+      "Cantero junto a perejil y cilantro (compañeras Apiaceae)",
+      "Maceta de 25+ cm con buena profundidad",
+      "Mesa de cocina con ventana al sur (HS) o norte (HN)"
+    ],
+    "placementAvoid": "Sol directo intenso de verano sin sombra — se va a flor en 2-3 semanas y pierde calidad de hojas.",
+    "whyRationale": "Apiácea anual de hojas filiformes y semillas aromáticas. Anual de fría-templada; en verano caliente argentino se va a flor rápido. Sembrá en otoño-invierno-comienzo-primavera para prolongar la cosecha de follaje."
+  },
+  "stevia": {
+    "name": "Stevia",
+    "tip": "Pellizcá hojas para endulzar infusiones; en heladas movela bajo techo o cubrí con manta.",
+    "description": "La Stevia (Stevia rebaudiana) es una Asterácea sudamericana (Paraguay y Brasil); endulzante natural — sus hojas contienen esteviósidos 200-300x más dulces que el azúcar sin calorías. Perenne tropical-subtropical; en BsAs HS protegé de heladas (movela bajo techo o galería); cosechá hojas continuamente.",
+    "problems": [
+      { "symptom": "Hojas marchitas con frío", "cause": "Temperatura <5°C", "solution": "Movela bajo techo en heladas o cubrí con manta agrícola." },
+      { "symptom": "Sabor menos dulce", "cause": "Poca luz solar", "solution": "5+ horas luz brillante intensifica esteviósidos." },
+      { "symptom": "Tallos largos sin ramificación", "cause": "Falta de pellizcado", "solution": "Pellizcá puntas mensualmente para forzar ramificación." }
+    ],
+    "nutrients": { "type": "Balanceado bajo en nitrógeno", "homemade": "Compost ligero mensual" },
+    "careAction": { "fixed": "Regá cada 4 días en cálido; cada 10 en frío. Pellizcá puntas mensualmente para forzar ramificación; cosechá hojas con tijera." },
+    "placementRecommended": "Maceta soleada en cocina/balcón — luz brillante indirecta a 5h directa para potenciar dulzura.",
+    "placementAlternatives": [
+      "Cantero protegido bajo galería",
+      "Maceta sobre mesada de cocina con ventana",
+      "Patio con sol matinal y sombra del mediodía"
+    ],
+    "placementAvoid": "Heladas y temperaturas <5°C — los tejidos jóvenes mueren; el calor seco es preferible al frío.",
+    "whyRationale": "Asterácea sudamericana (Paraguay-Brasil) — sus hojas contienen esteviósidos, edulcorantes naturales 200-300x más dulces que el azúcar. Calor + humedad la favorecen; el frío bajo 5°C la debilita."
+  },
+  "olivo": {
+    "name": "Olivo",
+    "tip": "Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra.",
+    "description": "El Olivo (Olea europaea) es una Oleácea mediterránea perennifolia — árbol icónico. En Argentina extensivos cultivos en Mendoza, Cuyo y La Rioja; el cultivar 'Arauco' es endémico nacional, 'Arbequina' la más plantada. Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra firme. Tolerante a sequía, sol pleno y frío leve; floración primaveral, fructificación verano-otoño.",
+    "problems": [
+      { "symptom": "No fructifica", "cause": "Maceta chica + falta poda + edad joven", "solution": "Trasplante a tierra eventual + podá en invierno + esperá 5-7 años de cultivo." },
+      { "symptom": "Hojas pálidas con clorosis", "cause": "Hierro inaccesible por pH alcalino o suelo encharcado", "solution": "Drenaje rápido + tierra ligeramente ácida." },
+      { "symptom": "Caída prematura de aceitunas", "cause": "Estrés hídrico en formación de fruto", "solution": "Regá regular en primavera-verano sin encharcar." }
+    ],
+    "nutrients": { "type": "Balanceado bajo; aplicar antes de floración", "homemade": "Compost orgánico anual al pie + ceniza de madera" },
+    "careAction": { "fixed": "Regá cada 7 días en cálido; cada 21 en frío. Tolerá sequía leve. Podá en invierno para mantener forma + remové chupones de la base." },
+    "placementRecommended": "Patio o jardín al sol pleno — al menos 8 horas; maceta de 50+ litros como puente, eventual trasplante a tierra firme.",
+    "placementAlternatives": [
+      "Cantero soleado con suelo profundo y drenaje",
+      "Maceta enorme (80+ litros) para variedades enanas",
+      "Pendiente o terraza con sol mediterráneo"
+    ],
+    "placementAvoid": "Sombra y sustrato encharcado — sin sol pleno hace ramas delgadas sin frutos; con humedad estancada pudre las raíces.",
+    "whyRationale": "Oleácea mediterránea perennifolia — adaptada a sequía estival y suelo pobre. En Argentina (Mendoza, Cuyo) cultivos extensivos; cultivar Arauco es endémico nacional. Pot temporario; tierra eventualidad."
+  },
+  "arandano": {
+    "name": "Arándano",
+    "tip": "Usá agua de lluvia o filtrada — el agua dura alcaliniza la tierra y mata la simbiosis con micorrizas.",
+    "description": "El Arándano (Vaccinium corymbosum) es una Ericácea acidofilica nativa de Norteamérica; arbusto frutal de bayas azules muy nutritivas. Necesita pH 4.5-5.5 estricto + agua blanda + sol pleno + frío invernal. En Argentina hay cultivos extensos en Tucumán y Entre Ríos. El agua dura alcaliniza la tierra y deshace la simbiosis con micorrizas — clorosis ferrítica y muerte progresiva en meses.",
+    "problems": [
+      { "symptom": "Hojas amarillentas con venas verdes", "cause": "Clorosis por pH alto/agua dura", "solution": "Usá agua de lluvia + acidificá con sulfato de aluminio o turba." },
+      { "symptom": "Hojas marchitas pero suelo húmedo", "cause": "Pudrición de raíz por tierra alcalina o exceso de humedad", "solution": "Revisá pH + mejorá drenaje + reducí riego." },
+      { "symptom": "Pocas bayas", "cause": "Poda incorrecta o falta de horas-frío", "solution": "Podá levemente en invierno + necesita ~800 horas <7°C." }
+    ],
+    "nutrients": { "type": "Específico para ericáceas (ácido)", "homemade": "Turba en superficie + agua acidificada con vinagre 1ml/L mensual + compost de pinocha" },
+    "careAction": { "soilCheck": "Tocá los primeros 2cm: si secos, regá con agua blanda. Mantené tierra ácida (pH 4.5-5.5) — agua dura la mata en meses." },
+    "placementRecommended": "Cantero o maceta grande al sol pleno con tierra ácida — al menos 6 horas de sol directo.",
+    "placementAlternatives": [
+      "Bancal elevado con turba y pinocha",
+      "Maceta 40+ litros con sustrato específico ericáceas",
+      "Cantero en zona fría (BsAs sur, Patagonia, Tucumán) con agua de lluvia"
+    ],
+    "placementAvoid": "Tierra alcalina o agua dura — pH alto bloquea hierro y deshace la simbiosis con micorrizas; muere en pocos meses.",
+    "whyRationale": "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Cultivos en Tucumán y Entre Ríos prosperan con agua y sustrato adecuados."
+  },
+  "espinaca": {
+    "name": "Espinaca",
+    "tip": "Sembrá en otoño-invierno-comienzo-primavera; en verano >25°C se va a flor (bolt) en 2-3 semanas.",
+    "description": "La Espinaca (Spinacia oleracea) es una Amarantácea anual cool-season — en verano caliente argentino (>25°C) se va a flor (bolt) en 2-3 semanas y pierde calidad de hojas. Ideal sembrar en otoño-invierno-comienzo-primavera; ciclo corto (40-60 días); cosechá hojas externas continuamente; tolera heladas leves.",
+    "problems": [
+      { "symptom": "Floración prematura", "cause": "Temperaturas >25°C + días largos", "solution": "Sembrá en otoño-invierno; en verano protegé bajo media-sombra." },
+      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o falta de nitrógeno", "solution": "Regá moderado y aporte de nitrógeno orgánico." },
+      { "symptom": "Hojas pequeñas y duras", "cause": "Estrés hídrico o sol intenso", "solution": "Regá regular + sombra parcial en verano." }
+    ],
+    "nutrients": { "type": "Alto en nitrógeno (foliar)", "homemade": "Té de compost o ortiga cada 10 días en crecimiento" },
+    "careAction": { "fixed": "Regá cada 3 días en cálido; cada 6 en frío. Cosechá hojas externas regularmente; sembrá en otoño-invierno para evitar bolt estival." },
+    "placementRecommended": "Bancal de huerta o cantero al sol matinal con sombra parcial en verano.",
+    "placementAlternatives": [
+      "Maceta de 30+ cm en patio fresco",
+      "Cantero junto a otras hortalizas de hoja (acelga, lechuga)",
+      "Bandeja en balcón con sol de mañana"
+    ],
+    "placementAvoid": "Verano caliente bajo sol pleno — bolt en 2-3 semanas; siembra de septiembre-noviembre (HS) suele desperdiciarse.",
+    "whyRationale": "Amarantácea anual cool-season — bolt risk a >25°C: el calor estival argentino la hace florecer en 2-3 semanas. Sembrá en otoño-invierno-comienzo-primavera; en verano usá media-sombra o esperá al otoño."
+  },
   "humidity": {
     "baja": "Baja",
     "media": "Media",

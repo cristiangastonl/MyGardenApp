@@ -3266,6 +3266,126 @@
     "placementAvoid": "Permanent planter under 50 liters and persistently dry soil — Magnoliaceae are trees, extensive surface roots require ground for the long term.",
     "whyRationale": "Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). M. stellata is the dwarf 3m form ideal for small gardens; M. grandiflora reaches 20m. Pot is temporary; ground eventually required."
   },
+  "salvia-officinalis": {
+    "name": "Common Sage (Culinary)",
+    "tip": "Pinch fresh leaves for cooking; prune annually to keep compact form.",
+    "description": "Common Sage (Salvia officinalis) is a perennial Mediterranean culinary herb (Lamiaceae). Its aromatic gray-green leaves season meats, soups, and stuffings. Drought-resistant once established; ideal in sunny kitchen pots. DISTINCT from salvia-ornamental (Salvia splendens) — this is the culinary species, that is the decorative.",
+    "problems": [
+      { "symptom": "Yellow leaves at the base", "cause": "Overwatering", "solution": "Let the soil dry between waterings." },
+      { "symptom": "Woody stems with no leaves", "cause": "Lack of pruning", "solution": "Prune one third in spring to force new shoots." },
+      { "symptom": "Weak aroma", "cause": "Excess water or shade", "solution": "6h full sun + sparse watering intensifies essential oils." }
+    ],
+    "nutrients": { "type": "Low; avoid excess nitrogen", "homemade": "Light annual compost in spring" },
+    "careAction": { "fixed": "Water every 5 days in warm; every 12 in cold. Pinch leaves for cooking; prune one third annually in spring." },
+    "placementRecommended": "Sunny kitchen or balcony pot — at least 5 hours of direct sun.",
+    "placementAlternatives": [
+      "Bed alongside rosemary and thyme (Mediterranean companions)",
+      "Patio pot with fast drainage",
+      "Kitchen counter with south-facing window (SH)"
+    ],
+    "placementAvoid": "Waterlogged soil or deep shade — rots the crown and produces small leaves with no aroma.",
+    "whyRationale": "Mediterranean Lamiaceae — evolved in poor, dry soils. Gray leaves have trichomes that reflect light and reduce evaporation — defense against heat + drought. Sparse watering is key."
+  },
+  "eneldo": {
+    "name": "Dill",
+    "tip": "Harvest tender leaves regularly; cut flower stalks to extend aromatic foliage.",
+    "description": "Dill (Anethum graveolens) is a Mediterranean annual Apiaceae with feathery blue-green leaves and aromatic seeds; used in fish, salads, and pickles. Short cycle (3-4 months); in hot Argentine summer it bolts quickly — sow in autumn-winter or keep in partial shade in summer.",
+    "problems": [
+      { "symptom": "Premature flowering (bolting)", "cause": "Summer heat + long days", "solution": "Harvest leaves regularly and sow in autumn-winter-early-spring." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering or waterlogged soil", "solution": "Water when dry to the touch and improve drainage." },
+      { "symptom": "Weak floppy plants", "cause": "Poor staking or poor soil", "solution": "Stake if it exceeds 60cm + biweekly light feeding." }
+    ],
+    "nutrients": { "type": "Low-medium; balanced during growth", "homemade": "Organic compost at sowing" },
+    "careAction": { "fixed": "Water every 3 days in warm; every 7 in cold. Harvest outer leaves regularly; cut flower stalks to extend aromatic foliage." },
+    "placementRecommended": "Pot or bed in sunny kitchen/balcony — at least 5 hours of bright indirect light.",
+    "placementAlternatives": [
+      "Bed alongside parsley and cilantro (Apiaceae companions)",
+      "25+ cm pot with good depth",
+      "Kitchen table with south-facing (SH) or north-facing (NH) window"
+    ],
+    "placementAvoid": "Intense direct summer sun without shade — bolts in 2-3 weeks and loses leaf quality.",
+    "whyRationale": "Apiaceae annual with feathery leaves and aromatic seeds. Cool-temperate annual; in hot Argentine summer it bolts quickly. Sow autumn-winter-early-spring to extend foliage harvest."
+  },
+  "stevia": {
+    "name": "Stevia",
+    "tip": "Pinch leaves to sweeten infusions; in frost move under cover or protect with frost cloth.",
+    "description": "Stevia (Stevia rebaudiana) is a South American Asteraceae (Paraguay and Brazil); natural sweetener — its leaves contain steviosides 200-300x sweeter than sugar without calories. Tropical-subtropical perennial; in Buenos Aires (SH) protect from frost (move under cover or to a covered porch); harvest leaves continuously.",
+    "problems": [
+      { "symptom": "Wilted leaves in cold", "cause": "Temperature <5°C", "solution": "Move under cover during frost or protect with frost cloth." },
+      { "symptom": "Less sweet flavor", "cause": "Insufficient sunlight", "solution": "5+ hours bright light intensifies steviosides." },
+      { "symptom": "Long stems without branching", "cause": "Lack of pinching", "solution": "Pinch tips monthly to force branching." }
+    ],
+    "nutrients": { "type": "Balanced low in nitrogen", "homemade": "Light monthly compost" },
+    "careAction": { "fixed": "Water every 4 days in warm; every 10 in cold. Pinch tips monthly to force branching; harvest leaves with scissors." },
+    "placementRecommended": "Sunny kitchen/balcony pot — bright indirect to 5h direct light to enhance sweetness.",
+    "placementAlternatives": [
+      "Sheltered bed under a porch",
+      "Pot on kitchen counter near a window",
+      "Patio with morning sun and midday shade"
+    ],
+    "placementAvoid": "Frost and temperatures <5°C — young tissues die; dry heat is preferable to cold.",
+    "whyRationale": "South American Asteraceae (Paraguay-Brazil) — leaves contain steviosides, natural sweeteners 200-300x sweeter than sugar. Warmth + humidity favor it; cold below 5°C weakens it."
+  },
+  "olivo": {
+    "name": "Olive Tree",
+    "tip": "A young olive tree in a large pot can live for years before needing transplant to ground.",
+    "description": "The Olive Tree (Olea europaea) is a Mediterranean evergreen Oleaceae — an iconic tree. In Argentina extensive cultivation in Mendoza, Cuyo, and La Rioja; the 'Arauco' cultivar is a national endemic, 'Arbequina' the most planted. A young olive tree in a large pot can live several years before needing transplant to firm ground. Drought-tolerant, full sun, mild frost-tolerant; spring flowering, summer-autumn fruiting.",
+    "problems": [
+      { "symptom": "No fruit", "cause": "Small pot + lack of pruning + young age", "solution": "Eventual transplant to ground + winter pruning + wait 5-7 years of cultivation." },
+      { "symptom": "Pale leaves with chlorosis", "cause": "Iron unavailable due to alkaline pH or waterlogged soil", "solution": "Fast drainage + slightly acidic soil." },
+      { "symptom": "Premature olive drop", "cause": "Water stress during fruit formation", "solution": "Regular watering in spring-summer without waterlogging." }
+    ],
+    "nutrients": { "type": "Balanced low; apply before flowering", "homemade": "Annual organic compost at the base + wood ash" },
+    "careAction": { "fixed": "Water every 7 days in warm; every 21 in cold. Tolerates mild drought. Prune in winter to maintain form + remove suckers from the base." },
+    "placementRecommended": "Patio or garden in full sun — at least 8 hours; 50+ liter pot as a bridge, eventual transplant to firm ground.",
+    "placementAlternatives": [
+      "Sunny bed with deep, well-drained soil",
+      "Huge pot (80+ liters) for dwarf varieties",
+      "Slope or terrace with Mediterranean sun"
+    ],
+    "placementAvoid": "Shade and waterlogged substrate — without full sun it makes thin branches with no fruit; standing humidity rots the roots.",
+    "whyRationale": "Mediterranean Oleaceae evergreen — adapted to summer drought and poor soils. In Argentina (Mendoza, Cuyo) extensive cultivation; Arauco cultivar is national endemic. Pot is temporary; ground transplant is eventuality."
+  },
+  "arandano": {
+    "name": "Blueberry (Highbush)",
+    "tip": "Use rainwater or filtered water — hard water alkalinizes soil and kills the mycorrhizal symbiosis.",
+    "description": "The Blueberry (Vaccinium corymbosum) is an acidophilic Ericaceae native to North America; a fruiting shrub with very nutritious blue berries. It needs strict pH 4.5-5.5 + soft water + full sun + winter cold. In Argentina extensive cultivation in Tucumán and Entre Ríos. Hard water alkalinizes the soil and breaks the mycorrhizal symbiosis — iron chlorosis and progressive death within months.",
+    "problems": [
+      { "symptom": "Yellowish leaves with green veins", "cause": "Chlorosis from high pH/hard water", "solution": "Use rainwater + acidify with aluminum sulfate or peat." },
+      { "symptom": "Wilted leaves but moist soil", "cause": "Root rot from alkaline soil or excess moisture", "solution": "Check pH + improve drainage + reduce watering." },
+      { "symptom": "Few berries", "cause": "Incorrect pruning or insufficient chill hours", "solution": "Light winter pruning + needs ~800 hours <7°C." }
+    ],
+    "nutrients": { "type": "Specific for ericaceous (acidic)", "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly + pine-needle compost" },
+    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months." },
+    "placementRecommended": "Bed or large pot in full sun with acidic soil — at least 6 hours of direct sun.",
+    "placementAlternatives": [
+      "Raised bed with peat and pine needles",
+      "40+ liter pot with ericaceous-specific substrate",
+      "Bed in cold zone (BsAs south, Patagonia, Tucumán) with rainwater"
+    ],
+    "placementAvoid": "Alkaline soil or hard water — high pH blocks iron and breaks the mycorrhizal symbiosis; dies within months.",
+    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Tucuman and Entre Rios commercial growing thrives with proper water and substrate."
+  },
+  "espinaca": {
+    "name": "Spinach",
+    "tip": "Sow in autumn-winter-early-spring; in summer >25°C it bolts in 2-3 weeks.",
+    "description": "Spinach (Spinacia oleracea) is a cool-season annual Amaranthaceae — in hot Argentine summer (>25°C) it bolts in 2-3 weeks and loses leaf quality. Ideal to sow in autumn-winter-early-spring; short cycle (40-60 days); harvest outer leaves continuously; tolerates light frost.",
+    "problems": [
+      { "symptom": "Premature bolting", "cause": "Temperatures >25°C + long days", "solution": "Sow in autumn-winter; in summer protect under partial shade." },
+      { "symptom": "Yellow leaves", "cause": "Overwatering or nitrogen deficiency", "solution": "Moderate watering and supply organic nitrogen." },
+      { "symptom": "Small, tough leaves", "cause": "Water stress or intense sun", "solution": "Regular watering + partial shade in summer." }
+    ],
+    "nutrients": { "type": "High in nitrogen (foliar)", "homemade": "Compost or nettle tea every 10 days during growth" },
+    "careAction": { "fixed": "Water every 3 days in warm; every 6 in cold. Harvest outer leaves regularly; sow in autumn-winter to avoid summer bolt." },
+    "placementRecommended": "Vegetable bed or garden plot with morning sun and partial shade in summer.",
+    "placementAlternatives": [
+      "30+ cm pot in cool patio",
+      "Bed alongside other leafy vegetables (chard, lettuce)",
+      "Tray on balcony with morning sun"
+    ],
+    "placementAvoid": "Hot summer in full sun — bolts in 2-3 weeks; September-November sowing (SH) is usually wasted.",
+    "whyRationale": "Amaranthaceae cool-season annual — bolt risk above 25C: Argentine summer heat triggers flowering in 2-3 weeks. Sow in autumn-winter-early-spring; in summer use partial shade or wait for autumn."
+  },
   "humidity": {
     "baja": "Low",
     "media": "Medium",
