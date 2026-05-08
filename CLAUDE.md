@@ -195,6 +195,18 @@ npm run check:images      # async network HEAD; ~30-60s; fails on 404 imageUrl
 
 These follow the same milestone-end batch upload pattern as the v1.1 LATAM 15-entry list. Image upload tracked alongside the v1.2 device-test backlog.
 
+**Accepted-known failures (Phase 16 Wave B, v1.2 — 17 entries — image upload pending):** the following 17 cactus/suculentas + trepadoras + trending entries are accepted-known failures until manual image upload to Supabase Storage:
+
+- nopal, mammillaria, cactus-navidad
+- kalanchoe, siempreviva, gasteria
+- piedras-vivas
+- senecio-rowleyanus
+- corona-espinas, agave
+- hoya, mini-monstera
+- strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro
+
+These follow the same milestone-end batch upload pattern as the v1.1 LATAM and Phase 15 Wave A backlogs. Image upload tracked alongside the v1.2 device-test backlog. Note: existing `potus` and `filodendro` entries (CAT-14 in-place EDU upgrades) are NOT in this list — their images already exist (or fall under earlier accepted-known blocks).
+
 These failures are documented in the v1.1 device-test backlog. Image upload steps:
 1. Source images (CC0/public domain or user-shot photos).
 2. Upload to Supabase Storage bucket `plant-images/catalog/<id>.jpg`.
