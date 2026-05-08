@@ -190,6 +190,55 @@ const COMMON_NAMES_ES: Record<string, string> = {
   'Philodendron scandens': 'Filodendro',            // legacy Philodendron hederaceum synonym
   'Dracaena braunii': 'Bambú de la suerte',         // contested synonym for D. sanderiana
   'Corymbia citriodora': 'Eucalipto limón',         // POWO new genus (since 2000s); PlantNet still uses Eucalyptus
+
+  // ─── v1.2 Phase 17 Wave C — Exterior + Aromáticas + Frutales (14 species + 8 genus aliases + 5 synonym aliases) ───
+  // Note: existing genus-only entries above already cover several Phase 17 species
+  //   - 'Rhododendron' (line ~88) → 'Azalea'    — applies to azalea (R. simsii)
+  //   - 'Cyclamen' (line ~89) → 'Ciclamen'      — applies to ciclamen (C. persicum)
+  //   - 'Fuchsia' (line ~84) → 'Fucsia'         — applies to fucsia (F. magellanica)
+  // The mappings below ADD species-qualified keys on top of these existing genus mappings to lock
+  // canonical routing (Phase 16 exact-match-first refactor at line ~206 ensures species-qualified wins).
+  // Net-new genera: Dianthus, Chrysanthemum, Tulipa, Helianthus, Magnolia, Anethum, Olea, Spinacia.
+  // DELIBERATELY OMITTED genus aliases:
+  //   - 'Stevia' (~240 species, divergent — would mis-route non-rebaudiana spp.)
+  //   - 'Vaccinium' (divergent species: V. myrtillus = European blueberry, V. macrocarpon = cranberry; different display names)
+  //   - 'Salvia' (>900 species; already split between salvia-ornamental Salvia splendens and salvia-officinalis Salvia officinalis with collision risk; existing 'Salvia rosmarinus' species-qualified pattern at line 65 proves multiply-routed-genus is the established safe approach).
+  // Mirrors Phase 16 Echinopsis pattern (deliberately omitted because of large-genus species divergence).
+
+  // CAT-17 species-qualified canonical (8 exterior flores):
+  'Rhododendron simsii': 'Azalea',                  // species-qualified (overrides existing genus 'Azalea' — exact-match-first wins)
+  'Cyclamen persicum': 'Ciclamen',                  // species-qualified
+  'Fuchsia magellanica': 'Fucsia',                  // species-qualified (Patagonian native canonical — Plan 17-01 default)
+  'Dianthus caryophyllus': 'Clavel',
+  'Dianthus': 'Clavel',                             // genus alias (single display name)
+  'Chrysanthemum × morifolium': 'Crisantemo',       // POWO 2024 — INCLUDE the × Unicode hybrid symbol
+  'Chrysanthemum': 'Crisantemo',                    // genus alias (universal display name)
+  'Tulipa gesneriana': 'Tulipán',
+  'Tulipa': 'Tulipán',                              // genus alias
+  'Helianthus annuus': 'Girasol',
+  'Helianthus': 'Girasol',                          // genus alias (cultivated H. annuus exclusively)
+  'Magnolia stellata': 'Magnolia estrellada',       // species-qualified (compact dwarf — Plan 17-01 Q4 default)
+  'Magnolia': 'Magnolia',                           // genus alias
+
+  // CAT-18 species-qualified canonical (3 aromáticas):
+  'Salvia officinalis': 'Salvia oficinal',          // species-qualified — DO NOT add 'Salvia' genus alias (Pitfall 1 — collides with salvia-ornamental Salvia splendens)
+  'Anethum graveolens': 'Eneldo',
+  'Anethum': 'Eneldo',                              // genus alias (monotypic — A. graveolens only)
+  'Stevia rebaudiana': 'Stevia',                    // species-qualified ONLY (NO genus alias — large divergent genus)
+
+  // CAT-19 species-qualified canonical (3 frutales/huerta):
+  'Olea europaea': 'Olivo',
+  'Olea': 'Olivo',                                  // genus alias (O. europaea dominates cultivation)
+  'Vaccinium corymbosum': 'Arándano',               // species-qualified ONLY (NO genus alias — divergent species names: V. myrtillus = European blueberry, V. macrocarpon = cranberry)
+  'Spinacia oleracea': 'Espinaca',
+  'Spinacia': 'Espinaca',                           // genus alias (monotypic cultivated)
+
+  // ─── PlantNet legacy synonym aliases (taxonomic-drift coverage; ≤2 per entry; 5 total for Phase 17 — taxonomically stable species) ───
+  'Rhododendron indicum': 'Azalea',                 // legacy Japanese-azalea drift coverage
+  'Tulipa hybrida': 'Tulipán',                      // older horticultural designation
+  'Magnolia grandiflora': 'Magnolia',               // PlantNet drift if user identifies a grandiflora variety (Q4 alternative coverage)
+  'Fuchsia × hybrida': 'Fucsia',                    // commercial cultivar mix alternative
+  'Chrysanthemum indicum': 'Crisantemo',            // parent species, sometimes returned by PlantNet
 };
 
 // ============================================================================
