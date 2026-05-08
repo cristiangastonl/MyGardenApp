@@ -207,6 +207,14 @@ These follow the same milestone-end batch upload pattern as the v1.1 LATAM 15-en
 
 These follow the same milestone-end batch upload pattern as the v1.1 LATAM and Phase 15 Wave A backlogs. Image upload tracked alongside the v1.2 device-test backlog. Note: existing `potus` and `filodendro` entries (CAT-14 in-place EDU upgrades) are NOT in this list — their images already exist (or fall under earlier accepted-known blocks).
 
+**Accepted-known failures (Phase 17 Wave C, v1.2 — 14 entries — image upload pending):** the following 14 exterior flores + aromáticas + frutales/huerta entries are accepted-known failures until manual image upload to Supabase Storage:
+
+- azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia
+- salvia-officinalis, eneldo, stevia
+- olivo, arandano, espinaca
+
+These follow the same milestone-end batch upload pattern as the v1.1 LATAM, Phase 15 Wave A, and Phase 16 Wave B backlogs. Image upload tracked alongside the v1.2 device-test backlog. Cumulative v1.2 image-upload backlog totals 69 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16 + 14 Phase 17). Phase 17 closes the v1.2 catalog expansion at 118 entries.
+
 These failures are documented in the v1.1 device-test backlog. Image upload steps:
 1. Source images (CC0/public domain or user-shot photos).
 2. Upload to Supabase Storage bucket `plant-images/catalog/<id>.jpg`.
