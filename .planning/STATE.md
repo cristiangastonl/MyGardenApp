@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 5
-status: "**Wave 2 (Sub-batch B) closed.** 7 net-new entries (hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) appended with full Phase 14 EDU schema. POWO 2024 canonical names (Echinopsis pachanoi, Dracaena angolensis) cited at-source with trade-name acknowledgment. cactus-san-pedro framed PURELY as horticulture (0 ceremonial refs in either locale). sansevieria-cilindrica distinct namespace from sansevieria. bambu-suerte water-culture variant in description. Catalog 97 → **104 (Phase 16 final target)**. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=228, EN=224 (≤250 from draft). phase16 PASS 34→49 default / 53→68 --identification / 57→72 --routing-fix. CAT-13/14/15 fully closed; CAT-16 keysets + identification routing PASS. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings)."
-stopped_at: Completed 16-02-PLAN.md
-last_updated: "2026-05-08T11:01:54.404Z"
-last_activity: 2026-05-08 — Phase 16 Plan 02 complete (7 trepadoras+trending Sub-batch B). 3 files. 2 tasks, 32 min.
+current_plan: 4 of 5
+status: "**CAT-16 image plan documented.** Plan 16-04 closes the CAT-16 image-plan portion: CLAUDE.md gains a Phase 16 Wave B accepted-known block (17 net-new ids: nopal, mammillaria, cactus-navidad, kalanchoe, siempreviva, gasteria, piedras-vivas, senecio-rowleyanus, corona-espinas, agave, hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro). potus + filodendro DELIBERATELY EXCLUDED (CAT-14 in-place EDU upgrades; existing imageUrls). W3.CAT-16.imagePlan SKIP→PASS in all 3 phase16-smoke modes (49→50 default / 68→69 --identification / 72→73 --routing-fix). Cumulative v1.2 image-upload backlog: 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16) — batched at v1.2 milestone end. Phase 15 regression PASS 81/81; tsc 0 errors; check:i18n-keys 104 ids; voseo baseline=2; catalog=104. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings) — runs in parallel; this plan's file-set (CLAUDE.md only) is disjoint from 16-03's (src/utils/plantIdentification.ts only)."
+stopped_at: Completed 16-04-PLAN.md
+last_updated: "2026-05-08T11:09:39.192Z"
+last_activity: 2026-05-08 — Phase 16 Plan 04 complete (CAT-16 image plan documentation in CLAUDE.md). 1 file. 1 task, 3 min.
 progress:
   total_phases: 15
   completed_phases: 6
   total_plans: 35
-  completed_plans: 34
+  completed_plans: 35
   percent: 97
 ---
 
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 16 of 24 (Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending) — **IN PROGRESS**
-Current Plan: 3 of 5
-Plan: 16-02 complete (Wave 2 — 7 trepadoras+trending content authoring; catalog at 104). Plans 16-03..04 remaining.
-Status: **Wave 2 (Sub-batch B) closed.** 7 net-new entries (hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) appended with full Phase 14 EDU schema. POWO 2024 canonical names (Echinopsis pachanoi, Dracaena angolensis) cited at-source with trade-name acknowledgment. cactus-san-pedro framed PURELY as horticulture (0 ceremonial refs in either locale). sansevieria-cilindrica distinct namespace from sansevieria. bambu-suerte water-culture variant in description. Catalog 97 → **104 (Phase 16 final target)**. Voseo baseline preserved (ES=2, DB=0). whyRationale max ES=228, EN=224 (≤250 from draft). phase16 PASS 34→49 default / 53→68 --identification / 57→72 --routing-fix. CAT-13/14/15 fully closed; CAT-16 keysets + identification routing PASS. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings).
-Last activity: 2026-05-08 — Phase 16 Plan 02 complete (7 trepadoras+trending Sub-batch B). 3 files. 2 tasks, 32 min.
+Current Plan: 4 of 5
+Plan: 16-04 complete (CAT-16 image plan documentation in CLAUDE.md). Plan 16-03 (parallel, file-disjoint) remains.
+Status: **CAT-16 image plan documented.** Plan 16-04 closes the CAT-16 image-plan portion: CLAUDE.md gains a Phase 16 Wave B accepted-known block (17 net-new ids: nopal, mammillaria, cactus-navidad, kalanchoe, siempreviva, gasteria, piedras-vivas, senecio-rowleyanus, corona-espinas, agave, hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro). potus + filodendro DELIBERATELY EXCLUDED (CAT-14 in-place EDU upgrades; existing imageUrls). W3.CAT-16.imagePlan SKIP→PASS in all 3 phase16-smoke modes (49→50 default / 68→69 --identification / 72→73 --routing-fix). Cumulative v1.2 image-upload backlog: 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16) — batched at v1.2 milestone end. Phase 15 regression PASS 81/81; tsc 0 errors; check:i18n-keys 104 ids; voseo baseline=2; catalog=104. **Next:** Plan 16-03 (COMMON_NAMES_ES routing closure — 19 net-new mappings) — runs in parallel; this plan's file-set (CLAUDE.md only) is disjoint from 16-03's (src/utils/plantIdentification.ts only).
+Last activity: 2026-05-08 — Phase 16 Plan 04 complete (CAT-16 image plan documentation in CLAUDE.md). 1 file. 1 task, 3 min.
 
-Progress: [██████████] 97% (v1.2 in progress — 34/35 plans complete; Phase 16 Plans 16-03..04, Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
+Progress: [██████████] 100% (v1.2 in progress — 35/35 plans complete; Plan 16-03 still in flight in parallel; Phase 14 Plan 14-08, Phase 13 Plan 03, Phases 17-24 still ahead)
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Progress: [██████████] 97% (v1.2 in progress — 34/35 plans
 | Phase 16 P00 | 7min | 3 tasks | 5 files |
 | Phase 16 P01 | 18min | 2 tasks | 4 files |
 | Phase 16 P02 | 32min | 2 tasks | 3 files |
+| Phase 16 P04 | 3min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -162,6 +163,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 16]: Plan 16-02: sansevieria-cilindrica i18n key uses distinct top-level namespace from sansevieria — both coexist as separate parents (verified by Node parse). Pattern: distinct top-level keys for species splits, never nested under shared parent. Prevents getTranslatedPlant runtime collisions.
 - [Phase 16]: Plan 16-02: bambu-suerte waterMode 'fixed' preserved while description/tip/careAction.fixed all flag water-culture cultivation context (cultivo hidropónico, agua filtrada, cambio cada 10-14 días). Pattern: water-culture variants documented in copy without changing schedule semantics.
 - [Phase 16]: Plan 16-02: All 7 whyRationale rationales DISTINCT (zero copy-paste); each cites per-entry physiology mechanism: Asclepiadácea CAM-corazón / Aroide heteroblastia / Strelitziacea paddle-leaves / Mirtácea citronellal / Asparagácea hidropónica-flúor / Asparagácea cilíndrica CAM / Cactácea columnar Andes-precordillera. whyRationale max ES=228, EN=224 chars (≤250 ceiling — zero trims required, pre-emptive char-limit-from-draft discipline carried forward from Phase 15).
+- [Phase 16]: Plan 16-04: CAT-16 image plan documentation — single grouped Phase 16 Wave B block in CLAUDE.md (17 net-new ids); potus + filodendro deliberately excluded with in-block note (CAT-14 in-place EDU upgrades); cumulative v1.2 image-upload backlog totals 55 entries (15 v1.1 + 23 Phase 15 + 17 Phase 16)
+- [Phase 16]: Plan 16-04: imagePlan SKIP→PASS sentinel pattern (CLAUDE.md substring 'Phase 16 Wave B' + ≥N-of-M id-mention threshold) carries forward from Phase 15 Plan 15-04 — reusable for any future documentation-only requirement closure with deliberately-excluded entries
 
 ### Pending Todos
 
@@ -176,6 +179,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T11:00:52.670Z
-Stopped at: Completed 16-02-PLAN.md
+Last session: 2026-05-08T11:09:39.190Z
+Stopped at: Completed 16-04-PLAN.md
 Resume file: None
