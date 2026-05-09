@@ -13,6 +13,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
 import { Plant, PlantPhoto, WeatherData, SavedDiagnosis, Location } from '../types';
+import type { ToxLevel } from '../types';
+import { getPetToxicity } from '../utils/petToxicity';
 import { getPlantCategories, getCatalogEntry, getTranslatedPlant } from '../data/plantDatabase';
 import { getPlantTypes } from '../data/constants';
 import { calculatePlantHealth } from '../utils/plantHealth';
@@ -111,6 +113,9 @@ export function MyPlantDetailModal({
     const raw = getCatalogEntry(plant.databaseId);
     return raw ? getTranslatedPlant(raw) : null;
   }, [plant]);
+
+  // Phase 19 (TOX-04): pet toxicity from strict catalog entry; helper resolves absence to 'unknown'.
+  const petToxicity = getPetToxicity(strictDbEntry);
 
   // Phase 18 CARD-03: tip relocated from PlantCard. Preserve the 3-rung fallback
   // chain (Pitfall 9): catalog entry → plantType.tip → ''. Custom plants without
@@ -425,6 +430,13 @@ export function MyPlantDetailModal({
                     </Text>
                   )}
                 </View>
+              </EducationalSection>
+            </View>
+
+            {/* Phase 19 (TOX-04): 5th educational section — ALWAYS visible per CONTEXT.md lock. */}
+            <View onLayout={onSectionLayout('mascotas')}>
+              <EducationalSection emoji="🐾" title={t('plantDetailModal.pets')}>
+                <MascotasContent toxicity={petToxicity} plantId={plant?.databaseId} />
               </EducationalSection>
             </View>
 
@@ -754,3 +766,76 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
   },
 });
+
+// ─── Phase 19 (TOX-04): Mascotas section sub-components ───────────────────────
+// Defined at module level (below styles) so they can reference the styles object.
+// Both components are file-private; only used within MyPlantDetailModal JSX.
+
+function SpeciesLine({
+  species,
+  level,
+  plantId,
+}: {
+  species: 'cats' | 'dogs';
+  level: ToxLevel;
+  plantId?: string;
+}): React.ReactElement {
+  const { t } = useTranslation();
+  const speciesLabel = t(`toxicity.species.${species}`); // "gatos" / "perros" / "cats" / "dogs"
+
+  if (level === 'safe') {
+    return <Text style={styles.eduCopy}>{t('toxicity.safeForSpecies', { species: speciesLabel })}</Text>;
+  }
+  if (level === 'unknown') {
+    return <Text style={styles.eduCopy}>{t('toxicity.unverifiedLatam')}</Text>;
+  }
+
+  // 'caution' or 'toxic' — render header + symptoms bullets if available.
+  const symptomsKey = `plants:${plantId ?? '__missing__'}.petToxicity.symptoms.${species}`;
+  const symptoms = plantId
+    ? (t(symptomsKey, { returnObjects: true, defaultValue: [] as string[] }) as string[])
+    : [];
+  const headerKey = level === 'toxic' ? 'toxicity.toxicForSpecies' : 'toxicity.cautionForSpecies';
+
+  return (
+    <View style={{ marginBottom: spacing.sm }}>
+      <Text style={styles.eduCopy}>{t(headerKey, { species: speciesLabel })}</Text>
+      {Array.isArray(symptoms) && symptoms.length > 0 && (
+        <>
+          <Text style={[styles.eduCopy, { fontFamily: fonts.bodySemiBold, marginTop: spacing.xs }]}>
+            {t('toxicity.symptomsLabel')}
+          </Text>
+          {symptoms.map((s, i) => (
+            <Text key={i} style={[styles.eduCopy, { marginLeft: spacing.sm }]}>
+              {`• ${s}`}
+            </Text>
+          ))}
+        </>
+      )}
+    </View>
+  );
+}
+
+function MascotasContent({
+  toxicity,
+  plantId,
+}: {
+  toxicity: { cats: ToxLevel; dogs: ToxLevel };
+  plantId?: string;
+}): React.ReactElement {
+  const { t } = useTranslation();
+  const { cats, dogs } = toxicity;
+
+  // Special case: both species 'safe' → single line per CONTEXT.md TOX-04.
+  if (cats === 'safe' && dogs === 'safe') {
+    return <Text style={styles.eduCopy}>{t('toxicity.safeForBoth')}</Text>;
+  }
+
+  // Otherwise: two independent lines (per-species asymmetry per CONTEXT.md TOX-04).
+  return (
+    <>
+      <SpeciesLine species="cats" level={cats} plantId={plantId} />
+      <SpeciesLine species="dogs" level={dogs} plantId={plantId} />
+    </>
+  );
+}
