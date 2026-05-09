@@ -4,14 +4,14 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
 status: verifying
-stopped_at: Completed 19-pet-toxicity Plan 05 (TOX-05 OnboardingScreen Switch + AddPlantModal banner)
-last_updated: "2026-05-09T15:19:53.788Z"
+stopped_at: Completed 19-pet-toxicity Plan 06 (TOX-06 i18n parity gate + check-i18n-keys.mjs extension)
+last_updated: "2026-05-09T15:24:17.882Z"
 last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
 progress:
   total_phases: 15
   completed_phases: 9
   total_plans: 53
-  completed_plans: 52
+  completed_plans: 53
   percent: 100
 ---
 
@@ -86,6 +86,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 19-pet-toxicity P03 | 4min | 3 tasks | 4 files |
 | Phase 19-pet-toxicity P04 | 3min | 2 tasks | 3 files |
 | Phase 19-pet-toxicity P05 | 3min | 2 tasks | 2 files |
+| Phase 19-pet-toxicity P06 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -235,6 +236,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 19-pet-toxicity]: ts-expect-error for initialSection prop on MyPlantDetailModal until Plan 19-04 lands the prop (Option A per plan instructions)
 - [Phase 19-pet-toxicity]: TOX-04: MascotasContent + SpeciesLine at module level (below styles) — hooks require stable component scope; 50ms setTimeout for Pitfall-2 mitigation; @ts-expect-error placeholders removed from PlantsScreen + TodayScreen as part of Task 1
 - [Phase 19-pet-toxicity]: TOX-05: petSafeOnly is session-only state (no AsyncStorage); filteredPlants useMemo with AND-combination; onOpenToMascotas callback prop for banner tap routing; initialSection='mascotas' in JSDoc to satisfy smoke sentinel
+- [Phase 19-pet-toxicity]: TOX-06: emptyState_no_alternative key not added — OnboardingScreen does not use it (grep confirmed)
+- [Phase 19-pet-toxicity]: TOX-06: voseo regression fix applied to limonero.tip (puedes → podés); symptom validation extension is append-only — 17 lines after whyRationale check; all 85 smoke sentinels PASS, SKIP queue emptied
 
 ### Pending Todos
 
@@ -249,6 +252,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T15:19:53.785Z
-Stopped at: Completed 19-pet-toxicity Plan 05 (TOX-05 OnboardingScreen Switch + AddPlantModal banner)
+Last session: 2026-05-09T15:24:17.879Z
+Stopped at: Completed 19-pet-toxicity Plan 06 (TOX-06 i18n parity gate + check-i18n-keys.mjs extension)
 Resume file: None
