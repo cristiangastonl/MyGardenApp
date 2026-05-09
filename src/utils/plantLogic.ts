@@ -1,4 +1,4 @@
-import { Plant, Task } from "../types";
+import { Plant, PlantDBEntry, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
 import type { WaterSeason } from "./seasonality";
 import i18n from "../i18n";
@@ -85,18 +85,39 @@ export function getTasksForDay(plants: Plant[], day: Date, season: WaterSeason):
 }
 
 /**
- * v1.2 Phase 20 (FERT-04) — SKELETON. Returns null until Plan 20-02 lands real impl.
+ * v1.2 Phase 20 (FERT-04) — Resolves the active fertilize interval (days) for a plant
+ * given the catalog entry and effective season. Mirrors getSeasonalInterval semantics
+ * with season-aware split; cold-season null in catalog ⇒ dormancy (no emission).
  *
- * Real impl will: per-plant Plant.fertilizeSchedule.intervalDays wins over catalog;
- * cold-season catalogEntry.fertilizeIntervalCold === null → return null (no emission);
- * else return season-bucketed catalog interval.
+ * Resolution order:
+ *   1. plant.fertilizeSchedule.intervalDays > 0 → user-overridden (season-agnostic in this phase)
+ *   2. catalogEntry.fertilizeIntervalCold (when season==='cold') → null = dormant; number = use it
+ *   3. catalogEntry.fertilizeIntervalWarm (when season==='warm' or 'tropical') → undefined → null
+ *
+ * Tropical bucket maps to 'warm' (matches getSeasonalInterval Pitfall 2 — Plant.fertilizeSchedule
+ * has no tropical bucket; catalog warm interval is the right answer in tropical climates).
  */
 export function getSeasonalFertilizeInterval(
-  _plant: import('../types').Plant,
-  _catalogEntry: import('../types').PlantDBEntry | null,
-  _season: WaterSeason
+  plant: Plant,
+  catalogEntry: PlantDBEntry | null,
+  season: WaterSeason
 ): number | null {
-  return null; // skeleton
+  // Per-plant override wins (Pattern 7 deep-merge guard protects fertilizeSchedule from catalog clobber).
+  if (plant.fertilizeSchedule?.intervalDays != null && plant.fertilizeSchedule.intervalDays > 0) {
+    return plant.fertilizeSchedule.intervalDays;
+  }
+  if (!catalogEntry) return null;
+  if (season === 'cold') {
+    // Catalog cold interval: null === dormant (no emission); number === use it.
+    const cold = catalogEntry.fertilizeIntervalCold;
+    if (cold === null) return null; // explicit dormancy
+    if (typeof cold === 'number' && cold > 0) return cold;
+    return null;
+  }
+  // 'warm' or 'tropical' bucket — both use fertilizeIntervalWarm.
+  const warm = catalogEntry.fertilizeIntervalWarm;
+  if (typeof warm === 'number' && warm > 0) return warm;
+  return null;
 }
 
 /**
