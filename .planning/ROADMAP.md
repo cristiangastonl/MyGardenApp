@@ -47,7 +47,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema (completed 2026-05-08)
 - [x] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 118 total; smoke asserts count (5 plans) (completed 2026-05-08)
 - [x] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge (completed 2026-05-08)
-- [ ] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter
+- [x] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter (completed 2026-05-09)
 - [ ] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications
 - [ ] **Phase 21: Plant Journal** — Per-plant `JournalEntry[]` with file-system photo storage; bottom-sheet quick-add; reverse-chronological timeline; orphan cleanup on plant delete
 - [ ] **Phase 22: Gamification — Toasts + Haptics** — Completion toasts; haptic feedback on task done; streak-anxiety anti-pattern documented and enforced
@@ -212,7 +212,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. MyPlantDetailModal "Mascotas" section is always visible with species-appropriate copy for all four states
   4. Catalog browse has a pet-safe filter toggle that correctly filters to entries where both cats and dogs are `'safe'`
   5. LATAM species not in the ASPCA database show the `'unknown'` state honestly ("No verificada para esta especie en LATAM 🤷")
-**Plans:** 7/8 plans executed
+**Plans:** 8/8 plans complete
   - [ ] 19-00-PLAN.md — Wave 0 scaffold: smoke-phase19.cjs + ToxLevel/PetToxicityEntry types + petToxicity helper module + PetToxicityBadge skeleton + data/petToxicity.csv stub + i18n skeleton (toxicity.* namespace EN+ES) + npm script + .gitignore (Nyquist gate)
   - [ ] 19-01-PLAN.md — Wave 1: TOX-01 helper hardening with absence === 'unknown' discipline + JSDoc + petToxicity.test-stub.ts (literal-type contract gate)
   - [ ] 19-02-PLAN.md — Wave 1: TOX-02 catalog classification (118 entries × cats+dogs against ASPCA) — CSV research pass + plantDatabase.ts merge + plants.json EN+ES symptom arrays
@@ -299,7 +299,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
-| 19. Pet Toxicity | 7/8 | In Progress|  | - |
+| 19. Pet Toxicity | 8/8 | Complete   | 2026-05-09 | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |

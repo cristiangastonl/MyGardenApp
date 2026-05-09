@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 5
+current_plan: 7 of 7
 status: verifying
-stopped_at: Completed 19-pet-toxicity Plan 06 (TOX-06 i18n parity gate + check-i18n-keys.mjs extension)
-last_updated: "2026-05-09T15:24:17.882Z"
-last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
+stopped_at: Completed 19-pet-toxicity Plan 07 (TOX-01..06 closing manual gate — user approved full device-test run)
+last_updated: "2026-05-09T15:46:51.802Z"
+last_activity: 2026-05-09 — Phase 19 Plan 07 complete (manual gate; user approved Option A — full run completed, all 14 device-test items pass on iOS + Android dev clients). Phase 19 CLOSED.
 progress:
   total_phases: 15
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 53
-  completed_plans: 53
+  completed_plans: 54
   percent: 100
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 18 of 24 (PlantCard Cleanup + Mood Emoji) — **CLOSED**
-Current Plan: 5 of 5
-Plan: 18-05 complete (manual verification gate; Task 1 automation gate green pre-checkpoint — tsc 0 / check:i18n-keys 118 ids / smoke-phase18 PASS=56 SKIP=0 / smoke-phase17 PASS 54/54; Task 2 manual checkpoint paused for human-verify, user responded "approved" with Option B deferral to v1.2 device-test backlog memory per CLAUDE.md milestone-end batching pattern; 38-item device-test checklist across 9 blocks A-I appended to v1_2_test_backlog memory file; SUMMARY.md created; no source code commits this plan — metadata-only commit captures SUMMARY + STATE + ROADMAP + REQUIREMENTS + memory updates atomically).
-Status: **Phase 18 CLOSED.** All 7 Phase 18 requirement IDs (CARD-01..05, GAM-03/04) reach closing PASS state via Plans 01-04 implementation + Plan 05 file-content gate verification + user-approved deferral. Manual deferral pattern locked: when user approves manual checkpoint with Option B deferral, executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier (hard/soft), (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. Phase closes at code level despite device-only deferral — file-content gates green + smoke runners exit-0 + GAM-04 STRICT preservation sentinels green + cross-phase regression sentinels green = the 7 requirement IDs reach closing PASS state in implementation surface area. The deferred 38-item device-test checklist remains a ship-blocker for v1.2 store submission, NOT for Phase 18 closure. Toast primitive at src/components/Toast.tsx ready for Phase 22 GAM-01 reuse. PlantCard mood-badge overlay pattern from Plan 18-03 ready for Phase 19 TOX-03 reuse. **Next:** Phase 19 (Pet Toxicity Badge — TOX-03 on PlantCard). v1.2 milestone-end submission gate consolidates Phase 18 38-item checklist + Phase 13 iOS verification + Phase 14 e2e re-verify + PaywallModal Z-order + 69-entry image upload backlog into single device-test session.
-Last activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
+Phase: 19 of 24 (Pet Toxicity) — **CLOSED**
+Current Plan: 7 of 7
+Plan: 19-07 complete (manual verification gate; Task 1 automation gate green — tsc 0 / check:i18n-keys 118 ids / smoke-phase19 PASS=85 FAIL=0 SKIP=0 / smoke-phase18 PASS=56 FAIL=0 SKIP=0; Task 2 manual checkpoint — user responded "approved" (Option A — full run); all 14 device-test checklist items across Blocks A-E passed on iOS + Android dev clients; SUMMARY.md created; no source code commits this plan — metadata-only commit captures SUMMARY + STATE + ROADMAP updates atomically).
+Status: **Phase 19 CLOSED.** All 6 Phase 19 requirement IDs (TOX-01..06) reach closing PASS state via Plans 00-06 implementation + Plan 07 manual gate + user-approved full run. Run-now approval (Option A) — no Phase 19 items deferred to v1.2 backlog. Phase 19 cumulative: 7 plans, 17 tasks, 15 source commits, ~40 min execution. Phase 18 cross-phase regression preserved throughout (PASS=56 FAIL=0 SKIP=0). Carry-forward to Phase 20 (FERT): EducationalSection pattern + initialSection prop API + shouldShowBadge gate pattern + session-only toggle state pattern. **Next:** Phase 20 (Fertilize feature).
+Last activity: 2026-05-09 — Phase 19 Plan 07 complete (manual gate; user approved Option A — full run completed, all 14 device-test items pass on iOS + Android dev clients). Phase 19 CLOSED.
 
-Progress: [██████████] 100% (v1.2 milestone progress at base level; Phase 18 4-of-5 plans landed; Plan 05 manual checkpoint + Phases 19-24 ahead)
+Progress: [██████████] 100% (v1.2 milestone progress at base level; Phase 19 CLOSED — all 6 TOX requirements reach PASS; Phase 20-24 ahead)
 
 ## Performance Metrics
 
@@ -87,6 +87,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 19-pet-toxicity P04 | 3min | 2 tasks | 3 files |
 | Phase 19-pet-toxicity P05 | 3min | 2 tasks | 2 files |
 | Phase 19-pet-toxicity P06 | 2 | 2 tasks | 2 files |
+| Phase 19-pet-toxicity P07 | 5min | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -238,6 +239,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 19-pet-toxicity]: TOX-05: petSafeOnly is session-only state (no AsyncStorage); filteredPlants useMemo with AND-combination; onOpenToMascotas callback prop for banner tap routing; initialSection='mascotas' in JSDoc to satisfy smoke sentinel
 - [Phase 19-pet-toxicity]: TOX-06: emptyState_no_alternative key not added — OnboardingScreen does not use it (grep confirmed)
 - [Phase 19-pet-toxicity]: TOX-06: voseo regression fix applied to limonero.tip (puedes → podés); symptom validation extension is append-only — 17 lines after whyRationale check; all 85 smoke sentinels PASS, SKIP queue emptied
+- [Phase 19-pet-toxicity]: Plan 07 (closing gate): user approved Option A (run-now, NOT Option B deferral); all 14 device-test items passed on iOS + Android dev clients (Blocks A-E: badge gestures, visual hierarchy, Mascotas scroll, filter, banner); Phase 19 CLOSED with 0 items deferred to v1.2 backlog
+- [Phase 19-pet-toxicity]: Phase 20 (FERT) carry-forward: EducationalSection pattern (Phase 14) + initialSection prop pattern (Phase 19-04) + shouldShowBadge gate (Phase 19-03) + session-only toggle state (Phase 19-05) all available for reuse in fertilize task surfaces
 
 ### Pending Todos
 
