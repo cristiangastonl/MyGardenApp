@@ -46,6 +46,17 @@ export interface WaterSchedule {
   cold: number; // days between waterings during cold season
 }
 
+/**
+ * v1.2 Phase 20 (FERT-01) — per-plant fertilize schedule. Additive optional.
+ * Absence means no fertilize task emission and no health-score penalty.
+ * `lastFertilized` is ISO date "YYYY-MM-DD" (matches Plant.lastWatered format).
+ * `intervalDays` is season-agnostic when set per-plant (overrides catalog warm/cold).
+ */
+export interface FertilizeSchedule {
+  intervalDays: number;
+  lastFertilized?: string;
+}
+
 export interface Plant {
   id: string;
   name: string;
@@ -81,6 +92,9 @@ export interface Plant {
   waterMode?: WaterMode;
   /** Internal: set by migration to flag plants that existed pre-v1.1; powers per-plant tooltip eligibility. Removed in v1.2. */
   _migratedFromV0?: true;
+
+  /** v1.2 Phase 20 (FERT-01). Additive optional; absence means no fertilize task emission. */
+  fertilizeSchedule?: FertilizeSchedule;
 }
 
 export interface Note {
@@ -105,7 +119,7 @@ export interface Location {
 }
 
 export interface Task {
-  type: "water" | "sun" | "outdoor" | "check_soil";
+  type: "water" | "sun" | "outdoor" | "check_soil" | "fertilize"; // FERT-03
   icon: string;
   label: string;
   plantId: string;
@@ -243,6 +257,18 @@ export interface PlantDBEntry {
   // ─── v1.2 Phase 19 (TOX-01) — pet toxicity per cats/dogs against ASPCA ───
   /** Pet toxicity classification (TOX-01). Absence of field is treated as 'unknown' (NOT 'safe'). */
   petToxicity?: PetToxicityEntry;
+
+  // ─── v1.2 Phase 20 (FERT-02 / FERT-07) — fertilization cadence + recommendation copy ───
+  /** v1.2 Phase 20 (FERT-02). Days between fertilizations in warm season. Absence skips emission. */
+  fertilizeIntervalWarm?: number;
+  /** v1.2 Phase 20 (FERT-02). Days between fertilizations in cold season. null = dormant (no emission). */
+  fertilizeIntervalCold?: number | null;
+  /** v1.2 Phase 20 (FERT-07). Fertilizer type + per-locale recommendation copy (industrial NPK ratios + homemade recipes; NEVER brand names — FERT-07 lock). */
+  fertilizer?: {
+    type: 'industrial' | 'homemade' | 'both';
+    industrialRecommendation?: string;
+    homemadeRecommendation?: string;
+  };
 }
 
 // Weather types for Open-Meteo API integration
@@ -286,6 +312,8 @@ export interface NotificationSettings {
   morningTime: string; // "HH:MM" format, e.g. "08:00"
   weatherAlerts: boolean;
   careReminders: boolean;
+  /** v1.2 Phase 20 (FERT-05). Default OFF; opt-in fertilize axis in morning body. */
+  fertilizeReminders?: boolean;
 }
 
 // Plant Health Types
