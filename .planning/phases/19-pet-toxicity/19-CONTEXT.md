@@ -63,11 +63,31 @@ Classify all 118 catalog entries (`src/data/plantDatabase.ts`) for cat + dog tox
 
 ### Pet-safe filter UX
 
-- **Location: `AddPlantModal` header toggle, alongside the existing category filter.** Local to catalog browse, no app-wide state. Filter state resets when modal closes (each browse session starts with toggle OFF).
+**RESOLVED 2026-05-08 (post-research correction).** Original CONTEXT decision said "AddPlantModal header toggle" but research surfaced that AddPlantModal has no catalog browse — the only catalog browse with a category filter today lives in `OnboardingScreen.tsx:207-230`. Re-resolved with user as: **filter in OnboardingScreen + toxicity warning banner in AddPlantModal**. This covers both the onboarding plant-pick path and the post-onboarding add-plant path.
+
+#### Primary host: OnboardingScreen catalog browse (TOX-05)
+
+- **Location: `OnboardingScreen.tsx:207-230`, alongside the existing category pill row** (`'all' | PlantCategory` selector). Pet-safe toggle is a sibling control to the category pills.
 - **Filter behavior: `cats === 'safe' && dogs === 'safe'`.** `'unknown'` is EXCLUDED from results (honest — not lying that LATAM species are safe). When toggle is OFF, all entries show as today.
+- **Toggle interaction with category filter:** ADDITIVE (filter chains AND-style — category match AND pet-safe match). User experience: pick a category, then toggle pet-safe to narrow further.
 - **Visual treatment: React Native `Switch` control with label "🐾 Solo seguras"** (i18n key in `common.json` per TOX-06 namespace). Compact, reuses primitive used elsewhere in Settings, no new component needed.
 - **Empty-state behavior: friendly empty state with tip.** When toggle is ON and no plants in the active category match: show "🌿 No hay plantas seguras para mascotas en esta categoría. Probá con [otra categoría]." (or equivalent EN copy). Encourages exploration; matches recommendation-first pivot ethos. Empty-state copy lands as i18n keys in `common.json`.
-- **Toggle interaction with category filter:** ADDITIVE (filter chains AND-style — category match AND pet-safe match). User experience: pick a category, then toggle pet-safe to narrow further.
+- **Filter-state persistence:** session-only (resets when onboarding closes). No AsyncStorage flag. Phase 19 does NOT carry pet-safe state forward into the post-onboarding experience.
+
+#### Secondary surface: AddPlantModal toxicity warning banner
+
+When a user adds a plant via `AddPlantModal` with a `prefilledPlant` that resolves to `cats === 'toxic' || dogs === 'toxic'` OR `cats === 'caution' || dogs === 'caution'`, a small warning banner renders at the top of the modal form.
+
+- **Banner copy (locked):**
+  - Single-species toxic: "⚠️ Tóxica para [gatos|perros]"
+  - Both species toxic: "⚠️ Tóxica para gatos y perros"
+  - Single-species caution: "⚠️ Precaución para [gatos|perros]"
+  - Mixed (e.g., cats=toxic + dogs=caution): "⚠️ Tóxica para gatos · Precaución para perros"
+  - For `'safe'` and `'unknown'` (any species): banner does NOT render. Banner is opt-in — only when there's a non-safe signal.
+- **Visual: passive informational banner.** Yellow background (caution-only) or red background (any toxic). NO add-blocking. NO confirmation step before form. NOT paternalistic — user has already chosen this plant; banner is awareness, not gatekeeping.
+- **Tap behavior: opens `MyPlantDetailModal` scrolled to Mascotas section** for `prefilledPlant` (only when `prefilledPlant` is a `PlantDBEntry` from the catalog — not when it's a manual creation with no `databaseId`). Reuses the same `initialSection: 'mascotas'` plumbing that the PlantCard toxicity badge tap uses.
+- **Renders only when `prefilledPlant` is provided AND resolves to a catalog entry** with non-safe toxicity. Manual plant creation (no prefilledPlant) shows no banner.
+- **i18n: in `common.json`.** TOX-06 namespace covers banner strings.
 
 ### Classification workflow (Claude's discretion — flagged for planner)
 
