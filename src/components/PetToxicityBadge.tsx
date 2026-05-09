@@ -12,6 +12,6 @@ export interface PetToxicityBadgeProps {
 }
 
 export function PetToxicityBadge(_props: PetToxicityBadgeProps): React.ReactElement | null {
-  // Skeleton — Plan 19-03 lands the Pressable + emoji + colored stripe impl.
+  // Skeleton — Plan 19-03 lands the interactive badge + emoji + colored stripe impl.
   return null;
 }
