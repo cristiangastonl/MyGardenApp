@@ -232,7 +232,18 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Fertilize push notifications default to OFF in Settings; toggling ON schedules reminders correctly
   4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
   5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
-**Plans**: TBD
+**Plans:** 11 plans
+  - [ ] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
+  - [ ] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
+  - [ ] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
+  - [ ] 20-03-PLAN.md — Wave 2: FERT-03 5-site discriminator sweep (plantLogic emit + scheduler body filter + notifSettings ratchet + DayDetail/DayDetailModal/MonthCalendar discriminators + plantHealth defensive no-op)
+  - [ ] 20-04-PLAN.md — Wave 3: FERT-06 PlantCard mode='tasks' fertilize TaskButton + MyPlantDetailModal two-column layout + FertilizeCard real impl (180ms Reanimated v4) + initialExpanded prop + useStorage.fertilizePlant action
+  - [ ] 20-05-PLAN.md — Wave 3: FERT-05 Settings toggle (Switch row in Notifications section) + DEFAULT_SETTINGS.fertilizeReminders=false
+  - [ ] 20-06-PLAN.md — Wave 4 Batch A: FERT-07 catalog content for 67 entries (interior 44 + aromáticas 13 + huerta 10) — homemade-first framing
+  - [ ] 20-07-PLAN.md — Wave 4 Batch B: FERT-07 catalog content for 16 suculentas — industrial-only (CAM dormancy, no homemade)
+  - [ ] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
+  - [ ] 20-09-PLAN.md — Wave 5: check-i18n-keys.mjs conditional fertilizer.industrial/homemade extension (mirrors Phase 19 TOX-06 pattern)
+  - [ ] 20-10-PLAN.md — Wave 6: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist; Option A run-now / Option B defer-to-v1.2-backlog
 
 ### Phase 21: Plant Journal
 **Goal**: Users can log text notes and photos for any plant in a reverse-chronological journal; journal data is stored safely in the file system (not AsyncStorage base64); deleting a plant cleans up its journal
@@ -300,7 +311,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
-| 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
+| 20. Fertilization Subsystem | v1.2 | 0/11 | Not started | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |
