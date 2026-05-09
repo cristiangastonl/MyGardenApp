@@ -204,15 +204,23 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 
 ### Phase 19: Pet Toxicity
 **Goal**: Every catalog entry is classified for cat and dog toxicity against the ASPCA list; users can see pet safety information in plant detail and filter the catalog to pet-safe plants
-**Depends on**: Phase 17 (full 120-entry catalog complete)
+**Depends on**: Phase 18 (PlantCard 5-element budget + headerRight slot)
 **Requirements**: TOX-01, TOX-02, TOX-03, TOX-04, TOX-05, TOX-06
 **Success Criteria** (what must be TRUE):
-  1. Every one of the 120 catalog entries has `petToxicity` set (not absent/undefined); `grep` count assertion passes
+  1. Every one of the 118 catalog entries has `petToxicity` set (not absent/undefined); `grep` count assertion passes
   2. PlantCard shows a red cat/dog badge only for `'toxic'` species and a yellow badge for `'caution'` — nothing shown for `'safe'` or `'unknown'`
   3. MyPlantDetailModal "Mascotas" section is always visible with species-appropriate copy for all four states
   4. Catalog browse has a pet-safe filter toggle that correctly filters to entries where both cats and dogs are `'safe'`
   5. LATAM species not in the ASPCA database show the `'unknown'` state honestly ("No verificada para esta especie en LATAM 🤷")
-**Plans**: TBD
+**Plans:** 8 plans
+  - [ ] 19-00-PLAN.md — Wave 0 scaffold: smoke-phase19.cjs + ToxLevel/PetToxicityEntry types + petToxicity helper module + PetToxicityBadge skeleton + data/petToxicity.csv stub + i18n skeleton (toxicity.* namespace EN+ES) + npm script + .gitignore (Nyquist gate)
+  - [ ] 19-01-PLAN.md — Wave 1: TOX-01 helper hardening with absence === 'unknown' discipline + JSDoc + petToxicity.test-stub.ts (literal-type contract gate)
+  - [ ] 19-02-PLAN.md — Wave 1: TOX-02 catalog classification (118 entries × cats+dogs against ASPCA) — CSV research pass + plantDatabase.ts merge + plants.json EN+ES symptom arrays
+  - [ ] 19-03-PLAN.md — Wave 2: TOX-03 PetToxicityBadge full impl + PlantCard headerRight cluster + onOpenToMascotas wiring in PlantsScreen + TodayScreen
+  - [ ] 19-04-PLAN.md — Wave 2: TOX-04 5th 🐾 Mascotas section in MyPlantDetailModal (always visible) + initialSection prop + ScrollView scrollTo-section mechanism
+  - [ ] 19-05-PLAN.md — Wave 2: TOX-05 OnboardingScreen pet-safe Switch (AND-style filter chain + empty-state fallback) + AddPlantModal toxicity warning banner (passive informational, severity-aware)
+  - [ ] 19-06-PLAN.md — Wave 3: TOX-06 check-i18n-keys.mjs conditional petToxicity.symptoms validation + common.json toxicity.* polish + voseo regression audit
+  - [ ] 19-07-PLAN.md — Wave 4: MANUAL CHECKPOINT (autonomous: false) — iOS + Android device verification of badge gestures (Pitfall 3), scroll-to-Mascotas (Pitfall 2), filter behavior, banner copy across 14-item checklist; Option B deferral lane to v1.2 backlog memory per Phase 18 precedent
 
 ### Phase 20: Fertilization Subsystem
 **Goal**: Fertilize tasks appear in the Hoy screen on the correct cadence; all five discriminator sites are updated; push notifications are opt-in; every catalog entry has fertilizer type content
@@ -291,7 +299,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
-| 19. Pet Toxicity | v1.2 | 0/TBD | Not started | - |
+| 19. Pet Toxicity | v1.2 | 0/8 | Not started | - |
 | 20. Fertilization Subsystem | v1.2 | 0/TBD | Not started | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
