@@ -121,16 +121,32 @@ export function getSeasonalFertilizeInterval(
 }
 
 /**
- * v1.2 Phase 20 (FERT-04) — SKELETON. Returns null until Plan 20-02 lands real impl.
+ * v1.2 Phase 20 (FERT-04) — Returns the date of the next fertilize event for the plant,
+ * given today and the user's effective season. Returns null when the plant emits no
+ * fertilize task (no per-plant override AND no catalog entry, OR cold-season dormancy).
  *
- * Real impl will: mirror getNextWaterDate advance-loop (catch-up clip → ONE task on due-day);
- * if no lastFertilized, return today; if intervalDays null/<=0, return null.
+ * Mirrors getNextWaterDate advance-loop verbatim — catch-up clip ensures emit ONE task
+ * on due-day, never N (Pitfall: do NOT add an "overdue penalty" — the loop guarantees
+ * nextDate >= today, so daysUntil < 0 is dead code by-construction).
+ *
+ * @param plant         The plant.
+ * @param catalogEntry  Resolved via getCatalogEntry(plant.databaseId) by caller; null for custom plants.
+ * @param today         Reference date.
+ * @param season        Pre-computed effective season ('warm' | 'cold' | 'tropical').
  */
 export function getNextFertilizeDate(
-  _plant: import('../types').Plant,
-  _catalogEntry: import('../types').PlantDBEntry | null,
-  _today: Date,
-  _season: WaterSeason
+  plant: Plant,
+  catalogEntry: PlantDBEntry | null,
+  today: Date,
+  season: WaterSeason
 ): Date | null {
-  return null; // skeleton
+  const intervalDays = getSeasonalFertilizeInterval(plant, catalogEntry, season);
+  if (intervalDays == null || intervalDays <= 0) return null;
+  // Never-fertilized plants are due today (mirrors getNextWaterDate first-water behavior).
+  const lastFertilized = plant.fertilizeSchedule?.lastFertilized;
+  if (!lastFertilized) return today;
+  const last = parseDate(lastFertilized);
+  let next = addDays(last, intervalDays);
+  while (next < today) next = addDays(next, intervalDays);
+  return next;
 }
