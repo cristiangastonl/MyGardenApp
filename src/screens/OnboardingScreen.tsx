@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  Switch,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import i18n, { setLanguage } from '../i18n';
@@ -24,6 +25,7 @@ import { getPlantTypes } from '../data/constants';
 import { useStorage } from '../hooks/useStorage';
 import { useAuthContext } from '../components/AuthProvider';
 import { inferWaterMode, applyColdFactor, sunHoursToLightLevel } from '../utils/migration';
+import { isPetSafe } from '../utils/petToxicity';
 import * as ExpoLocation from 'expo-location';
 import { Location } from '../types';
 import { trackEvent } from '../services/analyticsService';
@@ -205,6 +207,7 @@ export default function OnboardingScreen() {
   const [name, setName] = useState(displayName || '');
   const [selectedPlants, setSelectedPlants] = useState<Set<string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState<PlantCategory | 'all'>('all');
+  const [petSafeOnly, setPetSafeOnly] = useState(false);  // Phase 19 (TOX-05) — session-only
   const [identifiedPlants, setIdentifiedPlants] = useState<Plant[]>([]);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [showDiagnosis, setShowDiagnosis] = useState(false);
@@ -225,9 +228,28 @@ export default function OnboardingScreen() {
   const slideAnim = useRef(new Animated.Value(0)).current;
 
   const translatedDatabase = getTranslatedDatabase();
-  const filteredPlants = selectedCategory === 'all'
-    ? PLANT_DATABASE
-    : PLANT_DATABASE.filter(p => p.category === selectedCategory);
+
+  // Phase 19 (TOX-05): AND-style filter chain — category match AND pet-safe match (session-only).
+  const filteredPlants = useMemo(() => {
+    let results = selectedCategory === 'all'
+      ? PLANT_DATABASE
+      : PLANT_DATABASE.filter(p => p.category === selectedCategory);
+    if (petSafeOnly) {
+      results = results.filter(isPetSafe);
+    }
+    return results;
+  }, [selectedCategory, petSafeOnly]);
+
+  // Phase 19 (TOX-05): empty-state suggestion — find a different category with pet-safe entries.
+  const petSafeCategorySuggestion = useMemo(() => {
+    const categories = getPlantCategories();
+    for (const cat of categories) {
+      if (cat.id === selectedCategory) continue;
+      const hasPetSafe = PLANT_DATABASE.some(p => p.category === cat.id && isPetSafe(p));
+      if (hasPetSafe) return cat.name;
+    }
+    return null;
+  }, [selectedCategory]);
 
   const togglePlant = useCallback((plantId: string) => {
     setSelectedPlants(prev => {
@@ -685,6 +707,16 @@ export default function OnboardingScreen() {
         </TouchableOpacity>
       )}
 
+      {/* Phase 19 (TOX-05): pet-safe filter — session-only toggle. */}
+      <View style={styles.petSafeRow}>
+        <Text style={styles.petSafeLabel}>{t('toxicity.filter.label')}</Text>
+        <Switch
+          value={petSafeOnly}
+          onValueChange={setPetSafeOnly}
+          accessibilityLabel={t('toxicity.filter.label')}
+        />
+      </View>
+
       {/* Category Filter */}
       <ScrollView
         horizontal
@@ -736,14 +768,24 @@ export default function OnboardingScreen() {
         contentContainerStyle={styles.plantGridContent}
         showsVerticalScrollIndicator={false}
       >
-        {filteredPlants.map(plant => (
-          <PlantSelectCard
-            key={plant.id}
-            plant={plant}
-            selected={selectedPlants.has(plant.id)}
-            onToggle={() => togglePlant(plant.id)}
-          />
-        ))}
+        {petSafeOnly && filteredPlants.length === 0 ? (
+          <View style={styles.petSafeEmptyState}>
+            <Text style={styles.petSafeEmptyStateText}>
+              {t('toxicity.filter.emptyState', {
+                suggestion: petSafeCategorySuggestion ?? t('settings.other', { defaultValue: 'otra categoría' }),
+              })}
+            </Text>
+          </View>
+        ) : (
+          filteredPlants.map(plant => (
+            <PlantSelectCard
+              key={plant.id}
+              plant={plant}
+              selected={selectedPlants.has(plant.id)}
+              onToggle={() => togglePlant(plant.id)}
+            />
+          ))
+        )}
       </ScrollView>
 
       {(selectedPlants.size + identifiedPlants.length) > 0 && (
@@ -1283,6 +1325,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     borderRadius: borderRadius.full,
     ...shadows.md,
+  },
+
+  // Phase 19 (TOX-05): pet-safe filter toggle row
+  petSafeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginBottom: spacing.sm,
+  },
+  petSafeLabel: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.textPrimary,
+  },
+  // Phase 19 (TOX-05): empty-state when no pet-safe plants in category
+  petSafeEmptyState: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xl,
+    alignItems: 'center',
+  },
+  petSafeEmptyStateText: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 22,
   },
 
   emptyWarning: {
