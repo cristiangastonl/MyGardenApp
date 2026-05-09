@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Modal,
   View,
@@ -9,20 +9,25 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
 } from "react-native";
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius } from "../theme";
-import { Plant, PlantDBEntry, LightLevel, WaterMode, WaterSchedule } from "../types";
+import { Plant, PlantDBEntry, LightLevel, WaterMode, WaterSchedule, ToxLevel } from "../types";
 import { getPlantTypes } from "../data/constants";
 import { LightLevelPicker } from "./LightLevelPicker";
 import { WaterScheduleEditor } from "./WaterScheduleEditor";
 import { inferWaterMode } from "../utils/migration";
+import { hasAnyToxicityWarning, getPetToxicity } from "../utils/petToxicity";
+import { getCatalogEntry } from "../data/plantDatabase";
 
 interface AddPlantModalProps {
   visible: boolean;
   onClose: () => void;
   onAdd: (plant: Omit<Plant, "id">, imageUri?: string | null) => void;
   prefilledPlant?: PlantDBEntry | Plant;
+  /** v1.2 Phase 19 (TOX-05) — when toxicity banner is tapped, parent opens MyPlantDetailModal with initialSection='mascotas'. */
+  onOpenToMascotas?: (plantDbEntry: PlantDBEntry) => void;
 }
 
 export function AddPlantModal({
@@ -30,6 +35,7 @@ export function AddPlantModal({
   onClose,
   onAdd,
   prefilledPlant,
+  onOpenToMascotas,
 }: AddPlantModalProps) {
   const { t } = useTranslation();
   const [name, setName] = useState("");
@@ -74,6 +80,38 @@ export function AddPlantModal({
       }
     }
   }, [visible, prefilledPlant]);
+
+  // Phase 19 (TOX-05): toxicity warning banner — derived from prefilledPlant.
+  // Renders ONLY for catalog entries (PlantDBEntry — has id + category fields) with non-safe toxicity.
+  const toxicityBannerData = useMemo(() => {
+    if (!prefilledPlant) return null;
+    const isCatalogEntry = 'id' in prefilledPlant && 'category' in prefilledPlant;
+    if (!isCatalogEntry) return null;
+    const catalogEntry = prefilledPlant as PlantDBEntry;
+    if (!hasAnyToxicityWarning(catalogEntry)) return null;
+    const tox = getPetToxicity(catalogEntry);
+    return { catalogEntry, tox };
+  }, [prefilledPlant]);
+
+  // Phase 19 (TOX-05): compute banner copy from cats/dogs ToxLevel state.
+  const getBannerCopy = (cats: ToxLevel, dogs: ToxLevel): string => {
+    const catsLabel = t('toxicity.species.cats');
+    const dogsLabel = t('toxicity.species.dogs');
+    const catsToxic = cats === 'toxic';
+    const dogsToxic = dogs === 'toxic';
+    const catsCaution = cats === 'caution';
+    const dogsCaution = dogs === 'caution';
+
+    if (catsToxic && dogsToxic) return t('toxicity.banner.toxicBoth');
+    if (catsToxic && dogsCaution) return t('toxicity.banner.mixed', { toxicSpecies: catsLabel, cautionSpecies: dogsLabel });
+    if (dogsToxic && catsCaution) return t('toxicity.banner.mixed', { toxicSpecies: dogsLabel, cautionSpecies: catsLabel });
+    if (catsToxic) return t('toxicity.banner.toxicSingle', { species: catsLabel });
+    if (dogsToxic) return t('toxicity.banner.toxicSingle', { species: dogsLabel });
+    if (catsCaution && dogsCaution) return t('toxicity.banner.cautionSingle', { species: `${catsLabel} y ${dogsLabel}` });
+    if (catsCaution) return t('toxicity.banner.cautionSingle', { species: catsLabel });
+    if (dogsCaution) return t('toxicity.banner.cautionSingle', { species: dogsLabel });
+    return '';
+  };
 
   const resetForm = () => {
     setName("");
@@ -147,6 +185,25 @@ export function AddPlantModal({
             <View style={styles.handle} />
 
             <Text style={styles.title}>{t('addPlant.title')}</Text>
+
+            {/* Phase 19 (TOX-05): toxicity warning banner — passive informational, non-blocking. */}
+            {toxicityBannerData && (() => {
+              const anyToxic = toxicityBannerData.tox.cats === 'toxic' || toxicityBannerData.tox.dogs === 'toxic';
+              const bannerBg = anyToxic ? colors.dangerBg : colors.warningBg;
+              const bannerTextColor = anyToxic ? colors.dangerText : colors.warningText;
+              const copy = getBannerCopy(toxicityBannerData.tox.cats, toxicityBannerData.tox.dogs);
+              return (
+                <Pressable
+                  style={[styles.toxicityBanner, { backgroundColor: bannerBg }]}
+                  onPress={() => onOpenToMascotas?.(toxicityBannerData.catalogEntry)}
+                  accessibilityRole="button"
+                >
+                  <Text style={[styles.toxicityBannerText, { color: bannerTextColor }]}>
+                    {copy}
+                  </Text>
+                </Pressable>
+              );
+            })()}
 
             {prefilledPlant && (
               <View style={styles.prefilledBanner}>
@@ -286,6 +343,19 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     textAlign: "center",
     marginBottom: spacing.lg,
+  },
+  // Phase 19 (TOX-05): toxicity warning banner styles
+  toxicityBanner: {
+    marginHorizontal: spacing.lg,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    marginBottom: spacing.md,
+  },
+  toxicityBannerText: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    textAlign: "center",
   },
   prefilledBanner: {
     flexDirection: "row",
