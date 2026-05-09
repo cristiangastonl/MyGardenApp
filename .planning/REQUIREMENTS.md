@@ -76,12 +76,12 @@
 
 ### Pet Toxicity (TOX)
 
-- [ ] **TOX-01**: `PlantDBEntry.petToxicity?: { cats: ToxLevel, dogs: ToxLevel }` added (additive optional); `ToxLevel = 'safe' | 'caution' | 'toxic' | 'unknown'`; absence of field is treated as `'unknown'` (NOT `'safe'`)
-- [ ] **TOX-02**: All 120 catalog entries classified per cats + dogs against ASPCA Animal Poison Control list (canonical source); LATAM species not in ASPCA marked `'unknown'` with honest UI
-- [ ] **TOX-03**: PlantCard renders cat 🐈 / dog 🐕 toxicity badge when `'toxic'` (red), `'caution'` (yellow); hidden for `'safe'` and `'unknown'`
-- [ ] **TOX-04**: MyPlantDetailModal "Mascotas" section is ALWAYS visible (even for safe plants — reinforces user confidence). Per-species copy: `'safe'` → "Segura para gatos y perros ✓"; `'caution'` → "Precaución para [especie]. Síntomas: [lista]"; `'toxic'` → "Tóxica para [especie]. Síntomas: [lista]"; `'unknown'` → "No verificada para esta especie en LATAM 🤷". NO phone CTA, NO specific clinic recommendation (avoids liability — user finds local vet themselves).
-- [ ] **TOX-05**: Catalog browse (PlantDatabaseCard) gains pet-safe filter — toggle to show only entries safe for cats AND dogs
-- [ ] **TOX-06**: i18n keys for toxicity labels in `common.json` (4-state enum strings × 2 locales), NOT `plants.json`
+- [x] **TOX-01**: `PlantDBEntry.petToxicity?: { cats: ToxLevel, dogs: ToxLevel }` added (additive optional); `ToxLevel = 'safe' | 'caution' | 'toxic' | 'unknown'`; absence of field is treated as `'unknown'` (NOT `'safe'`)
+- [x] **TOX-02**: All 120 catalog entries classified per cats + dogs against ASPCA Animal Poison Control list (canonical source); LATAM species not in ASPCA marked `'unknown'` with honest UI
+- [x] **TOX-03**: PlantCard renders cat 🐈 / dog 🐕 toxicity badge when `'toxic'` (red), `'caution'` (yellow); hidden for `'safe'` and `'unknown'`
+- [x] **TOX-04**: MyPlantDetailModal "Mascotas" section is ALWAYS visible (even for safe plants — reinforces user confidence). Per-species copy: `'safe'` → "Segura para gatos y perros ✓"; `'caution'` → "Precaución para [especie]. Síntomas: [lista]"; `'toxic'` → "Tóxica para [especie]. Síntomas: [lista]"; `'unknown'` → "No verificada para esta especie en LATAM 🤷". NO phone CTA, NO specific clinic recommendation (avoids liability — user finds local vet themselves).
+- [x] **TOX-05**: Catalog browse (PlantDatabaseCard) gains pet-safe filter — toggle to show only entries safe for cats AND dogs
+- [x] **TOX-06**: i18n keys for toxicity labels in `common.json` (4-state enum strings × 2 locales), NOT `plants.json`
 
 ### Fertilization Subsystem (FERT)
 
@@ -230,12 +230,12 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | CARD-05 | Phase 18 | Complete |
 | GAM-03 | Phase 18 | Complete |
 | GAM-04 | Phase 18 | Complete |
-| TOX-01 | Phase 19 | Pending |
-| TOX-02 | Phase 19 | Pending |
-| TOX-03 | Phase 19 | Pending |
-| TOX-04 | Phase 19 | Pending |
-| TOX-05 | Phase 19 | Pending |
-| TOX-06 | Phase 19 | Pending |
+| TOX-01 | Phase 19 | Complete |
+| TOX-02 | Phase 19 | Complete |
+| TOX-03 | Phase 19 | Complete |
+| TOX-04 | Phase 19 | Complete |
+| TOX-05 | Phase 19 | Complete |
+| TOX-06 | Phase 19 | Complete |
 | FERT-01 | Phase 20 | Pending |
 | FERT-02 | Phase 20 | Pending |
 | FERT-03 | Phase 20 | Pending |

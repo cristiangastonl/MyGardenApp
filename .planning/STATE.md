@@ -4,14 +4,14 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
 status: verifying
-stopped_at: Phase 19 context gathered
-last_updated: "2026-05-08T23:24:36.916Z"
+stopped_at: Completed 19-pet-toxicity Plan 00 (Wave 0 scaffold)
+last_updated: "2026-05-09T14:48:31.977Z"
 last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
 progress:
   total_phases: 15
   completed_phases: 9
-  total_plans: 45
-  completed_plans: 46
+  total_plans: 53
+  completed_plans: 47
   percent: 100
 ---
 
@@ -80,6 +80,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 18 P03 | 5min | 2 tasks | 1 files |
 | Phase 18 P04 | 6min | 2 tasks | 2 files |
 | Phase 18 P05 | 2min | 2 tasks | 2 files |
+| Phase 19-pet-toxicity P00 | 15 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -222,6 +223,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-05: Manual deferral discipline locked — when user approves manual checkpoint with Option B deferral (vs run-now), executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier, (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. Reusable for any future autonomous:false manual-checkpoint plan whose device-only gates are blocked by Xcode/RevenueCat/Apple ID friction.
 - [Phase 18]: Plan 18-05: Phase 18 cumulative metrics — 5 plans, 10 tasks, ~14 unique files modified, 12 git commits across Plans 01-04 (each contributing 2 source commits + 1 docs commit) + 1 metadata commit at Plan 05. ~20 min total execution time across phase. Heavy single-file LOC concentrated in PlantCard (Plan 03) + 2 screens (Plan 04). Toast primitive at src/components/Toast.tsx canonical for Phase 22 reuse.
 - [Phase 18]: Plan 18-05: 9-block device-test checklist (Block A smoke / B haptic / C long-press menu / D mood emoji / E Toast positioning / F FlatList recycling / G mode parity / H persistence / I i18n parity) is the reusable template for any future PlantCard or list-row UX phase. Each block maps to ≥1 phase requirement ID for closure traceability.
+- [Phase 19-pet-toxicity]: Smoke runner frozen at Wave 0; SKIPs flip to PASSes in Plans 19-02..06 without editing the runner; petToxicity absence defaults to 'unknown' NOT 'safe' (CRIT-2 discipline)
+- [Phase 19-pet-toxicity]: Skeleton comment safety: avoid literal API/component names in skeleton comments that match smoke sentinel regexes — 'Pressable' in badge comment triggered false-positive FAIL; changed to 'interactive badge'
 
 ### Pending Todos
 
@@ -236,6 +239,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-08T23:24:36.913Z
-Stopped at: Phase 19 context gathered
-Resume file: .planning/phases/19-pet-toxicity/19-CONTEXT.md
+Last session: 2026-05-09T14:48:31.974Z
+Stopped at: Completed 19-pet-toxicity Plan 00 (Wave 0 scaffold)
+Resume file: None
