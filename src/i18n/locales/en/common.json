@@ -174,6 +174,8 @@
     "weatherAlertsSubtitle": "Frost, extreme heat, etc.",
     "careReminders": "Care reminders",
     "careRemindersSubtitle": "When watering is overdue",
+    "fertilizeReminders": "Fertilize reminders",
+    "fertilizeRemindersSubtitle": "Get notified when plants need fertilizing",
     "sendTest": "Send test notification",
     "testSent": "Done!",
     "testSentMessage": "A test notification was sent.",
@@ -300,6 +302,7 @@
     "water": "Water",
     "sunLabel": "Sun ({{hours}}h)",
     "outdoor": "Put outside",
+    "fertilize": "Fertilize",
     "nextWater": "NEXT WATERING",
     "today": "Today",
     "tomorrow": "Tomorrow",
@@ -813,7 +816,11 @@
     "alternatives": "Alternatives:",
     "avoid": "Avoid:",
     "lightLabel": "Light:",
-    "pets": "Pets"
+    "pets": "Pets",
+    "water": "Water",
+    "fertilize": "Fertilize",
+    "fertilizeEvery": "Fertilize every {{days}} days ({{season}})",
+    "fertilizeDormant": "Dormant — no fertilizer needed in cold season"
   },
   "dayDetail": {
     "tasksOfDay": "TODAY'S TASKS",
@@ -834,7 +841,8 @@
   },
   "tasks": {
     "checkSoil": "Check soil — {{name}}",
-    "checkSoilBody": "Touch the soil. If it's dry 5cm down, water."
+    "checkSoilBody": "Touch the soil. If it's dry 5cm down, water.",
+    "fertilize": "Fertilize {{name}}"
   },
   "dataMigration": {
     "title": "You have saved plants",
@@ -865,7 +873,8 @@
     "testTitle": "My Happy Garden",
     "testBody": "Notifications are working correctly!",
     "followUpTitle": "Time to check on {{name}}",
-    "followUpBody": "{{summary}} -- do a follow-up diagnosis to track recovery."
+    "followUpBody": "{{summary}} -- do a follow-up diagnosis to track recovery.",
+    "fertilize": "Fertilize:"
   },
   "shoppingList": {
     "title": "Shopping list",

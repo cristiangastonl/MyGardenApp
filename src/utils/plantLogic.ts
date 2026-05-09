@@ -83,3 +83,33 @@ export function getTasksForDay(plants: Plant[], day: Date, season: WaterSeason):
   });
   return tasks;
 }
+
+/**
+ * v1.2 Phase 20 (FERT-04) — SKELETON. Returns null until Plan 20-02 lands real impl.
+ *
+ * Real impl will: per-plant Plant.fertilizeSchedule.intervalDays wins over catalog;
+ * cold-season catalogEntry.fertilizeIntervalCold === null → return null (no emission);
+ * else return season-bucketed catalog interval.
+ */
+export function getSeasonalFertilizeInterval(
+  _plant: import('../types').Plant,
+  _catalogEntry: import('../types').PlantDBEntry | null,
+  _season: WaterSeason
+): number | null {
+  return null; // skeleton
+}
+
+/**
+ * v1.2 Phase 20 (FERT-04) — SKELETON. Returns null until Plan 20-02 lands real impl.
+ *
+ * Real impl will: mirror getNextWaterDate advance-loop (catch-up clip → ONE task on due-day);
+ * if no lastFertilized, return today; if intervalDays null/<=0, return null.
+ */
+export function getNextFertilizeDate(
+  _plant: import('../types').Plant,
+  _catalogEntry: import('../types').PlantDBEntry | null,
+  _today: Date,
+  _season: WaterSeason
+): Date | null {
+  return null; // skeleton
+}
