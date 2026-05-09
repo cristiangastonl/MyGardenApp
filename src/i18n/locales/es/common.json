@@ -753,6 +753,42 @@
     "stepColors": "Detectando colores y patrones",
     "stepDatabase": "Buscando en base de datos"
   },
+  "toxicity": {
+    "toxic": "Tóxica",
+    "caution": "Precaución",
+    "safe": "Segura",
+    "unknown": "No verificada",
+    "safeForBoth": "Segura para gatos y perros ✓",
+    "safeForSpecies": "Segura para {{species}} ✓",
+    "cautionForSpecies": "Precaución para {{species}}.",
+    "toxicForSpecies": "Tóxica para {{species}}.",
+    "unverifiedLatam": "No verificada para esta especie en LATAM 🤷",
+    "symptomsLabel": "Síntomas:",
+    "species": {
+      "cats": "gatos",
+      "dogs": "perros"
+    },
+    "filter": {
+      "label": "🐾 Solo seguras",
+      "emptyState": "🌿 No hay plantas seguras para mascotas en esta categoría. Probá con {{suggestion}}."
+    },
+    "banner": {
+      "toxicSingle": "⚠️ Tóxica para {{species}}",
+      "toxicBoth": "⚠️ Tóxica para gatos y perros",
+      "cautionSingle": "⚠️ Precaución para {{species}}",
+      "mixed": "⚠️ Tóxica para {{toxicSpecies}} · Precaución para {{cautionSpecies}}"
+    },
+    "a11y": {
+      "cats": {
+        "toxic": "Tóxica para gatos",
+        "caution": "Precaución para gatos"
+      },
+      "dogs": {
+        "toxic": "Tóxica para perros",
+        "caution": "Precaución para perros"
+      }
+    }
+  },
   "plantDetailModal": {
     "watering": "Riego",
     "everyDays": "Cada {{days}} días",
@@ -776,7 +812,8 @@
     "recommended": "Recomendado:",
     "alternatives": "Alternativas:",
     "avoid": "Evitar:",
-    "lightLabel": "Luz:"
+    "lightLabel": "Luz:",
+    "pets": "Mascotas"
   },
   "dayDetail": {
     "tasksOfDay": "TAREAS DEL DÍA",

@@ -170,6 +170,25 @@ export interface CareAction {
   soilCheck?: string;
 }
 
+/** v1.2 Phase 19 (TOX-01) — pet toxicity classification levels. */
+export type ToxLevel = 'safe' | 'caution' | 'toxic' | 'unknown';
+
+/** v1.2 Phase 19 (TOX-01) — per-entry pet toxicity record. */
+export interface PetToxicityEntry {
+  /** ASPCA classification per species. */
+  cats: ToxLevel;
+  dogs: ToxLevel;
+  /** Per-species symptom arrays — only present when level is 'caution' or 'toxic'.
+   *  Catalog source field; displayed strings come from plants.json (per-entry, EN+ES). */
+  symptoms?: {
+    cats?: string[];
+    dogs?: string[];
+  };
+  /** ASPCA source URL per entry — CRIT-2 audit requirement (STATE.md pre-decision lock).
+   *  Empty string is acceptable ONLY for entries where cats === 'unknown' && dogs === 'unknown'. */
+  source?: string;
+}
+
 export interface PlantDBEntry {
   id: string;
   name: string;
@@ -221,6 +240,9 @@ export interface PlantDBEntry {
   placementAvoid?: string;
   /** Horticultural rationale for "¿Por qué?" section. Hides ENTIRE section if absent. */
   whyRationale?: string;
+  // ─── v1.2 Phase 19 (TOX-01) — pet toxicity per cats/dogs against ASPCA ───
+  /** Pet toxicity classification (TOX-01). Absence of field is treated as 'unknown' (NOT 'safe'). */
+  petToxicity?: PetToxicityEntry;
 }
 
 // Weather types for Open-Meteo API integration
