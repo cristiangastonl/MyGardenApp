@@ -232,7 +232,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Fertilize push notifications default to OFF in Settings; toggling ON schedules reminders correctly
   4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
   5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
-**Plans:** 11 plans
+**Plans:** 1/11 plans executed
   - [ ] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
   - [ ] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
   - [ ] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
@@ -311,7 +311,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
-| 20. Fertilization Subsystem | v1.2 | 0/11 | Not started | - |
+| 20. Fertilization Subsystem | 1/11 | In Progress|  | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |

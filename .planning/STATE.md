@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 7 of 7
-status: "**Phase 19 CLOSED.** All 6 Phase 19 requirement IDs (TOX-01..06) reach closing PASS state via Plans 00-06 implementation + Plan 07 manual gate + user-approved full run. Run-now approval (Option A) — no Phase 19 items deferred to v1.2 backlog. Phase 19 cumulative: 7 plans, 17 tasks, 15 source commits, ~40 min execution. Phase 18 cross-phase regression preserved throughout (PASS=56 FAIL=0 SKIP=0). Carry-forward to Phase 20 (FERT): EducationalSection pattern + initialSection prop API + shouldShowBadge gate pattern + session-only toggle state pattern. **Next:** Phase 20 (Fertilize feature)."
-stopped_at: Phase 20 context gathered
-last_updated: "2026-05-09T18:22:39.513Z"
-last_activity: 2026-05-09 — Phase 19 Plan 07 complete (manual gate; user approved Option A — full run completed, all 14 device-test items pass on iOS + Android dev clients). Phase 19 CLOSED.
+current_plan: 1 of 11
+status: verifying
+stopped_at: Completed 20-00-PLAN.md
+last_updated: "2026-05-09T21:46:16.792Z"
+last_activity: 2026-05-09 — Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold; 3 tasks, 8 files, ~4 min execution).
 progress:
   total_phases: 15
   completed_phases: 10
-  total_plans: 53
-  completed_plans: 54
-  percent: 100
+  total_plans: 64
+  completed_plans: 55
+  percent: 86
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 19 of 24 (Pet Toxicity) — **CLOSED**
-Current Plan: 7 of 7
-Plan: 19-07 complete (manual verification gate; Task 1 automation gate green — tsc 0 / check:i18n-keys 118 ids / smoke-phase19 PASS=85 FAIL=0 SKIP=0 / smoke-phase18 PASS=56 FAIL=0 SKIP=0; Task 2 manual checkpoint — user responded "approved" (Option A — full run); all 14 device-test checklist items across Blocks A-E passed on iOS + Android dev clients; SUMMARY.md created; no source code commits this plan — metadata-only commit captures SUMMARY + STATE + ROADMAP updates atomically).
-Status: **Phase 19 CLOSED.** All 6 Phase 19 requirement IDs (TOX-01..06) reach closing PASS state via Plans 00-06 implementation + Plan 07 manual gate + user-approved full run. Run-now approval (Option A) — no Phase 19 items deferred to v1.2 backlog. Phase 19 cumulative: 7 plans, 17 tasks, 15 source commits, ~40 min execution. Phase 18 cross-phase regression preserved throughout (PASS=56 FAIL=0 SKIP=0). Carry-forward to Phase 20 (FERT): EducationalSection pattern + initialSection prop API + shouldShowBadge gate pattern + session-only toggle state pattern. **Next:** Phase 20 (Fertilize feature).
-Last activity: 2026-05-09 — Phase 19 Plan 07 complete (manual gate; user approved Option A — full run completed, all 14 device-test items pass on iOS + Android dev clients). Phase 19 CLOSED.
+Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
+Current Plan: 1 of 11
+Plan: 20-00 complete (Wave 0 Nyquist scaffold; 3 atomic task commits — b5c84b8 smoke runner + npm script + .gitignore, 896475c type extensions, 9d97d30 FertilizeCard skeleton + plantLogic helpers + i18n EN+ES parity; smoke-phase20 PASS=31 FAIL=0 SKIP=18 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85 / check:i18n-keys 118 ids; ~4 min execution).
+Status: **Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold).** Verification contract locked BEFORE implementation — smoke-phase20.cjs authored ONCE, never edited after Plans 20-01..09 flip 18 SKIPs to PASSes by editing source files. STRICT block spans 2 prior phases (12 cross-phase regression sentinels — Phase 18 GAM-04/CARD-01/GAM-03/Toast + Phase 19 TOX-03/TOX-04/TOX-06 + Phase 20 health-no-fertilize-axis defensive). Type extensions all additive optional (tsc-green). API surfaces locked at skeleton: FertilizeCardProps + helper signatures locked NOW. **Next:** Phase 20 Plan 01.
+Last activity: 2026-05-09 — Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold; 3 tasks, 8 files, ~4 min execution).
 
-Progress: [██████████] 100% (v1.2 milestone progress at base level; Phase 19 CLOSED — all 6 TOX requirements reach PASS; Phase 20-24 ahead)
+Progress: [█████████░] 86% (55/64 plans complete; Phase 20 just opened with Plan 00 Wave 0 scaffold green — Plans 20-01..10 ahead)
 
 ## Performance Metrics
 
@@ -88,6 +88,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 19-pet-toxicity P05 | 3min | 2 tasks | 2 files |
 | Phase 19-pet-toxicity P06 | 2 | 2 tasks | 2 files |
 | Phase 19-pet-toxicity P07 | 5min | 2 tasks | 0 files |
+| Phase 20-fertilization-subsystem P00 | 4min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -241,6 +242,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 19-pet-toxicity]: TOX-06: voseo regression fix applied to limonero.tip (puedes → podés); symptom validation extension is append-only — 17 lines after whyRationale check; all 85 smoke sentinels PASS, SKIP queue emptied
 - [Phase 19-pet-toxicity]: Plan 07 (closing gate): user approved Option A (run-now, NOT Option B deferral); all 14 device-test items passed on iOS + Android dev clients (Blocks A-E: badge gestures, visual hierarchy, Mascotas scroll, filter, banner); Phase 19 CLOSED with 0 items deferred to v1.2 backlog
 - [Phase 19-pet-toxicity]: Phase 20 (FERT) carry-forward: EducationalSection pattern (Phase 14) + initialSection prop pattern (Phase 19-04) + shouldShowBadge gate (Phase 19-03) + session-only toggle state (Phase 19-05) all available for reuse in fertilize task surfaces
+- [Phase 20-fertilization-subsystem]: Plan 20-00: Wave 0 Nyquist gate locked verification contract BEFORE implementation — smoke-phase20.cjs runner authored ONCE (158 LOC); Plans 20-01..09 flip 18 SKIPs to PASSes by editing source files, runner is NEVER edited again (Phase 14-00 / 19-00 precedent)
+- [Phase 20-fertilization-subsystem]: Plan 20-00: STRICT cross-phase regression block now spans 2 prior phases (Phase 18 + 19) — first phase to inherit two phases' worth of preservation sentinels (12 total: GAM-04 / CARD-01 / GAM-03 / Toast / TOX-03 / TOX-04 / TOX-06 / health-no-fertilize-axis defensive). Pattern reusable for any post-Phase-19 feature plan
+- [Phase 20-fertilization-subsystem]: Plan 20-00: Defensive no-op cross-phase sentinel pattern — Success Criterion 5 ('no fertilize health-axis penalty') encoded as STRICT smoke sentinel (CROSS.health-no-fertilize-axis) that greps plantHealth.ts for absence of 'fertilize' substring. Prevents accidental scope creep in later plans
+- [Phase 20-fertilization-subsystem]: Plan 20-00: API surfaces locked at Wave 0 with skeleton bodies — FertilizeCardProps (strictDbEntry + season + defaultExpanded + style) and helper signatures (getSeasonalFertilizeInterval, getNextFertilizeDate) locked NOW; Plans 20-02 + 20-04 fill bodies in-place without churning contracts (mirrors Phase 18 Toast skeleton-then-impl two-plan split)
 
 ### Pending Todos
 
@@ -255,6 +260,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T18:22:39.509Z
-Stopped at: Phase 20 context gathered
-Resume file: .planning/phases/20-fertilization-subsystem/20-CONTEXT.md
+Last session: 2026-05-09T21:46:16.788Z
+Stopped at: Completed 20-00-PLAN.md
+Resume file: None
