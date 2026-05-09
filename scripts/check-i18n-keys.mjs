@@ -105,6 +105,23 @@ for (const entry of PLANT_DATABASE) {
     if (entry.whyRationale && !node.whyRationale) {
       errors.push(`[${locale}] "${entry.id}".whyRationale missing`);
     }
+
+    // ─── v1.2 Phase 19 (TOX-06): conditional petToxicity.symptoms validation ───
+    // When the catalog entry declares symptoms.{cats,dogs}, the corresponding plants.json
+    // per-entry node MUST provide a non-empty array of the same approximate length.
+    // 'safe' entries with no symptoms declared are NOT required to provide any key.
+    if (Array.isArray(entry.petToxicity?.symptoms?.cats) && entry.petToxicity.symptoms.cats.length >= 1) {
+      const catsNode = node?.petToxicity?.symptoms?.cats;
+      if (!Array.isArray(catsNode) || catsNode.length < 1) {
+        errors.push(`[${locale}] "${entry.id}".petToxicity.symptoms.cats missing or empty`);
+      }
+    }
+    if (Array.isArray(entry.petToxicity?.symptoms?.dogs) && entry.petToxicity.symptoms.dogs.length >= 1) {
+      const dogsNode = node?.petToxicity?.symptoms?.dogs;
+      if (!Array.isArray(dogsNode) || dogsNode.length < 1) {
+        errors.push(`[${locale}] "${entry.id}".petToxicity.symptoms.dogs missing or empty`);
+      }
+    }
   }
 }
 
