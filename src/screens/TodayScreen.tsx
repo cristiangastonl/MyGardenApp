@@ -622,7 +622,6 @@ export default function TodayScreen() {
         plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
         weather={weather}
         latitude={location?.lat ?? null}
-        // @ts-expect-error initialSection prop lands in Plan 19-04; passed optimistically (no-op until 19-04)
         initialSection={detailInitialSection}
         onClose={() => {
           setDetailPlant(null);

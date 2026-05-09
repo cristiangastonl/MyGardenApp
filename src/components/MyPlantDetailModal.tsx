@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Alert,
   Image,
+  LayoutChangeEvent,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../theme';
@@ -30,6 +31,9 @@ import { getEffectiveSeason, type WaterSeason } from '../utils/seasonality';
 import { getSeasonalInterval } from '../utils/plantLogic';
 import { getLightLabel } from '../utils/lightLabel';
 
+/** v1.2 Phase 19 (TOX-04) — modal section anchors for scroll-to behavior. */
+export type ModalSectionId = 'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas';
+
 interface MyPlantDetailModalProps {
   visible: boolean;
   plant: Plant | null;
@@ -39,6 +43,8 @@ interface MyPlantDetailModalProps {
   onDelete: (plantId: string) => void;
   onAddPhoto: (plantId: string, photo: PlantPhoto) => void;
   onDeletePhoto: (plantId: string, photoId: string) => void;
+  /** v1.2 Phase 19 (TOX-04) — when set, modal scrolls to that section after layout. Reset to undefined on close. */
+  initialSection?: ModalSectionId;
 }
 
 export function MyPlantDetailModal({
@@ -50,6 +56,7 @@ export function MyPlantDetailModal({
   onDelete,
   onAddPhoto,
   onDeletePhoto,
+  initialSection,
 }: MyPlantDetailModalProps) {
   const { t } = useTranslation();
   const [showDiagnosis, setShowDiagnosis] = useState(false);
@@ -58,6 +65,14 @@ export function MyPlantDetailModal({
   const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
   const { diagnosisCount, getDiagnosesForPlant, climateOverride } = useStorage();
+
+  // Phase 19 (TOX-04): ScrollView ref + section layout tracking for scroll-to-section.
+  const scrollViewRef = useRef<ScrollView>(null);
+  const sectionLayouts = useRef<Partial<Record<ModalSectionId, number>>>({});
+
+  const onSectionLayout = (id: ModalSectionId) => (e: LayoutChangeEvent) => {
+    sectionLayouts.current[id] = e.nativeEvent.layout.y;
+  };
 
   const healthStatus = useMemo(() => {
     if (!plant) return null;
@@ -135,6 +150,26 @@ export function MyPlantDetailModal({
     return dbEntry?.imageUrl || null;
   }, [plant, dbEntry]);
 
+  // Phase 19 (TOX-04): scroll to initialSection after layout settles.
+  // Pitfall 2 mitigation: defer to next tick so onLayout callbacks fire first.
+  useEffect(() => {
+    if (!visible || !initialSection) return;
+    const timer = setTimeout(() => {
+      const y = sectionLayouts.current[initialSection];
+      if (y != null) {
+        scrollViewRef.current?.scrollTo({ y, animated: true });
+      }
+    }, 50); // 50ms gives slow devices enough time for layout settle (Pitfall 2 fallback)
+    return () => clearTimeout(timer);
+  }, [visible, initialSection]);
+
+  // Phase 19 (TOX-04): reset cached layouts on modal hide so re-open captures fresh y-coords.
+  useEffect(() => {
+    if (!visible) {
+      sectionLayouts.current = {};
+    }
+  }, [visible]);
+
   if (!plant) return null;
 
   // iOS can't stack two top-level Modals — close this one first, then open the paywall after the
@@ -191,6 +226,7 @@ export function MyPlantDetailModal({
           </TouchableOpacity>
 
           <ScrollView
+            ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}
           >
@@ -253,136 +289,144 @@ export function MyPlantDetailModal({
             {/* 🌿 ¿Qué hacer? — folds Active Problems + careAction + nutrients.
                 Empty-state placeholder shown when nothing to render (no diagnoses,
                 no careAction fields, no nutrients) — common for custom plants. */}
-            <EducationalSection emoji="🌿" title={t('plantDetailModal.whatToDo')}>
-              {(() => {
-                const hasDiagnoses = allPlantDiagnoses.length > 0;
-                const hasCareAction = !!(strictDbEntry?.careAction?.fixed || strictDbEntry?.careAction?.soilCheck);
-                const hasNutrients = !!dbEntry?.nutrients;
-                const hasRelocatedTip = relocatedTip.length > 0;
-                if (!hasDiagnoses && !hasCareAction && !hasNutrients && !hasRelocatedTip) {
-                  return <Text style={styles.placeholderCopy}>{t('plantDetailModal.emptyWhatToDo')}</Text>;
-                }
-                return (
-                  <>
-                    <ActiveProblemsSection
-                      diagnoses={allPlantDiagnoses}
-                      plantIcon={plant.icon}
-                      onPressDiagnosis={(d) => {
-                        setResumeDiagnosis(d);
-                        setShowDiagnosis(true);
-                      }}
-                    />
-                    {strictDbEntry?.careAction?.fixed && (
-                      <Text style={styles.eduCopy}>{strictDbEntry.careAction.fixed}</Text>
-                    )}
-                    {strictDbEntry?.careAction?.soilCheck && (
-                      <Text style={styles.eduCopy}>{strictDbEntry.careAction.soilCheck}</Text>
-                    )}
-                    {dbEntry?.nutrients && (
-                      <View style={styles.nutrientsCardEdu}>
-                        <Text style={styles.nutrientsType}>🧪 {dbEntry.nutrients.type}</Text>
-                        <Text style={styles.nutrientsHomemade}>
-                          🏡 {t('plantDetail.homemadeRecipe')}: {dbEntry.nutrients.homemade}
-                        </Text>
-                      </View>
-                    )}
-                    {relocatedTip ? (
-                      <Text style={styles.relocatedTip}>{relocatedTip}</Text>
-                    ) : null}
-                  </>
-                );
-              })()}
-            </EducationalSection>
+            <View onLayout={onSectionLayout('que-hacer')}>
+              <EducationalSection emoji="🌿" title={t('plantDetailModal.whatToDo')}>
+                {(() => {
+                  const hasDiagnoses = allPlantDiagnoses.length > 0;
+                  const hasCareAction = !!(strictDbEntry?.careAction?.fixed || strictDbEntry?.careAction?.soilCheck);
+                  const hasNutrients = !!dbEntry?.nutrients;
+                  const hasRelocatedTip = relocatedTip.length > 0;
+                  if (!hasDiagnoses && !hasCareAction && !hasNutrients && !hasRelocatedTip) {
+                    return <Text style={styles.placeholderCopy}>{t('plantDetailModal.emptyWhatToDo')}</Text>;
+                  }
+                  return (
+                    <>
+                      <ActiveProblemsSection
+                        diagnoses={allPlantDiagnoses}
+                        plantIcon={plant.icon}
+                        onPressDiagnosis={(d) => {
+                          setResumeDiagnosis(d);
+                          setShowDiagnosis(true);
+                        }}
+                      />
+                      {strictDbEntry?.careAction?.fixed && (
+                        <Text style={styles.eduCopy}>{strictDbEntry.careAction.fixed}</Text>
+                      )}
+                      {strictDbEntry?.careAction?.soilCheck && (
+                        <Text style={styles.eduCopy}>{strictDbEntry.careAction.soilCheck}</Text>
+                      )}
+                      {dbEntry?.nutrients && (
+                        <View style={styles.nutrientsCardEdu}>
+                          <Text style={styles.nutrientsType}>🧪 {dbEntry.nutrients.type}</Text>
+                          <Text style={styles.nutrientsHomemade}>
+                            🏡 {t('plantDetail.homemadeRecipe')}: {dbEntry.nutrients.homemade}
+                          </Text>
+                        </View>
+                      )}
+                      {relocatedTip ? (
+                        <Text style={styles.relocatedTip}>{relocatedTip}</Text>
+                      ) : null}
+                    </>
+                  );
+                })()}
+              </EducationalSection>
+            </View>
 
             {/* 🏠 ¿Dónde ponerla? — placement* fields; placeholder when strict null OR all placement fields empty */}
-            <EducationalSection emoji="🏠" title={t('plantDetailModal.whereToPlace')}>
-              {(() => {
-                const hasRecommended = !!strictDbEntry?.placementRecommended;
-                const hasAlternatives = !!(strictDbEntry?.placementAlternatives && strictDbEntry.placementAlternatives.length > 0);
-                const hasAvoid = !!strictDbEntry?.placementAvoid;
-                if (!strictDbEntry || (!hasRecommended && !hasAlternatives && !hasAvoid)) {
-                  return <Text style={styles.placeholderCopy}>{t('plantDetailModal.notInCatalog')}</Text>;
-                }
-                return null;
-              })()}
-              {strictDbEntry && (strictDbEntry.placementRecommended || (strictDbEntry.placementAlternatives && strictDbEntry.placementAlternatives.length > 0) || strictDbEntry.placementAvoid) && (
-                <View>
-                  {strictDbEntry.placementRecommended && (
-                    <View style={styles.subBlock}>
-                      <Text style={styles.subTitle}>{t('plantDetailModal.recommended')}</Text>
-                      <Text style={styles.eduCopy}>{strictDbEntry.placementRecommended}</Text>
-                    </View>
-                  )}
-                  {strictDbEntry.placementAlternatives && strictDbEntry.placementAlternatives.length > 0 && (
-                    <View style={styles.subBlock}>
-                      <Text style={styles.subTitle}>{t('plantDetailModal.alternatives')}</Text>
-                      {strictDbEntry.placementAlternatives.map((alt, i) => (
-                        <Text key={i} style={styles.bullet}>• {alt}</Text>
-                      ))}
-                    </View>
-                  )}
-                  {strictDbEntry.placementAvoid && (
-                    <View style={styles.subBlock}>
-                      <Text style={styles.subTitle}>{t('plantDetailModal.avoid')}</Text>
-                      <Text style={styles.eduCopy}>{strictDbEntry.placementAvoid}</Text>
-                    </View>
-                  )}
-                </View>
-              )}
-            </EducationalSection>
+            <View onLayout={onSectionLayout('donde')}>
+              <EducationalSection emoji="🏠" title={t('plantDetailModal.whereToPlace')}>
+                {(() => {
+                  const hasRecommended = !!strictDbEntry?.placementRecommended;
+                  const hasAlternatives = !!(strictDbEntry?.placementAlternatives && strictDbEntry.placementAlternatives.length > 0);
+                  const hasAvoid = !!strictDbEntry?.placementAvoid;
+                  if (!strictDbEntry || (!hasRecommended && !hasAlternatives && !hasAvoid)) {
+                    return <Text style={styles.placeholderCopy}>{t('plantDetailModal.notInCatalog')}</Text>;
+                  }
+                  return null;
+                })()}
+                {strictDbEntry && (strictDbEntry.placementRecommended || (strictDbEntry.placementAlternatives && strictDbEntry.placementAlternatives.length > 0) || strictDbEntry.placementAvoid) && (
+                  <View>
+                    {strictDbEntry.placementRecommended && (
+                      <View style={styles.subBlock}>
+                        <Text style={styles.subTitle}>{t('plantDetailModal.recommended')}</Text>
+                        <Text style={styles.eduCopy}>{strictDbEntry.placementRecommended}</Text>
+                      </View>
+                    )}
+                    {strictDbEntry.placementAlternatives && strictDbEntry.placementAlternatives.length > 0 && (
+                      <View style={styles.subBlock}>
+                        <Text style={styles.subTitle}>{t('plantDetailModal.alternatives')}</Text>
+                        {strictDbEntry.placementAlternatives.map((alt, i) => (
+                          <Text key={i} style={styles.bullet}>• {alt}</Text>
+                        ))}
+                      </View>
+                    )}
+                    {strictDbEntry.placementAvoid && (
+                      <View style={styles.subBlock}>
+                        <Text style={styles.subTitle}>{t('plantDetailModal.avoid')}</Text>
+                        <Text style={styles.eduCopy}>{strictDbEntry.placementAvoid}</Text>
+                      </View>
+                    )}
+                  </View>
+                )}
+              </EducationalSection>
+            </View>
 
             {/* ℹ️ ¿Por qué? — single backing field; SKIP entire section if absent */}
             {strictDbEntry?.whyRationale && (
-              <EducationalSection emoji="ℹ️" title={t('plantDetailModal.why')}>
-                <Text style={styles.eduCopy}>{strictDbEntry.whyRationale}</Text>
-              </EducationalSection>
+              <View onLayout={onSectionLayout('por-que')}>
+                <EducationalSection emoji="ℹ️" title={t('plantDetailModal.why')}>
+                  <Text style={styles.eduCopy}>{strictDbEntry.whyRationale}</Text>
+                </EducationalSection>
+              </View>
             )}
 
             {/* ⚙️ Tus ajustes — user data + override notes; works for ALL plants */}
-            <EducationalSection emoji="⚙️" title={t('plantDetailModal.yourSettings')}>
-              {/* Light level row */}
-              <View style={styles.settingRow}>
-                <Text style={styles.settingLabel}>{t('plantDetailModal.lightLabel')}</Text>
-                <Text style={styles.settingValue}>☀️ {lightLabel || '—'}</Text>
-                {hasOverride('lightLevel') && (
-                  <Text style={styles.overrideNote}>
-                    {t('plantDetailModal.overrideNote')}
+            <View onLayout={onSectionLayout('tus-ajustes')}>
+              <EducationalSection emoji="⚙️" title={t('plantDetailModal.yourSettings')}>
+                {/* Light level row */}
+                <View style={styles.settingRow}>
+                  <Text style={styles.settingLabel}>{t('plantDetailModal.lightLabel')}</Text>
+                  <Text style={styles.settingValue}>☀️ {lightLabel || '—'}</Text>
+                  {hasOverride('lightLevel') && (
+                    <Text style={styles.overrideNote}>
+                      {t('plantDetailModal.overrideNote')}
+                    </Text>
+                  )}
+                </View>
+                {/* Watering warm row */}
+                <View style={styles.settingRow}>
+                  <Text style={styles.settingLabel}>
+                    {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.warm')})
                   </Text>
-                )}
-              </View>
-              {/* Watering warm row */}
-              <View style={styles.settingRow}>
-                <Text style={styles.settingLabel}>
-                  {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.warm')})
-                </Text>
-                <Text style={styles.settingValue}>
-                  {plant.waterSchedule?.warm != null
-                    ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.warm })
-                    : '—'}
-                </Text>
-                {hasOverride('waterScheduleWarm') && (
-                  <Text style={styles.overrideNote}>
-                    {t('plantDetailModal.overrideNote')}
+                  <Text style={styles.settingValue}>
+                    {plant.waterSchedule?.warm != null
+                      ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.warm })
+                      : '—'}
                   </Text>
-                )}
-              </View>
-              {/* Watering cold row */}
-              <View style={styles.settingRow}>
-                <Text style={styles.settingLabel}>
-                  {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.cold')})
-                </Text>
-                <Text style={styles.settingValue}>
-                  {plant.waterSchedule?.cold != null
-                    ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.cold })
-                    : '—'}
-                </Text>
-                {hasOverride('waterScheduleCold') && (
-                  <Text style={styles.overrideNote}>
-                    {t('plantDetailModal.overrideNote')}
+                  {hasOverride('waterScheduleWarm') && (
+                    <Text style={styles.overrideNote}>
+                      {t('plantDetailModal.overrideNote')}
+                    </Text>
+                  )}
+                </View>
+                {/* Watering cold row */}
+                <View style={styles.settingRow}>
+                  <Text style={styles.settingLabel}>
+                    {t('plantDetailModal.watering')} ({t('plantDetail.seasonBadge.cold')})
                   </Text>
-                )}
-              </View>
-            </EducationalSection>
+                  <Text style={styles.settingValue}>
+                    {plant.waterSchedule?.cold != null
+                      ? t('plantDetailModal.everyDays', { days: plant.waterSchedule.cold })
+                      : '—'}
+                  </Text>
+                  {hasOverride('waterScheduleCold') && (
+                    <Text style={styles.overrideNote}>
+                      {t('plantDetailModal.overrideNote')}
+                    </Text>
+                  )}
+                </View>
+              </EducationalSection>
+            </View>
 
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
