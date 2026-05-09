@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 7 of 7
-status: verifying
-stopped_at: Completed 19-pet-toxicity Plan 07 (TOX-01..06 closing manual gate — user approved full device-test run)
-last_updated: "2026-05-09T15:46:51.802Z"
+status: "**Phase 19 CLOSED.** All 6 Phase 19 requirement IDs (TOX-01..06) reach closing PASS state via Plans 00-06 implementation + Plan 07 manual gate + user-approved full run. Run-now approval (Option A) — no Phase 19 items deferred to v1.2 backlog. Phase 19 cumulative: 7 plans, 17 tasks, 15 source commits, ~40 min execution. Phase 18 cross-phase regression preserved throughout (PASS=56 FAIL=0 SKIP=0). Carry-forward to Phase 20 (FERT): EducationalSection pattern + initialSection prop API + shouldShowBadge gate pattern + session-only toggle state pattern. **Next:** Phase 20 (Fertilize feature)."
+stopped_at: Completed 19-pet-toxicity Plan 06 (TOX-06 i18n parity gate + check-i18n-keys.mjs extension)
+last_updated: "2026-05-09T16:03:22.422Z"
 last_activity: 2026-05-09 — Phase 19 Plan 07 complete (manual gate; user approved Option A — full run completed, all 14 device-test items pass on iOS + Android dev clients). Phase 19 CLOSED.
 progress:
   total_phases: 15
