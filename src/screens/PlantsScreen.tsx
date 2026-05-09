@@ -65,6 +65,7 @@ export default function PlantsScreen() {
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
+  const [detailInitialSection, setDetailInitialSection] = useState<'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas' | undefined>(undefined);
   const [diagnosePlantState, setDiagnosePlantState] = useState<Plant | null>(null);
   const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
   const [searchQuery, setSearchQuery] = useState('');
@@ -245,6 +246,12 @@ export default function PlantsScreen() {
     setDetailPlant(plant); // Reuses existing modal — CONTEXT.md recommendation
   };
 
+  // Phase 19 (TOX-03): toxicity badge tap → open MyPlantDetailModal scrolled to Mascotas section.
+  const handleOpenToMascotas = (plant: Plant) => {
+    setDetailPlant(plant);
+    setDetailInitialSection('mascotas');
+  };
+
   // Filter by search query and sort: favorites first
   const sortedPlants = [...plants]
     .filter((plant) => {
@@ -286,6 +293,7 @@ export default function PlantsScreen() {
           activeTrackingStatus={getActiveTrackingStatus(item.id)}
           onLongPress={handleLongPress}
           onSwipeCommitted={handleSwipeDiscovered}
+          onOpenToMascotas={handleOpenToMascotas}
         />
       </Animated.View>
     );
@@ -406,10 +414,16 @@ export default function PlantsScreen() {
         plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
         weather={weather}
         latitude={location?.lat ?? null}
-        onClose={() => setDetailPlant(null)}
+        // @ts-expect-error initialSection prop lands in Plan 19-04; passed optimistically (no-op until 19-04)
+        initialSection={detailInitialSection}
+        onClose={() => {
+          setDetailPlant(null);
+          setDetailInitialSection(undefined);
+        }}
         onDelete={(id) => {
           handleDeletePlant(id);
           setDetailPlant(null);
+          setDetailInitialSection(undefined);
         }}
         onAddPhoto={addPhotoToPlant}
         onDeletePhoto={removePhotoFromPlant}

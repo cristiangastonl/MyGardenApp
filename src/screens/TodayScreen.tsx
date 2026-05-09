@@ -129,6 +129,7 @@ export default function TodayScreen() {
 
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
+  const [detailInitialSection, setDetailInitialSection] = useState<'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas' | undefined>(undefined);
 
   useEffect(() => {
     if (pendingPlantId && plants.length > 0) {
@@ -313,6 +314,12 @@ export default function TodayScreen() {
     setDetailPlant(plant);
   };
 
+  // Phase 19 (TOX-03): toxicity badge tap → open MyPlantDetailModal scrolled to Mascotas section.
+  const handleOpenToMascotas = (plant: Plant) => {
+    setDetailPlant(plant);
+    setDetailInitialSection('mascotas');
+  };
+
   if (storageLoading) {
     return <LoadingScreen message={t('today.loading')} />;
   }
@@ -486,6 +493,7 @@ export default function TodayScreen() {
                 hasActiveDiagnosis={getActiveDiagnosesForPlant(plant.id).length > 0}
                 activeTrackingStatus={getActiveTrackingStatus(plant.id)}
                 onLongPress={handleLongPress}
+                onOpenToMascotas={handleOpenToMascotas}
               />
             ))}
           </View>
@@ -614,10 +622,16 @@ export default function TodayScreen() {
         plant={detailPlant ? plants.find(p => p.id === detailPlant.id) ?? detailPlant : null}
         weather={weather}
         latitude={location?.lat ?? null}
-        onClose={() => setDetailPlant(null)}
+        // @ts-expect-error initialSection prop lands in Plan 19-04; passed optimistically (no-op until 19-04)
+        initialSection={detailInitialSection}
+        onClose={() => {
+          setDetailPlant(null);
+          setDetailInitialSection(undefined);
+        }}
         onDelete={(id) => {
           handleDeletePlant(id);
           setDetailPlant(null);
+          setDetailInitialSection(undefined);
         }}
         onAddPhoto={addPhotoToPlant}
         onDeletePhoto={removePhotoFromPlant}
