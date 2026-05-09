@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 1 of 11
-status: verifying
-stopped_at: Completed 20-00-PLAN.md
-last_updated: "2026-05-09T21:46:16.792Z"
-last_activity: 2026-05-09 — Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold; 3 tasks, 8 files, ~4 min execution).
+current_plan: 3 of 11
+status: completed
+stopped_at: Completed 20-02-PLAN.md
+last_updated: "2026-05-09T22:57:31.435Z"
+last_activity: 2026-05-09 — Phase 20 Plan 02 complete (FERT-04 cadence math real impl; 2 tasks, 1 file, ~16 min execution).
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 55
-  percent: 86
+  completed_plans: 56
+  percent: 88
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 1 of 11
-Plan: 20-00 complete (Wave 0 Nyquist scaffold; 3 atomic task commits — b5c84b8 smoke runner + npm script + .gitignore, 896475c type extensions, 9d97d30 FertilizeCard skeleton + plantLogic helpers + i18n EN+ES parity; smoke-phase20 PASS=31 FAIL=0 SKIP=18 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85 / check:i18n-keys 118 ids; ~4 min execution).
-Status: **Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold).** Verification contract locked BEFORE implementation — smoke-phase20.cjs authored ONCE, never edited after Plans 20-01..09 flip 18 SKIPs to PASSes by editing source files. STRICT block spans 2 prior phases (12 cross-phase regression sentinels — Phase 18 GAM-04/CARD-01/GAM-03/Toast + Phase 19 TOX-03/TOX-04/TOX-06 + Phase 20 health-no-fertilize-axis defensive). Type extensions all additive optional (tsc-green). API surfaces locked at skeleton: FertilizeCardProps + helper signatures locked NOW. **Next:** Phase 20 Plan 01.
-Last activity: 2026-05-09 — Phase 20 Plan 00 complete (Wave 0 Nyquist scaffold; 3 tasks, 8 files, ~4 min execution).
+Current Plan: 3 of 11
+Plan: 20-02 complete (Wave 1 FERT-04 cadence math real impl; 2 atomic task commits — c9b6854 getSeasonalFertilizeInterval real impl with cold-season dormancy, 74d482a getNextFertilizeDate real impl with advance-loop catch-up; smoke-phase20 PASS=33 FAIL=0 SKIP=16 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~16 min execution).
+Status: **Phase 20 Plan 02 complete (Wave 1 FERT-04 cadence math).** Both helpers transitioned from `return null; // skeleton` to real arithmetic — `getSeasonalFertilizeInterval` per-plant-override > catalog warm/cold > null fallback ladder; `getNextFertilizeDate` advance-loop catch-up clip mirrors `getNextWaterDate` verbatim. Plan 20-01 (parallel Wave 1, file-disjoint useStorage.tsx edits) executes concurrently. **Next:** Phase 20 Plan 03 (Wave 2 5-site discriminator sweep).
+Last activity: 2026-05-09 — Phase 20 Plan 02 complete (FERT-04 cadence math real impl; 2 tasks, 1 file, ~16 min execution).
 
-Progress: [█████████░] 86% (55/64 plans complete; Phase 20 just opened with Plan 00 Wave 0 scaffold green — Plans 20-01..10 ahead)
+Progress: [█████████░] 88% (56/64 plans complete; Phase 20 Plans 00 + 02 complete — Plans 20-01 (parallel, in flight) + 20-03..10 ahead)
 
 ## Performance Metrics
 
@@ -89,6 +89,7 @@ Progress: [█████████░] 86% (55/64 plans complete; Phase 20 j
 | Phase 19-pet-toxicity P06 | 2 | 2 tasks | 2 files |
 | Phase 19-pet-toxicity P07 | 5min | 2 tasks | 0 files |
 | Phase 20-fertilization-subsystem P00 | 4min | 3 tasks | 8 files |
+| Phase 20-fertilization-subsystem P02 | 16 min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -246,6 +247,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-00: STRICT cross-phase regression block now spans 2 prior phases (Phase 18 + 19) — first phase to inherit two phases' worth of preservation sentinels (12 total: GAM-04 / CARD-01 / GAM-03 / Toast / TOX-03 / TOX-04 / TOX-06 / health-no-fertilize-axis defensive). Pattern reusable for any post-Phase-19 feature plan
 - [Phase 20-fertilization-subsystem]: Plan 20-00: Defensive no-op cross-phase sentinel pattern — Success Criterion 5 ('no fertilize health-axis penalty') encoded as STRICT smoke sentinel (CROSS.health-no-fertilize-axis) that greps plantHealth.ts for absence of 'fertilize' substring. Prevents accidental scope creep in later plans
 - [Phase 20-fertilization-subsystem]: Plan 20-00: API surfaces locked at Wave 0 with skeleton bodies — FertilizeCardProps (strictDbEntry + season + defaultExpanded + style) and helper signatures (getSeasonalFertilizeInterval, getNextFertilizeDate) locked NOW; Plans 20-02 + 20-04 fill bodies in-place without churning contracts (mirrors Phase 18 Toast skeleton-then-impl two-plan split)
+- [Phase 20-fertilization-subsystem]: Plan 20-02: getSeasonalFertilizeInterval real impl — per-plant Plant.fertilizeSchedule.intervalDays > 0 wins over catalog (season-agnostic override); cold-season fertilizeIntervalCold === null returns null (explicit dormancy); warm/tropical bucket both use fertilizeIntervalWarm
+- [Phase 20-fertilization-subsystem]: Plan 20-02: getNextFertilizeDate advance-loop catch-up clip mirrors getNextWaterDate verbatim — while (next < today) next = addDays(next, intervalDays) emits ONE task on due-day, never N; no overdue penalty branch (Phase 5 dead-code finding inherited)
+- [Phase 20-fertilization-subsystem]: Plan 20-02: Skeleton-then-impl in-place body replacement — Plan 20-00 locked signatures with return-null skeleton bodies; Plan 20-02 replaced bodies in-place without churning callers (mirrors Phase 18 Toast skeleton-then-impl two-plan split). Top-level PlantDBEntry import added; inline import('../types') type annotations replaced.
 
 ### Pending Todos
 
@@ -260,6 +264,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T21:46:16.788Z
-Stopped at: Completed 20-00-PLAN.md
+Last session: 2026-05-09T22:57:31.432Z
+Stopped at: Completed 20-02-PLAN.md
 Resume file: None
