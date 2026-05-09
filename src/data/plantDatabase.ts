@@ -61,6 +61,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía — quema las hojas variegadas.",
     whyRationale: "Es una trepadora del sotobosque tropical: en su hábitat crece bajo el dosel, así que necesita luz tamizada y humedad constante. Su tolerancia a la sombra viene de su adaptación al piso de la selva.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pothos',
+    },
   },
   {
     id: "monstera",
@@ -96,6 +118,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía y corrientes de aire frío.",
     whyRationale: "Originaria de la selva tropical de Centroamérica, crece como hemiepífita trepando árboles para alcanzar luz filtrada. Las fenestras de sus hojas se desarrollan solo con luz brillante — así resiste vientos y comparte luz con hojas inferiores.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron',
+    },
   },
   {
     id: "ficus",
@@ -131,6 +175,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Corrientes de aire y cambios de ubicación frecuentes.",
     whyRationale: "Originario del sudeste asiático monzónico, está adaptado a luz filtrada y temperaturas estables. Sus hojas viejas no aclimatan bien al cambio: pierde follaje cuando detecta variación brusca de luz, temperatura o riego.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rubber-plant',
+    },
   },
   {
     id: "sansevieria",
@@ -168,6 +230,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato siempre húmedo y maceta sin drenaje.",
     whyRationale: "Originaria de regiones áridas de África Occidental, sus hojas suculentas almacenan agua y soportan sequías largas. Su metabolismo CAM (fotosíntesis nocturna) le permite tolerar baja luz y olvidos de riego.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant',
+    },
   },
   {
     id: "orquidea",
@@ -203,6 +283,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía y agua estancada en la maceta.",
     whyRationale: "Es una epífita tropical: crece sobre árboles con raíces aéreas que captan humedad ambiental, no agua estancada. Por eso necesita inmersión y secado completo — la pudrición radicular es su principal causa de muerte.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/moth-orchid',
+    },
   },
   {
     id: "calathea",
@@ -238,6 +324,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo y agua del grifo con mucho cloro.",
     whyRationale: "Originaria del sotobosque amazónico, sus hojas con patrones evolucionaron para captar la luz tamizada del dosel. El sol directo daña su sistema fotosintético, optimizado para baja intensidad — por eso reorienta sus hojas siguiendo el ciclo día-noche.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calathea',
+    },
   },
   {
     id: "cinta",
@@ -274,6 +366,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso — las hojas variegadas se queman.",
     whyRationale: "Originaria de Sudáfrica, evolucionó en pastizales con luz filtrada y suelos drenados. Sus raíces tuberosas almacenan agua, lo que le permite sobrevivir sequías cortas. Es sensible al flúor del agua del grifo porque su zona nativa tiene aguas blandas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/spider-plant',
+    },
   },
   {
     id: "palmera-interior",
@@ -310,6 +408,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso y aire seco de calefactores.",
     whyRationale: "Es una palmera del sotobosque mexicano: en la naturaleza crece bajo árboles altos que filtran la luz. Sus frondas se adaptaron a captar luz tenue, por eso tolera mejor la sombra que la mayoría de las palmeras y crece despacio.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parlor-palm',
+    },
   },
   {
     id: "aloe-vera",
@@ -345,6 +449,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Lugares oscuros sin sol — se debilita y se estira.",
     whyRationale: "Es una suculenta originaria de la Península Arábiga y norte de África, adaptada a climas áridos con sol intenso. Sus hojas carnosas almacenan agua y gel para tolerar sequías largas. Su única vulnerabilidad real es la pudrición por exceso de riego.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Lethargy',
+          'Depression',
+          'Anorexia',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Lethargy',
+          'Depression',
+          'Anorexia',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/aloe',
+    },
   },
 
   // ─── EXTERIOR ───
@@ -383,6 +509,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo arcilloso encharcado y sombra húmeda — pudre las raíces.",
     whyRationale: "Originaria del Mediterráneo, evolucionó en suelos calcáreos secos con sol intenso. Es la lavanda más resistente al frío de las tres: aguanta heladas fuertes hasta -15°C gracias a sus tejidos compactos y aceites esenciales protectores.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender',
+    },
   },
   {
     id: "lavanda-stoechas",
@@ -415,6 +557,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes sin protección — no tolera bajo -5°C.",
     whyRationale: "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores visuales que atraen polinizadores desde lejos. Más amante del calor que la inglesa, no aguanta heladas duras.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender',
+    },
   },
   {
     id: "lavanda-dentada",
@@ -447,6 +605,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes y suelos pesados — es la más delicada de las lavandas.",
     whyRationale: "Originaria del Mediterráneo cálido (sur de España, norte de África), evolucionó en climas suaves sin heladas duras. Sus hojas dentadas y aromáticas tienen mayor superficie de aceites esenciales — más fragancia, pero menos tolerancia al frío.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender',
+    },
   },
   {
     id: "petunia",
@@ -483,6 +657,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra densa — tallos largos y muy pocas flores.",
     whyRationale: "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida corta antes de las heladas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/petunia',
+    },
   },
   {
     id: "hortensia",
@@ -519,6 +699,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol del mediodía y suelo seco — las hojas marchitan al instante.",
     whyRationale: "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. El color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio, que la planta solo absorbe en suelo ácido.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Anorexia',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Anorexia',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hydrangea',
+    },
   },
   {
     id: "jazmin",
@@ -555,6 +755,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes prolongadas y maceta sin tutor — colapsa sin soporte.",
     whyRationale: "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado escalando árboles hacia la luz. Su perfume nocturno atrae polillas crepusculares — el aroma se intensifica al atardecer, cuando esos polinizadores se activan.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jasmine',
+    },
   },
   {
     id: "geranio",
@@ -591,6 +797,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y suelo siempre húmedo — los tallos se ennegrecen.",
     whyRationale: "Originario de Sudáfrica (Cabo), evolucionó en clima mediterráneo con veranos secos. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías — por eso el exceso de riego es su principal causa de muerte en macetas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Lethargy',
+          'Loss of appetite',
+          'Dermatitis',
+        ],
+        dogs: [
+          'Vomiting',
+          'Lethargy',
+          'Loss of appetite',
+          'Dermatitis',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium',
+    },
   },
 
   // ─── AROMÁTICAS ───
@@ -629,6 +855,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol intenso del mediodía sin riego frecuente — se marchita rápido.",
     whyRationale: "Anual originaria del sudeste asiático tropical, necesita calor y día largo. Si florece, sus hojas amargan; por eso se pellizcan las puntas para mantener producción foliar y prolongar la cosecha.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/basil',
+    },
   },
   {
     id: "romero",
@@ -665,6 +897,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo encharcado o sombra densa — pudre raíces rápidamente.",
     whyRationale: "Arbusto perenne mediterráneo, evolucionó en colinas calcáreas con veranos secos. Sus aceites esenciales protegen del calor; el riego excesivo lo mata más rápido que la sequía. Suelo pobre intensifica el aroma.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary',
+    },
   },
   {
     id: "menta",
@@ -701,6 +939,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Plantar directo en el jardín — sus estolones invaden todo el espacio.",
     whyRationale: "Perenne subtropical húmeda con raíces estolóniferas muy agresivas. Evolucionó en bordes de arroyos donde la humedad permanente y la propagación lateral le dan ventaja competitiva. Por eso siempre se aísla en maceta.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'GI upset',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'GI upset',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mint',
+    },
   },
 
   // ─── HUERTA ───
@@ -739,6 +995,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas tardías y sombra parcial — no fructifica sin ≥18°C nocturno.",
     whyRationale: "Solanácea anual de origen andino (Sudamérica), domesticada hace ~7000 años. Su fructificación depende del calor sostenido y luz plena; el riego irregular causa rajado del fruto y podredumbre apical por falta de calcio.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Hypersalivation',
+          'Inappetence',
+          'Severe GI upset',
+          'Diarrhea',
+          'Drowsiness',
+        ],
+        dogs: [
+          'Hypersalivation',
+          'Inappetence',
+          'Severe GI upset',
+          'Diarrhea',
+          'Drowsiness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant',
+    },
   },
   {
     id: "pimiento",
@@ -775,6 +1053,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y heladas tardías — frutos se quedan verdes o se caen las flores.",
     whyRationale: "Solanácea anual de origen andino y centroamericano. Sus frutos picantes o dulces (capsaicina) evolucionaron como defensa contra mamíferos. Necesita ≥18°C nocturno y polinizadores para que las flores cuajen sin caer.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'GI irritation',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'GI irritation',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pepper',
+    },
   },
   {
     id: "frutilla",
@@ -811,6 +1107,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Frutos en contacto con tierra húmeda — pudren por hongo Botrytis.",
     whyRationale: "Rosácea perenne de clima templado, se propaga por estolones (runners) en lugar de semilla. Productividad cae después del tercer año; conviene reemplazar plantas viejas. Mojar las hojas favorece hongos: el riego va al pie.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/strawberry',
+    },
   },
 
   // ─── FRUTALES ───
@@ -849,6 +1151,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
     whyRationale: "Cítrico de la familia Rutáceas, originario del sudeste asiático. A diferencia del naranjo, fructifica casi continuamente bajo clima subtropical. La clorosis férrica en suelo alcalino refleja la necesidad de micronutrientes constantes.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lemon',
+    },
   },
 
   // ─── SUCULENTAS ───
@@ -887,6 +1209,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo encharcado y sombra prolongada — pudre raíces y se estira buscando luz (estiolación).",
     whyRationale: "Las suculentas usan metabolismo CAM: cierran estomas de día para evitar pérdida de agua y los abren de noche. Sus hojas o tallos suculentos almacenan agua para sequías largas — por eso el exceso de riego, no la falta, es lo que más las mata.",
+    // LATAM-specific — not in ASPCA
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'unknown',
+      dogs: 'unknown',
+    },
   },
   {
     id: "cactus",
@@ -923,6 +1251,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra prolongada y suelo siempre húmedo — pudre la base y se estira deformándose.",
     whyRationale: "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Usa metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "echeveria",
@@ -959,6 +1292,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra prolongada — la roseta se abre y pierde colores; agua estancada en la roseta — pudre el centro.",
     whyRationale: "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y usa metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación).",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/echeveria',
+    },
   },
 
   // ─── INTERIOR (nuevas) ───
@@ -997,6 +1336,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo y agua del grifo con mucho cloro.",
     whyRationale: "Originaria del sotobosque de Colombia y Venezuela, evolucionó bajo dosel cerrado. Por eso florece en sombra — algo raro entre plantas de interior — y comunica sed dramáticamente: sus hojas se desploman y se recuperan tras un buen riego.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peace-lily',
+    },
   },
   {
     id: "dracaena",
@@ -1033,6 +1394,27 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo prolongado y agua del grifo con flúor.",
     whyRationale: "Originaria de África Oriental, evolucionó en bordes de selva y sabana arbolada con luz filtrada. Es sensible al flúor del grifo porque su zona nativa tiene aguas blandas. Las puntas marrones señalan acumulación de sales que las raíces no procesan.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting (occasionally with blood)',
+          'Anorexia',
+          'Depression',
+          'Hypersalivation',
+          'Dilated pupils (cats)',
+        ],
+        dogs: [
+          'Vomiting (occasionally with blood)',
+          'Anorexia',
+          'Depression',
+          'Hypersalivation',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/corn-plant',
+    },
   },
   {
     id: "filodendro",
@@ -1069,6 +1451,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo y rincones oscuros sin luz natural.",
     whyRationale: "Es una hemiepífita tropical centroamericana: en su hábitat trepa por troncos hacia la luz, con hojas que crecen a medida que sube. Por eso un tutor de musgo le permite expresar su forma adulta — sin él las hojas se quedan pequeñas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Pain and swelling of mouth, tongue, lips',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Pain and swelling of mouth, tongue, lips',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron',
+    },
   },
   {
     id: "jade",
@@ -1104,6 +1508,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Tierra siempre húmeda y sombra profunda sin luz.",
     whyRationale: "Es una suculenta sudafricana, adaptada a climas semiáridos con sequías estacionales. Sus hojas y tronco almacenan agua, por eso vive décadas con riego mínimo. Su anatomía está diseñada para escasez, no abundancia: el exceso de agua la pudre.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Depression',
+          'Ataxia',
+          'Bradycardia',
+        ],
+        dogs: [
+          'Vomiting',
+          'Depression',
+          'Ataxia',
+          'Bradycardia',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant',
+    },
   },
   {
     id: "peperomia",
@@ -1140,6 +1564,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso y corrientes de aire frío.",
     whyRationale: "Es una planta del sotobosque tropical americano que crece sobre troncos caídos. Sus hojas semi-suculentas almacenan agua para sobrevivir entre lluvias estacionales del dosel. Por eso prefiere riego espaciado y luz tamizada — su nicho natural.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peperomia',
+    },
   },
 
   // ─── EXTERIOR (nuevas) ───
@@ -1178,6 +1608,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y aire estancado — favorecen mancha negra y hongos.",
     whyRationale: "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación entre Asia y Europa. Florece en madera nueva: cada corte invernal estimula brotes que llevan flores. Caduca, aprovecha el reposo frío para acumular reservas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose',
+    },
   },
   {
     id: "bougainvillea",
@@ -1213,6 +1649,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas y exceso de riego — pierde brácteas y queda solo verde.",
     whyRationale: "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas adentro — atrae aves y mariposas mientras confunde herbívoros.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bougainvillea',
+    },
   },
   {
     id: "hibisco",
@@ -1249,6 +1703,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas (bajo 10°C) y cambios bruscos de ubicación — pierde botones.",
     whyRationale: "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno. Cada flor dura un día: su estrategia es producir flores grandes y vistosas en serie continua para atraer colibríes y abejorros tropicales.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+          'Anorexia',
+          'Lethargy',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+          'Anorexia',
+          'Lethargy',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose-of-sharon',
+    },
   },
   {
     id: "margarita",
@@ -1285,6 +1759,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra densa y suelo encharcado — tallos débiles y oídio.",
     whyRationale: "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos que limpiaban su hábitat de origen.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Incoordination',
+          'Dermatitis',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Incoordination',
+          'Dermatitis',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daisy',
+    },
   },
 
   // ─── AROMÁTICAS (nuevas) ───
@@ -1323,6 +1819,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol pleno del verano sin riego — se va rápido a flor (bolting).",
     whyRationale: "Bienal originaria del Mediterráneo oriental, prefiere clima fresco. Florece en su segundo año (de ahí 'bianual'); en huerta se resiembra cada temporada. Las semillas germinan lento porque tienen aceites que retrasan la salida.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'GI upset',
+          'Photosensitization (large quantities)',
+        ],
+        dogs: [
+          'GI upset',
+          'Photosensitization (large quantities)',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parsley',
+    },
   },
   {
     id: "oregano",
@@ -1359,6 +1871,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra densa y suelo encharcado — sabor débil y hongos.",
     whyRationale: "Perenne mediterránea adaptada a colinas pedregosas con veranos secos. El estrés hídrico concentra los aceites esenciales — riego escaso da más sabor que abono abundante. Tolera heladas y calor extremo, casi sin cuidados.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'GI upset',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'GI upset',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oregano',
+    },
   },
   {
     id: "cilantro",
@@ -1395,6 +1925,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol intenso del verano — se va rápido a flor por día largo.",
     whyRationale: "Anual de origen mediterráneo y Asia Menor, sensible al fotoperíodo: días largos + calor disparan la floración (bolting) y las hojas se vuelven amargas. Por eso conviene sembrar en otoño o primavera temprana, cosechando jóvenes.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coriander',
+    },
   },
   {
     id: "tomillo",
@@ -1431,6 +1967,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo arcilloso y húmedo — pudrición de raíz casi inevitable.",
     whyRationale: "Subarbusto perenne mediterráneo de hojas diminutas. Sus aceites esenciales (timol) se concentran con sequía y sol pleno; el riego abundante diluye el aroma. Tolera heladas pero muere por exceso de humedad.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI upset',
+          'Vomiting',
+        ],
+        dogs: [
+          'Mild GI upset',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/thyme',
+    },
   },
 
   // ─── HUERTA (nuevas) ───
@@ -1469,6 +2021,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol pleno del verano — se va a flor (bolting) y se vuelve amarga.",
     whyRationale: "Asterácea anual de clima fresco; con días largos y calor entra en bolting y la savia se torna amarga. Por eso se siembra escalonadamente y se cosecha temprano. La cosecha por hoja escalera prolonga la productividad varias semanas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "pepino",
@@ -1505,6 +2062,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra parcial y aislamiento de polinizadores — pocos frutos.",
     whyRationale: "Cucurbitácea anual de origen indio, con flores macho y hembra separadas en la misma planta. Necesita polinización por insectos para cuajar; sin abejas o polinización manual, las flores caen sin frutos. Riego inconsistente da pepinos amargos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "zanahoria",
@@ -1541,6 +2103,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo compacto o pedregoso — raíces bifurcadas o deformes.",
     whyRationale: "Apiácea bienal: forma raíz en el primer año y flor en el segundo (en huerta no se deja florecer). Origen euroasiático; necesita suelo profundo y suelto para que la raíz crezca recta. Siembra densa da raíces pequeñas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "rucula",
@@ -1577,6 +2144,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol pleno del verano — hojas muy picantes y bolting rápido.",
     whyRationale: "Brassicácea anual de ciclo rapidísimo (4-6 semanas). Sus glucosinolatos dan el sabor picante característico, que se intensifica con estrés térmico. Día largo + calor disparan floración temprana, por eso se siembra escalonadamente.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
 
   // ─── FRUTALES (nuevos) ───
@@ -1615,6 +2187,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y flores entran en clorosis.",
     whyRationale: "Cítrico de la familia Rutáceas, originario de China subtropical. La cosecha es estacional (otoño-invierno) y la dulzura del fruto requiere calor sostenido. La clorosis férrica en suelo alcalino es la falla más común — pide micronutrientes regulares.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange',
+    },
   },
   {
     id: "aguacate",
@@ -1651,6 +2243,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo encharcado y heladas bajo 10°C — la pudrición de raíz es la causa más común de muerte.",
     whyRationale: "Lauráceas, originario de Mesoamérica. Tarda 3-7 años en dar fruta y necesita polinización cruzada (variedades tipo A y B). Sus raíces son superficiales — la falta de oxígeno por encharcamiento mata más plantas que la sequía.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Breathing difficulty',
+          'Fluid accumulation around heart',
+          'Congestion',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Breathing difficulty',
+          'Fluid accumulation around heart',
+          'Congestion',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/avocado',
+    },
   },
   {
     id: "higuera",
@@ -1687,6 +2301,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Viento intenso y poda en savia — el látex blanco irrita la piel y las heridas tardan en cicatrizar.",
     whyRationale: "Moráceas, mediterránea de hoja caduca. Da dos cosechas en buen año: brevas en primavera (sobre madera vieja) e higos en verano (sobre brotes nuevos). Su látex blanco es el rasgo familiar; tolera suelos pobres y veranos secos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Agitation',
+          'Crying',
+          'Hypersalivation',
+          'Dermatitis',
+          'Pawing at face',
+        ],
+        dogs: [
+          'Agitation',
+          'Crying',
+          'Hypersalivation',
+          'Dermatitis',
+          'Pawing at face',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fig',
+    },
   },
   {
     id: "mandarino",
@@ -1723,6 +2359,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
     whyRationale: "Rutáceas, originario del sudeste asiático. Más compacto que el naranjo, con frutos dulces de cáscara fina. La cosecha es estacional, generalmente más temprana que la naranja. Comparte la sensibilidad familiar a clorosis férrica en suelo alcalino.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Photosensitivity',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange',
+    },
   },
 
   // ─── HUERTA (extra) ───
@@ -1761,6 +2417,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Espacio chico y aislamiento de polinizadores — pocos frutos.",
     whyRationale: "Cucurbitácea anual de origen sudamericano (Cucurbita maxima domesticada en los Andes). Flores macho y hembra separadas necesitan polinizadores; cuando faltan abejas, las flores hembra caen sin cuajar y conviene polinizar a mano.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
 
   // ─── AROMÁTICAS (extra) ───
@@ -1799,6 +2460,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol pleno en verano sin riego — puntas amarillas y débiles.",
     whyRationale: "Allium perenne de zonas templadas frigoriales del hemisferio norte. Su rebrote vigoroso tras el corte (semejante al césped) la hace inagotable; el bulbo subterráneo aguanta heladas fuertes y vuelve a brotar en primavera.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+          'Anemia',
+          'Lethargy',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+          'Anemia',
+          'Lethargy',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chives',
+    },
   },
 
   // ─── SUCULENTAS (nuevas) ───
@@ -1837,6 +2520,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso y suelo siempre húmedo — el primero quema las hojas, el segundo pudre la base.",
     whyRationale: "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual usa CAM y almacena agua.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI upset',
+          'Vomiting',
+          'Soft stools',
+        ],
+        dogs: [
+          'Mild GI upset',
+          'Vomiting',
+          'Soft stools',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zebra-haworthia',
+    },
   },
   {
     id: "sedum",
@@ -1873,6 +2574,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Lugares de paso donde la rocen — pierde hojas; sombra prolongada y suelo húmedo — pudre los tallos.",
     whyRationale: "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Usa CAM como toda la familia.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail',
+    },
   },
   {
     id: "yuca",
@@ -1908,6 +2615,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Rincones oscuros — se estira buscando luz y pierde porte.",
     whyRationale: "Originaria de zonas semiáridas de México y Centroamérica, evolucionó para tolerar sol intenso, sequías y suelos pobres. Su tronco leñoso almacena reservas para resistir condiciones extremas. Su único punto débil es la pudrición por exceso de riego.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Anorexia',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Anorexia',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca',
+    },
   },
 
   // ─── EXTERIOR — new Phase 8 entries ───
@@ -1942,6 +2669,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Cerca de cimientos o cañerías — raíces invasivas en madurez.",
     whyRationale: "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Caduco en invierno, florece en primavera ANTES de echar hojas — maximiza la visibilidad de las flores violetas para polinizadores.",
+    // LATAM-specific — not in ASPCA
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'unknown',
+      dogs: 'unknown',
+    },
   },
   {
     id: "ceibo",
@@ -1974,6 +2707,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra densa y suelo seco prolongado — pocas flores y tallos débiles.",
     whyRationale: "Flor nacional argentina, originaria de las riberas de ríos del NEA y sur de Brasil. Su floración roja escarlata atrae picaflores migratorios; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Muscle weakness',
+          'Paralysis',
+          'Tremors',
+          'Vomiting',
+        ],
+        dogs: [
+          'Muscle weakness',
+          'Paralysis',
+          'Tremors',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coral-tree',
+    },
   },
   {
     id: "glicina",
@@ -2006,6 +2759,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Estructuras frágiles y cerca de cañerías — peso enorme y raíces invasivas.",
     whyRationale: "Trepadora caduca originaria de China y Japón, evolucionó en valles templados. Sus flores violetas perfumadas son polinizadas por abejas; la fotoperiodicidad invernal (frío + días cortos) es necesaria para inducir yemas florales.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Hypersalivation',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Hypersalivation',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wisteria',
+    },
   },
   {
     id: "gardenia",
@@ -2039,6 +2812,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol fuerte del mediodía y agua del grifo con cloro — clorosis y caída de botones.",
     whyRationale: "Originaria del sur de Asia, evolucionó en sotobosque tropical con suelos ácidos y húmedos. Solo absorbe hierro y magnesio a pH 5-6: por eso amarillea (clorosis) en los suelos alcalinos típicos de Buenos Aires sin acidificación previa.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Hives',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Hives',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/gardenia',
+    },
   },
   {
     id: "camelia",
@@ -2072,6 +2865,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol del mediodía — quema flores y hojas; suelo alcalino — clorosis crónica.",
     whyRationale: "Originaria del este de Asia, evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/camellia',
+    },
   },
   {
     id: "dalia",
@@ -2105,6 +2904,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas tardías sobre tubérculos plantados — los pudre antes de brotar.",
     whyRationale: "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En invierno frío hay que desenterrarlos: las heladas fuertes quiebran las células y los pudren.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dahlia',
+    },
   },
   {
     id: "salvia-ornamental",
@@ -2138,6 +2955,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Riego frecuente y suelo encharcado — la pudre rápidamente.",
     whyRationale: "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bosque seco. Sus espigas atraen colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros — defensa química típica de las salvias.",
+    // LATAM-specific — not in ASPCA
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'unknown',
+      dogs: 'unknown',
+    },
   },
   {
     id: "cala",
@@ -2172,6 +2995,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso y suelo seco — hojas quemadas y rizoma dormido.",
     whyRationale: "Endémica de Sudáfrica (Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calla-lily',
+    },
   },
   {
     id: "copete",
@@ -2205,6 +3050,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y suelo encharcado — pocas flores y propenso a hongos.",
     whyRationale: "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos — fungicida natural. Compañero clásico de la huerta: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/marigold',
+    },
   },
   {
     id: "verbena",
@@ -2238,6 +3101,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo muy fértil y exceso de fertilizante — más hojas, menos flores.",
     whyRationale: "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos con flores violetas atraen polinizadores que buscan altura sobre la vegetación; se auto-siembra y renueva sola cada año.",
+    // LATAM-specific — not in ASPCA
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'unknown',
+      dogs: 'unknown',
+    },
   },
 
   // ─── AROMATICAS — new Phase 8 entries ───
@@ -2273,6 +3142,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Suelo encharcado o sombra densa — pudre raíces igual que el romero erecto.",
     whyRationale: "Variedad postrada del romero común, mismo origen mediterráneo y misma fisiología drought-adapted. La forma rastrera no cambia las necesidades: sol pleno, suelo pobre y poco riego; ideal cuando se busca cubresuelo o cascada decorativa.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary',
+    },
   },
 
   // ─── HUERTA — new Phase 8 entries ───
@@ -2309,6 +3184,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas tardías y riego irregular — frutos se rajan al recibir agua tras secarse.",
     whyRationale: "Variante de Solanum lycopersicum con frutos chicos y planta indeterminada (crece hasta la helada). Cosecha casi diaria por el tamaño; los racimos abundantes exigen tutor alto y poda de chupones para concentrar energía en los frutos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Hypersalivation',
+          'Inappetence',
+          'Severe GI upset',
+          'Diarrhea',
+          'Drowsiness',
+        ],
+        dogs: [
+          'Hypersalivation',
+          'Inappetence',
+          'Severe GI upset',
+          'Diarrhea',
+          'Drowsiness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant',
+    },
   },
   // ─── v1.2 Phase 15 Wave A — Sub-batch A (Aroceous + Foliage especial) ───
   // ─── Aroceous (Araceae family) ───
@@ -2345,6 +3242,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía — quema espatas y hojas; aire seco de calefacción.",
     whyRationale: "Pertenece a las aráceas del sotobosque amazónico — evolucionó bajo luz tamizada y humedad alta. Las espatas son hojas modificadas para atraer polinizadores en bosques densos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/anthurium',
+    },
   },
   {
     id: "alocasia",
@@ -2379,6 +3296,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Corrientes de aire frío y sol directo — ambas dañan las hojas decorativas.",
     whyRationale: "Aráceas tropical adaptada a sotobosques de Borneo y Filipinas — sus hojas grandes capturan luz tamizada y las nervaduras pálidas reflejan humedad capilar.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/elephant-ears',
+    },
   },
   {
     id: "caladium",
@@ -2413,6 +3352,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (decolora estampas) y temperaturas bajo 15°C (induce dormancia anticipada).",
     whyRationale: "Tubérculo tropical del Amazonas — almacena energía en bulbo y emite hojas estacionales. Las manchas son tejido sin clorofila que reduce competencia interna por luz.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/caladium',
+    },
   },
   {
     id: "singonio",
@@ -2447,6 +3408,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (decolora) y rincones oscuros (pierde variegación).",
     whyRationale: "Aráceas hemiepífita centroamericana — en su hábitat trepa árboles para alcanzar luz filtrada. La forma de hoja cambia según altura y luz disponible (heteroblastia).",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/arrowhead-vine',
+    },
   },
   {
     id: "aglaonema",
@@ -2481,6 +3462,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema hojas variegadas) y corrientes de aire frío bajo 13°C.",
     whyRationale: "Aráceas del sotobosque tropical asiático — adaptada a luz mínima del piso de la selva. Tolera baja luz porque su clorofila opera eficientemente con poca radiación.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chinese-evergreen',
+    },
   },
   {
     id: "costilla-adan",
@@ -2515,6 +3518,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema agujeros) y rincones muy oscuros (hojas pequeñas y sin perforaciones).",
     whyRationale: "Hemiepífita aráceas centroamericana — distinta de la Monstera deliciosa. Trepa árboles del sotobosque y desarrolla agujeros (fenestraciones) para resistir vientos y compartir luz.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron',
+    },
   },
   {
     id: "difenbaquia",
@@ -2549,6 +3574,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema variegación) y temperaturas bajo 15°C (caída de hojas).",
     whyRationale: "Aráceas tropical sudamericana — sus tallos almacenan agua y rebrotan tras poda. La variegación es tejido sin clorofila que requiere más luz para compensar.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+          'Difficulty swallowing',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dumbcane',
+    },
   },
   // ─── Foliage especial ───
   {
@@ -2584,6 +3631,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (decolora pigmentos) y aire seco de calefacción.",
     whyRationale: "Cultivar de Begonia originaria de los Himalayas — antocianinas y carotenoides en hojas requieren luz brillante para expresarse. Sin ella las hojas pierden el patrón decorativo.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Salivation',
+        ],
+        dogs: [
+          'Vomiting',
+          'Salivation',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/begonia',
+    },
   },
   {
     id: "croton",
@@ -2618,6 +3681,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Cambios frecuentes de ubicación y corrientes de aire — el croton es estresado por movimiento.",
     whyRationale: "Originario del Pacífico tropical — sus antocianinas y carotenoides requieren luz brillante para sintetizarse. Sin luz suficiente las hojas vuelven a verde uniforme.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Abdominal pain',
+          'Depression',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Abdominal pain',
+          'Depression',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/croton',
+    },
   },
   {
     id: "fitonia",
@@ -2652,6 +3735,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema hojas pequeñas) y rincones oscuros (pierde patrón de venas).",
     whyRationale: "Sotobosque amazónico — sus venas blancas reflejan la poca luz que llega al piso de la selva. Hojas finas pierden agua rápido, por eso necesita humedad alta y riego constante.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mosaic-plant',
+    },
   },
   {
     id: "ficus-lyrata",
@@ -2686,6 +3775,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Corrientes de aire (puerta, AC) y cambios frecuentes de ubicación — pierde hojas por estrés.",
     whyRationale: "Originario de la selva tropical de África Occidental — crece como hemiepífita y luego enraíza. Sus hojas grandes en forma de lira capturan luz tamizada del dosel y son sensibles al estrés ambiental.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fiddle-leaf-fig',
+    },
   },
   {
     id: "maranta",
@@ -2720,6 +3827,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (decolora) y aire seco — la maranta no tolera ambientes secos.",
     whyRationale: "Marantáceas de la selva brasileña — su nictinastia (plegado nocturno por pulvinos en el peciolo) reduce pérdida de agua y exposición a depredadores nocturnos. Patrón de venas refleja luz tamizada.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/prayer-plant',
+    },
   },
   // ─── v1.2 Phase 15 Wave A — Sub-batch B (Diverse rest) ───
   // ─── Succulent-tropical (CAM-friendly) ───
@@ -2756,6 +3869,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato siempre húmedo y maceta sin drenaje — pudrición de rizomas es irreversible.",
     whyRationale: "Originaria del este de África semi-árida — sus rizomas almacenan agua y nutrientes. Su metabolismo CAM le permite tolerar baja luz y olvidos de riego, pero la pudrición por exceso es irreversible.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Mild GI upset',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Mild GI upset',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zz-plant',
+    },
   },
   {
     id: "cola-burro",
@@ -2790,6 +3921,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Lugares de paso (pierde hojas) y sustrato siempre húmedo (pudrición de tallos).",
     whyRationale: "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y usa metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail',
+    },
   },
   // ─── Trepadora ───
   {
@@ -2825,6 +3962,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Calefacción directa (aire seco quema hojas) y sol directo prolongado.",
     whyRationale: "Trepadora europea de bosques templados — sus raicillas adventicias se adhieren a superficies para trepar y compartir luz. Tolera frío hasta 5°C porque su origen es templado, no tropical.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Abdominal pain',
+          'Hypersalivation',
+          'Diarrhea',
+        ],
+        dogs: [
+          'Vomiting',
+          'Abdominal pain',
+          'Hypersalivation',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy',
+    },
   },
   // ─── Palmera (Arecaceae) ───
   {
@@ -2860,6 +4017,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía (quema frondas) y temperaturas bajo 12°C.",
     whyRationale: "Palmera de Madagascar — Arecaceae adaptada a sotobosque tropical. Tolera luz dispersa pero requiere drenaje rápido y humedad constante; sus raíces no soportan encharcamiento prolongado.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/areca-palm',
+    },
   },
   {
     id: "palmera-kentia",
@@ -2894,6 +4057,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo prolongado (quema frondas) y exceso de riego (pudrición de raíces).",
     whyRationale: "Palmera de Lord Howe (Australia) — endémica de bosques sombreados. Su tolerancia a poca luz proviene de adaptación al sotobosque, lo que la hace excepcional como palmera de interior profundo.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kentia-palm',
+    },
   },
   // ─── Helecho ───
   {
@@ -2929,6 +4098,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Aire seco de calefacción (frondas crujientes) y sol directo (quema).",
     whyRationale: "Helecho tropical americano — su esporofito requiere humedad ambiental >60% para mantener turgencia foliar. Sin ella las frondas se secan irreversiblemente porque no almacena agua.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/boston-fern',
+    },
   },
   {
     id: "helecho-nido",
@@ -2963,6 +4138,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema frondas) y agua en el nido central (pudrición).",
     whyRationale: "Helecho epífito asiático — en su hábitat crece en horquillas de árboles, recogiendo agua de lluvia y detritos en su nido. Sus frondas enteras evolucionaron para esa colecta hídrica.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   // ─── All-rounder ───
   {
@@ -2998,6 +4178,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema hojas redondas) y rincones oscuros (tallo largo y débil).",
     whyRationale: "Originaria de la provincia china de Yunnan, hábitat templado de montaña — sus hojas redondas son escudos para luz brillante indirecta. Los brotes hijos rizomatosos permiten propagación clonal fácil.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "tradescantia",
@@ -3032,6 +4217,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía (decolora) y rincones oscuros (pierde púrpura).",
     whyRationale: "Originaria de México tropical — sus antocianinas en franjas púrpura requieren luz brillante para expresarse. La rápida propagación vegetativa es adaptación a ambientes perturbados.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Dermatitis',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Dermatitis',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wandering-jew',
+    },
   },
   {
     id: "cheflera",
@@ -3066,6 +4267,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo prolongado (quema variegación) y temperaturas bajo 12°C.",
     whyRationale: "Antes Schefflera arboricola — reclasificada como Heptapleurum en 2024 (POWO). Originaria de Taiwán y Hainan, su tolerancia a luz variable proviene de su origen en bosques de transición tropical-templado.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+          'Weakness',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Excessive drooling',
+          'Weakness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/umbrella-tree',
+    },
   },
   {
     id: "arbol-dinero",
@@ -3100,6 +4321,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato siempre húmedo (pudrición de raíces) y sol directo del mediodía (quema hojas).",
     whyRationale: "Originaria de pantanos centroamericanos — su tronco engrosado almacena agua para tolerar sequías estacionales. Su tolerancia a olvidos de riego viene de esa adaptación a inundaciones-sequías cíclicas.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   // ─── v1.2 Phase 16 Wave B — Sub-batch A (Cactus + Suculentas) ───
   // ─── Cactus (Cactaceae true) ───
@@ -3138,6 +4364,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado y temperaturas bajo 5°C prolongadas.",
     whyRationale: "Cactácea de tierras áridas mexicanas — metabolismo CAM cierra estomas de día y fija CO2 nocturno; sus paletas son tallos modificados con almacén de agua. La fotosíntesis nocturna es la clave de su tolerancia al desierto.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "mammillaria",
@@ -3174,6 +4405,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Rincones sin luz directa y sustrato húmedo más de 7 días seguidos.",
     whyRationale: "Cactácea mexicana de hábito agrupado — sus tubérculos almacenan agua y las espinas reflejan luz para reducir transpiración. Florece en corona apical cuando los días alargan: el fotoperiodo dispara la floración primaveral.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "cactus-navidad",
@@ -3210,6 +4446,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía (quema los segmentos) y temperaturas bajo 10°C.",
     whyRationale: "No es cactus de desierto: es epífita del bosque brasileño — crece sobre árboles a media sombra. Sus tallos articulados son fotosintéticos y florece con noches largas (>13h oscuridad) en otoño.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/christmas-cactus',
+    },
   },
   // ─── Crassulaceae succulents ───
   {
@@ -3247,6 +4489,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato siempre húmedo y poca luz.",
     whyRationale: "Crassulácea malgache de fotosíntesis CAM: cierra estomas de día, fija CO2 nocturno. Florece con noches largas (>14h oscuridad) — su reloj fotoperiódico requiere ese contraste para emitir botones.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Abnormal heart rhythm',
+          'Weakness',
+          'Collapse',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Abnormal heart rhythm',
+          'Weakness',
+          'Collapse',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe',
+    },
   },
   {
     id: "siempreviva",
@@ -3283,6 +4547,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado y rincones sin luz directa.",
     whyRationale: "Crassulácea de montañas europeas — hábito en roseta retiene agua y minimiza superficie expuesta al frío. Es monocárpica: la madre florece una vez y muere, pero deja decenas de hijos que la reemplazan.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "gasteria",
@@ -3319,6 +4588,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía y sustrato encharcado.",
     whyRationale: "Asfodelácea sudafricana de sotobosque árido — hojas en hilera doble (distichous) almacenan agua y toleran sombra parcial. Su CAM modificado le permite vivir donde un cactus pleno-sol no llegaría.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   // ─── Mesembs (Aizoaceae) — special physiology ───
   {
@@ -3356,6 +4630,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Riego en pleno verano (reposo absoluto) y aire húmedo prolongado.",
     whyRationale: "Aizoácea sudafricana mesemb — ciclo de reemplazo foliar anual: el par nuevo absorbe agua del par viejo. Reposo estival absoluto — un riego de verano puede reventarla porque las hojas viejas se rehidratan y se rompen.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   // ─── Asteraceae succulents ───
   {
@@ -3393,6 +4672,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía (quema perlas) y corrientes de aire frío bajo 10°C.",
     whyRationale: "Asterácea suculenta sudafricana — sus hojas globosas (perlas) almacenan agua y limitan la superficie evaporativa. Crece bajo dosel árido: tolera olvidos pero detesta el encharcamiento.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Lethargy',
+          'Drooling',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Lethargy',
+          'Drooling',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/string-of-pearls',
+    },
   },
   // ─── Outliers (convergent evolution + monocots) ───
   {
@@ -3430,6 +4729,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Rincones oscuros (sin floración) y sustrato encharcado.",
     whyRationale: "Euforbiácea espinosa malgache — su apariencia cactiforme es convergencia evolutiva, no Cactaceae. Látex blanco tóxico al corte. Floración casi continua con luz directa porque sus brácteas reemplazan a los pétalos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Dermatitis',
+          'Eye irritation',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Dermatitis',
+          'Eye irritation',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/crown-of-thorns',
+    },
   },
   {
     id: "agave",
@@ -3466,6 +4785,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado y rincones sin sol pleno.",
     whyRationale: "Suculenta xerófita en roseta — fotosíntesis CAM + acumulación de agua en hojas carnosas. Floración monocárpica única tras décadas: la madre emite un escapo gigante, florece, semilla y muere — pero deja hijos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'GI irritation',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'GI irritation',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/agave',
+    },
   },
   // ─── v1.2 Phase 16 Wave B — Sub-batch B (Trepadoras NET-NEW + Trending) ───
   // ─── Trepadoras NET-NEW (CAT-14: hoya + mini-monstera; potus + filodendro are upgrades, lines 30 + 1038) ───
@@ -3504,6 +4841,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema sus hojas carnosas) y aire seco prolongado de calefacción.",
     whyRationale: "Asclepiadácea trepadora suculenta del sudeste asiático — hojas en forma de corazón con tejido CAM modificado. Tolera olvidos pero crece muy lento: tiene años de paciencia incorporados a su ritmo natural.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "mini-monstera",
@@ -3540,6 +4882,26 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo y rincones oscuros (sin tutor, sin fenestraciones).",
     whyRationale: "Aroide trepadora hemiepífita del sudeste asiático — las fenestraciones aparecen al alcanzar tutor vertical (heteroblastia). Sin tutor permanece juvenil sin agujeros. Por eso la confusión con Monstera, pero es Rhaphidophora.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+        dogs: [
+          'Oral irritation',
+          'Intense burning of mouth, lips, tongue',
+          'Excessive drooling',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron',
+    },
   },
   // ─── Trending (CAT-15) ───
   {
@@ -3577,6 +4939,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Rincones oscuros (no florece) y temperaturas bajo 8°C prolongadas.",
     whyRationale: "Strelitziacea sudafricana de savanna — hojas paddle-shaped reducen pérdida de agua. Floración requiere luz brillante prolongada + maduración 3-4 años. La forma de pico-de-ave del cáliz evolucionó para polinización por sunbirds.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild nausea',
+          'Drowsiness',
+        ],
+        dogs: [
+          'Mild nausea',
+          'Drowsiness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bird-of-paradise',
+    },
   },
   {
     id: "eucalipto",
@@ -3613,6 +4991,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Maceta pequeña (raíces invasivas) y suelo encharcado.",
     whyRationale: "Mirtácea australiana — hojas con citronellal volátil (defensa anti-herbivoría). Crecimiento muy rápido en exterior: el árbol busca su altura con prisa, por eso es difícil mantenerlo confinado en maceta a largo plazo.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Salivation',
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Weakness',
+        ],
+        dogs: [
+          'Salivation',
+          'Vomiting',
+          'Diarrhea',
+          'Depression',
+          'Weakness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/eucalyptus',
+    },
   },
   {
     id: "bambu-suerte",
@@ -3649,6 +5049,25 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo (quema hojas) y agua del grifo con cloro o flúor sin filtrar.",
     whyRationale: "Asparagácea africana de zonas ribereñas — adaptada a humedad alta, crece bien en cultivo hidropónico. Sensible al flúor del agua corriente porque su zona nativa tiene aguas blandas: el flúor se acumula en las puntas y las quema.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Incoordination',
+          'Weakness',
+          'Dilated pupils (cats)',
+        ],
+        dogs: [
+          'Vomiting',
+          'Incoordination',
+          'Weakness',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lucky-bamboo',
+    },
   },
   {
     id: "sansevieria-cilindrica",
@@ -3685,6 +5104,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado y temperaturas bajo 8°C prolongadas.",
     whyRationale: "Asparagácea angoleña — hojas cilíndricas tubulares con almacén de agua y CAM. Tolerancia extrema a baja luz, sequía y descuido: en su hábitat natural sobrevive en sabanas semiáridas con poca lluvia.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+        ],
+        dogs: [
+          'Nausea',
+          'Vomiting',
+          'Diarrhea',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant',
+    },
   },
   {
     id: "cactus-san-pedro",
@@ -3721,6 +5158,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado y rincones interior sin sol pleno (estiramiento + debilidad).",
     whyRationale: "Cactácea columnar de Andes-precordillera — metabolismo CAM y crecimiento vertical rápido (>1cm/año). Pleno sol exterior, riego escaso. La columna se eleva buscando luz directa, característica de Echinopsis.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Agitation',
+          'Disorientation',
+          'Tremors',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Agitation',
+          'Disorientation',
+          'Tremors',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peyote',
+    },
   },
 
   // ─── v1.2 Phase 17 Wave C — Sub-batch A (Exterior flores — CAT-17) ───
@@ -3763,6 +5222,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sustrato encharcado en dormancia y zonas cálidas sin invierno frío — el bulbo no acumula horas-frío y no florece.",
     whyRationale: "Liliácea de bulbo subterráneo — requiere ~12 semanas frío bajo 8°C para desarrollar el botón floral. BsAs sur y Patagonia funciona natural; en NEA-NOA hace falta heladera pre-frío 6-8 semanas o no florece. Aboveground muere; el bulbo persiste.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Depression',
+          'Diarrhea',
+          'Hypersalivation',
+          'Drooling',
+        ],
+        dogs: [
+          'Vomiting',
+          'Depression',
+          'Diarrhea',
+          'Hypersalivation',
+          'Drooling',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulip',
+    },
   },
   {
     id: "ciclamen",
@@ -3799,6 +5280,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso, calefactores cercanos y agua sobre el cormo — todos lo hacen entrar en dormancia o pudrir.",
     whyRationale: "Primulácea con cormo subterráneo — almacena reservas para sobrellevar dormancia estival (ciclo seco mediterráneo). Florece en otoño-invierno cuando el cormo rehidrata. Riego sobre el cormo lo pudre; siempre por inmersión.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Abnormal heart rhythm',
+          'Seizures',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Abnormal heart rhythm',
+          'Seizures',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cyclamen',
+    },
   },
   {
     id: "crisantemo",
@@ -3835,6 +5338,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y suelo encharcado — sin sol pleno hace tallos delgados sin botones; con humedad estancada pudre la corona.",
     whyRationale: "Asterácea perenne con corona invernante — sus capítulos son inflorescencias compuestas de cientos de flores. Florece con días cortos (fotoperiodo otoñal); el pellizcado primaveral fuerza ramificación y multiplica capítulos.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Incoordination',
+          'Dermatitis',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'Incoordination',
+          'Dermatitis',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum',
+    },
   },
 
   // ─── Ericaceous + Caryophyllaceae + Onagraceae shrubs ───
@@ -3874,6 +5399,28 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol pleno mediodía + tierra alcalina + agua dura — la combinación quema hojas y mata las micorrizas obligadas.",
     whyRationale: "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Sotobosque chino: sol filtrado nativo, NO pleno mediodía argentino.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'toxic',
+      dogs: 'toxic',
+      symptoms: {
+        cats: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'CNS depression',
+          'Cardiovascular collapse',
+        ],
+        dogs: [
+          'Vomiting',
+          'Diarrhea',
+          'Hypersalivation',
+          'CNS depression',
+          'Cardiovascular collapse',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea',
+    },
   },
   {
     id: "clavel",
@@ -3910,6 +5457,24 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra densa y suelo encharcado — sin sol pleno y con humedad excesiva, los tallos pudren en la base.",
     whyRationale: "Cariofilácea mediterránea de tallos articulados — flora cálidas-secas; suelo drenado y sol pleno son su nicho original. Hojas grises con tricomas reducen evaporación; defensa contra calor + sequía estival.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+        dogs: [
+          'Mild GI signs',
+          'Dermatitis',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation',
+    },
   },
   {
     id: "fucsia",
@@ -3946,6 +5511,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo del mediodía y aire seco caliente — quema flores y deshidrata las hojas.",
     whyRationale: "Onagrácea de bosque-húmedo patagónico — Fuchsia magellanica nativa argentina; tolera heladas leves y prefiere humedad ambiental con sombra parcial. Sotobosque-adapted: sol moteado, no pleno mediodía.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fuchsia',
+    },
   },
 
   // ─── Annual + tree (Asteraceae + Magnoliaceae) ───
@@ -3984,6 +5555,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y suelo poco profundo — sin 8h sol y sin profundidad radicular hace plantas chicas con cabezas pobres.",
     whyRationale: "Asterácea anual de día largo — su capítulo es una inflorescencia compuesta de cientos de flores. Heliotropismo juvenil: el botón sigue al sol; al madurar queda fijo al este. Pampa Húmeda es nicho ideal.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower',
+    },
   },
   {
     id: "magnolia",
@@ -4020,6 +5597,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Maceta permanente menor de 50 litros y suelo seco persistente — Magnoliáceas son árboles, raíz superficial extensa requiere tierra a largo plazo.",
     whyRationale: "Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). M. stellata es la versión enana 3m, ideal patio chico; M. grandiflora alcanza 20m. Pot temporario; tierra eventualidad.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
 
   // ─── v1.2 Phase 17 Wave C — Sub-batch B (Aromáticas + Frutales/Huerta — CAT-18 + CAT-19) ───
@@ -4066,6 +5648,22 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Tierra encharcada o sombra profunda — pudre la corona y se va a hojas chicas sin aroma.",
     whyRationale: "Lamiácea originaria del Mediterráneo, evolucionó en suelos pobres y secos. Las hojas grises tienen tricomas que reflejan luz y reducen evaporación — defensa contra calor + sequía. Riego escaso es la clave.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'caution',
+      dogs: 'caution',
+      symptoms: {
+        cats: [
+          'Mild GI upset',
+          'Vomiting',
+        ],
+        dogs: [
+          'Mild GI upset',
+          'Vomiting',
+        ],
+      },
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sage',
+    },
   },
   {
     id: "eneldo",
@@ -4102,6 +5700,12 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sol directo intenso de verano sin sombra — se va a flor en 2-3 semanas y pierde calidad de hojas.",
     whyRationale: "Apiácea anual de hojas filiformes y semillas aromáticas. Anual de fría-templada; en verano caliente argentino se va a flor rápido. Sembrá en otoño-invierno-comienzo-primavera para prolongar la cosecha de follaje.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+      source: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dill',
+    },
   },
   {
     id: "stevia",
@@ -4138,6 +5742,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Heladas y temperaturas <5°C — los tejidos jóvenes mueren; el calor seco es preferible al frío.",
     whyRationale: "Asterácea sudamericana (Paraguay-Brasil) — sus hojas contienen esteviósidos, edulcorantes naturales 200-300x más dulces que el azúcar. Calor + humedad la favorecen; el frío bajo 5°C la debilita.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
 
   // ─── Frutales + Huerta (Oleaceae + Ericaceae + Amaranthaceae) — CAT-19 ───
@@ -4176,6 +5785,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Sombra y sustrato encharcado — sin sol pleno hace ramas delgadas sin frutos; con humedad estancada pudre las raíces.",
     whyRationale: "Oleácea mediterránea perennifolia — adaptada a sequía estival y suelo pobre. En Argentina (Mendoza, Cuyo) cultivos extensivos; cultivar Arauco es endémico nacional. Pot temporario; tierra eventualidad.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "arandano",
@@ -4212,6 +5826,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Tierra alcalina o agua dura — pH alto bloquea hierro y deshace la simbiosis con micorrizas; muere en pocos meses.",
     whyRationale: "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Cultivos en Tucumán y Entre Ríos prosperan con agua y sustrato adecuados.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
   {
     id: "espinaca",
@@ -4248,6 +5867,11 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     ],
     placementAvoid: "Verano caliente bajo sol pleno — bolt en 2-3 semanas; siembra de septiembre-noviembre (HS) suele desperdiciarse.",
     whyRationale: "Amarantácea anual cool-season — bolt risk a >25°C: el calor estival argentino la hace florecer en 2-3 semanas. Sembrá en otoño-invierno-comienzo-primavera; en verano usá media-sombra o esperá al otoño.",
+    // ─── v1.2 Phase 19 (TOX-02) — ASPCA classification ───
+    petToxicity: {
+      cats: 'safe',
+      dogs: 'safe',
+    },
   },
 ];
 
