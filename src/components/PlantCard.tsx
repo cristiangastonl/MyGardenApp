@@ -20,7 +20,9 @@ import { triggerHaptic } from '../utils/haptics';
 import { useTranslation } from 'react-i18next';
 import { TaskButton } from './TaskButton';
 import { PlantHealthDetail } from './PlantHealthDetail';
-import { getPlantCategories } from '../data/plantDatabase';
+import { getPlantCategories, getCatalogEntry } from '../data/plantDatabase';
+import { PetToxicityBadge } from './PetToxicityBadge';
+import { getPetToxicity, shouldShowBadge } from '../utils/petToxicity';
 
 // Phase 18 GAM-03: HealthLevel → mood-emoji mapping (frozen by REQUIREMENTS).
 const moodEmojiByLevel: Record<HealthLevel, string> = {
@@ -52,6 +54,8 @@ interface PlantCardProps {
   onLongPress?: (plant: Plant) => void;
   // Phase 18 CARD-04: optional — invoked once after a successful swipe-commit; PlantsScreen flips @plantcard_swipe_discovered.
   onSwipeCommitted?: () => void;
+  // Phase 19 CONTEXT.md TOX-03: optional — invoked when toxicity badge is tapped; opens MyPlantDetailModal scrolled to Mascotas section.
+  onOpenToMascotas?: (plant: Plant) => void;
 }
 
 export function PlantCard({
@@ -71,12 +75,20 @@ export function PlantCard({
   activeTrackingStatus,
   onLongPress,
   onSwipeCommitted,
+  onOpenToMascotas,
 }: PlantCardProps) {
   const { t } = useTranslation();
   const { climateOverride } = useStorage();
   const [showHealthDetail, setShowHealthDetail] = useState(false);
 
   const todayStr = formatDate(today);
+
+  // Phase 19 (TOX-03): pet toxicity from catalog entry; helper resolves absence to 'unknown'.
+  const catalogEntryForTox = plant.databaseId ? getCatalogEntry(plant.databaseId) : null;
+  const tox = getPetToxicity(catalogEntryForTox);
+  const showCatBadge = shouldShowBadge(tox.cats);
+  const showDogBadge = shouldShowBadge(tox.dogs);
+
   // Pre-compute season once per render — PlantCard keeps latitude prop (Pattern A),
   // derives Location inline for getEffectiveSeason (uses location?.lat ?? null internally).
   const locationObj: Location | null = latitude !== null ? { lat: latitude, lon: 0, name: '', country: '' } : null;
@@ -251,6 +263,20 @@ export function PlantCard({
                         : '🩺'}
                     </Text>
                   </View>
+                )}
+                {showCatBadge && (
+                  <PetToxicityBadge
+                    species="cats"
+                    level={tox.cats}
+                    onPress={() => onOpenToMascotas?.(plant)}
+                  />
+                )}
+                {showDogBadge && (
+                  <PetToxicityBadge
+                    species="dogs"
+                    level={tox.dogs}
+                    onPress={() => onOpenToMascotas?.(plant)}
+                  />
                 )}
               </View>
             </View>
