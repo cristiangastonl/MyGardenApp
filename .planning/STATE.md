@@ -4,14 +4,14 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
 status: verifying
-stopped_at: Completed 19-pet-toxicity Plan 00 (Wave 0 scaffold)
-last_updated: "2026-05-09T14:48:31.977Z"
+stopped_at: Completed 19-pet-toxicity Plan 01 (TOX-01 helper finalization)
+last_updated: "2026-05-09T14:52:33.282Z"
 last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
 progress:
   total_phases: 15
   completed_phases: 9
   total_plans: 53
-  completed_plans: 47
+  completed_plans: 48
   percent: 100
 ---
 
@@ -81,6 +81,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 18 P04 | 6min | 2 tasks | 2 files |
 | Phase 18 P05 | 2min | 2 tasks | 2 files |
 | Phase 19-pet-toxicity P00 | 15 | 2 tasks | 10 files |
+| Phase 19-pet-toxicity P01 | 2 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -225,6 +226,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 18]: Plan 18-05: 9-block device-test checklist (Block A smoke / B haptic / C long-press menu / D mood emoji / E Toast positioning / F FlatList recycling / G mode parity / H persistence / I i18n parity) is the reusable template for any future PlantCard or list-row UX phase. Each block maps to ≥1 phase requirement ID for closure traceability.
 - [Phase 19-pet-toxicity]: Smoke runner frozen at Wave 0; SKIPs flip to PASSes in Plans 19-02..06 without editing the runner; petToxicity absence defaults to 'unknown' NOT 'safe' (CRIT-2 discipline)
 - [Phase 19-pet-toxicity]: Skeleton comment safety: avoid literal API/component names in skeleton comments that match smoke sentinel regexes — 'Pressable' in badge comment triggered false-positive FAIL; changed to 'interactive badge'
+- [Phase 19-pet-toxicity]: TOX absence-fallback locked at helper level: getPetToxicity uses ?? 'unknown' (NOT ?? 'safe') on both cats/dogs axes; behavioral contract encoded in test-stub.ts via TypeScript literal types (tsc-verified)
 
 ### Pending Todos
 
@@ -239,6 +241,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T14:48:31.974Z
-Stopped at: Completed 19-pet-toxicity Plan 00 (Wave 0 scaffold)
+Last session: 2026-05-09T14:52:33.279Z
+Stopped at: Completed 19-pet-toxicity Plan 01 (TOX-01 helper finalization)
 Resume file: None
