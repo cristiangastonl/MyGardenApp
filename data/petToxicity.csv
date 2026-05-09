@@ -1,119 +1,119 @@
 id,scientificName,category,cats_level,cats_source,dogs_level,dogs_source,cats_symptoms,dogs_symptoms,notes
-potus,Epipremnum aureum,interior,,,,,,,
-monstera,Monstera deliciosa,interior,,,,,,,
-ficus,Ficus elastica,interior,,,,,,,
-sansevieria,Dracaena trifasciata,interior,,,,,,,
-orquidea,Phalaenopsis spp.,interior,,,,,,,
-calathea,Calathea spp.,interior,,,,,,,
-cinta,Chlorophytum comosum,interior,,,,,,,
-palmera-interior,Chamaedorea elegans,interior,,,,,,,
-aloe-vera,Aloe vera,interior,,,,,,,
-lavanda-angustifolia,Lavandula angustifolia,exterior,,,,,,,
-lavanda-stoechas,Lavandula stoechas,exterior,,,,,,,
-lavanda-dentada,Lavandula dentata,exterior,,,,,,,
-petunia,Petunia x hybrida,exterior,,,,,,,
-hortensia,Hydrangea macrophylla,exterior,,,,,,,
-jazmin,Jasminum officinale,exterior,,,,,,,
-geranio,Pelargonium spp.,exterior,,,,,,,
-albahaca,Ocimum basilicum,aromaticas,,,,,,,
-romero,Salvia rosmarinus,aromaticas,,,,,,,
-menta,Mentha spicata,aromaticas,,,,,,,
-tomatera,Solanum lycopersicum,huerta,,,,,,,
-pimiento,Capsicum annuum,huerta,,,,,,,
-frutilla,Fragaria x ananassa,huerta,,,,,,,
-limonero,Citrus limon,frutales,,,,,,,
-suculenta-generica,Varias especies,suculentas,,,,,,,
-cactus,Cactaceae spp.,suculentas,,,,,,,
-echeveria,Echeveria spp.,suculentas,,,,,,,
-espatifilo,Spathiphyllum wallisii,interior,,,,,,,
-dracaena,Dracaena fragrans,interior,,,,,,,
-filodendro,Philodendron hederaceum,interior,,,,,,,
-jade,Crassula ovata,interior,,,,,,,
-peperomia,Peperomia obtusifolia,interior,,,,,,,
-rosa,Rosa spp.,exterior,,,,,,,
-bougainvillea,Bougainvillea glabra,exterior,,,,,,,
-hibisco,Hibiscus rosa-sinensis,exterior,,,,,,,
-margarita,Leucanthemum maximum,exterior,,,,,,,
-perejil,Petroselinum crispum,aromaticas,,,,,,,
-oregano,Origanum vulgare,aromaticas,,,,,,,
-cilantro,Coriandrum sativum,aromaticas,,,,,,,
-tomillo,Thymus vulgaris,aromaticas,,,,,,,
-lechuga,Lactuca sativa,huerta,,,,,,,
-pepino,Cucumis sativus,huerta,,,,,,,
-zanahoria,Daucus carota,huerta,,,,,,,
-rucula,Eruca vesicaria,huerta,,,,,,,
-naranjo,Citrus sinensis,frutales,,,,,,,
-aguacate,Persea americana,frutales,,,,,,,
-higuera,Ficus carica,frutales,,,,,,,
-mandarino,Citrus reticulata,frutales,,,,,,,
-zapallito,Cucurbita maxima var. zapallito,huerta,,,,,,,
-ciboulette,Allium schoenoprasum,aromaticas,,,,,,,
-haworthia,Haworthia fasciata,suculentas,,,,,,,
-sedum,Sedum morganianum,suculentas,,,,,,,
-yuca,Yucca elephantipes,interior,,,,,,,
-jacaranda,Jacaranda mimosifolia,exterior,,,,,,,
-ceibo,Erythrina crista-galli,exterior,,,,,,,
-glicina,Wisteria sinensis,exterior,,,,,,,
-gardenia,Gardenia jasminoides,exterior,,,,,,,
-camelia,Camellia japonica,exterior,,,,,,,
-dalia,Dahlia spp.,exterior,,,,,,,
-salvia-ornamental,Salvia splendens,exterior,,,,,,,
-cala,Zantedeschia aethiopica,exterior,,,,,,,
-copete,Tagetes patula,exterior,,,,,,,
-verbena,Verbena bonariensis,exterior,,,,,,,
-romero-rastrero,Salvia rosmarinus 'Prostratus',aromaticas,,,,,,,
-tomate-cherry,Solanum lycopersicum cerasiforme,huerta,,,,,,,
-anthurium,Anthurium andraeanum,interior,,,,,,,
-alocasia,Alocasia × amazonica,interior,,,,,,,
-caladium,Caladium bicolor,interior,,,,,,,
-singonio,Syngonium podophyllum,interior,,,,,,,
-aglaonema,Aglaonema commutatum,interior,,,,,,,
-costilla-adan,Monstera adansonii,interior,,,,,,,
-difenbaquia,Dieffenbachia seguine,interior,,,,,,,
-begonia-rex,Begonia rex,interior,,,,,,,
-croton,Codiaeum variegatum,interior,,,,,,,
-fitonia,Fittonia albivenis,interior,,,,,,,
-ficus-lyrata,Ficus lyrata,interior,,,,,,,
-maranta,Maranta leuconeura,interior,,,,,,,
-zamioculca,Zamioculcas zamiifolia,interior,,,,,,,
-cola-burro,Sedum morganianum,interior,,,,,,,
-hiedra,Hedera helix,interior,,,,,,,
-palmera-areca,Dypsis lutescens,interior,,,,,,,
-palmera-kentia,Howea forsteriana,interior,,,,,,,
-helecho-boston,Nephrolepis exaltata,interior,,,,,,,
-helecho-nido,Asplenium nidus,interior,,,,,,,
-pilea,Pilea peperomioides,interior,,,,,,,
-tradescantia,Tradescantia zebrina,interior,,,,,,,
-cheflera,Heptapleurum arboricola,interior,,,,,,,
-arbol-dinero,Pachira aquatica,interior,,,,,,,
-nopal,Opuntia ficus-indica,suculentas,,,,,,,
-mammillaria,Mammillaria elongata,suculentas,,,,,,,
-cactus-navidad,Schlumbergera × buckleyi,suculentas,,,,,,,
-kalanchoe,Kalanchoe blossfeldiana,suculentas,,,,,,,
-siempreviva,Sempervivum tectorum,suculentas,,,,,,,
-gasteria,Gasteria bicolor,suculentas,,,,,,,
-piedras-vivas,Lithops lesliei,suculentas,,,,,,,
-senecio-rowleyanus,Curio rowleyanus,suculentas,,,,,,,
-corona-espinas,Euphorbia milii,suculentas,,,,,,,
-agave,Agave americana,suculentas,,,,,,,
-hoya,Hoya kerrii,interior,,,,,,,
-mini-monstera,Rhaphidophora tetrasperma,interior,,,,,,,
-strelitzia,Strelitzia reginae,interior,,,,,,,
-eucalipto,Eucalyptus citriodora,aromaticas,,,,,,,
-bambu-suerte,Dracaena sanderiana,interior,,,,,,,
-sansevieria-cilindrica,Dracaena angolensis,interior,,,,,,,
-cactus-san-pedro,Echinopsis pachanoi,suculentas,,,,,,,
-tulipan,Tulipa gesneriana,exterior,,,,,,,
-ciclamen,Cyclamen persicum,interior,,,,,,,
-crisantemo,Chrysanthemum × morifolium,exterior,,,,,,,
-azalea,Rhododendron simsii,exterior,,,,,,,
-clavel,Dianthus caryophyllus,exterior,,,,,,,
-fucsia,Fuchsia magellanica,exterior,,,,,,,
-girasol,Helianthus annuus,exterior,,,,,,,
-magnolia,Magnolia stellata,exterior,,,,,,,
-salvia-officinalis,Salvia officinalis,aromaticas,,,,,,,
-eneldo,Anethum graveolens,aromaticas,,,,,,,
-stevia,Stevia rebaudiana,aromaticas,,,,,,,
-olivo,Olea europaea,frutales,,,,,,,
-arandano,Vaccinium corymbosum,frutales,,,,,,,
-espinaca,Spinacia oleracea,huerta,,,,,,,
+potus,Epipremnum aureum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pothos,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pothos,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",
+monstera,Monstera deliciosa,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",
+ficus,Ficus elastica,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rubber-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rubber-plant,"Vomiting; Diarrhea; Excessive drooling","Vomiting; Diarrhea; Excessive drooling",ASPCA lists Ficus elastica (Rubber Plant). Note: CSV stub uses Ficus elastica; plan anchor lists Ficus benjamina — same genus treatment applies.
+sansevieria,Dracaena trifasciata,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant,"Nausea; Vomiting; Diarrhea","Nausea; Vomiting; Diarrhea",Reclassified as Dracaena trifasciata (POWO 2024). ASPCA entry under Snake Plant covers the Sansevieria/Dracaena group.
+orquidea,Phalaenopsis spp.,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/moth-orchid,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/moth-orchid,,,
+calathea,Calathea spp.,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calathea,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calathea,,,
+cinta,Chlorophytum comosum,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/spider-plant,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/spider-plant,,,Mild hallucinogenic effect noted but ASPCA classifies as non-toxic.
+palmera-interior,Chamaedorea elegans,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parlor-palm,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parlor-palm,,,ASPCA: Parlor Palm. Non-toxic.
+aloe-vera,Aloe vera,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/aloe,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/aloe,"Vomiting; Diarrhea; Lethargy; Depression; Anorexia; Tremors; Change in urine color","Vomiting; Diarrhea; Lethargy; Depression; Anorexia; Tremors; Change in urine color",Saponins and anthraquinones.
+lavanda-angustifolia,Lavandula angustifolia,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,"Nausea; Vomiting","Nausea; Vomiting",ASPCA: Lavender. Linalool and linalyl acetate.
+lavanda-stoechas,Lavandula stoechas,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,"Nausea; Vomiting","Nausea; Vomiting",Genus-inheritance from Lavandula angustifolia. ASPCA treats Lavandula genus uniformly for linalool content.
+lavanda-dentada,Lavandula dentata,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender,"Nausea; Vomiting","Nausea; Vomiting",Genus-inheritance from Lavandula angustifolia. ASPCA treats Lavandula genus uniformly for linalool content.
+petunia,Petunia x hybrida,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/petunia,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/petunia,,,ASPCA: Petunia. Non-toxic.
+hortensia,Hydrangea macrophylla,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hydrangea,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hydrangea,"Vomiting; Diarrhea; Depression; Anorexia","Vomiting; Diarrhea; Depression; Anorexia",Cyanogenic glycosides.
+jazmin,Jasminum officinale,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jasmine,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jasmine,,,ASPCA: Jasmine. Non-toxic.
+geranio,Pelargonium spp.,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium,"Vomiting; Lethargy; Loss of appetite; Dermatitis","Vomiting; Lethargy; Loss of appetite; Dermatitis",Geraniol and linalool.
+albahaca,Ocimum basilicum,aromaticas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/basil,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/basil,,,ASPCA: Basil. Non-toxic.
+romero,Salvia rosmarinus,aromaticas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary,,,ASPCA: Rosemary. Non-toxic.
+menta,Mentha spicata,aromaticas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mint,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mint,"GI upset; Vomiting; Diarrhea","GI upset; Vomiting; Diarrhea",ASPCA: Mild GI upset. Essential oils at high quantity.
+tomatera,Solanum lycopersicum,huerta,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant,"Hypersalivation; Inappetence; Severe GI upset; Diarrhea; Drowsiness; Weakness; Confusion; Behavioral change; Weakness","Hypersalivation; Inappetence; Severe GI upset; Diarrhea; Drowsiness; Weakness; Confusion; Behavioral change; Weakness",Green parts and stems. Ripe fruit generally less toxic.
+pimiento,Capsicum annuum,huerta,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pepper,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pepper,"GI irritation; Vomiting; Diarrhea","GI irritation; Vomiting; Diarrhea",Capsaicin causes GI irritation. ASPCA classifies as mild toxicity.
+frutilla,Fragaria x ananassa,huerta,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/strawberry,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/strawberry,,,ASPCA: Strawberry. Non-toxic.
+limonero,Citrus limon,frutales,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lemon,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lemon,"Vomiting; Diarrhea; Depression; Photosensitivity","Vomiting; Diarrhea; Depression; Photosensitivity",Psoralens and essential oils. Fruit pulp generally less toxic than peel/leaves.
+suculenta-generica,Varias especies,suculentas,unknown,,unknown,,,,"LATAM-specific — generic catalog entry; species too varied for single ASPCA match; individual species vary. Use per-species entries where available."
+cactus,Cactaceae spp.,suculentas,safe,,safe,,,,"Not in ASPCA as a genus — most non-euphorbia cacti are non-toxic. Spines are mechanical hazard. Classification as safe for general Cactaceae non-euphorbia spp."
+echeveria,Echeveria spp.,suculentas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/echeveria,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/echeveria,,,ASPCA: Echeveria. Non-toxic.
+espatifilo,Spathiphyllum wallisii,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peace-lily,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peace-lily,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates.
+dracaena,Dracaena fragrans,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/corn-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/corn-plant,"Vomiting (occasionally with blood); Anorexia; Depression; Hypersalivation; Dilated pupils (cats)","Vomiting (occasionally with blood); Anorexia; Depression; Hypersalivation",ASPCA: Corn Plant / Dracaena. Saponins. Dilated pupils noted specifically in cats.
+filodendro,Philodendron hederaceum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron,"Oral irritation; Pain and swelling of mouth, tongue, lips; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Pain and swelling of mouth, tongue, lips; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates.
+jade,Crassula ovata,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant,"Vomiting; Depression; Ataxia; Bradycardia","Vomiting; Depression; Ataxia; Bradycardia",Toxin unknown. ASPCA: Jade Plant.
+peperomia,Peperomia obtusifolia,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peperomia,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peperomia,,,ASPCA: Peperomia. Non-toxic.
+rosa,Rosa spp.,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose,,,ASPCA: Rose. Non-toxic. Thorns are physical hazard.
+bougainvillea,Bougainvillea glabra,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bougainvillea,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bougainvillea,"Mild GI signs; Vomiting; Diarrhea","Mild GI signs; Vomiting; Diarrhea",ASPCA: Mild GI irritation possible. Generally considered mildly toxic.
+hibisco,Hibiscus rosa-sinensis,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose-of-sharon,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose-of-sharon,"Nausea; Vomiting; Anorexia; Lethargy","Nausea; Vomiting; Anorexia; Lethargy",ASPCA classifies Hibiscus species as mildly toxic. Closest match: Rose of Sharon (H. syriacus) — genus-inheritance for H. rosa-sinensis.
+margarita,Leucanthemum maximum,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daisy,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daisy,"Vomiting; Diarrhea; Hypersalivation; Incoordination; Dermatitis","Vomiting; Diarrhea; Hypersalivation; Incoordination; Dermatitis",ASPCA: Daisy / Shasta Daisy. Pyrethrins and sesquiterpene lactones.
+perejil,Petroselinum crispum,aromaticas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parsley,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parsley,"GI upset; Photosensitization (large quantities)","GI upset; Photosensitization (large quantities)",Furanocoumarins at high doses. Small culinary amounts generally safe.
+oregano,Origanum vulgare,aromaticas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oregano,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oregano,"GI upset; Vomiting; Diarrhea","GI upset; Vomiting; Diarrhea",Essential oils. ASPCA notes mild GI effects.
+cilantro,Coriandrum sativum,aromaticas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coriander,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coriander,,,ASPCA: Coriander. Non-toxic.
+tomillo,Thymus vulgaris,aromaticas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/thyme,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/thyme,"Mild GI upset; Vomiting","Mild GI upset; Vomiting",Essential oils. Small amounts generally tolerated. ASPCA notes mild effects.
+lechuga,Lactuca sativa,huerta,safe,,safe,,,,Not in ASPCA plant list — leafy vegetable universally considered safe for pets. Classification based on veterinary consensus.
+pepino,Cucumis sativus,huerta,safe,,safe,,,,Not in ASPCA plant list — cucumber is universally considered safe for pets. Classification based on veterinary consensus.
+zanahoria,Daucus carota,huerta,safe,,safe,,,,Not in ASPCA plant list — carrot is universally considered safe for pets. Classification based on veterinary consensus.
+rucula,Eruca vesicaria,huerta,safe,,safe,,,,Not in ASPCA plant list — arugula/rocket is generally considered safe for pets in culinary amounts. Classification based on veterinary consensus.
+naranjo,Citrus sinensis,frutales,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange,"Vomiting; Diarrhea; Depression; Photosensitivity","Vomiting; Diarrhea; Depression; Photosensitivity",Psoralens and essential oils. Genus-inheritance from Citrus limon (same Citrus genus ASPCA treatment).
+aguacate,Persea americana,frutales,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/avocado,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/avocado,"Vomiting; Diarrhea; Breathing difficulty; Fluid accumulation around heart; Congestion; Edema","Vomiting; Diarrhea; Breathing difficulty; Fluid accumulation around heart; Congestion; Edema",Persin toxin.
+higuera,Ficus carica,frutales,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fig,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fig,"Agitation; Crying; Hypersalivation; Dermatitis; Pawing at face","Agitation; Crying; Hypersalivation; Dermatitis; Pawing at face",Ficusin (psoralen). ASPCA: Fig. Dermatitis and mild GI.
+mandarino,Citrus reticulata,frutales,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange,"Vomiting; Diarrhea; Depression; Photosensitivity","Vomiting; Diarrhea; Depression; Photosensitivity",Genus-inheritance from Citrus limon/sinensis (same Citrus genus ASPCA treatment for psoralens and essential oils).
+zapallito,Cucurbita maxima var. zapallito,huerta,safe,,safe,,,,Not in ASPCA plant list — squash/zucchini is universally considered safe for pets. Classification based on veterinary consensus.
+ciboulette,Allium schoenoprasum,aromaticas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chives,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chives,"Nausea; Vomiting; Diarrhea; Anemia; Lethargy; Pale gums; Increased heart rate","Nausea; Vomiting; Diarrhea; Anemia; Lethargy; Pale gums; Increased heart rate",Allium genus. Thiosulfate compounds cause hemolytic anemia.
+haworthia,Haworthia fasciata,suculentas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zebra-haworthia,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zebra-haworthia,"Mild GI upset; Vomiting; Soft stools","Mild GI upset; Vomiting; Soft stools",ASPCA: Zebra Haworthia. Mildly toxic saponins.
+sedum,Sedum morganianum,suculentas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail,,,ASPCA: Burro Tail (Sedum morganianum). Non-toxic.
+yuca,Yucca elephantipes,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca,"Vomiting; Diarrhea; Depression; Anorexia","Vomiting; Diarrhea; Depression; Anorexia",Saponins.
+jacaranda,Jacaranda mimosifolia,exterior,unknown,,unknown,,,,"LATAM-specific — Jacaranda mimosifolia not in ASPCA. Widespread in Argentina/Chile/LATAM as ornamental. No ASPCA classification possible."
+ceibo,Erythrina crista-galli,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coral-tree,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coral-tree,"Muscle weakness; Paralysis; Tremors; Vomiting","Muscle weakness; Paralysis; Tremors; Vomiting",Genus-inheritance from Erythrina genus. ASPCA lists Erythrina (Coral Tree) as toxic. Argentine national flower.
+glicina,Wisteria sinensis,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wisteria,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wisteria,"Vomiting; Diarrhea; Depression; Hypersalivation","Vomiting; Diarrhea; Depression; Hypersalivation",ASPCA: Wisteria. Wisterin (lectin) and glycosides.
+gardenia,Gardenia jasminoides,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/gardenia,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/gardenia,"Mild GI signs; Hives; Vomiting; Diarrhea","Mild GI signs; Hives; Vomiting; Diarrhea",ASPCA: Gardenia. Mildly toxic.
+camelia,Camellia japonica,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/camellia,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/camellia,,,ASPCA: Camellia. Non-toxic.
+dalia,Dahlia spp.,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dahlia,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dahlia,"Mild GI signs; Dermatitis; Vomiting","Mild GI signs; Dermatitis; Vomiting",ASPCA: Dahlia. Mildly toxic.
+salvia-ornamental,Salvia splendens,exterior,unknown,,unknown,,,,"LATAM-specific — Salvia splendens not specifically listed in ASPCA. Salvia officinalis listed separately; splendens ornamental species not classified. Marking unknown per LATAM discipline."
+cala,Zantedeschia aethiopica,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calla-lily,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/calla-lily,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates.
+copete,Tagetes patula,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/marigold,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/marigold,"Mild GI signs; Dermatitis; Vomiting","Mild GI signs; Dermatitis; Vomiting",ASPCA: Marigold (Tagetes). Mildly toxic. Dermatitis from plant sap.
+verbena,Verbena bonariensis,exterior,unknown,,unknown,,,,"LATAM-specific — Verbena bonariensis not in ASPCA. Argentine species; most ASPCA Verbena entries cover V. hybrida cultivars not this native species. Marking unknown."
+romero-rastrero,Salvia rosmarinus 'Prostratus',aromaticas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary,,,Genus-inheritance from Salvia rosmarinus (rosemary). Same species cultivar. Non-toxic.
+tomate-cherry,Solanum lycopersicum cerasiforme,huerta,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant,"Hypersalivation; Inappetence; Severe GI upset; Diarrhea; Drowsiness; Weakness","Hypersalivation; Inappetence; Severe GI upset; Diarrhea; Drowsiness; Weakness",Genus-inheritance from Solanum lycopersicum (tomatera). Same species — cherry tomato cultivar. Green parts toxic.
+anthurium,Anthurium andraeanum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/anthurium,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/anthurium,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting",Insoluble calcium oxalates.
+alocasia,Alocasia × amazonica,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/elephant-ears,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/elephant-ears,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates.
+caladium,Caladium bicolor,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/caladium,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/caladium,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates.
+singonio,Syngonium podophyllum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/arrowhead-vine,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/arrowhead-vine,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting",Insoluble calcium oxalates. ASPCA: Arrowhead Vine.
+aglaonema,Aglaonema commutatum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chinese-evergreen,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chinese-evergreen,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates. ASPCA: Chinese Evergreen.
+costilla-adan,Monstera adansonii,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cutleaf-philodendron,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Genus-inheritance from Monstera deliciosa. ASPCA lists Monstera genus (Cutleaf Philodendron). Insoluble calcium oxalates.
+difenbaquia,Dieffenbachia seguine,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dumbcane,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dumbcane,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting; Difficulty swallowing",Insoluble calcium oxalates. ASPCA: Dumbcane / Dieffenbachia.
+begonia-rex,Begonia rex,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/begonia,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/begonia,"Vomiting; Salivation","Vomiting; Salivation",ASPCA: Begonia. Soluble calcium oxalates (most concentrated in roots).
+croton,Codiaeum variegatum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/croton,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/croton,"Vomiting; Diarrhea; Abdominal pain; Depression","Vomiting; Diarrhea; Abdominal pain; Depression",ASPCA: Croton. Diterpene esters.
+fitonia,Fittonia albivenis,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mosaic-plant,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mosaic-plant,,,ASPCA: Mosaic Plant (Fittonia). Non-toxic.
+ficus-lyrata,Ficus lyrata,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fiddle-leaf-fig,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fiddle-leaf-fig,"Vomiting; Diarrhea; Excessive drooling","Vomiting; Diarrhea; Excessive drooling",ASPCA: Fiddle Leaf Fig. Ficin (proteolytic enzyme). Genus-inheritance from Ficus benjamina pattern.
+maranta,Maranta leuconeura,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/prayer-plant,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/prayer-plant,,,ASPCA: Prayer Plant. Non-toxic.
+zamioculca,Zamioculcas zamiifolia,interior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zz-plant,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/zz-plant,"Vomiting; Diarrhea; Mild GI upset","Vomiting; Diarrhea; Mild GI upset",ASPCA: ZZ Plant. Calcium oxalate crystals (less severe than Dieffenbachia-type).
+cola-burro,Sedum morganianum,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burro-tail,,,ASPCA: Burro Tail (Sedum morganianum). Non-toxic.
+hiedra,Hedera helix,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy,"Vomiting; Abdominal pain; Hypersalivation; Diarrhea","Vomiting; Abdominal pain; Hypersalivation; Diarrhea",ASPCA: English Ivy. Triterpenoid saponins (hederagenin) and polyacetylene compounds.
+palmera-areca,Dypsis lutescens,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/areca-palm,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/areca-palm,,,ASPCA: Areca Palm. Non-toxic.
+palmera-kentia,Howea forsteriana,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kentia-palm,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kentia-palm,,,ASPCA: Kentia Palm. Non-toxic.
+helecho-boston,Nephrolepis exaltata,interior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/boston-fern,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/boston-fern,,,ASPCA: Boston Fern. Non-toxic.
+helecho-nido,Asplenium nidus,interior,safe,,safe,,,,Not specifically listed by ASPCA. Asplenium genus ferns are generally considered non-toxic. Classification based on veterinary consensus for the Asplenium genus.
+pilea,Pilea peperomioides,interior,safe,,safe,,,,Not specifically listed by ASPCA. Pilea genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+tradescantia,Tradescantia zebrina,interior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wandering-jew,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/wandering-jew,"Mild GI signs; Dermatitis","Mild GI signs; Dermatitis",ASPCA: Wandering Jew (Tradescantia). Mild dermatitis from plant sap.
+cheflera,Heptapleurum arboricola,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/umbrella-tree,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/umbrella-tree,"Vomiting; Diarrhea; Excessive drooling; Weakness","Vomiting; Diarrhea; Excessive drooling; Weakness",ASPCA: Umbrella Tree (Schefflera / Heptapleurum). Calcium oxalate crystals and terpenoids.
+arbol-dinero,Pachira aquatica,interior,safe,,safe,,,,Not specifically listed by ASPCA. Pachira aquatica (Money Tree) is widely considered non-toxic to pets by veterinary sources. Classification based on veterinary consensus.
+nopal,Opuntia ficus-indica,suculentas,safe,,safe,,,,Not in ASPCA plant list. Opuntia cacti are generally considered non-toxic. Spines are physical hazard. Classification based on veterinary consensus.
+mammillaria,Mammillaria elongata,suculentas,safe,,safe,,,,Not in ASPCA plant list. Mammillaria genus cacti are generally considered non-toxic. Spines are physical hazard. Classification based on veterinary consensus.
+cactus-navidad,Schlumbergera × buckleyi,suculentas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/christmas-cactus,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/christmas-cactus,,,ASPCA: Christmas Cactus (Schlumbergera). Non-toxic.
+kalanchoe,Kalanchoe blossfeldiana,suculentas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe,"Vomiting; Diarrhea; Abnormal heart rhythm; Weakness; Collapse","Vomiting; Diarrhea; Abnormal heart rhythm; Weakness; Collapse",Bufadienolide cardiac glycosides. ASPCA: Kalanchoe.
+siempreviva,Sempervivum tectorum,suculentas,safe,,safe,,,,Not specifically in ASPCA. Sempervivum genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+gasteria,Gasteria bicolor,suculentas,safe,,safe,,,,Not specifically in ASPCA. Gasteria genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+piedras-vivas,Lithops lesliei,suculentas,safe,,safe,,,,Not in ASPCA plant list. Lithops genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+senecio-rowleyanus,Curio rowleyanus,suculentas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/string-of-pearls,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/string-of-pearls,"Vomiting; Diarrhea; Lethargy; Drooling","Vomiting; Diarrhea; Lethargy; Drooling",ASPCA: String of Pearls (Curio rowleyanus / Senecio rowleyanus). Toxic alkaloids.
+corona-espinas,Euphorbia milii,suculentas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/crown-of-thorns,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/crown-of-thorns,"Vomiting; Diarrhea; Dermatitis; Eye irritation","Vomiting; Diarrhea; Dermatitis; Eye irritation",ASPCA: Crown of Thorns. Milky latex (diterpene esters). Physical thorn hazard.
+agave,Agave americana,suculentas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/agave,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/agave,"GI irritation; Vomiting; Diarrhea","GI irritation; Vomiting; Diarrhea",ASPCA: Agave. Oxalate crystals and isoflavones. Physical spine hazard.
+hoya,Hoya kerrii,interior,safe,,safe,,,,Not specifically in ASPCA. Hoya genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+mini-monstera,Rhaphidophora tetrasperma,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron,"Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting","Oral irritation; Intense burning of mouth, lips, tongue; Excessive drooling; Vomiting",Genus-inheritance — Rhaphidophora is Araceae family with insoluble calcium oxalates same as Philodendron/Monstera. ASPCA treats Araceae genus-level.
+strelitzia,Strelitzia reginae,interior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bird-of-paradise,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bird-of-paradise,"Mild nausea; Drowsiness","Mild nausea; Drowsiness",ASPCA: Bird of Paradise (Strelitzia). Mildly toxic.
+eucalipto,Eucalyptus citriodora,aromaticas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/eucalyptus,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/eucalyptus,"Salivation; Vomiting; Diarrhea; Depression; Weakness","Salivation; Vomiting; Diarrhea; Depression; Weakness",ASPCA: Eucalyptus. Eucalyptol (essential oil). Genus-inheritance for E. citriodora.
+bambu-suerte,Dracaena sanderiana,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lucky-bamboo,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lucky-bamboo,"Vomiting; Incoordination; Weakness; Dilated pupils (cats)","Vomiting; Incoordination; Weakness",ASPCA: Lucky Bamboo (Dracaena sanderiana). Saponins. Dilated pupils noted specifically in cats.
+sansevieria-cilindrica,Dracaena angolensis,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant,"Nausea; Vomiting; Diarrhea","Nausea; Vomiting; Diarrhea",Genus-inheritance from Dracaena trifasciata (Snake Plant). Same Dracaena genus treatment for saponins.
+cactus-san-pedro,Echinopsis pachanoi,suculentas,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peyote,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peyote,"Vomiting; Diarrhea; Agitation; Disorientation; Tremors","Vomiting; Diarrhea; Agitation; Disorientation; Tremors",Mescaline alkaloids (same family as Lophophora williamsii). ASPCA lists Echinopsis/mescaline cacti as toxic. Classification based on alkaloid content.
+tulipan,Tulipa gesneriana,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulip,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulip,"Vomiting; Depression; Diarrhea; Hypersalivation; Drooling","Vomiting; Depression; Diarrhea; Hypersalivation; Drooling",ASPCA: Tulip (Tulipalin A most concentrated in bulb).
+ciclamen,Cyclamen persicum,interior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cyclamen,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cyclamen,"Vomiting; Diarrhea; Hypersalivation; Abnormal heart rhythm; Seizures; Death (large amounts)","Vomiting; Diarrhea; Hypersalivation; Abnormal heart rhythm; Seizures; Death (large amounts)",ASPCA: Cyclamen. Cyclamin (terpenoid saponin) most concentrated in tubers.
+crisantemo,Chrysanthemum × morifolium,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum,"Vomiting; Diarrhea; Hypersalivation; Incoordination; Dermatitis","Vomiting; Diarrhea; Hypersalivation; Incoordination; Dermatitis",ASPCA: Chrysanthemum. Pyrethrins and sesquiterpene lactones.
+azalea,Rhododendron simsii,exterior,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea,toxic,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea,"Vomiting; Diarrhea; Hypersalivation; CNS depression; Cardiovascular collapse; Death","Vomiting; Diarrhea; Hypersalivation; CNS depression; Cardiovascular collapse; Death",ASPCA: Azalea/Rhododendron. Grayanotoxins. Highly toxic — even small amounts dangerous.
+clavel,Dianthus caryophyllus,exterior,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation,"Mild GI signs; Dermatitis; Vomiting","Mild GI signs; Dermatitis; Vomiting",ASPCA: Carnation (Dianthus). Mildly toxic.
+fucsia,Fuchsia magellanica,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fuchsia,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fuchsia,,,ASPCA: Fuchsia. Non-toxic.
+girasol,Helianthus annuus,exterior,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower,,,ASPCA: Sunflower. Non-toxic.
+magnolia,Magnolia stellata,exterior,safe,,safe,,,,Not specifically in ASPCA. Magnolia genus is generally considered non-toxic to pets. Classification based on veterinary consensus.
+salvia-officinalis,Salvia officinalis,aromaticas,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sage,caution,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sage,"Mild GI upset; Vomiting","Mild GI upset; Vomiting",ASPCA: Sage (Salvia officinalis). Essential oils. Mild GI effects at large quantities.
+eneldo,Anethum graveolens,aromaticas,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dill,safe,https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dill,,,ASPCA: Dill. Non-toxic.
+stevia,Stevia rebaudiana,aromaticas,safe,,safe,,,,Not in ASPCA plant list. Stevia is widely considered safe for pets. Classification based on veterinary consensus.
+olivo,Olea europaea,frutales,safe,,safe,,,,Not in ASPCA plant list. Olea europaea (olive tree) is generally considered non-toxic to pets. Leaves/fruit non-toxic.
+arandano,Vaccinium corymbosum,frutales,safe,,safe,,,,Not in ASPCA plant list. Vaccinium/blueberry is generally considered safe for pets. Fruit non-toxic.
+espinaca,Spinacia oleracea,huerta,safe,,safe,,,,Not in ASPCA plant list. Spinach is generally considered safe for pets in moderate amounts. Classification based on veterinary consensus.
