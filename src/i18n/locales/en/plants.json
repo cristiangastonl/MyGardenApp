@@ -34,7 +34,25 @@
       "High shelf where its trailing vines can hang"
     ],
     "placementAvoid": "Direct midday sun — it scorches variegated leaves.",
-    "whyRationale": "It's a tropical understory climber: in its habitat it grows beneath the canopy, so it needs filtered light and consistent humidity. Its shade tolerance comes from adapting to the rainforest floor."
+    "whyRationale": "It's a tropical understory climber: in its habitat it grows beneath the canopy, so it needs filtered light and consistent humidity. Its shade tolerance comes from adapting to the rainforest floor.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "monstera": {
     "name": "Monstera",
@@ -70,7 +88,25 @@
       "Near an east-facing window (gentle morning sun)"
     ],
     "placementAvoid": "Direct midday sun and cold drafts.",
-    "whyRationale": "Native to Central American tropical rainforest, it grows as a hemiepiphyte climbing trees to reach filtered light. Its leaf fenestrations only develop with bright light — that's how it resists winds and shares light with lower leaves."
+    "whyRationale": "Native to Central American tropical rainforest, it grows as a hemiepiphyte climbing trees to reach filtered light. Its leaf fenestrations only develop with bright light — that's how it resists winds and shares light with lower leaves.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "ficus": {
     "name": "Ficus",
@@ -106,7 +142,21 @@
       "Near an east- or west-facing window"
     ],
     "placementAvoid": "Drafts and frequent location changes.",
-    "whyRationale": "Native to monsoon Southeast Asia, it's adapted to filtered light and stable temperatures. Old leaves don't reacclimate well: it sheds foliage when it detects sudden shifts in light, temperature, or watering."
+    "whyRationale": "Native to monsoon Southeast Asia, it's adapted to filtered light and stable temperatures. Old leaves don't reacclimate well: it sheds foliage when it detects sudden shifts in light, temperature, or watering.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling"
+        ]
+      }
+    }
   },
   "sansevieria": {
     "name": "Snake Plant",
@@ -144,7 +194,21 @@
       "Bedroom with little natural light"
     ],
     "placementAvoid": "Constantly moist substrate and pots without drainage.",
-    "whyRationale": "Native to arid regions of West Africa, its succulent leaves store water and withstand long droughts. Its CAM metabolism (nighttime photosynthesis) lets it tolerate low light and missed waterings."
+    "whyRationale": "Native to arid regions of West Africa, its succulent leaves store water and withstand long droughts. Its CAM metabolism (nighttime photosynthesis) lets it tolerate low light and missed waterings.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "orquidea": {
     "name": "Orchid",
@@ -326,7 +390,25 @@
       "Kitchen counter with direct morning sun"
     ],
     "placementAvoid": "Dark spots without sun — it weakens and stretches.",
-    "whyRationale": "It's a succulent native to the Arabian Peninsula and North Africa, adapted to arid climates with intense sun. Its fleshy leaves store water and gel for long droughts. Its only real vulnerability is rot from overwatering."
+    "whyRationale": "It's a succulent native to the Arabian Peninsula and North Africa, adapted to arid climates with intense sun. Its fleshy leaves store water and gel for long droughts. Its only real vulnerability is rot from overwatering.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Lethargy",
+          "Depression",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Lethargy",
+          "Depression",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "lavanda-angustifolia": {
     "name": "English Lavender",
@@ -362,7 +444,19 @@
       "Large pot with sandy substrate and gravel at the bottom"
     ],
     "placementAvoid": "Waterlogged clay soil and damp shade — root rot.",
-    "whyRationale": "Native to the Mediterranean, it evolved in dry calcareous soils with intense sun. It's the most cold-hardy of the three lavenders: it withstands hard frosts down to -15°C thanks to its compact tissues and protective essential oils."
+    "whyRationale": "Native to the Mediterranean, it evolved in dry calcareous soils with intense sun. It's the most cold-hardy of the three lavenders: it withstands hard frosts down to -15°C thanks to its compact tissues and protective essential oils.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "lavanda-stoechas": {
     "name": "French Lavender",
@@ -393,7 +487,19 @@
       "Pot on a balcony sheltered from cold wind"
     ],
     "placementAvoid": "Hard frosts without protection — doesn't tolerate below -5°C.",
-    "whyRationale": "Endemic to the western Mediterranean, its \"rabbit ear\" bracts work as reflectors that attract pollinators from afar. More heat-loving than English lavender, it blooms intensely in spring but doesn't withstand hard frosts."
+    "whyRationale": "Endemic to the western Mediterranean, its \"rabbit ear\" bracts work as reflectors that attract pollinators from afar. More heat-loving than English lavender, it blooms intensely in spring but doesn't withstand hard frosts.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "lavanda-dentada": {
     "name": "Fringed Lavender",
@@ -424,7 +530,19 @@
       "Garden bed against a south-facing wall"
     ],
     "placementAvoid": "Hard frosts and heavy soils — it's the most delicate of the lavenders.",
-    "whyRationale": "Native to the warm Mediterranean (southern Spain, North Africa), it evolved in mild climates without harsh frosts. Its toothed, aromatic leaves have more surface area of essential oils — more fragrance, but less cold tolerance."
+    "whyRationale": "Native to the warm Mediterranean (southern Spain, North Africa), it evolved in mild climates without harsh frosts. Its toothed, aromatic leaves have more surface area of essential oils — more fragrance, but less cold tolerance.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "petunia": {
     "name": "Petunia",
@@ -498,7 +616,23 @@
       "Patio with filtered light and ambient humidity"
     ],
     "placementAvoid": "Midday sun and dry soil — leaves wilt instantly.",
-    "whyRationale": "Native to East Asia (Japan, Korea), it evolved in humid valleys of deciduous forest. The blue-vs-pink color shift by pH is real chemistry: anthocyanins change with aluminum availability, which the plant only absorbs in acidic soil."
+    "whyRationale": "Native to East Asia (Japan, Korea), it evolved in humid valleys of deciduous forest. The blue-vs-pink color shift by pH is real chemistry: anthocyanins change with aluminum availability, which the plant only absorbs in acidic soil.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "jazmin": {
     "name": "Jasmine",
@@ -572,7 +706,23 @@
       "Sunny garden bed with well-drained soil"
     ],
     "placementAvoid": "Shade and constantly wet soil — stems turn black.",
-    "whyRationale": "Native to South Africa (the Cape region), it evolved in a Mediterranean climate with dry summers and mild winters. Its succulent stems store water and let it survive droughts; that's why excess watering is its main cause of death in pots."
+    "whyRationale": "Native to South Africa (the Cape region), it evolved in a Mediterranean climate with dry summers and mild winters. Its succulent stems store water and let it survive droughts; that's why excess watering is its main cause of death in pots.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Lethargy",
+          "Loss of appetite",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Lethargy",
+          "Loss of appetite",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "albahaca": {
     "name": "Basil",
@@ -683,7 +833,21 @@
       "Container bed with other moisture-loving herbs"
     ],
     "placementAvoid": "Planting directly in the garden — its runners take over the space.",
-    "whyRationale": "A humid-subtropical perennial with very aggressive stoloniferous roots. It evolved along stream banks where constant moisture and lateral spread give it a competitive edge. That's why it always belongs in a pot."
+    "whyRationale": "A humid-subtropical perennial with very aggressive stoloniferous roots. It evolved along stream banks where constant moisture and lateral spread give it a competitive edge. That's why it always belongs in a pot.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "GI upset",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "GI upset",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "tomatera": {
     "name": "Tomato Plant",
@@ -720,7 +884,25 @@
       "Vertical planter with staking system"
     ],
     "placementAvoid": "Late frost and partial shade — won't fruit without ≥18°C nights.",
-    "whyRationale": "An annual Andean Solanaceae (South America), domesticated some 7,000 years ago. Fruit set depends on sustained warmth and full light; irregular watering causes fruit cracking and blossom end rot from calcium starvation."
+    "whyRationale": "An annual Andean Solanaceae (South America), domesticated some 7,000 years ago. Fruit set depends on sustained warmth and full light; irregular watering causes fruit cracking and blossom end rot from calcium starvation.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Hypersalivation",
+          "Inappetence",
+          "Severe GI upset",
+          "Diarrhea",
+          "Drowsiness"
+        ],
+        "dogs": [
+          "Hypersalivation",
+          "Inappetence",
+          "Severe GI upset",
+          "Diarrhea",
+          "Drowsiness"
+        ]
+      }
+    }
   },
   "pimiento": {
     "name": "Pepper Plant",
@@ -757,7 +939,21 @@
       "Warm, bright balcony planter"
     ],
     "placementAvoid": "Shade and late frost — fruits stay green or flowers drop.",
-    "whyRationale": "An annual Solanaceae from the Andes and Central America. Its hot or sweet fruits (capsaicin) evolved as a defense against mammals. It needs ≥18°C nights and pollinators so flowers set instead of dropping."
+    "whyRationale": "An annual Solanaceae from the Andes and Central America. Its hot or sweet fruits (capsaicin) evolved as a defense against mammals. It needs ≥18°C nights and pollinators so flowers set instead of dropping.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "GI irritation",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "GI irritation",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "frutilla": {
     "name": "Strawberry",
@@ -831,7 +1027,23 @@
       "Glassed-in porch or greenhouse in frost-prone areas"
     ],
     "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and develops chronic chlorosis.",
-    "whyRationale": "A citrus from the Rutaceae family, native to Southeast Asia. Unlike the orange tree, it fruits almost continuously in subtropical climates. Iron chlorosis on alkaline soils reflects its constant need for micronutrients."
+    "whyRationale": "A citrus from the Rutaceae family, native to Southeast Asia. Unlike the orange tree, it fruits almost continuously in subtropical climates. Iron chlorosis on alkaline soils reflects its constant need for micronutrients.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ]
+      }
+    }
   },
   "suculenta-generica": {
     "name": "Succulent",
@@ -979,7 +1191,25 @@
       "Office away from windows"
     ],
     "placementAvoid": "Direct sun and tap water with high chlorine.",
-    "whyRationale": "Native to the tropical understory of Colombia and Venezuela, it evolved beneath dense rainforest canopy. That's why it blooms in shade — rare among houseplants — and signals thirst dramatically: leaves collapse and recover within hours of watering."
+    "whyRationale": "Native to the tropical understory of Colombia and Venezuela, it evolved beneath dense rainforest canopy. That's why it blooms in shade — rare among houseplants — and signals thirst dramatically: leaves collapse and recover within hours of watering.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "dracaena": {
     "name": "Dracaena",
@@ -1016,7 +1246,24 @@
       "Room with light filtered by curtains"
     ],
     "placementAvoid": "Prolonged direct sun and tap water with fluoride.",
-    "whyRationale": "Native to East Africa, it evolved on rainforest edges and wooded savannas with filtered light. It's fluoride-sensitive because its native zone has naturally soft water. Brown tips signal mineral-salt buildup that the roots can't process."
+    "whyRationale": "Native to East Africa, it evolved on rainforest edges and wooded savannas with filtered light. It's fluoride-sensitive because its native zone has naturally soft water. Brown tips signal mineral-salt buildup that the roots can't process.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting (occasionally with blood)",
+          "Anorexia",
+          "Depression",
+          "Hypersalivation",
+          "Dilated pupils (cats)"
+        ],
+        "dogs": [
+          "Vomiting (occasionally with blood)",
+          "Anorexia",
+          "Depression",
+          "Hypersalivation"
+        ]
+      }
+    }
   },
   "filodendro": {
     "name": "Philodendron",
@@ -1053,7 +1300,25 @@
       "Hanging basket near a window"
     ],
     "placementAvoid": "Direct sun and dark corners without natural light.",
-    "whyRationale": "It's a tropical Central American hemiepiphyte: in its habitat it climbs trunks toward the light, growing larger leaves as it rises. That's why a moss pole lets it express its adult form — without it, leaves stay small."
+    "whyRationale": "It's a tropical Central American hemiepiphyte: in its habitat it climbs trunks toward the light, growing larger leaves as it rises. That's why a moss pole lets it express its adult form — without it, leaves stay small.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Pain and swelling of mouth, tongue, lips",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Pain and swelling of mouth, tongue, lips",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "jade": {
     "name": "Jade Plant",
@@ -1089,7 +1354,23 @@
       "Bright shelf near an east-facing window"
     ],
     "placementAvoid": "Constantly damp soil and deep shade without light.",
-    "whyRationale": "It's a South African succulent, adapted to semi-arid climates with seasonal droughts. Its leaves and trunk store water — that's why it lives for decades on minimal watering. Its anatomy is designed for scarcity, not abundance: excess water rots it."
+    "whyRationale": "It's a South African succulent, adapted to semi-arid climates with seasonal droughts. Its leaves and trunk store water — that's why it lives for decades on minimal watering. Its anatomy is designed for scarcity, not abundance: excess water rots it.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Depression",
+          "Ataxia",
+          "Bradycardia"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Depression",
+          "Ataxia",
+          "Bradycardia"
+        ]
+      }
+    }
   },
   "peperomia": {
     "name": "Peperomia",
@@ -1199,7 +1480,21 @@
       "Large pot (min. 50L) on a sunny terrace"
     ],
     "placementAvoid": "Frost and excess water — drops bracts and stays plain green.",
-    "whyRationale": "Native to tropical South America (Brazil, Peru), it evolved in seasonally dry forest. Its colorful bracts aren't flowers but modified leaves protecting the tiny flowers within — they attract birds and butterflies while confusing herbivores."
+    "whyRationale": "Native to tropical South America (Brazil, Peru), it evolved in seasonally dry forest. Its colorful bracts aren't flowers but modified leaves protecting the tiny flowers within — they attract birds and butterflies while confusing herbivores.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "hibisco": {
     "name": "Hibiscus",
@@ -1236,7 +1531,23 @@
       "Patio sheltered from cold wind"
     ],
     "placementAvoid": "Frost (below 10°C) and sudden relocation — drops buds.",
-    "whyRationale": "Native to tropical Asia (China, India), it evolved in warm climates without true winter. Each flower lasts a day: the strategy is to produce large showy flowers in continuous succession to attract hummingbirds and tropical bees."
+    "whyRationale": "Native to tropical Asia (China, India), it evolved in warm climates without true winter. Each flower lasts a day: the strategy is to produce large showy flowers in continuous succession to attract hummingbirds and tropical bees.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting",
+          "Anorexia",
+          "Lethargy"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting",
+          "Anorexia",
+          "Lethargy"
+        ]
+      }
+    }
   },
   "margarita": {
     "name": "Daisy",
@@ -1273,7 +1584,25 @@
       "Mixed border alongside other perennials"
     ],
     "placementAvoid": "Dense shade and waterlogged soil — weak stems and powdery mildew.",
-    "whyRationale": "A perennial native to central and southern Europe, it evolved in temperate montane grasslands. Dividing the clump every 2-3 years mimics the natural rejuvenation by low-intensity fires that cleared its native habitat."
+    "whyRationale": "A perennial native to central and southern Europe, it evolved in temperate montane grasslands. Dividing the clump every 2-3 years mimics the natural rejuvenation by low-intensity fires that cleared its native habitat.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Incoordination",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Incoordination",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "perejil": {
     "name": "Parsley",
@@ -1310,7 +1639,19 @@
       "Morning-sun balcony planter"
     ],
     "placementAvoid": "Full summer sun without watering — bolts to flower fast.",
-    "whyRationale": "A biennial native to the eastern Mediterranean, it prefers cool weather. It flowers in its second year (hence 'biennial'); home gardeners resow each season. Seeds germinate slowly because their oils delay sprouting."
+    "whyRationale": "A biennial native to the eastern Mediterranean, it prefers cool weather. It flowers in its second year (hence 'biennial'); home gardeners resow each season. Seeds germinate slowly because their oils delay sprouting.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "GI upset",
+          "Photosensitization (large quantities)"
+        ],
+        "dogs": [
+          "GI upset",
+          "Photosensitization (large quantities)"
+        ]
+      }
+    }
   },
   "oregano": {
     "name": "Oregano",
@@ -1347,7 +1688,21 @@
       "Warm, sunny wall planter"
     ],
     "placementAvoid": "Deep shade and waterlogged soil — weak flavor and fungus.",
-    "whyRationale": "A Mediterranean perennial adapted to rocky hillsides with dry summers. Water stress concentrates the essential oils — sparse watering yields more flavor than heavy feeding. It tolerates frost and extreme heat with almost no care."
+    "whyRationale": "A Mediterranean perennial adapted to rocky hillsides with dry summers. Water stress concentrates the essential oils — sparse watering yields more flavor than heavy feeding. It tolerates frost and extreme heat with almost no care.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "GI upset",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "GI upset",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "cilantro": {
     "name": "Cilantro",
@@ -1421,7 +1776,19 @@
       "Dry bed border as ground cover"
     ],
     "placementAvoid": "Heavy clay and damp soil — root rot is almost certain.",
-    "whyRationale": "A Mediterranean perennial subshrub with tiny leaves. Its essential oils (thymol) concentrate under drought and full sun; ample watering dilutes the aroma. It tolerates frost but dies from excess moisture."
+    "whyRationale": "A Mediterranean perennial subshrub with tiny leaves. Its essential oils (thymol) concentrate under drought and full sun; ample watering dilutes the aroma. It tolerates frost but dies from excess moisture.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI upset",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Mild GI upset",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "lechuga": {
     "name": "Lettuce",
@@ -1606,7 +1973,23 @@
       "Glassed-in porch in frost-prone areas"
     ],
     "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and flowers fall to chlorosis.",
-    "whyRationale": "A citrus from the Rutaceae family, native to subtropical China. Harvest is seasonal (autumn-winter) and fruit sweetness requires sustained heat. Iron chlorosis on alkaline soil is the most common failure — needs regular micronutrients."
+    "whyRationale": "A citrus from the Rutaceae family, native to subtropical China. Harvest is seasonal (autumn-winter) and fruit sweetness requires sustained heat. Iron chlorosis on alkaline soil is the most common failure — needs regular micronutrients.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ]
+      }
+    }
   },
   "aguacate": {
     "name": "Avocado",
@@ -1643,7 +2026,25 @@
       "Warm patio sheltered from frost"
     ],
     "placementAvoid": "Waterlogged soil and frost below 10°C (50°F) — root rot is the most common cause of death.",
-    "whyRationale": "Lauraceae, native to Mesoamerica. Takes 3-7 years to fruit and needs cross-pollination (type A and B varieties). Roots are shallow — lack of oxygen from waterlogging kills more plants than drought."
+    "whyRationale": "Lauraceae, native to Mesoamerica. Takes 3-7 years to fruit and needs cross-pollination (type A and B varieties). Roots are shallow — lack of oxygen from waterlogging kills more plants than drought.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Breathing difficulty",
+          "Fluid accumulation around heart",
+          "Congestion"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Breathing difficulty",
+          "Fluid accumulation around heart",
+          "Congestion"
+        ]
+      }
+    }
   },
   "higuera": {
     "name": "Fig Tree",
@@ -1680,7 +2081,25 @@
       "Next to a north-facing wall that holds heat"
     ],
     "placementAvoid": "Strong wind and pruning during sap flow — the white latex irritates skin and wounds heal slowly.",
-    "whyRationale": "Moraceae, deciduous Mediterranean tree. Yields two crops in a good year: brebas in spring (on old wood) and figs in summer (on new shoots). White latex is the family hallmark; tolerates poor soils and dry summers."
+    "whyRationale": "Moraceae, deciduous Mediterranean tree. Yields two crops in a good year: brebas in spring (on old wood) and figs in summer (on new shoots). White latex is the family hallmark; tolerates poor soils and dry summers.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Agitation",
+          "Crying",
+          "Hypersalivation",
+          "Dermatitis",
+          "Pawing at face"
+        ],
+        "dogs": [
+          "Agitation",
+          "Crying",
+          "Hypersalivation",
+          "Dermatitis",
+          "Pawing at face"
+        ]
+      }
+    }
   },
   "mandarino": {
     "name": "Mandarin Tree",
@@ -1717,7 +2136,23 @@
       "Glassed-in porch in frost-prone areas"
     ],
     "placementAvoid": "Hard frosts (<-3°C / 27°F) and alkaline soil — drops leaves and develops chronic chlorosis.",
-    "whyRationale": "Rutaceae, native to Southeast Asia. More compact than the orange tree, with sweet fruit and thin peel. Harvest is seasonal, generally earlier than the orange. Shares the family-wide sensitivity to iron chlorosis on alkaline soil."
+    "whyRationale": "Rutaceae, native to Southeast Asia. More compact than the orange tree, with sweet fruit and thin peel. Harvest is seasonal, generally earlier than the orange. Shares the family-wide sensitivity to iron chlorosis on alkaline soil.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Photosensitivity"
+        ]
+      }
+    }
   },
   "zapallito": {
     "name": "Summer Squash",
@@ -1791,7 +2226,25 @@
       "Vegetable bed border as a carrot companion"
     ],
     "placementAvoid": "Full summer sun without watering — yellow tips and weak stems.",
-    "whyRationale": "A perennial Allium of cool temperate zones in the northern hemisphere. Its vigorous regrowth after cutting (similar to grass) makes it inexhaustible; the underground bulb survives hard frost and resprouts in spring."
+    "whyRationale": "A perennial Allium of cool temperate zones in the northern hemisphere. Its vigorous regrowth after cutting (similar to grass) makes it inexhaustible; the underground bulb survives hard frost and resprouts in spring.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea",
+          "Anemia",
+          "Lethargy"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea",
+          "Anemia",
+          "Lethargy"
+        ]
+      }
+    }
   },
   "haworthia": {
     "name": "Haworthia",
@@ -1828,7 +2281,21 @@
       "Bathroom with indirect light — tolerates ambient humidity"
     ],
     "placementAvoid": "Intense direct sun and constantly wet soil — the first burns the leaves, the second rots the base.",
-    "whyRationale": "Asphodelaceae, native to semi-arid South Africa with partial shade. Its translucent tips (windows) allow photosynthesis inside the leaf — a rare adaptation that makes it shade-tolerant. Still uses CAM and stores water."
+    "whyRationale": "Asphodelaceae, native to semi-arid South Africa with partial shade. Its translucent tips (windows) allow photosynthesis inside the leaf — a rare adaptation that makes it shade-tolerant. Still uses CAM and stores water.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI upset",
+          "Vomiting",
+          "Soft stools"
+        ],
+        "dogs": [
+          "Mild GI upset",
+          "Vomiting",
+          "Soft stools"
+        ]
+      }
+    }
   },
   "sedum": {
     "name": "Burro's Tail",
@@ -1901,7 +2368,23 @@
       "Bright corner with very strong indirect light"
     ],
     "placementAvoid": "Dark corners — it stretches looking for light and loses its form.",
-    "whyRationale": "Native to semi-arid zones of Mexico and Central America, it evolved to tolerate intense sun, droughts, and poor soils. Its woody trunk stores reserves to withstand extreme conditions. Its only real weak point is rot from overwatering."
+    "whyRationale": "Native to semi-arid zones of Mexico and Central America, it evolved to tolerate intense sun, droughts, and poor soils. Its woody trunk stores reserves to withstand extreme conditions. Its only real weak point is rot from overwatering.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "jacaranda": {
     "name": "Jacaranda",
@@ -1963,7 +2446,23 @@
       "Sunny bed with regular watering"
     ],
     "placementAvoid": "Dense shade and prolonged dry soil — few flowers and weak stems.",
-    "whyRationale": "Argentina's national flower, native to the riverbanks of the NEA and southern Brazil. Its scarlet bloom attracts migrating hummingbirds; its roots have nitrogen-fixing nodules that let it grow in poor riverside soils."
+    "whyRationale": "Argentina's national flower, native to the riverbanks of the NEA and southern Brazil. Its scarlet bloom attracts migrating hummingbirds; its roots have nitrogen-fixing nodules that let it grow in poor riverside soils.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Muscle weakness",
+          "Paralysis",
+          "Tremors",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Muscle weakness",
+          "Paralysis",
+          "Tremors",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "glicina": {
     "name": "Wisteria",
@@ -1994,7 +2493,23 @@
       "Brick wall with metal anchors"
     ],
     "placementAvoid": "Fragile structures and proximity to pipes — enormous weight and invasive roots.",
-    "whyRationale": "A deciduous climber native to China and Japan, it evolved in temperate mountain valleys. Its fragrant violet flowers are bee-pollinated; the winter photoperiod (cold + short days) is required to induce flower buds."
+    "whyRationale": "A deciduous climber native to China and Japan, it evolved in temperate mountain valleys. Its fragrant violet flowers are bee-pollinated; the winter photoperiod (cold + short days) is required to induce flower buds.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Hypersalivation"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Hypersalivation"
+        ]
+      }
+    }
   },
   "gardenia": {
     "name": "Gardenia",
@@ -2030,7 +2545,23 @@
       "Pot with acid-loving substrate and rainwater"
     ],
     "placementAvoid": "Strong midday sun and chlorinated tap water — chlorosis and bud drop.",
-    "whyRationale": "Native to southern Asia, it evolved in tropical understory with acidic, humid soils. It only absorbs iron and magnesium at pH 5-6: that's why it yellows (chlorosis) in the alkaline soils typical of Buenos Aires without acidification."
+    "whyRationale": "Native to southern Asia, it evolved in tropical understory with acidic, humid soils. It only absorbs iron and magnesium at pH 5-6: that's why it yellows (chlorosis) in the alkaline soils typical of Buenos Aires without acidification.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Hives",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Hives",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "camelia": {
     "name": "Camellia",
@@ -2102,7 +2633,21 @@
       "Large pot (min. 30L) with stake for tall varieties"
     ],
     "placementAvoid": "Late frost on planted tubers — rots them before sprouting.",
-    "whyRationale": "Native to Mexico and Central America, the tubers evolved as reserves to survive the dry season. In cold winters you have to lift them in autumn: hard frosts shatter the cells and rot them before sprouting."
+    "whyRationale": "Native to Mexico and Central America, the tubers evolved as reserves to survive the dry season. In cold winters you have to lift them in autumn: hard frosts shatter the cells and rot them before sprouting.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "salvia-ornamental": {
     "name": "Ornamental Sage",
@@ -2171,7 +2716,25 @@
       "Patio pot with abundant indirect light"
     ],
     "placementAvoid": "Intense direct sun and dry soil — scorched leaves and dormant rhizome.",
-    "whyRationale": "Endemic to South Africa (Cape), it evolved in seasonal wetlands with humid summers and cool winters. The rhizome needs a dry-cold rest period to build up reserves; without that autumn pause, the next bloom will be weak."
+    "whyRationale": "Endemic to South Africa (Cape), it evolved in seasonal wetlands with humid summers and cool winters. The rhizome needs a dry-cold rest period to build up reserves; without that autumn pause, the next bloom will be weak.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "copete": {
     "name": "Marigold",
@@ -2203,7 +2766,21 @@
       "Sunny balcony planter"
     ],
     "placementAvoid": "Shade and waterlogged soil — few flowers and prone to fungus.",
-    "whyRationale": "Native to Mexico and Central America, its roots secrete thiophenes that repel soil nematodes — a natural fungicide. A classic companion for the vegetable garden: protects tomatoes and peppers while attracting pollinators."
+    "whyRationale": "Native to Mexico and Central America, its roots secrete thiophenes that repel soil nematodes — a natural fungicide. A classic companion for the vegetable garden: protects tomatoes and peppers while attracting pollinators.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "verbena": {
     "name": "Verbena",
@@ -2304,19 +2881,54 @@
       "Sunny balcony against a warm wall"
     ],
     "placementAvoid": "Late frost and irregular watering — fruits split when water hits dry soil.",
-    "whyRationale": "A Solanum lycopersicum variant with small fruit and an indeterminate growth habit (it keeps going until frost). Same genetics as the large tomato, but you harvest almost daily; abundant clusters need a tall stake and sucker pruning to focus energy on the fruit."
+    "whyRationale": "A Solanum lycopersicum variant with small fruit and an indeterminate growth habit (it keeps going until frost). Same genetics as the large tomato, but you harvest almost daily; abundant clusters need a tall stake and sucker pruning to focus energy on the fruit.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Hypersalivation",
+          "Inappetence",
+          "Severe GI upset",
+          "Diarrhea",
+          "Drowsiness"
+        ],
+        "dogs": [
+          "Hypersalivation",
+          "Inappetence",
+          "Severe GI upset",
+          "Diarrhea",
+          "Drowsiness"
+        ]
+      }
+    }
   },
   "anthurium": {
     "name": "Anthurium",
     "tip": "Blooms year-round with bright indirect light. Keep soil barely damp.",
     "description": "Anthurium is a tropical aroid with vivid red spathes (also white or pink). Its flowers last for weeks and return continuously with steady light and high humidity. Ideal as a focal point in bright interiors.",
     "problems": [
-      { "symptom": "Yellow leaves", "cause": "Overwatering or pooled water", "solution": "Touch the soil: water only when the top 2 cm are dry; check drainage." },
-      { "symptom": "No flowers", "cause": "Insufficient light", "solution": "Move near a bright indirect window — no direct sun." },
-      { "symptom": "Brown leaf edges", "cause": "Dry air", "solution": "Group with other plants or run a humidifier." }
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or pooled water",
+        "solution": "Touch the soil: water only when the top 2 cm are dry; check drainage."
+      },
+      {
+        "symptom": "No flowers",
+        "cause": "Insufficient light",
+        "solution": "Move near a bright indirect window — no direct sun."
+      },
+      {
+        "symptom": "Brown leaf edges",
+        "cause": "Dry air",
+        "solution": "Group with other plants or run a humidifier."
+      }
     ],
-    "nutrients": { "type": "Phosphorus (bloom)", "homemade": "Chopped banana peel in substrate every 3 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm of soil: if dry, water until it drains." },
+    "nutrients": {
+      "type": "Phosphorus (bloom)",
+      "homemade": "Chopped banana peel in substrate every 3 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm of soil: if dry, water until it drains."
+    },
     "placementRecommended": "Near an east window — bright indirect light and high ambient humidity.",
     "placementAlternatives": [
       "Bright bathroom (natural humidity)",
@@ -2324,19 +2936,52 @@
       "Living room near a humidifier"
     ],
     "placementAvoid": "Midday direct sun — scorches spathes and leaves; dry heater air.",
-    "whyRationale": "Belongs to the Araceae understory of the Amazon — evolved under filtered light and high humidity. Spathes are modified leaves that attract pollinators in dense forest."
+    "whyRationale": "Belongs to the Araceae understory of the Amazon — evolved under filtered light and high humidity. Spathes are modified leaves that attract pollinators in dense forest.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "alocasia": {
     "name": "Alocasia",
     "tip": "Loves high humidity. If it goes dormant in winter, ease off watering — it will return.",
     "description": "Alocasia (elephant ear) is a dramatic aroid with dark leaves and pronounced white veins. Native to tropical Southeast Asia. May drop leaves in winter dormancy — normal; new shoots return in spring.",
     "problems": [
-      { "symptom": "Leaves drop in winter", "cause": "Natural dormancy (not death)", "solution": "Reduce watering to minimum; new shoots return in spring with barely damp soil." },
-      { "symptom": "Brown edges", "cause": "Low ambient humidity", "solution": "Mist the leaves or run a humidifier; group with other plants." },
-      { "symptom": "Sticky spots on leaves", "cause": "Mealybugs or mites", "solution": "Wipe leaves with water and potassium soap once a week." }
+      {
+        "symptom": "Leaves drop in winter",
+        "cause": "Natural dormancy (not death)",
+        "solution": "Reduce watering to minimum; new shoots return in spring with barely damp soil."
+      },
+      {
+        "symptom": "Brown edges",
+        "cause": "Low ambient humidity",
+        "solution": "Mist the leaves or run a humidifier; group with other plants."
+      },
+      {
+        "symptom": "Sticky spots on leaves",
+        "cause": "Mealybugs or mites",
+        "solution": "Wipe leaves with water and potassium soap once a week."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK (growth)", "homemade": "Compost tea every 3 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; reduce drastically in winter." },
+    "nutrients": {
+      "type": "Balanced NPK (growth)",
+      "homemade": "Compost tea every 3 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry; reduce drastically in winter."
+    },
     "placementRecommended": "Near a bright window with a sheer curtain — bright indirect light and high humidity.",
     "placementAlternatives": [
       "Bathroom with natural light",
@@ -2344,19 +2989,54 @@
       "1 m from an east-facing window"
     ],
     "placementAvoid": "Cold drafts and direct sun — both damage the showcase leaves.",
-    "whyRationale": "Tropical aroid from Borneo and Philippine understories — its large leaves capture filtered light and the pale veins reflect capillary humidity."
+    "whyRationale": "Tropical aroid from Borneo and Philippine understories — its large leaves capture filtered light and the pale veins reflect capillary humidity.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "caladium": {
     "name": "Caladium",
     "tip": "Patterned leaves last spring through fall. Winter dormancy: let the tuber dry out.",
     "description": "Caladium (Caladium bicolor) has heart-shaped leaves splashed with pink, white, or deep red. It's a tropical tuber: it drops all leaves in winter and re-sprouts from the bulb in spring if kept warm and nearly dry.",
     "problems": [
-      { "symptom": "Wilting or fading leaves", "cause": "Dry substrate during active growth", "solution": "Keep soil barely damp in warm season — the active tuber needs steady water." },
-      { "symptom": "Leaves lost in winter", "cause": "Natural tuber dormancy", "solution": "Reduce watering to minimum; store the pot warm and dark until spring." },
-      { "symptom": "Brown edges", "cause": "Dry air", "solution": "Mist the surrounding area (not the leaves directly) or run a humidifier." }
+      {
+        "symptom": "Wilting or fading leaves",
+        "cause": "Dry substrate during active growth",
+        "solution": "Keep soil barely damp in warm season — the active tuber needs steady water."
+      },
+      {
+        "symptom": "Leaves lost in winter",
+        "cause": "Natural tuber dormancy",
+        "solution": "Reduce watering to minimum; store the pot warm and dark until spring."
+      },
+      {
+        "symptom": "Brown edges",
+        "cause": "Dry air",
+        "solution": "Mist the surrounding area (not the leaves directly) or run a humidifier."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Banana tea every 3 weeks in warm season" },
-    "careAction": { "soilCheck": "In warm season touch top 2 cm every 3-4 days; reduce to minimum in cold season." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Banana tea every 3 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "In warm season touch top 2 cm every 3-4 days; reduce to minimum in cold season."
+    },
     "placementRecommended": "Warm spot with bright indirect light — minimum 18°C while active.",
     "placementAlternatives": [
       "Near east-facing window",
@@ -2364,19 +3044,54 @@
       "Warm covered porch"
     ],
     "placementAvoid": "Direct sun (fades the patterns) and temperatures below 15°C (triggers early dormancy).",
-    "whyRationale": "Tropical tuber from the Amazon — stores energy in the bulb and emits seasonal leaves. The variegated patches are tissue without chlorophyll, reducing internal competition for light."
+    "whyRationale": "Tropical tuber from the Amazon — stores energy in the bulb and emits seasonal leaves. The variegated patches are tissue without chlorophyll, reducing internal competition for light.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "singonio": {
     "name": "Arrowhead Plant",
     "tip": "Arrow-shaped leaves change with age. Tolerant and fast-growing.",
     "description": "Syngonium podophyllum is a climbing aroid whose leaves evolve from juvenile arrows to adult three-lobed forms. Available in green, pink, or cream cultivars. Grows fast with regular pruning.",
     "problems": [
-      { "symptom": "Long, unruly stems", "cause": "Natural growth — needs pruning", "solution": "Prune long stems every 2 months; cuttings root in water." },
-      { "symptom": "Small, pale leaves", "cause": "Low light", "solution": "Move closer to a window — bright indirect light intensifies color." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the soil: water only when the top 2 cm are dry." }
+      {
+        "symptom": "Long, unruly stems",
+        "cause": "Natural growth — needs pruning",
+        "solution": "Prune long stems every 2 months; cuttings root in water."
+      },
+      {
+        "symptom": "Small, pale leaves",
+        "cause": "Low light",
+        "solution": "Move closer to a window — bright indirect light intensifies color."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Touch the soil: water only when the top 2 cm are dry."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Banana peel tea every 3 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Banana peel tea every 3 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: if dry, water until it drains."
+    },
     "placementRecommended": "1-2 m from a window with bright indirect light — pink cultivars need more light.",
     "placementAlternatives": [
       "Bright room with sheer curtain",
@@ -2384,19 +3099,52 @@
       "Near an east-facing window"
     ],
     "placementAvoid": "Direct sun (fades color) and dark corners (loses variegation).",
-    "whyRationale": "Central American hemi-epiphytic aroid — in habitat it climbs trees toward filtered light. Leaf shape shifts with height and available light (heteroblasty)."
+    "whyRationale": "Central American hemi-epiphytic aroid — in habitat it climbs trees toward filtered light. Leaf shape shifts with height and available light (heteroblasty).",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "aglaonema": {
     "name": "Chinese Evergreen",
     "tip": "One of the few plants that thrives in low light. Nearly indestructible if not overwatered.",
     "description": "Aglaonema is a shade-tolerant Asian aroid. Modern cultivars feature silver, red, or green leaves with decorative patterns. Excellent for offices and corners far from windows.",
     "problems": [
-      { "symptom": "Yellow leaves at the base", "cause": "Overwatering or waterlogged substrate", "solution": "Let the soil dry well between waterings; check pot drainage." },
-      { "symptom": "Slow growth", "cause": "Normal in low light", "solution": "Accept the slow pace or move to slightly brighter indirect light." },
-      { "symptom": "Brown edges", "cause": "Chlorinated water or dry air", "solution": "Use water rested for 24h and mist the surrounding air occasionally." }
+      {
+        "symptom": "Yellow leaves at the base",
+        "cause": "Overwatering or waterlogged substrate",
+        "solution": "Let the soil dry well between waterings; check pot drainage."
+      },
+      {
+        "symptom": "Slow growth",
+        "cause": "Normal in low light",
+        "solution": "Accept the slow pace or move to slightly brighter indirect light."
+      },
+      {
+        "symptom": "Brown edges",
+        "cause": "Chlorinated water or dry air",
+        "solution": "Use water rested for 24h and mist the surrounding air occasionally."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen", "homemade": "Diluted compost tea every 6 weeks" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: if dry, water sparingly; aglaonema prefers less than more." },
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Diluted compost tea every 6 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: if dry, water sparingly; aglaonema prefers less than more."
+    },
     "placementRecommended": "Low-light corners — hallways, offices, bedrooms without a direct window.",
     "placementAlternatives": [
       "Living room with medium indirect light",
@@ -2404,19 +3152,54 @@
       "Far from windows (deep interior)"
     ],
     "placementAvoid": "Direct sun (scorches variegated leaves) and cold drafts below 13°C.",
-    "whyRationale": "Aroid from Asian tropical understory — adapted to minimal forest-floor light. Tolerates low light because its chlorophyll operates efficiently with reduced radiation."
+    "whyRationale": "Aroid from Asian tropical understory — adapted to minimal forest-floor light. Tolerates low light because its chlorophyll operates efficiently with reduced radiation.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "costilla-adan": {
     "name": "Swiss Cheese Vine",
     "tip": "Smaller cousin of Monstera deliciosa with perforated leaves. Climber ideal for moss pole or hanging basket.",
     "description": "Swiss Cheese Vine (Monstera adansonii) has smaller, more perforated leaves than Monstera deliciosa. A Central American hemi-epiphyte that grows as a climber on a moss pole or trails from a hanging basket. Faster and more compact than its larger cousin.",
     "problems": [
-      { "symptom": "No holes in leaves", "cause": "Low light or young plant", "solution": "Move closer to bright indirect light; holes appear with maturity and good light." },
-      { "symptom": "Long bare stems", "cause": "Lack of support", "solution": "Add a moss or coir pole — its aerial roots need grip." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the top 2 cm: water only when dry." }
+      {
+        "symptom": "No holes in leaves",
+        "cause": "Low light or young plant",
+        "solution": "Move closer to bright indirect light; holes appear with maturity and good light."
+      },
+      {
+        "symptom": "Long bare stems",
+        "cause": "Lack of support",
+        "solution": "Add a moss or coir pole — its aerial roots need grip."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Touch the top 2 cm: water only when dry."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 3 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: if dry, water until it drains."
+    },
     "placementRecommended": "Near a bright indirect window — with a moss pole if you want larger leaves.",
     "placementAlternatives": [
       "Hanging basket in bright room",
@@ -2424,19 +3207,54 @@
       "Wall with vertical coir pole"
     ],
     "placementAvoid": "Direct sun (scorches the holed leaves) and very dark corners (small leaves with no perforations).",
-    "whyRationale": "Central American hemi-epiphytic aroid — distinct from Monstera deliciosa. Climbs understory trees and develops fenestrations to resist winds and share light with lower leaves."
+    "whyRationale": "Central American hemi-epiphytic aroid — distinct from Monstera deliciosa. Climbs understory trees and develops fenestrations to resist winds and share light with lower leaves.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "difenbaquia": {
     "name": "Dumb Cane",
     "tip": "Thick stems with large variegated leaves. Toxic if ingested — keep away from curious pets.",
     "description": "Dumb Cane (Dieffenbachia seguine) has large green leaves with cream or white markings. Grows quickly indoors in medium light. Its sap contains oxalate crystals — handle with gloves when pruning.",
     "problems": [
-      { "symptom": "Long bare stem at the base", "cause": "Natural loss of old leaves", "solution": "Prune the top to force branching; cuttings root in water or substrate." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering or cold water", "solution": "Water at room temperature; touch the soil before watering." },
-      { "symptom": "Wilting leaves", "cause": "Soil too dry", "solution": "Keep steady moisture (not waterlogged) — dumb cane doesn't tolerate prolonged drought." }
+      {
+        "symptom": "Long bare stem at the base",
+        "cause": "Natural loss of old leaves",
+        "solution": "Prune the top to force branching; cuttings root in water or substrate."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or cold water",
+        "solution": "Water at room temperature; touch the soil before watering."
+      },
+      {
+        "symptom": "Wilting leaves",
+        "cause": "Soil too dry",
+        "solution": "Keep steady moisture (not waterlogged) — dumb cane doesn't tolerate prolonged drought."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains; use room-temperature water." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 3 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: if dry, water until it drains; use room-temperature water."
+    },
     "placementRecommended": "1-2 m from a window — medium indirect light, no direct sun on foliage.",
     "placementAlternatives": [
       "Living room with diffuse natural light",
@@ -2444,19 +3262,54 @@
       "Room with bright indirect light"
     ],
     "placementAvoid": "Direct sun (scorches variegation) and temperatures below 15°C (leaf drop).",
-    "whyRationale": "South American tropical aroid — its stems store water and re-sprout after pruning. The variegation is chlorophyll-free tissue that requires more light to compensate."
+    "whyRationale": "South American tropical aroid — its stems store water and re-sprout after pruning. The variegation is chlorophyll-free tissue that requires more light to compensate.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting",
+          "Difficulty swallowing"
+        ]
+      }
+    }
   },
   "begonia-rex": {
     "name": "Rex Begonia",
     "tip": "Grown for its painted leaves, not its flowers. High humidity, no water on the foliage.",
     "description": "Rex Begonia is a foliage cultivar with asymmetric leaves painted in silver, purple, red, and green. Native to the tropical Himalayas. More demanding than flowering begonias: needs high ambient humidity and water that never touches the leaves.",
     "problems": [
-      { "symptom": "Brown spots on leaves", "cause": "Water on foliage or dry air", "solution": "Water the substrate only (never the leaves); use a humidifier." },
-      { "symptom": "Pale leaves or no pattern", "cause": "Low light", "solution": "Move near a bright indirect window — pigments need light to synthesize." },
-      { "symptom": "Rotted stems", "cause": "Waterlogged substrate", "solution": "Use a pot with drainage and an airy substrate; touch the soil before watering." }
+      {
+        "symptom": "Brown spots on leaves",
+        "cause": "Water on foliage or dry air",
+        "solution": "Water the substrate only (never the leaves); use a humidifier."
+      },
+      {
+        "symptom": "Pale leaves or no pattern",
+        "cause": "Low light",
+        "solution": "Move near a bright indirect window — pigments need light to synthesize."
+      },
+      {
+        "symptom": "Rotted stems",
+        "cause": "Waterlogged substrate",
+        "solution": "Use a pot with drainage and an airy substrate; touch the soil before watering."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen (leaf color)", "homemade": "Banana peel tea every 4 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water the substrate (not the leaves) when dry." },
+    "nutrients": {
+      "type": "Low nitrogen (leaf color)",
+      "homemade": "Banana peel tea every 4 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water the substrate (not the leaves) when dry."
+    },
     "placementRecommended": "Bathroom or kitchen with bright indirect light — high natural humidity and no direct sun.",
     "placementAlternatives": [
       "Room with a humidifier nearby",
@@ -2464,19 +3317,48 @@
       "1 m from an east-facing window"
     ],
     "placementAvoid": "Direct sun (fades pigments) and dry heater air.",
-    "whyRationale": "Begonia cultivar from the Himalayas — anthocyanins and carotenoids in leaves require bright light to express. Without it the leaves lose their decorative pattern."
+    "whyRationale": "Begonia cultivar from the Himalayas — anthocyanins and carotenoids in leaves require bright light to express. Without it the leaves lose their decorative pattern.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Salivation"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Salivation"
+        ]
+      }
+    }
   },
   "croton": {
     "name": "Croton",
     "tip": "More light, more intense color. Glossy leaves, almost sculptural.",
     "description": "Croton (Codiaeum variegatum) has leathery leaves striped in yellow, orange, red, and green. Native to the tropical Pacific. Sensitive to abrupt changes: drops leaves if moved often. Once settled, leave it where it is.",
     "problems": [
-      { "symptom": "Massive leaf drop", "cause": "Location change, draft, or irregular watering", "solution": "Keep it stable: same spot, same watering, no drafts — it will re-leaf." },
-      { "symptom": "Green leaves with no color", "cause": "Low light", "solution": "Move closer to bright indirect light — color requires light intensity." },
-      { "symptom": "Brown edges", "cause": "Dry air or irregular watering", "solution": "Mist the surrounding air; keep watering steady with barely damp substrate." }
+      {
+        "symptom": "Massive leaf drop",
+        "cause": "Location change, draft, or irregular watering",
+        "solution": "Keep it stable: same spot, same watering, no drafts — it will re-leaf."
+      },
+      {
+        "symptom": "Green leaves with no color",
+        "cause": "Low light",
+        "solution": "Move closer to bright indirect light — color requires light intensity."
+      },
+      {
+        "symptom": "Brown edges",
+        "cause": "Dry air or irregular watering",
+        "solution": "Mist the surrounding air; keep watering steady with barely damp substrate."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: if dry, water until it drains; never let it dry out completely." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 3 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: if dry, water until it drains; never let it dry out completely."
+    },
     "placementRecommended": "Near a bright indirect window or filtered morning sun — color depends on light.",
     "placementAlternatives": [
       "50 cm from an east window",
@@ -2484,19 +3366,52 @@
       "Room with filtered morning sun"
     ],
     "placementAvoid": "Frequent location changes and drafts — croton is stressed by movement.",
-    "whyRationale": "Native to the tropical Pacific — its anthocyanins and carotenoids need bright light to synthesize. Without enough light the leaves revert to uniform green."
+    "whyRationale": "Native to the tropical Pacific — its anthocyanins and carotenoids need bright light to synthesize. Without enough light the leaves revert to uniform green.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Abdominal pain",
+          "Depression"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Abdominal pain",
+          "Depression"
+        ]
+      }
+    }
   },
   "fitonia": {
     "name": "Nerve Plant",
     "tip": "Tiny and dramatic. If you see it wilted, water it — it recovers quickly but doesn't forgive repeated drought.",
     "description": "Nerve Plant (Fittonia albivenis) has small leaves with bold white, pink, or red veins. Native to the Amazon understory. Ideal for terrariums or pots with high ambient humidity — its size makes it perfect for tables and desks.",
     "problems": [
-      { "symptom": "Wilted, drooping leaves", "cause": "Dry substrate", "solution": "Water immediately — fittonia recovers quickly but repeated drought kills it." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Reduce watering; touch the soil — top should be barely dry." },
-      { "symptom": "Brown edges", "cause": "Dry air", "solution": "Move to a bathroom or cover with a glass dome (terrarium)." }
+      {
+        "symptom": "Wilted, drooping leaves",
+        "cause": "Dry substrate",
+        "solution": "Water immediately — fittonia recovers quickly but repeated drought kills it."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Reduce watering; touch the soil — top should be barely dry."
+      },
+      {
+        "symptom": "Brown edges",
+        "cause": "Dry air",
+        "solution": "Move to a bathroom or cover with a glass dome (terrarium)."
+      }
     ],
-    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as it feels dry — never let it wilt." },
+    "nutrients": {
+      "type": "Diluted balanced NPK",
+      "homemade": "Diluted compost tea every 4 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water as soon as it feels dry — never let it wilt."
+    },
     "placementRecommended": "Bathroom with indirect natural light — high humidity and filtered light are perfect.",
     "placementAlternatives": [
       "Terrarium or open glass tank",
@@ -2511,12 +3426,29 @@
     "tip": "Huge fiddle-shaped leaves. Once in its place, don't move it — it hates change.",
     "description": "Fiddle Leaf Fig (Ficus lyrata) is an indoor tree from West Africa. Grows several meters with large, leathery leaves. Sensitive to movement and drafts — it complains with massive leaf drop. Stability is key.",
     "problems": [
-      { "symptom": "Massive leaf drop", "cause": "Location change, draft, or watering stress", "solution": "Keep a fixed spot, no drafts; water consistently — neither too much nor too little." },
-      { "symptom": "Brown spots on leaves", "cause": "Irregular watering or chlorinated water", "solution": "Use water rested for 24h; keep a steady watering rhythm." },
-      { "symptom": "Dull, dusty leaves", "cause": "Dust accumulation", "solution": "Wipe the large leaves with a damp cloth every 2 weeks — dust blocks photosynthesis." }
+      {
+        "symptom": "Massive leaf drop",
+        "cause": "Location change, draft, or watering stress",
+        "solution": "Keep a fixed spot, no drafts; water consistently — neither too much nor too little."
+      },
+      {
+        "symptom": "Brown spots on leaves",
+        "cause": "Irregular watering or chlorinated water",
+        "solution": "Use water rested for 24h; keep a steady watering rhythm."
+      },
+      {
+        "symptom": "Dull, dusty leaves",
+        "cause": "Dust accumulation",
+        "solution": "Wipe the large leaves with a damp cloth every 2 weeks — dust blocks photosynthesis."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: water until it drains; never let it go fully dry." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: water until it drains; never let it go fully dry."
+    },
     "placementRecommended": "Near a large window with bright indirect light — filtered morning sun is ideal.",
     "placementAlternatives": [
       "1 m from an east window",
@@ -2524,19 +3456,50 @@
       "Covered porch with filtered sun"
     ],
     "placementAvoid": "Drafts (door, AC) and frequent location changes — drops leaves from stress.",
-    "whyRationale": "Native to West African tropical rainforest — grows as a hemi-epiphyte before rooting. Its large fiddle-shaped leaves capture filtered canopy light and are sensitive to environmental stress."
+    "whyRationale": "Native to West African tropical rainforest — grows as a hemi-epiphyte before rooting. Its large fiddle-shaped leaves capture filtered canopy light and are sensitive to environmental stress.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling"
+        ]
+      }
+    }
   },
   "maranta": {
     "name": "Prayer Plant",
     "tip": "Called prayer plant: folds leaves at dusk. High humidity and chlorine-free water.",
     "description": "Prayer Plant (Maranta leuconeura) has oval leaves with red or purple veins on light green. Native to Brazilian rainforests. It folds its leaves at dusk (nyctinasty) and unfolds them by day — a visible movement.",
     "problems": [
-      { "symptom": "Brown edges", "cause": "Chlorinated water or dry air", "solution": "Use rested or rainwater; mist the air or run a humidifier." },
-      { "symptom": "Leaves don't fold", "cause": "Stress (poor light or irregular watering)", "solution": "Check medium indirect light and steady watering — nightly folding indicates health." },
-      { "symptom": "Pale leaves", "cause": "Too much direct light", "solution": "Move away from the window — maranta prefers medium indirect light." }
+      {
+        "symptom": "Brown edges",
+        "cause": "Chlorinated water or dry air",
+        "solution": "Use rested or rainwater; mist the air or run a humidifier."
+      },
+      {
+        "symptom": "Leaves don't fold",
+        "cause": "Stress (poor light or irregular watering)",
+        "solution": "Check medium indirect light and steady watering — nightly folding indicates health."
+      },
+      {
+        "symptom": "Pale leaves",
+        "cause": "Too much direct light",
+        "solution": "Move away from the window — maranta prefers medium indirect light."
+      }
     ],
-    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as dry; never let it fully dry out." },
+    "nutrients": {
+      "type": "Diluted balanced NPK",
+      "homemade": "Diluted compost tea every 4 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water as soon as dry; never let it fully dry out."
+    },
     "placementRecommended": "Room with medium indirect light — bathroom or kitchen with high natural humidity.",
     "placementAlternatives": [
       "2 m from a window",
@@ -2551,12 +3514,29 @@
     "tip": "Nearly indestructible. The most common mistake is overwatering.",
     "description": "ZZ Plant is a resilient species with succulent stems and water-storing rhizomes. Native to semi-arid East Africa. Tolerates low light and missed waterings — the best plant for beginners and dark offices.",
     "problems": [
-      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Let the soil dry well between waterings." },
-      { "symptom": "Soft stems", "cause": "Rhizome rot from water", "solution": "Unpot, cut away soft tissue, and replant in dry substrate." },
-      { "symptom": "Slow winter growth", "cause": "Natural dormancy", "solution": "Reduce watering to minimum; new growth resumes in spring." }
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Let the soil dry well between waterings."
+      },
+      {
+        "symptom": "Soft stems",
+        "cause": "Rhizome rot from water",
+        "solution": "Unpot, cut away soft tissue, and replant in dry substrate."
+      },
+      {
+        "symptom": "Slow winter growth",
+        "cause": "Natural dormancy",
+        "solution": "Reduce watering to minimum; new growth resumes in spring."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen", "homemade": "Banana peel tea every 2 months" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: water only if completely dry. Less is more." },
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Banana peel tea every 2 months"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: water only if completely dry. Less is more."
+    },
     "placementRecommended": "Any corner with indirect light — even low-light spots.",
     "placementAlternatives": [
       "Hallway or corner without a nearby window",
@@ -2564,19 +3544,50 @@
       "Bedroom with low natural light"
     ],
     "placementAvoid": "Constantly damp soil and pots without drainage — rhizome rot is irreversible.",
-    "whyRationale": "Native to semi-arid East Africa — its rhizomes store water and nutrients. Its CAM metabolism enables low-light and drought tolerance, but rot from overwatering is irreversible."
+    "whyRationale": "Native to semi-arid East Africa — its rhizomes store water and nutrients. Its CAM metabolism enables low-light and drought tolerance, but rot from overwatering is irreversible.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Mild GI upset"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Mild GI upset"
+        ]
+      }
+    }
   },
   "cola-burro": {
     "name": "Donkey Tail",
     "tip": "Fragile leaves that fall off at the slightest touch. Place where no one will brush past.",
     "description": "Donkey Tail (Sedum morganianum) is a trailing succulent with stems covered in plump blue-green leaves. Native to Mexico. Its leaves drop at any contact — and each one can root in dry substrate.",
     "problems": [
-      { "symptom": "Leaves fall when touched", "cause": "Naturally fragile", "solution": "Place out of traffic; each fallen leaf can be planted to propagate." },
-      { "symptom": "Soft stems", "cause": "Overwatering", "solution": "Reduce watering drastically; cut soft sections and replant in well-draining substrate." },
-      { "symptom": "Wrinkled leaves", "cause": "Prolonged underwatering", "solution": "Water slowly with small amounts several times until the succulent rehydrates." }
+      {
+        "symptom": "Leaves fall when touched",
+        "cause": "Naturally fragile",
+        "solution": "Place out of traffic; each fallen leaf can be planted to propagate."
+      },
+      {
+        "symptom": "Soft stems",
+        "cause": "Overwatering",
+        "solution": "Reduce watering drastically; cut soft sections and replant in well-draining substrate."
+      },
+      {
+        "symptom": "Wrinkled leaves",
+        "cause": "Prolonged underwatering",
+        "solution": "Water slowly with small amounts several times until the succulent rehydrates."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen (high potassium)", "homemade": "Crushed eggshell every 3 months" },
-    "careAction": { "soilCheck": "Touch the soil down to the drainage hole: if completely dry, water sparingly. It survives drought better than excess." },
+    "nutrients": {
+      "type": "Low nitrogen (high potassium)",
+      "homemade": "Crushed eggshell every 3 months"
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil down to the drainage hole: if completely dry, water sparingly. It survives drought better than excess."
+    },
     "placementRecommended": "Hanging pot in a bright but out-of-traffic spot — near a south-facing window with a sheer curtain.",
     "placementAlternatives": [
       "High shelf with filtered sun",
@@ -2591,12 +3602,29 @@
     "tip": "Versatile climber. Variegated varieties need more light to keep their color.",
     "description": "English Ivy (Hedera helix) is a European climber with lobed green or variegated leaves. Adaptable to cool interiors or sheltered outdoors. Grows in hanging baskets, on supports, or as a groundcover. Tolerates more cold than most houseplants.",
     "problems": [
-      { "symptom": "Pale leaves or no variegation", "cause": "Low light (variegated varieties)", "solution": "Move to bright indirect light — cream and gold tones require more light." },
-      { "symptom": "Crispy, dry leaves", "cause": "Dry heater air", "solution": "Mist the air or group with other plants; lower the temperature if you can." },
-      { "symptom": "Spider webs between leaves", "cause": "Spider mites (love dry air)", "solution": "Shower the plant with lukewarm water; increase ambient humidity." }
+      {
+        "symptom": "Pale leaves or no variegation",
+        "cause": "Low light (variegated varieties)",
+        "solution": "Move to bright indirect light — cream and gold tones require more light."
+      },
+      {
+        "symptom": "Crispy, dry leaves",
+        "cause": "Dry heater air",
+        "solution": "Mist the air or group with other plants; lower the temperature if you can."
+      },
+      {
+        "symptom": "Spider webs between leaves",
+        "cause": "Spider mites (love dry air)",
+        "solution": "Shower the plant with lukewarm water; increase ambient humidity."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; less in winter." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry; less in winter."
+    },
     "placementRecommended": "Cool room with bright indirect light — variegated varieties near an east-facing window.",
     "placementAlternatives": [
       "Hanging basket in a bright room",
@@ -2604,19 +3632,52 @@
       "Cool covered porch"
     ],
     "placementAvoid": "Direct heater air (dries leaves) and prolonged direct sun.",
-    "whyRationale": "European climber from temperate forests — its adventitious rootlets cling to surfaces to climb and share light. Tolerates cold to 5°C because its origin is temperate, not tropical."
+    "whyRationale": "European climber from temperate forests — its adventitious rootlets cling to surfaces to climb and share light. Tolerates cold to 5°C because its origin is temperate, not tropical.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Abdominal pain",
+          "Hypersalivation",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Abdominal pain",
+          "Hypersalivation",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "palmera-areca": {
     "name": "Areca Palm",
     "tip": "Long arching leaves. Needs bright indirect light and steadily moist substrate.",
     "description": "Areca Palm (Dypsis lutescens) is a tropical palm from Madagascar with light-green pinnate leaves and multiple stems. Grows several meters indoors in bright light. Sensitive to drought and also to waterlogging — constant balance.",
     "problems": [
-      { "symptom": "Brown leaf tips", "cause": "Dry air or chlorinated water", "solution": "Use water rested for 24h; mist the air or run a humidifier." },
-      { "symptom": "Yellow leaves overall", "cause": "Overwatering", "solution": "Improve drainage; touch the soil before watering — top should be barely dry." },
-      { "symptom": "Stalled growth", "cause": "Insufficient light", "solution": "Move near a large window with bright indirect light." }
+      {
+        "symptom": "Brown leaf tips",
+        "cause": "Dry air or chlorinated water",
+        "solution": "Use water rested for 24h; mist the air or run a humidifier."
+      },
+      {
+        "symptom": "Yellow leaves overall",
+        "cause": "Overwatering",
+        "solution": "Improve drainage; touch the soil before watering — top should be barely dry."
+      },
+      {
+        "symptom": "Stalled growth",
+        "cause": "Insufficient light",
+        "solution": "Move near a large window with bright indirect light."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK with iron", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; keep steady moisture without waterlogging." },
+    "nutrients": {
+      "type": "Balanced NPK with iron",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry; keep steady moisture without waterlogging."
+    },
     "placementRecommended": "Near a large window with bright indirect light — stable warm temperature.",
     "placementAlternatives": [
       "Bright living room with sheer curtain",
@@ -2631,12 +3692,29 @@
     "tip": "More shade-tolerant than the areca. Slow growth — patience is key.",
     "description": "Kentia Palm (Howea forsteriana) is an elegant palm from Lord Howe Island, Australia. Dark-green pinnate leaves and very slow growth. More tolerant of low-light interiors than other palms — ideal for hotels and offices.",
     "problems": [
-      { "symptom": "Very slow growth", "cause": "Normal — kentia grows slowly", "solution": "Accept the pace: 1-2 new fronds per year. Patience." },
-      { "symptom": "Brown tips", "cause": "Dry air or salt in water", "solution": "Mist the air; use rested or rainwater." },
-      { "symptom": "Yellow old leaves", "cause": "Natural loss of older leaves", "solution": "Cut yellow fronds at the base — the plant remains vigorous." }
+      {
+        "symptom": "Very slow growth",
+        "cause": "Normal — kentia grows slowly",
+        "solution": "Accept the pace: 1-2 new fronds per year. Patience."
+      },
+      {
+        "symptom": "Brown tips",
+        "cause": "Dry air or salt in water",
+        "solution": "Mist the air; use rested or rainwater."
+      },
+      {
+        "symptom": "Yellow old leaves",
+        "cause": "Natural loss of older leaves",
+        "solution": "Cut yellow fronds at the base — the plant remains vigorous."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen", "homemade": "Compost tea every 6 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry; reduce greatly in winter." },
+    "nutrients": {
+      "type": "Low nitrogen",
+      "homemade": "Compost tea every 6 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: water when dry; reduce greatly in winter."
+    },
     "placementRecommended": "Living room with medium to bright indirect light — tolerates even deep interiors better than the areca.",
     "placementAlternatives": [
       "Bright hallway",
@@ -2651,12 +3729,29 @@
     "tip": "Needs high ambient humidity. If you can't sustain it, choose another plant.",
     "description": "Boston Fern (Nephrolepis exaltata) is an elegant fern with long, arching fronds. Native to American tropical forests. Demanding for ambient humidity — below 50% it starts losing fronds. Ideal for bright bathrooms.",
     "problems": [
-      { "symptom": "Brown, crispy fronds", "cause": "Insufficient ambient humidity", "solution": "Move to a bathroom or run a continuous humidifier; mist the fronds daily." },
-      { "symptom": "Yellow fronds", "cause": "Substrate too dry between waterings", "solution": "Keep soil barely damp — the fern doesn't tolerate drying out." },
-      { "symptom": "Massive leaflet drop", "cause": "Abrupt environmental change", "solution": "Stabilize location and humidity; new growth returns in weeks." }
+      {
+        "symptom": "Brown, crispy fronds",
+        "cause": "Insufficient ambient humidity",
+        "solution": "Move to a bathroom or run a continuous humidifier; mist the fronds daily."
+      },
+      {
+        "symptom": "Yellow fronds",
+        "cause": "Substrate too dry between waterings",
+        "solution": "Keep soil barely damp — the fern doesn't tolerate drying out."
+      },
+      {
+        "symptom": "Massive leaflet drop",
+        "cause": "Abrupt environmental change",
+        "solution": "Stabilize location and humidity; new growth returns in weeks."
+      }
     ],
-    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 4 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water as soon as dry. Soil always barely damp." },
+    "nutrients": {
+      "type": "Diluted balanced NPK",
+      "homemade": "Diluted compost tea every 4 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water as soon as dry. Soil always barely damp."
+    },
     "placementRecommended": "Bright bathroom with high natural humidity — medium indirect light.",
     "placementAlternatives": [
       "Kitchen with natural light and cooking humidity",
@@ -2671,12 +3766,29 @@
     "tip": "Entire wavy fronds — don't mist them, water only the substrate. More tolerant than Boston fern.",
     "description": "Bird's Nest Fern (Asplenium nidus) has entire (undivided) fronds that grow forming a central nest. Native to Asian rainforests. Easier than Boston fern because it tolerates dry air better — but it still needs medium-high humidity and indirect light.",
     "problems": [
-      { "symptom": "Brown or slimy center", "cause": "Water pooled in the central nest", "solution": "Water the substrate only — never the rosette center." },
-      { "symptom": "Pale fronds", "cause": "Too much light", "solution": "Move away from the window — medium indirect light is ideal." },
-      { "symptom": "Frond edges turning brown", "cause": "Very dry air", "solution": "Mist the surrounding air (not the fronds) or group with other plants." }
+      {
+        "symptom": "Brown or slimy center",
+        "cause": "Water pooled in the central nest",
+        "solution": "Water the substrate only — never the rosette center."
+      },
+      {
+        "symptom": "Pale fronds",
+        "cause": "Too much light",
+        "solution": "Move away from the window — medium indirect light is ideal."
+      },
+      {
+        "symptom": "Frond edges turning brown",
+        "cause": "Very dry air",
+        "solution": "Mist the surrounding air (not the fronds) or group with other plants."
+      }
     ],
-    "nutrients": { "type": "Diluted balanced NPK", "homemade": "Diluted compost tea every 5 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water the substrate (not the center) when dry." },
+    "nutrients": {
+      "type": "Diluted balanced NPK",
+      "homemade": "Diluted compost tea every 5 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water the substrate (not the center) when dry."
+    },
     "placementRecommended": "Room with medium indirect light and high ambient humidity — bathroom works great.",
     "placementAlternatives": [
       "Bright room with a humidifier",
@@ -2691,12 +3803,29 @@
     "tip": "Round coin-like leaves. Produces shareable pups — the friendship plant.",
     "description": "Pilea peperomioides is native to southern China. Its round, flat leaves perch on slender stems. It produces baby shoots at the base that you can separate and gift — hence its names money plant and friendship plant.",
     "problems": [
-      { "symptom": "Yellow leaves", "cause": "Overwatering", "solution": "Touch the soil: water only when the top 2 cm are dry." },
-      { "symptom": "Excessively curling leaves", "cause": "Light changes or irregular watering", "solution": "Keep a stable location with bright indirect light." },
-      { "symptom": "Long bare stem", "cause": "Lack of side light", "solution": "Rotate the pot weekly for even growth." }
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering",
+        "solution": "Touch the soil: water only when the top 2 cm are dry."
+      },
+      {
+        "symptom": "Excessively curling leaves",
+        "cause": "Light changes or irregular watering",
+        "solution": "Keep a stable location with bright indirect light."
+      },
+      {
+        "symptom": "Long bare stem",
+        "cause": "Lack of side light",
+        "solution": "Rotate the pot weekly for even growth."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry. Rotate the pot weekly for symmetric form." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry. Rotate the pot weekly for symmetric form."
+    },
     "placementRecommended": "Near a window with bright indirect light — rotate the pot weekly.",
     "placementAlternatives": [
       "Table near an east-facing window",
@@ -2711,12 +3840,29 @@
     "tip": "Grows fast. Cuttings root in water in 2 weeks — propagation is effortless.",
     "description": "Tradescantia zebrina is a Mexican trailing plant with leaves striped in purple, silver, and green. Fast growth, super-easy propagation from cuttings. Ideal in a hanging basket or on a high shelf where its stems can drape down.",
     "problems": [
-      { "symptom": "Green leaves with no variegation", "cause": "Low light", "solution": "Move to bright indirect light — purple requires light to express." },
-      { "symptom": "Long bare stems", "cause": "Growth without pruning", "solution": "Prune stems every 1-2 months; use the cuttings to root and refill the pot." },
-      { "symptom": "Wilted leaves", "cause": "Dry substrate", "solution": "Water generously — recovers fast but doesn't tolerate repeated drought." }
+      {
+        "symptom": "Green leaves with no variegation",
+        "cause": "Low light",
+        "solution": "Move to bright indirect light — purple requires light to express."
+      },
+      {
+        "symptom": "Long bare stems",
+        "cause": "Growth without pruning",
+        "solution": "Prune stems every 1-2 months; use the cuttings to root and refill the pot."
+      },
+      {
+        "symptom": "Wilted leaves",
+        "cause": "Dry substrate",
+        "solution": "Water generously — recovers fast but doesn't tolerate repeated drought."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 3 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry; keep a steady rhythm." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 3 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry; keep a steady rhythm."
+    },
     "placementRecommended": "Hanging basket or high shelf near a window with bright indirect light.",
     "placementAlternatives": [
       "Hanging pot on a warm covered patio",
@@ -2724,19 +3870,48 @@
       "Ledge with filtered morning sun"
     ],
     "placementAvoid": "Midday direct sun (fades color) and dark corners (loses purple).",
-    "whyRationale": "Native to tropical Mexico — its anthocyanins in purple stripes need bright light to express. Fast vegetative propagation is an adaptation to disturbed environments."
+    "whyRationale": "Native to tropical Mexico — its anthocyanins in purple stripes need bright light to express. Fast vegetative propagation is an adaptation to disturbed environments.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "cheflera": {
     "name": "Dwarf Umbrella Tree",
     "tip": "Umbrella-shaped leaves. Tolerant and fast-growing — good for beginners.",
     "description": "Dwarf Umbrella Tree (Heptapleurum arboricola, formerly Schefflera) has digitate leaves that look like umbrellas. Native to Taiwan and Hainan. Tolerates low light but grows faster in bright light. Excellent starter plant for homes and offices.",
     "problems": [
-      { "symptom": "Lower leaf drop", "cause": "Low light or overwatering", "solution": "Move closer to bright light; touch the soil before watering." },
-      { "symptom": "Sticky leaves or aphids", "cause": "Common pests", "solution": "Wipe leaves with soapy water; inspect undersides weekly." },
-      { "symptom": "Long, thin stem", "cause": "Insufficient light", "solution": "Move to bright indirect light; prune the top to force branching." }
+      {
+        "symptom": "Lower leaf drop",
+        "cause": "Low light or overwatering",
+        "solution": "Move closer to bright light; touch the soil before watering."
+      },
+      {
+        "symptom": "Sticky leaves or aphids",
+        "cause": "Common pests",
+        "solution": "Wipe leaves with soapy water; inspect undersides weekly."
+      },
+      {
+        "symptom": "Long, thin stem",
+        "cause": "Insufficient light",
+        "solution": "Move to bright indirect light; prune the top to force branching."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water when dry. Reduce greatly in winter." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water when dry. Reduce greatly in winter."
+    },
     "placementRecommended": "Spot with bright indirect light — tolerates light variations better than most tropicals.",
     "placementAlternatives": [
       "Living room with mixed natural light",
@@ -2744,19 +3919,52 @@
       "Office with mixed natural and artificial light"
     ],
     "placementAvoid": "Prolonged direct sun (scorches variegation) and temperatures below 12°C.",
-    "whyRationale": "Formerly Schefflera arboricola — reclassified to Heptapleurum in 2024 (POWO). Native to Taiwan and Hainan, its tolerance to variable light comes from its origin in transitional tropical-temperate forests."
+    "whyRationale": "Formerly Schefflera arboricola — reclassified to Heptapleurum in 2024 (POWO). Native to Taiwan and Hainan, its tolerance to variable light comes from its origin in transitional tropical-temperate forests.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling",
+          "Weakness"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Excessive drooling",
+          "Weakness"
+        ]
+      }
+    }
   },
   "arbol-dinero": {
     "name": "Money Tree",
     "tip": "Braided trunk and digitate leaves. Tolerant with watering — less is more.",
     "description": "Money Tree (Pachira aquatica) is native to Central American wetlands. Often sold with a decoratively braided trunk. Glossy green digitate leaves. Resilient and tolerant — its name comes from the popular belief that it attracts prosperity.",
     "problems": [
-      { "symptom": "Yellow leaves and drop", "cause": "Overwatering", "solution": "Reduce watering; touch the soil before — top should be quite dry." },
-      { "symptom": "Crispy leaves", "cause": "Dry air or direct sun", "solution": "Move to indirect light and mist the surrounding air." },
-      { "symptom": "Wrinkled trunk", "cause": "Prolonged underwatering", "solution": "Water generously and keep steady moisture for 2 weeks." }
+      {
+        "symptom": "Yellow leaves and drop",
+        "cause": "Overwatering",
+        "solution": "Reduce watering; touch the soil before — top should be quite dry."
+      },
+      {
+        "symptom": "Crispy leaves",
+        "cause": "Dry air or direct sun",
+        "solution": "Move to indirect light and mist the surrounding air."
+      },
+      {
+        "symptom": "Wrinkled trunk",
+        "cause": "Prolonged underwatering",
+        "solution": "Water generously and keep steady moisture for 2 weeks."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost tea every 4 weeks in warm season" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry. Its trunk stores water — less is more." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: water when dry. Its trunk stores water — less is more."
+    },
     "placementRecommended": "Living room with bright indirect light or filtered sun — medium-high humidity helps but isn't essential.",
     "placementAlternatives": [
       "1 m from a filtered east or south window",
@@ -2771,12 +3979,29 @@
     "tip": "Heavy, infrequent watering; full sun; tolerates light frosts.",
     "description": "The Prickly Pear (Opuntia ficus-indica) is a shrubby cactus native to Mexico with fleshy pads (cladodes) that store water. It produces yellow flowers and the well-known edible fruits called tunas. Lives outdoors or in very large pots; perfect for arid climates and sunny patios.",
     "problems": [
-      { "symptom": "Rot at the base", "cause": "Overwatering or waterlogged substrate", "solution": "Drastically reduce watering and improve drainage (mix with perlite and coarse sand)." },
-      { "symptom": "Cottony scale", "cause": "Typical Opuntia pest", "solution": "Clean with a brush and 70% isopropyl alcohol on affected areas; treat with potassium soap." },
-      { "symptom": "Cold damage below 0°C prolonged", "cause": "Frost", "solution": "Cover with frost cloth on freezing nights, or move it under cover if potted." }
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering or waterlogged substrate",
+        "solution": "Drastically reduce watering and improve drainage (mix with perlite and coarse sand)."
+      },
+      {
+        "symptom": "Cottony scale",
+        "cause": "Typical Opuntia pest",
+        "solution": "Clean with a brush and 70% isopropyl alcohol on affected areas; treat with potassium soap."
+      },
+      {
+        "symptom": "Cold damage below 0°C prolonged",
+        "cause": "Frost",
+        "solution": "Cover with frost cloth on freezing nights, or move it under cover if potted."
+      }
     ],
-    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted worm compost every 3 months in warm season" },
-    "careAction": { "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings." },
+    "nutrients": {
+      "type": "Low NPK",
+      "homemade": "Heavily diluted worm compost every 3 months in warm season"
+    },
+    "careAction": {
+      "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings."
+    },
     "placementRecommended": "Full outdoor sun — patio, terrace, balcony with direct midday sun.",
     "placementAlternatives": [
       "Large pot with generous drainage",
@@ -2791,12 +4016,29 @@
     "tip": "Ladyfinger cactus: full sun and spaced watering; flowers in an apical crown in spring.",
     "description": "Mammillaria elongata (ladyfinger cactus) is a clumping Mexican cactus: its cylindrical stems covered in golden spines form dense colonies. It blooms in a crown at the top as days lengthen. Ideal for sunny indoor shelves.",
     "problems": [
-      { "symptom": "Stretched and pale stems", "cause": "Lack of direct light", "solution": "Move closer to a window with direct morning sun for at least 4-6 hours." },
-      { "symptom": "Rot at the base", "cause": "Overwatering or heavy substrate", "solution": "Let dry completely between waterings; use cactus substrate with perlite and coarse sand." },
-      { "symptom": "Mealybugs between tubercles", "cause": "Frequent pest", "solution": "Apply 70% alcohol with a swab on affected areas and ventilate the plant." }
+      {
+        "symptom": "Stretched and pale stems",
+        "cause": "Lack of direct light",
+        "solution": "Move closer to a window with direct morning sun for at least 4-6 hours."
+      },
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering or heavy substrate",
+        "solution": "Let dry completely between waterings; use cactus substrate with perlite and coarse sand."
+      },
+      {
+        "symptom": "Mealybugs between tubercles",
+        "cause": "Frequent pest",
+        "solution": "Apply 70% alcohol with a swab on affected areas and ventilate the plant."
+      }
     ],
-    "nutrients": { "type": "Low NPK specific for cactus", "homemade": "Heavily diluted compost tea every 2 months in warm season" },
-    "careAction": { "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings." },
+    "nutrients": {
+      "type": "Low NPK specific for cactus",
+      "homemade": "Heavily diluted compost tea every 2 months in warm season"
+    },
+    "careAction": {
+      "fixed": "Water deeply every 14 days in warm season; every 30 days in cold. Let dry completely between waterings."
+    },
     "placementRecommended": "Near a south window (NH) or north window (SH) with direct morning sun.",
     "placementAlternatives": [
       "Bright shelf with filtered midday sun",
@@ -2811,12 +4053,29 @@
     "tip": "Reduce watering in autumn to induce flowering; needs long nights (>13h darkness).",
     "description": "Christmas Cactus (Schlumbergera × buckleyi) is NOT a desert cactus: it's an epiphyte from Brazilian forests that grows on trees in partial shade. Its segmented stems are photosynthetic and it blooms in December-January if given the long-night cue in autumn.",
     "problems": [
-      { "symptom": "Flower bud drop", "cause": "Sudden temperature or light shifts", "solution": "Don't move it during flowering; keep environment stable between 15-22°C." },
-      { "symptom": "Wrinkled stems and rot", "cause": "Overwatering in heavy substrate", "solution": "Let the top layer dry between waterings; use airy substrate with bark." },
-      { "symptom": "No flowers", "cause": "Insufficient long-night cue", "solution": "In autumn, give it 13-14h of nightly darkness for 6 weeks and reduce watering." }
+      {
+        "symptom": "Flower bud drop",
+        "cause": "Sudden temperature or light shifts",
+        "solution": "Don't move it during flowering; keep environment stable between 15-22°C."
+      },
+      {
+        "symptom": "Wrinkled stems and rot",
+        "cause": "Overwatering in heavy substrate",
+        "solution": "Let the top layer dry between waterings; use airy substrate with bark."
+      },
+      {
+        "symptom": "No flowers",
+        "cause": "Insufficient long-night cue",
+        "solution": "In autumn, give it 13-14h of nightly darkness for 6 weeks and reduce watering."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen; high phosphorus and potassium (flowering)", "homemade": "Banana peel tea every 3 weeks in autumn-winter" },
-    "careAction": { "fixed": "Water every 7 days in warm season; every 14 in cold. Reduce in autumn to induce flowering." },
+    "nutrients": {
+      "type": "Low nitrogen; high phosphorus and potassium (flowering)",
+      "homemade": "Banana peel tea every 3 weeks in autumn-winter"
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm season; every 14 in cold. Reduce in autumn to induce flowering."
+    },
     "placementRecommended": "Near an east window — bright indirect light, soft mornings.",
     "placementAlternatives": [
       "High shelf where its stems can hang",
@@ -2831,12 +4090,29 @@
     "tip": "Blooms with short days. For flowers, give it 14 hours of darkness per night.",
     "description": "Kalanchoe blossfeldiana is a Madagascan crassulaceous succulent with toothed fleshy leaves and showy pink, red, orange, or white flower clusters. Tolerates missed waterings but needs prolonged nightly darkness to flower again.",
     "problems": [
-      { "symptom": "No flowers", "cause": "Insufficient night darkness", "solution": "Cover for 14h per night for 6 weeks to induce flowering." },
-      { "symptom": "Soft, translucent leaves", "cause": "Overwatering", "solution": "Let the substrate dry out; its rhizomes rot quickly with constant moisture." },
-      { "symptom": "Leggy growth between leaves", "cause": "Insufficient light", "solution": "Move closer to a window with bright indirect sun." }
+      {
+        "symptom": "No flowers",
+        "cause": "Insufficient night darkness",
+        "solution": "Cover for 14h per night for 6 weeks to induce flowering."
+      },
+      {
+        "symptom": "Soft, translucent leaves",
+        "cause": "Overwatering",
+        "solution": "Let the substrate dry out; its rhizomes rot quickly with constant moisture."
+      },
+      {
+        "symptom": "Leggy growth between leaves",
+        "cause": "Insufficient light",
+        "solution": "Move closer to a window with bright indirect sun."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen, high phosphorus (flowering)", "homemade": "Banana peel tea every 3 weeks during flowering" },
-    "careAction": { "fixed": "Water every 10 days in warm season; every 21 days in cold. Let dry well between waterings." },
+    "nutrients": {
+      "type": "Low nitrogen, high phosphorus (flowering)",
+      "homemade": "Banana peel tea every 3 weeks during flowering"
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm season; every 21 days in cold. Let dry well between waterings."
+    },
     "placementRecommended": "Window with filtered sun or bright indirect light.",
     "placementAlternatives": [
       "Shelf near south window (SH) with translucent curtain",
@@ -2844,19 +4120,54 @@
       "Kitchen counter with good natural light"
     ],
     "placementAvoid": "Constantly moist substrate and low light.",
-    "whyRationale": "Madagascan crassulaceous succulent with CAM photosynthesis: closes stomata by day, fixes CO2 at night. Blooms with long nights (>14h darkness) — its photoperiodic clock needs that contrast to set buds."
+    "whyRationale": "Madagascan crassulaceous succulent with CAM photosynthesis: closes stomata by day, fixes CO2 at night. Blooms with long nights (>14h darkness) — its photoperiodic clock needs that contrast to set buds.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Abnormal heart rhythm",
+          "Weakness",
+          "Collapse"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Abnormal heart rhythm",
+          "Weakness",
+          "Collapse"
+        ]
+      }
+    }
   },
   "siempreviva": {
     "name": "Common Houseleek",
     "tip": "Tolerates extreme cold; after flowering, the mother rosette dies but leaves many offsets.",
     "description": "Common Houseleek (Sempervivum tectorum) is a crassulaceous from the European Alps and Pyrenees with dense rosettes that produce offsets around the mother. It's monocarpic: the matrix flowers once and dies, but its offspring continue the colony. Withstands frosts down to -10°C.",
     "problems": [
-      { "symptom": "Stretching from the center", "cause": "Lack of direct light", "solution": "Move to a spot with full sun or bright indirect light at least 6h daily." },
-      { "symptom": "Rot in the central rosette", "cause": "Waterlogged substrate", "solution": "Let dry between waterings and use a clay pot with full drainage." },
-      { "symptom": "Mother rosette dries after flowering", "cause": "Normal monocarpic behavior", "solution": "It's not death: cut the dry stalk; the offsets around it will continue." }
+      {
+        "symptom": "Stretching from the center",
+        "cause": "Lack of direct light",
+        "solution": "Move to a spot with full sun or bright indirect light at least 6h daily."
+      },
+      {
+        "symptom": "Rot in the central rosette",
+        "cause": "Waterlogged substrate",
+        "solution": "Let dry between waterings and use a clay pot with full drainage."
+      },
+      {
+        "symptom": "Mother rosette dries after flowering",
+        "cause": "Normal monocarpic behavior",
+        "solution": "It's not death: cut the dry stalk; the offsets around it will continue."
+      }
     ],
-    "nutrients": { "type": "Very low NPK", "homemade": "Diluted compost tea every 4 months in warm season" },
-    "careAction": { "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings." },
+    "nutrients": {
+      "type": "Very low NPK",
+      "homemade": "Diluted compost tea every 4 months in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings."
+    },
     "placementRecommended": "Full sun or bright indirect — tolerates frosts down to -10°C outdoors.",
     "placementAlternatives": [
       "Clay pot with full drainage",
@@ -2871,12 +4182,29 @@
     "tip": "Lawyer's tongue: tolerates more shade than a cactus; ideal for bright desks.",
     "description": "Gasteria bicolor is a South African asphodelaceous succulent related to Aloe; its fleshy leaves are arranged in two rows (distichous) and are mottled. Unlike most succulents, it tolerates bright indirect light — a rare exception that makes it ideal for less-sunny interiors.",
     "problems": [
-      { "symptom": "Burned leaves with brown patches", "cause": "Direct midday sun", "solution": "Move to bright indirect light; tolerates less sun than most cactaceae." },
-      { "symptom": "Rot at the base", "cause": "Overwatering", "solution": "Let dry completely between waterings; use succulent substrate with perlite." },
-      { "symptom": "Scale on leaf undersides", "cause": "Common pest", "solution": "Clean with a swab and 70% alcohol; check between the distichous leaves." }
+      {
+        "symptom": "Burned leaves with brown patches",
+        "cause": "Direct midday sun",
+        "solution": "Move to bright indirect light; tolerates less sun than most cactaceae."
+      },
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering",
+        "solution": "Let dry completely between waterings; use succulent substrate with perlite."
+      },
+      {
+        "symptom": "Scale on leaf undersides",
+        "cause": "Common pest",
+        "solution": "Clean with a swab and 70% alcohol; check between the distichous leaves."
+      }
     ],
-    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted compost tea every 3 months in warm season" },
-    "careAction": { "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings." },
+    "nutrients": {
+      "type": "Low NPK",
+      "homemade": "Heavily diluted compost tea every 3 months in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm season; every 30 in cold. Let dry completely between waterings."
+    },
     "placementRecommended": "Bright indirect light — more shade than a typical cactus.",
     "placementAlternatives": [
       "Shelf near an east-facing window",
@@ -2891,12 +4219,29 @@
     "tip": "Almost never water: absolute summer dormancy; touch the soil only in autumn-winter.",
     "description": "Living Stones (Lithops lesliei) are South African Aizoaceae mesembs that mimic stones in their habitat. They have an annual leaf-replacement cycle: the new pair absorbs water from the old pair. Absolute summer dormancy — a single warm-season watering can split them open.",
     "problems": [
-      { "symptom": "Split or cracked leaves", "cause": "Watering during summer dormancy", "solution": "Suspend watering completely from November to March (SH); old leaves should absorb on their own." },
-      { "symptom": "Wrinkled leaves in autumn-winter", "cause": "Insufficient watering during active period", "solution": "In autumn-winter water every 30 days after the soil is completely dry." },
-      { "symptom": "Fungal rot at the base", "cause": "Prolonged humid air", "solution": "Ventilate the pot and keep substrate very mineral; repot if rot has progressed." }
+      {
+        "symptom": "Split or cracked leaves",
+        "cause": "Watering during summer dormancy",
+        "solution": "Suspend watering completely from November to March (SH); old leaves should absorb on their own."
+      },
+      {
+        "symptom": "Wrinkled leaves in autumn-winter",
+        "cause": "Insufficient watering during active period",
+        "solution": "In autumn-winter water every 30 days after the soil is completely dry."
+      },
+      {
+        "symptom": "Fungal rot at the base",
+        "cause": "Prolonged humid air",
+        "solution": "Ventilate the pot and keep substrate very mineral; repot if rot has progressed."
+      }
     ],
-    "nutrients": { "type": "No supplemental fertilization needed", "homemade": "Not applicable — mineral substrate is enough" },
-    "careAction": { "soilCheck": "Touch the soil only in autumn-winter; keep completely dry all summer (dormancy)." },
+    "nutrients": {
+      "type": "No supplemental fertilization needed",
+      "homemade": "Not applicable — mineral substrate is enough"
+    },
+    "careAction": {
+      "soilCheck": "Touch the soil only in autumn-winter; keep completely dry all summer (dormancy)."
+    },
     "placementRecommended": "Direct morning sun — east-facing window, covered balcony with morning sun.",
     "placementAlternatives": [
       "Shallow pot with full drainage",
@@ -2911,12 +4256,29 @@
     "tip": "Hanging basket with bright indirect light; reclassified as Curio (formerly Senecio).",
     "description": "String of Pearls (Curio rowleyanus, formerly Senecio rowleyanus) is a South African Asteraceae succulent with spherical leaves that look like pearls. They store water and limit evaporative surface. Trailing habit ideal for hanging baskets; tolerates forgetfulness but hates waterlogging.",
     "problems": [
-      { "symptom": "Wrinkled, dry pearls", "cause": "Prolonged underwatering", "solution": "Water deeply when pearls look soft; they recover turgor in 2-3 days." },
-      { "symptom": "Soft, mushy pearls", "cause": "Overwatering", "solution": "Let dry completely between waterings; check that the substrate drains well." },
-      { "symptom": "Pearl drop in cold", "cause": "Drafts below 10°C", "solution": "Move away from cold windows and doors in winter; keep above 12°C." }
+      {
+        "symptom": "Wrinkled, dry pearls",
+        "cause": "Prolonged underwatering",
+        "solution": "Water deeply when pearls look soft; they recover turgor in 2-3 days."
+      },
+      {
+        "symptom": "Soft, mushy pearls",
+        "cause": "Overwatering",
+        "solution": "Let dry completely between waterings; check that the substrate drains well."
+      },
+      {
+        "symptom": "Pearl drop in cold",
+        "cause": "Drafts below 10°C",
+        "solution": "Move away from cold windows and doors in winter; keep above 12°C."
+      }
     ],
-    "nutrients": { "type": "Low NPK", "homemade": "Heavily diluted compost tea every 3 months in warm season" },
-    "careAction": { "fixed": "Water every 10 days in warm season; every 21 in cold. Let dry well between waterings." },
+    "nutrients": {
+      "type": "Low NPK",
+      "homemade": "Heavily diluted compost tea every 3 months in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm season; every 21 in cold. Let dry well between waterings."
+    },
     "placementRecommended": "Hanging basket with bright indirect light — near an east-facing window.",
     "placementAlternatives": [
       "High shelf where pearls can drape",
@@ -2924,19 +4286,52 @@
       "Hanging planter in a lit room"
     ],
     "placementAvoid": "Direct midday sun (burns pearls) and cold drafts below 10°C.",
-    "whyRationale": "South African Asteraceae succulent — its spherical leaves (pearls) store water and limit evaporative surface. Grows under arid canopy: tolerates forgetfulness but hates waterlogging."
+    "whyRationale": "South African Asteraceae succulent — its spherical leaves (pearls) store water and limit evaporative surface. Grows under arid canopy: tolerates forgetfulness but hates waterlogging.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Lethargy",
+          "Drooling"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Lethargy",
+          "Drooling"
+        ]
+      }
+    }
   },
   "corona-espinas": {
     "name": "Crown of Thorns",
     "tip": "Toxic when cut (white latex) — wear gloves when pruning; near-continuous flowering with sun.",
     "description": "Crown of Thorns (Euphorbia milii) is a Madagascan thorny spurge with a cactus-like appearance — but it's NOT Cactaceae: it's evolutionary convergence. Its small, showy bracts (pink, red, yellow) replace petals. Its white sap is toxic when cut.",
     "problems": [
-      { "symptom": "Leaf drop", "cause": "Lack of direct light", "solution": "Move it closer to a very bright window; it tolerates and prefers direct sun." },
-      { "symptom": "Rot at the base", "cause": "Overwatering", "solution": "Let dry completely between waterings; use very well-draining substrate." },
-      { "symptom": "Skin irritation when pruning", "cause": "Toxic latex", "solution": "Always wear gloves; on skin contact, wash with plenty of soap. Don't cut with children nearby." }
+      {
+        "symptom": "Leaf drop",
+        "cause": "Lack of direct light",
+        "solution": "Move it closer to a very bright window; it tolerates and prefers direct sun."
+      },
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering",
+        "solution": "Let dry completely between waterings; use very well-draining substrate."
+      },
+      {
+        "symptom": "Skin irritation when pruning",
+        "cause": "Toxic latex",
+        "solution": "Always wear gloves; on skin contact, wash with plenty of soap. Don't cut with children nearby."
+      }
     ],
-    "nutrients": { "type": "Low-moderate NPK with extra phosphorus (flowering)", "homemade": "Banana peel tea every 4 weeks in warm season" },
-    "careAction": { "fixed": "Water every 10 days in warm season; every 21 in cold. Wear gloves when handling or pruning." },
+    "nutrients": {
+      "type": "Low-moderate NPK with extra phosphorus (flowering)",
+      "homemade": "Banana peel tea every 4 weeks in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 10 days in warm season; every 21 in cold. Wear gloves when handling or pruning."
+    },
     "placementRecommended": "Full sun or direct light — south window (NH) or north (SH) with plenty of sun.",
     "placementAlternatives": [
       "Covered balcony in direct sun",
@@ -2944,19 +4339,52 @@
       "Bright shelf with morning and mid-afternoon sun"
     ],
     "placementAvoid": "Dark corners (no flowering) and waterlogged substrate.",
-    "whyRationale": "Madagascan thorny spurge — its cactus-like appearance is evolutionary convergence, not true Cactaceae. White milky sap is toxic when cut. Near-continuous bloom in direct light because its bracts replace petals."
+    "whyRationale": "Madagascan thorny spurge — its cactus-like appearance is evolutionary convergence, not true Cactaceae. White milky sap is toxic when cut. Near-continuous bloom in direct light because its bracts replace petals.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Dermatitis",
+          "Eye irritation"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Dermatitis",
+          "Eye irritation"
+        ]
+      }
+    }
   },
   "agave": {
     "name": "Century Plant (Agave)",
     "tip": "One-time monocarpic flowering after decades — the mother rosette dies after but leaves offsets.",
     "description": "Agave americana is a Mexican Asparagaceae monocot with a giant rosette of fleshy leaves bearing marginal spines and a terminal spine. Combines CAM photosynthesis with water storage in leaves. It's monocarpic: after decades it sends up a giant stalk, blooms, seeds, and dies.",
     "problems": [
-      { "symptom": "Rot in the center of the rosette", "cause": "Waterlogged substrate", "solution": "Drastically reduce watering; improve drainage with coarse sand and perlite." },
-      { "symptom": "Scale at the base of leaves", "cause": "Common outdoor pest", "solution": "Clean with brush and soapy water; treat with potassium soap if it persists." },
-      { "symptom": "Painful prick when handling", "cause": "Sharp marginal and terminal spines", "solution": "Use thick gloves; cut the terminal spine if it ends up in a walking area." }
+      {
+        "symptom": "Rot in the center of the rosette",
+        "cause": "Waterlogged substrate",
+        "solution": "Drastically reduce watering; improve drainage with coarse sand and perlite."
+      },
+      {
+        "symptom": "Scale at the base of leaves",
+        "cause": "Common outdoor pest",
+        "solution": "Clean with brush and soapy water; treat with potassium soap if it persists."
+      },
+      {
+        "symptom": "Painful prick when handling",
+        "cause": "Sharp marginal and terminal spines",
+        "solution": "Use thick gloves; cut the terminal spine if it ends up in a walking area."
+      }
     ],
-    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted worm compost once a year in warm season" },
-    "careAction": { "fixed": "Water every 21 days in warm season; every 60 in cold. Let dry completely between waterings." },
+    "nutrients": {
+      "type": "Very low NPK",
+      "homemade": "Heavily diluted worm compost once a year in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 21 days in warm season; every 60 in cold. Let dry completely between waterings."
+    },
     "placementRecommended": "Full outdoor sun — patio, terrace, garden.",
     "placementAlternatives": [
       "Large pot with full drainage",
@@ -2964,19 +4392,50 @@
       "South wall (NH) with direct sun all day"
     ],
     "placementAvoid": "Waterlogged substrate and corners without full sun.",
-    "whyRationale": "Xerophytic rosette succulent — CAM photosynthesis + water storage in fleshy leaves. One-time monocarpic flowering after decades: the mother sends up a giant stalk, blooms, seeds, and dies — but leaves offsets behind."
+    "whyRationale": "Xerophytic rosette succulent — CAM photosynthesis + water storage in fleshy leaves. One-time monocarpic flowering after decades: the mother sends up a giant stalk, blooms, seeds, and dies — but leaves offsets behind.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "GI irritation",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "GI irritation",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "hoya": {
     "name": "Sweetheart Plant (Hoya kerrii)",
     "tip": "Very slow grower. Forgiving, loves high humidity.",
     "description": "Hoya kerrii (also called heart plant or Sweetheart Plant) is a Southeast Asian asclepiadaceous succulent vine with thick heart-shaped leaves. Often sold as a single-leaf gift; given time, it can develop long climbing or trailing tendrils. It is very slow — patience required.",
     "problems": [
-      { "symptom": "Very slow growth", "cause": "Its natural rhythm — Hoya pace", "solution": "Patience: 2-3 new leaves per year is normal." },
-      { "symptom": "Wrinkled, thin leaves", "cause": "Prolonged underwatering", "solution": "Water thoroughly and wait days for rehydration; its leaves store water." },
-      { "symptom": "Yellow leaves with rot", "cause": "Overwatering or cold drafts", "solution": "Reduce watering; check drainage; move away from cold drafts." }
+      {
+        "symptom": "Very slow growth",
+        "cause": "Its natural rhythm — Hoya pace",
+        "solution": "Patience: 2-3 new leaves per year is normal."
+      },
+      {
+        "symptom": "Wrinkled, thin leaves",
+        "cause": "Prolonged underwatering",
+        "solution": "Water thoroughly and wait days for rehydration; its leaves store water."
+      },
+      {
+        "symptom": "Yellow leaves with rot",
+        "cause": "Overwatering or cold drafts",
+        "solution": "Reduce watering; check drainage; move away from cold drafts."
+      }
     ],
-    "nutrients": { "type": "Low NPK (slow grower)", "homemade": "Heavily diluted compost tea every 2 months in warm season" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: if dry, water; in cold reduce to almost nothing." },
+    "nutrients": {
+      "type": "Low NPK (slow grower)",
+      "homemade": "Heavily diluted compost tea every 2 months in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: if dry, water; in cold reduce to almost nothing."
+    },
     "placementRecommended": "Hanging basket with bright indirect light — near an east-facing or north-facing window (SH).",
     "placementAlternatives": [
       "High shelf where its tendrils can hang",
@@ -2991,12 +4450,29 @@
     "tip": "Needs a support to fenestrate. Without a pole, stays juvenile and hole-less.",
     "description": "Rhaphidophora tetrasperma is a hemi-epiphytic climbing aroid from Malaysia and Thailand, often confused and mis-sold as Monstera minima, Philodendron Ginny, or Philodendron Piccolo (none of which are valid Latin names). It develops fenestrations (heart-shaped holes) ONLY when it matures climbing a support; without a moss pole it stays in juvenile small-leaf form.",
     "problems": [
-      { "symptom": "Small, hole-less leaves", "cause": "Lack of vertical support to climb", "solution": "Add a moss pole or stake so the plant can mature and develop fenestrations." },
-      { "symptom": "Yellowing leaves", "cause": "Overwatering or waterlogged substrate", "solution": "Reduce frequency; check drainage; let the top centimeters dry out." },
-      { "symptom": "Aerial roots searching for support", "cause": "Natural climbing habit", "solution": "Guide them toward the moss pole or mist them to keep them hydrated." }
+      {
+        "symptom": "Small, hole-less leaves",
+        "cause": "Lack of vertical support to climb",
+        "solution": "Add a moss pole or stake so the plant can mature and develop fenestrations."
+      },
+      {
+        "symptom": "Yellowing leaves",
+        "cause": "Overwatering or waterlogged substrate",
+        "solution": "Reduce frequency; check drainage; let the top centimeters dry out."
+      },
+      {
+        "symptom": "Aerial roots searching for support",
+        "cause": "Natural climbing habit",
+        "solution": "Guide them toward the moss pole or mist them to keep them hydrated."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Diluted compost tea once a month in warm season" },
-    "careAction": { "soilCheck": "Touch the top 2 cm: water until it drains." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Diluted compost tea once a month in warm season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2 cm: water until it drains."
+    },
     "placementRecommended": "Near a window with bright indirect light + a moss pole if you want big leaves with holes.",
     "placementAlternatives": [
       "Bright room with humidifier",
@@ -3004,19 +4480,52 @@
       "High shelf with a vertical support"
     ],
     "placementAvoid": "Direct sun and dark corners (no support, no fenestrations).",
-    "whyRationale": "Climbing hemi-epiphytic aroid from Southeast Asia — fenestrations appear once it reaches vertical support (heteroblasty). Without a pole it stays juvenile without holes. Hence confusion with Monstera, but it's Rhaphidophora."
+    "whyRationale": "Climbing hemi-epiphytic aroid from Southeast Asia — fenestrations appear once it reaches vertical support (heteroblasty). Without a pole it stays juvenile without holes. Hence confusion with Monstera, but it's Rhaphidophora.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Oral irritation",
+          "Intense burning of mouth, lips, tongue",
+          "Excessive drooling",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "strelitzia": {
     "name": "Bird of Paradise (Strelitzia)",
     "tip": "Flowers after 3-4 years. Needs lots of sun and maturity.",
     "description": "Strelitzia reginae compact (~1-1.5m) is a South African strelitziaceous species known as Bird of Paradise for its iconic flower (orange, blue, and cream sepals shaped like a tropical bird). It has large paddle-shaped leaves; needs YEARS of bright indirect light to flower indoors. Do NOT confuse with the giant S. nicolai (2-3m, white flowers — a different species not covered by this entry).",
     "problems": [
-      { "symptom": "Lengthwise split leaves", "cause": "Natural adaptation to wind", "solution": "It's normal — not damage; the leaf splits along veins to resist gusts." },
-      { "symptom": "No flowers", "cause": "Insufficient light or immature plant", "solution": "Move closer to a large window with morning sun; wait 3-4 years from seed." },
-      { "symptom": "Brown leaf tips", "cause": "Low ambient humidity or dry air", "solution": "Mist the leaves; move away from heaters; group with other plants." }
+      {
+        "symptom": "Lengthwise split leaves",
+        "cause": "Natural adaptation to wind",
+        "solution": "It's normal — not damage; the leaf splits along veins to resist gusts."
+      },
+      {
+        "symptom": "No flowers",
+        "cause": "Insufficient light or immature plant",
+        "solution": "Move closer to a large window with morning sun; wait 3-4 years from seed."
+      },
+      {
+        "symptom": "Brown leaf tips",
+        "cause": "Low ambient humidity or dry air",
+        "solution": "Mist the leaves; move away from heaters; group with other plants."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK in warm season", "homemade": "Diluted compost tea every 4 weeks during the growing season" },
-    "careAction": { "soilCheck": "Touch the top 3 cm: water when dry. Reduce drastically in winter." },
+    "nutrients": {
+      "type": "Balanced NPK in warm season",
+      "homemade": "Diluted compost tea every 4 weeks during the growing season"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 3 cm: water when dry. Reduce drastically in winter."
+    },
     "placementRecommended": "Near a large window with bright indirect light — direct morning sun helps it flower.",
     "placementAlternatives": [
       "Bright room with sheer curtain on midday direct sun",
@@ -3024,19 +4533,48 @@
       "Sheltered outdoor bed in temperate climate (SH)"
     ],
     "placementAvoid": "Dark corners (won't flower) and prolonged temperatures below 8°C.",
-    "whyRationale": "South African strelitziaceous savanna species — paddle-shaped leaves reduce water loss. Flowering needs prolonged bright light + 3-4 years of maturity. The bird-beak-shaped sepal evolved for sunbird pollination."
+    "whyRationale": "South African strelitziaceous savanna species — paddle-shaped leaves reduce water loss. Flowering needs prolonged bright light + 3-4 years of maturity. The bird-beak-shaped sepal evolved for sunbird pollination.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild nausea",
+          "Drowsiness"
+        ],
+        "dogs": [
+          "Mild nausea",
+          "Drowsiness"
+        ]
+      }
+    }
   },
   "eucalipto": {
     "name": "Lemon Eucalyptus",
     "tip": "Strong citrus aroma from citronellal. Use leaves for infusions; full outdoor sun.",
     "description": "Eucalyptus citriodora (POWO synonym Corymbia citriodora since the 2000s) is an Australian myrtaceous tree with intensely citrus-scented leaves due to the volatile compound citronellal (anti-herbivory defense and natural insect repellent). Very fast outdoor growth (>1m per year); difficult to maintain in a pot long-term — better planted in ground. The Argentine market mostly sells it under the Eucalyptus name.",
     "problems": [
-      { "symptom": "Explosive pot growth", "cause": "Invasive roots seeking deep soil", "solution": "Transplant to an extra-large pot or plant directly in the ground if possible." },
-      { "symptom": "Chlorosis (yellow leaves with green veins)", "cause": "Alkaline soil — iron lockout", "solution": "Apply chelated iron amendment; acidify substrate with peat." },
-      { "symptom": "Scale on new shoots", "cause": "Common outdoor pest", "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists." }
+      {
+        "symptom": "Explosive pot growth",
+        "cause": "Invasive roots seeking deep soil",
+        "solution": "Transplant to an extra-large pot or plant directly in the ground if possible."
+      },
+      {
+        "symptom": "Chlorosis (yellow leaves with green veins)",
+        "cause": "Alkaline soil — iron lockout",
+        "solution": "Apply chelated iron amendment; acidify substrate with peat."
+      },
+      {
+        "symptom": "Scale on new shoots",
+        "cause": "Common outdoor pest",
+        "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists."
+      }
     ],
-    "nutrients": { "type": "Balanced NPK", "homemade": "Compost at the base in spring; iron amendment if leaves yellow" },
-    "careAction": { "fixed": "Water every 5 days in warm season thoroughly; every 10 in cold. Fast growth." },
+    "nutrients": {
+      "type": "Balanced NPK",
+      "homemade": "Compost at the base in spring; iron amendment if leaves yellow"
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm season thoroughly; every 10 in cold. Fast growth."
+    },
     "placementRecommended": "Full outdoor sun — patio, garden, large terrace with deep substrate.",
     "placementAlternatives": [
       "Bed in well-drained sandy-clay soil",
@@ -3044,19 +4582,54 @@
       "North-facing wall (SH) with all-day sun"
     ],
     "placementAvoid": "Small pots (invasive roots) and waterlogged soil.",
-    "whyRationale": "Australian myrtaceous tree — leaves carry volatile citronellal (anti-herbivory defense). Very fast outdoor growth: the tree races for height, which is why long-term pot confinement is hard."
+    "whyRationale": "Australian myrtaceous tree — leaves carry volatile citronellal (anti-herbivory defense). Very fast outdoor growth: the tree races for height, which is why long-term pot confinement is hard.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Salivation",
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Weakness"
+        ],
+        "dogs": [
+          "Salivation",
+          "Vomiting",
+          "Diarrhea",
+          "Depression",
+          "Weakness"
+        ]
+      }
+    }
   },
   "bambu-suerte": {
     "name": "Lucky Bamboo",
     "tip": "Grows in either water or soil. In water, change every 10-14 days with filtered water.",
     "description": "Dracaena sanderiana (NOT a true bamboo despite the name) is a West African asparagaceous, commonly sold as lucky bamboo in water culture (no substrate, only filtered water). It also grows in soil. Tolerates very low light. Sensitive to fluoride and chlorine in tap water — use filtered water or water settled 24h. The decorative spirals and braids are commercially shaped, not natural.",
     "problems": [
-      { "symptom": "Yellow leaves with burned tips", "cause": "Fluoride or chlorine from tap water", "solution": "Switch to filtered water or water settled 24h; fluoride accumulates in the tips." },
-      { "symptom": "Black or mushy stems", "cause": "Rot from old water in water culture", "solution": "Change water every 10-14 days; rinse roots; trim rotted stems." },
-      { "symptom": "Dry brown tips", "cause": "Low ambient humidity", "solution": "Mist leaves; move away from heaters; group with other plants." }
+      {
+        "symptom": "Yellow leaves with burned tips",
+        "cause": "Fluoride or chlorine from tap water",
+        "solution": "Switch to filtered water or water settled 24h; fluoride accumulates in the tips."
+      },
+      {
+        "symptom": "Black or mushy stems",
+        "cause": "Rot from old water in water culture",
+        "solution": "Change water every 10-14 days; rinse roots; trim rotted stems."
+      },
+      {
+        "symptom": "Dry brown tips",
+        "cause": "Low ambient humidity",
+        "solution": "Mist leaves; move away from heaters; group with other plants."
+      }
     ],
-    "nutrients": { "type": "Very low NPK", "homemade": "In water culture, a few drops of diluted liquid fertilizer once a month" },
-    "careAction": { "fixed": "If in water: change every 10-14 days with filtered water. If in soil: water every 14 days." },
+    "nutrients": {
+      "type": "Very low NPK",
+      "homemade": "In water culture, a few drops of diluted liquid fertilizer once a month"
+    },
+    "careAction": {
+      "fixed": "If in water: change every 10-14 days with filtered water. If in soil: water every 14 days."
+    },
     "placementRecommended": "Medium indirect light — desk, office shelf, counter with little natural light.",
     "placementAlternatives": [
       "Room with fluorescent or LED light",
@@ -3064,19 +4637,51 @@
       "Bright bathroom counter (high humidity)"
     ],
     "placementAvoid": "Direct sun (burns leaves) and unfiltered tap water with chlorine or fluoride.",
-    "whyRationale": "African asparagaceous from riparian zones — adapted to high humidity, grows well in water culture. Sensitive to tap-water fluoride because its native habitat has soft water: fluoride accumulates in the tips and burns them."
+    "whyRationale": "African asparagaceous from riparian zones — adapted to high humidity, grows well in water culture. Sensitive to tap-water fluoride because its native habitat has soft water: fluoride accumulates in the tips and burns them.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Incoordination",
+          "Weakness",
+          "Dilated pupils (cats)"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Incoordination",
+          "Weakness"
+        ]
+      }
+    }
   },
   "sansevieria-cilindrica": {
     "name": "Cylindrical Sansevieria",
     "tip": "Nearly indestructible. More tolerant than the common sansevieria.",
     "description": "Dracaena angolensis (POWO reclassified from Sansevieria cylindrica in 2018; the trade still uses the Sansevieria name) is an Angolan asparagaceous with cylindrical tubular leaves growing upright. Combines CAM photosynthesis with extreme drought tolerance. Tolerates very low light — one of the most forgiving houseplants. Often sold with leaves decoratively braided.",
     "problems": [
-      { "symptom": "Rot at the base", "cause": "Overwatering — the most common cause of death", "solution": "Reduce drastically; let dry completely; improve drainage with perlite." },
-      { "symptom": "Soft, wrinkled bases", "cause": "Chronic overwatering", "solution": "Suspend watering for several days; repot if substrate stays wet." },
-      { "symptom": "Extremely slow growth", "cause": "Low light — normal in its nature", "solution": "It's expected; if you want faster growth, move to bright indirect light." }
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering — the most common cause of death",
+        "solution": "Reduce drastically; let dry completely; improve drainage with perlite."
+      },
+      {
+        "symptom": "Soft, wrinkled bases",
+        "cause": "Chronic overwatering",
+        "solution": "Suspend watering for several days; repot if substrate stays wet."
+      },
+      {
+        "symptom": "Extremely slow growth",
+        "cause": "Low light — normal in its nature",
+        "solution": "It's expected; if you want faster growth, move to bright indirect light."
+      }
     ],
-    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted compost tea once or twice a year in warm season" },
-    "careAction": { "fixed": "Water every 21 days in warm season; every 45 in cold. Forget about it without guilt — it prefers drought." },
+    "nutrients": {
+      "type": "Very low NPK",
+      "homemade": "Heavily diluted compost tea once or twice a year in warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 21 days in warm season; every 45 in cold. Forget about it without guilt — it prefers drought."
+    },
     "placementRecommended": "Bright indirect or medium light — versatile; tolerates office, hallway, bedroom.",
     "placementAlternatives": [
       "Bright shelf with filtered light",
@@ -3084,19 +4689,50 @@
       "Counter with indirect light"
     ],
     "placementAvoid": "Waterlogged substrate and prolonged temperatures below 8°C.",
-    "whyRationale": "Angolan asparagaceous — cylindrical tubular leaves with water-storage tissue and CAM photosynthesis. Extreme tolerance to low light, drought, and neglect: in habitat it survives semi-arid savanna with little rain."
+    "whyRationale": "Angolan asparagaceous — cylindrical tubular leaves with water-storage tissue and CAM photosynthesis. Extreme tolerance to low light, drought, and neglect: in habitat it survives semi-arid savanna with little rain.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "dogs": [
+          "Nausea",
+          "Vomiting",
+          "Diarrhea"
+        ]
+      }
+    }
   },
   "cactus-san-pedro": {
     "name": "San Pedro Cactus",
     "tip": "Fast vertical growth. Full sun and minimal watering.",
     "description": "Echinopsis pachanoi (POWO reclassified from Trichocereus pachanoi in 2024; the trade still mostly uses Trichocereus) is a columnar cactus from the Andean foothills (Peru, Ecuador, Bolivia, Chile). It has rapid vertical growth (>1cm per year), full outdoor sun, and develops impressive height (2-6m at maturity). Large, white, nocturnal flowers appear on mature specimens. This entry is purely horticultural — about plant care as a columnar ornamental.",
     "problems": [
-      { "symptom": "Rot at the base", "cause": "Overwatering — most common indoor failure", "solution": "Suspend watering; cut the rotten zone back to healthy tissue; let it callus before resuming." },
-      { "symptom": "Scale on the stem", "cause": "Common pest in outdoor cacti", "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists." },
-      { "symptom": "Frost damage below -5°C", "cause": "Prolonged cold beyond its tolerance", "solution": "Shelter from severe winter; move to a porch or cover if frost is forecast." }
+      {
+        "symptom": "Rot at the base",
+        "cause": "Overwatering — most common indoor failure",
+        "solution": "Suspend watering; cut the rotten zone back to healthy tissue; let it callus before resuming."
+      },
+      {
+        "symptom": "Scale on the stem",
+        "cause": "Common pest in outdoor cacti",
+        "solution": "Wipe with cotton swab and alcohol; treat with potassium soap if it persists."
+      },
+      {
+        "symptom": "Frost damage below -5°C",
+        "cause": "Prolonged cold beyond its tolerance",
+        "solution": "Shelter from severe winter; move to a porch or cover if frost is forecast."
+      }
     ],
-    "nutrients": { "type": "Very low NPK", "homemade": "Heavily diluted compost once a year at the start of warm season" },
-    "careAction": { "fixed": "Water every 14 days in warm season thoroughly; every 30 in cold. Let dry completely." },
+    "nutrients": {
+      "type": "Very low NPK",
+      "homemade": "Heavily diluted compost once a year at the start of warm season"
+    },
+    "careAction": {
+      "fixed": "Water every 14 days in warm season thoroughly; every 30 in cold. Let dry completely."
+    },
     "placementRecommended": "Full outdoor sun — patio, terrace, garden with all-day direct sun.",
     "placementAlternatives": [
       "Large pot with full drainage",
@@ -3104,19 +4740,54 @@
       "South-facing wall (NH) with direct sun"
     ],
     "placementAvoid": "Waterlogged substrate and indoor corners without full sun (stretching + weakness).",
-    "whyRationale": "Andean foothills columnar cactus — CAM metabolism and rapid vertical growth (>1cm/year). Full outdoor sun, minimal watering. The column rises seeking direct light, characteristic of Echinopsis."
+    "whyRationale": "Andean foothills columnar cactus — CAM metabolism and rapid vertical growth (>1cm/year). Full outdoor sun, minimal watering. The column rises seeking direct light, characteristic of Echinopsis.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Agitation",
+          "Disorientation",
+          "Tremors"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Agitation",
+          "Disorientation",
+          "Tremors"
+        ]
+      }
+    }
   },
   "tulipan": {
     "name": "Tulip",
     "tip": "If your zone doesn't drop below 5°C in winter, chill the bulbs in the fridge 6-8 weeks before planting.",
     "description": "Tulip (Tulipa gesneriana) is a Liliaceae with a subterranean bulb. It needs ~12 weeks below 8°C in winter to develop the flower bud. In cool-temperate Argentina (Buenos Aires south, Patagonia) it blooms naturally; in subtropical NEA-NOA, fridge pre-chill is mandatory. The aboveground portion dies back in summer; the bulb enters dormancy until next spring.",
     "problems": [
-      { "symptom": "No flowers", "cause": "Insufficient vernalization", "solution": "Pre-chill bulbs in the fridge 6-8 weeks before planting or switch zones." },
-      { "symptom": "Leaves but no flower", "cause": "Young or depleted bulb", "solution": "Fertilize after flowering so the bulb rebuilds reserves." },
-      { "symptom": "Rotten bulb in summer", "cause": "Watering during dormancy", "solution": "Stop watering when leaves wilt after blooming." }
+      {
+        "symptom": "No flowers",
+        "cause": "Insufficient vernalization",
+        "solution": "Pre-chill bulbs in the fridge 6-8 weeks before planting or switch zones."
+      },
+      {
+        "symptom": "Leaves but no flower",
+        "cause": "Young or depleted bulb",
+        "solution": "Fertilize after flowering so the bulb rebuilds reserves."
+      },
+      {
+        "symptom": "Rotten bulb in summer",
+        "cause": "Watering during dormancy",
+        "solution": "Stop watering when leaves wilt after blooming."
+      }
     ],
-    "nutrients": { "type": "Balanced at sprouting and after flowering", "homemade": "Bone meal at planting" },
-    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water. When leaves wilt after flowering, stop watering entirely — the bulb enters rest." },
+    "nutrients": {
+      "type": "Balanced at sprouting and after flowering",
+      "homemade": "Bone meal at planting"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2cm: if dry, water. When leaves wilt after flowering, stop watering entirely — the bulb enters rest."
+    },
     "placementRecommended": "Deep planter or bed in full sun — the bulb needs winter cold and spring sun.",
     "placementAlternatives": [
       "25+ cm planter with generous drainage",
@@ -3124,19 +4795,54 @@
       "Open patio with direct morning sun"
     ],
     "placementAvoid": "Waterlogged substrate during dormancy and warm zones without cold winter — the bulb won't accumulate chill hours and won't flower.",
-    "whyRationale": "Liliaceae with subterranean bulb — needs ~12 weeks below 8°C to develop the flower bud. Cool-temperate Argentina works naturally; in subtropical NEA-NOA, fridge pre-chill 6-8 weeks is mandatory or no flowering. Aboveground dies; bulb persists."
+    "whyRationale": "Liliaceae with subterranean bulb — needs ~12 weeks below 8°C to develop the flower bud. Cool-temperate Argentina works naturally; in subtropical NEA-NOA, fridge pre-chill 6-8 weeks is mandatory or no flowering. Aboveground dies; bulb persists.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Depression",
+          "Diarrhea",
+          "Hypersalivation",
+          "Drooling"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Depression",
+          "Diarrhea",
+          "Hypersalivation",
+          "Drooling"
+        ]
+      }
+    }
   },
   "ciclamen": {
     "name": "Cyclamen",
     "tip": "When leaves yellow in summer, suspend watering — the corm enters rest.",
     "description": "Cyclamen (Cyclamen persicum) is a Primulaceae with a subterranean corm. In LATAM it's grown as a winter-spring flowering indoor pot plant, not a garden plant. It loves cool 13-18°C and drops leaves in summer (corm dormancy). Never water the corm from above (rots it); bottom-water by immersion 10 minutes and let drain.",
     "problems": [
-      { "symptom": "Yellow leaves in summer", "cause": "Normal corm dormancy", "solution": "Do NOT water; when new shoots appear in autumn, resume watering." },
-      { "symptom": "Soft corm", "cause": "Standing water in the crown", "solution": "Bottom-water by immersion 10 minutes, NOT from above onto the corm." },
-      { "symptom": "Flowers drop quickly", "cause": "Warm environment", "solution": "Move to a cool room below 20°C and away from heaters." }
+      {
+        "symptom": "Yellow leaves in summer",
+        "cause": "Normal corm dormancy",
+        "solution": "Do NOT water; when new shoots appear in autumn, resume watering."
+      },
+      {
+        "symptom": "Soft corm",
+        "cause": "Standing water in the crown",
+        "solution": "Bottom-water by immersion 10 minutes, NOT from above onto the corm."
+      },
+      {
+        "symptom": "Flowers drop quickly",
+        "cause": "Warm environment",
+        "solution": "Move to a cool room below 20°C and away from heaters."
+      }
     ],
-    "nutrients": { "type": "Low nitrogen; bloom-balanced during flowering", "homemade": "Banana peel every 3 weeks during flowering" },
-    "careAction": { "soilCheck": "Touch surface soil: if dry, bottom-water by immersion 10 minutes. In summer (dormancy), suspend completely until new shoots appear." },
+    "nutrients": {
+      "type": "Low nitrogen; bloom-balanced during flowering",
+      "homemade": "Banana peel every 3 weeks during flowering"
+    },
+    "careAction": {
+      "soilCheck": "Touch surface soil: if dry, bottom-water by immersion 10 minutes. In summer (dormancy), suspend completely until new shoots appear."
+    },
     "placementRecommended": "Near a cool window with bright indirect light, away from heaters.",
     "placementAlternatives": [
       "Kitchen or laundry with good natural light and no direct sun",
@@ -3144,19 +4850,54 @@
       "Cool room below 18°C in winter-spring"
     ],
     "placementAvoid": "Intense direct sun, nearby heaters and water on the corm — all push it into dormancy or rot.",
-    "whyRationale": "Primulaceae with subterranean corm — stores reserves to survive summer dormancy (Mediterranean dry cycle). Blooms in fall-winter when the corm rehydrates. Watering over the corm rots it; always bottom-water."
+    "whyRationale": "Primulaceae with subterranean corm — stores reserves to survive summer dormancy (Mediterranean dry cycle). Blooms in fall-winter when the corm rehydrates. Watering over the corm rots it; always bottom-water.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Abnormal heart rhythm",
+          "Seizures"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Abnormal heart rhythm",
+          "Seizures"
+        ]
+      }
+    }
   },
   "crisantemo": {
     "name": "Chrysanthemum",
     "tip": "Pinch tips through summer for more autumn blooms with short days.",
     "description": "Chrysanthemum (Chrysanthemum × morifolium) is an Asteraceae perennial with an overwintering crown. Autumn flower in LATAM (Day of the Dead in Mexico; classic Mother's Day in SH). Pinching tips in spring-summer forces branching and multiplies heads. The crown stays dormant in winter; full sun + drainage are critical.",
     "problems": [
-      { "symptom": "Long stems without flowers", "cause": "Long summer days — not yet flowering", "solution": "Patience; it blooms in autumn with short days (photoperiod)." },
-      { "symptom": "Leaves with dark spots", "cause": "Fungus from humidity on foliage", "solution": "Water at the base, avoid wetting foliage, improve ventilation." },
-      { "symptom": "Small plants with few flowers", "cause": "Lack of spring pinching", "solution": "Pinch tips through January (SH) to force branching." }
+      {
+        "symptom": "Long stems without flowers",
+        "cause": "Long summer days — not yet flowering",
+        "solution": "Patience; it blooms in autumn with short days (photoperiod)."
+      },
+      {
+        "symptom": "Leaves with dark spots",
+        "cause": "Fungus from humidity on foliage",
+        "solution": "Water at the base, avoid wetting foliage, improve ventilation."
+      },
+      {
+        "symptom": "Small plants with few flowers",
+        "cause": "Lack of spring pinching",
+        "solution": "Pinch tips through January (SH) to force branching."
+      }
     ],
-    "nutrients": { "type": "Balanced during growth; high phosphorus in pre-bloom", "homemade": "Banana peel tea every 3 weeks" },
-    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water at the base. Pinch tips through January (SH). In winter, reduce watering with the dormant crown." },
+    "nutrients": {
+      "type": "Balanced during growth; high phosphorus in pre-bloom",
+      "homemade": "Banana peel tea every 3 weeks"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2cm: if dry, water at the base. Pinch tips through January (SH). In winter, reduce watering with the dormant crown."
+    },
     "placementRecommended": "Bed or large planter in full sun — at least 6 direct hours for dense flowering.",
     "placementAlternatives": [
       "30+ cm planter on sunny patio",
@@ -3164,19 +4905,54 @@
       "Garden border with fast drainage"
     ],
     "placementAvoid": "Shade and waterlogged soil — without full sun makes thin stems without buds; with stagnant moisture rots the crown.",
-    "whyRationale": "Asteraceae perennial with overwintering crown — its heads are composite inflorescences of hundreds of florets. Blooms with short days (autumn photoperiod); spring pinching forces branching and multiplies heads."
+    "whyRationale": "Asteraceae perennial with overwintering crown — its heads are composite inflorescences of hundreds of florets. Blooms with short days (autumn photoperiod); spring pinching forces branching and multiplies heads.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Incoordination",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "Incoordination",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "azalea": {
     "name": "Azalea",
     "tip": "Use rainwater or filtered water — hard water raises pH and kills mycorrhizal symbiosis.",
     "description": "Azalea (Rhododendron simsii) is an Ericaceae native to southwestern China. Shrub with abundant spring flowering (pink, red, white, lilac). Requires acidic soil pH 4.5-5.5 and soft water. It's understory-adapted: filtered sun, not full. With alkaline soil or hard water, it develops iron chlorosis and dies within months.",
     "problems": [
-      { "symptom": "Yellow leaves with green veins", "cause": "Chlorosis from high pH or hard water", "solution": "Rainwater + aluminum sulfate or peat to acidify the substrate." },
-      { "symptom": "Wilted leaves with moist soil", "cause": "Root rot from fungi", "solution": "Improve drainage + reduce watering; treat with systemic fungicide." },
-      { "symptom": "No flowers", "cause": "Mistimed pruning or insufficient sun", "solution": "Prune as soon as flowering ends; move to filtered morning sun." }
+      {
+        "symptom": "Yellow leaves with green veins",
+        "cause": "Chlorosis from high pH or hard water",
+        "solution": "Rainwater + aluminum sulfate or peat to acidify the substrate."
+      },
+      {
+        "symptom": "Wilted leaves with moist soil",
+        "cause": "Root rot from fungi",
+        "solution": "Improve drainage + reduce watering; treat with systemic fungicide."
+      },
+      {
+        "symptom": "No flowers",
+        "cause": "Mistimed pruning or insufficient sun",
+        "solution": "Prune as soon as flowering ends; move to filtered morning sun."
+      }
     ],
-    "nutrients": { "type": "Ericaceous-specific (acidic)", "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly" },
-    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months." },
+    "nutrients": {
+      "type": "Ericaceous-specific (acidic)",
+      "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months."
+    },
     "placementRecommended": "Patio with filtered morning sun or light shade — understory-adapted, NOT full midday sun.",
     "placementAlternatives": [
       "Bed under a tree with dappled shade",
@@ -3184,19 +4960,54 @@
       "East-facing corner (SH) with soft morning sun"
     ],
     "placementAvoid": "Full midday sun + alkaline soil + hard water — the combination burns leaves and kills the obligate mycorrhizae.",
-    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Chinese understory native: filtered sun, NOT full midday sun."
+    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Chinese understory native: filtered sun, NOT full midday sun.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "CNS depression",
+          "Cardiovascular collapse"
+        ],
+        "dogs": [
+          "Vomiting",
+          "Diarrhea",
+          "Hypersalivation",
+          "CNS depression",
+          "Cardiovascular collapse"
+        ]
+      }
+    }
   },
   "clavel": {
     "name": "Carnation",
     "tip": "Pinch young tips to branch out; deadhead to force re-bloom.",
     "description": "Carnation (Dianthus caryophyllus) is a Mediterranean Caryophyllaceae with jointed gray-blue stems. Highly fragrant flowers (pink, red, white, variegated). Classic European garden plant that prefers full sun + fast drainage + neutral-alkaline pH (the opposite of azalea). Gray leaves have trichomes that reduce evaporation.",
     "problems": [
-      { "symptom": "Thin, drooping stems", "cause": "Insufficient sun or excess nitrogen", "solution": "6+ hours direct sun + reduce nitrogen fertilizer to strengthen stems." },
-      { "symptom": "Yellow leaves at the base", "cause": "Overwatering", "solution": "Water less, improve drainage, let it dry between waterings." },
-      { "symptom": "Papery petals", "cause": "Water on flowers exposed to sun", "solution": "Water at the base, not from above — protect flowers from direct watering." }
+      {
+        "symptom": "Thin, drooping stems",
+        "cause": "Insufficient sun or excess nitrogen",
+        "solution": "6+ hours direct sun + reduce nitrogen fertilizer to strengthen stems."
+      },
+      {
+        "symptom": "Yellow leaves at the base",
+        "cause": "Overwatering",
+        "solution": "Water less, improve drainage, let it dry between waterings."
+      },
+      {
+        "symptom": "Papery petals",
+        "cause": "Water on flowers exposed to sun",
+        "solution": "Water at the base, not from above — protect flowers from direct watering."
+      }
     ],
-    "nutrients": { "type": "Balanced low-nitrogen; high potassium", "homemade": "Wood ash (potassium + slight alkalinity) every 6 weeks" },
-    "careAction": { "fixed": "Water every 5 days in warm; every 12 in cold. Pinch young tips to branch out; deadhead to force re-bloom." },
+    "nutrients": {
+      "type": "Balanced low-nitrogen; high potassium",
+      "homemade": "Wood ash (potassium + slight alkalinity) every 6 weeks"
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm; every 12 in cold. Pinch young tips to branch out; deadhead to force re-bloom."
+    },
     "placementRecommended": "Sunny bed or planter — at least 6 hours of direct sun and well-drained soil.",
     "placementAlternatives": [
       "Mediterranean garden border",
@@ -3204,19 +5015,50 @@
       "Bed alongside rosemary, lavender and sage"
     ],
     "placementAvoid": "Dense shade and waterlogged soil — without full sun and with excess moisture, stems rot at the base.",
-    "whyRationale": "Mediterranean Caryophyllaceae with jointed stems — flora of dry-warm origins; drained soil and full sun are its native niche. Gray leaves with trichomes reduce evaporation; defense against summer heat + drought."
+    "whyRationale": "Mediterranean Caryophyllaceae with jointed stems — flora of dry-warm origins; drained soil and full sun are its native niche. Gray leaves with trichomes reduce evaporation; defense against summer heat + drought.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Mild GI signs",
+          "Dermatitis",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "fucsia": {
     "name": "Hardy Fuchsia",
     "tip": "Native to Patagonia — prefers partial shade, not full midday sun.",
     "description": "Hardy Fuchsia (Fuchsia magellanica) is an Onagraceae native to Argentina (Patagonia, humid forest understory). Hanging shrub with characteristic pendulous red-purple flowers; ideal for hanging planters in shaded patios. Tolerates light frosts. In the southern hemisphere it blooms November to March. It needs ambient humidity, NOT full midday sun.",
     "problems": [
-      { "symptom": "Flower bud drop", "cause": "Sudden temperature change or drought", "solution": "Maintain steady humidity + regular watering; avoid moving it during flowering." },
-      { "symptom": "Pale, drooping leaves", "cause": "Intense midday sun", "solution": "Move to partial shade or a spot with morning sun only." },
-      { "symptom": "Few flowers", "cause": "Too little fertilizer during flowering", "solution": "Biweekly potassium feed during the flowering season." }
+      {
+        "symptom": "Flower bud drop",
+        "cause": "Sudden temperature change or drought",
+        "solution": "Maintain steady humidity + regular watering; avoid moving it during flowering."
+      },
+      {
+        "symptom": "Pale, drooping leaves",
+        "cause": "Intense midday sun",
+        "solution": "Move to partial shade or a spot with morning sun only."
+      },
+      {
+        "symptom": "Few flowers",
+        "cause": "Too little fertilizer during flowering",
+        "solution": "Biweekly potassium feed during the flowering season."
+      }
     ],
-    "nutrients": { "type": "High potassium during flowering", "homemade": "Wood ash + banana peel every 2 weeks during flowering" },
-    "careAction": { "fixed": "Water every 4 days in warm; every 10 in cold. Maintain ambient humidity and remove faded flowers to promote new ones." },
+    "nutrients": {
+      "type": "High potassium during flowering",
+      "homemade": "Wood ash + banana peel every 2 weeks during flowering"
+    },
+    "careAction": {
+      "fixed": "Water every 4 days in warm; every 10 in cold. Maintain ambient humidity and remove faded flowers to promote new ones."
+    },
     "placementRecommended": "Hanging planter or east-facing bed (SH) — soft morning sun and midday shade.",
     "placementAlternatives": [
       "Shaded gallery with bright indirect light",
@@ -3231,12 +5073,29 @@
     "tip": "Young heads track the sun (heliotropism); mature heads stay east-facing.",
     "description": "Sunflower (Helianthus annuus) is an Asteraceae long-day annual, native to North America and massively cultivated in Argentina (Pampas). Height 1-3m by cultivar. The head (capitulum) is composed of hundreds of florets. Sow in spring (Sept-Nov in SH); harvest seeds at end of summer when the back of the head yellows.",
     "problems": [
-      { "symptom": "Small plants with small heads", "cause": "Too little sun or poor soil", "solution": "8h full sun + sow in deep, organic-rich soil." },
-      { "symptom": "Bent or broken stem", "cause": "Wind + lack of stake on tall plants", "solution": "Stake tall varieties with a 1m cane." },
-      { "symptom": "Leaves with dark spots", "cause": "Fungus from humidity on foliage", "solution": "Water at the base, not from above; improve ventilation." }
+      {
+        "symptom": "Small plants with small heads",
+        "cause": "Too little sun or poor soil",
+        "solution": "8h full sun + sow in deep, organic-rich soil."
+      },
+      {
+        "symptom": "Bent or broken stem",
+        "cause": "Wind + lack of stake on tall plants",
+        "solution": "Stake tall varieties with a 1m cane."
+      },
+      {
+        "symptom": "Leaves with dark spots",
+        "cause": "Fungus from humidity on foliage",
+        "solution": "Water at the base, not from above; improve ventilation."
+      }
     ],
-    "nutrients": { "type": "Balanced at sowing; high phosphorus during head formation", "homemade": "Bone meal at sowing" },
-    "careAction": { "fixed": "Water every 3 days in warm (high need); every 7 in cold. Stake if over 1m. Harvest seeds when the back of the head yellows." },
+    "nutrients": {
+      "type": "Balanced at sowing; high phosphorus during head formation",
+      "homemade": "Bone meal at sowing"
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm (high need); every 7 in cold. Stake if over 1m. Harvest seeds when the back of the head yellows."
+    },
     "placementRecommended": "Deep bed or planter in full sun — at least 8 direct hours and vertical space.",
     "placementAlternatives": [
       "Family vegetable garden (companion to corn and squash — milpa)",
@@ -3251,12 +5110,29 @@
     "tip": "Magnolia is a tree — M. stellata dwarf 3m fits a small patio; M. grandiflora reaches 20m.",
     "description": "Star Magnolia (Magnolia stellata) is a Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). It's the dwarf form (3m max) ideal for small Argentine patios or gardens. Spring flowering before leaves (July-Sept SH) in white-pink stars. M. grandiflora (20m) is the iconic large variant. Honest about trajectory: large planter first, eventual ground transplant.",
     "problems": [
-      { "symptom": "Flower buds drop", "cause": "Late frosts on exposed buds", "solution": "Cover on cold nights when buds are about to open." },
-      { "symptom": "Slow growth", "cause": "Normal — magnolia grows slowly", "solution": "Patience; don't over-fertilize, the slow rhythm is natural." },
-      { "symptom": "Strangled roots", "cause": "Small planter held too long", "solution": "Eventually transplant to firm ground or use 50+ liter planter as a bridge." }
+      {
+        "symptom": "Flower buds drop",
+        "cause": "Late frosts on exposed buds",
+        "solution": "Cover on cold nights when buds are about to open."
+      },
+      {
+        "symptom": "Slow growth",
+        "cause": "Normal — magnolia grows slowly",
+        "solution": "Patience; don't over-fertilize, the slow rhythm is natural."
+      },
+      {
+        "symptom": "Strangled roots",
+        "cause": "Small planter held too long",
+        "solution": "Eventually transplant to firm ground or use 50+ liter planter as a bridge."
+      }
     ],
-    "nutrients": { "type": "Balanced annual spring; slightly acidic tolerated but not required", "homemade": "Annual organic compost at the base of the tree" },
-    "careAction": { "fixed": "Water every 7 days in warm; every 14 in cold. Mulch the base with bark to retain moisture and protect surface roots." },
+    "nutrients": {
+      "type": "Balanced annual spring; slightly acidic tolerated but not required",
+      "homemade": "Annual organic compost at the base of the tree"
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 14 in cold. Mulch the base with bark to retain moisture and protect surface roots."
+    },
     "placementRecommended": "50+ liter planter as a bridge, eventually transplant to firm ground with morning sun and deep soil.",
     "placementAlternatives": [
       "Small patio or garden with partial sun",
@@ -3271,12 +5147,29 @@
     "tip": "Pinch fresh leaves for cooking; prune annually to keep compact form.",
     "description": "Common Sage (Salvia officinalis) is a perennial Mediterranean culinary herb (Lamiaceae). Its aromatic gray-green leaves season meats, soups, and stuffings. Drought-resistant once established; ideal in sunny kitchen pots. DISTINCT from salvia-ornamental (Salvia splendens) — this is the culinary species, that is the decorative.",
     "problems": [
-      { "symptom": "Yellow leaves at the base", "cause": "Overwatering", "solution": "Let the soil dry between waterings." },
-      { "symptom": "Woody stems with no leaves", "cause": "Lack of pruning", "solution": "Prune one third in spring to force new shoots." },
-      { "symptom": "Weak aroma", "cause": "Excess water or shade", "solution": "6h full sun + sparse watering intensifies essential oils." }
+      {
+        "symptom": "Yellow leaves at the base",
+        "cause": "Overwatering",
+        "solution": "Let the soil dry between waterings."
+      },
+      {
+        "symptom": "Woody stems with no leaves",
+        "cause": "Lack of pruning",
+        "solution": "Prune one third in spring to force new shoots."
+      },
+      {
+        "symptom": "Weak aroma",
+        "cause": "Excess water or shade",
+        "solution": "6h full sun + sparse watering intensifies essential oils."
+      }
     ],
-    "nutrients": { "type": "Low; avoid excess nitrogen", "homemade": "Light annual compost in spring" },
-    "careAction": { "fixed": "Water every 5 days in warm; every 12 in cold. Pinch leaves for cooking; prune one third annually in spring." },
+    "nutrients": {
+      "type": "Low; avoid excess nitrogen",
+      "homemade": "Light annual compost in spring"
+    },
+    "careAction": {
+      "fixed": "Water every 5 days in warm; every 12 in cold. Pinch leaves for cooking; prune one third annually in spring."
+    },
     "placementRecommended": "Sunny kitchen or balcony pot — at least 5 hours of direct sun.",
     "placementAlternatives": [
       "Bed alongside rosemary and thyme (Mediterranean companions)",
@@ -3284,19 +5177,48 @@
       "Kitchen counter with south-facing window (SH)"
     ],
     "placementAvoid": "Waterlogged soil or deep shade — rots the crown and produces small leaves with no aroma.",
-    "whyRationale": "Mediterranean Lamiaceae — evolved in poor, dry soils. Gray leaves have trichomes that reflect light and reduce evaporation — defense against heat + drought. Sparse watering is key."
+    "whyRationale": "Mediterranean Lamiaceae — evolved in poor, dry soils. Gray leaves have trichomes that reflect light and reduce evaporation — defense against heat + drought. Sparse watering is key.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Mild GI upset",
+          "Vomiting"
+        ],
+        "dogs": [
+          "Mild GI upset",
+          "Vomiting"
+        ]
+      }
+    }
   },
   "eneldo": {
     "name": "Dill",
     "tip": "Harvest tender leaves regularly; cut flower stalks to extend aromatic foliage.",
     "description": "Dill (Anethum graveolens) is a Mediterranean annual Apiaceae with feathery blue-green leaves and aromatic seeds; used in fish, salads, and pickles. Short cycle (3-4 months); in hot Argentine summer it bolts quickly — sow in autumn-winter or keep in partial shade in summer.",
     "problems": [
-      { "symptom": "Premature flowering (bolting)", "cause": "Summer heat + long days", "solution": "Harvest leaves regularly and sow in autumn-winter-early-spring." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering or waterlogged soil", "solution": "Water when dry to the touch and improve drainage." },
-      { "symptom": "Weak floppy plants", "cause": "Poor staking or poor soil", "solution": "Stake if it exceeds 60cm + biweekly light feeding." }
+      {
+        "symptom": "Premature flowering (bolting)",
+        "cause": "Summer heat + long days",
+        "solution": "Harvest leaves regularly and sow in autumn-winter-early-spring."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or waterlogged soil",
+        "solution": "Water when dry to the touch and improve drainage."
+      },
+      {
+        "symptom": "Weak floppy plants",
+        "cause": "Poor staking or poor soil",
+        "solution": "Stake if it exceeds 60cm + biweekly light feeding."
+      }
     ],
-    "nutrients": { "type": "Low-medium; balanced during growth", "homemade": "Organic compost at sowing" },
-    "careAction": { "fixed": "Water every 3 days in warm; every 7 in cold. Harvest outer leaves regularly; cut flower stalks to extend aromatic foliage." },
+    "nutrients": {
+      "type": "Low-medium; balanced during growth",
+      "homemade": "Organic compost at sowing"
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 7 in cold. Harvest outer leaves regularly; cut flower stalks to extend aromatic foliage."
+    },
     "placementRecommended": "Pot or bed in sunny kitchen/balcony — at least 5 hours of bright indirect light.",
     "placementAlternatives": [
       "Bed alongside parsley and cilantro (Apiaceae companions)",
@@ -3311,12 +5233,29 @@
     "tip": "Pinch leaves to sweeten infusions; in frost move under cover or protect with frost cloth.",
     "description": "Stevia (Stevia rebaudiana) is a South American Asteraceae (Paraguay and Brazil); natural sweetener — its leaves contain steviosides 200-300x sweeter than sugar without calories. Tropical-subtropical perennial; in Buenos Aires (SH) protect from frost (move under cover or to a covered porch); harvest leaves continuously.",
     "problems": [
-      { "symptom": "Wilted leaves in cold", "cause": "Temperature <5°C", "solution": "Move under cover during frost or protect with frost cloth." },
-      { "symptom": "Less sweet flavor", "cause": "Insufficient sunlight", "solution": "5+ hours bright light intensifies steviosides." },
-      { "symptom": "Long stems without branching", "cause": "Lack of pinching", "solution": "Pinch tips monthly to force branching." }
+      {
+        "symptom": "Wilted leaves in cold",
+        "cause": "Temperature <5°C",
+        "solution": "Move under cover during frost or protect with frost cloth."
+      },
+      {
+        "symptom": "Less sweet flavor",
+        "cause": "Insufficient sunlight",
+        "solution": "5+ hours bright light intensifies steviosides."
+      },
+      {
+        "symptom": "Long stems without branching",
+        "cause": "Lack of pinching",
+        "solution": "Pinch tips monthly to force branching."
+      }
     ],
-    "nutrients": { "type": "Balanced low in nitrogen", "homemade": "Light monthly compost" },
-    "careAction": { "fixed": "Water every 4 days in warm; every 10 in cold. Pinch tips monthly to force branching; harvest leaves with scissors." },
+    "nutrients": {
+      "type": "Balanced low in nitrogen",
+      "homemade": "Light monthly compost"
+    },
+    "careAction": {
+      "fixed": "Water every 4 days in warm; every 10 in cold. Pinch tips monthly to force branching; harvest leaves with scissors."
+    },
     "placementRecommended": "Sunny kitchen/balcony pot — bright indirect to 5h direct light to enhance sweetness.",
     "placementAlternatives": [
       "Sheltered bed under a porch",
@@ -3331,12 +5270,29 @@
     "tip": "A young olive tree in a large pot can live for years before needing transplant to ground.",
     "description": "The Olive Tree (Olea europaea) is a Mediterranean evergreen Oleaceae — an iconic tree. In Argentina extensive cultivation in Mendoza, Cuyo, and La Rioja; the 'Arauco' cultivar is a national endemic, 'Arbequina' the most planted. A young olive tree in a large pot can live several years before needing transplant to firm ground. Drought-tolerant, full sun, mild frost-tolerant; spring flowering, summer-autumn fruiting.",
     "problems": [
-      { "symptom": "No fruit", "cause": "Small pot + lack of pruning + young age", "solution": "Eventual transplant to ground + winter pruning + wait 5-7 years of cultivation." },
-      { "symptom": "Pale leaves with chlorosis", "cause": "Iron unavailable due to alkaline pH or waterlogged soil", "solution": "Fast drainage + slightly acidic soil." },
-      { "symptom": "Premature olive drop", "cause": "Water stress during fruit formation", "solution": "Regular watering in spring-summer without waterlogging." }
+      {
+        "symptom": "No fruit",
+        "cause": "Small pot + lack of pruning + young age",
+        "solution": "Eventual transplant to ground + winter pruning + wait 5-7 years of cultivation."
+      },
+      {
+        "symptom": "Pale leaves with chlorosis",
+        "cause": "Iron unavailable due to alkaline pH or waterlogged soil",
+        "solution": "Fast drainage + slightly acidic soil."
+      },
+      {
+        "symptom": "Premature olive drop",
+        "cause": "Water stress during fruit formation",
+        "solution": "Regular watering in spring-summer without waterlogging."
+      }
     ],
-    "nutrients": { "type": "Balanced low; apply before flowering", "homemade": "Annual organic compost at the base + wood ash" },
-    "careAction": { "fixed": "Water every 7 days in warm; every 21 in cold. Tolerates mild drought. Prune in winter to maintain form + remove suckers from the base." },
+    "nutrients": {
+      "type": "Balanced low; apply before flowering",
+      "homemade": "Annual organic compost at the base + wood ash"
+    },
+    "careAction": {
+      "fixed": "Water every 7 days in warm; every 21 in cold. Tolerates mild drought. Prune in winter to maintain form + remove suckers from the base."
+    },
     "placementRecommended": "Patio or garden in full sun — at least 8 hours; 50+ liter pot as a bridge, eventual transplant to firm ground.",
     "placementAlternatives": [
       "Sunny bed with deep, well-drained soil",
@@ -3351,12 +5307,29 @@
     "tip": "Use rainwater or filtered water — hard water alkalinizes soil and kills the mycorrhizal symbiosis.",
     "description": "The Blueberry (Vaccinium corymbosum) is an acidophilic Ericaceae native to North America; a fruiting shrub with very nutritious blue berries. It needs strict pH 4.5-5.5 + soft water + full sun + winter cold. In Argentina extensive cultivation in Tucumán and Entre Ríos. Hard water alkalinizes the soil and breaks the mycorrhizal symbiosis — iron chlorosis and progressive death within months.",
     "problems": [
-      { "symptom": "Yellowish leaves with green veins", "cause": "Chlorosis from high pH/hard water", "solution": "Use rainwater + acidify with aluminum sulfate or peat." },
-      { "symptom": "Wilted leaves but moist soil", "cause": "Root rot from alkaline soil or excess moisture", "solution": "Check pH + improve drainage + reduce watering." },
-      { "symptom": "Few berries", "cause": "Incorrect pruning or insufficient chill hours", "solution": "Light winter pruning + needs ~800 hours <7°C." }
+      {
+        "symptom": "Yellowish leaves with green veins",
+        "cause": "Chlorosis from high pH/hard water",
+        "solution": "Use rainwater + acidify with aluminum sulfate or peat."
+      },
+      {
+        "symptom": "Wilted leaves but moist soil",
+        "cause": "Root rot from alkaline soil or excess moisture",
+        "solution": "Check pH + improve drainage + reduce watering."
+      },
+      {
+        "symptom": "Few berries",
+        "cause": "Incorrect pruning or insufficient chill hours",
+        "solution": "Light winter pruning + needs ~800 hours <7°C."
+      }
     ],
-    "nutrients": { "type": "Specific for ericaceous (acidic)", "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly + pine-needle compost" },
-    "careAction": { "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months." },
+    "nutrients": {
+      "type": "Specific for ericaceous (acidic)",
+      "homemade": "Peat on surface + water acidified with vinegar 1ml/L monthly + pine-needle compost"
+    },
+    "careAction": {
+      "soilCheck": "Touch the top 2cm: if dry, water with soft water. Keep soil acidic (pH 4.5-5.5) — hard water kills it within months."
+    },
     "placementRecommended": "Bed or large pot in full sun with acidic soil — at least 6 hours of direct sun.",
     "placementAlternatives": [
       "Raised bed with peat and pine needles",
@@ -3371,12 +5344,29 @@
     "tip": "Sow in autumn-winter-early-spring; in summer >25°C it bolts in 2-3 weeks.",
     "description": "Spinach (Spinacia oleracea) is a cool-season annual Amaranthaceae — in hot Argentine summer (>25°C) it bolts in 2-3 weeks and loses leaf quality. Ideal to sow in autumn-winter-early-spring; short cycle (40-60 days); harvest outer leaves continuously; tolerates light frost.",
     "problems": [
-      { "symptom": "Premature bolting", "cause": "Temperatures >25°C + long days", "solution": "Sow in autumn-winter; in summer protect under partial shade." },
-      { "symptom": "Yellow leaves", "cause": "Overwatering or nitrogen deficiency", "solution": "Moderate watering and supply organic nitrogen." },
-      { "symptom": "Small, tough leaves", "cause": "Water stress or intense sun", "solution": "Regular watering + partial shade in summer." }
+      {
+        "symptom": "Premature bolting",
+        "cause": "Temperatures >25°C + long days",
+        "solution": "Sow in autumn-winter; in summer protect under partial shade."
+      },
+      {
+        "symptom": "Yellow leaves",
+        "cause": "Overwatering or nitrogen deficiency",
+        "solution": "Moderate watering and supply organic nitrogen."
+      },
+      {
+        "symptom": "Small, tough leaves",
+        "cause": "Water stress or intense sun",
+        "solution": "Regular watering + partial shade in summer."
+      }
     ],
-    "nutrients": { "type": "High in nitrogen (foliar)", "homemade": "Compost or nettle tea every 10 days during growth" },
-    "careAction": { "fixed": "Water every 3 days in warm; every 6 in cold. Harvest outer leaves regularly; sow in autumn-winter to avoid summer bolt." },
+    "nutrients": {
+      "type": "High in nitrogen (foliar)",
+      "homemade": "Compost or nettle tea every 10 days during growth"
+    },
+    "careAction": {
+      "fixed": "Water every 3 days in warm; every 6 in cold. Harvest outer leaves regularly; sow in autumn-winter to avoid summer bolt."
+    },
     "placementRecommended": "Vegetable bed or garden plot with morning sun and partial shade in summer.",
     "placementAlternatives": [
       "30+ cm pot in cool patio",

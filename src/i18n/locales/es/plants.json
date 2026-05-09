@@ -34,7 +34,25 @@
       "Estante alto donde sus guías puedan colgar"
     ],
     "placementAvoid": "Sol directo del mediodía — quema las hojas variegadas.",
-    "whyRationale": "Es una trepadora del sotobosque tropical: en su hábitat crece bajo el dosel, así que necesita luz tamizada y humedad constante. Su tolerancia a la sombra viene de su adaptación al piso de la selva."
+    "whyRationale": "Es una trepadora del sotobosque tropical: en su hábitat crece bajo el dosel, así que necesita luz tamizada y humedad constante. Su tolerancia a la sombra viene de su adaptación al piso de la selva.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "monstera": {
     "name": "Monstera",
@@ -70,7 +88,25 @@
       "Cerca de una ventana al este (sol suave de mañana)"
     ],
     "placementAvoid": "Sol directo del mediodía y corrientes de aire frío.",
-    "whyRationale": "Originaria de la selva tropical de Centroamérica, crece como hemiepífita trepando árboles para alcanzar luz filtrada. Las fenestras de sus hojas se desarrollan solo con luz brillante — así resiste vientos y comparte luz con hojas inferiores."
+    "whyRationale": "Originaria de la selva tropical de Centroamérica, crece como hemiepífita trepando árboles para alcanzar luz filtrada. Las fenestras de sus hojas se desarrollan solo con luz brillante — así resiste vientos y comparte luz con hojas inferiores.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "ficus": {
     "name": "Ficus",
@@ -106,7 +142,21 @@
       "Cerca de una ventana al este o al oeste"
     ],
     "placementAvoid": "Corrientes de aire y cambios de ubicación frecuentes.",
-    "whyRationale": "Originario del sudeste asiático monzónico, está adaptado a luz filtrada y temperaturas estables. Sus hojas viejas no aclimatan bien al cambio: pierde follaje cuando detecta variación brusca de luz, temperatura o riego."
+    "whyRationale": "Originario del sudeste asiático monzónico, está adaptado a luz filtrada y temperaturas estables. Sus hojas viejas no aclimatan bien al cambio: pierde follaje cuando detecta variación brusca de luz, temperatura o riego.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva"
+        ]
+      }
+    }
   },
   "sansevieria": {
     "name": "Sansevieria",
@@ -144,7 +194,21 @@
       "Dormitorio de poca luz natural"
     ],
     "placementAvoid": "Sustrato siempre húmedo y maceta sin drenaje.",
-    "whyRationale": "Originaria de regiones áridas de África Occidental, sus hojas suculentas almacenan agua y soportan sequías largas. Su metabolismo CAM (fotosíntesis nocturna) le permite tolerar baja luz y olvidos de riego."
+    "whyRationale": "Originaria de regiones áridas de África Occidental, sus hojas suculentas almacenan agua y soportan sequías largas. Su metabolismo CAM (fotosíntesis nocturna) le permite tolerar baja luz y olvidos de riego.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "orquidea": {
     "name": "Orquídea",
@@ -326,7 +390,25 @@
       "Mesada de cocina con sol directo de mañana"
     ],
     "placementAvoid": "Lugares oscuros sin sol — se debilita y se estira.",
-    "whyRationale": "Es una suculenta originaria de la Península Arábiga y norte de África, adaptada a climas áridos con sol intenso. Sus hojas carnosas almacenan agua y gel para tolerar sequías largas. Su única vulnerabilidad real es la pudrición por exceso de riego."
+    "whyRationale": "Es una suculenta originaria de la Península Arábiga y norte de África, adaptada a climas áridos con sol intenso. Sus hojas carnosas almacenan agua y gel para tolerar sequías largas. Su única vulnerabilidad real es la pudrición por exceso de riego.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Letargo",
+          "Depresión",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Letargo",
+          "Depresión",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "lavanda-angustifolia": {
     "name": "Lavanda inglesa",
@@ -362,7 +444,19 @@
       "Maceta grande con sustrato arenoso y grava al fondo"
     ],
     "placementAvoid": "Suelo arcilloso encharcado y sombra húmeda — pudre las raíces.",
-    "whyRationale": "Originaria del Mediterráneo, evolucionó en suelos calcáreos secos con sol intenso. Es la lavanda más resistente al frío de las tres: aguanta heladas fuertes hasta -15°C gracias a sus tejidos compactos y aceites esenciales protectores."
+    "whyRationale": "Originaria del Mediterráneo, evolucionó en suelos calcáreos secos con sol intenso. Es la lavanda más resistente al frío de las tres: aguanta heladas fuertes hasta -15°C gracias a sus tejidos compactos y aceites esenciales protectores.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "lavanda-stoechas": {
     "name": "Lavanda francesa",
@@ -393,7 +487,19 @@
       "Maceta en balcón resguardado del viento frío"
     ],
     "placementAvoid": "Heladas fuertes sin protección — no tolera bajo -5°C.",
-    "whyRationale": "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores visuales que atraen polinizadores desde lejos. Más amante del calor que la inglesa, no aguanta heladas duras."
+    "whyRationale": "Endémica del Mediterráneo occidental, sus brácteas en \"orejas de conejo\" funcionan como reflectores visuales que atraen polinizadores desde lejos. Más amante del calor que la inglesa, no aguanta heladas duras.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "lavanda-dentada": {
     "name": "Lavanda dentada",
@@ -424,7 +530,19 @@
       "Cantero contra muro orientado al norte"
     ],
     "placementAvoid": "Heladas fuertes y suelos pesados — es la más delicada de las lavandas.",
-    "whyRationale": "Originaria del Mediterráneo cálido (sur de España, norte de África), evolucionó en climas suaves sin heladas duras. Sus hojas dentadas y aromáticas tienen mayor superficie de aceites esenciales — más fragancia, pero menos tolerancia al frío."
+    "whyRationale": "Originaria del Mediterráneo cálido (sur de España, norte de África), evolucionó en climas suaves sin heladas duras. Sus hojas dentadas y aromáticas tienen mayor superficie de aceites esenciales — más fragancia, pero menos tolerancia al frío.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "petunia": {
     "name": "Petunia",
@@ -498,7 +616,23 @@
       "Patio con luz filtrada y humedad ambiental"
     ],
     "placementAvoid": "Sol del mediodía y suelo seco — las hojas marchitan al instante.",
-    "whyRationale": "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. El color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio, que la planta solo absorbe en suelo ácido."
+    "whyRationale": "Originaria de Asia oriental (Japón, Corea), evolucionó en valles húmedos de bosque caducifolio. El color azul/rosa según pH es química real: las antocianinas cambian con la disponibilidad de aluminio, que la planta solo absorbe en suelo ácido.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "jazmin": {
     "name": "Jazmín",
@@ -572,7 +706,23 @@
       "Cantero soleado con suelo bien drenado"
     ],
     "placementAvoid": "Sombra y suelo siempre húmedo — los tallos se ennegrecen.",
-    "whyRationale": "Originario de Sudáfrica (Cabo), evolucionó en clima mediterráneo con veranos secos. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías — por eso el exceso de riego es su principal causa de muerte en macetas."
+    "whyRationale": "Originario de Sudáfrica (Cabo), evolucionó en clima mediterráneo con veranos secos. Sus tallos suculentos almacenan agua y le permiten sobrevivir sequías — por eso el exceso de riego es su principal causa de muerte en macetas.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Letargo",
+          "Pérdida de apetito",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Letargo",
+          "Pérdida de apetito",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "albahaca": {
     "name": "Albahaca",
@@ -683,7 +833,21 @@
       "Cantero contenedor de aromáticas húmedas"
     ],
     "placementAvoid": "Plantar directo en el jardín — sus estolones invaden todo el espacio.",
-    "whyRationale": "Perenne subtropical húmeda con raíces estolóniferas muy agresivas. Evolucionó en bordes de arroyos donde la humedad permanente y la propagación lateral le dan ventaja competitiva. Por eso siempre se aísla en maceta."
+    "whyRationale": "Perenne subtropical húmeda con raíces estolóniferas muy agresivas. Evolucionó en bordes de arroyos donde la humedad permanente y la propagación lateral le dan ventaja competitiva. Por eso siempre se aísla en maceta.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "tomatera": {
     "name": "Tomatera",
@@ -720,7 +884,25 @@
       "Bandeja vertical con sistema de tutorado"
     ],
     "placementAvoid": "Heladas tardías y sombra parcial — no fructifica sin ≥18°C nocturno.",
-    "whyRationale": "Solanácea anual de origen andino (Sudamérica), domesticada hace ~7000 años. Su fructificación depende del calor sostenido y luz plena; el riego irregular causa rajado del fruto y podredumbre apical por falta de calcio."
+    "whyRationale": "Solanácea anual de origen andino (Sudamérica), domesticada hace ~7000 años. Su fructificación depende del calor sostenido y luz plena; el riego irregular causa rajado del fruto y podredumbre apical por falta de calcio.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Hipersalivación",
+          "Inapetencia",
+          "Malestar gastrointestinal severo",
+          "Diarrea",
+          "Somnolencia"
+        ],
+        "dogs": [
+          "Hipersalivación",
+          "Inapetencia",
+          "Malestar gastrointestinal severo",
+          "Diarrea",
+          "Somnolencia"
+        ]
+      }
+    }
   },
   "pimiento": {
     "name": "Pimiento",
@@ -757,7 +939,21 @@
       "Bandeja de balcón cálido y luminoso"
     ],
     "placementAvoid": "Sombra y heladas tardías — frutos se quedan verdes o se caen las flores.",
-    "whyRationale": "Solanácea anual de origen andino y centroamericano. Sus frutos picantes o dulces (capsaicina) evolucionaron como defensa contra mamíferos. Necesita ≥18°C nocturno y polinizadores para que las flores cuajen sin caer."
+    "whyRationale": "Solanácea anual de origen andino y centroamericano. Sus frutos picantes o dulces (capsaicina) evolucionaron como defensa contra mamíferos. Necesita ≥18°C nocturno y polinizadores para que las flores cuajen sin caer.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Irritación gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "frutilla": {
     "name": "Frutilla",
@@ -831,7 +1027,23 @@
       "Galería vidriada o invernadero en zona con heladas frecuentes"
     ],
     "placementAvoid": "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
-    "whyRationale": "Cítrico de la familia Rutáceas, originario del sudeste asiático. A diferencia del naranjo, fructifica casi continuamente bajo clima subtropical. La clorosis férrica en suelo alcalino refleja la necesidad de micronutrientes constantes."
+    "whyRationale": "Cítrico de la familia Rutáceas, originario del sudeste asiático. A diferencia del naranjo, fructifica casi continuamente bajo clima subtropical. La clorosis férrica en suelo alcalino refleja la necesidad de micronutrientes constantes.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ]
+      }
+    }
   },
   "suculenta-generica": {
     "name": "Suculenta",
@@ -979,7 +1191,25 @@
       "Oficina lejos de ventanas"
     ],
     "placementAvoid": "Sol directo y agua del grifo con mucho cloro.",
-    "whyRationale": "Originaria del sotobosque de Colombia y Venezuela, evolucionó bajo dosel cerrado. Por eso florece en sombra — algo raro entre plantas de interior — y comunica sed dramáticamente: sus hojas se desploman y se recuperan tras un buen riego."
+    "whyRationale": "Originaria del sotobosque de Colombia y Venezuela, evolucionó bajo dosel cerrado. Por eso florece en sombra — algo raro entre plantas de interior — y comunica sed dramáticamente: sus hojas se desploman y se recuperan tras un buen riego.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "dracaena": {
     "name": "Dracaena",
@@ -1016,7 +1246,24 @@
       "Habitación con luz tamizada por cortina"
     ],
     "placementAvoid": "Sol directo prolongado y agua del grifo con flúor.",
-    "whyRationale": "Originaria de África Oriental, evolucionó en bordes de selva y sabana arbolada con luz filtrada. Es sensible al flúor del grifo porque su zona nativa tiene aguas blandas. Las puntas marrones señalan acumulación de sales que las raíces no procesan."
+    "whyRationale": "Originaria de África Oriental, evolucionó en bordes de selva y sabana arbolada con luz filtrada. Es sensible al flúor del grifo porque su zona nativa tiene aguas blandas. Las puntas marrones señalan acumulación de sales que las raíces no procesan.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos (ocasionalmente con sangre)",
+          "Anorexia",
+          "Depresión",
+          "Hipersalivación",
+          "Pupilas dilatadas (gatos)"
+        ],
+        "dogs": [
+          "Vómitos (ocasionalmente con sangre)",
+          "Anorexia",
+          "Depresión",
+          "Hipersalivación"
+        ]
+      }
+    }
   },
   "filodendro": {
     "name": "Filodendro",
@@ -1053,7 +1300,25 @@
       "Cesta colgante cerca de una ventana"
     ],
     "placementAvoid": "Sol directo y rincones oscuros sin luz natural.",
-    "whyRationale": "Es una hemiepífita tropical centroamericana: en su hábitat trepa por troncos hacia la luz, con hojas que crecen a medida que sube. Por eso un tutor de musgo le permite expresar su forma adulta — sin él las hojas se quedan pequeñas."
+    "whyRationale": "Es una hemiepífita tropical centroamericana: en su hábitat trepa por troncos hacia la luz, con hojas que crecen a medida que sube. Por eso un tutor de musgo le permite expresar su forma adulta — sin él las hojas se quedan pequeñas.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Dolor e hinchazón de boca, lengua, labios",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Dolor e hinchazón de boca, lengua, labios",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "jade": {
     "name": "Jade",
@@ -1089,7 +1354,23 @@
       "Repisa luminosa cerca de una ventana al este"
     ],
     "placementAvoid": "Tierra siempre húmeda y sombra profunda sin luz.",
-    "whyRationale": "Es una suculenta sudafricana, adaptada a climas semiáridos con sequías estacionales. Sus hojas y tronco almacenan agua, por eso vive décadas con riego mínimo. Su anatomía está diseñada para escasez, no abundancia: el exceso de agua la pudre."
+    "whyRationale": "Es una suculenta sudafricana, adaptada a climas semiáridos con sequías estacionales. Sus hojas y tronco almacenan agua, por eso vive décadas con riego mínimo. Su anatomía está diseñada para escasez, no abundancia: el exceso de agua la pudre.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Depresión",
+          "Ataxia",
+          "Bradicardia"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Depresión",
+          "Ataxia",
+          "Bradicardia"
+        ]
+      }
+    }
   },
   "peperomia": {
     "name": "Peperomia",
@@ -1199,7 +1480,21 @@
       "Maceta grande (mín. 50L) en terraza soleada"
     ],
     "placementAvoid": "Heladas y exceso de riego — pierde brácteas y queda solo verde.",
-    "whyRationale": "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas adentro — atrae aves y mariposas mientras confunde herbívoros."
+    "whyRationale": "Originaria de Sudamérica tropical (Brasil, Perú), evolucionó en bosque seco estacional. Sus brácteas coloridas no son flores sino hojas modificadas que protegen las flores diminutas adentro — atrae aves y mariposas mientras confunde herbívoros.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "hibisco": {
     "name": "Hibisco",
@@ -1236,7 +1531,23 @@
       "Patio resguardado del viento frío"
     ],
     "placementAvoid": "Heladas (bajo 10°C) y cambios bruscos de ubicación — pierde botones.",
-    "whyRationale": "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno. Cada flor dura un día: su estrategia es producir flores grandes y vistosas en serie continua para atraer colibríes y abejorros tropicales."
+    "whyRationale": "Originario de Asia tropical (China, India), evolucionó en climas cálidos sin invierno. Cada flor dura un día: su estrategia es producir flores grandes y vistosas en serie continua para atraer colibríes y abejorros tropicales.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos",
+          "Anorexia",
+          "Letargo"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos",
+          "Anorexia",
+          "Letargo"
+        ]
+      }
+    }
   },
   "margarita": {
     "name": "Margarita",
@@ -1273,7 +1584,25 @@
       "Bordura mixta junto a otros perennes"
     ],
     "placementAvoid": "Sombra densa y suelo encharcado — tallos débiles y oídio.",
-    "whyRationale": "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos que limpiaban su hábitat de origen."
+    "whyRationale": "Perenne nativa del centro y sur de Europa, evolucionó en pastizales montanos templados. Dividir la mata cada 2-3 años imita el rejuvenecimiento natural por incendios bajos que limpiaban su hábitat de origen.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Incoordinación",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Incoordinación",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "perejil": {
     "name": "Perejil",
@@ -1310,7 +1639,19 @@
       "Jardinera al sol mañanero del balcón"
     ],
     "placementAvoid": "Sol pleno del verano sin riego — se va rápido a flor (bolting).",
-    "whyRationale": "Bienal originaria del Mediterráneo oriental, prefiere clima fresco. Florece en su segundo año (de ahí 'bianual'); en huerta se resiembra cada temporada. Las semillas germinan lento porque tienen aceites que retrasan la salida."
+    "whyRationale": "Bienal originaria del Mediterráneo oriental, prefiere clima fresco. Florece en su segundo año (de ahí 'bianual'); en huerta se resiembra cada temporada. Las semillas germinan lento porque tienen aceites que retrasan la salida.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal",
+          "Fotosensibilización (grandes cantidades)"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal",
+          "Fotosensibilización (grandes cantidades)"
+        ]
+      }
+    }
   },
   "oregano": {
     "name": "Orégano",
@@ -1347,7 +1688,21 @@
       "Jardinera en muro cálido y soleado"
     ],
     "placementAvoid": "Sombra densa y suelo encharcado — sabor débil y hongos.",
-    "whyRationale": "Perenne mediterránea adaptada a colinas pedregosas con veranos secos. El estrés hídrico concentra los aceites esenciales — riego escaso da más sabor que abono abundante. Tolera heladas y calor extremo, casi sin cuidados."
+    "whyRationale": "Perenne mediterránea adaptada a colinas pedregosas con veranos secos. El estrés hídrico concentra los aceites esenciales — riego escaso da más sabor que abono abundante. Tolera heladas y calor extremo, casi sin cuidados.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "cilantro": {
     "name": "Cilantro",
@@ -1421,7 +1776,19 @@
       "Borde de cantero seco como cubresuelo"
     ],
     "placementAvoid": "Suelo arcilloso y húmedo — pudrición de raíz casi inevitable.",
-    "whyRationale": "Subarbusto perenne mediterráneo de hojas diminutas. Sus aceites esenciales (timol) se concentran con sequía y sol pleno; el riego abundante diluye el aroma. Tolera heladas pero muere por exceso de humedad."
+    "whyRationale": "Subarbusto perenne mediterráneo de hojas diminutas. Sus aceites esenciales (timol) se concentran con sequía y sol pleno; el riego abundante diluye el aroma. Tolera heladas pero muere por exceso de humedad.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal leve",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal leve",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "lechuga": {
     "name": "Lechuga",
@@ -1606,7 +1973,23 @@
       "Galería vidriada en zona con heladas frecuentes"
     ],
     "placementAvoid": "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y flores entran en clorosis.",
-    "whyRationale": "Cítrico de la familia Rutáceas, originario de China subtropical. La cosecha es estacional (otoño-invierno) y la dulzura del fruto requiere calor sostenido. La clorosis férrica en suelo alcalino es la falla más común — pide micronutrientes regulares."
+    "whyRationale": "Cítrico de la familia Rutáceas, originario de China subtropical. La cosecha es estacional (otoño-invierno) y la dulzura del fruto requiere calor sostenido. La clorosis férrica en suelo alcalino es la falla más común — pide micronutrientes regulares.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ]
+      }
+    }
   },
   "aguacate": {
     "name": "Aguacate",
@@ -1643,7 +2026,25 @@
       "Patio cálido al reparo de heladas"
     ],
     "placementAvoid": "Suelo encharcado y heladas bajo 10°C — la pudrición de raíz es la causa más común de muerte.",
-    "whyRationale": "Lauráceas, originario de Mesoamérica. Tarda 3-7 años en dar fruta y necesita polinización cruzada (variedades tipo A y B). Sus raíces son superficiales — la falta de oxígeno por encharcamiento mata más plantas que la sequía."
+    "whyRationale": "Lauráceas, originario de Mesoamérica. Tarda 3-7 años en dar fruta y necesita polinización cruzada (variedades tipo A y B). Sus raíces son superficiales — la falta de oxígeno por encharcamiento mata más plantas que la sequía.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Dificultad respiratoria",
+          "Acumulación de líquido alrededor del corazón",
+          "Congestión"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Dificultad respiratoria",
+          "Acumulación de líquido alrededor del corazón",
+          "Congestión"
+        ]
+      }
+    }
   },
   "higuera": {
     "name": "Higuera",
@@ -1680,7 +2081,25 @@
       "Junto a muro orientado al norte que acumule calor"
     ],
     "placementAvoid": "Viento intenso y poda en savia — el látex blanco irrita la piel y las heridas tardan en cicatrizar.",
-    "whyRationale": "Moráceas, mediterránea de hoja caduca. Da dos cosechas en buen año: brevas en primavera (sobre madera vieja) e higos en verano (sobre brotes nuevos). Su látex blanco es el rasgo familiar; tolera suelos pobres y veranos secos."
+    "whyRationale": "Moráceas, mediterránea de hoja caduca. Da dos cosechas en buen año: brevas en primavera (sobre madera vieja) e higos en verano (sobre brotes nuevos). Su látex blanco es el rasgo familiar; tolera suelos pobres y veranos secos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Agitación",
+          "Llanto",
+          "Hipersalivación",
+          "Dermatitis",
+          "Manotazos en la cara"
+        ],
+        "dogs": [
+          "Agitación",
+          "Llanto",
+          "Hipersalivación",
+          "Dermatitis",
+          "Manotazos en la cara"
+        ]
+      }
+    }
   },
   "mandarino": {
     "name": "Mandarino",
@@ -1717,7 +2136,23 @@
       "Galería vidriada en zona con heladas frecuentes"
     ],
     "placementAvoid": "Heladas fuertes (<-3°C) y suelo alcalino — pierde hojas y entra en clorosis crónica.",
-    "whyRationale": "Rutáceas, originario del sudeste asiático. Más compacto que el naranjo, con frutos dulces de cáscara fina. La cosecha es estacional, generalmente más temprana que la naranja. Comparte la sensibilidad familiar a clorosis férrica en suelo alcalino."
+    "whyRationale": "Rutáceas, originario del sudeste asiático. Más compacto que el naranjo, con frutos dulces de cáscara fina. La cosecha es estacional, generalmente más temprana que la naranja. Comparte la sensibilidad familiar a clorosis férrica en suelo alcalino.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Fotosensibilidad"
+        ]
+      }
+    }
   },
   "zapallito": {
     "name": "Zapallito",
@@ -1791,7 +2226,25 @@
       "Borde de huerta como compañero de zanahoria"
     ],
     "placementAvoid": "Sol pleno en verano sin riego — puntas amarillas y débiles.",
-    "whyRationale": "Allium perenne de zonas templadas frigoriales del hemisferio norte. Su rebrote vigoroso tras el corte (semejante al césped) la hace inagotable; el bulbo subterráneo aguanta heladas fuertes y vuelve a brotar en primavera."
+    "whyRationale": "Allium perenne de zonas templadas frigoriales del hemisferio norte. Su rebrote vigoroso tras el corte (semejante al césped) la hace inagotable; el bulbo subterráneo aguanta heladas fuertes y vuelve a brotar en primavera.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea",
+          "Anemia",
+          "Letargo"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea",
+          "Anemia",
+          "Letargo"
+        ]
+      }
+    }
   },
   "haworthia": {
     "name": "Haworthia",
@@ -1828,7 +2281,21 @@
       "Baño con luz indirecta — tolera la humedad ambiente"
     ],
     "placementAvoid": "Sol directo intenso y suelo siempre húmedo — el primero quema las hojas, el segundo pudre la base.",
-    "whyRationale": "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual usa CAM y almacena agua."
+    "whyRationale": "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual usa CAM y almacena agua.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal leve",
+          "Vómitos",
+          "Heces blandas"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal leve",
+          "Vómitos",
+          "Heces blandas"
+        ]
+      }
+    }
   },
   "sedum": {
     "name": "Sedum",
@@ -1901,7 +2368,23 @@
       "Esquina luminosa con luz indirecta muy brillante"
     ],
     "placementAvoid": "Rincones oscuros — se estira buscando luz y pierde porte.",
-    "whyRationale": "Originaria de zonas semiáridas de México y Centroamérica, evolucionó para tolerar sol intenso, sequías y suelos pobres. Su tronco leñoso almacena reservas para resistir condiciones extremas. Su único punto débil es la pudrición por exceso de riego."
+    "whyRationale": "Originaria de zonas semiáridas de México y Centroamérica, evolucionó para tolerar sol intenso, sequías y suelos pobres. Su tronco leñoso almacena reservas para resistir condiciones extremas. Su único punto débil es la pudrición por exceso de riego.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Anorexia"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Anorexia"
+        ]
+      }
+    }
   },
   "jacaranda": {
     "name": "Jacarandá",
@@ -1963,7 +2446,23 @@
       "Cantero al sol con riego regular"
     ],
     "placementAvoid": "Sombra densa y suelo seco prolongado — pocas flores y tallos débiles.",
-    "whyRationale": "Flor nacional argentina, originaria de las riberas de ríos del NEA y sur de Brasil. Su floración roja escarlata atrae picaflores migratorios; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños."
+    "whyRationale": "Flor nacional argentina, originaria de las riberas de ríos del NEA y sur de Brasil. Su floración roja escarlata atrae picaflores migratorios; las raíces tienen nódulos fijadores de nitrógeno que le permiten crecer en suelos pobres ribereños.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Debilidad muscular",
+          "Parálisis",
+          "Temblores",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Debilidad muscular",
+          "Parálisis",
+          "Temblores",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "glicina": {
     "name": "Glicina",
@@ -1994,7 +2493,23 @@
       "Muro de ladrillo con anclajes metálicos"
     ],
     "placementAvoid": "Estructuras frágiles y cerca de cañerías — peso enorme y raíces invasivas.",
-    "whyRationale": "Trepadora caduca originaria de China y Japón, evolucionó en valles templados. Sus flores violetas perfumadas son polinizadas por abejas; la fotoperiodicidad invernal (frío + días cortos) es necesaria para inducir yemas florales."
+    "whyRationale": "Trepadora caduca originaria de China y Japón, evolucionó en valles templados. Sus flores violetas perfumadas son polinizadas por abejas; la fotoperiodicidad invernal (frío + días cortos) es necesaria para inducir yemas florales.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Hipersalivación"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Hipersalivación"
+        ]
+      }
+    }
   },
   "gardenia": {
     "name": "Gardenia",
@@ -2030,7 +2545,23 @@
       "Maceta con sustrato para acidófilas y agua de lluvia"
     ],
     "placementAvoid": "Sol fuerte del mediodía y agua del grifo con cloro — clorosis y caída de botones.",
-    "whyRationale": "Originaria del sur de Asia, evolucionó en sotobosque tropical con suelos ácidos y húmedos. Solo absorbe hierro y magnesio a pH 5-6: por eso amarillea (clorosis) en los suelos alcalinos típicos de Buenos Aires sin acidificación previa."
+    "whyRationale": "Originaria del sur de Asia, evolucionó en sotobosque tropical con suelos ácidos y húmedos. Solo absorbe hierro y magnesio a pH 5-6: por eso amarillea (clorosis) en los suelos alcalinos típicos de Buenos Aires sin acidificación previa.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Urticaria",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Urticaria",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "camelia": {
     "name": "Camelia",
@@ -2102,7 +2633,21 @@
       "Maceta grande (mín. 30L) con tutor para variedades altas"
     ],
     "placementAvoid": "Heladas tardías sobre tubérculos plantados — los pudre antes de brotar.",
-    "whyRationale": "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En invierno frío hay que desenterrarlos: las heladas fuertes quiebran las células y los pudren."
+    "whyRationale": "Originaria de México y Centroamérica, los tubérculos evolucionaron como reservas para sobrevivir la estación seca. En invierno frío hay que desenterrarlos: las heladas fuertes quiebran las células y los pudren.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "salvia-ornamental": {
     "name": "Salvia ornamental",
@@ -2171,7 +2716,25 @@
       "Maceta en patio con luz indirecta abundante"
     ],
     "placementAvoid": "Sol directo intenso y suelo seco — hojas quemadas y rizoma dormido.",
-    "whyRationale": "Endémica de Sudáfrica (Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil."
+    "whyRationale": "Endémica de Sudáfrica (Cabo), evolucionó en humedales estacionales con verano húmedo e invierno fresco. El rizoma necesita un descanso seco-frío para acumular reservas; sin esa pausa otoñal, la próxima floración será débil.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "copete": {
     "name": "Copete",
@@ -2203,7 +2766,21 @@
       "Jardinera al sol en balcón"
     ],
     "placementAvoid": "Sombra y suelo encharcado — pocas flores y propenso a hongos.",
-    "whyRationale": "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos — fungicida natural. Compañero clásico de la huerta: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas."
+    "whyRationale": "Originario de México y Centroamérica, sus raíces secretan tiofenos que repelen nematodos — fungicida natural. Compañero clásico de la huerta: protege tomates y pimientos mientras atrae polinizadores con sus flores naranja-amarillas.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "verbena": {
     "name": "Verbena",
@@ -2304,19 +2881,54 @@
       "Balcón soleado contra pared cálida"
     ],
     "placementAvoid": "Heladas tardías y riego irregular — frutos se rajan al recibir agua tras secarse.",
-    "whyRationale": "Variante de Solanum lycopersicum con frutos chicos y planta indeterminada (crece hasta la helada). Cosecha casi diaria por el tamaño; los racimos abundantes exigen tutor alto y poda de chupones para concentrar energía en los frutos."
+    "whyRationale": "Variante de Solanum lycopersicum con frutos chicos y planta indeterminada (crece hasta la helada). Cosecha casi diaria por el tamaño; los racimos abundantes exigen tutor alto y poda de chupones para concentrar energía en los frutos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Hipersalivación",
+          "Inapetencia",
+          "Malestar gastrointestinal severo",
+          "Diarrea",
+          "Somnolencia"
+        ],
+        "dogs": [
+          "Hipersalivación",
+          "Inapetencia",
+          "Malestar gastrointestinal severo",
+          "Diarrea",
+          "Somnolencia"
+        ]
+      }
+    }
   },
   "anthurium": {
     "name": "Anturio",
     "tip": "Florece todo el año si le das luz indirecta brillante. Mantené la tierra apenas húmeda.",
     "description": "El Anturio es una aráceas tropical con espatas rojas brillantes (también blancas o rosadas). Sus flores duran semanas y reaparecen si recibe luz constante y humedad alta. Ideal como punto focal en interiores luminosos.",
     "problems": [
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o agua estancada", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos; revisá el drenaje." },
-      { "symptom": "Sin flores", "cause": "Poca luz", "solution": "Movela cerca de una ventana con luz brillante indirecta — sin sol directo." },
-      { "symptom": "Bordes marrones en hojas", "cause": "Aire muy seco", "solution": "Agrupala con otras plantas o usá humidificador." }
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o agua estancada",
+        "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos; revisá el drenaje."
+      },
+      {
+        "symptom": "Sin flores",
+        "cause": "Poca luz",
+        "solution": "Movela cerca de una ventana con luz brillante indirecta — sin sol directo."
+      },
+      {
+        "symptom": "Bordes marrones en hojas",
+        "cause": "Aire muy seco",
+        "solution": "Agrupala con otras plantas o usá humidificador."
+      }
     ],
-    "nutrients": { "type": "Fósforo (floración)", "homemade": "Cáscara de banana picada en el sustrato cada 3 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm de tierra: si están secos, regá hasta que drene." },
+    "nutrients": {
+      "type": "Fósforo (floración)",
+      "homemade": "Cáscara de banana picada en el sustrato cada 3 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm de tierra: si están secos, regá hasta que drene."
+    },
     "placementRecommended": "Cerca de una ventana al este — luz brillante indirecta y humedad ambiental alta.",
     "placementAlternatives": [
       "Baño luminoso (humedad natural alta)",
@@ -2324,19 +2936,52 @@
       "Sala con humidificador cerca"
     ],
     "placementAvoid": "Sol directo del mediodía — quema espatas y hojas; aire seco de calefacción.",
-    "whyRationale": "Pertenece a las aráceas del sotobosque amazónico — evolucionó bajo luz tamizada y humedad alta. Las espatas son hojas modificadas para atraer polinizadores en bosques densos."
+    "whyRationale": "Pertenece a las aráceas del sotobosque amazónico — evolucionó bajo luz tamizada y humedad alta. Las espatas son hojas modificadas para atraer polinizadores en bosques densos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "alocasia": {
     "name": "Alocasia",
     "tip": "Le encanta la humedad alta. Si entra en reposo invernal, reducí el riego — volverá a brotar.",
     "description": "La Alocasia (oreja de elefante) es una aráceas dramática con hojas oscuras y nervaduras blancas marcadas. Originaria del sudeste asiático tropical. Pierde hojas en invierno si la temperatura baja — es normal, rebrotará.",
     "problems": [
-      { "symptom": "Hojas caídas en invierno", "cause": "Reposo natural (no muerte)", "solution": "Reducí el riego al mínimo; rebrotará en primavera con tierra apenas húmeda." },
-      { "symptom": "Bordes marrones", "cause": "Humedad ambiental baja", "solution": "Pulverizá las hojas o usá humidificador; agrupala con otras plantas." },
-      { "symptom": "Manchas pegajosas en hojas", "cause": "Cochinillas o ácaros", "solution": "Limpiá las hojas con agua y jabón potásico una vez por semana." }
+      {
+        "symptom": "Hojas caídas en invierno",
+        "cause": "Reposo natural (no muerte)",
+        "solution": "Reducí el riego al mínimo; rebrotará en primavera con tierra apenas húmeda."
+      },
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Humedad ambiental baja",
+        "solution": "Pulverizá las hojas o usá humidificador; agrupala con otras plantas."
+      },
+      {
+        "symptom": "Manchas pegajosas en hojas",
+        "cause": "Cochinillas o ácaros",
+        "solution": "Limpiá las hojas con agua y jabón potásico una vez por semana."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK (crecimiento)", "homemade": "Té de compost cada 3 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; reducí drásticamente en invierno." },
+    "nutrients": {
+      "type": "Equilibrado NPK (crecimiento)",
+      "homemade": "Té de compost cada 3 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; reducí drásticamente en invierno."
+    },
     "placementRecommended": "Cerca de ventana luminosa con cortina filtrante — luz brillante indirecta y humedad alta.",
     "placementAlternatives": [
       "Baño con luz natural",
@@ -2344,19 +2989,54 @@
       "A 1 m de ventana al este"
     ],
     "placementAvoid": "Corrientes de aire frío y sol directo — ambas dañan las hojas decorativas.",
-    "whyRationale": "Aráceas tropical adaptada a sotobosques de Borneo y Filipinas — sus hojas grandes capturan luz tamizada y las nervaduras pálidas reflejan humedad capilar."
+    "whyRationale": "Aráceas tropical adaptada a sotobosques de Borneo y Filipinas — sus hojas grandes capturan luz tamizada y las nervaduras pálidas reflejan humedad capilar.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "caladium": {
     "name": "Caladio",
     "tip": "Sus hojas estampadas duran de primavera a otoño. Reposo invernal: dejá secar el bulbo.",
     "description": "El Caladio (Caladium bicolor) tiene hojas en forma de corazón con manchas rosa, blanco o rojo intenso. Es un tubérculo tropical: pierde todas las hojas en invierno y rebrotará desde el bulbo en primavera si lo mantenés cálido y casi seco.",
     "problems": [
-      { "symptom": "Hojas marchitas o decoloradas", "cause": "Sustrato seco en pleno crecimiento", "solution": "Mantené tierra apenas húmeda en cálido — el bulbo activo necesita agua constante." },
-      { "symptom": "Hojas perdidas en invierno", "cause": "Dormancia natural del tubérculo", "solution": "Reducí el riego al mínimo; guardá la maceta en lugar cálido y oscuro hasta primavera." },
-      { "symptom": "Bordes marrones", "cause": "Aire seco", "solution": "Pulverizá ambiente alrededor (no las hojas directamente) o usá humidificador." }
+      {
+        "symptom": "Hojas marchitas o decoloradas",
+        "cause": "Sustrato seco en pleno crecimiento",
+        "solution": "Mantené tierra apenas húmeda en cálido — el bulbo activo necesita agua constante."
+      },
+      {
+        "symptom": "Hojas perdidas en invierno",
+        "cause": "Dormancia natural del tubérculo",
+        "solution": "Reducí el riego al mínimo; guardá la maceta en lugar cálido y oscuro hasta primavera."
+      },
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Aire seco",
+        "solution": "Pulverizá ambiente alrededor (no las hojas directamente) o usá humidificador."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de plátano cada 3 semanas en temporada cálida" },
-    "careAction": { "soilCheck": "En cálido tocá los primeros 2 cm cada 3-4 días; en frío reducí a riego mínimo." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de plátano cada 3 semanas en temporada cálida"
+    },
+    "careAction": {
+      "soilCheck": "En cálido tocá los primeros 2 cm cada 3-4 días; en frío reducí a riego mínimo."
+    },
     "placementRecommended": "Lugar cálido con luz brillante indirecta — temperatura mínima 18°C en activo.",
     "placementAlternatives": [
       "Cerca de ventana al este",
@@ -2364,19 +3044,54 @@
       "Veranda cubierta cálida"
     ],
     "placementAvoid": "Sol directo (decolora estampas) y temperaturas bajo 15°C (induce dormancia anticipada).",
-    "whyRationale": "Tubérculo tropical del Amazonas — almacena energía en bulbo y emite hojas estacionales. Las manchas son tejido sin clorofila que reduce competencia interna por luz."
+    "whyRationale": "Tubérculo tropical del Amazonas — almacena energía en bulbo y emite hojas estacionales. Las manchas son tejido sin clorofila que reduce competencia interna por luz.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "singonio": {
     "name": "Singonio",
     "tip": "Hojas en forma de flecha que cambian con la edad. Tolerante y de crecimiento rápido.",
     "description": "El Singonio (Syngonium podophyllum) es una aráceas trepadora con hojas que evolucionan de flechas juveniles a hojas trilobuladas adultas. Variedades verde, rosa o crema. Crece rápido con poda regular.",
     "problems": [
-      { "symptom": "Tallos largos y desordenados", "cause": "Crecimiento natural — necesita poda", "solution": "Podá los tallos largos cada 2 meses; los esquejes enraízan en agua." },
-      { "symptom": "Hojas pequeñas y pálidas", "cause": "Poca luz", "solution": "Acercala a una ventana — la luz brillante indirecta intensifica el color." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos." }
+      {
+        "symptom": "Tallos largos y desordenados",
+        "cause": "Crecimiento natural — necesita poda",
+        "solution": "Podá los tallos largos cada 2 meses; los esquejes enraízan en agua."
+      },
+      {
+        "symptom": "Hojas pequeñas y pálidas",
+        "cause": "Poca luz",
+        "solution": "Acercala a una ventana — la luz brillante indirecta intensifica el color."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de cáscara de banana cada 3 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de cáscara de banana cada 3 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene."
+    },
     "placementRecommended": "A 1-2 m de ventana con luz brillante indirecta — variedades rosa necesitan más luz.",
     "placementAlternatives": [
       "Habitación luminosa con cortina filtrante",
@@ -2384,19 +3099,52 @@
       "Cerca de ventana al este"
     ],
     "placementAvoid": "Sol directo (decolora) y rincones oscuros (pierde variegación).",
-    "whyRationale": "Aráceas hemiepífita centroamericana — en su hábitat trepa árboles para alcanzar luz filtrada. La forma de hoja cambia según altura y luz disponible (heteroblastia)."
+    "whyRationale": "Aráceas hemiepífita centroamericana — en su hábitat trepa árboles para alcanzar luz filtrada. La forma de hoja cambia según altura y luz disponible (heteroblastia).",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "aglaonema": {
     "name": "Aglaonema",
     "tip": "De las pocas plantas que prosperan en luz baja. Casi indestructible si no la regás de más.",
     "description": "El Aglaonema es una aráceas asiática tolerante a la sombra. Cultivares modernos con hojas plateadas, rojas o verdes con patrones decorativos. Excelente para oficinas y rincones sin ventana cercana.",
     "problems": [
-      { "symptom": "Hojas amarillas en la base", "cause": "Exceso de riego o sustrato encharcado", "solution": "Dejá secar bien la tierra entre riegos; revisá drenaje de la maceta." },
-      { "symptom": "Crecimiento lento", "cause": "Normal con poca luz", "solution": "Aceptá el ritmo lento o movela a luz un poco más brillante." },
-      { "symptom": "Bordes marrones", "cause": "Agua con cloro o aire seco", "solution": "Usá agua reposada 24h y pulverizá el ambiente ocasionalmente." }
+      {
+        "symptom": "Hojas amarillas en la base",
+        "cause": "Exceso de riego o sustrato encharcado",
+        "solution": "Dejá secar bien la tierra entre riegos; revisá drenaje de la maceta."
+      },
+      {
+        "symptom": "Crecimiento lento",
+        "cause": "Normal con poca luz",
+        "solution": "Aceptá el ritmo lento o movela a luz un poco más brillante."
+      },
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Agua con cloro o aire seco",
+        "solution": "Usá agua reposada 24h y pulverizá el ambiente ocasionalmente."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de compost diluido cada 6 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: si están secos, regá poco; el aglaonema prefiere de menos que de más." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Té de compost diluido cada 6 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: si están secos, regá poco; el aglaonema prefiere de menos que de más."
+    },
     "placementRecommended": "Rincones con poca luz natural — pasillos, oficinas, dormitorios sin ventana directa.",
     "placementAlternatives": [
       "Sala con luz indirecta media",
@@ -2404,19 +3152,54 @@
       "Lejos de ventana (interior profundo)"
     ],
     "placementAvoid": "Sol directo (quema hojas variegadas) y corrientes de aire frío bajo 13°C.",
-    "whyRationale": "Aráceas del sotobosque tropical asiático — adaptada a luz mínima del piso de la selva. Tolera baja luz porque su clorofila opera eficientemente con poca radiación."
+    "whyRationale": "Aráceas del sotobosque tropical asiático — adaptada a luz mínima del piso de la selva. Tolera baja luz porque su clorofila opera eficientemente con poca radiación.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "costilla-adan": {
     "name": "Costilla de Adán",
     "tip": "Versión chica de la Monstera con hojas perforadas. Trepadora ideal para tutor o cesta colgante.",
     "description": "La Costilla de Adán (Monstera adansonii) tiene hojas más pequeñas y agujereadas que la Monstera deliciosa. Es una hemiepífita centroamericana que crece como trepadora con tutor de musgo o como colgante. Más rápida y compacta que su prima grande.",
     "problems": [
-      { "symptom": "Hojas sin agujeros", "cause": "Poca luz o planta joven", "solution": "Acercala a luz brillante indirecta; los agujeros aparecen con madurez y buena luz." },
-      { "symptom": "Tallos largos sin hojas", "cause": "Falta de tutor", "solution": "Agregá un tutor de musgo o coco — sus raíces aéreas necesitan agarre." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá los primeros 2 cm de tierra: regá solo cuando estén secos." }
+      {
+        "symptom": "Hojas sin agujeros",
+        "cause": "Poca luz o planta joven",
+        "solution": "Acercala a luz brillante indirecta; los agujeros aparecen con madurez y buena luz."
+      },
+      {
+        "symptom": "Tallos largos sin hojas",
+        "cause": "Falta de tutor",
+        "solution": "Agregá un tutor de musgo o coco — sus raíces aéreas necesitan agarre."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Tocá los primeros 2 cm de tierra: regá solo cuando estén secos."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 3 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene."
+    },
     "placementRecommended": "Cerca de ventana con luz brillante indirecta — con tutor de musgo si querés hojas grandes.",
     "placementAlternatives": [
       "Cesta colgante en sala luminosa",
@@ -2424,19 +3207,54 @@
       "Pared con tutor vertical de coco"
     ],
     "placementAvoid": "Sol directo (quema agujeros) y rincones muy oscuros (hojas pequeñas y sin perforaciones).",
-    "whyRationale": "Hemiepífita aráceas centroamericana — distinta de la Monstera deliciosa. Trepa árboles del sotobosque y desarrolla agujeros (fenestraciones) para resistir vientos y compartir luz."
+    "whyRationale": "Hemiepífita aráceas centroamericana — distinta de la Monstera deliciosa. Trepa árboles del sotobosque y desarrolla agujeros (fenestraciones) para resistir vientos y compartir luz.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "difenbaquia": {
     "name": "Difenbaquia",
     "tip": "Tallos gruesos con hojas grandes variegadas. Tóxica si se ingiere — mantenela lejos de mascotas curiosas.",
     "description": "La Difenbaquia (Dieffenbachia seguine) tiene hojas grandes verdes con manchas crema o blanco. Crece rápido en interiores con luz media. Su savia contiene cristales de oxalato — manejá con guantes al podar.",
     "problems": [
-      { "symptom": "Tallo largo y desnudo abajo", "cause": "Pérdida natural de hojas viejas", "solution": "Podá el tope para forzar ramificación; los esquejes enraízan en agua o sustrato." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o agua fría", "solution": "Regá con agua a temperatura ambiente; tocá la tierra antes de regar." },
-      { "symptom": "Hojas marchitas", "cause": "Sustrato muy seco", "solution": "Mantené humedad constante (no encharcamiento) — Difenbaquia no tolera sequía prolongada." }
+      {
+        "symptom": "Tallo largo y desnudo abajo",
+        "cause": "Pérdida natural de hojas viejas",
+        "solution": "Podá el tope para forzar ramificación; los esquejes enraízan en agua o sustrato."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o agua fría",
+        "solution": "Regá con agua a temperatura ambiente; tocá la tierra antes de regar."
+      },
+      {
+        "symptom": "Hojas marchitas",
+        "cause": "Sustrato muy seco",
+        "solution": "Mantené humedad constante (no encharcamiento) — Difenbaquia no tolera sequía prolongada."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; agua a temperatura ambiente." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 3 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; agua a temperatura ambiente."
+    },
     "placementRecommended": "A 1-2 m de ventana — luz indirecta media, sin sol directo en el follaje.",
     "placementAlternatives": [
       "Sala con luz natural difusa",
@@ -2444,19 +3262,54 @@
       "Habitación con luz indirecta brillante"
     ],
     "placementAvoid": "Sol directo (quema variegación) y temperaturas bajo 15°C (caída de hojas).",
-    "whyRationale": "Aráceas tropical sudamericana — sus tallos almacenan agua y rebrotan tras poda. La variegación es tejido sin clorofila que requiere más luz para compensar."
+    "whyRationale": "Aráceas tropical sudamericana — sus tallos almacenan agua y rebrotan tras poda. La variegación es tejido sin clorofila que requiere más luz para compensar.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos",
+          "Dificultad para tragar"
+        ]
+      }
+    }
   },
   "begonia-rex": {
     "name": "Begonia rex",
     "tip": "Cultivada por sus hojas pintadas, no por sus flores. Humedad alta sin mojar las hojas.",
     "description": "La Begonia rex es un cultivar de follaje con hojas asimétricas pintadas en plata, púrpura, rojo y verde. Originaria de los Himalayas tropicales. Más exigente que las begonias floridas: necesita humedad ambiental alta y agua sin tocar las hojas.",
     "problems": [
-      { "symptom": "Manchas marrones en hojas", "cause": "Agua sobre el follaje o aire seco", "solution": "Regá solo el sustrato (nunca las hojas); usá humidificador." },
-      { "symptom": "Hojas pálidas o sin patrón", "cause": "Poca luz", "solution": "Movela cerca de ventana con luz brillante indirecta — los pigmentos requieren luz para sintetizarse." },
-      { "symptom": "Tallos podridos", "cause": "Sustrato encharcado", "solution": "Usá maceta con drenaje y sustrato aireado; tocá la tierra antes de regar." }
+      {
+        "symptom": "Manchas marrones en hojas",
+        "cause": "Agua sobre el follaje o aire seco",
+        "solution": "Regá solo el sustrato (nunca las hojas); usá humidificador."
+      },
+      {
+        "symptom": "Hojas pálidas o sin patrón",
+        "cause": "Poca luz",
+        "solution": "Movela cerca de ventana con luz brillante indirecta — los pigmentos requieren luz para sintetizarse."
+      },
+      {
+        "symptom": "Tallos podridos",
+        "cause": "Sustrato encharcado",
+        "solution": "Usá maceta con drenaje y sustrato aireado; tocá la tierra antes de regar."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno (color de hoja)", "homemade": "Té de cáscara de banana cada 4 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no las hojas) cuando estén secos." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno (color de hoja)",
+      "homemade": "Té de cáscara de banana cada 4 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no las hojas) cuando estén secos."
+    },
     "placementRecommended": "Baño o cocina con luz brillante indirecta — humedad natural alta y sin sol directo.",
     "placementAlternatives": [
       "Habitación con humidificador cerca",
@@ -2464,19 +3317,48 @@
       "A 1 m de ventana al este"
     ],
     "placementAvoid": "Sol directo (decolora pigmentos) y aire seco de calefacción.",
-    "whyRationale": "Cultivar de Begonia originaria de los Himalayas — antocianinas y carotenoides en hojas requieren luz brillante para expresarse. Sin ella las hojas pierden el patrón decorativo."
+    "whyRationale": "Cultivar de Begonia originaria de los Himalayas — antocianinas y carotenoides en hojas requieren luz brillante para expresarse. Sin ella las hojas pierden el patrón decorativo.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Salivación"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Salivación"
+        ]
+      }
+    }
   },
   "croton": {
     "name": "Croton",
     "tip": "Cuanta más luz, más intenso el color. Hoja gomosa, casi escultural.",
     "description": "El Croton (Codiaeum variegatum) tiene hojas coriáceas con franjas amarillo, naranja, rojo y verde. Originario del Pacífico tropical. Sensible a cambios bruscos: pierde hojas si lo movés mucho. Una vez instalado, dejalo donde esté.",
     "problems": [
-      { "symptom": "Caída masiva de hojas", "cause": "Cambio de ubicación, corriente o riego", "solution": "Mantenelo estable: misma ubicación, mismo riego, sin corrientes — rebrotará." },
-      { "symptom": "Hojas verdes sin color", "cause": "Poca luz", "solution": "Acercala a luz brillante indirecta — el color requiere intensidad lumínica." },
-      { "symptom": "Bordes marrones", "cause": "Aire seco o riego irregular", "solution": "Pulverizá ambiente; mantené riego constante con sustrato apenas húmedo." }
+      {
+        "symptom": "Caída masiva de hojas",
+        "cause": "Cambio de ubicación, corriente o riego",
+        "solution": "Mantenelo estable: misma ubicación, mismo riego, sin corrientes — rebrotará."
+      },
+      {
+        "symptom": "Hojas verdes sin color",
+        "cause": "Poca luz",
+        "solution": "Acercala a luz brillante indirecta — el color requiere intensidad lumínica."
+      },
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Aire seco o riego irregular",
+        "solution": "Pulverizá ambiente; mantené riego constante con sustrato apenas húmedo."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; nunca dejes secar del todo." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 3 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: si están secos, regá hasta que drene; nunca dejes secar del todo."
+    },
     "placementRecommended": "Cerca de ventana con luz brillante indirecta o sol filtrado de mañana — color depende de luz.",
     "placementAlternatives": [
       "A 50 cm de ventana al este",
@@ -2484,19 +3366,52 @@
       "Habitación con sol filtrado de mañana"
     ],
     "placementAvoid": "Cambios frecuentes de ubicación y corrientes de aire — el croton es estresado por movimiento.",
-    "whyRationale": "Originario del Pacífico tropical — sus antocianinas y carotenoides requieren luz brillante para sintetizarse. Sin luz suficiente las hojas vuelven a verde uniforme."
+    "whyRationale": "Originario del Pacífico tropical — sus antocianinas y carotenoides requieren luz brillante para sintetizarse. Sin luz suficiente las hojas vuelven a verde uniforme.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Dolor abdominal",
+          "Depresión"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Dolor abdominal",
+          "Depresión"
+        ]
+      }
+    }
   },
   "fitonia": {
     "name": "Fitonia",
     "tip": "Diminuta y dramática. Si la ves marchita, regala — se recupera rápido pero no perdona sequía repetida.",
     "description": "La Fitonia (Fittonia albivenis) tiene hojas pequeñas con nervaduras blancas, rosas o rojas marcadas. Originaria del sotobosque amazónico. Ideal para terrarios o macetas con alta humedad ambiental — su tamaño la hace perfecta para mesas y escritorios.",
     "problems": [
-      { "symptom": "Hojas marchitas y caídas", "cause": "Sustrato seco", "solution": "Regá inmediatamente — la fitonia se recupera rápido pero la sequía repetida la mata." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Reducí el riego; tocá la tierra antes — debe estar apenas seca arriba." },
-      { "symptom": "Bordes marrones", "cause": "Aire seco", "solution": "Movela a un baño o cubrila con domo de vidrio (terrario)." }
+      {
+        "symptom": "Hojas marchitas y caídas",
+        "cause": "Sustrato seco",
+        "solution": "Regá inmediatamente — la fitonia se recupera rápido pero la sequía repetida la mata."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Reducí el riego; tocá la tierra antes — debe estar apenas seca arriba."
+      },
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Aire seco",
+        "solution": "Movela a un baño o cubrila con domo de vidrio (terrario)."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 4 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos — no dejes que se marchite." },
+    "nutrients": {
+      "type": "Equilibrado NPK diluido",
+      "homemade": "Té de compost diluido cada 4 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos — no dejes que se marchite."
+    },
     "placementRecommended": "Baño con luz natural indirecta — humedad alta y luz tamizada perfectas.",
     "placementAlternatives": [
       "Terrario o pecera abierta",
@@ -2511,12 +3426,29 @@
     "tip": "Hojas enormes en forma de violín. Una vez en su lugar, no la muevas — odia los cambios.",
     "description": "El Ficus lyrata (hoja de violín) es un árbol de interior de África Occidental. Crece varios metros con hojas grandes y coriáceas. Sensible a movimientos y corrientes — se queja con caída masiva de hojas. Estabilidad es la clave.",
     "problems": [
-      { "symptom": "Caída masiva de hojas", "cause": "Cambio de ubicación, corriente o estrés hídrico", "solution": "Mantené ubicación fija, sin corrientes; regá con consistencia — no de más ni de menos." },
-      { "symptom": "Manchas marrones en hojas", "cause": "Riego irregular o agua con cloro", "solution": "Usá agua reposada 24h; mantené ritmo constante de riego." },
-      { "symptom": "Hojas opacas y polvorientas", "cause": "Acumulación de polvo", "solution": "Limpiá las hojas grandes con paño húmedo cada 2 semanas — el polvo bloquea fotosíntesis." }
+      {
+        "symptom": "Caída masiva de hojas",
+        "cause": "Cambio de ubicación, corriente o estrés hídrico",
+        "solution": "Mantené ubicación fija, sin corrientes; regá con consistencia — no de más ni de menos."
+      },
+      {
+        "symptom": "Manchas marrones en hojas",
+        "cause": "Riego irregular o agua con cloro",
+        "solution": "Usá agua reposada 24h; mantené ritmo constante de riego."
+      },
+      {
+        "symptom": "Hojas opacas y polvorientas",
+        "cause": "Acumulación de polvo",
+        "solution": "Limpiá las hojas grandes con paño húmedo cada 2 semanas — el polvo bloquea fotosíntesis."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá hasta que drene; nunca dejes seca completamente." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: regá hasta que drene; nunca dejes seca completamente."
+    },
     "placementRecommended": "Cerca de ventana grande con luz brillante indirecta — sol filtrado de mañana es ideal.",
     "placementAlternatives": [
       "A 1 m de ventana al este",
@@ -2524,19 +3456,50 @@
       "Galería cubierta con sol filtrado"
     ],
     "placementAvoid": "Corrientes de aire (puerta, AC) y cambios frecuentes de ubicación — pierde hojas por estrés.",
-    "whyRationale": "Originario de la selva tropical de África Occidental — crece como hemiepífita y luego enraíza. Sus hojas grandes en forma de lira capturan luz tamizada del dosel y son sensibles al estrés ambiental."
+    "whyRationale": "Originario de la selva tropical de África Occidental — crece como hemiepífita y luego enraíza. Sus hojas grandes en forma de lira capturan luz tamizada del dosel y son sensibles al estrés ambiental.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva"
+        ]
+      }
+    }
   },
   "maranta": {
     "name": "Maranta",
     "tip": "Llamada planta de oración: pliega hojas al anochecer. Humedad alta y agua sin cloro.",
     "description": "La Maranta (Maranta leuconeura) tiene hojas ovaladas con nervaduras rojas o púrpura sobre verde claro. Originaria de selvas brasileñas. Pliega sus hojas al anochecer (nictinastia) y las despliega de día — un movimiento visible.",
     "problems": [
-      { "symptom": "Bordes marrones", "cause": "Agua con cloro o aire seco", "solution": "Usá agua reposada o de lluvia; pulverizá ambiente o usá humidificador." },
-      { "symptom": "Hojas no pliegan", "cause": "Estrés (luz inadecuada o riego irregular)", "solution": "Verificá luz indirecta media y riego constante — el plegado nocturno indica salud." },
-      { "symptom": "Hojas pálidas", "cause": "Demasiada luz directa", "solution": "Alejala de la ventana — la maranta prefiere luz indirecta media." }
+      {
+        "symptom": "Bordes marrones",
+        "cause": "Agua con cloro o aire seco",
+        "solution": "Usá agua reposada o de lluvia; pulverizá ambiente o usá humidificador."
+      },
+      {
+        "symptom": "Hojas no pliegan",
+        "cause": "Estrés (luz inadecuada o riego irregular)",
+        "solution": "Verificá luz indirecta media y riego constante — el plegado nocturno indica salud."
+      },
+      {
+        "symptom": "Hojas pálidas",
+        "cause": "Demasiada luz directa",
+        "solution": "Alejala de la ventana — la maranta prefiere luz indirecta media."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost cada 4 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos; nunca dejes secar completamente." },
+    "nutrients": {
+      "type": "Equilibrado NPK diluido",
+      "homemade": "Té de compost cada 4 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos; nunca dejes secar completamente."
+    },
     "placementRecommended": "Habitación con luz indirecta media — baño o cocina con humedad natural alta.",
     "placementAlternatives": [
       "A 2 m de ventana",
@@ -2551,12 +3514,29 @@
     "tip": "Casi indestructible. El error más común es regarla demasiado.",
     "description": "La Zamioculca es una planta resistente con tallos suculentos y rizomas almacenadores de agua. Originaria del este de África semi-árida. Tolera baja luz y olvidos de riego — la mejor planta para principiantes y oficinas oscuras.",
     "problems": [
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Dejá secar bien la tierra entre riegos." },
-      { "symptom": "Tallos blandos", "cause": "Pudrición de rizomas por agua", "solution": "Sacala de la maceta, cortá zonas blandas y replantá en sustrato seco." },
-      { "symptom": "Crecimiento lento en invierno", "cause": "Reposo natural", "solution": "Reducí el riego al mínimo; volverá a brotar en primavera." }
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Dejá secar bien la tierra entre riegos."
+      },
+      {
+        "symptom": "Tallos blandos",
+        "cause": "Pudrición de rizomas por agua",
+        "solution": "Sacala de la maceta, cortá zonas blandas y replantá en sustrato seco."
+      },
+      {
+        "symptom": "Crecimiento lento en invierno",
+        "cause": "Reposo natural",
+        "solution": "Reducí el riego al mínimo; volverá a brotar en primavera."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de cáscara de banana cada 2 meses" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá solo si están completamente secos. Mejor de menos que de más." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Té de cáscara de banana cada 2 meses"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: regá solo si están completamente secos. Mejor de menos que de más."
+    },
     "placementRecommended": "Cualquier rincón con luz indirecta — incluso poca luz.",
     "placementAlternatives": [
       "Pasillo o rincón sin ventana cercana",
@@ -2564,19 +3544,50 @@
       "Dormitorio de poca luz natural"
     ],
     "placementAvoid": "Sustrato siempre húmedo y maceta sin drenaje — pudrición de rizomas es irreversible.",
-    "whyRationale": "Originaria del este de África semi-árida — sus rizomas almacenan agua y nutrientes. Su metabolismo CAM le permite tolerar baja luz y olvidos de riego, pero la pudrición por exceso es irreversible."
+    "whyRationale": "Originaria del este de África semi-árida — sus rizomas almacenan agua y nutrientes. Su metabolismo CAM le permite tolerar baja luz y olvidos de riego, pero la pudrición por exceso es irreversible.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Malestar gastrointestinal leve"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Malestar gastrointestinal leve"
+        ]
+      }
+    }
   },
   "cola-burro": {
     "name": "Cola de burro",
     "tip": "Hojas frágiles que se desprenden al rozar. Colocala donde nadie la toque.",
     "description": "La Cola de burro (Sedum morganianum) es una suculenta colgante con tallos cubiertos de hojitas carnosas verde azulado. Originaria de México. Sus hojas se desprenden con cualquier roce — y cada una puede enraizar en sustrato seco.",
     "problems": [
-      { "symptom": "Hojas que se caen al tocarla", "cause": "Frágil por naturaleza", "solution": "Colocala fuera de tránsito; cada hoja caída se puede plantar para multiplicarla." },
-      { "symptom": "Tallos blandos", "cause": "Exceso de riego", "solution": "Reducí el riego drásticamente; cortá zonas blandas y replantá en sustrato muy drenante." },
-      { "symptom": "Hojas arrugadas", "cause": "Falta de riego prolongado", "solution": "Regá lentamente con poca agua varias veces hasta que la suculenta se hidrate." }
+      {
+        "symptom": "Hojas que se caen al tocarla",
+        "cause": "Frágil por naturaleza",
+        "solution": "Colocala fuera de tránsito; cada hoja caída se puede plantar para multiplicarla."
+      },
+      {
+        "symptom": "Tallos blandos",
+        "cause": "Exceso de riego",
+        "solution": "Reducí el riego drásticamente; cortá zonas blandas y replantá en sustrato muy drenante."
+      },
+      {
+        "symptom": "Hojas arrugadas",
+        "cause": "Falta de riego prolongado",
+        "solution": "Regá lentamente con poca agua varias veces hasta que la suculenta se hidrate."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno (alto en potasio)", "homemade": "Cáscara de huevo molida cada 3 meses" },
-    "careAction": { "soilCheck": "Tocá la tierra hasta el fondo del agujero: si está completamente seca, regá poco. Sobrevive sequía mejor que exceso." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno (alto en potasio)",
+      "homemade": "Cáscara de huevo molida cada 3 meses"
+    },
+    "careAction": {
+      "soilCheck": "Tocá la tierra hasta el fondo del agujero: si está completamente seca, regá poco. Sobrevive sequía mejor que exceso."
+    },
     "placementRecommended": "Macetero colgante en lugar luminoso pero fuera de tránsito — cerca de ventana al sur con cortina filtrante.",
     "placementAlternatives": [
       "Estante alto con sol filtrado",
@@ -2591,12 +3602,29 @@
     "tip": "Trepadora versátil. Variedades variegadas necesitan más luz para mantener color.",
     "description": "La Hiedra (Hedera helix) es una trepadora europea de hojas lobuladas verdes o variegadas. Adaptable a interior fresco o exterior protegido. Crece en cesta colgante, sobre tutor o como tapizante. Tolera más frío que la mayoría de plantas de interior.",
     "problems": [
-      { "symptom": "Hojas pálidas o sin variegación", "cause": "Poca luz (variedades variegadas)", "solution": "Movela a luz indirecta brillante — los tonos crema y dorado requieren más luz." },
-      { "symptom": "Hojas crujientes y secas", "cause": "Aire seco de calefacción", "solution": "Pulverizá ambiente o agrupala con otras plantas; bajá la temperatura si podés." },
-      { "symptom": "Telaraña entre hojas", "cause": "Ácaros (favor de aire seco)", "solution": "Duchá la planta con agua tibia; aumentá humedad ambiental." }
+      {
+        "symptom": "Hojas pálidas o sin variegación",
+        "cause": "Poca luz (variedades variegadas)",
+        "solution": "Movela a luz indirecta brillante — los tonos crema y dorado requieren más luz."
+      },
+      {
+        "symptom": "Hojas crujientes y secas",
+        "cause": "Aire seco de calefacción",
+        "solution": "Pulverizá ambiente o agrupala con otras plantas; bajá la temperatura si podés."
+      },
+      {
+        "symptom": "Telaraña entre hojas",
+        "cause": "Ácaros (favor de aire seco)",
+        "solution": "Duchá la planta con agua tibia; aumentá humedad ambiental."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; menos en invierno." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; menos en invierno."
+    },
     "placementRecommended": "Habitación fresca con luz indirecta brillante — variedades variegadas cerca de ventana al este.",
     "placementAlternatives": [
       "Cesta colgante en sala luminosa",
@@ -2604,19 +3632,52 @@
       "Galería cubierta fresca"
     ],
     "placementAvoid": "Calefacción directa (aire seco quema hojas) y sol directo prolongado.",
-    "whyRationale": "Trepadora europea de bosques templados — sus raicillas adventicias se adhieren a superficies para trepar y compartir luz. Tolera frío hasta 5°C porque su origen es templado, no tropical."
+    "whyRationale": "Trepadora europea de bosques templados — sus raicillas adventicias se adhieren a superficies para trepar y compartir luz. Tolera frío hasta 5°C porque su origen es templado, no tropical.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Dolor abdominal",
+          "Hipersalivación",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Dolor abdominal",
+          "Hipersalivación",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "palmera-areca": {
     "name": "Palmera areca",
     "tip": "Hojas largas y arqueadas. Necesita luz brillante indirecta y sustrato siempre apenas húmedo.",
     "description": "La Palmera areca (Dypsis lutescens) es una palmera tropical de Madagascar con hojas pinadas verde claro y tallos múltiples. Crece varios metros en interior con luz brillante. Sensible a sequía pero también a encharcamiento — equilibrio constante.",
     "problems": [
-      { "symptom": "Puntas de hojas marrones", "cause": "Aire seco o agua con cloro", "solution": "Usá agua reposada 24h; pulverizá ambiente o usá humidificador." },
-      { "symptom": "Hojas amarillas en general", "cause": "Exceso de riego", "solution": "Mejorá drenaje; tocá la tierra antes de regar — debe estar apenas seca arriba." },
-      { "symptom": "Crecimiento detenido", "cause": "Falta de luz", "solution": "Movela cerca de ventana grande con luz brillante indirecta." }
+      {
+        "symptom": "Puntas de hojas marrones",
+        "cause": "Aire seco o agua con cloro",
+        "solution": "Usá agua reposada 24h; pulverizá ambiente o usá humidificador."
+      },
+      {
+        "symptom": "Hojas amarillas en general",
+        "cause": "Exceso de riego",
+        "solution": "Mejorá drenaje; tocá la tierra antes de regar — debe estar apenas seca arriba."
+      },
+      {
+        "symptom": "Crecimiento detenido",
+        "cause": "Falta de luz",
+        "solution": "Movela cerca de ventana grande con luz brillante indirecta."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK con hierro", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené humedad constante sin encharcar." },
+    "nutrients": {
+      "type": "Equilibrado NPK con hierro",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené humedad constante sin encharcar."
+    },
     "placementRecommended": "Cerca de ventana grande con luz brillante indirecta — temperatura cálida estable.",
     "placementAlternatives": [
       "Sala luminosa con cortina filtrante",
@@ -2631,12 +3692,29 @@
     "tip": "Más tolerante a poca luz que la areca. Crecimiento lento — paciencia es clave.",
     "description": "La Palmera kentia (Howea forsteriana) es una palmera elegante de la Isla Lord Howe, Australia. Hojas pinadas verde oscuro y crecimiento muy lento. Más tolerante a interiores con poca luz que otras palmeras — ideal para hoteles y oficinas.",
     "problems": [
-      { "symptom": "Crecimiento muy lento", "cause": "Normal — la kentia crece despacio", "solution": "Aceptá el ritmo: emite 1-2 frondas nuevas por año. Paciencia." },
-      { "symptom": "Puntas marrones", "cause": "Aire seco o sal en agua", "solution": "Pulverizá ambiente; usá agua reposada o de lluvia." },
-      { "symptom": "Hojas amarillas viejas", "cause": "Pérdida natural de hojas más viejas", "solution": "Cortá las frondas amarillas en la base — la planta sigue vigorosa." }
+      {
+        "symptom": "Crecimiento muy lento",
+        "cause": "Normal — la kentia crece despacio",
+        "solution": "Aceptá el ritmo: emite 1-2 frondas nuevas por año. Paciencia."
+      },
+      {
+        "symptom": "Puntas marrones",
+        "cause": "Aire seco o sal en agua",
+        "solution": "Pulverizá ambiente; usá agua reposada o de lluvia."
+      },
+      {
+        "symptom": "Hojas amarillas viejas",
+        "cause": "Pérdida natural de hojas más viejas",
+        "solution": "Cortá las frondas amarillas en la base — la planta sigue vigorosa."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno", "homemade": "Té de compost cada 6 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos; reducí mucho en invierno." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno",
+      "homemade": "Té de compost cada 6 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos; reducí mucho en invierno."
+    },
     "placementRecommended": "Sala con luz indirecta media a brillante — tolera incluso interiores profundos mejor que la areca.",
     "placementAlternatives": [
       "Pasillo luminoso",
@@ -2651,12 +3729,29 @@
     "tip": "Necesita humedad ambiental alta. Si no podés sostenerla, optá por otra planta.",
     "description": "El Helecho de Boston (Nephrolepis exaltata) es un helecho elegante con frondas largas y arqueadas. Originario de selvas tropicales americanas. Demandante con la humedad ambiental — bajo 50% empieza a perder frondas. Ideal para baños luminosos.",
     "problems": [
-      { "symptom": "Frondas marrones y crujientes", "cause": "Humedad ambiental insuficiente", "solution": "Movela a un baño o usá humidificador continuo; pulverizá las frondas a diario." },
-      { "symptom": "Frondas amarillas", "cause": "Sustrato muy seco entre riegos", "solution": "Mantené tierra apenas húmeda — el helecho no tolera secarse." },
-      { "symptom": "Caída masiva de hojitas", "cause": "Cambio brusco de ambiente", "solution": "Estabilizá ubicación y humedad; rebrotará en semanas." }
+      {
+        "symptom": "Frondas marrones y crujientes",
+        "cause": "Humedad ambiental insuficiente",
+        "solution": "Movela a un baño o usá humidificador continuo; pulverizá las frondas a diario."
+      },
+      {
+        "symptom": "Frondas amarillas",
+        "cause": "Sustrato muy seco entre riegos",
+        "solution": "Mantené tierra apenas húmeda — el helecho no tolera secarse."
+      },
+      {
+        "symptom": "Caída masiva de hojitas",
+        "cause": "Cambio brusco de ambiente",
+        "solution": "Estabilizá ubicación y humedad; rebrotará en semanas."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 4 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos. Sustrato siempre apenas húmedo." },
+    "nutrients": {
+      "type": "Equilibrado NPK diluido",
+      "homemade": "Té de compost diluido cada 4 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá apenas se sientan secos. Sustrato siempre apenas húmedo."
+    },
     "placementRecommended": "Baño luminoso con humedad natural alta — luz indirecta media.",
     "placementAlternatives": [
       "Cocina con luz natural y humedad de cocción",
@@ -2671,12 +3766,29 @@
     "tip": "Frondas enteras y onduladas — no las pulverices, regá solo el sustrato. Más tolerante que el de Boston.",
     "description": "El Helecho nido de ave (Asplenium nidus) tiene frondas enteras (no divididas) que crecen formando un nido central. Originario de selvas asiáticas. Más fácil que el helecho de Boston porque tolera mejor el aire seco — pero necesita humedad media-alta y luz indirecta.",
     "problems": [
-      { "symptom": "Centro marrón o pegajoso", "cause": "Agua acumulada en el nido central", "solution": "Regá solo el sustrato — nunca el centro de la roseta." },
-      { "symptom": "Frondas pálidas", "cause": "Demasiada luz", "solution": "Alejala de la ventana — luz indirecta media es ideal." },
-      { "symptom": "Frondas con bordes marrones", "cause": "Aire muy seco", "solution": "Pulverizá ambiente alrededor (no las frondas) o agrupala con otras plantas." }
+      {
+        "symptom": "Centro marrón o pegajoso",
+        "cause": "Agua acumulada en el nido central",
+        "solution": "Regá solo el sustrato — nunca el centro de la roseta."
+      },
+      {
+        "symptom": "Frondas pálidas",
+        "cause": "Demasiada luz",
+        "solution": "Alejala de la ventana — luz indirecta media es ideal."
+      },
+      {
+        "symptom": "Frondas con bordes marrones",
+        "cause": "Aire muy seco",
+        "solution": "Pulverizá ambiente alrededor (no las frondas) o agrupala con otras plantas."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK diluido", "homemade": "Té de compost diluido cada 5 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no el centro) cuando estén secos." },
+    "nutrients": {
+      "type": "Equilibrado NPK diluido",
+      "homemade": "Té de compost diluido cada 5 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá el sustrato (no el centro) cuando estén secos."
+    },
     "placementRecommended": "Habitación con luz indirecta media y humedad ambiental alta — baño funciona muy bien.",
     "placementAlternatives": [
       "Sala luminosa con humidificador",
@@ -2691,12 +3803,29 @@
     "tip": "Hojas redondas como monedas. Producirá brotes hijos compartibles — la planta de la amistad.",
     "description": "La Pilea peperomioides es originaria del sur de China. Sus hojas redondas y planas se sostienen sobre tallos delgados. Produce brotes hijos en la base que podés separar y regalar — por eso se llama planta del dinero o de la amistad.",
     "problems": [
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego", "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos." },
-      { "symptom": "Hojas con curvatura excesiva", "cause": "Cambios de luz o riego irregular", "solution": "Mantené ubicación estable con luz indirecta brillante." },
-      { "symptom": "Tallo largo y desnudo", "cause": "Falta de luz lateral", "solution": "Rotá la maceta cada semana para crecimiento parejo." }
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego",
+        "solution": "Tocá la tierra: regá solo cuando los primeros 2 cm estén secos."
+      },
+      {
+        "symptom": "Hojas con curvatura excesiva",
+        "cause": "Cambios de luz o riego irregular",
+        "solution": "Mantené ubicación estable con luz indirecta brillante."
+      },
+      {
+        "symptom": "Tallo largo y desnudo",
+        "cause": "Falta de luz lateral",
+        "solution": "Rotá la maceta cada semana para crecimiento parejo."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Rotá la maceta semanalmente para forma simétrica." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Rotá la maceta semanalmente para forma simétrica."
+    },
     "placementRecommended": "Cerca de ventana con luz brillante indirecta — rotá la maceta semanalmente.",
     "placementAlternatives": [
       "Mesa cerca de ventana al este",
@@ -2711,12 +3840,29 @@
     "tip": "Crece rápido. Esquejes enraízan en agua en 2 semanas — multiplicación fácil.",
     "description": "La Tradescantia zebrina es una colgante mexicana de hojas con franjas púrpura, plata y verde. Crecimiento rápido, propagación facilísima por esquejes. Ideal en cesta colgante o estante alto donde sus tallos puedan caer.",
     "problems": [
-      { "symptom": "Hojas verdes sin variegación", "cause": "Poca luz", "solution": "Movela a luz indirecta brillante — el púrpura requiere luz para expresarse." },
-      { "symptom": "Tallos largos y desnudos", "cause": "Crecimiento sin poda", "solution": "Podá los tallos cada 1-2 meses; usá los esquejes para enraizar y rellenar la maceta." },
-      { "symptom": "Hojas marchitas", "cause": "Sustrato seco", "solution": "Regá generosamente — se recupera rápido pero no tolera sequía repetida." }
+      {
+        "symptom": "Hojas verdes sin variegación",
+        "cause": "Poca luz",
+        "solution": "Movela a luz indirecta brillante — el púrpura requiere luz para expresarse."
+      },
+      {
+        "symptom": "Tallos largos y desnudos",
+        "cause": "Crecimiento sin poda",
+        "solution": "Podá los tallos cada 1-2 meses; usá los esquejes para enraizar y rellenar la maceta."
+      },
+      {
+        "symptom": "Hojas marchitas",
+        "cause": "Sustrato seco",
+        "solution": "Regá generosamente — se recupera rápido pero no tolera sequía repetida."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 3 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené ritmo constante." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 3 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos; mantené ritmo constante."
+    },
     "placementRecommended": "Cesta colgante o estante alto cerca de ventana con luz indirecta brillante.",
     "placementAlternatives": [
       "Macetero colgante en patio cubierto cálido",
@@ -2724,19 +3870,48 @@
       "Repisa con sol filtrado de mañana"
     ],
     "placementAvoid": "Sol directo del mediodía (decolora) y rincones oscuros (pierde púrpura).",
-    "whyRationale": "Originaria de México tropical — sus antocianinas en franjas púrpura requieren luz brillante para expresarse. La rápida propagación vegetativa es adaptación a ambientes perturbados."
+    "whyRationale": "Originaria de México tropical — sus antocianinas en franjas púrpura requieren luz brillante para expresarse. La rápida propagación vegetativa es adaptación a ambientes perturbados.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "cheflera": {
     "name": "Cheflera",
     "tip": "Hojas en forma de paraguas. Tolerante y de crecimiento rápido — buena para principiantes.",
     "description": "La Cheflera (Heptapleurum arboricola, antes Schefflera) tiene hojas digitadas que parecen paraguas. Originaria de Taiwán y Hainan. Tolerante a poca luz pero crece más rápido con luz brillante. Excelente planta de inicio para hogares u oficinas.",
     "problems": [
-      { "symptom": "Caída de hojas inferiores", "cause": "Poca luz o exceso de riego", "solution": "Acercala a luz brillante; tocá la tierra antes de regar." },
-      { "symptom": "Hojas pegajosas o pulgones", "cause": "Plagas comunes", "solution": "Limpiá hojas con agua jabonosa; revisá envés semanalmente." },
-      { "symptom": "Tallo largo y delgado", "cause": "Falta de luz", "solution": "Movela a luz brillante indirecta; podá el tope para forzar ramificación." }
+      {
+        "symptom": "Caída de hojas inferiores",
+        "cause": "Poca luz o exceso de riego",
+        "solution": "Acercala a luz brillante; tocá la tierra antes de regar."
+      },
+      {
+        "symptom": "Hojas pegajosas o pulgones",
+        "cause": "Plagas comunes",
+        "solution": "Limpiá hojas con agua jabonosa; revisá envés semanalmente."
+      },
+      {
+        "symptom": "Tallo largo y delgado",
+        "cause": "Falta de luz",
+        "solution": "Movela a luz brillante indirecta; podá el tope para forzar ramificación."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Reducí mucho en invierno." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá cuando estén secos. Reducí mucho en invierno."
+    },
     "placementRecommended": "Lugar con luz brillante indirecta — tolera variaciones de luz mejor que la mayoría de plantas tropicales.",
     "placementAlternatives": [
       "Sala con luz natural mixta",
@@ -2744,19 +3919,52 @@
       "Oficina con luz mixta natural y artificial"
     ],
     "placementAvoid": "Sol directo prolongado (quema variegación) y temperaturas bajo 12°C.",
-    "whyRationale": "Antes Schefflera arboricola — reclasificada como Heptapleurum en 2024 (POWO). Originaria de Taiwán y Hainan, su tolerancia a luz variable proviene de su origen en bosques de transición tropical-templado."
+    "whyRationale": "Antes Schefflera arboricola — reclasificada como Heptapleurum en 2024 (POWO). Originaria de Taiwán y Hainan, su tolerancia a luz variable proviene de su origen en bosques de transición tropical-templado.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva",
+          "Debilidad"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Salivación excesiva",
+          "Debilidad"
+        ]
+      }
+    }
   },
   "arbol-dinero": {
     "name": "Árbol del dinero",
     "tip": "Tronco trenzado y hojas digitadas. Tolerante con riego — mejor de menos que de más.",
     "description": "El Árbol del dinero (Pachira aquatica) es originario de los pantanos de Centroamérica. Vendido a menudo con tronco trenzado decorativo. Hojas digitadas verdes brillantes. Resiliente y tolerante — su nombre por la creencia popular de atraer prosperidad.",
     "problems": [
-      { "symptom": "Hojas amarillas y caída", "cause": "Exceso de riego", "solution": "Reducí el riego; tocá la tierra antes — debe estar bien seca arriba." },
-      { "symptom": "Hojas crujientes", "cause": "Aire seco o sol directo", "solution": "Movela a luz indirecta y pulverizá ambiente." },
-      { "symptom": "Tronco arrugado", "cause": "Falta de riego prolongado", "solution": "Regá generosamente y mantené humedad constante por 2 semanas." }
+      {
+        "symptom": "Hojas amarillas y caída",
+        "cause": "Exceso de riego",
+        "solution": "Reducí el riego; tocá la tierra antes — debe estar bien seca arriba."
+      },
+      {
+        "symptom": "Hojas crujientes",
+        "cause": "Aire seco o sol directo",
+        "solution": "Movela a luz indirecta y pulverizá ambiente."
+      },
+      {
+        "symptom": "Tronco arrugado",
+        "cause": "Falta de riego prolongado",
+        "solution": "Regá generosamente y mantené humedad constante por 2 semanas."
+      }
     ],
-    "nutrients": { "type": "Equilibrado NPK", "homemade": "Té de compost cada 4 semanas en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos. Su tronco almacena agua — mejor de menos que de más." },
+    "nutrients": {
+      "type": "Equilibrado NPK",
+      "homemade": "Té de compost cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos. Su tronco almacena agua — mejor de menos que de más."
+    },
     "placementRecommended": "Sala con luz brillante indirecta o sol filtrado — humedad media-alta favorece pero no es indispensable.",
     "placementAlternatives": [
       "A 1 m de ventana al este o sur con filtro",
@@ -2771,12 +3979,29 @@
     "tip": "Riego abundante esporádico; pleno sol; tolera heladas leves.",
     "description": "El Nopal (Opuntia ficus-indica) es un cactus arbustivo nativo de México con paletas (cladodios) carnosas que almacenan agua. Produce flores amarillas y los conocidos frutos comestibles llamados tunas. Vive en exterior o macetas muy grandes; perfecto para climas áridos y patios soleados.",
     "problems": [
-      { "symptom": "Pudrición en la base", "cause": "Riego excesivo o sustrato encharcado", "solution": "Reducí drásticamente el riego y mejorá el drenaje (mezcla con perlita y arena gruesa)." },
-      { "symptom": "Cochinilla algodonosa", "cause": "Plaga típica de opuntias", "solution": "Limpiá con cepillo y alcohol isopropílico al 70% en zonas afectadas; tratá con jabón potásico." },
-      { "symptom": "Daño por frío bajo 0°C prolongado", "cause": "Helada", "solution": "Cubrí con tela antihelada en noches de helada o movela bajo techo si está en maceta." }
+      {
+        "symptom": "Pudrición en la base",
+        "cause": "Riego excesivo o sustrato encharcado",
+        "solution": "Reducí drásticamente el riego y mejorá el drenaje (mezcla con perlita y arena gruesa)."
+      },
+      {
+        "symptom": "Cochinilla algodonosa",
+        "cause": "Plaga típica de opuntias",
+        "solution": "Limpiá con cepillo y alcohol isopropílico al 70% en zonas afectadas; tratá con jabón potásico."
+      },
+      {
+        "symptom": "Daño por frío bajo 0°C prolongado",
+        "cause": "Helada",
+        "solution": "Cubrí con tela antihelada en noches de helada o movela bajo techo si está en maceta."
+      }
     ],
-    "nutrients": { "type": "Bajo NPK", "homemade": "Compost de lombrices muy diluido cada 3 meses en cálido" },
-    "careAction": { "fixed": "Regá cada 14 días en cálido a fondo; cada 30 días en frío. Dejá secar totalmente entre riegos." },
+    "nutrients": {
+      "type": "Bajo NPK",
+      "homemade": "Compost de lombrices muy diluido cada 3 meses en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 14 días en cálido a fondo; cada 30 días en frío. Dejá secar totalmente entre riegos."
+    },
     "placementRecommended": "Pleno sol exterior — patio, terraza, balcón al sol directo del mediodía.",
     "placementAlternatives": [
       "Maceta grande con drenaje generoso",
@@ -2791,12 +4016,29 @@
     "tip": "Cactus dedo de oro: pleno sol y riego espaciado; florece en corona apical en primavera.",
     "description": "La Mammillaria elongata (cactus dedo de oro) es una cactácea mexicana de hábito agrupado: sus tallos cilíndricos cubiertos de espinas doradas forman colonias densas. Florece en corona en la cima cuando los días alargan. Ideal para repisas soleadas de interior.",
     "problems": [
-      { "symptom": "Tallos estirados y pálidos", "cause": "Falta de luz directa", "solution": "Acercala a una ventana con sol directo de mañana al menos 4-6 horas." },
-      { "symptom": "Pudrición en la base", "cause": "Riego excesivo o sustrato pesado", "solution": "Dejá secar totalmente entre riegos; usá sustrato cactus con perlita y arena gruesa." },
-      { "symptom": "Cochinilla harinosa entre tubérculos", "cause": "Plaga frecuente", "solution": "Aplicá alcohol al 70% con hisopo en zonas afectadas y aireá la planta." }
+      {
+        "symptom": "Tallos estirados y pálidos",
+        "cause": "Falta de luz directa",
+        "solution": "Acercala a una ventana con sol directo de mañana al menos 4-6 horas."
+      },
+      {
+        "symptom": "Pudrición en la base",
+        "cause": "Riego excesivo o sustrato pesado",
+        "solution": "Dejá secar totalmente entre riegos; usá sustrato cactus con perlita y arena gruesa."
+      },
+      {
+        "symptom": "Cochinilla harinosa entre tubérculos",
+        "cause": "Plaga frecuente",
+        "solution": "Aplicá alcohol al 70% con hisopo en zonas afectadas y aireá la planta."
+      }
     ],
-    "nutrients": { "type": "Bajo NPK específico para cactus", "homemade": "Té de compost muy diluido cada 2 meses en cálido" },
-    "careAction": { "fixed": "Regá cada 14 días en cálido a fondo; cada 30 días en frío. Dejá secar totalmente entre riegos." },
+    "nutrients": {
+      "type": "Bajo NPK específico para cactus",
+      "homemade": "Té de compost muy diluido cada 2 meses en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 14 días en cálido a fondo; cada 30 días en frío. Dejá secar totalmente entre riegos."
+    },
     "placementRecommended": "Cerca de ventana al sur (HN) o norte (HS) con sol directo de mañana.",
     "placementAlternatives": [
       "Repisa luminosa con sol filtrado del mediodía",
@@ -2811,12 +4053,29 @@
     "tip": "Reducí el riego en otoño para inducir floración; necesita noches largas (>13h oscuridad).",
     "description": "El Cactus de Navidad (Schlumbergera × buckleyi) NO es un cactus de desierto: es una epífita del bosque brasileño que crece sobre árboles a media sombra. Sus tallos articulados son fotosintéticos y florece en diciembre-enero si se le da el cue de noches largas en otoño.",
     "problems": [
-      { "symptom": "Caída de botones florales", "cause": "Cambios bruscos de temperatura o luz", "solution": "No lo muevas durante la floración; mantené ambiente estable entre 15-22°C." },
-      { "symptom": "Tallos arrugados y pudrición", "cause": "Riego excesivo en sustrato pesado", "solution": "Dejá secar la capa superior entre riegos; usá sustrato aireado con corteza." },
-      { "symptom": "No florece", "cause": "Insuficiente cue de noches largas", "solution": "En otoño, dale 13-14h de oscuridad nocturna por 6 semanas y bajá el riego." }
+      {
+        "symptom": "Caída de botones florales",
+        "cause": "Cambios bruscos de temperatura o luz",
+        "solution": "No lo muevas durante la floración; mantené ambiente estable entre 15-22°C."
+      },
+      {
+        "symptom": "Tallos arrugados y pudrición",
+        "cause": "Riego excesivo en sustrato pesado",
+        "solution": "Dejá secar la capa superior entre riegos; usá sustrato aireado con corteza."
+      },
+      {
+        "symptom": "No florece",
+        "cause": "Insuficiente cue de noches largas",
+        "solution": "En otoño, dale 13-14h de oscuridad nocturna por 6 semanas y bajá el riego."
+      }
     ],
-    "nutrients": { "type": "Bajo nitrógeno; alto fósforo y potasio (floración)", "homemade": "Té de cáscara de banana cada 3 semanas en otoño-invierno" },
-    "careAction": { "fixed": "Regá cada 7 días en cálido; cada 14 en frío. Reducí en otoño para inducir floración." },
+    "nutrients": {
+      "type": "Bajo nitrógeno; alto fósforo y potasio (floración)",
+      "homemade": "Té de cáscara de banana cada 3 semanas en otoño-invierno"
+    },
+    "careAction": {
+      "fixed": "Regá cada 7 días en cálido; cada 14 en frío. Reducí en otoño para inducir floración."
+    },
     "placementRecommended": "Cerca de ventana al este — luz brillante indirecta, mañanas suaves.",
     "placementAlternatives": [
       "Estante alto donde sus tallos cuelguen",
@@ -2831,12 +4090,29 @@
     "tip": "Florece con días cortos. Si querés flores, dale 14h de oscuridad por la noche.",
     "description": "El Kalanchoe blossfeldiana es una suculenta crassulácea de Madagascar con hojas carnosas dentadas y flores en corimbos vistosos rosa, rojo, naranja o blanco. Tolera olvidos de riego pero necesita oscuridad nocturna prolongada para volver a florecer.",
     "problems": [
-      { "symptom": "No florece", "cause": "Poca oscuridad nocturna", "solution": "Cubrila 14h por noche durante 6 semanas para inducir flores." },
-      { "symptom": "Hojas blandas y traslúcidas", "cause": "Exceso de riego", "solution": "Dejá secar el sustrato; sus rizomas pudren rápido con humedad constante." },
-      { "symptom": "Tallos estirados entre hojas", "cause": "Falta de luz", "solution": "Acercala a una ventana con sol indirecto brillante." }
+      {
+        "symptom": "No florece",
+        "cause": "Poca oscuridad nocturna",
+        "solution": "Cubrila 14h por noche durante 6 semanas para inducir flores."
+      },
+      {
+        "symptom": "Hojas blandas y traslúcidas",
+        "cause": "Exceso de riego",
+        "solution": "Dejá secar el sustrato; sus rizomas pudren rápido con humedad constante."
+      },
+      {
+        "symptom": "Tallos estirados entre hojas",
+        "cause": "Falta de luz",
+        "solution": "Acercala a una ventana con sol indirecto brillante."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno; alto en fósforo (floración)", "homemade": "Té de cáscara de banana cada 3 semanas en floración" },
-    "careAction": { "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Dejá secar bien entre riegos." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno; alto en fósforo (floración)",
+      "homemade": "Té de cáscara de banana cada 3 semanas en floración"
+    },
+    "careAction": {
+      "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Dejá secar bien entre riegos."
+    },
     "placementRecommended": "Ventana con sol filtrado o luz brillante indirecta.",
     "placementAlternatives": [
       "Repisa cerca de ventana sur (HS) con cortina translúcida",
@@ -2844,19 +4120,54 @@
       "Mesada de cocina con buena luz natural"
     ],
     "placementAvoid": "Sustrato siempre húmedo y poca luz.",
-    "whyRationale": "Crassulácea malgache de fotosíntesis CAM: cierra estomas de día, fija CO2 nocturno. Florece con noches largas (>14h oscuridad) — su reloj fotoperiódico requiere ese contraste para emitir botones."
+    "whyRationale": "Crassulácea malgache de fotosíntesis CAM: cierra estomas de día, fija CO2 nocturno. Florece con noches largas (>14h oscuridad) — su reloj fotoperiódico requiere ese contraste para emitir botones.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Arritmia cardíaca",
+          "Debilidad",
+          "Colapso"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Arritmia cardíaca",
+          "Debilidad",
+          "Colapso"
+        ]
+      }
+    }
   },
   "siempreviva": {
     "name": "Siempreviva",
     "tip": "Tolerante al frío extremo; tras florecer, la roseta madre muere pero deja muchos hijos.",
     "description": "La Siempreviva (Sempervivum tectorum) es una crassulácea de los Alpes y Pirineos europeos con rosetas densas que producen hijos (offsets) alrededor de la madre. Es monocárpica: la matriz florece una sola vez y muere, pero su descendencia continúa la colonia. Soporta heladas hasta -10°C.",
     "problems": [
-      { "symptom": "Tallos estirados desde el centro", "cause": "Falta de luz directa", "solution": "Movela a un lugar con sol pleno o brillante indirecto al menos 6h diarias." },
-      { "symptom": "Pudrición de la roseta central", "cause": "Sustrato encharcado", "solution": "Dejá secar entre riegos y usá maceta de barro con drenaje pleno." },
-      { "symptom": "Roseta madre seca tras florecer", "cause": "Comportamiento monocárpico normal", "solution": "No es muerte: cortá el escapo seco; los hijos a su alrededor seguirán." }
+      {
+        "symptom": "Tallos estirados desde el centro",
+        "cause": "Falta de luz directa",
+        "solution": "Movela a un lugar con sol pleno o brillante indirecto al menos 6h diarias."
+      },
+      {
+        "symptom": "Pudrición de la roseta central",
+        "cause": "Sustrato encharcado",
+        "solution": "Dejá secar entre riegos y usá maceta de barro con drenaje pleno."
+      },
+      {
+        "symptom": "Roseta madre seca tras florecer",
+        "cause": "Comportamiento monocárpico normal",
+        "solution": "No es muerte: cortá el escapo seco; los hijos a su alrededor seguirán."
+      }
     ],
-    "nutrients": { "type": "Muy bajo NPK", "homemade": "Té de compost diluido cada 4 meses en cálido" },
-    "careAction": { "fixed": "Regá cada 14 días en cálido; cada 30 en frío. Dejá secar totalmente entre riegos." },
+    "nutrients": {
+      "type": "Muy bajo NPK",
+      "homemade": "Té de compost diluido cada 4 meses en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 14 días en cálido; cada 30 en frío. Dejá secar totalmente entre riegos."
+    },
     "placementRecommended": "Sol pleno o brillante indirecto — tolera heladas hasta -10°C en exterior.",
     "placementAlternatives": [
       "Maceta de barro con drenaje pleno",
@@ -2871,12 +4182,29 @@
     "tip": "Lengua de abogado: tolera más sombra que un cactus; ideal para escritorios luminosos.",
     "description": "La Gasteria bicolor es una asfodelácea sudafricana emparentada con el Aloe; sus hojas carnosas se disponen en dos hileras (distichous) y son moteadas. A diferencia de la mayoría de suculentas, tolera luz indirecta brillante — rara excepción que la hace ideal para interiores con menos sol.",
     "problems": [
-      { "symptom": "Hojas quemadas con manchas marrones", "cause": "Sol directo del mediodía", "solution": "Movela a luz indirecta brillante; toleran menos sol que la mayoría de cactáceas." },
-      { "symptom": "Pudrición en la base", "cause": "Riego excesivo", "solution": "Dejá secar totalmente entre riegos; usá sustrato suculento con perlita." },
-      { "symptom": "Cochinilla en el envés de las hojas", "cause": "Plaga común", "solution": "Limpiá con hisopo y alcohol al 70%; revisá entre las hojas distichous." }
+      {
+        "symptom": "Hojas quemadas con manchas marrones",
+        "cause": "Sol directo del mediodía",
+        "solution": "Movela a luz indirecta brillante; toleran menos sol que la mayoría de cactáceas."
+      },
+      {
+        "symptom": "Pudrición en la base",
+        "cause": "Riego excesivo",
+        "solution": "Dejá secar totalmente entre riegos; usá sustrato suculento con perlita."
+      },
+      {
+        "symptom": "Cochinilla en el envés de las hojas",
+        "cause": "Plaga común",
+        "solution": "Limpiá con hisopo y alcohol al 70%; revisá entre las hojas distichous."
+      }
     ],
-    "nutrients": { "type": "Bajo NPK", "homemade": "Té de compost muy diluido cada 3 meses en cálido" },
-    "careAction": { "fixed": "Regá cada 14 días en cálido; cada 30 en frío. Dejá secar totalmente entre riegos." },
+    "nutrients": {
+      "type": "Bajo NPK",
+      "homemade": "Té de compost muy diluido cada 3 meses en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 14 días en cálido; cada 30 en frío. Dejá secar totalmente entre riegos."
+    },
     "placementRecommended": "Luz brillante indirecta — más sombra que un cactus típico.",
     "placementAlternatives": [
       "Repisa cerca de ventana al este",
@@ -2891,12 +4219,29 @@
     "tip": "Casi nunca regar: reposo estival absoluto; tocá la tierra solo en otoño-invierno.",
     "description": "Las Piedras vivas (Lithops lesliei) son aizoáceas mesembs sudafricanas que mimetizan piedras en su hábitat. Tienen un ciclo de reemplazo foliar anual: el par nuevo absorbe agua del par viejo. Reposo estival absoluto — un solo riego en verano cálido puede reventarlas.",
     "problems": [
-      { "symptom": "Hojas reventadas o agrietadas", "cause": "Riego durante reposo estival", "solution": "Suspendé totalmente el riego de noviembre a marzo (HS); las hojas viejas deben absorberse solas." },
-      { "symptom": "Hojas arrugadas en otoño-invierno", "cause": "Falta de riego en período activo", "solution": "En otoño-invierno regá cada 30 días tras tocar tierra totalmente seca." },
-      { "symptom": "Pudrición fúngica en la base", "cause": "Aire húmedo prolongado", "solution": "Aireá la maceta y mantené sustrato muy mineral; trasplantá si la pudrición avanzó." }
+      {
+        "symptom": "Hojas reventadas o agrietadas",
+        "cause": "Riego durante reposo estival",
+        "solution": "Suspendé totalmente el riego de noviembre a marzo (HS); las hojas viejas deben absorberse solas."
+      },
+      {
+        "symptom": "Hojas arrugadas en otoño-invierno",
+        "cause": "Falta de riego en período activo",
+        "solution": "En otoño-invierno regá cada 30 días tras tocar tierra totalmente seca."
+      },
+      {
+        "symptom": "Pudrición fúngica en la base",
+        "cause": "Aire húmedo prolongado",
+        "solution": "Aireá la maceta y mantené sustrato muy mineral; trasplantá si la pudrición avanzó."
+      }
     ],
-    "nutrients": { "type": "No requiere fertilización suplementaria", "homemade": "No aplica — el sustrato mineral es suficiente" },
-    "careAction": { "soilCheck": "Tocá la tierra solo en otoño-invierno; dejá totalmente seca todo el verano (reposo)." },
+    "nutrients": {
+      "type": "No requiere fertilización suplementaria",
+      "homemade": "No aplica — el sustrato mineral es suficiente"
+    },
+    "careAction": {
+      "soilCheck": "Tocá la tierra solo en otoño-invierno; dejá totalmente seca todo el verano (reposo)."
+    },
     "placementRecommended": "Sol directo de mañana — ventana al este, balcón cubierto al sol matinal.",
     "placementAlternatives": [
       "Maceta poco profunda con drenaje pleno",
@@ -2911,12 +4256,29 @@
     "tip": "Cesta colgante con luz brillante indirecta; reclasificada como Curio (antes Senecio).",
     "description": "El Collar de perlas (Curio rowleyanus, antes Senecio rowleyanus) es una asterácea suculenta sudafricana con hojas globosas que parecen perlas. Almacenan agua y limitan la superficie evaporativa. Hábito colgante ideal para cestas; tolera olvidos pero detesta el encharcamiento.",
     "problems": [
-      { "symptom": "Perlas arrugadas y secas", "cause": "Falta de riego prolongada", "solution": "Regá a fondo cuando las perlas se ven blandas; recuperan turgencia en 2-3 días." },
-      { "symptom": "Perlas blandas y pastosas", "cause": "Riego excesivo", "solution": "Dejá secar totalmente entre riegos; revisá si el sustrato drena bien." },
-      { "symptom": "Caída de perlas en frío", "cause": "Corrientes de aire bajo 10°C", "solution": "Alejala de ventanas frías y puertas en invierno; mantenela sobre 12°C." }
+      {
+        "symptom": "Perlas arrugadas y secas",
+        "cause": "Falta de riego prolongada",
+        "solution": "Regá a fondo cuando las perlas se ven blandas; recuperan turgencia en 2-3 días."
+      },
+      {
+        "symptom": "Perlas blandas y pastosas",
+        "cause": "Riego excesivo",
+        "solution": "Dejá secar totalmente entre riegos; revisá si el sustrato drena bien."
+      },
+      {
+        "symptom": "Caída de perlas en frío",
+        "cause": "Corrientes de aire bajo 10°C",
+        "solution": "Alejala de ventanas frías y puertas en invierno; mantenela sobre 12°C."
+      }
     ],
-    "nutrients": { "type": "Bajo NPK", "homemade": "Té de compost muy diluido cada 3 meses en cálido" },
-    "careAction": { "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Dejá secar bien entre riegos." },
+    "nutrients": {
+      "type": "Bajo NPK",
+      "homemade": "Té de compost muy diluido cada 3 meses en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Dejá secar bien entre riegos."
+    },
     "placementRecommended": "Cesta colgante con luz brillante indirecta — cerca de ventana al este.",
     "placementAlternatives": [
       "Estante alto donde caigan las perlas",
@@ -2924,19 +4286,52 @@
       "Macetero colgante en sala iluminada"
     ],
     "placementAvoid": "Sol directo del mediodía (quema perlas) y corrientes de aire frío bajo 10°C.",
-    "whyRationale": "Asterácea suculenta sudafricana — sus hojas globosas (perlas) almacenan agua y limitan la superficie evaporativa. Crece bajo dosel árido: tolera olvidos pero detesta el encharcamiento."
+    "whyRationale": "Asterácea suculenta sudafricana — sus hojas globosas (perlas) almacenan agua y limitan la superficie evaporativa. Crece bajo dosel árido: tolera olvidos pero detesta el encharcamiento.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Letargo",
+          "Salivación"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Letargo",
+          "Salivación"
+        ]
+      }
+    }
   },
   "corona-espinas": {
     "name": "Corona de espinas",
     "tip": "Tóxica al corte (látex blanco) — usá guantes al podar; floración casi continua con sol.",
     "description": "La Corona de espinas (Euphorbia milii) es una euforbiácea malgache espinosa de aspecto cactiforme — pero NO es Cactaceae: es convergencia evolutiva. Sus brácteas pequeñas y vistosas (rosa, rojo, amarillo) reemplazan a los pétalos. Su látex blanco es tóxico al corte.",
     "problems": [
-      { "symptom": "Caída de hojas", "cause": "Falta de luz directa", "solution": "Acercala a una ventana muy luminosa; tolera y prefiere sol directo." },
-      { "symptom": "Pudrición en la base", "cause": "Riego excesivo", "solution": "Dejá secar totalmente entre riegos; usá sustrato muy drenante." },
-      { "symptom": "Irritación cutánea al podar", "cause": "Látex tóxico", "solution": "Siempre usá guantes; ante contacto con piel, lavá con jabón abundante. No la cortes con niños cerca." }
+      {
+        "symptom": "Caída de hojas",
+        "cause": "Falta de luz directa",
+        "solution": "Acercala a una ventana muy luminosa; tolera y prefiere sol directo."
+      },
+      {
+        "symptom": "Pudrición en la base",
+        "cause": "Riego excesivo",
+        "solution": "Dejá secar totalmente entre riegos; usá sustrato muy drenante."
+      },
+      {
+        "symptom": "Irritación cutánea al podar",
+        "cause": "Látex tóxico",
+        "solution": "Siempre usá guantes; ante contacto con piel, lavá con jabón abundante. No la cortes con niños cerca."
+      }
     ],
-    "nutrients": { "type": "Bajo-moderado NPK con fósforo extra (floración)", "homemade": "Té de cáscara de banana cada 4 semanas en cálido" },
-    "careAction": { "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Usá guantes al manipular o podar." },
+    "nutrients": {
+      "type": "Bajo-moderado NPK con fósforo extra (floración)",
+      "homemade": "Té de cáscara de banana cada 4 semanas en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 10 días en cálido; cada 21 en frío. Usá guantes al manipular o podar."
+    },
     "placementRecommended": "Sol pleno o luz directa — ventana al sur (HN) o norte (HS) con mucho sol.",
     "placementAlternatives": [
       "Balcón cubierto al sol directo",
@@ -2944,19 +4339,52 @@
       "Repisa luminosa con sol matinal y media tarde"
     ],
     "placementAvoid": "Rincones oscuros (sin floración) y sustrato encharcado.",
-    "whyRationale": "Euforbiácea espinosa malgache — su apariencia cactiforme es convergencia evolutiva, no Cactaceae. Látex blanco tóxico al corte. Floración casi continua con luz directa porque sus brácteas reemplazan a los pétalos."
+    "whyRationale": "Euforbiácea espinosa malgache — su apariencia cactiforme es convergencia evolutiva, no Cactaceae. Látex blanco tóxico al corte. Floración casi continua con luz directa porque sus brácteas reemplazan a los pétalos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Dermatitis",
+          "Irritación ocular"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Dermatitis",
+          "Irritación ocular"
+        ]
+      }
+    }
   },
   "agave": {
     "name": "Agave",
     "tip": "Floración monocárpica única tras décadas — la roseta madre muere después pero deja hijos.",
     "description": "El Agave americana es una asparagácea monocotiledónea mexicana de roseta gigante con hojas carnosas marginales espinosas y una espina terminal. Combina fotosíntesis CAM con almacenamiento de agua en hojas. Es monocárpica: tras décadas emite un escapo gigante, florece, semilla y muere.",
     "problems": [
-      { "symptom": "Pudrición en el centro de la roseta", "cause": "Sustrato encharcado", "solution": "Reducí drásticamente el riego; mejorá drenaje con arena gruesa y perlita." },
-      { "symptom": "Cochinilla en la base de las hojas", "cause": "Plaga común en exterior", "solution": "Limpiá con cepillo y agua jabonosa; tratá con jabón potásico si persiste." },
-      { "symptom": "Pinchazo doloroso al manipular", "cause": "Espinas marginales y terminal afiladas", "solution": "Usá guantes gruesos; cortá la espina terminal si queda en zona de paso." }
+      {
+        "symptom": "Pudrición en el centro de la roseta",
+        "cause": "Sustrato encharcado",
+        "solution": "Reducí drásticamente el riego; mejorá drenaje con arena gruesa y perlita."
+      },
+      {
+        "symptom": "Cochinilla en la base de las hojas",
+        "cause": "Plaga común en exterior",
+        "solution": "Limpiá con cepillo y agua jabonosa; tratá con jabón potásico si persiste."
+      },
+      {
+        "symptom": "Pinchazo doloroso al manipular",
+        "cause": "Espinas marginales y terminal afiladas",
+        "solution": "Usá guantes gruesos; cortá la espina terminal si queda en zona de paso."
+      }
     ],
-    "nutrients": { "type": "Muy bajo NPK", "homemade": "Compost de lombrices muy diluido una vez al año en cálido" },
-    "careAction": { "fixed": "Regá cada 21 días en cálido; cada 60 en frío. Dejá secar totalmente entre riegos." },
+    "nutrients": {
+      "type": "Muy bajo NPK",
+      "homemade": "Compost de lombrices muy diluido una vez al año en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 21 días en cálido; cada 60 en frío. Dejá secar totalmente entre riegos."
+    },
     "placementRecommended": "Pleno sol exterior — patio, terraza, jardín.",
     "placementAlternatives": [
       "Maceta grande con drenaje pleno",
@@ -2964,19 +4392,50 @@
       "Pared al sur (HN) con sol directo todo el día"
     ],
     "placementAvoid": "Sustrato encharcado y rincones sin sol pleno.",
-    "whyRationale": "Suculenta xerófita en roseta — fotosíntesis CAM + acumulación de agua en hojas carnosas. Floración monocárpica única tras décadas: la madre emite un escapo gigante, florece, semilla y muere — pero deja hijos."
+    "whyRationale": "Suculenta xerófita en roseta — fotosíntesis CAM + acumulación de agua en hojas carnosas. Floración monocárpica única tras décadas: la madre emite un escapo gigante, florece, semilla y muere — pero deja hijos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Irritación gastrointestinal",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "hoya": {
     "name": "Hoya corazón",
     "tip": "Crece muy lento. Tolera olvidos, ama humedad alta.",
     "description": "La Hoya kerrii (también llamada planta corazón o Sweetheart Plant) es una asclepiadácea trepadora suculenta del sudeste asiático con hojas gruesas en forma de corazón. A menudo se vende como una sola hoja-regalo, pero con tiempo puede desarrollar guías largas. Es muy lenta — paciencia obligada.",
     "problems": [
-      { "symptom": "Crecimiento muy lento", "cause": "Es su naturaleza — ritmo de Hoya", "solution": "Paciencia: en un año podés ver 2-3 hojas nuevas. Es normal." },
-      { "symptom": "Hojas arrugadas y delgadas", "cause": "Falta de riego prolongada", "solution": "Regá a fondo y esperá días para rehidratación; sus hojas almacenan agua." },
-      { "symptom": "Hojas amarillas con pudrición", "cause": "Exceso de riego o frío", "solution": "Reducí riego; revisá drenaje; alejala de corrientes de aire frío." }
+      {
+        "symptom": "Crecimiento muy lento",
+        "cause": "Es su naturaleza — ritmo de Hoya",
+        "solution": "Paciencia: en un año podés ver 2-3 hojas nuevas. Es normal."
+      },
+      {
+        "symptom": "Hojas arrugadas y delgadas",
+        "cause": "Falta de riego prolongada",
+        "solution": "Regá a fondo y esperá días para rehidratación; sus hojas almacenan agua."
+      },
+      {
+        "symptom": "Hojas amarillas con pudrición",
+        "cause": "Exceso de riego o frío",
+        "solution": "Reducí riego; revisá drenaje; alejala de corrientes de aire frío."
+      }
     ],
-    "nutrients": { "type": "Bajo NPK (crecimiento lento)", "homemade": "Té de compost muy diluido cada 2 meses en cálido" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: si están secos, regá; en frío reducí a casi nada." },
+    "nutrients": {
+      "type": "Bajo NPK (crecimiento lento)",
+      "homemade": "Té de compost muy diluido cada 2 meses en cálido"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: si están secos, regá; en frío reducí a casi nada."
+    },
     "placementRecommended": "Cesta colgante con luz brillante indirecta — cerca de ventana al este o al norte (HS).",
     "placementAlternatives": [
       "Estante alto donde sus guías puedan colgar",
@@ -2991,12 +4450,29 @@
     "tip": "Necesita tutor para fenestrar. Sin tutor, permanece juvenil sin agujeros.",
     "description": "La Rhaphidophora tetrasperma es una aroide hemiepífita trepadora de Malasia y Tailandia, comúnmente confundida y mal vendida como Monstera minima, Philodendron Ginny o Philodendron Piccolo (ninguno es nombre científico real). Desarrolla fenestraciones (agujeros en forma de corazón) SOLO cuando madura trepando un tutor; sin musgo permanece en forma juvenil de hojas pequeñas.",
     "problems": [
-      { "symptom": "Hojas pequeñas y sin agujeros", "cause": "Falta de soporte vertical para trepar", "solution": "Colocá tutor de musgo o vara para que la planta madure y desarrolle fenestraciones." },
-      { "symptom": "Hojas amarillentas", "cause": "Riego excesivo o sustrato encharcado", "solution": "Reducí frecuencia; verificá drenaje; dejá secar los primeros centímetros." },
-      { "symptom": "Raíces aéreas buscando soporte", "cause": "Hábito trepador natural", "solution": "Guialas hacia el tutor de musgo o pulverizalas para mantenerlas hidratadas." }
+      {
+        "symptom": "Hojas pequeñas y sin agujeros",
+        "cause": "Falta de soporte vertical para trepar",
+        "solution": "Colocá tutor de musgo o vara para que la planta madure y desarrolle fenestraciones."
+      },
+      {
+        "symptom": "Hojas amarillentas",
+        "cause": "Riego excesivo o sustrato encharcado",
+        "solution": "Reducí frecuencia; verificá drenaje; dejá secar los primeros centímetros."
+      },
+      {
+        "symptom": "Raíces aéreas buscando soporte",
+        "cause": "Hábito trepador natural",
+        "solution": "Guialas hacia el tutor de musgo o pulverizalas para mantenerlas hidratadas."
+      }
     ],
-    "nutrients": { "type": "NPK balanceado", "homemade": "Té de compost diluido una vez al mes en temporada cálida" },
-    "careAction": { "soilCheck": "Tocá los primeros 2 cm: regá hasta que drene." },
+    "nutrients": {
+      "type": "NPK balanceado",
+      "homemade": "Té de compost diluido una vez al mes en temporada cálida"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2 cm: regá hasta que drene."
+    },
     "placementRecommended": "Cerca de ventana con luz brillante indirecta + tutor de musgo si querés hojas grandes con agujeros.",
     "placementAlternatives": [
       "Habitación luminosa con humidificador",
@@ -3004,19 +4480,52 @@
       "Estante alto con tutor vertical"
     ],
     "placementAvoid": "Sol directo y rincones oscuros (sin tutor, sin fenestraciones).",
-    "whyRationale": "Aroide trepadora hemiepífita del sudeste asiático — las fenestraciones aparecen al alcanzar tutor vertical (heteroblastia). Sin tutor permanece juvenil sin agujeros. Por eso la confusión con Monstera, pero es Rhaphidophora."
+    "whyRationale": "Aroide trepadora hemiepífita del sudeste asiático — las fenestraciones aparecen al alcanzar tutor vertical (heteroblastia). Sin tutor permanece juvenil sin agujeros. Por eso la confusión con Monstera, pero es Rhaphidophora.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Irritación oral",
+          "Ardor intenso de boca, labios, lengua",
+          "Salivación excesiva",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "strelitzia": {
     "name": "Strelitzia (Ave del Paraíso)",
     "tip": "Florece entre 3 y 4 años. Necesita mucho sol y madurez.",
     "description": "La Strelitzia reginae compacta (~1-1.5m) es una strelitziacea sudafricana conocida como Ave del Paraíso por su flor icónica (sépalos naranja, azul y crema con forma de pájaro tropical). Tiene hojas paddle-shaped grandes; necesita AÑOS de luz brillante indirecta para florecer en interior. NO confundir con la giant S. nicolai (2-3m, flores blancas — especie distinta, no cubierta por esta entrada).",
     "problems": [
-      { "symptom": "Hojas rasgadas longitudinalmente", "cause": "Adaptación natural al viento", "solution": "Es normal — no es daño; la hoja se rompe en línea para resistir ráfagas." },
-      { "symptom": "No florece", "cause": "Luz insuficiente o planta inmadura", "solution": "Acercala a ventana grande con sol de mañana; esperá 3-4 años desde semilla." },
-      { "symptom": "Puntas marrones en las hojas", "cause": "Humedad ambiental baja o aire seco", "solution": "Pulverizá las hojas; alejala de calefactores; agrupala con otras plantas." }
+      {
+        "symptom": "Hojas rasgadas longitudinalmente",
+        "cause": "Adaptación natural al viento",
+        "solution": "Es normal — no es daño; la hoja se rompe en línea para resistir ráfagas."
+      },
+      {
+        "symptom": "No florece",
+        "cause": "Luz insuficiente o planta inmadura",
+        "solution": "Acercala a ventana grande con sol de mañana; esperá 3-4 años desde semilla."
+      },
+      {
+        "symptom": "Puntas marrones en las hojas",
+        "cause": "Humedad ambiental baja o aire seco",
+        "solution": "Pulverizá las hojas; alejala de calefactores; agrupala con otras plantas."
+      }
     ],
-    "nutrients": { "type": "NPK balanceado en cálido", "homemade": "Té de compost diluido cada 4 semanas en temporada de crecimiento" },
-    "careAction": { "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos. Reducí drásticamente en invierno." },
+    "nutrients": {
+      "type": "NPK balanceado en cálido",
+      "homemade": "Té de compost diluido cada 4 semanas en temporada de crecimiento"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 3 cm: regá cuando estén secos. Reducí drásticamente en invierno."
+    },
     "placementRecommended": "Cerca de ventana grande con luz brillante indirecta — sol directo de mañana lo ayuda a florecer.",
     "placementAlternatives": [
       "Habitación luminosa con cortina filtrante en sol directo del mediodía",
@@ -3024,19 +4533,48 @@
       "Cantero exterior protegido en clima templado (HS)"
     ],
     "placementAvoid": "Rincones oscuros (no florece) y temperaturas bajo 8°C prolongadas.",
-    "whyRationale": "Strelitziacea sudafricana de savanna — hojas paddle-shaped reducen pérdida de agua. Floración requiere luz brillante prolongada + maduración 3-4 años. La forma de pico-de-ave del cáliz evolucionó para polinización por sunbirds."
+    "whyRationale": "Strelitziacea sudafricana de savanna — hojas paddle-shaped reducen pérdida de agua. Floración requiere luz brillante prolongada + maduración 3-4 años. La forma de pico-de-ave del cáliz evolucionó para polinización por sunbirds.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas leves",
+          "Somnolencia"
+        ],
+        "dogs": [
+          "Náuseas leves",
+          "Somnolencia"
+        ]
+      }
+    }
   },
   "eucalipto": {
     "name": "Eucalipto limón",
     "tip": "Aroma cítrico fuerte de citronellal. Usá hojas para infusiones; pleno sol exterior.",
     "description": "El Eucalyptus citriodora (sinónimo POWO Corymbia citriodora desde los 2000s) es una mirtácea australiana con hojas de aroma cítrico intenso por el compuesto volátil citronellal (defensa anti-herbivoría y repelente natural de insectos). Crecimiento muy rápido en exterior (>1m al año); difícil de mantener en maceta a largo plazo — mejor plantarlo en suelo. El mercado argentino lo vende mayormente bajo el nombre Eucalyptus.",
     "problems": [
-      { "symptom": "Crecimiento explosivo en maceta", "cause": "Raíces invasivas que buscan suelo profundo", "solution": "Trasplantá a maceta extra-grande o plantá directamente en suelo si es posible." },
-      { "symptom": "Clorosis (hojas amarillas con nervios verdes)", "cause": "Suelo alcalino — bloqueo de hierro", "solution": "Aplicá enmienda de hierro quelado; acidificá el sustrato con turba." },
-      { "symptom": "Cochinilla en brotes nuevos", "cause": "Plaga común en exterior", "solution": "Limpiá con hisopo y alcohol; tratá con jabón potásico si persiste." }
+      {
+        "symptom": "Crecimiento explosivo en maceta",
+        "cause": "Raíces invasivas que buscan suelo profundo",
+        "solution": "Trasplantá a maceta extra-grande o plantá directamente en suelo si es posible."
+      },
+      {
+        "symptom": "Clorosis (hojas amarillas con nervios verdes)",
+        "cause": "Suelo alcalino — bloqueo de hierro",
+        "solution": "Aplicá enmienda de hierro quelado; acidificá el sustrato con turba."
+      },
+      {
+        "symptom": "Cochinilla en brotes nuevos",
+        "cause": "Plaga común en exterior",
+        "solution": "Limpiá con hisopo y alcohol; tratá con jabón potásico si persiste."
+      }
     ],
-    "nutrients": { "type": "NPK balanceado", "homemade": "Compost al pie en primavera; enmienda de hierro si las hojas amarillean" },
-    "careAction": { "fixed": "Regá cada 5 días en cálido a fondo; cada 10 en frío. Crecimiento rápido." },
+    "nutrients": {
+      "type": "NPK balanceado",
+      "homemade": "Compost al pie en primavera; enmienda de hierro si las hojas amarillean"
+    },
+    "careAction": {
+      "fixed": "Regá cada 5 días en cálido a fondo; cada 10 en frío. Crecimiento rápido."
+    },
     "placementRecommended": "Pleno sol exterior — patio, jardín, terraza grande con sustrato profundo.",
     "placementAlternatives": [
       "Cantero en suelo arcillo-arenoso bien drenado",
@@ -3044,19 +4582,54 @@
       "Pared al norte (HS) con sol todo el día"
     ],
     "placementAvoid": "Maceta pequeña (raíces invasivas) y suelo encharcado.",
-    "whyRationale": "Mirtácea australiana — hojas con citronellal volátil (defensa anti-herbivoría). Crecimiento muy rápido en exterior: el árbol busca su altura con prisa, por eso es difícil mantenerlo confinado en maceta a largo plazo."
+    "whyRationale": "Mirtácea australiana — hojas con citronellal volátil (defensa anti-herbivoría). Crecimiento muy rápido en exterior: el árbol busca su altura con prisa, por eso es difícil mantenerlo confinado en maceta a largo plazo.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Salivación",
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Debilidad"
+        ],
+        "dogs": [
+          "Salivación",
+          "Vómitos",
+          "Diarrea",
+          "Depresión",
+          "Debilidad"
+        ]
+      }
+    }
   },
   "bambu-suerte": {
     "name": "Bambú de la suerte",
     "tip": "Crece tanto en agua como en sustrato. Si está en agua, cambiala cada 10-14 días con agua filtrada.",
     "description": "La Dracaena sanderiana (NO es bambú real a pesar del nombre) es una asparagácea de África occidental, comúnmente vendida como bambú de la suerte en cultivo hidropónico (sin sustrato, solo agua filtrada). También crece en tierra. Tolera muy poca luz. Es sensible al flúor y cloro del agua corriente — usá agua filtrada o reposada 24h. Las espirales y trenzas decorativas son moldeadas comercialmente, no naturales.",
     "problems": [
-      { "symptom": "Hojas amarillas con puntas quemadas", "cause": "Flúor o cloro del agua del grifo", "solution": "Cambiá a agua filtrada o reposada 24h; el flúor se acumula en las puntas." },
-      { "symptom": "Tallos negros o blandos", "cause": "Pudrición por agua vieja en cultivo hidropónico", "solution": "Cambiá el agua cada 10-14 días; lavá raíces; cortá tallos podridos." },
-      { "symptom": "Puntas marrones secas", "cause": "Humedad ambiental baja", "solution": "Pulverizá hojas; alejala de calefactores; agrupala con otras plantas." }
+      {
+        "symptom": "Hojas amarillas con puntas quemadas",
+        "cause": "Flúor o cloro del agua del grifo",
+        "solution": "Cambiá a agua filtrada o reposada 24h; el flúor se acumula en las puntas."
+      },
+      {
+        "symptom": "Tallos negros o blandos",
+        "cause": "Pudrición por agua vieja en cultivo hidropónico",
+        "solution": "Cambiá el agua cada 10-14 días; lavá raíces; cortá tallos podridos."
+      },
+      {
+        "symptom": "Puntas marrones secas",
+        "cause": "Humedad ambiental baja",
+        "solution": "Pulverizá hojas; alejala de calefactores; agrupala con otras plantas."
+      }
     ],
-    "nutrients": { "type": "Muy bajo NPK", "homemade": "En cultivo hidropónico, unas gotas de fertilizante líquido diluido una vez al mes" },
-    "careAction": { "fixed": "Si está en agua: cambiala cada 10-14 días con agua filtrada. Si está en tierra: regá cada 14 días." },
+    "nutrients": {
+      "type": "Muy bajo NPK",
+      "homemade": "En cultivo hidropónico, unas gotas de fertilizante líquido diluido una vez al mes"
+    },
+    "careAction": {
+      "fixed": "Si está en agua: cambiala cada 10-14 días con agua filtrada. Si está en tierra: regá cada 14 días."
+    },
     "placementRecommended": "Luz indirecta media — escritorio, repisa de oficina, mesada con poca luz natural.",
     "placementAlternatives": [
       "Habitación con luz fluorescente o LED",
@@ -3064,19 +4637,51 @@
       "Mesada de baño luminoso (humedad alta)"
     ],
     "placementAvoid": "Sol directo (quema hojas) y agua del grifo con cloro o flúor sin filtrar.",
-    "whyRationale": "Asparagácea africana de zonas ribereñas — adaptada a humedad alta, crece bien en cultivo hidropónico. Sensible al flúor del agua corriente porque su zona nativa tiene aguas blandas: el flúor se acumula en las puntas y las quema."
+    "whyRationale": "Asparagácea africana de zonas ribereñas — adaptada a humedad alta, crece bien en cultivo hidropónico. Sensible al flúor del agua corriente porque su zona nativa tiene aguas blandas: el flúor se acumula en las puntas y las quema.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Incoordinación",
+          "Debilidad",
+          "Pupilas dilatadas (gatos)"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Incoordinación",
+          "Debilidad"
+        ]
+      }
+    }
   },
   "sansevieria-cilindrica": {
     "name": "Sansevieria cilíndrica",
     "tip": "Casi indestructible. Más tolerante que la sansevieria común.",
     "description": "La Dracaena angolensis (POWO 2018 reclasificó desde Sansevieria cylindrica; el comercio sigue usando el nombre Sansevieria) es una asparagácea angoleña con hojas cilíndricas tubulares creciendo erectas. Combina fotosíntesis CAM con tolerancia extrema a la sequía. Tolera muy poca luz — una de las plantas de interior más perdonadoras. Suele venderse con hojas trenzadas decorativamente.",
     "problems": [
-      { "symptom": "Pudrición en la base", "cause": "Exceso de riego — la causa de muerte más común", "solution": "Reducí drásticamente; dejá secar totalmente; mejorá drenaje con perlita." },
-      { "symptom": "Bases blandas y arrugadas", "cause": "Riego excesivo crónico", "solution": "Suspendé el riego varios días; trasplantá si el sustrato sigue húmedo." },
-      { "symptom": "Crecimiento extremadamente lento", "cause": "Luz baja — es normal en su naturaleza", "solution": "Es esperable; si querés crecimiento más rápido, movela a luz brillante indirecta." }
+      {
+        "symptom": "Pudrición en la base",
+        "cause": "Exceso de riego — la causa de muerte más común",
+        "solution": "Reducí drásticamente; dejá secar totalmente; mejorá drenaje con perlita."
+      },
+      {
+        "symptom": "Bases blandas y arrugadas",
+        "cause": "Riego excesivo crónico",
+        "solution": "Suspendé el riego varios días; trasplantá si el sustrato sigue húmedo."
+      },
+      {
+        "symptom": "Crecimiento extremadamente lento",
+        "cause": "Luz baja — es normal en su naturaleza",
+        "solution": "Es esperable; si querés crecimiento más rápido, movela a luz brillante indirecta."
+      }
     ],
-    "nutrients": { "type": "Muy bajo NPK", "homemade": "Té de compost muy diluido una o dos veces al año en cálido" },
-    "careAction": { "fixed": "Regá cada 21 días en cálido; cada 45 en frío. Olvidate sin culpa — prefiere sequía." },
+    "nutrients": {
+      "type": "Muy bajo NPK",
+      "homemade": "Té de compost muy diluido una o dos veces al año en cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 21 días en cálido; cada 45 en frío. Olvidate sin culpa — prefiere sequía."
+    },
     "placementRecommended": "Luz brillante indirecta o media — versátil; tolera oficina, pasillo, dormitorio.",
     "placementAlternatives": [
       "Repisa luminosa con luz filtrada",
@@ -3084,19 +4689,50 @@
       "Mesada con luz indirecta"
     ],
     "placementAvoid": "Sustrato encharcado y temperaturas bajo 8°C prolongadas.",
-    "whyRationale": "Asparagácea angoleña — hojas cilíndricas tubulares con almacén de agua y CAM. Tolerancia extrema a baja luz, sequía y descuido: en su hábitat natural sobrevive en sabanas semiáridas con poca lluvia."
+    "whyRationale": "Asparagácea angoleña — hojas cilíndricas tubulares con almacén de agua y CAM. Tolerancia extrema a baja luz, sequía y descuido: en su hábitat natural sobrevive en sabanas semiáridas con poca lluvia.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea"
+        ],
+        "dogs": [
+          "Náuseas",
+          "Vómitos",
+          "Diarrea"
+        ]
+      }
+    }
   },
   "cactus-san-pedro": {
     "name": "Cactus San Pedro",
     "tip": "Crecimiento rápido en altura. Pleno sol y poco riego.",
     "description": "El Echinopsis pachanoi (POWO 2024 reclasificó desde Trichocereus pachanoi; el comercio sigue usando Trichocereus mayoritariamente) es un cactus columnar de la pre-cordillera de los Andes (Perú, Ecuador, Bolivia, Chile). Tiene crecimiento vertical rápido (>1cm al año), pleno-sol exterior, y desarrolla altura impresionante (2-6m maduro). Las flores blancas grandes y nocturnas aparecen en ejemplares maduros. Esta entrada es puramente horticultural — sobre cuidado de la planta como ornamental columnar.",
     "problems": [
-      { "symptom": "Pudrición de la base", "cause": "Exceso de riego — falla más común en interior", "solution": "Suspendé riego; cortá la zona podrida hasta tejido sano; dejá cicatrizar antes de reanudar." },
-      { "symptom": "Cochinilla en el tallo", "cause": "Plaga común en cactus exteriores", "solution": "Limpiá con hisopo y alcohol; tratá con jabón potásico si persiste." },
-      { "symptom": "Daño por helada bajo -5°C", "cause": "Frío prolongado fuera de su tolerancia", "solution": "Resguardá del invierno severo; movelo a galería o cubrilo si hay heladas pronosticadas." }
+      {
+        "symptom": "Pudrición de la base",
+        "cause": "Exceso de riego — falla más común en interior",
+        "solution": "Suspendé riego; cortá la zona podrida hasta tejido sano; dejá cicatrizar antes de reanudar."
+      },
+      {
+        "symptom": "Cochinilla en el tallo",
+        "cause": "Plaga común en cactus exteriores",
+        "solution": "Limpiá con hisopo y alcohol; tratá con jabón potásico si persiste."
+      },
+      {
+        "symptom": "Daño por helada bajo -5°C",
+        "cause": "Frío prolongado fuera de su tolerancia",
+        "solution": "Resguardá del invierno severo; movelo a galería o cubrilo si hay heladas pronosticadas."
+      }
     ],
-    "nutrients": { "type": "Muy bajo NPK", "homemade": "Compost muy diluido una vez al año al inicio del cálido" },
-    "careAction": { "fixed": "Regá cada 14 días en cálido a fondo; cada 30 en frío. Dejá secar totalmente." },
+    "nutrients": {
+      "type": "Muy bajo NPK",
+      "homemade": "Compost muy diluido una vez al año al inicio del cálido"
+    },
+    "careAction": {
+      "fixed": "Regá cada 14 días en cálido a fondo; cada 30 en frío. Dejá secar totalmente."
+    },
     "placementRecommended": "Pleno sol exterior — patio, terraza, jardín con sol directo todo el día.",
     "placementAlternatives": [
       "Maceta grande con drenaje pleno",
@@ -3104,19 +4740,54 @@
       "Pared al sur (HN) con sol directo"
     ],
     "placementAvoid": "Sustrato encharcado y rincones interior sin sol pleno (estiramiento + debilidad).",
-    "whyRationale": "Cactácea columnar de Andes-precordillera — metabolismo CAM y crecimiento vertical rápido (>1cm/año). Pleno sol exterior, riego escaso. La columna se eleva buscando luz directa, característica de Echinopsis."
+    "whyRationale": "Cactácea columnar de Andes-precordillera — metabolismo CAM y crecimiento vertical rápido (>1cm/año). Pleno sol exterior, riego escaso. La columna se eleva buscando luz directa, característica de Echinopsis.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Agitación",
+          "Desorientación",
+          "Temblores"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Agitación",
+          "Desorientación",
+          "Temblores"
+        ]
+      }
+    }
   },
   "tulipan": {
     "name": "Tulipán",
     "tip": "Si tu zona no enfría a 5°C en invierno, dale 6-8 semanas de heladera antes de plantar.",
     "description": "El Tulipán (Tulipa gesneriana) es una Liliácea de bulbo subterráneo. Requiere ~12 semanas de frío bajo 8°C en invierno para desarrollar el botón floral. En BsAs sur y Patagonia florece naturalmente; en NEA-NOA hace falta pre-frío en heladera. La parte aérea muere en verano y el bulbo entra en dormancia hasta la primavera siguiente.",
     "problems": [
-      { "symptom": "No florece", "cause": "Vernalización insuficiente", "solution": "Pre-frío en heladera 6-8 semanas antes de plantar o cambiá de zona." },
-      { "symptom": "Hojas pero sin flor", "cause": "Bulbo joven o agotado", "solution": "Fertilizá tras la floración para que el bulbo recupere reservas." },
-      { "symptom": "Bulbo podrido en verano", "cause": "Riego durante dormancia", "solution": "Suspendé el riego cuando las hojas se marchitan tras florecer." }
+      {
+        "symptom": "No florece",
+        "cause": "Vernalización insuficiente",
+        "solution": "Pre-frío en heladera 6-8 semanas antes de plantar o cambiá de zona."
+      },
+      {
+        "symptom": "Hojas pero sin flor",
+        "cause": "Bulbo joven o agotado",
+        "solution": "Fertilizá tras la floración para que el bulbo recupere reservas."
+      },
+      {
+        "symptom": "Bulbo podrido en verano",
+        "cause": "Riego durante dormancia",
+        "solution": "Suspendé el riego cuando las hojas se marchitan tras florecer."
+      }
     ],
-    "nutrients": { "type": "Balanceado al brotar y tras floración", "homemade": "Harina de hueso al plantar" },
-    "careAction": { "soilCheck": "Tocá los primeros 2cm: si secos, regá. Cuando las hojas se marchitan tras floración, suspendé el riego — entra en reposo." },
+    "nutrients": {
+      "type": "Balanceado al brotar y tras floración",
+      "homemade": "Harina de hueso al plantar"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2cm: si secos, regá. Cuando las hojas se marchitan tras floración, suspendé el riego — entra en reposo."
+    },
     "placementRecommended": "Cantero o maceta profunda al sol pleno — el bulbo necesita frío invernal y sol primaveral.",
     "placementAlternatives": [
       "Maceta de 25+ cm con drenaje generoso",
@@ -3124,19 +4795,54 @@
       "Patio descubierto con sol de mañana directa"
     ],
     "placementAvoid": "Sustrato encharcado en dormancia y zonas cálidas sin invierno frío — el bulbo no acumula horas-frío y no florece.",
-    "whyRationale": "Liliácea de bulbo subterráneo — requiere ~12 semanas frío bajo 8°C para desarrollar el botón floral. BsAs sur y Patagonia funciona natural; en NEA-NOA hace falta heladera pre-frío 6-8 semanas o no florece. Aboveground muere; el bulbo persiste."
+    "whyRationale": "Liliácea de bulbo subterráneo — requiere ~12 semanas frío bajo 8°C para desarrollar el botón floral. BsAs sur y Patagonia funciona natural; en NEA-NOA hace falta heladera pre-frío 6-8 semanas o no florece. Aboveground muere; el bulbo persiste.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Depresión",
+          "Diarrea",
+          "Hipersalivación",
+          "Salivación"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Depresión",
+          "Diarrea",
+          "Hipersalivación",
+          "Salivación"
+        ]
+      }
+    }
   },
   "ciclamen": {
     "name": "Ciclamen",
     "tip": "Cuando las hojas amarillean en verano, suspendé el riego — el cormo entra en reposo.",
     "description": "El Ciclamen (Cyclamen persicum) es una Primulácea con cormo subterráneo. En LATAM se cultiva como pot interior de flor invernal-primaveral, no como planta de jardín. Ama el frío 13-18°C y suelta hojas en verano (dormancia del cormo). Nunca regar el cormo desde arriba (pudre); riego por inmersión 10 minutos y dejar drenar.",
     "problems": [
-      { "symptom": "Hojas amarillas en verano", "cause": "Dormancia normal del cormo", "solution": "NO regar; cuando aparecen brotes nuevos en otoño, retomá el riego." },
-      { "symptom": "Cormo blando", "cause": "Agua estancada en la corona", "solution": "Regá por inmersión 10 minutos, NO desde arriba sobre el cormo." },
-      { "symptom": "Flores caen rápido", "cause": "Ambiente caliente", "solution": "Movela a habitación fresca bajo 20°C y lejos de calefactor." }
+      {
+        "symptom": "Hojas amarillas en verano",
+        "cause": "Dormancia normal del cormo",
+        "solution": "NO regar; cuando aparecen brotes nuevos en otoño, retomá el riego."
+      },
+      {
+        "symptom": "Cormo blando",
+        "cause": "Agua estancada en la corona",
+        "solution": "Regá por inmersión 10 minutos, NO desde arriba sobre el cormo."
+      },
+      {
+        "symptom": "Flores caen rápido",
+        "cause": "Ambiente caliente",
+        "solution": "Movela a habitación fresca bajo 20°C y lejos de calefactor."
+      }
     ],
-    "nutrients": { "type": "Bajo en nitrógeno; flora-balanceado en floración", "homemade": "Cáscara de banana cada 3 semanas durante floración" },
-    "careAction": { "soilCheck": "Tocá la tierra de superficie: si seca al tacto, regá por inmersión 10 minutos. En verano (dormancia), suspendé totalmente hasta brotes nuevos." },
+    "nutrients": {
+      "type": "Bajo en nitrógeno; flora-balanceado en floración",
+      "homemade": "Cáscara de banana cada 3 semanas durante floración"
+    },
+    "careAction": {
+      "soilCheck": "Tocá la tierra de superficie: si seca al tacto, regá por inmersión 10 minutos. En verano (dormancia), suspendé totalmente hasta brotes nuevos."
+    },
     "placementRecommended": "Cerca de ventana fresca con luz brillante indirecta, lejos de calefactor.",
     "placementAlternatives": [
       "Cocina o lavadero con buena luz natural y sin sol directo",
@@ -3144,19 +4850,54 @@
       "Habitación fresca bajo 18°C en invierno-primavera"
     ],
     "placementAvoid": "Sol directo intenso, calefactores cercanos y agua sobre el cormo — todos lo hacen entrar en dormancia o pudrir.",
-    "whyRationale": "Primulácea con cormo subterráneo — almacena reservas para sobrellevar dormancia estival (ciclo seco mediterráneo). Florece en otoño-invierno cuando el cormo rehidrata. Riego sobre el cormo lo pudre; siempre por inmersión."
+    "whyRationale": "Primulácea con cormo subterráneo — almacena reservas para sobrellevar dormancia estival (ciclo seco mediterráneo). Florece en otoño-invierno cuando el cormo rehidrata. Riego sobre el cormo lo pudre; siempre por inmersión.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Arritmia cardíaca",
+          "Convulsiones"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Arritmia cardíaca",
+          "Convulsiones"
+        ]
+      }
+    }
   },
   "crisantemo": {
     "name": "Crisantemo",
     "tip": "Pellizcá las puntas hasta enero (HS) para más capítulos en otoño con días cortos.",
     "description": "El Crisantemo (Chrysanthemum × morifolium) es una Asterácea perenne con corona invernante. Flor de otoño en LATAM (Día de los Muertos en México; clásico de Día de la Madre en HS). Pellizcar las puntas en primavera-verano fuerza ramificación y multiplica capítulos. La corona queda dormante en invierno; sol pleno + drenaje son críticos.",
     "problems": [
-      { "symptom": "Tallos largos sin flores", "cause": "Días largos de verano — todavía no florece", "solution": "Paciencia, florece en otoño con días cortos (fotoperiodo)." },
-      { "symptom": "Hojas con manchas oscuras", "cause": "Hongos por humedad sobre el follaje", "solution": "Regá por la base, evitá mojar follaje, mejorá ventilación." },
-      { "symptom": "Plantas chicas con pocas flores", "cause": "Falta de pellizcado primaveral", "solution": "Pellizcá puntas hasta enero (HS) para forzar ramificación." }
+      {
+        "symptom": "Tallos largos sin flores",
+        "cause": "Días largos de verano — todavía no florece",
+        "solution": "Paciencia, florece en otoño con días cortos (fotoperiodo)."
+      },
+      {
+        "symptom": "Hojas con manchas oscuras",
+        "cause": "Hongos por humedad sobre el follaje",
+        "solution": "Regá por la base, evitá mojar follaje, mejorá ventilación."
+      },
+      {
+        "symptom": "Plantas chicas con pocas flores",
+        "cause": "Falta de pellizcado primaveral",
+        "solution": "Pellizcá puntas hasta enero (HS) para forzar ramificación."
+      }
     ],
-    "nutrients": { "type": "Balanceado en crecimiento; alto fósforo en pre-floración", "homemade": "Té de cáscara de banana cada 3 semanas" },
-    "careAction": { "soilCheck": "Tocá los primeros 2cm: si secos, regá por la base. Pellizcá las puntas hasta enero (HS). En invierno, reducí riego con la corona dormante." },
+    "nutrients": {
+      "type": "Balanceado en crecimiento; alto fósforo en pre-floración",
+      "homemade": "Té de cáscara de banana cada 3 semanas"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2cm: si secos, regá por la base. Pellizcá las puntas hasta enero (HS). En invierno, reducí riego con la corona dormante."
+    },
     "placementRecommended": "Cantero o maceta grande al sol pleno — al menos 6 horas directas para floración densa.",
     "placementAlternatives": [
       "Maceta 30+ cm en patio soleado",
@@ -3164,19 +4905,54 @@
       "Borde de jardín con drenaje rápido"
     ],
     "placementAvoid": "Sombra y suelo encharcado — sin sol pleno hace tallos delgados sin botones; con humedad estancada pudre la corona.",
-    "whyRationale": "Asterácea perenne con corona invernante — sus capítulos son inflorescencias compuestas de cientos de flores. Florece con días cortos (fotoperiodo otoñal); el pellizcado primaveral fuerza ramificación y multiplica capítulos."
+    "whyRationale": "Asterácea perenne con corona invernante — sus capítulos son inflorescencias compuestas de cientos de flores. Florece con días cortos (fotoperiodo otoñal); el pellizcado primaveral fuerza ramificación y multiplica capítulos.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Incoordinación",
+          "Dermatitis"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Incoordinación",
+          "Dermatitis"
+        ]
+      }
+    }
   },
   "azalea": {
     "name": "Azalea",
     "tip": "Usá agua de lluvia o filtrada — el agua dura alcaliniza y mata la simbiosis con micorrizas.",
     "description": "La Azalea (Rhododendron simsii) es una Ericácea originaria del sudoeste chino. Arbusto de flor primaveral abundante (rosa, rojo, blanco, lila). Requiere tierra ácida pH 4.5-5.5 y agua blanda. Es sotobosque-adapted: sol filtrado, no pleno. Con tierra alcalina o agua dura desarrolla clorosis ferrítica y muere en pocos meses.",
     "problems": [
-      { "symptom": "Hojas amarillentas con venas verdes", "cause": "Clorosis por pH alto o agua dura", "solution": "Agua de lluvia + sulfato de aluminio o turba para acidificar el sustrato." },
-      { "symptom": "Hojas marchitas con tierra húmeda", "cause": "Pudrición por hongos en raíz", "solution": "Mejorá drenaje + reducí riego; tratá con fungicida sistémico." },
-      { "symptom": "Sin flores", "cause": "Poda mal cronometrada o sol insuficiente", "solution": "Podá apenas termine la floración; movela a sol filtrado de mañana." }
+      {
+        "symptom": "Hojas amarillentas con venas verdes",
+        "cause": "Clorosis por pH alto o agua dura",
+        "solution": "Agua de lluvia + sulfato de aluminio o turba para acidificar el sustrato."
+      },
+      {
+        "symptom": "Hojas marchitas con tierra húmeda",
+        "cause": "Pudrición por hongos en raíz",
+        "solution": "Mejorá drenaje + reducí riego; tratá con fungicida sistémico."
+      },
+      {
+        "symptom": "Sin flores",
+        "cause": "Poda mal cronometrada o sol insuficiente",
+        "solution": "Podá apenas termine la floración; movela a sol filtrado de mañana."
+      }
     ],
-    "nutrients": { "type": "Específico para ericáceas (ácido)", "homemade": "Turba en superficie + agua acidificada con vinagre 1ml/L mensual" },
-    "careAction": { "soilCheck": "Tocá los primeros 2cm: si secos, regá con agua blanda. Mantené tierra ácida (pH 4.5-5.5) — agua dura la mata en meses." },
+    "nutrients": {
+      "type": "Específico para ericáceas (ácido)",
+      "homemade": "Turba en superficie + agua acidificada con vinagre 1ml/L mensual"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2cm: si secos, regá con agua blanda. Mantené tierra ácida (pH 4.5-5.5) — agua dura la mata en meses."
+    },
     "placementRecommended": "Patio con sol filtrado de mañana o sombra clara — sotobosque-adapted, NO pleno sol mediodía.",
     "placementAlternatives": [
       "Cantero bajo árbol con sombra moteada",
@@ -3184,19 +4960,54 @@
       "Esquina al este (HS) con sol matinal suave"
     ],
     "placementAvoid": "Sol pleno mediodía + tierra alcalina + agua dura — la combinación quema hojas y mata las micorrizas obligadas.",
-    "whyRationale": "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Sotobosque chino: sol filtrado nativo, NO pleno mediodía argentino."
+    "whyRationale": "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Sotobosque chino: sol filtrado nativo, NO pleno mediodía argentino.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Depresión del sistema nervioso central",
+          "Colapso cardiovascular"
+        ],
+        "dogs": [
+          "Vómitos",
+          "Diarrea",
+          "Hipersalivación",
+          "Depresión del sistema nervioso central",
+          "Colapso cardiovascular"
+        ]
+      }
+    }
   },
   "clavel": {
     "name": "Clavel",
     "tip": "Pellizcá puntas en juvenil para ramificar; cortá flores marchitas para forzar re-floración.",
     "description": "El Clavel (Dianthus caryophyllus) es una Cariofilácea mediterránea de tallos articulados grises-azulados. Flores muy fragantes (rosa, rojo, blanco, jaspeado). Planta de jardín europea clásica que prefiere sol pleno + drenaje rápido + pH neutro-alcalino (lo opuesto a la azalea). Las hojas grises tienen tricomas que reducen evaporación.",
     "problems": [
-      { "symptom": "Tallos delgados y caídos", "cause": "Poco sol o exceso de nitrógeno", "solution": "6+ horas sol directo + reducí abono nitrogenado para fortalecer tallos." },
-      { "symptom": "Hojas amarillas en la base", "cause": "Exceso de riego", "solution": "Regá menos, mejorá drenaje y dejá secar entre riegos." },
-      { "symptom": "Pétalos apergaminados", "cause": "Agua sobre flores expuestas al sol", "solution": "Regá por la base, no por arriba — protegé flores del riego directo." }
+      {
+        "symptom": "Tallos delgados y caídos",
+        "cause": "Poco sol o exceso de nitrógeno",
+        "solution": "6+ horas sol directo + reducí abono nitrogenado para fortalecer tallos."
+      },
+      {
+        "symptom": "Hojas amarillas en la base",
+        "cause": "Exceso de riego",
+        "solution": "Regá menos, mejorá drenaje y dejá secar entre riegos."
+      },
+      {
+        "symptom": "Pétalos apergaminados",
+        "cause": "Agua sobre flores expuestas al sol",
+        "solution": "Regá por la base, no por arriba — protegé flores del riego directo."
+      }
     ],
-    "nutrients": { "type": "Balanceado bajo en nitrógeno; alto en potasio", "homemade": "Ceniza de madera (potasio + alcaliniza ligeramente) cada 6 semanas" },
-    "careAction": { "fixed": "Regá cada 5 días en cálido; cada 12 en frío. Pellizcá puntas en juvenil para ramificar; cortá flores marchitas para forzar re-floración." },
+    "nutrients": {
+      "type": "Balanceado bajo en nitrógeno; alto en potasio",
+      "homemade": "Ceniza de madera (potasio + alcaliniza ligeramente) cada 6 semanas"
+    },
+    "careAction": {
+      "fixed": "Regá cada 5 días en cálido; cada 12 en frío. Pellizcá puntas en juvenil para ramificar; cortá flores marchitas para forzar re-floración."
+    },
     "placementRecommended": "Cantero o maceta soleada — al menos 6 horas de sol directo y suelo bien drenado.",
     "placementAlternatives": [
       "Borde de jardín mediterráneo",
@@ -3204,19 +5015,50 @@
       "Cantero junto a romero, lavanda y salvia"
     ],
     "placementAvoid": "Sombra densa y suelo encharcado — sin sol pleno y con humedad excesiva, los tallos pudren en la base.",
-    "whyRationale": "Cariofilácea mediterránea de tallos articulados — flora cálidas-secas; suelo drenado y sol pleno son su nicho original. Hojas grises con tricomas reducen evaporación; defensa contra calor + sequía estival."
+    "whyRationale": "Cariofilácea mediterránea de tallos articulados — flora cálidas-secas; suelo drenado y sol pleno son su nicho original. Hojas grises con tricomas reducen evaporación; defensa contra calor + sequía estival.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Signos gastrointestinales leves",
+          "Dermatitis",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "fucsia": {
     "name": "Fucsia",
     "tip": "Nativa de Patagonia — prefiere sombra parcial, no sol pleno mediodía.",
     "description": "La Fucsia (Fuchsia magellanica) es una Onagrácea nativa argentina (Patagonia, sotobosque húmedo). Arbusto colgante con flores péndulas rojo-púrpura características; ideal para macetas colgantes en patio sombreado. Tolera heladas leves. En HS florece de noviembre a marzo. Necesita humedad ambiental, NO sol pleno mediodía.",
     "problems": [
-      { "symptom": "Caída de botones florales", "cause": "Cambio brusco de temperatura o sequía", "solution": "Mantené humedad estable + riego regular; evitá moverla durante floración." },
-      { "symptom": "Hojas pálidas y caídas", "cause": "Sol intenso del mediodía", "solution": "Movela a sombra parcial o ubicación con sol matinal solo." },
-      { "symptom": "Flores escasas", "cause": "Poco fertilizante en floración", "solution": "Aporte de potasio quincenal en temporada de floración." }
+      {
+        "symptom": "Caída de botones florales",
+        "cause": "Cambio brusco de temperatura o sequía",
+        "solution": "Mantené humedad estable + riego regular; evitá moverla durante floración."
+      },
+      {
+        "symptom": "Hojas pálidas y caídas",
+        "cause": "Sol intenso del mediodía",
+        "solution": "Movela a sombra parcial o ubicación con sol matinal solo."
+      },
+      {
+        "symptom": "Flores escasas",
+        "cause": "Poco fertilizante en floración",
+        "solution": "Aporte de potasio quincenal en temporada de floración."
+      }
     ],
-    "nutrients": { "type": "Alto en potasio durante floración", "homemade": "Ceniza de madera + cáscara de banana cada 2 semanas en floración" },
-    "careAction": { "fixed": "Regá cada 4 días en cálido; cada 10 en frío. Mantené humedad ambiental y remové flores marchitas para promover nuevas." },
+    "nutrients": {
+      "type": "Alto en potasio durante floración",
+      "homemade": "Ceniza de madera + cáscara de banana cada 2 semanas en floración"
+    },
+    "careAction": {
+      "fixed": "Regá cada 4 días en cálido; cada 10 en frío. Mantené humedad ambiental y remové flores marchitas para promover nuevas."
+    },
     "placementRecommended": "Maceta colgante o cantero al este (HS) — sol de mañana suave y sombra del mediodía.",
     "placementAlternatives": [
       "Galería sombreada con luz brillante indirecta",
@@ -3231,12 +5073,29 @@
     "tip": "El botón joven sigue al sol (heliotropismo); al madurar queda fijo al este.",
     "description": "El Girasol (Helianthus annuus) es una Asterácea anual de día largo, nativa de Norteamérica y de cultivo masivo en Argentina (Pampa Húmeda). Altura 1-3m según cultivar. El capítulo (cabeza floral) está compuesto por cientos de flores. Sembrá en primavera (sept-nov en HS); cosecha de semillas a fin de verano cuando el dorso del capítulo amarillea.",
     "problems": [
-      { "symptom": "Plantas chicas con cabezas pequeñas", "cause": "Poco sol o suelo pobre", "solution": "8h sol pleno + sembrá en suelo profundo y rico en materia orgánica." },
-      { "symptom": "Tallo doblado o quebrado", "cause": "Viento + falta de tutor en plantas altas", "solution": "Tutorá con caña a 1m las variedades altas." },
-      { "symptom": "Hojas con manchas oscuras", "cause": "Hongos por humedad sobre follaje", "solution": "Regá por la base, no por arriba; mejorá ventilación." }
+      {
+        "symptom": "Plantas chicas con cabezas pequeñas",
+        "cause": "Poco sol o suelo pobre",
+        "solution": "8h sol pleno + sembrá en suelo profundo y rico en materia orgánica."
+      },
+      {
+        "symptom": "Tallo doblado o quebrado",
+        "cause": "Viento + falta de tutor en plantas altas",
+        "solution": "Tutorá con caña a 1m las variedades altas."
+      },
+      {
+        "symptom": "Hojas con manchas oscuras",
+        "cause": "Hongos por humedad sobre follaje",
+        "solution": "Regá por la base, no por arriba; mejorá ventilación."
+      }
     ],
-    "nutrients": { "type": "Balanceado al sembrar; alto fósforo en formación de capítulo", "homemade": "Harina de hueso al sembrar" },
-    "careAction": { "fixed": "Regá cada 3 días en cálido (necesidad alta); cada 7 en frío. Tutorá si supera 1m. Cosechá semillas cuando el dorso del capítulo amarillea." },
+    "nutrients": {
+      "type": "Balanceado al sembrar; alto fósforo en formación de capítulo",
+      "homemade": "Harina de hueso al sembrar"
+    },
+    "careAction": {
+      "fixed": "Regá cada 3 días en cálido (necesidad alta); cada 7 en frío. Tutorá si supera 1m. Cosechá semillas cuando el dorso del capítulo amarillea."
+    },
     "placementRecommended": "Cantero o cajón profundo al sol pleno — al menos 8 horas directas y espacio vertical.",
     "placementAlternatives": [
       "Huerta familiar (compañero del maíz y zapallo — milpa)",
@@ -3251,12 +5110,29 @@
     "tip": "Magnolia es un árbol — M. stellata enana 3m cabe en patio chico; M. grandiflora alcanza 20m.",
     "description": "La Magnolia estrellada (Magnolia stellata) es una Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). Es la versión enana (3m máx) ideal para patio o jardín pequeño argentino. Floración primaveral antes de hojas (jul-sept HS) en estrellas blancas-rosadas. M. grandiflora (20m) es la variante grande icónica. Honestidad sobre trayectoria: primero maceta grande, eventualmente trasplante a tierra.",
     "problems": [
-      { "symptom": "Botones florales caen", "cause": "Heladas tardías sobre los botones expuestos", "solution": "Cubrí en noches frías cuando los botones están listos a abrir." },
-      { "symptom": "Crecimiento lento", "cause": "Normal — magnolia crece despacio", "solution": "Paciencia, no fertilices en exceso; el ritmo lento es natural." },
-      { "symptom": "Raíces estranguladas", "cause": "Maceta chica sostenida demasiado tiempo", "solution": "Trasplante a tierra firme eventual o maceta 50+ litros como puente." }
+      {
+        "symptom": "Botones florales caen",
+        "cause": "Heladas tardías sobre los botones expuestos",
+        "solution": "Cubrí en noches frías cuando los botones están listos a abrir."
+      },
+      {
+        "symptom": "Crecimiento lento",
+        "cause": "Normal — magnolia crece despacio",
+        "solution": "Paciencia, no fertilices en exceso; el ritmo lento es natural."
+      },
+      {
+        "symptom": "Raíces estranguladas",
+        "cause": "Maceta chica sostenida demasiado tiempo",
+        "solution": "Trasplante a tierra firme eventual o maceta 50+ litros como puente."
+      }
     ],
-    "nutrients": { "type": "Balanceado anual primaveral; ligeramente ácido tolerado pero no obligado", "homemade": "Compost orgánico anual al pie del árbol" },
-    "careAction": { "fixed": "Regá cada 7 días en cálido; cada 14 en frío. Acolchá la base con corteza para retener humedad y proteger raíces superficiales." },
+    "nutrients": {
+      "type": "Balanceado anual primaveral; ligeramente ácido tolerado pero no obligado",
+      "homemade": "Compost orgánico anual al pie del árbol"
+    },
+    "careAction": {
+      "fixed": "Regá cada 7 días en cálido; cada 14 en frío. Acolchá la base con corteza para retener humedad y proteger raíces superficiales."
+    },
     "placementRecommended": "Maceta de 50+ litros como puente, eventual trasplante a tierra firme con sol matinal y suelo profundo.",
     "placementAlternatives": [
       "Patio o jardín pequeño con sol parcial",
@@ -3271,12 +5147,29 @@
     "tip": "Pellizcá las hojas frescas para cocinar; podala anualmente para mantener forma compacta.",
     "description": "La Salvia oficinal o salvia culinaria (Salvia officinalis) es una hierba aromática mediterránea perenne (Lamiácea). Sus hojas grises-verdes aromáticas se usan en carnes, sopas y rellenos. Resistente a la sequía una vez establecida; ideal en macetas en cocina con sol. DISTINCT del salvia-ornamental (Salvia splendens) — esta es la culinaria, aquélla es la decorativa.",
     "problems": [
-      { "symptom": "Hojas amarillas en la base", "cause": "Exceso de riego", "solution": "Dejá secar la tierra entre riegos." },
-      { "symptom": "Tallos leñosos sin hojas", "cause": "Falta de poda", "solution": "Podá un tercio en primavera para forzar brotes nuevos." },
-      { "symptom": "Sabor poco aromático", "cause": "Exceso de agua o sombra", "solution": "6h sol pleno + riego escaso intensifican aceites esenciales." }
+      {
+        "symptom": "Hojas amarillas en la base",
+        "cause": "Exceso de riego",
+        "solution": "Dejá secar la tierra entre riegos."
+      },
+      {
+        "symptom": "Tallos leñosos sin hojas",
+        "cause": "Falta de poda",
+        "solution": "Podá un tercio en primavera para forzar brotes nuevos."
+      },
+      {
+        "symptom": "Sabor poco aromático",
+        "cause": "Exceso de agua o sombra",
+        "solution": "6h sol pleno + riego escaso intensifican aceites esenciales."
+      }
     ],
-    "nutrients": { "type": "Bajo, evitá excesos de nitrógeno", "homemade": "Compost ligero anual en primavera" },
-    "careAction": { "fixed": "Regá cada 5 días en cálido; cada 12 en frío. Pellizcá hojas para cocinar; podá un tercio anualmente en primavera." },
+    "nutrients": {
+      "type": "Bajo, evitá excesos de nitrógeno",
+      "homemade": "Compost ligero anual en primavera"
+    },
+    "careAction": {
+      "fixed": "Regá cada 5 días en cálido; cada 12 en frío. Pellizcá hojas para cocinar; podá un tercio anualmente en primavera."
+    },
     "placementRecommended": "Maceta soleada en cocina o balcón — al menos 5 horas de sol directo.",
     "placementAlternatives": [
       "Cantero junto a romero y tomillo (compañeras mediterráneas)",
@@ -3284,19 +5177,48 @@
       "Mesada de cocina con ventana al sur (HS)"
     ],
     "placementAvoid": "Tierra encharcada o sombra profunda — pudre la corona y se va a hojas chicas sin aroma.",
-    "whyRationale": "Lamiácea originaria del Mediterráneo, evolucionó en suelos pobres y secos. Las hojas grises tienen tricomas que reflejan luz y reducen evaporación — defensa contra calor + sequía. Riego escaso es la clave."
+    "whyRationale": "Lamiácea originaria del Mediterráneo, evolucionó en suelos pobres y secos. Las hojas grises tienen tricomas que reflejan luz y reducen evaporación — defensa contra calor + sequía. Riego escaso es la clave.",
+    "petToxicity": {
+      "symptoms": {
+        "cats": [
+          "Malestar gastrointestinal leve",
+          "Vómitos"
+        ],
+        "dogs": [
+          "Malestar gastrointestinal leve",
+          "Vómitos"
+        ]
+      }
+    }
   },
   "eneldo": {
     "name": "Eneldo",
     "tip": "Cosechá hojas tiernas regularmente; cortá tallos florales para prolongar el follaje aromático.",
     "description": "El Eneldo (Anethum graveolens) es una Apiácea anual mediterránea de hojas filiformes verde-azuladas y semillas aromáticas; usada en pescados, ensaladas y encurtidos. Ciclo corto (3-4 meses); en verano argentino caliente se va a flor rápido — sembrá en otoño-invierno o mantené a sombra parcial en verano.",
     "problems": [
-      { "symptom": "Floración prematura", "cause": "Calor estival + días largos", "solution": "Cosechá hojas regularmente y sembrá en otoño-invierno-comienzo-primavera." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o suelo encharcado", "solution": "Regá cuando se sienta seco y mejorá drenaje." },
-      { "symptom": "Plantas débiles caídas", "cause": "Tutorado deficiente o suelo pobre", "solution": "Tutorá si supera 60cm + abono ligero quincenal." }
+      {
+        "symptom": "Floración prematura",
+        "cause": "Calor estival + días largos",
+        "solution": "Cosechá hojas regularmente y sembrá en otoño-invierno-comienzo-primavera."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o suelo encharcado",
+        "solution": "Regá cuando se sienta seco y mejorá drenaje."
+      },
+      {
+        "symptom": "Plantas débiles caídas",
+        "cause": "Tutorado deficiente o suelo pobre",
+        "solution": "Tutorá si supera 60cm + abono ligero quincenal."
+      }
     ],
-    "nutrients": { "type": "Bajo-medio; balanceado en crecimiento", "homemade": "Compost orgánico al sembrar" },
-    "careAction": { "fixed": "Regá cada 3 días en cálido; cada 7 en frío. Cosechá hojas externas regularmente; cortá tallos florales para prolongar follaje aromático." },
+    "nutrients": {
+      "type": "Bajo-medio; balanceado en crecimiento",
+      "homemade": "Compost orgánico al sembrar"
+    },
+    "careAction": {
+      "fixed": "Regá cada 3 días en cálido; cada 7 en frío. Cosechá hojas externas regularmente; cortá tallos florales para prolongar follaje aromático."
+    },
     "placementRecommended": "Maceta o cantero en cocina/balcón soleado — al menos 5 horas de luz indirecta brillante.",
     "placementAlternatives": [
       "Cantero junto a perejil y cilantro (compañeras Apiaceae)",
@@ -3311,12 +5233,29 @@
     "tip": "Pellizcá hojas para endulzar infusiones; en heladas movela bajo techo o cubrí con manta.",
     "description": "La Stevia (Stevia rebaudiana) es una Asterácea sudamericana (Paraguay y Brasil); endulzante natural — sus hojas contienen esteviósidos 200-300x más dulces que el azúcar sin calorías. Perenne tropical-subtropical; en BsAs HS protegé de heladas (movela bajo techo o galería); cosechá hojas continuamente.",
     "problems": [
-      { "symptom": "Hojas marchitas con frío", "cause": "Temperatura <5°C", "solution": "Movela bajo techo en heladas o cubrí con manta agrícola." },
-      { "symptom": "Sabor menos dulce", "cause": "Poca luz solar", "solution": "5+ horas luz brillante intensifica esteviósidos." },
-      { "symptom": "Tallos largos sin ramificación", "cause": "Falta de pellizcado", "solution": "Pellizcá puntas mensualmente para forzar ramificación." }
+      {
+        "symptom": "Hojas marchitas con frío",
+        "cause": "Temperatura <5°C",
+        "solution": "Movela bajo techo en heladas o cubrí con manta agrícola."
+      },
+      {
+        "symptom": "Sabor menos dulce",
+        "cause": "Poca luz solar",
+        "solution": "5+ horas luz brillante intensifica esteviósidos."
+      },
+      {
+        "symptom": "Tallos largos sin ramificación",
+        "cause": "Falta de pellizcado",
+        "solution": "Pellizcá puntas mensualmente para forzar ramificación."
+      }
     ],
-    "nutrients": { "type": "Balanceado bajo en nitrógeno", "homemade": "Compost ligero mensual" },
-    "careAction": { "fixed": "Regá cada 4 días en cálido; cada 10 en frío. Pellizcá puntas mensualmente para forzar ramificación; cosechá hojas con tijera." },
+    "nutrients": {
+      "type": "Balanceado bajo en nitrógeno",
+      "homemade": "Compost ligero mensual"
+    },
+    "careAction": {
+      "fixed": "Regá cada 4 días en cálido; cada 10 en frío. Pellizcá puntas mensualmente para forzar ramificación; cosechá hojas con tijera."
+    },
     "placementRecommended": "Maceta soleada en cocina/balcón — luz brillante indirecta a 5h directa para potenciar dulzura.",
     "placementAlternatives": [
       "Cantero protegido bajo galería",
@@ -3331,12 +5270,29 @@
     "tip": "Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra.",
     "description": "El Olivo (Olea europaea) es una Oleácea mediterránea perennifolia — árbol icónico. En Argentina extensivos cultivos en Mendoza, Cuyo y La Rioja; el cultivar 'Arauco' es endémico nacional, 'Arbequina' la más plantada. Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra firme. Tolerante a sequía, sol pleno y frío leve; floración primaveral, fructificación verano-otoño.",
     "problems": [
-      { "symptom": "No fructifica", "cause": "Maceta chica + falta poda + edad joven", "solution": "Trasplante a tierra eventual + podá en invierno + esperá 5-7 años de cultivo." },
-      { "symptom": "Hojas pálidas con clorosis", "cause": "Hierro inaccesible por pH alcalino o suelo encharcado", "solution": "Drenaje rápido + tierra ligeramente ácida." },
-      { "symptom": "Caída prematura de aceitunas", "cause": "Estrés hídrico en formación de fruto", "solution": "Regá regular en primavera-verano sin encharcar." }
+      {
+        "symptom": "No fructifica",
+        "cause": "Maceta chica + falta poda + edad joven",
+        "solution": "Trasplante a tierra eventual + podá en invierno + esperá 5-7 años de cultivo."
+      },
+      {
+        "symptom": "Hojas pálidas con clorosis",
+        "cause": "Hierro inaccesible por pH alcalino o suelo encharcado",
+        "solution": "Drenaje rápido + tierra ligeramente ácida."
+      },
+      {
+        "symptom": "Caída prematura de aceitunas",
+        "cause": "Estrés hídrico en formación de fruto",
+        "solution": "Regá regular en primavera-verano sin encharcar."
+      }
     ],
-    "nutrients": { "type": "Balanceado bajo; aplicar antes de floración", "homemade": "Compost orgánico anual al pie + ceniza de madera" },
-    "careAction": { "fixed": "Regá cada 7 días en cálido; cada 21 en frío. Tolerá sequía leve. Podá en invierno para mantener forma + remové chupones de la base." },
+    "nutrients": {
+      "type": "Balanceado bajo; aplicar antes de floración",
+      "homemade": "Compost orgánico anual al pie + ceniza de madera"
+    },
+    "careAction": {
+      "fixed": "Regá cada 7 días en cálido; cada 21 en frío. Tolerá sequía leve. Podá en invierno para mantener forma + remové chupones de la base."
+    },
     "placementRecommended": "Patio o jardín al sol pleno — al menos 8 horas; maceta de 50+ litros como puente, eventual trasplante a tierra firme.",
     "placementAlternatives": [
       "Cantero soleado con suelo profundo y drenaje",
@@ -3351,12 +5307,29 @@
     "tip": "Usá agua de lluvia o filtrada — el agua dura alcaliniza la tierra y mata la simbiosis con micorrizas.",
     "description": "El Arándano (Vaccinium corymbosum) es una Ericácea acidofilica nativa de Norteamérica; arbusto frutal de bayas azules muy nutritivas. Necesita pH 4.5-5.5 estricto + agua blanda + sol pleno + frío invernal. En Argentina hay cultivos extensos en Tucumán y Entre Ríos. El agua dura alcaliniza la tierra y deshace la simbiosis con micorrizas — clorosis ferrítica y muerte progresiva en meses.",
     "problems": [
-      { "symptom": "Hojas amarillentas con venas verdes", "cause": "Clorosis por pH alto/agua dura", "solution": "Usá agua de lluvia + acidificá con sulfato de aluminio o turba." },
-      { "symptom": "Hojas marchitas pero suelo húmedo", "cause": "Pudrición de raíz por tierra alcalina o exceso de humedad", "solution": "Revisá pH + mejorá drenaje + reducí riego." },
-      { "symptom": "Pocas bayas", "cause": "Poda incorrecta o falta de horas-frío", "solution": "Podá levemente en invierno + necesita ~800 horas <7°C." }
+      {
+        "symptom": "Hojas amarillentas con venas verdes",
+        "cause": "Clorosis por pH alto/agua dura",
+        "solution": "Usá agua de lluvia + acidificá con sulfato de aluminio o turba."
+      },
+      {
+        "symptom": "Hojas marchitas pero suelo húmedo",
+        "cause": "Pudrición de raíz por tierra alcalina o exceso de humedad",
+        "solution": "Revisá pH + mejorá drenaje + reducí riego."
+      },
+      {
+        "symptom": "Pocas bayas",
+        "cause": "Poda incorrecta o falta de horas-frío",
+        "solution": "Podá levemente en invierno + necesita ~800 horas <7°C."
+      }
     ],
-    "nutrients": { "type": "Específico para ericáceas (ácido)", "homemade": "Turba en superficie + agua acidificada con vinagre 1ml/L mensual + compost de pinocha" },
-    "careAction": { "soilCheck": "Tocá los primeros 2cm: si secos, regá con agua blanda. Mantené tierra ácida (pH 4.5-5.5) — agua dura la mata en meses." },
+    "nutrients": {
+      "type": "Específico para ericáceas (ácido)",
+      "homemade": "Turba en superficie + agua acidificada con vinagre 1ml/L mensual + compost de pinocha"
+    },
+    "careAction": {
+      "soilCheck": "Tocá los primeros 2cm: si secos, regá con agua blanda. Mantené tierra ácida (pH 4.5-5.5) — agua dura la mata en meses."
+    },
     "placementRecommended": "Cantero o maceta grande al sol pleno con tierra ácida — al menos 6 horas de sol directo.",
     "placementAlternatives": [
       "Bancal elevado con turba y pinocha",
@@ -3371,12 +5344,29 @@
     "tip": "Sembrá en otoño-invierno-comienzo-primavera; en verano >25°C se va a flor (bolt) en 2-3 semanas.",
     "description": "La Espinaca (Spinacia oleracea) es una Amarantácea anual cool-season — en verano caliente argentino (>25°C) se va a flor (bolt) en 2-3 semanas y pierde calidad de hojas. Ideal sembrar en otoño-invierno-comienzo-primavera; ciclo corto (40-60 días); cosechá hojas externas continuamente; tolera heladas leves.",
     "problems": [
-      { "symptom": "Floración prematura", "cause": "Temperaturas >25°C + días largos", "solution": "Sembrá en otoño-invierno; en verano protegé bajo media-sombra." },
-      { "symptom": "Hojas amarillas", "cause": "Exceso de riego o falta de nitrógeno", "solution": "Regá moderado y aporte de nitrógeno orgánico." },
-      { "symptom": "Hojas pequeñas y duras", "cause": "Estrés hídrico o sol intenso", "solution": "Regá regular + sombra parcial en verano." }
+      {
+        "symptom": "Floración prematura",
+        "cause": "Temperaturas >25°C + días largos",
+        "solution": "Sembrá en otoño-invierno; en verano protegé bajo media-sombra."
+      },
+      {
+        "symptom": "Hojas amarillas",
+        "cause": "Exceso de riego o falta de nitrógeno",
+        "solution": "Regá moderado y aporte de nitrógeno orgánico."
+      },
+      {
+        "symptom": "Hojas pequeñas y duras",
+        "cause": "Estrés hídrico o sol intenso",
+        "solution": "Regá regular + sombra parcial en verano."
+      }
     ],
-    "nutrients": { "type": "Alto en nitrógeno (foliar)", "homemade": "Té de compost o ortiga cada 10 días en crecimiento" },
-    "careAction": { "fixed": "Regá cada 3 días en cálido; cada 6 en frío. Cosechá hojas externas regularmente; sembrá en otoño-invierno para evitar bolt estival." },
+    "nutrients": {
+      "type": "Alto en nitrógeno (foliar)",
+      "homemade": "Té de compost o ortiga cada 10 días en crecimiento"
+    },
+    "careAction": {
+      "fixed": "Regá cada 3 días en cálido; cada 6 en frío. Cosechá hojas externas regularmente; sembrá en otoño-invierno para evitar bolt estival."
+    },
     "placementRecommended": "Bancal de huerta o cantero al sol matinal con sombra parcial en verano.",
     "placementAlternatives": [
       "Maceta de 30+ cm en patio fresco",
