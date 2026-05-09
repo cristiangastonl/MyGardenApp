@@ -4,14 +4,14 @@ milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 5 of 5
 status: verifying
-stopped_at: Completed 19-pet-toxicity Plan 02 (TOX-02 ASPCA classification + plantDatabase merge + i18n symptom seed)
-last_updated: "2026-05-09T15:01:15.767Z"
+stopped_at: Completed 19-pet-toxicity Plan 03 (TOX-03 PetToxicityBadge + PlantCard wiring + screen handlers)
+last_updated: "2026-05-09T15:08:15.754Z"
 last_activity: 2026-05-08 — Phase 18 Plan 05 complete (manual gate; user approved Option B deferral; 38-item checklist to v1.2 backlog memory). Phase 18 CLOSED.
 progress:
   total_phases: 15
   completed_phases: 9
   total_plans: 53
-  completed_plans: 49
+  completed_plans: 50
   percent: 100
 ---
 
@@ -83,6 +83,7 @@ Progress: [██████████] 100% (v1.2 milestone progress at base
 | Phase 19-pet-toxicity P00 | 15 | 2 tasks | 10 files |
 | Phase 19-pet-toxicity P01 | 2 | 1 tasks | 2 files |
 | Phase 19-pet-toxicity P02 | 6 | 3 tasks | 4 files |
+| Phase 19-pet-toxicity P03 | 4min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -229,6 +230,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 19-pet-toxicity]: Skeleton comment safety: avoid literal API/component names in skeleton comments that match smoke sentinel regexes — 'Pressable' in badge comment triggered false-positive FAIL; changed to 'interactive badge'
 - [Phase 19-pet-toxicity]: TOX absence-fallback locked at helper level: getPetToxicity uses ?? 'unknown' (NOT ?? 'safe') on both cats/dogs axes; behavioral contract encoded in test-stub.ts via TypeScript literal types (tsc-verified)
 - [Phase 19-pet-toxicity]: TOX-02: ASPCA genus-inheritance applied for 8 entries; 4 LATAM unknowns (jacaranda, salvia-ornamental, verbena, suculenta-generica); Node merge script used for 118-entry plantDatabase update; medical cognates kept as-is in ES
+- [Phase 19-pet-toxicity]: ts-expect-error for initialSection prop on MyPlantDetailModal until Plan 19-04 lands the prop (Option A per plan instructions)
 
 ### Pending Todos
 
@@ -243,6 +245,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T15:01:15.763Z
-Stopped at: Completed 19-pet-toxicity Plan 02 (TOX-02 ASPCA classification + plantDatabase merge + i18n symptom seed)
+Last session: 2026-05-09T15:08:15.751Z
+Stopped at: Completed 19-pet-toxicity Plan 03 (TOX-03 PetToxicityBadge + PlantCard wiring + screen handlers)
 Resume file: None
