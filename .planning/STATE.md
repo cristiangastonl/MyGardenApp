@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 11
+current_plan: 6 of 11
 status: completed
-stopped_at: Completed 20-03-PLAN.md
-last_updated: "2026-05-10T14:22:51.181Z"
-last_activity: 2026-05-10 — Phase 20 Plan 03 complete (FERT-03 5-site discriminator sweep; 4 tasks, 10 files, ~7 min execution).
+stopped_at: "Completed 20-04-PLAN.md (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring)"
+last_updated: "2026-05-10T14:42:14.562Z"
+last_activity: 2026-05-10 — Phase 20 Plan 05 complete (FERT-05 settings toggle + default-OFF lock; 2 tasks, 2 files, ~3 min execution).
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 58
-  percent: 91
+  completed_plans: 60
+  percent: 95
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 5 of 11
-Plan: 20-03 complete (Wave 2 FERT-03 5-site discriminator sweep; 3 atomic task commits — 7c639eb plantLogic emit branch + 365662a notificationScheduler body-line/notifSettings ratchet through 3 callers + e8dc618 DayDetail+DayDetailModal+MonthCalendar discriminator chains; smoke-phase20 PASS=39 FAIL=0 SKIP=10 exit 0 — 5 FERT-03 + 1 FERT-05 SKIPs flipped; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~7 min execution).
-Status: **Phase 20 Wave 2 first plan complete.** FERT-03 5-site discriminator sweep landed (plantLogic emit + notificationScheduler body-line + DayDetail/DayDetailModal/MonthCalendar UI discriminators); FERT-05 opt-in gate prepared (notifSettings?.fertilizeReminders === true). plantHealth.ts UNCHANGED (Success Criterion 5 satisfied trivially); CROSS.health-no-fertilize-axis preserved. **Next:** Phase 20 Plan 04 (Wave 2 PlantCard + FertilizeCard impl — replaces CalendarScreen no-op closure with real fertilizePlant action; flips remaining FERT-03.TaskButton + FERT-06 SKIPs).
-Last activity: 2026-05-10 — Phase 20 Plan 03 complete (FERT-03 5-site discriminator sweep; 4 tasks, 10 files, ~7 min execution).
+Current Plan: 6 of 11
+Plan: 20-05 complete (Wave 3 FERT-05 settings toggle + default-OFF lock; 2 atomic task commits — c0eade4 DEFAULT_SETTINGS extension fertilizeReminders: false + 8a98548 SettingsScreen Switch row mirror of careReminders; smoke-phase20 PASS=41 (this plan in isolation) / PASS=43 (combined with parallel Plan 20-04) FAIL=0 — 2 FERT-05 SKIPs flipped (default-OFF + toggle-rendered); cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~3 min execution).
+Status: **Phase 20 Wave 3 settings plan complete (FERT-05 closure).** 4-piece opt-in chain in place: NotificationSettings.fertilizeReminders?: boolean type field (Plan 20-00) + opt-in gate notifSettings?.fertilizeReminders === true in scheduler (Plan 20-03) + DEFAULT_SETTINGS literal default false (Task 1) + SettingsScreen Switch row UI (Task 2). i18n keys consumed (settings.fertilizeReminders + settings.fertilizeRemindersSubtitle EN+ES voseo). Plan 20-04 executed in parallel (file-disjoint per execution_note). **Next:** Phase 20 Plan 06 (Wave 4a FERT-07 interior catalog-content authoring batch A — 67 entries: interior 44 + aromáticas 13 + huerta 10 with homemade-first framing).
+Last activity: 2026-05-10 — Phase 20 Plan 05 complete (FERT-05 settings toggle + default-OFF lock; 2 tasks, 2 files, ~3 min execution).
 
-Progress: [█████████░] 91% (58/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 complete — Plans 20-04..10 ahead)
+Progress: [█████████░] 95% (61/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 complete — Plans 20-06..10 ahead)
 
 ## Performance Metrics
 
@@ -92,6 +92,8 @@ Progress: [█████████░] 91% (58/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P02 | 16 min | 2 tasks | 1 files |
 | Phase 20-fertilization-subsystem P01 | 16 min | 1 tasks | 1 files |
 | Phase 20-fertilization-subsystem P03 | 7 min | 4 tasks | 10 files |
+| Phase 20-fertilization-subsystem P04 | 12min | 4 tasks | 8 files |
+| Phase 20-fertilization-subsystem P05 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -260,6 +262,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-03: DayDetailModal isDone uses NESTED path plant.fertilizeSchedule?.lastFertilized (Pitfall 3 averted) — optional-chain handles plants without fertilizeSchedule cleanly
 - [Phase 20-fertilization-subsystem]: Plan 20-03: MonthCalendar hasFertilize separate from hasWater (per RESEARCH §Architecture Pattern 1) — distinct dotFertilize style (colors.successBg) keeps visual indicator distinguishable from dotOutdoor (colors.green)
 - [Phase 20-fertilization-subsystem]: Plan 20-03: Task 4 verification gate yielded NO source-change commit — TaskButton remains generic (bgColor: string prop) and plantHealth.ts contains zero fertilize literals (CROSS.health-no-fertilize-axis preserved). Atomic-commit discipline preserves principle that commits represent diffs.
+- [Phase 20-fertilization-subsystem]: FERT-05 closes via 4-piece opt-in chain: type field optional (Plan 20-00) + scheduler opt-in gate notifSettings?.fertilizeReminders === true (Plan 20-03) + DEFAULT_SETTINGS literal false default (Plan 20-05 Task 1) + SettingsScreen Switch row UI (Plan 20-05 Task 2). Default OFF locked at literal level guarantees both fresh installs and existing-user upgrades opt-in.
 
 ### Pending Todos
 
@@ -274,6 +277,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-10T14:22:08.293Z
-Stopped at: Completed 20-03-PLAN.md
+Last session: 2026-05-10T14:40:37.938Z
+Stopped at: Completed 20-04-PLAN.md (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring)
 Resume file: None
