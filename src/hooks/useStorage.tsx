@@ -54,6 +54,8 @@ interface StorageActions {
   addPlants: (plants: Plant[]) => void;
   deletePlant: (id: string) => void;
   updatePlant: (id: string, updates: Partial<Plant>, options?: UpdatePlantOptions) => void;
+  /** v1.2 Phase 20 (FERT-06) — marks fertilization done on plant.fertilizeSchedule.lastFertilized; bootstraps schedule from catalog when absent. */
+  fertilizePlant: (id: string) => void;
   addNote: (dateStr: string, note: Note) => void;
   deleteNote: (dateStr: string, noteId: string) => void;
   addReminder: (dateStr: string, reminder: Reminder) => void;
@@ -428,6 +430,33 @@ export function StorageProvider({ children }: StorageProviderProps) {
     scheduleSave();
   }, [scheduleSave]);
 
+  /**
+   * v1.2 Phase 20 (FERT-06). Marks fertilization done — sets fertilizeSchedule.lastFertilized = today.
+   * Bootstraps fertilizeSchedule from catalog entry if absent (uses fertilizeIntervalWarm as the
+   * intervalDays default; cold-season-only catalogs fall through to no-op).
+   *
+   * fromUserEdit:true bypasses the Plan 20-01 deep-merge guard since the user explicitly tapped.
+   * If the plant has no databaseId AND no existing fertilizeSchedule → no-op (custom plant without
+   * a manual fertilize schedule has nothing to bootstrap from).
+   */
+  const fertilizePlant = useCallback((id: string) => {
+    const plant = dataRef.current.plants.find(p => p.id === id);
+    if (!plant) return;
+    const today = formatDate(new Date());
+    let nextSchedule: { intervalDays: number; lastFertilized: string } | null = null;
+    if (plant.fertilizeSchedule?.intervalDays != null && plant.fertilizeSchedule.intervalDays > 0) {
+      nextSchedule = { ...plant.fertilizeSchedule, lastFertilized: today };
+    } else if (plant.databaseId) {
+      const entry = getCatalogEntry(plant.databaseId);
+      const warm = entry?.fertilizeIntervalWarm;
+      if (typeof warm === 'number' && warm > 0) {
+        nextSchedule = { intervalDays: warm, lastFertilized: today };
+      }
+    }
+    if (!nextSchedule) return; // custom plant without manual schedule → no-op
+    updatePlant(id, { fertilizeSchedule: nextSchedule }, { fromUserEdit: true });
+  }, [updatePlant]);
+
   const addNote = useCallback((dateStr: string, note: Note) => {
     const cur = dataRef.current.notes;
     const newNotes = { ...cur, [dateStr]: [...(cur[dateStr] || []), note] };
@@ -763,6 +792,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     addPlants,
     deletePlant,
     updatePlant,
+    fertilizePlant,
     addNote,
     deleteNote,
     addReminder,
@@ -800,7 +830,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisCount, diagnosisHistory, shoppingList, climateOverride, loading,
     migrationFailed, migrationJustHappened,
     handleSetPlants, addPlant,
-    addPlants, deletePlant, updatePlant, addNote, deleteNote, addReminder,
+    addPlants, deletePlant, updatePlant, fertilizePlant, addNote, deleteNote, addReminder,
     deleteReminder, updateReminder, updateLocation, completeOnboarding,
     completeOnboardingWithData, setUserName, updateNotificationSettings,
     updatePlantNetApiKey, incrementIdentificationCount, incrementDiagnosisCount,
