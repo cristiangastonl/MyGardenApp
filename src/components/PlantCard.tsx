@@ -11,7 +11,7 @@ import Animated, {
 import { Plant, WeatherData, SavedDiagnosis, TrackingStatus, Location, HealthLevel } from '../types';
 import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 import { TRACKING_STATUS_CONFIG } from '../services/problemTrackingService';
-import { getNextWaterDate, getSeasonalInterval } from '../utils/plantLogic';
+import { getNextWaterDate, getSeasonalInterval, getNextFertilizeDate } from '../utils/plantLogic';
 import { getEffectiveSeason } from '../utils/seasonality';
 import { useStorage } from '../hooks/useStorage';
 import { isSameDay, formatDate } from '../utils/dates';
@@ -41,6 +41,8 @@ interface PlantCardProps {
   onWater?: (plantId: string) => void;
   onSunDone?: (plantId: string) => void;
   onOutdoorDone?: (plantId: string) => void;
+  // Phase 20 (FERT-06): optional — invoked when fertilize TaskButton is tapped on mode='tasks' card.
+  onFertilizeDone?: (plantId: string) => void;
   // Phase 18 (CARD-01): re-purposed — invoked on swipe-commit (was Alert-confirmed delete).
   // Plan 04 wires this to the optimistic delete + Toast undo flow.
   onDelete: (plantId: string) => void;
@@ -67,6 +69,7 @@ export function PlantCard({
   onWater,
   onSunDone,
   onOutdoorDone,
+  onFertilizeDone,
   onDelete,
   onPress,
   onToggleFavorite,
@@ -103,7 +106,15 @@ export function PlantCard({
   const needsOutdoorToday = plant.outdoorDays.includes(today.getDay());
   const outdoorDone = plant.outdoorDoneDate === todayStr;
 
-  const hasTasks = needsWaterToday || needsSunToday || needsOutdoorToday;
+  // Phase 20 FERT-06 — fertilize task gate. catalogEntryForTox (Phase 19) is reused to
+  // avoid a duplicate getCatalogEntry call. nextFertilizeDate returns null for plants
+  // with no fertilizeSchedule AND no catalog fertilizeIntervalWarm (custom plants get
+  // no task — Success Criterion 5).
+  const nextFertilizeDate = getNextFertilizeDate(plant, catalogEntryForTox, today, currentSeason);
+  const needsFertilizeToday = nextFertilizeDate ? isSameDay(nextFertilizeDate, today) : false;
+  const fertilizeDone = plant.fertilizeSchedule?.lastFertilized === todayStr && needsFertilizeToday;
+
+  const hasTasks = needsWaterToday || needsSunToday || needsOutdoorToday || needsFertilizeToday;
 
   // Phase 18 (CARD-03): per-plant catalog tip relocated to MyPlantDetailModal "¿Qué hacer?" section.
   // The catalog/translatedEntry/plantType lookups + inline tip render were removed from PlantCard.
@@ -311,6 +322,18 @@ export function PlantCard({
                     label={t('plantCard.outdoor')}
                     bgColor={colors.infoBg}
                     textColor={colors.infoText}
+                  />
+                )}
+                {/* Phase 20 FERT-06 — fertilize TaskButton sibling. 5-element budget preserved:
+                    inside the existing mode==='tasks' && hasTasks gate, after outdoor sibling. */}
+                {needsFertilizeToday && onFertilizeDone && (
+                  <TaskButton
+                    done={fertilizeDone}
+                    onPress={() => onFertilizeDone(plant.id)}
+                    icon="🌱"
+                    label={t('plantCard.fertilize')}
+                    bgColor={colors.successBg}
+                    textColor={colors.green}
                   />
                 )}
               </View>
