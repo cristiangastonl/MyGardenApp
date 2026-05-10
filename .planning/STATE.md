@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 11
+current_plan: 4 of 11
 status: completed
-stopped_at: Completed 20-02-PLAN.md
-last_updated: "2026-05-09T22:57:31.435Z"
-last_activity: 2026-05-09 — Phase 20 Plan 02 complete (FERT-04 cadence math real impl; 2 tasks, 1 file, ~16 min execution).
+stopped_at: Completed 20-01-PLAN.md
+last_updated: "2026-05-10T14:01:17.010Z"
+last_activity: 2026-05-10 — Phase 20 Plan 01 complete (FERT-01 PROTECTED_USER_FIELDS extension; 1 task, 1 file, ~16 min execution).
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 56
-  percent: 88
+  completed_plans: 57
+  percent: 89
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 3 of 11
-Plan: 20-02 complete (Wave 1 FERT-04 cadence math real impl; 2 atomic task commits — c9b6854 getSeasonalFertilizeInterval real impl with cold-season dormancy, 74d482a getNextFertilizeDate real impl with advance-loop catch-up; smoke-phase20 PASS=33 FAIL=0 SKIP=16 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~16 min execution).
-Status: **Phase 20 Plan 02 complete (Wave 1 FERT-04 cadence math).** Both helpers transitioned from `return null; // skeleton` to real arithmetic — `getSeasonalFertilizeInterval` per-plant-override > catalog warm/cold > null fallback ladder; `getNextFertilizeDate` advance-loop catch-up clip mirrors `getNextWaterDate` verbatim. Plan 20-01 (parallel Wave 1, file-disjoint useStorage.tsx edits) executes concurrently. **Next:** Phase 20 Plan 03 (Wave 2 5-site discriminator sweep).
-Last activity: 2026-05-09 — Phase 20 Plan 02 complete (FERT-04 cadence math real impl; 2 tasks, 1 file, ~16 min execution).
+Current Plan: 4 of 11
+Plan: 20-01 complete (Wave 1 FERT-01 PROTECTED_USER_FIELDS extension; 1 atomic task commit — 4ef666f extends the Phase 14 EDU-06 CRIT-1 deep-merge guard tuple with 'fertilizeSchedule' as 4th entry, APPEND-ONLY, `as const` preserved; smoke-phase20 PASS=33 FAIL=0 SKIP=16 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~16 min execution).
+Status: **Phase 20 Wave 1 fully complete (Plans 20-01 + 20-02 file-disjoint sibling completion).** Type-side hardening for FERT-01 (PROTECTED_USER_FIELDS guards fertilizeSchedule against catalog-source overwrite) + FERT-04 cadence math real impls (getSeasonalFertilizeInterval + getNextFertilizeDate) both green. **Next:** Phase 20 Plan 03 (Wave 2 5-site discriminator sweep — first consumer of getNextFertilizeDate from Plan 20-02 + the protected fertilizeSchedule field from this plan).
+Last activity: 2026-05-10 — Phase 20 Plan 01 complete (FERT-01 PROTECTED_USER_FIELDS extension; 1 task, 1 file, ~16 min execution).
 
-Progress: [█████████░] 88% (56/64 plans complete; Phase 20 Plans 00 + 02 complete — Plans 20-01 (parallel, in flight) + 20-03..10 ahead)
+Progress: [█████████░] 89% (57/64 plans complete; Phase 20 Plans 00 + 01 + 02 complete — Plans 20-03..10 ahead)
 
 ## Performance Metrics
 
@@ -90,6 +90,7 @@ Progress: [█████████░] 88% (56/64 plans complete; Phase 20 P
 | Phase 19-pet-toxicity P07 | 5min | 2 tasks | 0 files |
 | Phase 20-fertilization-subsystem P00 | 4min | 3 tasks | 8 files |
 | Phase 20-fertilization-subsystem P02 | 16 min | 2 tasks | 1 files |
+| Phase 20-fertilization-subsystem P01 | 16 min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -250,6 +251,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-02: getSeasonalFertilizeInterval real impl — per-plant Plant.fertilizeSchedule.intervalDays > 0 wins over catalog (season-agnostic override); cold-season fertilizeIntervalCold === null returns null (explicit dormancy); warm/tropical bucket both use fertilizeIntervalWarm
 - [Phase 20-fertilization-subsystem]: Plan 20-02: getNextFertilizeDate advance-loop catch-up clip mirrors getNextWaterDate verbatim — while (next < today) next = addDays(next, intervalDays) emits ONE task on due-day, never N; no overdue penalty branch (Phase 5 dead-code finding inherited)
 - [Phase 20-fertilization-subsystem]: Plan 20-02: Skeleton-then-impl in-place body replacement — Plan 20-00 locked signatures with return-null skeleton bodies; Plan 20-02 replaced bodies in-place without churning callers (mirrors Phase 18 Toast skeleton-then-impl two-plan split). Top-level PlantDBEntry import added; inline import('../types') type annotations replaced.
+- [Phase 20-fertilization-subsystem]: Plan 20-01: APPEND-ONLY tuple extension at useStorage.tsx:23 — fertilizeSchedule joins waterSchedule/lightLevel/waterMode in PROTECTED_USER_FIELDS (4 entries total); existing 3 verbatim; `as const` preserved for literal-union narrowing of the for-of loop body
+- [Phase 20-fertilization-subsystem]: Plan 20-01: No new sentinel added to smoke-phase20 — this plan ENSURES the existing CRIT-1 guard doesn't break for the new field; affirmative encoding lives in Plan 20-00 W0.scaffold.types.* (Plant.fertilizeSchedule presence) + Plan 20-04 modal-side fertilize override path. PASS=33 FAIL=0 SKIP=16 unchanged.
+- [Phase 20-fertilization-subsystem]: Plan 20-01: Future fertilize migration / first-launch derivation paths reserved — MUST either use raw setPlants() (bypasses guard entirely) OR pass { fromUserEdit: true } (explicitly opts in). Both paths inherited from Phase 14 EDU-06 SUMMARY.
 
 ### Pending Todos
 
@@ -264,6 +268,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-09T22:57:31.432Z
-Stopped at: Completed 20-02-PLAN.md
+Last session: 2026-05-10T14:00:35.283Z
+Stopped at: Completed 20-01-PLAN.md
 Resume file: None

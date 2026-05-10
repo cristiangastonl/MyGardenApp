@@ -311,7 +311,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
-| 20. Fertilization Subsystem | 2/11 | In Progress|  | - |
+| 20. Fertilization Subsystem | 3/11 | In Progress|  | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |
