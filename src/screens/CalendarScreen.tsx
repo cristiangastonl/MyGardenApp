@@ -30,6 +30,7 @@ export default function CalendarScreen() {
     climateOverride,
     loading,
     updatePlant,
+    fertilizePlant,
     addNote,
     deleteNote,
     addReminder,
@@ -262,7 +263,7 @@ export default function CalendarScreen() {
           onWater={handleWater}
           onSunDone={handleSunDone}
           onOutdoorDone={handleOutdoorDone}
-          onFertilizeDone={(_plantId) => {/* Plan 20-04 wires real fertilizePlant action */}}
+          onFertilizeDone={fertilizePlant}
           onAddNote={handleAddNote}
           onDeleteNote={handleDeleteNote}
           onAddReminder={handleAddReminder}

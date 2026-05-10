@@ -23,6 +23,10 @@ import { colors, spacing, borderRadius, fonts, shadows } from '../theme';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { useStorage } from '../hooks/useStorage';
 import { useWeather } from '../hooks/useWeather';
+import { getNextFertilizeDate } from '../utils/plantLogic';
+import { getEffectiveSeason } from '../utils/seasonality';
+import { getCatalogEntry } from '../data/plantDatabase';
+import { isSameDay } from '../utils/dates';
 import { useDismissOnPaywall } from '../hooks/useDismissOnPaywall';
 import { Plant, TrackingStatus } from '../types';
 import {
@@ -58,6 +62,8 @@ export default function PlantsScreen() {
     removePhotoFromPlant,
     diagnosisHistory,
     getActiveDiagnosesForPlant,
+    fertilizePlant,
+    climateOverride,
   } = useStorage();
 
   const { weather } = useWeather(location);
@@ -282,6 +288,7 @@ export default function PlantsScreen() {
           weather={weather}
           latitude={location?.lat ?? null}
           mode="collection"
+          onFertilizeDone={fertilizePlant}
           onDelete={(id) => {
             const plant = plants.find(p => p.id === id);
             if (plant) handleCommitDelete(plant);
@@ -415,6 +422,15 @@ export default function PlantsScreen() {
         weather={weather}
         latitude={location?.lat ?? null}
         initialSection={detailInitialSection}
+        // Phase 20 FERT-06 — auto-expand fertilize card on arrival when the user opens
+        // detail for a plant with a pending fertilize task today (Open Question 2 rec).
+        initialExpanded={(() => {
+          if (!detailPlant) return undefined;
+          const cat = detailPlant.databaseId ? getCatalogEntry(detailPlant.databaseId) : null;
+          const season = getEffectiveSeason(location, climateOverride, today);
+          const next = getNextFertilizeDate(detailPlant, cat, today, season);
+          return next && isSameDay(next, today) ? 'fertilize' : undefined;
+        })()}
         onClose={() => {
           setDetailPlant(null);
           setDetailInitialSection(undefined);

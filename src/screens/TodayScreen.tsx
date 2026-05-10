@@ -19,8 +19,9 @@ import { useWeather } from '../hooks/useWeather';
 import { useNotifications } from '../hooks/useNotifications';
 import { useDismissOnPaywall } from '../hooks/useDismissOnPaywall';
 import { formatDate, isSameDay, daysBetween } from '../utils/dates';
-import { getNextWaterDate } from '../utils/plantLogic';
+import { getNextWaterDate, getNextFertilizeDate } from '../utils/plantLogic';
 import { getEffectiveSeason } from '../utils/seasonality';
+import { getCatalogEntry } from '../data/plantDatabase';
 import { generatePlantAlerts } from '../utils/plantAlerts';
 import { Plant, SavedDiagnosis, ShoppingItem, TrackingStatus } from '../types';
 import {
@@ -72,6 +73,7 @@ export default function TodayScreen() {
     updatePlant,
     deletePlant,
     addPlant,
+    fertilizePlant,
     deleteNote,
     deleteReminder,
     updateReminder,
@@ -164,8 +166,13 @@ export default function TodayScreen() {
       const needsWaterToday = isSameDay(nextWater, today);
       const needsSunToday = plant.sunDays.includes(today.getDay());
       const needsOutdoorToday = plant.outdoorDays.includes(today.getDay());
+      // Phase 20 FERT-06 — fertilize task gate must participate in "tasks today" filter
+      // so plants whose ONLY due task today is fertilize still surface on TodayScreen.
+      const cat = plant.databaseId ? getCatalogEntry(plant.databaseId) : null;
+      const nextFert = getNextFertilizeDate(plant, cat, today, effectiveSeason);
+      const needsFertilizeToday = nextFert ? isSameDay(nextFert, today) : false;
 
-      if (needsWaterToday || needsSunToday || needsOutdoorToday) {
+      if (needsWaterToday || needsSunToday || needsOutdoorToday || needsFertilizeToday) {
         withTasks.push(plant);
       }
     });
@@ -484,6 +491,7 @@ export default function TodayScreen() {
                 onWater={handleWater}
                 onSunDone={handleSunDone}
                 onOutdoorDone={handleOutdoorDone}
+                onFertilizeDone={fertilizePlant}
                 onDelete={(id) => {
                   const target = plants.find(p => p.id === id);
                   if (target) handleCommitDelete(target);
@@ -623,6 +631,14 @@ export default function TodayScreen() {
         weather={weather}
         latitude={location?.lat ?? null}
         initialSection={detailInitialSection}
+        // Phase 20 FERT-06 — auto-expand fertilize card on arrival when the user opens
+        // detail for a plant with a pending fertilize task today (Open Question 2 rec).
+        initialExpanded={(() => {
+          if (!detailPlant) return undefined;
+          const cat = detailPlant.databaseId ? getCatalogEntry(detailPlant.databaseId) : null;
+          const next = getNextFertilizeDate(detailPlant, cat, today, effectiveSeason);
+          return next && isSameDay(next, today) ? 'fertilize' : undefined;
+        })()}
         onClose={() => {
           setDetailPlant(null);
           setDetailInitialSection(undefined);
