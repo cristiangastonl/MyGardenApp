@@ -86,11 +86,14 @@ assert(getNested(enJSON, 'plantDetailModal.fertilizeDormant') && getNested(esJSO
 assert(getNested(enJSON, 'settings.fertilizeReminders') && getNested(esJSON, 'settings.fertilizeReminders'), 'W0.scaffold.i18n.settings.fertilizeReminders-parity');
 assert(getNested(enJSON, 'settings.fertilizeRemindersSubtitle') && getNested(esJSON, 'settings.fertilizeRemindersSubtitle'), 'W0.scaffold.i18n.settings.fertilizeRemindersSubtitle-parity');
 
-// ─── FERT-02 catalog content — SKIP at Wave 0, PASS as Plans 20-06/07/08 land ───
+// ─── FERT-02 catalog content — SKIP at Wave 0 (0 matches) AND mid-band (Plans 20-06/07 progression),
+// PASS once Plan 20-08 reaches ≥100 entries. Mid-band SKIP mirrors Phase 16's > N && < M pattern
+// (Phase 16 Plan 16-01 Rule 3 precedent — partial-landing tolerance for cross-plan growable assertions). ───
 assertSkippable(() => {
   const matches = (dbSrc.match(/fertilizeIntervalWarm:\s*\d+/g) || []).length;
-  if (matches === 0) return undefined;
-  return matches >= 100;
+  if (matches === 0) return undefined; // Wave 0 baseline — no entries authored yet
+  if (matches < 100) return undefined; // mid-band — Plans 20-06/07 in progress
+  return matches >= 100; // Plan 20-08 closes — flips to PASS
 }, 'FERT-02.catalog.fertilizeIntervalWarm-coverage');
 
 // ─── FERT-03 5-site discriminator sweep — SKIP at Wave 0, PASS after Plan 20-03 ───

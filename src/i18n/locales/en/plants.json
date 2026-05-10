@@ -52,6 +52,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d in warm season (understory climber — moderate demand).",
+      "homemadeRecommendation": "Banana peel tea every 21d — potassium sustains glossy variegated leaves."
     }
   },
   "monstera": {
@@ -106,6 +110,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d in warm season (hemiepiphyte needs P for fenestrations).",
+      "homemadeRecommendation": "Compost tea every 21d — organic matter mimics canopy humus of its native habitat."
     }
   },
   "ficus": {
@@ -156,6 +164,10 @@
           "Excessive drooling"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 30d in warm season (Moraceae — large roots, slow rhythm).",
+      "homemadeRecommendation": "Worm castings on surface every 30d — gradual nitrogen release without root burn."
     }
   },
   "sansevieria": {
@@ -208,6 +220,9 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 low-N every 60d in warm season (CAM xerophyte — excess N rots rhizomes)."
     }
   },
   "orquidea": {
@@ -244,7 +259,11 @@
       "Bright kitchen away from the stove"
     ],
     "placementAvoid": "Direct midday sun and standing water in the pot.",
-    "whyRationale": "It's a tropical epiphyte: it grows on trees with aerial roots that capture ambient humidity, not standing water. That's why it needs soaking and full drying — root rot is its main cause of death."
+    "whyRationale": "It's a tropical epiphyte: it grows on trees with aerial roots that capture ambient humidity, not standing water. That's why it needs soaking and full drying — root rot is its main cause of death.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 30-10-10 orchid mix diluted 1:4 every 14d in growth; 20-20-20 in bloom.",
+      "homemadeRecommendation": "Cooled rice cooking water every 21d — gentle minerals for demanding epiphytes."
+    }
   },
   "calathea": {
     "name": "Calathea",
@@ -280,7 +299,11 @@
       "Near a humidifier in the living room"
     ],
     "placementAvoid": "Direct sun and tap water with high chlorine.",
-    "whyRationale": "Native to the Amazon understory, its patterned leaves evolved to capture canopy-filtered light. Direct sun damages its photosynthetic system, optimized for low intensity — that's why it moves its leaves with the day-night cycle."
+    "whyRationale": "Native to the Amazon understory, its patterned leaves evolved to capture canopy-filtered light. Direct sun damages its photosynthetic system, optimized for low intensity — that's why it moves its leaves with the day-night cycle.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:5 every 21d (Marantaceae sensitive — dilute more in peak summer).",
+      "homemadeRecommendation": "Compost tea every 21d — mild humus avoids burning the patterned leaves."
+    }
   },
   "cinta": {
     "name": "Spider Plant",
@@ -317,7 +340,11 @@
       "Kitchen ledge with natural light"
     ],
     "placementAvoid": "Intense direct sun — variegated leaves burn.",
-    "whyRationale": "Native to South Africa, it evolved in grasslands with filtered light and well-drained soils. Its tuberous roots store water, letting it survive short droughts. It's fluoride-sensitive because its native zone has naturally soft water."
+    "whyRationale": "Native to South Africa, it evolved in grasslands with filtered light and well-drained soils. Its tuberous roots store water, letting it survive short droughts. It's fluoride-sensitive because its native zone has naturally soft water.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d in warm season (fast-growing Asparagaceae).",
+      "homemadeRecommendation": "Banana peel tea every 21d — feeds rhizomes producing baby plantlets."
+    }
   },
   "palmera-interior": {
     "name": "Indoor Palm",
@@ -354,7 +381,11 @@
       "Office corner with diffused natural light"
     ],
     "placementAvoid": "Intense direct sun and dry heater air.",
-    "whyRationale": "It's a palm from the Mexican understory: in nature it grows beneath tall trees that filter light. Its fronds adapted to capture dim light, which is why it tolerates shade better than most palms and grows slowly."
+    "whyRationale": "It's a palm from the Mexican understory: in nature it grows beneath tall trees that filter light. Its fronds adapted to capture dim light, which is why it tolerates shade better than most palms and grows slowly.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluted 1:4 every 28d in warm season (Arecaceae — high K for firm fronds).",
+      "homemadeRecommendation": "Ground banana peel on surface every 30d — K that prevents brown tips."
+    }
   },
   "aloe-vera": {
     "name": "Aloe Vera",
@@ -408,6 +439,9 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d in warm season (Asphodelaceae CAM — excess N causes floppy leaves)."
     }
   },
   "lavanda-angustifolia": {
@@ -759,7 +793,11 @@
       "Indoor counter with direct window light"
     ],
     "placementAvoid": "Intense midday sun without frequent watering — wilts fast.",
-    "whyRationale": "An annual native to tropical Southeast Asia, it needs warmth and long days. Once it flowers, the leaves turn bitter; pinching the tips keeps leaf production going and extends the harvest."
+    "whyRationale": "An annual native to tropical Southeast Asia, it needs warmth and long days. Once it flowers, the leaves turn bitter; pinching the tips keeps leaf production going and extends the harvest.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-5 every 30d only if leaves yellow (annual Lamiaceae — prefers organic matter).",
+      "homemadeRecommendation": "Compost tea every 14d — gradual N for large aromatic leaves all summer."
+    }
   },
   "romero": {
     "name": "Rosemary",
@@ -796,7 +834,11 @@
       "Dry garden border in full sun"
     ],
     "placementAvoid": "Waterlogged soil or deep shade — root rot sets in fast.",
-    "whyRationale": "A perennial Mediterranean shrub, evolved on chalky hillsides with dry summers. Its essential oils protect it from heat; overwatering kills it faster than drought. Poor soil intensifies the aroma."
+    "whyRationale": "A perennial Mediterranean shrub, evolved on chalky hillsides with dry summers. Its essential oils protect it from heat; overwatering kills it faster than drought. Poor soil intensifies the aroma.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d only if soil exhausted (Mediterranean Lamiaceae — prefers leanness).",
+      "homemadeRecommendation": "Light compost tea every 30d — rosemary yields oils in poor soils."
+    }
   },
   "menta": {
     "name": "Mint",
@@ -847,6 +889,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d if leaves pale (rhizomatous Lamiaceae — aggressive, high N demand).",
+      "homemadeRecommendation": "Compost tea every 14d — N that sustains spreading rhizomes and frequent harvests."
     }
   },
   "tomatera": {
@@ -902,6 +948,10 @@
           "Drowsiness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d in vegetative phase; switch to 5-15-5 at first flowers (Solanaceae).",
+      "homemadeRecommendation": "Worm castings + banana peel every 14d; wood ash for K during fruiting."
     }
   },
   "pimiento": {
@@ -953,6 +1003,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d; switch to 5-15-15 when first fruits set (Solanaceae — high K).",
+      "homemadeRecommendation": "Worm castings every 14d + banana peel tea during fruiting."
     }
   },
   "frutilla": {
@@ -990,7 +1044,11 @@
       "Vertical planter with generous drainage"
     ],
     "placementAvoid": "Fruit touching damp soil — they rot from Botrytis fungus.",
-    "whyRationale": "A perennial Rosaceae of temperate climates, propagating by stolons (runners) instead of seed. Productivity drops after the third year; replace old plants. Wet leaves favor fungus, so watering goes at the base."
+    "whyRationale": "A perennial Rosaceae of temperate climates, propagating by stolons (runners) instead of seed. Productivity drops after the third year; replace old plants. Wet leaves favor fungus, so watering goes at the base.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d; high-K 5-15-30 when first flowers appear (stolon-bearing Rosaceae).",
+      "homemadeRecommendation": "Banana peel tea every 14d at flowering — K that sweetens the fruits."
+    }
   },
   "limonero": {
     "name": "Lemon Tree",
@@ -1209,6 +1267,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d in warm season (Araceae — needs P for white spathes).",
+      "homemadeRecommendation": "Banana peel tea every 21d — K that extends flower longevity."
     }
   },
   "dracaena": {
@@ -1263,6 +1325,10 @@
           "Hypersalivation"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 30d in warm season (tolerant Asparagaceae — avoid F excess).",
+      "homemadeRecommendation": "Compost tea every 30d with filtered water — sensitive to tap-water fluoride."
     }
   },
   "filodendro": {
@@ -1318,6 +1384,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (climbing Araceae, moderate demand — adjust per species).",
+      "homemadeRecommendation": "Liquid worm tea every 21d — gentle humus mimicking tropical understory."
     }
   },
   "jade": {
@@ -1370,6 +1440,9 @@
           "Bradycardia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d in warm season (Crassulaceae CAM — soft leaves if N excess)."
     }
   },
   "peperomia": {
@@ -1407,7 +1480,11 @@
       "Nightstand near an east-facing window"
     ],
     "placementAvoid": "Intense direct sun and cold drafts.",
-    "whyRationale": "It's a tropical American understory plant that grows on fallen logs. Its semi-succulent leaves store water to survive between seasonal canopy rains. That's why it prefers spaced waterings and filtered light — its natural niche."
+    "whyRationale": "It's a tropical American understory plant that grows on fallen logs. Its semi-succulent leaves store water to survive between seasonal canopy rains. That's why it prefers spaced waterings and filtered light — its natural niche.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:5 every 30d (small Piperaceae — fine roots, low demand).",
+      "homemadeRecommendation": "Diluted compost tea every 30d — gentle little beats a concentrated lot."
+    }
   },
   "rosa": {
     "name": "Rose",
@@ -1651,6 +1728,10 @@
           "Photosensitization (large quantities)"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d (biennial Apiaceae — N for first-year leaves, not in flowering).",
+      "homemadeRecommendation": "Worm castings every 14d — steady N to harvest bunches all season."
     }
   },
   "oregano": {
@@ -1702,6 +1783,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d only if soil exhausted (Mediterranean Lamiaceae — excess fertility dilutes oils).",
+      "homemadeRecommendation": "Light compost tea every 30d — leanness concentrates the characteristic aroma."
     }
   },
   "cilantro": {
@@ -1739,7 +1824,11 @@
       "Indoor tray with bright diffused light"
     ],
     "placementAvoid": "Strong summer sun — bolts fast under long-day light.",
-    "whyRationale": "An annual native to the Mediterranean and Asia Minor, sensitive to photoperiod: long days and heat trigger bolting and the leaves turn bitter. So sowing in autumn or early spring, harvesting young, works best."
+    "whyRationale": "An annual native to the Mediterranean and Asia Minor, sensitive to photoperiod: long days and heat trigger bolting and the leaves turn bitter. So sowing in autumn or early spring, harvesting young, works best.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d (annual Apiaceae — quick N before heat-bolting).",
+      "homemadeRecommendation": "Compost tea every 14d — N to extend leaf harvest before bolting."
+    }
   },
   "tomillo": {
     "name": "Thyme",
@@ -1788,6 +1877,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d only if soil very poor (Mediterranean Lamiaceae — leanness intensifies thymol).",
+      "homemadeRecommendation": "Light compost every 60d — thyme flowers better in poor substrates."
     }
   },
   "lechuga": {
@@ -1825,7 +1918,11 @@
       "Wide pot with worm-casting compost"
     ],
     "placementAvoid": "Full summer sun — bolts to flower and turns bitter.",
-    "whyRationale": "An annual Asteraceae of cool climates; long days and heat send it bolting and the sap turns bitter. That's why succession sowing and early picking work best. Outer-leaf harvesting extends productivity for several weeks."
+    "whyRationale": "An annual Asteraceae of cool climates; long days and heat send it bolting and the sap turns bitter. That's why succession sowing and early picking work best. Outer-leaf harvesting extends productivity for several weeks.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 14d (leafy Asteraceae — high N until harvest, avoid bolting).",
+      "homemadeRecommendation": "Worm castings every 14d — mild N for crisp leaves without bitter taste."
+    }
   },
   "pepino": {
     "name": "Cucumber",
@@ -1862,7 +1959,11 @@
       "Pergola or trellis in full sun"
     ],
     "placementAvoid": "Partial shade and isolation from pollinators — few fruits.",
-    "whyRationale": "An annual Cucurbitaceae of Indian origin, with separate male and female flowers on the same plant. It needs insect pollination to set fruit; without bees or hand-pollination, flowers drop fruitless. Inconsistent watering yields bitter cucumbers."
+    "whyRationale": "An annual Cucurbitaceae of Indian origin, with separate male and female flowers on the same plant. It needs insect pollination to set fruit; without bees or hand-pollination, flowers drop fruitless. Inconsistent watering yields bitter cucumbers.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d; switch to 5-15-10 in fruiting (Cucurbitaceae — high water and nutrient demand).",
+      "homemadeRecommendation": "Worm castings every 14d + peel tea in fruiting — K for crisp fruits."
+    }
   },
   "zanahoria": {
     "name": "Carrot",
@@ -1899,7 +2000,11 @@
       "Deep balcony tray with loose substrate"
     ],
     "placementAvoid": "Compacted or rocky soil — forked or deformed roots.",
-    "whyRationale": "An Apiaceae biennial: it forms a root in year one and flowers in year two (gardeners harvest before flowering). Eurasian origin; it needs deep, loose soil so the root grows straight. Dense sowing yields small roots."
+    "whyRationale": "An Apiaceae biennial: it forms a root in year one and flowers in year two (gardeners harvest before flowering). Eurasian origin; it needs deep, loose soil so the root grows straight. Dense sowing yields small roots.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 low-N every 21d (Apiaceae root — excess N forks and hairs the roots).",
+      "homemadeRecommendation": "Mature compost at sowing; wood ash on surface every 30d for K."
+    }
   },
   "rucula": {
     "name": "Arugula",
@@ -1936,7 +2041,11 @@
       "Mid-size planter at least 20 cm deep"
     ],
     "placementAvoid": "Full summer sun — leaves get too spicy and bolt fast.",
-    "whyRationale": "A fast-cycling Brassicaceae annual (4-6 weeks). Its glucosinolates give the characteristic peppery flavor, which intensifies under heat stress. Long days plus warmth trigger early flowering, so successive sowing helps."
+    "whyRationale": "A fast-cycling Brassicaceae annual (4-6 weeks). Its glucosinolates give the characteristic peppery flavor, which intensifies under heat stress. Long days plus warmth trigger early flowering, so successive sowing helps.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 14d (short-cycle Brassicaceae — N for leaf before bolting).",
+      "homemadeRecommendation": "Compost tea every 14d — quick N that keeps the peppery flavor without bitterness."
+    }
   },
   "naranjo": {
     "name": "Orange Tree",
@@ -2189,7 +2298,11 @@
       "Wide tray in full sun near pollinators"
     ],
     "placementAvoid": "Cramped space and isolation from pollinators — few fruits.",
-    "whyRationale": "An annual Cucurbitaceae of South American origin (Cucurbita maxima domesticated in the Andes). Separate male and female flowers need pollinators; when bees are absent, female flowers drop without setting and hand-pollination helps."
+    "whyRationale": "An annual Cucurbitaceae of South American origin (Cucurbita maxima domesticated in the Andes). Separate male and female flowers need pollinators; when bees are absent, female flowers drop without setting and hand-pollination helps.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d; switch to 5-15-10 when fruits set (fast-fruiting Cucurbitaceae).",
+      "homemadeRecommendation": "Worm castings + wood ash every 14d — K for firm and fast-set fruits."
+    }
   },
   "ciboulette": {
     "name": "Chives",
@@ -2244,6 +2357,10 @@
           "Lethargy"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d (bulbous Amaryllidaceae — N for regrowth after leaf cuts).",
+      "homemadeRecommendation": "Compost tea every 14d — N that revives the clump after each harvest."
     }
   },
   "haworthia": {
@@ -2384,6 +2501,9 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 60d in warm season (desert Asparagaceae — tolerant but low demand)."
     }
   },
   "jacaranda": {
@@ -2844,7 +2964,11 @@
       "Wall edge or vertical planter"
     ],
     "placementAvoid": "Waterlogged soil or deep shade — root rot like upright rosemary.",
-    "whyRationale": "A prostrate variety of common rosemary, same Mediterranean origin and same drought-adapted physiology. The trailing form doesn't change the needs: full sun, poor soil, sparse watering; ideal for ground cover or decorative cascades."
+    "whyRationale": "A prostrate variety of common rosemary, same Mediterranean origin and same drought-adapted physiology. The trailing form doesn't change the needs: full sun, poor soil, sparse watering; ideal for ground cover or decorative cascades.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d only if soil exhausted (prostrate variety — even more N-sensitive).",
+      "homemadeRecommendation": "Light compost every 30d — leanness preserves the trailing habit and oils."
+    }
   },
   "tomate-cherry": {
     "name": "Cherry Tomato",
@@ -2899,6 +3023,10 @@
           "Drowsiness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d; switch to 5-15-5 at flowering (Solanaceae — small fruits, long clusters).",
+      "homemadeRecommendation": "Worm castings + banana peel every 14d — K sweetens whole clusters."
     }
   },
   "anthurium": {
@@ -2952,6 +3080,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (Araceae epiphyte — high K demand for red spathes).",
+      "homemadeRecommendation": "Banana peel tea every 21d — K reinforces the intense spathe color."
     }
   },
   "alocasia": {
@@ -3007,6 +3139,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (tuberous Araceae — high demand when leafing).",
+      "homemadeRecommendation": "Banana peel tea every 21d — supports formation of silver veins."
     }
   },
   "caladium": {
@@ -3062,6 +3198,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d when active (tuber — pause when leaves yellow).",
+      "homemadeRecommendation": "Compost tea every 21d in season — feeds the tuber for next year's growth."
     }
   },
   "singonio": {
@@ -3115,6 +3255,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (heteroblastic Araceae — sustains adult arrow-leaves).",
+      "homemadeRecommendation": "Liquid worm tea every 21d — mild N that avoids tip burn."
     }
   },
   "aglaonema": {
@@ -3170,6 +3314,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 28d (low-light Araceae — lower demand from reduced photosynthesis).",
+      "homemadeRecommendation": "Compost tea every 28d — light humus that respects its slow rhythm."
     }
   },
   "costilla-adan": {
@@ -3225,6 +3373,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (Monstera adansonii — small fenestrations, same K need).",
+      "homemadeRecommendation": "Banana peel tea every 21d — sustains the dainty perforated leaves."
     }
   },
   "difenbaquia": {
@@ -3280,6 +3432,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (tropical Araceae — sustains white-green patterns).",
+      "homemadeRecommendation": "Liquid worm tea every 21d — gradual N for large showy leaves."
     }
   },
   "begonia-rex": {
@@ -3329,6 +3485,10 @@
           "Salivation"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:5 every 21d (Begoniaceae — anthocyanins need light but low N).",
+      "homemadeRecommendation": "Mild compost tea every 21d — humus that preserves red-silver patterns."
     }
   },
   "croton": {
@@ -3382,6 +3542,10 @@
           "Depression"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (Euphorbiaceae — needs P and K for vivid carotenoids).",
+      "homemadeRecommendation": "Banana peel tea every 21d — high K sustains the red and orange."
     }
   },
   "fitonia": {
@@ -3419,7 +3583,11 @@
       "Next to a humidifier"
     ],
     "placementAvoid": "Direct sun (scorches small leaves) and dark corners (loses vein pattern).",
-    "whyRationale": "Amazon understory — its white veins reflect the scarce light that reaches the forest floor. Thin leaves lose water fast, so it needs high humidity and steady watering."
+    "whyRationale": "Amazon understory — its white veins reflect the scarce light that reaches the forest floor. Thin leaves lose water fast, so it needs high humidity and steady watering.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:5 every 21d (small Acanthaceae — delicate roots, mild dose).",
+      "homemadeRecommendation": "Diluted compost tea every 21d — humus that respects its shallow roots."
+    }
   },
   "ficus-lyrata": {
     "name": "Fiddle Leaf Fig",
@@ -3470,6 +3638,10 @@
           "Excessive drooling"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 28d (Moraceae — large fiddle-leaf needs moderate dose).",
+      "homemadeRecommendation": "Worm castings on surface every 30d — gradual N without stressing the taproot."
     }
   },
   "maranta": {
@@ -3507,7 +3679,11 @@
       "Interior shelf away from windows"
     ],
     "placementAvoid": "Direct sun (fades color) and dry air — maranta doesn't tolerate dry environments.",
-    "whyRationale": "Marantaceae from Brazilian rainforest — its nyctinasty (nightly folding via petiole pulvini) reduces water loss and predator exposure. Vein patterns reflect filtered understory light."
+    "whyRationale": "Marantaceae from Brazilian rainforest — its nyctinasty (nightly folding via petiole pulvini) reduces water loss and predator exposure. Vein patterns reflect filtered understory light.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:5 every 21d (nyctinastic Marantaceae — pulvini sensitive to salts).",
+      "homemadeRecommendation": "Compost tea every 21d with rainwater — minimizes salt buildup."
+    }
   },
   "zamioculca": {
     "name": "ZZ Plant",
@@ -3558,6 +3734,9 @@
           "Mild GI upset"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 60d in warm season (CAM rhizomatous Araceae — rhizomes store reserves)."
     }
   },
   "cola-burro": {
@@ -3595,7 +3774,10 @@
       "Bright shelf away from people"
     ],
     "placementAvoid": "High-traffic areas (loses leaves) and constantly damp soil (stem rot).",
-    "whyRationale": "Mexican succulent from rocky habitats — stores water in fleshy leaves and uses CAM metabolism to minimize daytime water loss. The fragile leaves enable vegetative propagation by detachment."
+    "whyRationale": "Mexican succulent from rocky habitats — stores water in fleshy leaves and uses CAM metabolism to minimize daytime water loss. The fragile leaves enable vegetative propagation by detachment.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d in warm season (CAM Sedum morganianum — fragile leaves, minimal dose)."
+    }
   },
   "hiedra": {
     "name": "English Ivy",
@@ -3648,6 +3830,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 30d in warm season (climbing Araliaceae — steady moderate demand).",
+      "homemadeRecommendation": "Worm castings every 30d — gentle N that prevents fading of variegated leaves."
     }
   },
   "palmera-areca": {
@@ -3685,7 +3871,11 @@
       "1 m from a filtered south window"
     ],
     "placementAvoid": "Midday direct sun (scorches fronds) and temperatures below 12°C.",
-    "whyRationale": "Palm from Madagascar — Arecaceae adapted to tropical understory. Tolerates dispersed light but requires fast drainage and steady humidity; its roots can't tolerate prolonged waterlogging."
+    "whyRationale": "Palm from Madagascar — Arecaceae adapted to tropical understory. Tolerates dispersed light but requires fast drainage and steady humidity; its roots can't tolerate prolonged waterlogging.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluted 1:4 every 28d (Dypsis Arecaceae — high K prevents frond yellowing).",
+      "homemadeRecommendation": "Ground banana peel every 28d — K that keeps pinnae green and firm."
+    }
   },
   "palmera-kentia": {
     "name": "Kentia Palm",
@@ -3722,7 +3912,11 @@
       "Spacious room away from windows"
     ],
     "placementAvoid": "Prolonged direct sun (scorches fronds) and overwatering (root rot).",
-    "whyRationale": "Palm from Lord Howe (Australia) — endemic to shaded forests. Its low-light tolerance comes from understory adaptation, making it exceptional as a deep-interior palm."
+    "whyRationale": "Palm from Lord Howe (Australia) — endemic to shaded forests. Its low-light tolerance comes from understory adaptation, making it exceptional as a deep-interior palm.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluted 1:4 every 28d (Lord Howe Howea — shaded understory, slow rhythm).",
+      "homemadeRecommendation": "Worm castings on surface every 30d — mild humus for low-light tolerant roots."
+    }
   },
   "helecho-boston": {
     "name": "Boston Fern",
@@ -3759,7 +3953,11 @@
       "Hanging basket in a humid spot"
     ],
     "placementAvoid": "Dry heater air (crispy fronds) and direct sun (scorches).",
-    "whyRationale": "American tropical fern — its sporophyte needs ambient humidity above 60% to maintain leaf turgor. Without it the fronds dry out irreversibly because the plant stores no water."
+    "whyRationale": "American tropical fern — its sporophyte needs ambient humidity above 60% to maintain leaf turgor. Without it the fronds dry out irreversibly because the plant stores no water.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluted 1:5 every 14d (sporophyte Pteridophyte — high continuous demand).",
+      "homemadeRecommendation": "Compost tea every 14d with warm water — moist humus mimicking its forest niche."
+    }
   },
   "helecho-nido": {
     "name": "Bird's Nest Fern",
@@ -3796,7 +3994,11 @@
       "Kitchen with natural light"
     ],
     "placementAvoid": "Direct sun (scorches fronds) and water in the central nest (rot).",
-    "whyRationale": "Asian epiphytic fern — in habitat it grows in tree forks, collecting rainwater and debris in its nest. Its entire fronds evolved for that water-harvesting role."
+    "whyRationale": "Asian epiphytic fern — in habitat it grows in tree forks, collecting rainwater and debris in its nest. Its entire fronds evolved for that water-harvesting role.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluted 1:5 every 14d (epiphytic Asplenium — rosette pools water and nutrients).",
+      "homemadeRecommendation": "Compost tea every 14d at the base — rosette catches humus rain-style."
+    }
   },
   "pilea": {
     "name": "Chinese Money Plant",
@@ -3833,7 +4035,11 @@
       "Kitchen with natural light"
     ],
     "placementAvoid": "Direct sun (scorches the round leaves) and dark corners (long, weak stem).",
-    "whyRationale": "Native to Yunnan province, China — a temperate mountain habitat. Its round leaves are shields for bright indirect light. The rhizomatous pups enable easy clonal propagation."
+    "whyRationale": "Native to Yunnan province, China — a temperate mountain habitat. Its round leaves are shields for bright indirect light. The rhizomatous pups enable easy clonal propagation.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 21d (Yunnan Urticaceae — rhizomes sprout baby plantlets).",
+      "homemadeRecommendation": "Compost tea every 21d — steady N for offshoot multiplication."
+    }
   },
   "tradescantia": {
     "name": "Wandering Dude",
@@ -3882,6 +4088,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 21d (Commelinaceae — anthocyanins need light, low N avoids reversion).",
+      "homemadeRecommendation": "Banana peel tea every 21d — K that intensifies leaf purple."
     }
   },
   "cheflera": {
@@ -3935,6 +4145,10 @@
           "Weakness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 28d (Heptapleurum arboricola — palmate-leaf Araliaceae).",
+      "homemadeRecommendation": "Worm castings every 30d — gradual N for stable vertical growth."
     }
   },
   "arbol-dinero": {
@@ -3972,7 +4186,11 @@
       "Bright hallway"
     ],
     "placementAvoid": "Constantly damp soil (root rot) and midday direct sun (leaf scorch).",
-    "whyRationale": "Native to Central American wetlands — its swollen trunk stores water to tolerate seasonal drought. Its tolerance to missed waterings comes from that adaptation to cyclic flooding-drought."
+    "whyRationale": "Native to Central American wetlands — its swollen trunk stores water to tolerate seasonal drought. Its tolerance to missed waterings comes from that adaptation to cyclic flooding-drought.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 30d (Pachira aquatica — American wetlands, braided trunk).",
+      "homemadeRecommendation": "Compost tea every 30d — moist humus mimicking its native streambank."
+    }
   },
   "nopal": {
     "name": "Prickly Pear (Nopal)",
@@ -4443,7 +4661,11 @@
       "Pot with a support to climb"
     ],
     "placementAvoid": "Direct sun (burns its fleshy leaves) and prolonged dry heater air.",
-    "whyRationale": "Climbing Southeast Asian asclepiadaceous succulent — heart-shaped leaves with modified CAM tissue. Tolerates forgetfulness but grows very slowly: years of patience are built into its natural rhythm."
+    "whyRationale": "Climbing Southeast Asian asclepiadaceous succulent — heart-shaped leaves with modified CAM tissue. Tolerates forgetfulness but grows very slowly: years of patience are built into its natural rhythm.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-30-15 diluted 1:4 every 30d when active (heart-CAM Asclepiad — high P for waxy flowers).",
+      "homemadeRecommendation": "Banana peel tea every 30d — K that extends fragrant umbels."
+    }
   },
   "mini-monstera": {
     "name": "Mini Monstera (Rhaphidophora)",
@@ -4496,6 +4718,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluted 1:4 every 21d (Rhaphidophora tetrasperma — climbing Araceae, not a true Monstera).",
+      "homemadeRecommendation": "Compost tea every 21d — humus to sustain fast juvenile fenestrations."
     }
   },
   "strelitzia": {
@@ -4545,6 +4771,10 @@
           "Drowsiness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluted 1:4 every 30d (South African Strelitziaceae — large paddle leaves).",
+      "homemadeRecommendation": "Worm castings every 30d with ground peel — K for the rigid paddle leaf."
     }
   },
   "eucalipto": {
@@ -4600,6 +4830,10 @@
           "Weakness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 60d in warm season (Myrtaceae — young grows fast, mature lowers demand).",
+      "homemadeRecommendation": "Worm castings every 30d when active — gradual N without stressing sensitive roots."
     }
   },
   "bambu-suerte": {
@@ -4652,6 +4886,9 @@
           "Weakness"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "A few drops of liquid NPK 10-10-10 every 60d in filtered water (hydroponic — fluoride-sensitive)."
     }
   },
   "sansevieria-cilindrica": {
@@ -4703,6 +4940,9 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d in warm season (CAM Dracaena angolensis — cylindrical leaves, tuberous root)."
     }
   },
   "cactus-san-pedro": {
@@ -4868,6 +5108,10 @@
           "Seizures"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "High-P NPK 10-30-20 diluted 1:4 every 21d during winter bloom (Primulaceae — inverted cycle).",
+      "homemadeRecommendation": "Bone meal at flower onset — slow phosphorus for tuber and flowers."
     }
   },
   "crisantemo": {
@@ -5189,6 +5433,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 60d only in very lean soils (Mediterranean Lamiaceae — excess softens leaves).",
+      "homemadeRecommendation": "Compost tea every 30d — mild N that concentrates leaf essential oils."
     }
   },
   "eneldo": {
@@ -5226,7 +5474,11 @@
       "Kitchen table with south-facing (SH) or north-facing (NH) window"
     ],
     "placementAvoid": "Intense direct summer sun without shade — bolts in 2-3 weeks and loses leaf quality.",
-    "whyRationale": "Apiaceae annual with feathery leaves and aromatic seeds. Cool-temperate annual; in hot Argentine summer it bolts quickly. Sow autumn-winter-early-spring to extend foliage harvest."
+    "whyRationale": "Apiaceae annual with feathery leaves and aromatic seeds. Cool-temperate annual; in hot Argentine summer it bolts quickly. Sow autumn-winter-early-spring to extend foliage harvest.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d (annual Apiaceae — N for leaf before quick flowering).",
+      "homemadeRecommendation": "Compost tea every 14d — N that extends the feathery leaf harvest."
+    }
   },
   "stevia": {
     "name": "Stevia",
@@ -5263,7 +5515,11 @@
       "Patio with morning sun and midday shade"
     ],
     "placementAvoid": "Frost and temperatures <5°C — young tissues die; dry heat is preferable to cold.",
-    "whyRationale": "South American Asteraceae (Paraguay-Brazil) — leaves contain steviosides, natural sweeteners 200-300x sweeter than sugar. Warmth + humidity favor it; cold below 5°C weakens it."
+    "whyRationale": "South American Asteraceae (Paraguay-Brazil) — leaves contain steviosides, natural sweeteners 200-300x sweeter than sugar. Warmth + humidity favor it; cold below 5°C weakens it.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 30d when active (short-lived perennial Asteraceae — N moderates glycoside sweetness).",
+      "homemadeRecommendation": "Compost tea every 21d — mild N avoids diluting the leaf sweetness."
+    }
   },
   "olivo": {
     "name": "Olive Tree",
@@ -5374,7 +5630,11 @@
       "Tray on balcony with morning sun"
     ],
     "placementAvoid": "Hot summer in full sun — bolts in 2-3 weeks; September-November sowing (SH) is usually wasted.",
-    "whyRationale": "Amaranthaceae cool-season annual — bolt risk above 25C: Argentine summer heat triggers flowering in 2-3 weeks. Sow in autumn-winter-early-spring; in summer use partial shade or wait for autumn."
+    "whyRationale": "Amaranthaceae cool-season annual — bolt risk above 25C: Argentine summer heat triggers flowering in 2-3 weeks. Sow in autumn-winter-early-spring; in summer use partial shade or wait for autumn.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 every 14d (leafy Amaranthaceae — steady N until harvest before heat-bolting).",
+      "homemadeRecommendation": "Worm castings every 14d — mild N for tender leaves without excess nitrates."
+    }
   },
   "humidity": {
     "baja": "Low",

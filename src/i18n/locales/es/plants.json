@@ -52,6 +52,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d en cálido (trepadora sotobosque, demanda media-baja).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — el potasio sostiene hojas variegadas brillantes."
     }
   },
   "monstera": {
@@ -106,6 +110,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d en cálido (hemiepífita demanda P para fenestraciones).",
+      "homemadeRecommendation": "Té de compost cada 21d — la materia orgánica imita el humus del dosel donde crece."
     }
   },
   "ficus": {
@@ -156,6 +164,10 @@
           "Salivación excesiva"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 30d en cálido (Moráceas — raíces grandes, ritmo lento).",
+      "homemadeRecommendation": "Lombricompuesto en superficie cada 30d — libera nitrógeno gradual sin quemar raíces."
     }
   },
   "sansevieria": {
@@ -208,6 +220,9 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 baja-N cada 60d en cálido (CAM xerófita — exceso N pudre rizomas)."
     }
   },
   "orquidea": {
@@ -244,7 +259,11 @@
       "Cocina luminosa lejos del fuego"
     ],
     "placementAvoid": "Sol directo del mediodía y agua estancada en la maceta.",
-    "whyRationale": "Es una epífita tropical: crece sobre árboles con raíces aéreas que captan humedad ambiental, no agua estancada. Por eso necesita inmersión y secado completo — la pudrición radicular es su principal causa de muerte."
+    "whyRationale": "Es una epífita tropical: crece sobre árboles con raíces aéreas que captan humedad ambiental, no agua estancada. Por eso necesita inmersión y secado completo — la pudrición radicular es su principal causa de muerte.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 30-10-10 orquídea diluido 1:4 cada 14d en crecimiento; 20-20-20 en floración.",
+      "homemadeRecommendation": "Agua de cocción de arroz fría cada 21d — minerales suaves para epífitas exigentes."
+    }
   },
   "calathea": {
     "name": "Calathea",
@@ -280,7 +299,11 @@
       "Cerca de un humidificador en el living"
     ],
     "placementAvoid": "Sol directo y agua del grifo con mucho cloro.",
-    "whyRationale": "Originaria del sotobosque amazónico, sus hojas con patrones evolucionaron para captar la luz tamizada del dosel. El sol directo daña su sistema fotosintético, optimizado para baja intensidad — por eso reorienta sus hojas siguiendo el ciclo día-noche."
+    "whyRationale": "Originaria del sotobosque amazónico, sus hojas con patrones evolucionaron para captar la luz tamizada del dosel. El sol directo daña su sistema fotosintético, optimizado para baja intensidad — por eso reorienta sus hojas siguiendo el ciclo día-noche.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:5 cada 21d (Marantácea sensible — diluí más en pleno verano).",
+      "homemadeRecommendation": "Té de compost cada 21d — el humus suave evita quemar las hojas patrón."
+    }
   },
   "cinta": {
     "name": "Cinta",
@@ -317,7 +340,11 @@
       "Repisa de cocina con luz natural"
     ],
     "placementAvoid": "Sol directo intenso — las hojas variegadas se queman.",
-    "whyRationale": "Originaria de Sudáfrica, evolucionó en pastizales con luz filtrada y suelos drenados. Sus raíces tuberosas almacenan agua, lo que le permite sobrevivir sequías cortas. Es sensible al flúor del agua del grifo porque su zona nativa tiene aguas blandas."
+    "whyRationale": "Originaria de Sudáfrica, evolucionó en pastizales con luz filtrada y suelos drenados. Sus raíces tuberosas almacenan agua, lo que le permite sobrevivir sequías cortas. Es sensible al flúor del agua del grifo porque su zona nativa tiene aguas blandas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d en cálido (Asparagácea de crecimiento rápido).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — alimenta los rizomas que producen plantitas hijas."
+    }
   },
   "palmera-interior": {
     "name": "Palmera de interior",
@@ -354,7 +381,11 @@
       "Esquina de oficina con luz natural difusa"
     ],
     "placementAvoid": "Sol directo intenso y aire seco de calefactores.",
-    "whyRationale": "Es una palmera del sotobosque mexicano: en la naturaleza crece bajo árboles altos que filtran la luz. Sus frondas se adaptaron a captar luz tenue, por eso tolera mejor la sombra que la mayoría de las palmeras y crece despacio."
+    "whyRationale": "Es una palmera del sotobosque mexicano: en la naturaleza crece bajo árboles altos que filtran la luz. Sus frondas se adaptaron a captar luz tenue, por eso tolera mejor la sombra que la mayoría de las palmeras y crece despacio.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluido 1:4 cada 28d en cálido (Arecácea — alto K para fronda firme).",
+      "homemadeRecommendation": "Cáscara de banana molida en superficie cada 30d — K que evita puntas marrones."
+    }
   },
   "aloe-vera": {
     "name": "Aloe Vera",
@@ -408,6 +439,9 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d en cálido (Asphodelácea CAM — exceso N produce hojas blandas)."
     }
   },
   "lavanda-angustifolia": {
@@ -759,7 +793,11 @@
       "Mesada interior con luz directa de ventana"
     ],
     "placementAvoid": "Sol intenso del mediodía sin riego frecuente — se marchita rápido.",
-    "whyRationale": "Anual originaria del sudeste asiático tropical, necesita calor y día largo. Si florece, sus hojas amargan; por eso se pellizcan las puntas para mantener producción foliar y prolongar la cosecha."
+    "whyRationale": "Anual originaria del sudeste asiático tropical, necesita calor y día largo. Si florece, sus hojas amargan; por eso se pellizcan las puntas para mantener producción foliar y prolongar la cosecha.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-5 cada 30d solo si hojas amarillean (Lamiácea anual — prefiere materia orgánica).",
+      "homemadeRecommendation": "Té de compost cada 14d — N gradual para hojas grandes y aromáticas todo el verano."
+    }
   },
   "romero": {
     "name": "Romero",
@@ -796,7 +834,11 @@
       "Borde de huerta seca al sol pleno"
     ],
     "placementAvoid": "Suelo encharcado o sombra densa — pudre raíces rápidamente.",
-    "whyRationale": "Arbusto perenne mediterráneo, evolucionó en colinas calcáreas con veranos secos. Sus aceites esenciales protegen del calor; el riego excesivo lo mata más rápido que la sequía. Suelo pobre intensifica el aroma."
+    "whyRationale": "Arbusto perenne mediterráneo, evolucionó en colinas calcáreas con veranos secos. Sus aceites esenciales protegen del calor; el riego excesivo lo mata más rápido que la sequía. Suelo pobre intensifica el aroma.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d solo si suelo agotado (Lamiácea mediterránea — prefiere magrura).",
+      "homemadeRecommendation": "Té de compost ligero cada 30d — el romero rinde aceites en suelos pobres."
+    }
   },
   "menta": {
     "name": "Menta",
@@ -847,6 +889,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d si hojas claras (Lamiácea rizomatosa — agresiva, alta demanda N).",
+      "homemadeRecommendation": "Té de compost cada 14d — N que sostiene rizomas extensivos y cosechas frecuentes."
     }
   },
   "tomatera": {
@@ -902,6 +948,10 @@
           "Somnolencia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 fase vegetativa cada 14d; cambiá a 5-15-5 al ver primeras flores (Solanácea).",
+      "homemadeRecommendation": "Lombricompuesto + cáscara de banana cada 14d; cenizas para K en fructificación."
     }
   },
   "pimiento": {
@@ -953,6 +1003,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d; cambiá a 5-15-15 al cuajar primeros frutos (Solanácea — alto K).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d + té de cáscara de banana en fructificación."
     }
   },
   "frutilla": {
@@ -990,7 +1044,11 @@
       "Bandeja vertical con drenaje generoso"
     ],
     "placementAvoid": "Frutos en contacto con tierra húmeda — pudren por hongo Botrytis.",
-    "whyRationale": "Rosácea perenne de clima templado, se propaga por estolones (runners) en lugar de semilla. Productividad cae después del tercer año; conviene reemplazar plantas viejas. Mojar las hojas favorece hongos: el riego va al pie."
+    "whyRationale": "Rosácea perenne de clima templado, se propaga por estolones (runners) en lugar de semilla. Productividad cae después del tercer año; conviene reemplazar plantas viejas. Mojar las hojas favorece hongos: el riego va al pie.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d; alto-K 5-15-30 cuando aparecen primeras flores (Rosácea estolonífera).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 14d en floración — K que dulcifica los frutos."
+    }
   },
   "limonero": {
     "name": "Limonero",
@@ -1209,6 +1267,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d en cálido (Aroide — demanda P para spathes blancas).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — K que prolonga la duración de la floración."
     }
   },
   "dracaena": {
@@ -1263,6 +1325,10 @@
           "Hipersalivación"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 30d en cálido (Asparagácea tolerante — sin exceso de F).",
+      "homemadeRecommendation": "Té de compost cada 30d con agua filtrada — sensible a flúor del agua corriente."
     }
   },
   "filodendro": {
@@ -1318,6 +1384,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Aroide trepador, demanda media — ajustá por especie).",
+      "homemadeRecommendation": "Lombricompuesto líquido cada 21d — humus suave que copia el sotobosque tropical."
     }
   },
   "jade": {
@@ -1370,6 +1440,9 @@
           "Bradicardia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d en cálido (Crasulácea CAM — hojas blandas si hay exceso de N)."
     }
   },
   "peperomia": {
@@ -1407,7 +1480,11 @@
       "Mesita de luz cerca de una ventana al este"
     ],
     "placementAvoid": "Sol directo intenso y corrientes de aire frío.",
-    "whyRationale": "Es una planta del sotobosque tropical americano que crece sobre troncos caídos. Sus hojas semi-suculentas almacenan agua para sobrevivir entre lluvias estacionales del dosel. Por eso prefiere riego espaciado y luz tamizada — su nicho natural."
+    "whyRationale": "Es una planta del sotobosque tropical americano que crece sobre troncos caídos. Sus hojas semi-suculentas almacenan agua para sobrevivir entre lluvias estacionales del dosel. Por eso prefiere riego espaciado y luz tamizada — su nicho natural.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:5 cada 30d (Piperácea pequeña — raíces finas, baja demanda).",
+      "homemadeRecommendation": "Té de compost diluido cada 30d — mejor poco y suave que mucho concentrado."
+    }
   },
   "rosa": {
     "name": "Rosa",
@@ -1651,6 +1728,10 @@
           "Fotosensibilización (grandes cantidades)"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d (Apiácea bienal — N para hojas en primer año, no en floración).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d — N continuo para cosechar manojos toda la temporada."
     }
   },
   "oregano": {
@@ -1702,6 +1783,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d solo si suelo agotado (Lamiácea mediterránea — fertilidad excesiva diluye aceites).",
+      "homemadeRecommendation": "Té de compost ligero cada 30d — la magrura concentra el aroma característico."
     }
   },
   "cilantro": {
@@ -1739,7 +1824,11 @@
       "Bandeja interior con luz brillante difusa"
     ],
     "placementAvoid": "Sol intenso del verano — se va rápido a flor por día largo.",
-    "whyRationale": "Anual de origen mediterráneo y Asia Menor, sensible al fotoperíodo: días largos + calor disparan la floración (bolting) y las hojas se vuelven amargas. Por eso conviene sembrar en otoño o primavera temprana, cosechando jóvenes."
+    "whyRationale": "Anual de origen mediterráneo y Asia Menor, sensible al fotoperíodo: días largos + calor disparan la floración (bolting) y las hojas se vuelven amargas. Por eso conviene sembrar en otoño o primavera temprana, cosechando jóvenes.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d (Apiácea anual — N rápido antes de bolting de calor).",
+      "homemadeRecommendation": "Té de compost cada 14d — N para alargar la cosecha de hojas antes de florecer."
+    }
   },
   "tomillo": {
     "name": "Tomillo",
@@ -1788,6 +1877,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d solo si suelo muy pobre (Lamiácea mediterránea — magrura intensifica timol).",
+      "homemadeRecommendation": "Compost ligero cada 60d — el tomillo florece mejor en sustratos pobres."
     }
   },
   "lechuga": {
@@ -1825,7 +1918,11 @@
       "Maceta amplia con compost de lombrices"
     ],
     "placementAvoid": "Sol pleno del verano — se va a flor (bolting) y se vuelve amarga.",
-    "whyRationale": "Asterácea anual de clima fresco; con días largos y calor entra en bolting y la savia se torna amarga. Por eso se siembra escalonadamente y se cosecha temprano. La cosecha por hoja escalera prolonga la productividad varias semanas."
+    "whyRationale": "Asterácea anual de clima fresco; con días largos y calor entra en bolting y la savia se torna amarga. Por eso se siembra escalonadamente y se cosecha temprano. La cosecha por hoja escalera prolonga la productividad varias semanas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 14d (Asterácea de hoja — alto N hasta el corte, evitar bolting).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d — N suave para hojas crujientes sin sabor amargo."
+    }
   },
   "pepino": {
     "name": "Pepino",
@@ -1862,7 +1959,11 @@
       "Pérgola o reja al sol pleno"
     ],
     "placementAvoid": "Sombra parcial y aislamiento de polinizadores — pocos frutos.",
-    "whyRationale": "Cucurbitácea anual de origen indio, con flores macho y hembra separadas en la misma planta. Necesita polinización por insectos para cuajar; sin abejas o polinización manual, las flores caen sin frutos. Riego inconsistente da pepinos amargos."
+    "whyRationale": "Cucurbitácea anual de origen indio, con flores macho y hembra separadas en la misma planta. Necesita polinización por insectos para cuajar; sin abejas o polinización manual, las flores caen sin frutos. Riego inconsistente da pepinos amargos.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d; pasá a 5-15-10 en fructificación (Cucurbitácea — alta demanda agua y nutrientes).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d + té de cáscara en fructificación — K para frutos crocantes."
+    }
   },
   "zanahoria": {
     "name": "Zanahoria",
@@ -1899,7 +2000,11 @@
       "Bandeja honda de balcón con sustrato suelto"
     ],
     "placementAvoid": "Suelo compacto o pedregoso — raíces bifurcadas o deformes.",
-    "whyRationale": "Apiácea bienal: forma raíz en el primer año y flor en el segundo (en huerta no se deja florecer). Origen euroasiático; necesita suelo profundo y suelto para que la raíz crezca recta. Siembra densa da raíces pequeñas."
+    "whyRationale": "Apiácea bienal: forma raíz en el primer año y flor en el segundo (en huerta no se deja florecer). Origen euroasiático; necesita suelo profundo y suelto para que la raíz crezca recta. Siembra densa da raíces pequeñas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 bajo-N cada 21d (Apiácea raíz — exceso N hace raíces bifurcadas y peludas).",
+      "homemadeRecommendation": "Compost maduro al sembrar; cenizas en superficie cada 30d para K."
+    }
   },
   "rucula": {
     "name": "Rúcula",
@@ -1936,7 +2041,11 @@
       "Jardinera mediana de 20 cm de profundidad"
     ],
     "placementAvoid": "Sol pleno del verano — hojas muy picantes y bolting rápido.",
-    "whyRationale": "Brassicácea anual de ciclo rapidísimo (4-6 semanas). Sus glucosinolatos dan el sabor picante característico, que se intensifica con estrés térmico. Día largo + calor disparan floración temprana, por eso se siembra escalonadamente."
+    "whyRationale": "Brassicácea anual de ciclo rapidísimo (4-6 semanas). Sus glucosinolatos dan el sabor picante característico, que se intensifica con estrés térmico. Día largo + calor disparan floración temprana, por eso se siembra escalonadamente.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 14d (Brassicácea de ciclo corto — N para hoja antes del bolting).",
+      "homemadeRecommendation": "Té de compost cada 14d — N rápido que mantiene picante el sabor sin amargor."
+    }
   },
   "naranjo": {
     "name": "Naranjo",
@@ -2189,7 +2298,11 @@
       "Bandeja amplia al sol pleno con polinizadores cerca"
     ],
     "placementAvoid": "Espacio chico y aislamiento de polinizadores — pocos frutos.",
-    "whyRationale": "Cucurbitácea anual de origen sudamericano (Cucurbita maxima domesticada en los Andes). Flores macho y hembra separadas necesitan polinizadores; cuando faltan abejas, las flores hembra caen sin cuajar y conviene polinizar a mano."
+    "whyRationale": "Cucurbitácea anual de origen sudamericano (Cucurbita maxima domesticada en los Andes). Flores macho y hembra separadas necesitan polinizadores; cuando faltan abejas, las flores hembra caen sin cuajar y conviene polinizar a mano.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d; cambiá a 5-15-10 al cuajar frutos (Cucurbitácea de fruto rápido).",
+      "homemadeRecommendation": "Lombricompuesto + cenizas de madera cada 14d — K para frutos firmes y rápidos."
+    }
   },
   "ciboulette": {
     "name": "Ciboulette",
@@ -2244,6 +2357,10 @@
           "Letargo"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d (Amarilidácea bulbosa — N para reposición tras corte de hojas).",
+      "homemadeRecommendation": "Té de compost cada 14d — N que reactiva el manojo después de cada cosecha."
     }
   },
   "haworthia": {
@@ -2384,6 +2501,9 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 60d en cálido (Asparagácea desértica — tolerante pero baja demanda)."
     }
   },
   "jacaranda": {
@@ -2844,7 +2964,11 @@
       "Borde de muro o jardinera vertical"
     ],
     "placementAvoid": "Suelo encharcado o sombra densa — pudre raíces igual que el romero erecto.",
-    "whyRationale": "Variedad postrada del romero común, mismo origen mediterráneo y misma fisiología drought-adapted. La forma rastrera no cambia las necesidades: sol pleno, suelo pobre y poco riego; ideal cuando se busca cubresuelo o cascada decorativa."
+    "whyRationale": "Variedad postrada del romero común, mismo origen mediterráneo y misma fisiología drought-adapted. La forma rastrera no cambia las necesidades: sol pleno, suelo pobre y poco riego; ideal cuando se busca cubresuelo o cascada decorativa.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d solo si suelo agotado (variedad postrada — aún más sensible a exceso N).",
+      "homemadeRecommendation": "Compost ligero cada 30d — la magrura mantiene la postura rastrera y aceites."
+    }
   },
   "tomate-cherry": {
     "name": "Tomate cherry",
@@ -2899,6 +3023,10 @@
           "Somnolencia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d; pasá a 5-15-5 al ver flores (Solanácea — frutos chicos pero racimos largos).",
+      "homemadeRecommendation": "Lombricompuesto + cáscara de banana cada 14d — el K dulcifica racimos enteros."
     }
   },
   "anthurium": {
@@ -2952,6 +3080,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (epífita aroide — alta demanda K para spathes rojos).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — el K refuerza el color intenso del spathe."
     }
   },
   "alocasia": {
@@ -3007,6 +3139,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Aroide tuberosa — demanda alta cuando emite hoja).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — apoya la formación de venas plateadas."
     }
   },
   "caladium": {
@@ -3062,6 +3198,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d en activo (tubérculo — frená al ver hojas amarillas).",
+      "homemadeRecommendation": "Té de compost cada 21d en temporada — alimenta el tubérculo para próximo brote."
     }
   },
   "singonio": {
@@ -3115,6 +3255,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Aroide heteroblástica — sostiene hojas adultas tipo flecha).",
+      "homemadeRecommendation": "Lombricompuesto líquido cada 21d — N suave que evita quemar puntas."
     }
   },
   "aglaonema": {
@@ -3170,6 +3314,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 28d (Aroide de baja luz — demanda menor por menos fotosíntesis).",
+      "homemadeRecommendation": "Té de compost cada 28d — humus liviano que respeta su ritmo lento."
     }
   },
   "costilla-adan": {
@@ -3225,6 +3373,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Monstera adansonii — fenestraciones pequeñas, igual demanda K).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — sostiene las hojas perforadas chiquitas."
     }
   },
   "difenbaquia": {
@@ -3280,6 +3432,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Aroide tropical — sostiene patrones blanco-verde).",
+      "homemadeRecommendation": "Lombricompuesto líquido cada 21d — N gradual para hojas grandes y vistosas."
     }
   },
   "begonia-rex": {
@@ -3329,6 +3485,10 @@
           "Salivación"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:5 cada 21d (Begoniácea — antocianinas exigen luz pero baja N).",
+      "homemadeRecommendation": "Té de compost suave cada 21d — humus que mantiene patrones rojo-plateados."
     }
   },
   "croton": {
@@ -3382,6 +3542,10 @@
           "Depresión"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Euforbiácea — necesita P y K para carotenoides intensos).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — alto K que sostiene el rojo y naranja."
     }
   },
   "fitonia": {
@@ -3419,7 +3583,11 @@
       "Junto a humidificador"
     ],
     "placementAvoid": "Sol directo (quema hojas pequeñas) y rincones oscuros (pierde patrón de venas).",
-    "whyRationale": "Sotobosque amazónico — sus venas blancas reflejan la poca luz que llega al piso de la selva. Hojas finas pierden agua rápido, por eso necesita humedad alta y riego constante."
+    "whyRationale": "Sotobosque amazónico — sus venas blancas reflejan la poca luz que llega al piso de la selva. Hojas finas pierden agua rápido, por eso necesita humedad alta y riego constante.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:5 cada 21d (Acantácea pequeña — raíces delicadas, dosis suave).",
+      "homemadeRecommendation": "Té de compost diluido cada 21d — humus que respeta sus raíces superficiales."
+    }
   },
   "ficus-lyrata": {
     "name": "Ficus lyrata",
@@ -3470,6 +3638,10 @@
           "Salivación excesiva"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 28d (Morácea — hoja-violín grande necesita dosis moderada).",
+      "homemadeRecommendation": "Lombricompuesto en superficie cada 30d — N gradual sin estresar la raíz pivotante."
     }
   },
   "maranta": {
@@ -3507,7 +3679,11 @@
       "Estantería interior alejada de ventana"
     ],
     "placementAvoid": "Sol directo (decolora) y aire seco — la maranta no tolera ambientes secos.",
-    "whyRationale": "Marantáceas de la selva brasileña — su nictinastia (plegado nocturno por pulvinos en el peciolo) reduce pérdida de agua y exposición a depredadores nocturnos. Patrón de venas refleja luz tamizada."
+    "whyRationale": "Marantáceas de la selva brasileña — su nictinastia (plegado nocturno por pulvinos en el peciolo) reduce pérdida de agua y exposición a depredadores nocturnos. Patrón de venas refleja luz tamizada.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:5 cada 21d (Marantácea nictinástica — pulvinos sensibles a sales).",
+      "homemadeRecommendation": "Té de compost cada 21d con agua de lluvia — minimiza acumulación de sales."
+    }
   },
   "zamioculca": {
     "name": "Zamioculca",
@@ -3558,6 +3734,9 @@
           "Malestar gastrointestinal leve"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 60d en cálido (Aroide rizomatosa CAM — rizomas almacenan reservas)."
     }
   },
   "cola-burro": {
@@ -3595,7 +3774,10 @@
       "Repisa luminosa lejos de personas"
     ],
     "placementAvoid": "Lugares de paso (pierde hojas) y sustrato siempre húmedo (pudrición de tallos).",
-    "whyRationale": "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y usa metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento."
+    "whyRationale": "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y usa metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d en cálido (Sedum morganianum CAM — hojas frágiles, mínima dosis)."
+    }
   },
   "hiedra": {
     "name": "Hiedra",
@@ -3648,6 +3830,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 30d en cálido (Araliácea trepadora — demanda media constante).",
+      "homemadeRecommendation": "Lombricompuesto cada 30d — N suave que evita aclarar las hojas variegadas."
     }
   },
   "palmera-areca": {
@@ -3685,7 +3871,11 @@
       "A 1 m de ventana al sur con filtro"
     ],
     "placementAvoid": "Sol directo del mediodía (quema frondas) y temperaturas bajo 12°C.",
-    "whyRationale": "Palmera de Madagascar — Arecaceae adaptada a sotobosque tropical. Tolera luz dispersa pero requiere drenaje rápido y humedad constante; sus raíces no soportan encharcamiento prolongado."
+    "whyRationale": "Palmera de Madagascar — Arecaceae adaptada a sotobosque tropical. Tolera luz dispersa pero requiere drenaje rápido y humedad constante; sus raíces no soportan encharcamiento prolongado.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluido 1:4 cada 28d (Arecácea Dypsis — alto K previene amarilleo de fronda).",
+      "homemadeRecommendation": "Cáscara de banana molida cada 28d — K que mantiene las pinnas verdes y firmes."
+    }
   },
   "palmera-kentia": {
     "name": "Palmera kentia",
@@ -3722,7 +3912,11 @@
       "Habitación amplia lejos de ventana"
     ],
     "placementAvoid": "Sol directo prolongado (quema frondas) y exceso de riego (pudrición de raíces).",
-    "whyRationale": "Palmera de Lord Howe (Australia) — endémica de bosques sombreados. Su tolerancia a poca luz proviene de adaptación al sotobosque, lo que la hace excepcional como palmera de interior profundo."
+    "whyRationale": "Palmera de Lord Howe (Australia) — endémica de bosques sombreados. Su tolerancia a poca luz proviene de adaptación al sotobosque, lo que la hace excepcional como palmera de interior profundo.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-5-15 diluido 1:4 cada 28d (Howea de Lord Howe — sotobosque sombreado, ritmo lento).",
+      "homemadeRecommendation": "Lombricompuesto en superficie cada 30d — humus suave para raíz tolerante a baja luz."
+    }
   },
   "helecho-boston": {
     "name": "Helecho de Boston",
@@ -3759,7 +3953,11 @@
       "Cesta colgante en lugar húmedo"
     ],
     "placementAvoid": "Aire seco de calefacción (frondas crujientes) y sol directo (quema).",
-    "whyRationale": "Helecho tropical americano — su esporofito requiere humedad ambiental >60% para mantener turgencia foliar. Sin ella las frondas se secan irreversiblemente porque no almacena agua."
+    "whyRationale": "Helecho tropical americano — su esporofito requiere humedad ambiental >60% para mantener turgencia foliar. Sin ella las frondas se secan irreversiblemente porque no almacena agua.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluido 1:5 cada 14d (Pteridofita esporofito — alta demanda continua).",
+      "homemadeRecommendation": "Té de compost cada 14d con agua tibia — humus húmedo que imita su nicho selvático."
+    }
   },
   "helecho-nido": {
     "name": "Helecho nido de ave",
@@ -3796,7 +3994,11 @@
       "Cocina con luz natural"
     ],
     "placementAvoid": "Sol directo (quema frondas) y agua en el nido central (pudrición).",
-    "whyRationale": "Helecho epífito asiático — en su hábitat crece en horquillas de árboles, recogiendo agua de lluvia y detritos en su nido. Sus frondas enteras evolucionaron para esa colecta hídrica."
+    "whyRationale": "Helecho epífito asiático — en su hábitat crece en horquillas de árboles, recogiendo agua de lluvia y detritos en su nido. Sus frondas enteras evolucionaron para esa colecta hídrica.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluido 1:5 cada 14d (Asplenium epífito — roseta acumula agua y nutrientes).",
+      "homemadeRecommendation": "Té de compost cada 14d aplicado a la base — la roseta capta humus tipo lluvia."
+    }
   },
   "pilea": {
     "name": "Pilea",
@@ -3833,7 +4035,11 @@
       "Cocina con luz natural"
     ],
     "placementAvoid": "Sol directo (quema hojas redondas) y rincones oscuros (tallo largo y débil).",
-    "whyRationale": "Originaria de la provincia china de Yunnan, hábitat templado de montaña — sus hojas redondas son escudos para luz brillante indirecta. Los brotes hijos rizomatosos permiten propagación clonal fácil."
+    "whyRationale": "Originaria de la provincia china de Yunnan, hábitat templado de montaña — sus hojas redondas son escudos para luz brillante indirecta. Los brotes hijos rizomatosos permiten propagación clonal fácil.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 21d (Urticácea Yunnan — rizomas brotan plantitas hijas).",
+      "homemadeRecommendation": "Té de compost cada 21d — N constante para multiplicación por hijuelos."
+    }
   },
   "tradescantia": {
     "name": "Tradescantia",
@@ -3882,6 +4088,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 21d (Commelinácea — antocianinas exigen luz, baja N evita reversión).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d — K que intensifica el morado de las hojas."
     }
   },
   "cheflera": {
@@ -3935,6 +4145,10 @@
           "Debilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 28d (Heptapleurum arboricola — Araliácea de hojas palmadas).",
+      "homemadeRecommendation": "Lombricompuesto cada 30d — N gradual para sostener crecimiento vertical estable."
     }
   },
   "arbol-dinero": {
@@ -3972,7 +4186,11 @@
       "Pasillo luminoso"
     ],
     "placementAvoid": "Sustrato siempre húmedo (pudrición de raíces) y sol directo del mediodía (quema hojas).",
-    "whyRationale": "Originaria de pantanos centroamericanos — su tronco engrosado almacena agua para tolerar sequías estacionales. Su tolerancia a olvidos de riego viene de esa adaptación a inundaciones-sequías cíclicas."
+    "whyRationale": "Originaria de pantanos centroamericanos — su tronco engrosado almacena agua para tolerar sequías estacionales. Su tolerancia a olvidos de riego viene de esa adaptación a inundaciones-sequías cíclicas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 30d (Pachira aquatica — pantanos americanos, tronco trenzado).",
+      "homemadeRecommendation": "Té de compost cada 30d — humus húmedo que copia su ribera natal."
+    }
   },
   "nopal": {
     "name": "Nopal",
@@ -4443,7 +4661,11 @@
       "Maceta con tutor donde pueda trepar"
     ],
     "placementAvoid": "Sol directo (quema sus hojas carnosas) y aire seco prolongado de calefacción.",
-    "whyRationale": "Asclepiadácea trepadora suculenta del sudeste asiático — hojas en forma de corazón con tejido CAM modificado. Tolera olvidos pero crece muy lento: tiene años de paciencia incorporados a su ritmo natural."
+    "whyRationale": "Asclepiadácea trepadora suculenta del sudeste asiático — hojas en forma de corazón con tejido CAM modificado. Tolera olvidos pero crece muy lento: tiene años de paciencia incorporados a su ritmo natural.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-30-15 diluido 1:4 cada 30d en activo (Asclepiadácea CAM-corazón — alto P para flores cerosas).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 30d — K que prolonga las umbelas perfumadas."
+    }
   },
   "mini-monstera": {
     "name": "Mini Monstera (Rhaphidophora)",
@@ -4496,6 +4718,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 20-20-20 diluido 1:4 cada 21d (Rhaphidophora tetrasperma — Aroide trepadora, no es Monstera).",
+      "homemadeRecommendation": "Té de compost cada 21d — humus para sostener las fenestras juveniles rápidas."
     }
   },
   "strelitzia": {
@@ -4545,6 +4771,10 @@
           "Somnolencia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 diluido 1:4 cada 30d (Strelitziácea sudafricana — paddle-leaves grandes).",
+      "homemadeRecommendation": "Lombricompuesto cada 30d con cáscara molida — K para el paddle-leaf rígido."
     }
   },
   "eucalipto": {
@@ -4600,6 +4830,10 @@
           "Debilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 60d en cálido (Mirtácea — joven crece rápido, adulto baja demanda).",
+      "homemadeRecommendation": "Lombricompuesto cada 30d en activo — N gradual sin estresar raíces sensibles."
     }
   },
   "bambu-suerte": {
@@ -4652,6 +4886,9 @@
           "Debilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "Unas gotas de NPK 10-10-10 líquido cada 60d en agua filtrada (cultivo hidropónico — sensible al flúor)."
     }
   },
   "sansevieria-cilindrica": {
@@ -4703,6 +4940,9 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d en cálido (Dracaena angolensis CAM — hojas cilíndricas, raíz tuberosa)."
     }
   },
   "cactus-san-pedro": {
@@ -4868,6 +5108,10 @@
           "Convulsiones"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-30-20 alto-P diluido 1:4 cada 21d en floración invernal (Primulácea — invierte ciclo).",
+      "homemadeRecommendation": "Harina de hueso al inicio de floración — fósforo lento para tubérculo y flores."
     }
   },
   "crisantemo": {
@@ -5189,6 +5433,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 60d solo en suelos muy magros (Lamiácea mediterránea — exceso ablanda hojas).",
+      "homemadeRecommendation": "Té de compost cada 30d — N suave que concentra aceites esenciales en hoja."
     }
   },
   "eneldo": {
@@ -5226,7 +5474,11 @@
       "Mesa de cocina con ventana al sur (HS) o norte (HN)"
     ],
     "placementAvoid": "Sol directo intenso de verano sin sombra — se va a flor en 2-3 semanas y pierde calidad de hojas.",
-    "whyRationale": "Apiácea anual de hojas filiformes y semillas aromáticas. Anual de fría-templada; en verano caliente argentino se va a flor rápido. Sembrá en otoño-invierno-comienzo-primavera para prolongar la cosecha de follaje."
+    "whyRationale": "Apiácea anual de hojas filiformes y semillas aromáticas. Anual de fría-templada; en verano caliente argentino se va a flor rápido. Sembrá en otoño-invierno-comienzo-primavera para prolongar la cosecha de follaje.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d (Apiácea anual — N para hoja antes de floración rápida).",
+      "homemadeRecommendation": "Té de compost cada 14d — N que alarga la cosecha de hojas plumosas."
+    }
   },
   "stevia": {
     "name": "Stevia",
@@ -5263,7 +5515,11 @@
       "Patio con sol matinal y sombra del mediodía"
     ],
     "placementAvoid": "Heladas y temperaturas <5°C — los tejidos jóvenes mueren; el calor seco es preferible al frío.",
-    "whyRationale": "Asterácea sudamericana (Paraguay-Brasil) — sus hojas contienen esteviósidos, edulcorantes naturales 200-300x más dulces que el azúcar. Calor + humedad la favorecen; el frío bajo 5°C la debilita."
+    "whyRationale": "Asterácea sudamericana (Paraguay-Brasil) — sus hojas contienen esteviósidos, edulcorantes naturales 200-300x más dulces que el azúcar. Calor + humedad la favorecen; el frío bajo 5°C la debilita.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 30d en activo (Asterácea perenne corta — N modera dulzor de glicósidos).",
+      "homemadeRecommendation": "Té de compost cada 21d — N suave evita diluir el dulzor de las hojas."
+    }
   },
   "olivo": {
     "name": "Olivo",
@@ -5374,7 +5630,11 @@
       "Bandeja en balcón con sol de mañana"
     ],
     "placementAvoid": "Verano caliente bajo sol pleno — bolt en 2-3 semanas; siembra de septiembre-noviembre (HS) suele desperdiciarse.",
-    "whyRationale": "Amarantácea anual cool-season — bolt risk a >25°C: el calor estival argentino la hace florecer en 2-3 semanas. Sembrá en otoño-invierno-comienzo-primavera; en verano usá media-sombra o esperá al otoño."
+    "whyRationale": "Amarantácea anual cool-season — bolt risk a >25°C: el calor estival argentino la hace florecer en 2-3 semanas. Sembrá en otoño-invierno-comienzo-primavera; en verano usá media-sombra o esperá al otoño.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-5-5 cada 14d (Amarantácea de hoja — N continuo hasta cosechar antes del bolting de calor).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d — N suave para hojas tiernas sin nitratos excesivos."
+    }
   },
   "humidity": {
     "baja": "Baja",
