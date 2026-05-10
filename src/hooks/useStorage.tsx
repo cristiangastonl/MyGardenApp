@@ -20,7 +20,7 @@ import { getCatalogEntry } from '../data/plantDatabase';
  * code paths MUST NOT silently overwrite. Pickers / settings / explicit user-edit flows
  * pass `{ fromUserEdit: true }` to opt out of the guard. Per CRIT-1 (.planning/research/PITFALLS.md).
  */
-const PROTECTED_USER_FIELDS = ['waterSchedule', 'lightLevel', 'waterMode'] as const;
+const PROTECTED_USER_FIELDS = ['waterSchedule', 'lightLevel', 'waterMode', 'fertilizeSchedule'] as const;
 
 interface UpdatePlantOptions {
   /** Pass `true` ONLY when the caller is a user-edit flow (picker save, settings save).
