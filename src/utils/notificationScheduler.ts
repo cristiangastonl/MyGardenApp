@@ -47,6 +47,7 @@ function createMorningContent(
   plants: Plant[],
   weather: WeatherData | null,
   season: WaterSeason,
+  notifSettings: NotificationSettings | null,
   healthStatuses?: PlantHealthStatus[]
 ): { title: string; body: string } {
   const today = new Date();
@@ -85,6 +86,7 @@ function createMorningContent(
   const waterTasks = tasks.filter((t) => t.type === "water" || t.type === "check_soil");
   const sunTasks = tasks.filter((t) => t.type === "sun");
   const outdoorTasks = tasks.filter((t) => t.type === "outdoor");
+  const fertilizeTasks = tasks.filter((t) => t.type === "fertilize");
 
   if (tasks.length === 0 && !body) {
     body = i18n.t('notifications.allGood');
@@ -125,6 +127,14 @@ function createMorningContent(
       );
     }
 
+    // FERT-03/05 — opt-in gated. notifSettings === null OR fertilizeReminders !== true → skip.
+    // Default OFF in NotificationSettings (Plan 20-05 ships the Settings toggle UI).
+    if (fertilizeTasks.length > 0 && notifSettings?.fertilizeReminders === true) {
+      parts.push(
+        `${i18n.t('notifications.fertilize')} ${fertilizeTasks.length} ${fertilizeTasks.length === 1 ? i18n.t('notifications.plantWord') : i18n.t('notifications.plantsWord')}`
+      );
+    }
+
     body += i18n.t('notifications.todayTasks', { tasks: parts.join(", ") });
   }
 
@@ -145,6 +155,7 @@ export async function scheduleMorningReminder(
   plants: Plant[],
   weather: WeatherData | null,
   season: WaterSeason,
+  notifSettings: NotificationSettings | null,
   healthStatuses?: PlantHealthStatus[]
 ): Promise<string | null> {
   if (!notificationsAvailable) return null;
@@ -154,7 +165,7 @@ export async function scheduleMorningReminder(
     await cancelMorningReminder();
 
     const { hours, minutes } = parseTime(time);
-    const { title, body } = createMorningContent(plants, weather, season, healthStatuses);
+    const { title, body } = createMorningContent(plants, weather, season, notifSettings, healthStatuses);
 
     const identifier = await Notifications.scheduleNotificationAsync({
       identifier: MORNING_REMINDER_ID,

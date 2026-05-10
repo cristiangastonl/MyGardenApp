@@ -157,7 +157,7 @@ export function useNotifications({
   useEffect(() => {
     if (settings.enabled && settings.morningReminder && plants.length > 0) {
       const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, season);
-      scheduleMorningReminder(settings.morningTime, plants, weather, season, healthStatuses);
+      scheduleMorningReminder(settings.morningTime, plants, weather, season, settings, healthStatuses);
       refreshScheduled();
     }
   }, [
@@ -276,7 +276,7 @@ export function useNotifications({
       // Schedule morning reminder if enabled
       if (settings.morningReminder && plants.length > 0) {
         const { healthStatuses } = calculateGardenHealth(plants, new Date(), weather, diagnosisHistory, season);
-        await scheduleMorningReminder(settings.morningTime, plants, weather, season, healthStatuses);
+        await scheduleMorningReminder(settings.morningTime, plants, weather, season, settings, healthStatuses);
       }
 
       // Schedule weather alerts if enabled
