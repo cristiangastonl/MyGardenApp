@@ -1,6 +1,7 @@
 import { Plant, PlantDBEntry, Task } from "../types";
 import { parseDate, addDays, isSameDay } from "./dates";
 import type { WaterSeason } from "./seasonality";
+import { getCatalogEntry } from "../data/plantDatabase";
 import i18n from "../i18n";
 
 /**
@@ -79,6 +80,21 @@ export function getTasksForDay(plants: Plant[], day: Date, season: WaterSeason):
     }
     if (p.outdoorDays.includes(day.getDay())) {
       tasks.push({ type: "outdoor", icon: "🌤️", label: `Sacar ${p.name}`, plantId: p.id });
+    }
+    // FERT-03/04 — emit fertilize task on cadence (season-aware via warm/cold split).
+    // catalogEntry resolved via getCatalogEntry; null for custom plants → no emission.
+    // Cold-season dormancy + per-plant fertilizeSchedule.intervalDays override
+    // both handled inside getNextFertilizeDate (Plan 20-02). i18n key tasks.fertilize
+    // (landed in Plan 20-00 Task 3) is the user-facing label with {{name}} interpolation.
+    const fertilizeCatalogEntry = p.databaseId ? getCatalogEntry(p.databaseId) : null;
+    const nextFertilize = getNextFertilizeDate(p, fertilizeCatalogEntry, day, season);
+    if (nextFertilize && isSameDay(nextFertilize, day)) {
+      tasks.push({
+        type: "fertilize",
+        icon: "🌱",
+        label: i18n.t('tasks.fertilize', { name: p.name }),
+        plantId: p.id,
+      });
     }
   });
   return tasks;
