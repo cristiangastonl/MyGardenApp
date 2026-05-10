@@ -33,6 +33,7 @@ interface DayDetailModalProps {
   onWater: (plantId: string) => void;
   onSunDone: (plantId: string) => void;
   onOutdoorDone: (plantId: string) => void;
+  onFertilizeDone: (plantId: string) => void;
   onAddNote: (text: string) => void;
   onDeleteNote: (noteId: string) => void;
   onAddReminder: (text: string, time: string) => void;
@@ -51,6 +52,7 @@ export function DayDetailModal({
   onWater,
   onSunDone,
   onOutdoorDone,
+  onFertilizeDone,
   onAddNote,
   onDeleteNote,
   onAddReminder,
@@ -125,13 +127,15 @@ export function DayDetailModal({
                       (task.type === 'water' && plant.lastWatered === dateStr) ||
                       (task.type === 'sun' && plant.sunDoneDate === dateStr) ||
                       (task.type === 'outdoor' && plant.outdoorDoneDate === dateStr) ||
-                      (task.type === 'check_soil' && plant.lastWatered === dateStr);
+                      (task.type === 'check_soil' && plant.lastWatered === dateStr) ||
+                      (task.type === 'fertilize' && plant.fertilizeSchedule?.lastFertilized === dateStr);
 
                     const handlePress = () => {
                       if (task.type === 'water') onWater(task.plantId);
                       else if (task.type === 'sun') onSunDone(task.plantId);
                       else if (task.type === 'outdoor') onOutdoorDone(task.plantId);
                       else if (task.type === 'check_soil') onWater(task.plantId);
+                      else if (task.type === 'fertilize') onFertilizeDone(task.plantId);
                     };
 
                     return (
@@ -142,14 +146,18 @@ export function DayDetailModal({
                         icon={task.icon}
                         label={task.label}
                         bgColor={
-                          task.type === 'water' || task.type === 'check_soil'
+                          task.type === 'fertilize'
+                            ? colors.successBg
+                            : task.type === 'water' || task.type === 'check_soil'
                             ? colors.waterLight
                             : task.type === 'sun'
                             ? colors.warningBg
                             : colors.infoBg
                         }
                         textColor={
-                          task.type === 'water' || task.type === 'check_soil'
+                          task.type === 'fertilize'
+                            ? colors.green
+                            : task.type === 'water' || task.type === 'check_soil'
                             ? colors.waterBlue
                             : task.type === 'sun'
                             ? colors.sunDark

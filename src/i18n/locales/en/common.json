@@ -837,7 +837,8 @@
     "noNotes": "No notes",
     "taskWater": "Watering",
     "taskSun": "Sun",
-    "taskOutdoor": "Outdoor"
+    "taskOutdoor": "Outdoor",
+    "taskFertilize": "Fertilize"
   },
   "tasks": {
     "checkSoil": "Check soil — {{name}}",

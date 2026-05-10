@@ -88,6 +88,8 @@ export function DayDetail({
         return "🌤️";
       case "check_soil":
         return "🤚";
+      case "fertilize":
+        return "🌱";
       default:
         return "🌱";
     }
@@ -103,6 +105,8 @@ export function DayDetail({
         return t('dayDetail.taskOutdoor');
       case "check_soil":
         return t('tasks.checkSoil');
+      case "fertilize":
+        return t('dayDetail.taskFertilize');
       default:
         return "";
     }
@@ -160,6 +164,7 @@ export function DayDetail({
                               task.type === "sun" && styles.taskIconSun,
                               task.type === "outdoor" && styles.taskIconOutdoor,
                               task.type === "check_soil" && styles.taskIconWater,
+                              task.type === "fertilize" && styles.taskIconFertilize,
                             ]}
                           >
                             <Text style={styles.taskIconText}>
@@ -487,6 +492,9 @@ const styles = StyleSheet.create({
   },
   taskIconOutdoor: {
     backgroundColor: "#e8f4fb",
+  },
+  taskIconFertilize: {
+    backgroundColor: colors.successBg,
   },
   taskIconText: {
     fontSize: 20,

@@ -262,6 +262,7 @@ export default function CalendarScreen() {
           onWater={handleWater}
           onSunDone={handleSunDone}
           onOutdoorDone={handleOutdoorDone}
+          onFertilizeDone={(_plantId) => {/* Plan 20-04 wires real fertilizePlant action */}}
           onAddNote={handleAddNote}
           onDeleteNote={handleDeleteNote}
           onAddReminder={handleAddReminder}

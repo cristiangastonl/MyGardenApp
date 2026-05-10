@@ -68,8 +68,9 @@ export function MonthCalendar({
     const hasWater = tasks.some(t => t.type === 'water' || t.type === 'check_soil');
     const hasSun = tasks.some(t => t.type === 'sun');
     const hasOutdoor = tasks.some(t => t.type === 'outdoor');
+    const hasFertilize = tasks.some(t => t.type === 'fertilize');
 
-    return { hasWater, hasSun, hasOutdoor, hasNotes, hasReminders };
+    return { hasWater, hasSun, hasOutdoor, hasFertilize, hasNotes, hasReminders };
   };
 
   return (
@@ -93,8 +94,8 @@ export function MonthCalendar({
 
             const isToday = isSameDay(date, today);
             const isSelected = selectedDate && isSameDay(date, selectedDate);
-            const { hasWater, hasSun, hasOutdoor, hasNotes, hasReminders } = getIndicators(date);
-            const hasAnyIndicator = hasWater || hasSun || hasOutdoor || hasNotes || hasReminders;
+            const { hasWater, hasSun, hasOutdoor, hasFertilize, hasNotes, hasReminders } = getIndicators(date);
+            const hasAnyIndicator = hasWater || hasSun || hasOutdoor || hasFertilize || hasNotes || hasReminders;
 
             return (
               <TouchableOpacity
@@ -120,6 +121,7 @@ export function MonthCalendar({
                     {hasWater && <View style={[styles.dot, styles.dotWater]} />}
                     {hasSun && <View style={[styles.dot, styles.dotSun]} />}
                     {hasOutdoor && <View style={[styles.dot, styles.dotOutdoor]} />}
+                    {hasFertilize && <View style={[styles.dot, styles.dotFertilize]} />}
                     {hasNotes && <View style={[styles.dot, styles.dotNote]} />}
                     {hasReminders && <View style={[styles.dot, styles.dotReminder]} />}
                   </View>
@@ -149,6 +151,7 @@ interface Styles {
   dotWater: ViewStyle;
   dotSun: ViewStyle;
   dotOutdoor: ViewStyle;
+  dotFertilize: ViewStyle;
   dotNote: ViewStyle;
   dotReminder: ViewStyle;
 }
@@ -220,6 +223,9 @@ const styles = StyleSheet.create<Styles>({
   },
   dotOutdoor: {
     backgroundColor: colors.green,
+  },
+  dotFertilize: {
+    backgroundColor: colors.successBg,
   },
   dotNote: {
     backgroundColor: colors.warningText,
