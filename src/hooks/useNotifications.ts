@@ -52,6 +52,8 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   morningTime: "08:00",
   weatherAlerts: true,
   careReminders: true,
+  /** v1.2 Phase 20 (FERT-05) — opt-in. Default OFF to avoid notification fatigue with 4th task type. */
+  fertilizeReminders: false,
 };
 
 interface UseNotificationsOptions {
