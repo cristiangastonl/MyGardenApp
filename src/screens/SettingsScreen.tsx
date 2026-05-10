@@ -335,6 +335,22 @@ export default function SettingsScreen() {
                 />
               </View>
 
+              <View style={styles.settingRow}>
+                <View style={styles.settingInfo}>
+                  <Text style={styles.settingIcon}>🌱</Text>
+                  <View style={styles.settingText}>
+                    <Text style={styles.settingTitle}>{t('settings.fertilizeReminders')}</Text>
+                    <Text style={styles.settingSubtitle}>{t('settings.fertilizeRemindersSubtitle')}</Text>
+                  </View>
+                </View>
+                <Switch
+                  value={!!notifSettings.fertilizeReminders}
+                  onValueChange={(value) => updateSettings({ fertilizeReminders: value })}
+                  trackColor={{ false: colors.border, true: colors.green }}
+                  thumbColor={colors.white}
+                />
+              </View>
+
               <TouchableOpacity style={styles.testButton} onPress={async () => { await sendTest(); Alert.alert(t('settings.testSent'), t('settings.testSentMessage')); }}>
                 <Text style={styles.testButtonText}>{t('settings.sendTest')}</Text>
               </TouchableOpacity>
