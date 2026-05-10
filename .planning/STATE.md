@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 6 of 11
+current_plan: 7 of 11
 status: completed
 stopped_at: "Completed 20-04-PLAN.md (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring)"
-last_updated: "2026-05-10T14:42:14.562Z"
-last_activity: 2026-05-10 — Phase 20 Plan 05 complete (FERT-05 settings toggle + default-OFF lock; 2 tasks, 2 files, ~3 min execution).
+last_updated: "2026-05-10T14:44:06.088Z"
+last_activity: "2026-05-10 — Phase 20 Plan 04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring; 4 tasks, 8 files, ~12 min execution)."
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
   completed_plans: 60
-  percent: 95
+  percent: 94
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 6 of 11
-Plan: 20-05 complete (Wave 3 FERT-05 settings toggle + default-OFF lock; 2 atomic task commits — c0eade4 DEFAULT_SETTINGS extension fertilizeReminders: false + 8a98548 SettingsScreen Switch row mirror of careReminders; smoke-phase20 PASS=41 (this plan in isolation) / PASS=43 (combined with parallel Plan 20-04) FAIL=0 — 2 FERT-05 SKIPs flipped (default-OFF + toggle-rendered); cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~3 min execution).
-Status: **Phase 20 Wave 3 settings plan complete (FERT-05 closure).** 4-piece opt-in chain in place: NotificationSettings.fertilizeReminders?: boolean type field (Plan 20-00) + opt-in gate notifSettings?.fertilizeReminders === true in scheduler (Plan 20-03) + DEFAULT_SETTINGS literal default false (Task 1) + SettingsScreen Switch row UI (Task 2). i18n keys consumed (settings.fertilizeReminders + settings.fertilizeRemindersSubtitle EN+ES voseo). Plan 20-04 executed in parallel (file-disjoint per execution_note). **Next:** Phase 20 Plan 06 (Wave 4a FERT-07 interior catalog-content authoring batch A — 67 entries: interior 44 + aromáticas 13 + huerta 10 with homemade-first framing).
-Last activity: 2026-05-10 — Phase 20 Plan 05 complete (FERT-05 settings toggle + default-OFF lock; 2 tasks, 2 files, ~3 min execution).
+Current Plan: 7 of 11
+Plan: 20-04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column water | fertilize layout + PlantCard mode='tasks' fertilize TaskButton + screen wiring; 4 atomic task commits — 10e2f62 FertilizeCard real impl + fertilizePlant action + 18ce77e modal two-column refactor + initialExpanded prop + getTranslatedPlant fertilizer extension + d9b415b PlantCard fertilize TaskButton + needsFertilizeToday + 5fdbe07 TodayScreen + PlantsScreen + CalendarScreen wiring; smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — 5 FERT-06 SKIPs flipped this plan; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~12 min execution). Plan 20-05 also complete in parallel (FERT-05 Settings UI + DEFAULT_SETTINGS extension).
+Status: **Phase 20 Wave 3 complete (Plans 20-04 + 20-05 landed in parallel — file-disjoint).** FertilizeCard skeleton replaced with real Reanimated v4 collapsible (180ms Easing.out(Easing.cubic) mirrors EducationalSection per RESEARCH §State of the Art Open Question 1, deliberate deviation from CONTEXT.md's stale 250ms guardrail); MyPlantDetailModal `🌿 ¿Qué hacer?` section refactored into two-column water | fertilize flex-row with single-column graceful degradation (alignItems:'stretch' equal-height; flex:1 single-child full-row); PlantCard mode='tasks' branch gains fertilize TaskButton sibling (5-element budget preserved per Pitfall 3); useStorage.fertilizePlant action exposed (uses fromUserEdit:true to bypass Plan 20-01 deep-merge guard; bootstraps schedule from catalog fertilizeIntervalWarm when plant has databaseId but no fertilizeSchedule) and wired through TodayScreen + PlantsScreen + CalendarScreen consumers (CalendarScreen no-op closure from Plan 20-03 replaced with real action); getTranslatedPlant extended for per-locale fertilizer recipe text resolution (Rule 2 — plan-checker advisory #2 honored, mirrors Phase 14 EDU-02 i18n indirection); TodayScreen plantsWithTasks filter extended with needsFertilizeToday so plants whose ONLY task today is fertilize surface (Rule 2). **Next:** Phase 20 Plans 20-06/07/08 (Wave 4 catalog content — fertilizeIntervalWarm/Cold + fertilizer.{type,industrial,homemade} for batch A/B/C entries in plantDatabase.ts + per-locale plants.json keys; UI surface is now content-ready).
+Last activity: 2026-05-10 — Phase 20 Plan 04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring; 4 tasks, 8 files, ~12 min execution).
 
-Progress: [█████████░] 95% (61/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 complete — Plans 20-06..10 ahead)
+Progress: [█████████░] 94% (60/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 complete — Plans 20-06..10 ahead)
 
 ## Performance Metrics
 
@@ -263,6 +263,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-03: MonthCalendar hasFertilize separate from hasWater (per RESEARCH §Architecture Pattern 1) — distinct dotFertilize style (colors.successBg) keeps visual indicator distinguishable from dotOutdoor (colors.green)
 - [Phase 20-fertilization-subsystem]: Plan 20-03: Task 4 verification gate yielded NO source-change commit — TaskButton remains generic (bgColor: string prop) and plantHealth.ts contains zero fertilize literals (CROSS.health-no-fertilize-axis preserved). Atomic-commit discipline preserves principle that commits represent diffs.
 - [Phase 20-fertilization-subsystem]: FERT-05 closes via 4-piece opt-in chain: type field optional (Plan 20-00) + scheduler opt-in gate notifSettings?.fertilizeReminders === true (Plan 20-03) + DEFAULT_SETTINGS literal false default (Plan 20-05 Task 1) + SettingsScreen Switch row UI (Plan 20-05 Task 2). Default OFF locked at literal level guarantees both fresh installs and existing-user upgrades opt-in.
+- [Phase 20-fertilization-subsystem]: Phase 20 Plan 04 (Wave 3 UI): FertilizeCard real impl mirrors EducationalSection.tsx 180ms Easing.out(Easing.cubic) tuning (deliberate deviation from CONTEXT.md's stale 250ms guardrail per RESEARCH §State of the Art Open Question 1); MyPlantDetailModal refactor uses RN flexbox alignItems:'stretch' + flex:1 for two-column-with-single-column-fallback (zero new dependencies); initialExpanded one-shot prop orthogonal to Phase 19 initialSection (ModalSectionId not extended per CONTEXT.md lock); getTranslatedPlant extended with fertilizer recipe per-locale resolution (Rule 2 advisory honored); TodayScreen plantsWithTasks filter extended with needsFertilizeToday (Rule 2 — plants whose ONLY due task is fertilize must surface).
 
 ### Pending Todos
 

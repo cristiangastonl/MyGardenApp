@@ -233,12 +233,12 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
   5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
 **Plans:** 6/11 plans executed
-  - [ ] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
-  - [ ] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
-  - [ ] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
-  - [ ] 20-03-PLAN.md — Wave 2: FERT-03 5-site discriminator sweep (plantLogic emit + scheduler body filter + notifSettings ratchet + DayDetail/DayDetailModal/MonthCalendar discriminators + plantHealth defensive no-op)
-  - [ ] 20-04-PLAN.md — Wave 3: FERT-06 PlantCard mode='tasks' fertilize TaskButton + MyPlantDetailModal two-column layout + FertilizeCard real impl (180ms Reanimated v4) + initialExpanded prop + useStorage.fertilizePlant action
-  - [ ] 20-05-PLAN.md — Wave 3: FERT-05 Settings toggle (Switch row in Notifications section) + DEFAULT_SETTINGS.fertilizeReminders=false
+  - [x] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
+  - [x] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
+  - [x] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
+  - [x] 20-03-PLAN.md — Wave 2: FERT-03 5-site discriminator sweep (plantLogic emit + scheduler body filter + notifSettings ratchet + DayDetail/DayDetailModal/MonthCalendar discriminators + plantHealth defensive no-op)
+  - [x] 20-04-PLAN.md — Wave 3: FERT-06 PlantCard mode='tasks' fertilize TaskButton + MyPlantDetailModal two-column layout + FertilizeCard real impl (180ms Reanimated v4) + initialExpanded prop + useStorage.fertilizePlant action
+  - [x] 20-05-PLAN.md — Wave 3: FERT-05 Settings toggle (Switch row in Notifications section) + DEFAULT_SETTINGS.fertilizeReminders=false
   - [ ] 20-06-PLAN.md — Wave 4 Batch A: FERT-07 catalog content for 67 entries (interior 44 + aromáticas 13 + huerta 10) — homemade-first framing
   - [ ] 20-07-PLAN.md — Wave 4 Batch B: FERT-07 catalog content for 16 suculentas — industrial-only (CAM dormancy, no homemade)
   - [ ] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
