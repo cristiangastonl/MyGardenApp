@@ -25,6 +25,7 @@ import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from 
 import { ActiveProblemsSection } from './ActiveProblemsSection';
 import { MigrationTooltip } from './MigrationTooltip';
 import { EducationalSection } from './plant-detail/EducationalSection';
+import { FertilizeCard } from './plant-detail/FertilizeCard';
 import { compareUserVsCatalog, OverrideField, OverrideResult } from '../utils/overrideDetection';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -47,6 +48,9 @@ interface MyPlantDetailModalProps {
   onDeletePhoto: (plantId: string, photoId: string) => void;
   /** v1.2 Phase 19 (TOX-04) — when set, modal scrolls to that section after layout. Reset to undefined on close. */
   initialSection?: ModalSectionId;
+  /** v1.2 Phase 20 (FERT-06) — one-shot signal: when 'fertilize', the FertilizeCard inside
+   *  `🌿 ¿Qué hacer?` opens auto-expanded on arrival. Orthogonal to initialSection — the two coexist. */
+  initialExpanded?: 'fertilize';
 }
 
 export function MyPlantDetailModal({
@@ -59,6 +63,7 @@ export function MyPlantDetailModal({
   onAddPhoto,
   onDeletePhoto,
   initialSection,
+  initialExpanded,
 }: MyPlantDetailModalProps) {
   const { t } = useTranslation();
   const [showDiagnosis, setShowDiagnosis] = useState(false);
@@ -301,9 +306,20 @@ export function MyPlantDetailModal({
                   const hasCareAction = !!(strictDbEntry?.careAction?.fixed || strictDbEntry?.careAction?.soilCheck);
                   const hasNutrients = !!dbEntry?.nutrients;
                   const hasRelocatedTip = relocatedTip.length > 0;
-                  if (!hasDiagnoses && !hasCareAction && !hasNutrients && !hasRelocatedTip) {
+                  // FERT-06 — fertilize sub-block content presence. strictDbEntry comes from
+                  // the existing useMemo (getTranslatedPlant resolves fertilizer recipes
+                  // per-locale via Phase 20-06/07/08 plants.json keys; pre-Plan-20-06 the EN
+                  // locale falls back to the plantDatabase.ts ES default — acceptable interim).
+                  const hasFertilizeContent = !!(strictDbEntry?.fertilizeIntervalWarm != null || strictDbEntry?.fertilizer);
+                  // Pitfall 7 — include hasFertilizeContent in the OR-of-presence empty-state gate.
+                  if (!hasDiagnoses && !hasCareAction && !hasNutrients && !hasRelocatedTip && !hasFertilizeContent) {
                     return <Text style={styles.placeholderCopy}>{t('plantDetailModal.emptyWhatToDo')}</Text>;
                   }
+                  // FERT-06 — per-locale fertilizer recipe text. strictDbEntry is the result
+                  // of getTranslatedPlant(raw) so its fertilizer.industrialRecommendation /
+                  // homemadeRecommendation values are already locale-resolved.
+                  const fertilizerIndustrialText = strictDbEntry?.fertilizer?.industrialRecommendation || undefined;
+                  const fertilizerHomemadeText = strictDbEntry?.fertilizer?.homemadeRecommendation || undefined;
                   return (
                     <>
                       <ActiveProblemsSection
@@ -314,11 +330,33 @@ export function MyPlantDetailModal({
                           setShowDiagnosis(true);
                         }}
                       />
-                      {strictDbEntry?.careAction?.fixed && (
-                        <Text style={styles.eduCopy}>{strictDbEntry.careAction.fixed}</Text>
-                      )}
-                      {strictDbEntry?.careAction?.soilCheck && (
-                        <Text style={styles.eduCopy}>{strictDbEntry.careAction.soilCheck}</Text>
+                      {/* FERT-06 — two-column water | fertilize layout. Single-column fallback
+                          via flex:1 + single child = full row. Pitfall 5 — flexbox single-child
+                          handling: alignItems:'stretch' (RN default) gives equal-height cards. */}
+                      {(hasCareAction || hasFertilizeContent) && (
+                        <View style={styles.careCardsRow}>
+                          {hasCareAction && (
+                            <View style={[styles.careCard, hasFertilizeContent ? styles.careCardHalf : styles.careCardFull]}>
+                              <Text style={styles.careCardHeader}>💧 {t('plantDetailModal.water')}</Text>
+                              {strictDbEntry?.careAction?.fixed && (
+                                <Text style={styles.eduCopy}>{strictDbEntry.careAction.fixed}</Text>
+                              )}
+                              {strictDbEntry?.careAction?.soilCheck && (
+                                <Text style={styles.eduCopy}>{strictDbEntry.careAction.soilCheck}</Text>
+                              )}
+                            </View>
+                          )}
+                          {hasFertilizeContent && (
+                            <FertilizeCard
+                              strictDbEntry={strictDbEntry}
+                              industrialText={fertilizerIndustrialText}
+                              homemadeText={fertilizerHomemadeText}
+                              season={currentSeason}
+                              defaultExpanded={initialExpanded === 'fertilize'}
+                              style={hasCareAction ? styles.careCardHalf : styles.careCardFull}
+                            />
+                          )}
+                        </View>
                       )}
                       {dbEntry?.nutrients && (
                         <View style={styles.nutrientsCardEdu}>
@@ -757,6 +795,30 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.md,
     padding: spacing.sm,
     marginTop: spacing.sm,
+  },
+  // ─── v1.2 Phase 20 (FERT-06) two-column water | fertilize layout inside `🌿 ¿Qué hacer?` ───
+  careCardsRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    alignItems: 'stretch', // RN flexbox cross-axis stretch → equal-height children
+    marginTop: spacing.sm,
+  },
+  careCard: {
+    backgroundColor: 'rgba(0,0,0,0.03)', // matches nutrientsCardEdu nested-card pattern
+    borderRadius: borderRadius.md,
+    padding: spacing.sm,
+  },
+  careCardHalf: {
+    flex: 1, // 50% of row when sibling present
+  },
+  careCardFull: {
+    flex: 1, // 100% when no sibling (Pitfall 5 — flexbox single-child handling)
+  },
+  careCardHeader: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.waterBlue,
+    marginBottom: spacing.xs,
   },
   relocatedTip: {
     fontFamily: fonts.body,

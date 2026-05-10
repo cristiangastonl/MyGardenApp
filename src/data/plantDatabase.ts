@@ -5911,6 +5911,19 @@ export function getTranslatedPlant(plant: PlantDBEntry): PlantDBEntry {
     whyRationale: plant.whyRationale
       ? t(`${key}.whyRationale`, { ns: 'plants', defaultValue: plant.whyRationale })
       : undefined,
+
+    // ─── v1.2 Phase 20 (FERT-07) fertilizer recipe fields — same i18n indirection pattern ───
+    // Plans 20-06/07/08 author the per-locale plants.json keys; until they land, defaultValue
+    // falls back to the plantDatabase.ts ES-locale source string (existing nutrients precedent).
+    fertilizer: plant.fertilizer ? {
+      type: plant.fertilizer.type,
+      industrialRecommendation: plant.fertilizer.industrialRecommendation
+        ? t(`${key}.fertilizer.industrialRecommendation`, { ns: 'plants', defaultValue: plant.fertilizer.industrialRecommendation })
+        : undefined,
+      homemadeRecommendation: plant.fertilizer.homemadeRecommendation
+        ? t(`${key}.fertilizer.homemadeRecommendation`, { ns: 'plants', defaultValue: plant.fertilizer.homemadeRecommendation })
+        : undefined,
+    } : undefined,
   };
 }
 
