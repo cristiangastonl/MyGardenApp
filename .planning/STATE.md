@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 4 of 11
+current_plan: 5 of 11
 status: completed
-stopped_at: Completed 20-01-PLAN.md
-last_updated: "2026-05-10T14:01:17.010Z"
-last_activity: 2026-05-10 — Phase 20 Plan 01 complete (FERT-01 PROTECTED_USER_FIELDS extension; 1 task, 1 file, ~16 min execution).
+stopped_at: Completed 20-03-PLAN.md
+last_updated: "2026-05-10T14:22:51.181Z"
+last_activity: 2026-05-10 — Phase 20 Plan 03 complete (FERT-03 5-site discriminator sweep; 4 tasks, 10 files, ~7 min execution).
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 57
-  percent: 89
+  completed_plans: 58
+  percent: 91
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 4 of 11
-Plan: 20-01 complete (Wave 1 FERT-01 PROTECTED_USER_FIELDS extension; 1 atomic task commit — 4ef666f extends the Phase 14 EDU-06 CRIT-1 deep-merge guard tuple with 'fertilizeSchedule' as 4th entry, APPEND-ONLY, `as const` preserved; smoke-phase20 PASS=33 FAIL=0 SKIP=16 exit 0; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~16 min execution).
-Status: **Phase 20 Wave 1 fully complete (Plans 20-01 + 20-02 file-disjoint sibling completion).** Type-side hardening for FERT-01 (PROTECTED_USER_FIELDS guards fertilizeSchedule against catalog-source overwrite) + FERT-04 cadence math real impls (getSeasonalFertilizeInterval + getNextFertilizeDate) both green. **Next:** Phase 20 Plan 03 (Wave 2 5-site discriminator sweep — first consumer of getNextFertilizeDate from Plan 20-02 + the protected fertilizeSchedule field from this plan).
-Last activity: 2026-05-10 — Phase 20 Plan 01 complete (FERT-01 PROTECTED_USER_FIELDS extension; 1 task, 1 file, ~16 min execution).
+Current Plan: 5 of 11
+Plan: 20-03 complete (Wave 2 FERT-03 5-site discriminator sweep; 3 atomic task commits — 7c639eb plantLogic emit branch + 365662a notificationScheduler body-line/notifSettings ratchet through 3 callers + e8dc618 DayDetail+DayDetailModal+MonthCalendar discriminator chains; smoke-phase20 PASS=39 FAIL=0 SKIP=10 exit 0 — 5 FERT-03 + 1 FERT-05 SKIPs flipped; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~7 min execution).
+Status: **Phase 20 Wave 2 first plan complete.** FERT-03 5-site discriminator sweep landed (plantLogic emit + notificationScheduler body-line + DayDetail/DayDetailModal/MonthCalendar UI discriminators); FERT-05 opt-in gate prepared (notifSettings?.fertilizeReminders === true). plantHealth.ts UNCHANGED (Success Criterion 5 satisfied trivially); CROSS.health-no-fertilize-axis preserved. **Next:** Phase 20 Plan 04 (Wave 2 PlantCard + FertilizeCard impl — replaces CalendarScreen no-op closure with real fertilizePlant action; flips remaining FERT-03.TaskButton + FERT-06 SKIPs).
+Last activity: 2026-05-10 — Phase 20 Plan 03 complete (FERT-03 5-site discriminator sweep; 4 tasks, 10 files, ~7 min execution).
 
-Progress: [█████████░] 89% (57/64 plans complete; Phase 20 Plans 00 + 01 + 02 complete — Plans 20-03..10 ahead)
+Progress: [█████████░] 91% (58/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 complete — Plans 20-04..10 ahead)
 
 ## Performance Metrics
 
@@ -91,6 +91,7 @@ Progress: [█████████░] 89% (57/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P00 | 4min | 3 tasks | 8 files |
 | Phase 20-fertilization-subsystem P02 | 16 min | 2 tasks | 1 files |
 | Phase 20-fertilization-subsystem P01 | 16 min | 1 tasks | 1 files |
+| Phase 20-fertilization-subsystem P03 | 7 min | 4 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -254,6 +255,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-01: APPEND-ONLY tuple extension at useStorage.tsx:23 — fertilizeSchedule joins waterSchedule/lightLevel/waterMode in PROTECTED_USER_FIELDS (4 entries total); existing 3 verbatim; `as const` preserved for literal-union narrowing of the for-of loop body
 - [Phase 20-fertilization-subsystem]: Plan 20-01: No new sentinel added to smoke-phase20 — this plan ENSURES the existing CRIT-1 guard doesn't break for the new field; affirmative encoding lives in Plan 20-00 W0.scaffold.types.* (Plant.fertilizeSchedule presence) + Plan 20-04 modal-side fertilize override path. PASS=33 FAIL=0 SKIP=16 unchanged.
 - [Phase 20-fertilization-subsystem]: Plan 20-01: Future fertilize migration / first-launch derivation paths reserved — MUST either use raw setPlants() (bypasses guard entirely) OR pass { fromUserEdit: true } (explicitly opts in). Both paths inherited from Phase 14 EDU-06 SUMMARY.
+- [Phase 20-fertilization-subsystem]: Plan 20-03: ALWAYS grep-verify caller enumeration before editing REQUIRED-prop interfaces — DayDetailModal sole consumer was CalendarScreen (NOT PlantsScreen/TodayScreen as plan body assumed)
+- [Phase 20-fertilization-subsystem]: Plan 20-03: notifSettings ratcheted as REQUIRED 5th positional arg through scheduleMorningReminder per Pitfall 2 — REQUIRED (not optional ?:) forced all 3 callers to update atomically (useNotifications x2 + App.tsx post-migration passes null)
+- [Phase 20-fertilization-subsystem]: Plan 20-03: DayDetailModal isDone uses NESTED path plant.fertilizeSchedule?.lastFertilized (Pitfall 3 averted) — optional-chain handles plants without fertilizeSchedule cleanly
+- [Phase 20-fertilization-subsystem]: Plan 20-03: MonthCalendar hasFertilize separate from hasWater (per RESEARCH §Architecture Pattern 1) — distinct dotFertilize style (colors.successBg) keeps visual indicator distinguishable from dotOutdoor (colors.green)
+- [Phase 20-fertilization-subsystem]: Plan 20-03: Task 4 verification gate yielded NO source-change commit — TaskButton remains generic (bgColor: string prop) and plantHealth.ts contains zero fertilize literals (CROSS.health-no-fertilize-axis preserved). Atomic-commit discipline preserves principle that commits represent diffs.
 
 ### Pending Todos
 
@@ -268,6 +274,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-10T14:00:35.283Z
-Stopped at: Completed 20-01-PLAN.md
+Last session: 2026-05-10T14:22:08.293Z
+Stopped at: Completed 20-03-PLAN.md
 Resume file: None
