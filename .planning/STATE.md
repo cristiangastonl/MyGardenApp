@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 11 of 11
-status: verifying
+status: planning
 stopped_at: Completed 20-10-PLAN.md
-last_updated: "2026-05-11T20:35:50.291Z"
-last_activity: "2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock)."
+last_updated: "2026-05-11T21:32:18.875Z"
+last_activity: 2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock).
 progress:
   total_phases: 15
   completed_phases: 11
-  total_plans: 65
+  total_plans: 64
   completed_plans: 65
   percent: 100
 ---
