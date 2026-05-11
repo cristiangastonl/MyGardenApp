@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 8 of 11
+current_plan: 9 of 11
 status: completed
-stopped_at: Completed 20-06-PLAN.md
-last_updated: "2026-05-11T03:14:15.693Z"
-last_activity: "2026-05-11 — Phase 20 Plan 06 complete (Wave 4 catalog content Batch A: 67 entries × interior+aromáticas+huerta with fertilizer recipes EN+ES; 1 task, 4 files, ~72 min execution)."
+stopped_at: Completed 20-07-PLAN.md
+last_updated: "2026-05-11T13:41:11.781Z"
+last_activity: "2026-05-11 — Phase 20 Plan 07 complete (Wave 4 catalog content Batch B: 16 suculentas × industrial-only fertilizer recipes EN+ES; 1 task, 3 files, ~22 min execution)."
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 61
-  percent: 95
+  completed_plans: 62
+  percent: 97
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 8 of 11
-Plan: 20-06 complete (Wave 4 catalog content Batch A: 67 entries × {fertilizeIntervalWarm/Cold + fertilizer.{type,industrialRecommendation,homemadeRecommendation}} authored across 44 interior + 13 aromáticas + 10 huerta categories; 1 atomic task commit — e47c7d1 67 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json) + scripts/smoke-phase20.cjs Rule 3 mid-band SKIP guard for FERT-02 gate; 134 ES + 134 EN fertilizer recipe strings authored with locale parity from start, ≤120 chars all, distinct per-species mechanism citations zero copy-paste, voseo baseline preserved at 0 banned forms; smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — FERT-02 SKIP preserved per mid-band guard; check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~72 min execution dominated by content-table drafting).
-Status: **Phase 20 Wave 4 Batch A complete (Plan 20-06 landed atomically).** 67/118 catalog entries (≈ 57%) gain fertilizer content; FERT-02.catalog.fertilizeIntervalWarm-coverage gate continues SKIP per mid-band guard (Rule 3 deviation — runner gate had bug returning false at intermediate counts despite documented intent of mid-band SKIP; added second `if (matches < 100) return undefined` clause mirroring Phase 16 Plan 16-01 partial-landing tolerance). Per-category framing matrix from RESEARCH §Pattern 12 honored: 8 CAM xerophytes (sansevieria/aloe-vera/jade/yuca/zamioculca/cola-burro/sansevieria-cilindrica/bambu-suerte) ship type='industrial' only (homemade omitted — composts too N-rich for arid succulents); 13 aromáticas mediterráneas/Lamiáceas/Apiáceas type='homemade' default with industrial qualified 'cada 60d solo si suelo agotado' (lean soils concentrate aromatic oils); 10 huerta type='both' with vegetativa→fructificación NPK switch (Solanácea 5-15-5; Cucurbitácea 5-15-10; Apiácea 5-10-10 bajo-N for raíz). Programmatic content-table + apply-script pattern locked (one-shot CommonJS module under gitignored scripts/.tmp-phase20/, validates char-limit + distinctness + locale-parity + voseo BEFORE any file mutation; reusable verbatim in Plans 20-07/08). **Next:** Phase 20 Plans 20-07/08 (Wave 4 Batches B + C — suculentas batch ~17 entries + final exterior/frutales/misc batch ~34 entries to reach 118; FERT-02 gate flips SKIP→PASS at ≥100 in Plan 20-08).
-Last activity: 2026-05-11 — Phase 20 Plan 06 complete (Wave 4 catalog content Batch A: 67 entries × interior+aromáticas+huerta with fertilizer recipes EN+ES; 1 task, 4 files, ~72 min execution).
+Current Plan: 9 of 11
+Plan: 20-07 complete (Wave 4 catalog content Batch B: 16 suculentas × {fertilizeIntervalWarm + fertilizeIntervalCold:null + fertilizer.{type:'industrial', industrialRecommendation}} authored across Cactaceae (5) + Crassulaceae (4) + Asphodelaceae (2) + Aizoaceae mesemb (1) + Asteraceae succulent (1) + Euphorbiaceae outlier (1) + Agavoideae (1) + generic suculenta (1); 1 atomic task commit — 220ed78 16 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json); 32 fertilizer strings authored (16 ES + 16 EN) with locale parity from start, char-limit-from-draft (max ES=108/120, max EN=120/120), distinct per-genus mechanism citations zero copy-paste, voseo baseline preserved at 0 banned forms; HARD LOCK on Pitfall 6 — zero suculentas entries declare homemadeRecommendation in plantDatabase.ts or either plants.json locale; Lithops (piedras-vivas) gets unique per-species rationale citing NPK 0-10-10 + autumn-winter active + JAMÁS/NEVER summer dormancy (opposite of generic CAM template); smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — FERT-02 SKIP preserved per mid-band guard at 83/118; check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~22 min execution).
+Status: **Phase 20 Wave 4 Batch B complete (Plan 20-07 landed atomically).** 83/118 catalog entries (≈ 70%) gain fertilizer content; FERT-02.catalog.fertilizeIntervalWarm-coverage gate continues SKIP per mid-band guard (83 < 100 threshold; flips to PASS in Plan 20-08 once final batch of ~35 entries lands). Per-category framing matrix from RESEARCH §Pattern 12 honored verbatim for suculentas: type='industrial' ONLY (homemade composts té de cáscara de banana / lombricompuesto líquido / té de compost are too N-rich for arid CAM plants → etiolation/rot risk); fertilizeIntervalCold:null encodes CAM cold-season dormancy (no fertilize task emitted in winter); Cactaceae sub-typology framing distinct per-genus (Opuntia xerófita americana / Mammillaria globular compacta / Schlumbergera epífito bosque tolera más N / Echinopsis columnar andino); Crassulaceae sub-typology (rosetas Echeveria / cola de burro frágil Sedum / Kalanchoe floríbera bloom-driven / Sempervivum alpina); Asphodelaceae cross-genus parallel (Haworthia/Gasteria both tolerante-sombra NPK 1:8 cada 90d); Aizoaceae mesemb Lithops UNIQUE annual-cycle citation pattern reusable for future mesemb expansion. Content-table + apply-script pattern from Plan 20-06 reused verbatim (fert-batch-b-apply.cjs forked from fert-batch-a-apply.cjs with industrial-only branch simplification — no homemadeRecommendation key emitted in any of the 3 files). **Next:** Phase 20 Plan 20-08 (Wave 4 Batch C — final exterior/frutales/misc batch ~35 entries to reach 118; FERT-02 gate flips SKIP→PASS at ≥100 once batch lands).
+Last activity: 2026-05-11 — Phase 20 Plan 07 complete (Wave 4 catalog content Batch B: 16 suculentas × industrial-only fertilizer recipes EN+ES; 1 task, 3 files, ~22 min execution).
 
-Progress: [██████████] 95% (61/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 complete — Plans 20-07..10 ahead)
+Progress: [██████████] 97% (62/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 complete — Plans 20-08..10 ahead)
 
 ## Performance Metrics
 
@@ -95,6 +95,7 @@ Progress: [██████████] 95% (61/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P04 | 12min | 4 tasks | 8 files |
 | Phase 20-fertilization-subsystem P05 | 3min | 2 tasks | 2 files |
 | Phase 20-fertilization-subsystem P06 | 72min | 1 tasks | 4 files |
+| Phase 20 P07 | 22min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -268,6 +269,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-06: Programmatic content-table + apply-script pattern locked for high-volume catalog authoring (≥30 entries × multiple locales/files) — draft content as CJS module under gitignored scripts/.tmp-phaseN/, validate ALL invariants (char limits + distinctness + locale parity + voseo) BEFORE any file mutation, apply via single Node script. Reduces error surface vs N×M manual Edits while preserving atomic-commit discipline. Reusable verbatim in Plans 20-07/08.
 - [Phase 20-fertilization-subsystem]: Plan 20-06: Mid-band SKIP guard pattern for cross-plan growable assertions — runner returns undefined SKIP at count=0 (Wave 0) AND at count∈[1..N-1] (partial-landing band); PASS only at ≥N. Encodes phase-spanning content rollout without falsely FAILing intermediate plans. Phase 16 Plan 16-01 origin → reused in Plan 20-06 for FERT-02.catalog gate (Rule 3 deviation honoring documented plan-author intent of 'SKIP remains SKIP at mid-band 67/118').
 - [Phase 20-fertilization-subsystem]: Plan 20-06: 8 CAM xerophyte interior entries (sansevieria/aloe-vera/jade/yuca/zamioculca/cola-burro/sansevieria-cilindrica/bambu-suerte) ship type='industrial' only — homemade composts too N-rich for arid succulents per RESEARCH §Pattern 12 framing matrix. 13 aromáticas type='homemade' default with industrial qualified 'cada 60d solo si suelo agotado' (mediterranean herbs concentrate oils in lean soils). 10 huerta type='both' with vegetativa→fructificación NPK switch per family (Solanácea 5-15-5; Cucurbitácea 5-15-10; Apiácea 5-10-10 bajo-N for raíz).
+- [Phase 20]: Plan 20-07: Pitfall 6 HARD LOCK honored — 16 suculentas entries authored with type='industrial' only; ZERO homemadeRecommendation keys emitted in plantDatabase.ts or either plants.json locale; Plan 20-09's conditional parity gate validates this pattern (industrial+homemade sub-fields checked independently). fertilizeIntervalCold:null encodes CAM cold-season dormancy. Lithops (piedras-vivas) unique per-species rationale citing NPK 0-10-10 + autumn-winter active + JAMÁS/NEVER summer dormancy (opposite generic CAM template — mesemb annual cycle precedent reusable for future Aizoaceae expansion).
 
 ### Pending Todos
 
@@ -282,6 +284,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T03:14:15.690Z
-Stopped at: Completed 20-06-PLAN.md
+Last session: 2026-05-11T13:40:27.619Z
+Stopped at: Completed 20-07-PLAN.md
 Resume file: None
