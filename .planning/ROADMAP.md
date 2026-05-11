@@ -255,7 +255,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Journal photo URIs point to `documentDirectory` paths — no base64 strings in AsyncStorage (verified by startup size log)
   4. Deleting a plant also removes its journal entries from storage (no orphans)
   5. Journal entries are readable without a premium subscription — no paywall at read level
-**Plans:** 1/7 plans executed
+**Plans:** 2/7 plans executed
   - [ ] 21-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase21.cjs + npm script + .gitignore + type skeletons (CareTag + JournalEntry + AppData.journals?) + journalService.ts skeleton + 3 component skeletons + i18n skeleton ≥15 keys EN+ES
   - [ ] 21-01-PLAN.md — Wave 1 (parallel): JOURNAL-01/02 data layer — useStorage load-path default {} + dataRef init + snapshotFromRef journals inclusion
   - [ ] 21-02-PLAN.md — Wave 1 (parallel): JOURNAL-02 journalService.ts real impl — modern Paths/File/Directory API + 1080px @ 0.7 JPEG compression + 4 functions (pickJournalPhoto / saveJournalPhoto / deleteJournalPhoto / deleteJournalDirectory)
@@ -319,7 +319,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
 | 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
-| 21. Plant Journal | 1/7 | In Progress|  | - |
+| 21. Plant Journal | 2/7 | In Progress|  | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |
 | 24. Documentation | v1.2 | 0/TBD | Not started | - |

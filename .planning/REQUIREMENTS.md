@@ -96,7 +96,7 @@
 ### Plant Journal (JOURNAL)
 
 - [ ] **JOURNAL-01**: `AppData.journals?: Record<plantId, JournalEntry[]>` added (additive optional); migration default `{}`
-- [ ] **JOURNAL-02**: `JournalEntry` type: `{ id, date (ISO), text?: string, photoUri?: string, careTag?: string }`; photos saved to `expo-file-system` `documentDirectory` NOT base64-in-AsyncStorage (Pitfall research lock)
+- [x] **JOURNAL-02**: `JournalEntry` type: `{ id, date (ISO), text?: string, photoUri?: string, careTag?: string }`; photos saved to `expo-file-system` `documentDirectory` NOT base64-in-AsyncStorage (Pitfall research lock)
 - [ ] **JOURNAL-03**: `useStorage` adds `addJournalEntry(plantId, entry)`, `deleteJournalEntry(plantId, entryId)` actions
 - [ ] **JOURNAL-04**: MyPlantDetailModal new "Diario" section shows reverse-chronological timeline; quick-add via bottom sheet (2-tap max — date defaults today, optional text + photo + tag)
 - [ ] **JOURNAL-05**: Journal entries are NEVER premium-gated at the read level (Blossom cautionary tale — data hostage when subscription lapses)
@@ -244,7 +244,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | FERT-06 | Phase 20 | Complete |
 | FERT-07 | Phase 20 | Complete |
 | JOURNAL-01 | Phase 21 | Pending |
-| JOURNAL-02 | Phase 21 | Pending |
+| JOURNAL-02 | Phase 21 | Complete |
 | JOURNAL-03 | Phase 21 | Pending |
 | JOURNAL-04 | Phase 21 | Pending |
 | JOURNAL-05 | Phase 21 | Pending |
