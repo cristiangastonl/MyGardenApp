@@ -402,6 +402,18 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }, [scheduleSave]);
 
   const deletePlant = useCallback((id: string) => {
+    // ─── Phase 21 (JOURNAL-04) ORPHAN CLEANUP — BEFORE state mutation ───
+    // Fire-and-forget: photo dir delete is async but state mutation is sync.
+    // Idempotent: missing dir is a no-op inside the service (deleteJournalDirectory existence-guarded).
+    // If FS delete throws (permissions etc.), we LOG and continue — state mutation still happens,
+    // photos are orphaned but the plant is gone (acceptable per RESEARCH fail-fast policy —
+    // orphans are inert files, not corruption).
+    // `__DEV__` is the standard RN runtime global (Metro-defined); matches usage in
+    // src/hooks/usePlantIdentification.ts (L74/76/83/92) and src/utils/haptics.ts:44.
+    deleteJournalDirectory(id).catch(e => {
+      if (__DEV__) console.warn('[deletePlant] journal photo cleanup failed (orphans possible):', e);
+    });
+
     const newPlants = dataRef.current.plants.filter(p => p.id !== id);
     setPlants(newPlants);
     dataRef.current.plants = newPlants;
@@ -411,6 +423,12 @@ export function StorageProvider({ children }: StorageProviderProps) {
     delete newHistory[id];
     setDiagnosisHistory(newHistory);
     dataRef.current.diagnosisHistory = newHistory;
+
+    // ─── Phase 21 (JOURNAL-04) — clean up journals map entry for the deleted plant ───
+    const newJournals = { ...dataRef.current.journals };
+    delete newJournals[id];
+    setJournals(newJournals);
+    dataRef.current.journals = newJournals;
 
     scheduleSave();
   }, [scheduleSave]);
