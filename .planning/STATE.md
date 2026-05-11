@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 7 of 11
+current_plan: 8 of 11
 status: completed
-stopped_at: "Completed 20-04-PLAN.md (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring)"
-last_updated: "2026-05-10T14:44:06.088Z"
-last_activity: "2026-05-10 — Phase 20 Plan 04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring; 4 tasks, 8 files, ~12 min execution)."
+stopped_at: Completed 20-06-PLAN.md
+last_updated: "2026-05-11T03:14:15.693Z"
+last_activity: "2026-05-11 — Phase 20 Plan 06 complete (Wave 4 catalog content Batch A: 67 entries × interior+aromáticas+huerta with fertilizer recipes EN+ES; 1 task, 4 files, ~72 min execution)."
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 60
-  percent: 94
+  completed_plans: 61
+  percent: 95
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 7 of 11
-Plan: 20-04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column water | fertilize layout + PlantCard mode='tasks' fertilize TaskButton + screen wiring; 4 atomic task commits — 10e2f62 FertilizeCard real impl + fertilizePlant action + 18ce77e modal two-column refactor + initialExpanded prop + getTranslatedPlant fertilizer extension + d9b415b PlantCard fertilize TaskButton + needsFertilizeToday + 5fdbe07 TodayScreen + PlantsScreen + CalendarScreen wiring; smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — 5 FERT-06 SKIPs flipped this plan; cross-phase regression preserved smoke-phase18 PASS=56 / smoke-phase19 PASS=85; ~12 min execution). Plan 20-05 also complete in parallel (FERT-05 Settings UI + DEFAULT_SETTINGS extension).
-Status: **Phase 20 Wave 3 complete (Plans 20-04 + 20-05 landed in parallel — file-disjoint).** FertilizeCard skeleton replaced with real Reanimated v4 collapsible (180ms Easing.out(Easing.cubic) mirrors EducationalSection per RESEARCH §State of the Art Open Question 1, deliberate deviation from CONTEXT.md's stale 250ms guardrail); MyPlantDetailModal `🌿 ¿Qué hacer?` section refactored into two-column water | fertilize flex-row with single-column graceful degradation (alignItems:'stretch' equal-height; flex:1 single-child full-row); PlantCard mode='tasks' branch gains fertilize TaskButton sibling (5-element budget preserved per Pitfall 3); useStorage.fertilizePlant action exposed (uses fromUserEdit:true to bypass Plan 20-01 deep-merge guard; bootstraps schedule from catalog fertilizeIntervalWarm when plant has databaseId but no fertilizeSchedule) and wired through TodayScreen + PlantsScreen + CalendarScreen consumers (CalendarScreen no-op closure from Plan 20-03 replaced with real action); getTranslatedPlant extended for per-locale fertilizer recipe text resolution (Rule 2 — plan-checker advisory #2 honored, mirrors Phase 14 EDU-02 i18n indirection); TodayScreen plantsWithTasks filter extended with needsFertilizeToday so plants whose ONLY task today is fertilize surface (Rule 2). **Next:** Phase 20 Plans 20-06/07/08 (Wave 4 catalog content — fertilizeIntervalWarm/Cold + fertilizer.{type,industrial,homemade} for batch A/B/C entries in plantDatabase.ts + per-locale plants.json keys; UI surface is now content-ready).
-Last activity: 2026-05-10 — Phase 20 Plan 04 complete (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring; 4 tasks, 8 files, ~12 min execution).
+Current Plan: 8 of 11
+Plan: 20-06 complete (Wave 4 catalog content Batch A: 67 entries × {fertilizeIntervalWarm/Cold + fertilizer.{type,industrialRecommendation,homemadeRecommendation}} authored across 44 interior + 13 aromáticas + 10 huerta categories; 1 atomic task commit — e47c7d1 67 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json) + scripts/smoke-phase20.cjs Rule 3 mid-band SKIP guard for FERT-02 gate; 134 ES + 134 EN fertilizer recipe strings authored with locale parity from start, ≤120 chars all, distinct per-species mechanism citations zero copy-paste, voseo baseline preserved at 0 banned forms; smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — FERT-02 SKIP preserved per mid-band guard; check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~72 min execution dominated by content-table drafting).
+Status: **Phase 20 Wave 4 Batch A complete (Plan 20-06 landed atomically).** 67/118 catalog entries (≈ 57%) gain fertilizer content; FERT-02.catalog.fertilizeIntervalWarm-coverage gate continues SKIP per mid-band guard (Rule 3 deviation — runner gate had bug returning false at intermediate counts despite documented intent of mid-band SKIP; added second `if (matches < 100) return undefined` clause mirroring Phase 16 Plan 16-01 partial-landing tolerance). Per-category framing matrix from RESEARCH §Pattern 12 honored: 8 CAM xerophytes (sansevieria/aloe-vera/jade/yuca/zamioculca/cola-burro/sansevieria-cilindrica/bambu-suerte) ship type='industrial' only (homemade omitted — composts too N-rich for arid succulents); 13 aromáticas mediterráneas/Lamiáceas/Apiáceas type='homemade' default with industrial qualified 'cada 60d solo si suelo agotado' (lean soils concentrate aromatic oils); 10 huerta type='both' with vegetativa→fructificación NPK switch (Solanácea 5-15-5; Cucurbitácea 5-15-10; Apiácea 5-10-10 bajo-N for raíz). Programmatic content-table + apply-script pattern locked (one-shot CommonJS module under gitignored scripts/.tmp-phase20/, validates char-limit + distinctness + locale-parity + voseo BEFORE any file mutation; reusable verbatim in Plans 20-07/08). **Next:** Phase 20 Plans 20-07/08 (Wave 4 Batches B + C — suculentas batch ~17 entries + final exterior/frutales/misc batch ~34 entries to reach 118; FERT-02 gate flips SKIP→PASS at ≥100 in Plan 20-08).
+Last activity: 2026-05-11 — Phase 20 Plan 06 complete (Wave 4 catalog content Batch A: 67 entries × interior+aromáticas+huerta with fertilizer recipes EN+ES; 1 task, 4 files, ~72 min execution).
 
-Progress: [█████████░] 94% (60/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 complete — Plans 20-06..10 ahead)
+Progress: [██████████] 95% (61/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 complete — Plans 20-07..10 ahead)
 
 ## Performance Metrics
 
@@ -94,6 +94,7 @@ Progress: [█████████░] 94% (60/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P03 | 7 min | 4 tasks | 10 files |
 | Phase 20-fertilization-subsystem P04 | 12min | 4 tasks | 8 files |
 | Phase 20-fertilization-subsystem P05 | 3min | 2 tasks | 2 files |
+| Phase 20-fertilization-subsystem P06 | 72min | 1 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -264,6 +265,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-03: Task 4 verification gate yielded NO source-change commit — TaskButton remains generic (bgColor: string prop) and plantHealth.ts contains zero fertilize literals (CROSS.health-no-fertilize-axis preserved). Atomic-commit discipline preserves principle that commits represent diffs.
 - [Phase 20-fertilization-subsystem]: FERT-05 closes via 4-piece opt-in chain: type field optional (Plan 20-00) + scheduler opt-in gate notifSettings?.fertilizeReminders === true (Plan 20-03) + DEFAULT_SETTINGS literal false default (Plan 20-05 Task 1) + SettingsScreen Switch row UI (Plan 20-05 Task 2). Default OFF locked at literal level guarantees both fresh installs and existing-user upgrades opt-in.
 - [Phase 20-fertilization-subsystem]: Phase 20 Plan 04 (Wave 3 UI): FertilizeCard real impl mirrors EducationalSection.tsx 180ms Easing.out(Easing.cubic) tuning (deliberate deviation from CONTEXT.md's stale 250ms guardrail per RESEARCH §State of the Art Open Question 1); MyPlantDetailModal refactor uses RN flexbox alignItems:'stretch' + flex:1 for two-column-with-single-column-fallback (zero new dependencies); initialExpanded one-shot prop orthogonal to Phase 19 initialSection (ModalSectionId not extended per CONTEXT.md lock); getTranslatedPlant extended with fertilizer recipe per-locale resolution (Rule 2 advisory honored); TodayScreen plantsWithTasks filter extended with needsFertilizeToday (Rule 2 — plants whose ONLY due task is fertilize must surface).
+- [Phase 20-fertilization-subsystem]: Plan 20-06: Programmatic content-table + apply-script pattern locked for high-volume catalog authoring (≥30 entries × multiple locales/files) — draft content as CJS module under gitignored scripts/.tmp-phaseN/, validate ALL invariants (char limits + distinctness + locale parity + voseo) BEFORE any file mutation, apply via single Node script. Reduces error surface vs N×M manual Edits while preserving atomic-commit discipline. Reusable verbatim in Plans 20-07/08.
+- [Phase 20-fertilization-subsystem]: Plan 20-06: Mid-band SKIP guard pattern for cross-plan growable assertions — runner returns undefined SKIP at count=0 (Wave 0) AND at count∈[1..N-1] (partial-landing band); PASS only at ≥N. Encodes phase-spanning content rollout without falsely FAILing intermediate plans. Phase 16 Plan 16-01 origin → reused in Plan 20-06 for FERT-02.catalog gate (Rule 3 deviation honoring documented plan-author intent of 'SKIP remains SKIP at mid-band 67/118').
+- [Phase 20-fertilization-subsystem]: Plan 20-06: 8 CAM xerophyte interior entries (sansevieria/aloe-vera/jade/yuca/zamioculca/cola-burro/sansevieria-cilindrica/bambu-suerte) ship type='industrial' only — homemade composts too N-rich for arid succulents per RESEARCH §Pattern 12 framing matrix. 13 aromáticas type='homemade' default with industrial qualified 'cada 60d solo si suelo agotado' (mediterranean herbs concentrate oils in lean soils). 10 huerta type='both' with vegetativa→fructificación NPK switch per family (Solanácea 5-15-5; Cucurbitácea 5-15-10; Apiácea 5-10-10 bajo-N for raíz).
 
 ### Pending Todos
 
@@ -278,6 +282,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-10T14:40:37.938Z
-Stopped at: Completed 20-04-PLAN.md (Wave 3 UI: FertilizeCard real impl + modal two-column + PlantCard fertilize TaskButton + screen wiring)
+Last session: 2026-05-11T03:14:15.690Z
+Stopped at: Completed 20-06-PLAN.md
 Resume file: None

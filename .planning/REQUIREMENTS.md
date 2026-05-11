@@ -91,7 +91,7 @@
 - [x] **FERT-04**: `getTasksForDay` emits `'fertilize'` task on cadence (season-aware via warm/cold split); user marks done via TaskButton; `lastFertilized` updates
 - [x] **FERT-05**: Fertilize push notifications are **opt-in** (toggle in Settings → Notifications, default OFF). Task still appears in Hoy regardless. Avoids notification fatigue (4th task type alongside water/sun/outdoor) while letting power users opt in.
 - [x] **FERT-06**: PlantCard shows fertilize task badge when due today (mode: 'tasks' branch); MyPlantDetailModal "¿Qué hacer?" section explains how + when (referencing FERT-07 fertilizer type per plant)
-- [ ] **FERT-07**: `PlantDBEntry.fertilizer?: { type: 'industrial' | 'homemade' | 'both', industrialRecommendation?: string, homemadeRecommendation?: string }` added — content per entry. Industrial example: "NPK 10-10-10 diluido 1:4 en agua, cada 2 semanas en temporada cálida". Homemade example: "Té de cáscara de banana o cáscara de huevo molida cada 10-14 días en primavera/verano". Horticultural research per category required (tropicales / suculentas / hierbas / huerta / frutales). Industrial recommendations should be generic NPK ratios + standard amendments (NOT specific brands — avoid endorsement liability). All 120 catalog entries × EN+ES.
+- [ ] **FERT-07**: `PlantDBEntry.fertilizer?: { type: 'industrial' | 'homemade' | 'both', industrialRecommendation?: string, homemadeRecommendation?: string }` added — content per entry. Industrial example: "NPK 10-10-10 diluido 1:4 en agua, cada 2 semanas en temporada cálida". Homemade example: "Té de cáscara de banana o cáscara de huevo molida cada 10-14 días en primavera/verano". Horticultural research per category required (tropicales / suculentas / hierbas / huerta / frutales). Industrial recommendations should be generic NPK ratios + standard amendments (NOT specific brands — avoid endorsement liability). All 120 catalog entries × EN+ES. _(Plan 20-06 partial: 67/118 entries — interior + aromáticas + huerta. Plans 20-07/08 will close to 118.)_
 
 ### Plant Journal (JOURNAL)
 
@@ -242,7 +242,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | FERT-04 | Phase 20 | Complete |
 | FERT-05 | Phase 20 | Complete |
 | FERT-06 | Phase 20 | Complete |
-| FERT-07 | Phase 20 | Pending |
+| FERT-07 | Phase 20 | In Progress (67/118) |
 | JOURNAL-01 | Phase 21 | Pending |
 | JOURNAL-02 | Phase 21 | Pending |
 | JOURNAL-03 | Phase 21 | Pending |
