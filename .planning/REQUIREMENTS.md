@@ -87,7 +87,7 @@
 
 - [x] **FERT-01**: `Plant.fertilizeSchedule?: { intervalDays: number, lastFertilized?: string }` added (additive optional); migration default = derived from `PlantDBEntry.fertilizeIntervalWarm/Cold` (catalog-driven)
 - [x] **FERT-02**: `PlantDBEntry.fertilizeIntervalWarm?: number, fertilizeIntervalCold?: number | null` added; per-category baselines: tropical 14-28d/null, succulent 60-90d/null, herb 7-14d, woody perennial 180d
-- [ ] **FERT-03**: New `Task.type === 'fertilize'` added to discriminator union; 5-site sweep mirrors v1.1 `'check_soil'` precedent: `plantLogic.getTasksForDay`, `notificationScheduler`, `plantHealth`, `DayDetail`/`DayDetailModal`/`MonthCalendar` discriminator chains, `TaskButton` rendering
+- [x] **FERT-03**: New `Task.type === 'fertilize'` added to discriminator union; 5-site sweep mirrors v1.1 `'check_soil'` precedent: `plantLogic.getTasksForDay`, `notificationScheduler`, `plantHealth`, `DayDetail`/`DayDetailModal`/`MonthCalendar` discriminator chains, `TaskButton` rendering
 - [x] **FERT-04**: `getTasksForDay` emits `'fertilize'` task on cadence (season-aware via warm/cold split); user marks done via TaskButton; `lastFertilized` updates
 - [x] **FERT-05**: Fertilize push notifications are **opt-in** (toggle in Settings → Notifications, default OFF). Task still appears in Hoy regardless. Avoids notification fatigue (4th task type alongside water/sun/outdoor) while letting power users opt in.
 - [x] **FERT-06**: PlantCard shows fertilize task badge when due today (mode: 'tasks' branch); MyPlantDetailModal "¿Qué hacer?" section explains how + when (referencing FERT-07 fertilizer type per plant)
@@ -238,7 +238,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | TOX-06 | Phase 19 | Complete |
 | FERT-01 | Phase 20 | Complete |
 | FERT-02 | Phase 20 | Complete |
-| FERT-03 | Phase 20 | Pending |
+| FERT-03 | Phase 20 | Complete |
 | FERT-04 | Phase 20 | Complete |
 | FERT-05 | Phase 20 | Complete |
 | FERT-06 | Phase 20 | Complete |

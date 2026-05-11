@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 11 of 11
-status: verifying
-stopped_at: Completed 20-09-PLAN.md
-last_updated: "2026-05-11T17:15:40.000Z"
-last_activity: "2026-05-11 — Phase 20 Plan 09 complete (Wave 5 i18n parity gate: appended conditional fertilizer.industrial/homemadeRecommendation block to check-i18n-keys.mjs mirroring TOX-06 sub-field pattern; FERT-07.checkScript SKIP→PASS; 1 task, 1 file, +21 LOC, ~5 min wall-clock)."
+status: planning
+stopped_at: Completed 20-10-PLAN.md
+last_updated: "2026-05-11T20:35:50.291Z"
+last_activity: 2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock).
 progress:
   total_phases: 15
-  completed_phases: 10
+  completed_phases: 11
   total_plans: 64
-  completed_plans: 64
+  completed_plans: 65
   percent: 100
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
+Phase: 20 of 24 (Fertilization Subsystem) — **CLOSED at code level (awaiting verifier)**
 Current Plan: 11 of 11
-Plan: 20-09 complete (Wave 5 i18n parity gate extension: appended conditional fertilizer.industrialRecommendation + fertilizer.homemadeRecommendation validation block to scripts/check-i18n-keys.mjs immediately after the Phase 19 TOX-06 petToxicity.symptoms block — append-only +21 LOC mirroring the TOX-06 sub-field pattern verbatim with independent sub-field gates per Pitfall 6 so Plan 20-07 suculentas industrial-only entries pass without false-negatives; 1 atomic task commit — a5e923c scripts/check-i18n-keys.mjs only; verified npm run check:i18n-keys PASS 118 catalog ids; smoke-phase20 PASS=48 FAIL=0 SKIP=1 — FERT-07.checkScript.fertilizer-conditional-extension SKIP→PASS; CROSS.TOX-06.checkScript.symptoms-extension-preserved sentinel PRESERVED (regex /petToxicity[^]*?symptoms/ matches still-present TOX-06 block above the new FERT-07 append); cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 untouched; npx tsc --noEmit exits 0; ~5min wall-clock).
-Status: **Phase 20 Wave 5 complete (Plan 20-09 landed atomically). FERT-07 i18n parity gate FULLY CLOSED.** The canonical pre-submit gate referenced in CLAUDE.md §Pre-submit Checks now catches future drift between plantDatabase.ts and plants.json fertilizer copy. Plans 20-06/07/08 produced locale-parity content (118 industrial + 94 homemade per locale) → new gate PASSes immediately on land with zero false-negatives on suculentas industrial-only entries. The +21 LOC delta vs PLAN's predicted +17 LOC comes from a slightly more verbose block-comment header for Pitfall 6 traceability; the executable gate logic itself is exactly the 12 lines specified in the plan. **Next:** Phase 20 Plan 20-10 (MANUAL CHECKPOINT — autonomous: false): 14-item Blocks A-E device-test checklist with Option A run-now / Option B defer-to-v1.2-backlog gate, closing Phase 20 at 11/11 plans executed.
-Last activity: 2026-05-11 — Phase 20 Plan 09 complete (Wave 5 i18n parity gate: appended conditional fertilizer parity block to check-i18n-keys.mjs; FERT-07.checkScript SKIP→PASS; 1 task, 1 file, +21 LOC, ~5 min wall-clock).
+Plan: 20-10 complete (Wave 6 closing manual checkpoint: 5 automation gates re-verified green at finalization time — npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; node scripts/smoke-phase20.cjs PASS=49 FAIL=0 SKIP=0; npm run smoke:phase18 PASS=56 FAIL=0 SKIP=0; npm run smoke:phase19 PASS=85 FAIL=0 SKIP=0; user selected Option B (defer 14-item device-test checklist to v1_2_test_backlog.md memory per Phase 18-05 / 19-07 milestone-end batching precedent); 14-item checklist appended verbatim to backlog memory with 5-block A-E structure + 12-hard / 2-soft classifier; hard fails A1/A2/A3/B1/B2/B3/B4/B5/B6/D1/D2/D3; soft fails C1/E1; FERT-03 closing flip (the only remaining Pending FERT-* in REQUIREMENTS.md as of plan start; 6 of 7 already Complete from Plans 20-00..09); ~5min wall-clock; 2 tasks, 0 source files modified).
+Status: **Phase 20 Wave 6 complete (Plan 20-10 landed atomically as metadata-only closure). Phase 20 CLOSED at code level — all 7 FERT-* requirement IDs (FERT-01..07) reach closing PASS state.** Manual device verifications batched per CLAUDE.md milestone-end pattern; ship-blocker for v1.2 store submission, NOT for Phase 20 closure. Cumulative v1.2 manual-gate deferral queue now: Phase 13 iOS (5 acceptance behaviors) + Phase 14 e2e re-verify + PaywallModal Z-order coexistence + Phase 18 38-item checklist + Phase 20 14-item checklist + 69-entry image upload backlog. **Next:** orchestrator-spawned verifier runs to confirm Phase 20 closure invariants → Phase 21 (Plant Journal — JOURNAL-01..05) ready to plan (inherits Phase 13 BottomSheetModal + Phase 18 Toast primitive + Phase 20 additive-optional-schedule pattern).
+Last activity: 2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock).
 
-Progress: [██████████] 100% (64/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 + 09 complete — Plan 20-10 manual checkpoint ahead)
+Progress: [██████████] 100% (65/65 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 + 09 + 10 complete — Phase 20 CLOSED at code level)
 
 ## Performance Metrics
 
@@ -98,6 +98,7 @@ Progress: [██████████] 100% (64/64 plans complete; Phase 20 
 | Phase 20 P07 | 22min | 1 tasks | 3 files |
 | Phase 20-fertilization-subsystem P08 | 187min | 1 tasks | 3 files |
 | Phase 20-fertilization-subsystem P09 | 5min | 1 tasks | 1 files |
+| Phase Phase 20-fertilization-subsystem PP10 | 5min | 2 tasks tasks | 0 files files |
 
 ## Accumulated Context
 
@@ -277,6 +278,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-08: full-catalog distinctness verifier extension (Map-based dedupe against existing 142+118 strings) — zero copy-paste across all 118 entries × 2 locales × {industrial, homemade} = 472 distinct strings verified
 - [Phase 20-fertilization-subsystem]: Plan 20-09: append-only conditional fertilizer.industrialRecommendation + fertilizer.homemadeRecommendation parity validation landed at scripts/check-i18n-keys.mjs immediately after Phase 19 TOX-06 petToxicity.symptoms block (line 124) with independent sub-field gates per Pitfall 6; +21 LOC (12 executable + 9 block-comment for traceability vs PLAN-predicted +17); CROSS.TOX-06.checkScript.symptoms-extension-preserved sentinel intact (regex /petToxicity[^]*?symptoms/ matches still-present TOX-06 block above the new append); FERT-07.checkScript.fertilizer-conditional-extension SKIP→PASS; npm run check:i18n-keys PASS 118 ids; smoke-phase20 PASS=48 FAIL=0 SKIP=1 (remaining SKIP FERT-03.TaskButton.fertilize-render unrelated, unchanged); cross-phase smoke-phase18/19 untouched.
 - [Phase 20-fertilization-subsystem]: i18n parity gate coverage now spans 8 conditional check tiers — Phase 8 CAT-06 (name/tip/description/problems required) + Phase 14 nutrients + Phase 14 EDU-07 careAction/placement*/whyRationale + Phase 19 TOX-06 petToxicity.symptoms.{cats,dogs} + Phase 20 FERT-07 fertilizer.{industrial,homemade}Recommendation. Append-only discipline preserved across all 4 extensions (Phase 14, 19, 20) — same insertion-point pattern, same independent-sub-field rule, zero modifications to pre-existing checks.
+- [Phase Phase 20-fertilization-subsystem]: Plan 20-10 (closing manual gate): user selected Option B (defer to v1.2 device-test backlog memory per Phase 18-05 / 19-07 milestone-end batching precedent). 14-item device-test checklist appended verbatim to v1_2_test_backlog.md with 5-block A-E structure + 12-hard/2-soft classifier. Phase 20 CLOSED at code level — all 7 FERT-* requirement IDs reach closing PASS state. Deferred items remain ship-blocker for v1.2 store submission, NOT for Phase 20 closure.
+- [Phase Phase 20-fertilization-subsystem]: Plan 20-10 (closing manual gate): FERT-03 closing flip — last Pending FERT-* in REQUIREMENTS.md as of plan start; 6 of 7 already Complete from Plans 20-00..09. FERT-03 5-site discriminator sweep landed in Plan 20-03; TaskButton-via-PlantCard invocation site verified via orchestrator sentinel-redirect commit f476948. All 7 FERT-* now Complete after this plan's closure metadata commit.
+- [Phase Phase 20-fertilization-subsystem]: Plan 20-10: Manual deferral discipline reused verbatim from Phase 18-05 + Phase 19-07 — when user approves manual checkpoint with Option B deferral (vs run-now), executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier, (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. 3rd consecutive use of this pattern across consecutive phases — pattern fully canonical for v1.2 manual-checkpoint plans whose device-only gates are blocked by Xcode/RevenueCat/Apple ID friction. Phase 21+ should adopt verbatim.
 
 ### Pending Todos
 
@@ -291,6 +295,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T17:15:40.000Z
-Stopped at: Completed 20-09-PLAN.md
+Last session: 2026-05-11T20:35:50.288Z
+Stopped at: Completed 20-10-PLAN.md
 Resume file: None

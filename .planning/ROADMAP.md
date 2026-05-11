@@ -48,7 +48,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 118 total; smoke asserts count (5 plans) (completed 2026-05-08)
 - [x] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge (completed 2026-05-08)
 - [x] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter (completed 2026-05-09)
-- [ ] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications
+- [x] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications (completed 2026-05-11)
 - [ ] **Phase 21: Plant Journal** — Per-plant `JournalEntry[]` with file-system photo storage; bottom-sheet quick-add; reverse-chronological timeline; orphan cleanup on plant delete
 - [ ] **Phase 22: Gamification — Toasts + Haptics** — Completion toasts; haptic feedback on task done; streak-anxiety anti-pattern documented and enforced
 - [ ] **Phase 23: Polish — UAT Fixes + Brand Voice** — Outdoor task gate; outdoor picker labels; textSecondary WCAG AA; voseo microcopy; illustrated empty states
@@ -232,7 +232,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Fertilize push notifications default to OFF in Settings; toggling ON schedules reminders correctly
   4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
   5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
-**Plans:** 10/11 plans executed
+**Plans:** 11/11 plans complete
   - [x] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
   - [x] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
   - [x] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
@@ -243,7 +243,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [x] 20-07-PLAN.md — Wave 4 Batch B: FERT-07 catalog content for 16 suculentas — industrial-only (CAM dormancy, no homemade)
   - [x] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
   - [x] 20-09-PLAN.md — Wave 5: check-i18n-keys.mjs conditional fertilizer.industrial/homemade extension (mirrors Phase 19 TOX-06 pattern; FERT-07 i18n parity gate closed)
-  - [ ] 20-10-PLAN.md — Wave 6: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist; Option A run-now / Option B defer-to-v1.2-backlog
+  - [x] 20-10-PLAN.md — Wave 6: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist; user selected Option B (defer to v1.2 backlog memory per Phase 18-05 / 19-07 milestone-end batching precedent); Phase 20 CLOSED at code level (completed 2026-05-11)
 
 ### Phase 21: Plant Journal
 **Goal**: Users can log text notes and photos for any plant in a reverse-chronological journal; journal data is stored safely in the file system (not AsyncStorage base64); deleting a plant cleans up its journal
@@ -311,7 +311,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
 | 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
-| 20. Fertilization Subsystem | 8/11 | In Progress|  | - |
+| 20. Fertilization Subsystem | 11/11 | Complete   | 2026-05-11 | - |
 | 21. Plant Journal | v1.2 | 0/TBD | Not started | - |
 | 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |
