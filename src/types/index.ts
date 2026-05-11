@@ -135,6 +135,22 @@ export interface ShoppingItem {
   createdAt: string;
 }
 
+/** v1.2 Phase 21 (JOURNAL-02) — care-tag taxonomy. 6 predefined values, single-select. */
+export type CareTag = 'riego' | 'fertilizar' | 'sol' | 'poda' | 'problema' | 'otro';
+
+/** v1.2 Phase 21 (JOURNAL-02) — single per-plant journal entry.
+ *  All fields except `id` and `date` are optional → empty entry with just the date is valid.
+ *  `photoUri` points to a file in `${Paths.document.uri}journal/${plantId}/${id}.jpg` — NEVER base64.
+ *  `date` is ISO string ("YYYY-MM-DD" — matches Plant.lastWatered format).
+ *  `id` is generated via `Date.now().toString()` (matches app-wide convention). */
+export interface JournalEntry {
+  id: string;
+  date: string;
+  text?: string;
+  photoUri?: string;
+  careTag?: CareTag;
+}
+
 export interface AppData {
   plants: Plant[];
   notes: Record<string, Note[]>;
@@ -151,6 +167,8 @@ export interface AppData {
   shoppingList: ShoppingItem[];
   /** v1.1 Phase 7 (LOC-05). User-controlled climate-zone override. Missing = 'auto'. */
   climateOverride?: ClimateOverride;
+  /** v1.2 Phase 21 (JOURNAL-01). Additive optional; absence/empty = no entries. Keyed by plant.id. */
+  journals?: Record<string, JournalEntry[]>;
 }
 
 /**
