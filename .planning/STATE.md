@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 7
-status: executing
-stopped_at: Completed 21-03-PLAN.md
-last_updated: "2026-05-11T23:00:56.481Z"
-last_activity: "2026-05-11 — Phase 21 Plan 03 complete (JOURNAL-03 + JOURNAL-04 useStorage actions + deletePlant cascade: addJournalEntry + deleteJournalEntry wired through 4 sites each (interface + impl + provider value + deps); deletePlant extended with fire-and-forget deleteJournalDirectory(id).catch(...) BEFORE state mutation + journals[id] map cleanup (fail-fast policy preserved); 6 SKIP→PASS sentinels flipped (smoke-phase21 PASS=65 FAIL=0 SKIP=10); cross-phase smoke18/19/20 unchanged; 2 min wall-clock; 2 tasks, 1 file modified)."
+current_plan: 6 of 7
+status: verifying
+stopped_at: Completed 21-04-PLAN.md
+last_updated: "2026-05-11T23:13:06.356Z"
+last_activity: "2026-05-11 — Phase 21 Plan 04 complete (JOURNAL-04 UI surfaces: 6th Diario section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + journalToastVisible screen-level Toast wiring; 10 SKIP→PASS sentinels flipped; ~6 min wall-clock)."
 progress:
   total_phases: 15
   completed_phases: 11
   total_plans: 71
-  completed_plans: 69
-  percent: 96
+  completed_plans: 70
+  percent: 99
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 2 storage actions + deletePlant cascade complete; JOURNAL-03 + JOURNAL-04 landed)**
-Current Plan: 5 of 7
-Plan: 21-03 complete (JOURNAL-03 + JOURNAL-04 useStorage actions + deletePlant cascade: addJournalEntry + deleteJournalEntry wired through 4 sites each (interface signature + useCallback impl + provider value object + useMemo deps array); both impls mirror addNote/deleteNote verbatim at L476-490 with field substitution; deletePlant extended with deleteJournalDirectory(id).catch(...) fire-and-forget BEFORE state mutation + journals[id] map cleanup alongside existing diagnosisHistory cleanup; fail-fast policy preserved (FS cleanup failure does NOT block state mutation per RESEARCH § Pattern 3); 6 SKIP→PASS sentinels flipped (addJournalEntry-interface, deleteJournalEntry-interface, addJournalEntry-4-sites, public-interface-exposes-3-names, deletePlant-calls-deleteJournalDirectory, deletePlant-removes-journals-map-entry); three-name public StorageContextType surface complete; smoke-phase21 PASS=65 FAIL=0 SKIP=10 (remaining SKIPs are Plan 21-04 territory); cross-phase smoke18/19/20 unchanged (56/85/49); tsc green; ~2 min wall-clock; 2 tasks, 1 file modified).
-Status: **Phase 21 Wave 2 complete (Plan 21-03 useStorage actions + deletePlant cascade landed).** Next: Plan 21-04 (Wave 3, JOURNAL-05) — MyPlantDetailModal Diario section + JournalQuickAddSheet camera/gallery wiring + JournalEntryRow long-press delete flow + ModalSectionId widening on PlantsScreen/TodayScreen. 10 JOURNAL-04 SKIP→PASS sentinels pending.
-Last activity: 2026-05-11 — Phase 21 Plan 03 complete (JOURNAL-03 + JOURNAL-04 useStorage actions + deletePlant cascade; 6 SKIP→PASS sentinels flipped; cross-phase smoke18/19/20 unchanged; ~2 min wall-clock).
+Current Plan: 6 of 7
+Plan: 21-04 complete (JOURNAL-04 Wave 3 UI surfaces: 6th Diario section in MyPlantDetailModal AFTER Mascotas; JournalSection real impl (collapsible 180ms `Easing.out(Easing.cubic)` mirroring EducationalSection + FlatList reverse-chrono timeline + empty-state CTA + "+ Nueva entrada" button); JournalEntryRow real impl (date header via getRelativeDateLabel Hoy/Ayer/Hace N días/locale + careTag chip + 80x80 thumbnail + body + long-press → BottomSheetModal "Eliminar entrada" → Alert.alert → deleteJournalPhoto + onDelete); JournalQuickAddSheet real impl (60% snap BottomSheetModal + multiline TextInput + 📷 Cámara + 🖼️ Galería + 6 careTag chips driven by module-level literal `CARE_TAGS as const satisfies readonly CareTag[]` (Warning D LOCKED) + atomic-write Guardar (saveJournalPhoto FIRST with try/catch + Alert + abort) + Cancelar reset); ModalSectionId union widened to 6 anchors with 'diario'; both consumer screens (PlantsScreen + TodayScreen) widened via SEPARATE `import type { ModalSectionId } from '../components/MyPlantDetailModal'` line — barrel imports untouched (Blocker A LOCKED); journal Toast wiring via screen-level Approach B (Important 6 LOCKED) using DISTINCT `journalToastVisible` identifier (Blocker B LOCKED) — Phase 18 swipe-undo `toastVisible` at PlantsScreen:139 + TodayScreen:253 stays untouched; two `<Toast>` siblings coexist independently with `t('journal.savedToast')` + 2000 ms; pre-flight check (Important 7) verified Plan 21-03 deliverables (journals + addJournalEntry + deleteJournalEntry on StorageContextType); 10 JOURNAL-04 SKIPs flipped to PASS; smoke-phase21 PASS=75 FAIL=0 SKIP=0; cross-phase smoke18/19/20 untouched (56/85/49); tsc green; ~6 min wall-clock; 4 tasks, 6 files modified).
+Status: **Phase 21 Wave 3 complete (Plan 21-04 UI surfaces landed; Diario is now the 6th educational section in MyPlantDetailModal).** Next: Plan 21-05 (Wave 4, JOURNAL-05) — premium-gate verification + negative-grep at journal-read sites (smoke sentinel `JOURNAL-05.negative-grep.no-premium-gate-at-read-sites`).
+Last activity: 2026-05-11 — Phase 21 Plan 04 complete (JOURNAL-04 UI surfaces: 6th Diario section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + journalToastVisible screen-level Toast wiring; 10 SKIP→PASS sentinels flipped; ~6 min wall-clock).
 
-Progress: [██████████] 97% (69/71 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade)
+Progress: [██████████] 99% (70/71 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces (Diario as 6th section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + screen-level journalToastVisible Toast))
 
 ## Performance Metrics
 
@@ -103,6 +103,7 @@ Progress: [██████████] 97% (69/71 plans complete; Phase 21 P
 | Phase 21-plant-journal P02 | 1min | 1 tasks | 1 files |
 | Phase 21-plant-journal P01 | 4min | 1 tasks | 2 files |
 | Phase 21-plant-journal P03 | 2min | 2 tasks | 1 files |
+| Phase 21-plant-journal P04 | 6 min | 4 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -293,6 +294,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 21-plant-journal]: Provider value object exposes journals because StorageContextType = StorageState & StorageActions intersection requires it once StorageState declares journals as non-optional (Plan's Blocker 2 was internally inconsistent — keeping journals required on StorageState but absent from the value object cannot pass tsc). Resolved by Rule 3 (Blocking): expose journals on value object + deps array. Negative-grep (addJournalEntry|deleteJournalEntry count 0) still enforces Plan 21-03 ownership of the two mutation actions.
 - [Phase 21-plant-journal]: Plan 21-03: fire-and-forget orphan cleanup BEFORE state mutation for deletePlant cascade — deleteJournalDirectory(id).catch(...) with __DEV__ console.warn; state mutation never blocks on FS cleanup (fail-fast policy per RESEARCH § Pattern 3)
 - [Phase 21-plant-journal]: Plan 21-03: addJournalEntry/deleteJournalEntry useCallback impls mirror addNote/deleteNote verbatim at L476-490 with field substitution — same scheduleSave dep, same spread+filter shape. Maintains CRUD pattern lockstep.
+- [Phase 21-plant-journal]: Plan 21-04: type-only NAMED import for ModalSectionId widening (Blocker A) — separate `import type { ModalSectionId } from '../components/MyPlantDetailModal'` line, barrel imports untouched, default-import shape forbidden (component file is NAMED-export-only)
+- [Phase 21-plant-journal]: Plan 21-04: DISTINCT journalToastVisible identifier for Phase 21 journal-saved Toast (Blocker B) — Phase 18 swipe-undo toastVisible at PlantsScreen:139 + TodayScreen:253 stays untouched; two Toast siblings coexist independently, no shared queue / priority / z-order logic
+- [Phase 21-plant-journal]: Plan 21-04: screen-level Toast ownership via onJournalEntrySaved callback prop (Important 6 Approach B) — MyPlantDetailModal owns ZERO toast state; parent screens own journalToastVisible state; avoids Pitfall 10 Toast-inside-RN-Modal z-order
+- [Phase 21-plant-journal]: Plan 21-04: module-level literal CARE_TAGS array driver for chip render (Warning D) — `const CARE_TAGS = [...] as const satisfies readonly CareTag[]` keeps grep-able literal tag names + runtime array + CareTag union in compile-time lockstep
 
 ### Pending Todos
 
@@ -307,6 +312,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T23:00:56.478Z
-Stopped at: Completed 21-03-PLAN.md
+Last session: 2026-05-11T23:13:06.353Z
+Stopped at: Completed 21-04-PLAN.md
 Resume file: None
