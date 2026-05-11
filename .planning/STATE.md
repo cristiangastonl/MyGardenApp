@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
 current_plan: 7 of 7
-status: completed
-stopped_at: Completed 21-05-PLAN.md
-last_updated: "2026-05-11T23:19:17.411Z"
-last_activity: "2026-05-11 — Phase 21 Plan 05 complete (JOURNAL-05 negative-grep + i18n parity verification: zero premium-gate references at journal-read sites; all 22 journal.* i18n keys parity-confirmed in EN+ES with voseo discipline intact; smoke runner sentinel extended to JournalQuickAddSheet + Diario block window-grep; verification-only — no source mutation needed; ~1 min wall-clock)."
+status: planning
+stopped_at: Completed 21-06-PLAN.md
+last_updated: "2026-05-11T23:24:57.958Z"
+last_activity: "2026-05-11 — Phase 21 Plan 06 complete (JOURNAL-01..05 closing manual gate: automation suite re-verified green; user auto-selected Option B per established v1.2 precedent; 14-item Blocks A-E device-test checklist appended to v1_2_test_backlog.md memory; Phase 21 CLOSED at code level, verifier-ready)."
 progress:
   total_phases: 15
-  completed_phases: 11
+  completed_phases: 12
   total_plans: 71
-  completed_plans: 71
-  percent: 99
+  completed_plans: 72
+  percent: 100
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 4 negative-grep + i18n parity verification complete; JOURNAL-05 invariant LOCKED at smoke-runner level)**
+Phase: 21 of 24 (Plant Journal) — **CLOSED at code level (Plan 21-06 closing manual gate complete; verifier-ready)**
 Current Plan: 7 of 7
-Plan: 21-05 complete (JOURNAL-05 Wave 4 negative-grep + i18n parity verification: zero `usePremiumGate` / `isPremium` / `canReadJournal` references in JournalSection.tsx / JournalEntryRow.tsx / JournalQuickAddSheet.tsx — Blossom cautionary tale invariant preserved; MyPlantDetailModal `usePremiumGate()` at line 83 is LEGITIMATE — destructures `canDiagnose` / `isPremium` for Phase 8 diagnosis flow at lines 212/304/308, NOT wrapping the Diario render block at lines 502-509; i18n parity confirmed — all 22 `journal.*` keys present in BOTH en/common.json + es/common.json (Wave 0 shipped via Blocker 4); ES voseo discipline intact INSIDE journal namespace (`Agregá` / `Escribí` imperatives + `Guardar` / `Cancelar` / `Eliminar` infinitives — voseo-neutral); zero `??` fallback literals in Wave 3 component files (Plan 21-04 used bare `t()` calls throughout per Blocker 4); pre-existing `home.emptyGardenText` tuteo string is OUT OF SCOPE per deviation rules § scope boundary; smoke runner JOURNAL-05 sentinel extended to include `JournalQuickAddSheet` in OR-chain + new `JOURNAL-05.modal.diario-block-not-premium-gated` window-grep sentinel (±5 lines around `onSectionLayout('diario')` anchor); smoke-phase21 PASS=75→76 FAIL=0 SKIP=0; cross-phase smoke18/19/20 untouched (56/85/49); tsc green; ~1 min wall-clock; 2 tasks (Task 1 verification-only / Task 2 sentinel extension), 1 file modified (smoke runner only)).
-Status: **Phase 21 Wave 4 complete (Plan 21-05 JOURNAL-05 invariant LOCKED at smoke-runner level — Blossom cautionary tale guarded; i18n parity confirmed).** Next: Plan 21-06 (Wave 5, JOURNAL-06) — final acceptance gate + device-test handoff to v1.2 milestone-end batch.
-Last activity: 2026-05-11 — Phase 21 Plan 05 complete (JOURNAL-05 negative-grep + i18n parity verification: zero premium-gate references at journal-read sites; all 22 journal.* i18n keys parity-confirmed in EN+ES with voseo discipline intact; smoke runner sentinel extended to JournalQuickAddSheet + Diario block window-grep; verification-only — no source mutation needed; ~1 min wall-clock).
+Plan: 21-06 complete (JOURNAL-01..05 closing manual gate: pre-checkpoint automation suite re-verified GREEN at plan-start time — `npx tsc --noEmit` exit 0 + `npm run check:i18n-keys` PASS 118 ids + `node scripts/smoke-phase18.cjs` PASS=56 FAIL=0 SKIP=0 + `node scripts/smoke-phase19.cjs` PASS=85 FAIL=0 SKIP=0 + `node scripts/smoke-phase20.cjs` PASS=49 FAIL=0 SKIP=0 + `node scripts/smoke-phase21.cjs` PASS=76 FAIL=0 SKIP=0; user auto-selected Option B (defer to v1.2 milestone-end device-test backlog memory per Phase 18-05 / 19-07 / 20-10 milestone-end batching precedent) via orchestrator's `--auto --no-transition` chain flag; 14-item Blocks A-E device-test checklist (12 HARD-fail: A1/A2/A3/B1/B2/B3/B4/B5/B6/D1/D2/D3 + 2 SOFT-fail: C1/E1) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` BEFORE the pre-submission session structure section with "What was built" + "Device-test checklist" + "Why deferred" + "Pre-submission unblock" subsection structure mirroring Phase 20-10 entry exactly; pre-submission session structure comment block updated to enumerate Phase 21 14-item checklist alongside Phase 18 38-item + Phase 20 14-item checklists; Phase 21 CLOSED at code level — all 5 JOURNAL-* requirement IDs reach closing PASS state; ~3 min wall-clock; 2 tasks (Task 1 automation gate re-verify / Task 2 manual checkpoint auto-deferred via Option B); 0 source files modified (verification-only plan; SUMMARY + STATE + ROADMAP + backlog memory are metadata)).
+Status: **Phase 21 CLOSED at code level (Plan 21-06 closing manual gate auto-resolved via Option B; 14-item device-test checklist deferred to v1.2 milestone-end batch).** Next: orchestrator-spawned verifier confirms phase closure invariants → Phase 22 (Gamification — Toasts + Haptics — GAM-01, GAM-02, GAM-05) ready to plan.
+Last activity: 2026-05-11 — Phase 21 Plan 06 complete (JOURNAL-01..05 closing manual gate: automation suite re-verified green; user auto-selected Option B per established v1.2 precedent; 14-item Blocks A-E device-test checklist appended to v1_2_test_backlog.md memory; Phase 21 CLOSED at code level, verifier-ready).
 
-Progress: [██████████] 99% (71/72 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 + 21-05 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces + JOURNAL-05 negative-grep + i18n parity verification)
+Progress: [██████████] 100% (72/72 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 + 21-05 + 21-06 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces + JOURNAL-05 negative-grep + i18n parity verification + closing manual gate Option B)
 
 ## Performance Metrics
 
@@ -105,6 +105,7 @@ Progress: [██████████] 99% (71/72 plans complete; Phase 21 P
 | Phase 21-plant-journal P03 | 2min | 2 tasks | 1 files |
 | Phase 21-plant-journal P04 | 6 min | 4 tasks | 6 files |
 | Phase 21-plant-journal P05 | 1min | 2 tasks | 1 files |
+| Phase 21-plant-journal P06 | 3min | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -317,6 +318,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T23:18:22.931Z
-Stopped at: Completed 21-05-PLAN.md
+Last session: 2026-05-11T23:24:57.955Z
+Stopped at: Completed 21-06-PLAN.md
 Resume file: None
