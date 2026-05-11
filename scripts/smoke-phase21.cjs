@@ -167,11 +167,33 @@ assertSkippable(() => (plantsScreenSrc.match(/ModalSectionId/g) || []).length >=
 assertSkippable(() => (todayScreenSrc.match(/ModalSectionId/g) || []).length >= 2 || undefined, 'JOURNAL-04.TodayScreen.ModalSectionId-widened');
 
 // ─── JOURNAL-05 negative-grep (NO premium-gate at journal-read sites) — SKIP at W0, PASS after 21-05 ───
+// Plan 21-05 enforcement: ALL three Wave 3 journal component files MUST be free of premium-gate
+// references. JournalQuickAddSheet was previously omitted from this sentinel — the plan's
+// acceptance criterion (line 224) explicitly enumerates all three files. Extended in Plan 21-05.
 assertSkippable(() => {
   if (journalSectionSrc.length === 0) return undefined;
-  const hasGate = /usePremiumGate|isPremium|canReadJournal/.test(journalSectionSrc) || /usePremiumGate|isPremium|canReadJournal/.test(journalEntryRowSrc);
+  const GATE_RE = /usePremiumGate|isPremium|canReadJournal/;
+  const hasGate =
+    GATE_RE.test(journalSectionSrc) ||
+    GATE_RE.test(journalEntryRowSrc) ||
+    GATE_RE.test(journalQuickAddSrc);
   return hasGate ? false : true;
 }, 'JOURNAL-05.negative-grep.no-premium-gate-at-read-sites');
+
+// Plan 21-05 additional guard: MyPlantDetailModal's Diario render block must NOT be wrapped in
+// a premium-gate conditional. The modal uses usePremiumGate() for the (Phase 8) diagnosis flow
+// — that is legitimate and unrelated. We forbid the gate symbols appearing inside the Diario
+// JSX block specifically. Pattern: locate the `onLayout={onSectionLayout('diario')}` anchor and
+// confirm no premium-gate identifier appears within ±5 lines of it.
+assertSkippable(() => {
+  if (modalSrc.length === 0) return undefined;
+  const lines = modalSrc.split('\n');
+  const anchor = lines.findIndex((l) => /onSectionLayout\(['"]diario['"]\)/.test(l));
+  if (anchor === -1) return undefined;
+  const window = lines.slice(Math.max(0, anchor - 5), anchor + 6).join('\n');
+  const wrapped = /(isPremium|canReadJournal|usePremiumGate)\s*\&\&/.test(window);
+  return wrapped ? false : true;
+}, 'JOURNAL-05.modal.diario-block-not-premium-gated');
 
 // ─── i18n parity (≥22 keys — covers ALL Wave 3 t() sites) — SKIP per-key at W0, PASS after Wave 0 task 1 lands JSON skeletons ───
 const requiredJournalKeys = [
