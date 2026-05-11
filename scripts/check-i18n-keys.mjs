@@ -122,6 +122,27 @@ for (const entry of PLANT_DATABASE) {
         errors.push(`[${locale}] "${entry.id}".petToxicity.symptoms.dogs missing or empty`);
       }
     }
+
+    // ─── v1.2 Phase 20 (FERT-07): conditional fertilizer recommendation validation ───
+    // When the catalog entry declares fertilizer.industrialRecommendation OR
+    // fertilizer.homemadeRecommendation, the corresponding plants.json per-entry node
+    // MUST provide a non-empty string for each declared sub-field. Sub-fields are
+    // validated INDEPENDENTLY — suculentas entries (Plan 20-07) declare only
+    // industrialRecommendation and intentionally omit homemadeRecommendation;
+    // those entries pass the gate without a false-negative on the missing homemade key.
+    // (Pitfall 6 — same independent-sub-field discipline as Phase 19 TOX-06 above.)
+    if (entry.fertilizer?.industrialRecommendation) {
+      const industrialNode = node?.fertilizer?.industrialRecommendation;
+      if (typeof industrialNode !== 'string' || industrialNode.length < 1) {
+        errors.push(`[${locale}] "${entry.id}".fertilizer.industrialRecommendation missing or empty`);
+      }
+    }
+    if (entry.fertilizer?.homemadeRecommendation) {
+      const homemadeNode = node?.fertilizer?.homemadeRecommendation;
+      if (typeof homemadeNode !== 'string' || homemadeNode.length < 1) {
+        errors.push(`[${locale}] "${entry.id}".fertilizer.homemadeRecommendation missing or empty`);
+      }
+    }
   }
 }
 
