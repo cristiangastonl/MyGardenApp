@@ -14,6 +14,7 @@ import {
   CURRENT_SCHEMA_VERSION,
 } from '../utils/migration';
 import { getCatalogEntry } from '../data/plantDatabase';
+import { deleteJournalDirectory } from '../services/journalService';
 
 /**
  * v1.2 Phase 14 (EDU-06). Fields that represent user-customized values which catalog-source
@@ -62,6 +63,14 @@ interface StorageActions {
   addReminder: (dateStr: string, reminder: Reminder) => void;
   deleteReminder: (dateStr: string, reminderId: string) => void;
   updateReminder: (dateStr: string, reminderId: string, updates: Partial<Reminder>) => void;
+  // ─── v1.2 Phase 21 (JOURNAL-03) ───
+  /** Adds a journal entry for plantId. Caller pre-generated `entry.id` via Date.now().toString().
+   *  Photo file (if any) MUST already be written to documentDirectory BEFORE this call —
+   *  invariant: every `photoUri` in storage points to a real file (atomic write order). */
+  addJournalEntry: (plantId: string, entry: JournalEntry) => void;
+  /** Removes a journal entry. Caller is responsible for the per-entry photo file deletion via
+   *  journalService.deleteJournalPhoto(plantId, entryId) BEFORE invoking this action. */
+  deleteJournalEntry: (plantId: string, entryId: string) => void;
   updateLocation: (location: Location | null) => void;
   completeOnboarding: () => void;
   completeOnboardingWithData: (plants: Plant[], userName: string | null) => void;
@@ -517,6 +526,23 @@ export function StorageProvider({ children }: StorageProviderProps) {
     scheduleSave();
   }, [scheduleSave]);
 
+  // ─── Phase 21 (JOURNAL-03) — mirrors addNote/deleteNote at lines 476-490 ───
+  const addJournalEntry = useCallback((plantId: string, entry: JournalEntry) => {
+    const cur = dataRef.current.journals;
+    const newJournals = { ...cur, [plantId]: [...(cur[plantId] || []), entry] };
+    setJournals(newJournals);
+    dataRef.current.journals = newJournals;
+    scheduleSave();
+  }, [scheduleSave]);
+
+  const deleteJournalEntry = useCallback((plantId: string, entryId: string) => {
+    const cur = dataRef.current.journals;
+    const newJournals = { ...cur, [plantId]: (cur[plantId] || []).filter(e => e.id !== entryId) };
+    setJournals(newJournals);
+    dataRef.current.journals = newJournals;
+    scheduleSave();
+  }, [scheduleSave]);
+
   const updateLocation = useCallback((newLocation: Location | null) => {
     setLocation(newLocation);
     dataRef.current.location = newLocation;
@@ -815,6 +841,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
     addReminder,
     deleteReminder,
     updateReminder,
+    addJournalEntry,
+    deleteJournalEntry,
     updateLocation,
     completeOnboarding,
     completeOnboardingWithData,
@@ -844,11 +872,13 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }), [
     plants, notes, reminders, location, onboardingCompleted, userName,
     notificationSettings, plantNetApiKey, installDate, identificationCount,
-    diagnosisCount, diagnosisHistory, shoppingList, journals, climateOverride, loading,
+    diagnosisCount, diagnosisHistory, shoppingList,
+    journals,
+    climateOverride, loading,
     migrationFailed, migrationJustHappened,
     handleSetPlants, addPlant,
     addPlants, deletePlant, updatePlant, fertilizePlant, addNote, deleteNote, addReminder,
-    deleteReminder, updateReminder, updateLocation, completeOnboarding,
+    deleteReminder, updateReminder, addJournalEntry, deleteJournalEntry, updateLocation, completeOnboarding,
     completeOnboardingWithData, setUserName, updateNotificationSettings,
     updatePlantNetApiKey, incrementIdentificationCount, incrementDiagnosisCount,
     addPhotoToPlant, removePhotoFromPlant, saveDiagnosis, addChatMessage,
