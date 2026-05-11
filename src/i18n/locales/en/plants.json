@@ -490,6 +490,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d only if soil is spent (Lavandula angustifolia thrives on lean chalky soil).",
+      "homemadeRecommendation": "Light compost once in spring only; never fresh manure (too much N dulls the essential oils)."
     }
   },
   "lavanda-stoechas": {
@@ -533,6 +537,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d in warm season (French lavender — cold-sensitive, skip autumn feed).",
+      "homemadeRecommendation": "Wood ash dusted at the base each spring for K and to raise soil pH."
     }
   },
   "lavanda-dentada": {
@@ -576,6 +584,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:8 every 60d (toothed lavender — longest bloom window, slightly steadier demand).",
+      "homemadeRecommendation": "One spoon of bone meal at the base in spring to fuel the extended bloom window."
     }
   },
   "petunia": {
@@ -613,7 +625,11 @@
       "Sunny garden bed in borders and corners"
     ],
     "placementAvoid": "Dense shade — leggy stems and few flowers.",
-    "whyRationale": "An annual native to the Argentine Andes, it evolved in poor volcanic soils under intense high-altitude sun. Continuous blooming is the accelerated reproductive strategy of a short-lived plant before the first frost."
+    "whyRationale": "An annual native to the Argentine Andes, it evolved in poor volcanic soils under intense high-altitude sun. Continuous blooming is the accelerated reproductive strategy of a short-lived plant before the first frost.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluted 1:4 every 14d during bloom (continuous-bloom annual — exhausts quickly without feed).",
+      "homemadeRecommendation": "Banana peel tea every 14d for bloom K; alternate with worm castings every 21d."
+    }
   },
   "hortensia": {
     "name": "Hydrangea",
@@ -666,6 +682,10 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 30d; aluminum sulfate for blue or lime for pink (Hydrangea — flower color follows soil pH).",
+      "homemadeRecommendation": "Mature compost + ash for pink flowers, or coffee tea for blue; substrate sets the palette each season."
     }
   },
   "jazmin": {
@@ -703,7 +723,11 @@
       "Large pot with trellis on a warm patio"
     ],
     "placementAvoid": "Prolonged hard frost and pots without support — collapses without a trellis.",
-    "whyRationale": "A climber from the Caucasus and western Himalayas, it evolved on forest edges scaling trees toward the light. Its night fragrance attracts crepuscular moths — the scent intensifies at dusk, when those pollinators activate."
+    "whyRationale": "A climber from the Caucasus and western Himalayas, it evolved on forest edges scaling trees toward the light. Its night fragrance attracts crepuscular moths — the scent intensifies at dusk, when those pollinators activate.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 every 30d in warm; 90d in cold (climbing Jasminum — high P fuels the aromatic crop).",
+      "homemadeRecommendation": "Mature compost at the base of the trellis each spring + banana peel tea every 30d during bloom."
+    }
   },
   "geranio": {
     "name": "Geranium",
@@ -756,6 +780,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 every 21d in warm; 60d in cold (Pelargonium — near-continuous bloom if feed keeps up).",
+      "homemadeRecommendation": "Banana peel tea every 21d + ash dusted every 30d at peak bloom for more umbels."
     }
   },
   "albahaca": {
@@ -1101,6 +1129,10 @@
           "Photosensitivity"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 with Fe+Mg every 30d warm / 60d cold (Citrus limon — near-continuous fruiting, prone to chlorosis).",
+      "homemadeRecommendation": "Compost + ash (K for fruit) + crushed eggshell (Ca) at the base every 30d in spring-summer."
     }
   },
   "suculenta-generica": {
@@ -1530,7 +1562,11 @@
       "Border with drip irrigation for deep watering"
     ],
     "placementAvoid": "Shade and stagnant air — favor black spot and fungal disease.",
-    "whyRationale": "Cultivated by humans for over 5000 years, modern roses come from Asian and European hybrids. They bloom on new wood: each winter cut stimulates flower-bearing buds. Deciduous, they use winter dormancy to build up reserves."
+    "whyRationale": "Cultivated by humans for over 5000 years, modern roses come from Asian and European hybrids. They bloom on new wood: each winter cut stimulates flower-bearing buds. Deciduous, they use winter dormancy to build up reserves.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-15 every 30d during bloom; stop 6 weeks before frost (Rosa Rosaceae — multi-cycle bloom).",
+      "homemadeRecommendation": "Well-composted manure at the base in winter + bone meal every 60d; buried banana peel for K."
+    }
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -1580,6 +1616,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-30-20 high-P every 21d in warm; 90d in cold (Bougainvillea — more water stress + P = more bract color).",
+      "homemadeRecommendation": "Bone meal at the base each spring + ash every 30d in bloom; lean soil pulls the bract color out."
     }
   },
   "hibisco": {
@@ -1633,6 +1673,10 @@
           "Lethargy"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-15 every 21d in warm season; ease to 60d in cold (tropical Hibiscus — continuous bloom drains nutrients).",
+      "homemadeRecommendation": "Worm castings every 21d + banana peel tea every 14d at peak bloom to keep the color vivid."
     }
   },
   "margarita": {
@@ -1688,6 +1732,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 every 21d in warm; 60d in cold (perennial Leucanthemum — blooms more if divided every 2-3 years).",
+      "homemadeRecommendation": "Mature compost at the base each spring + compost tea every 21d; no more needed to sustain bloom waves."
     }
   },
   "perejil": {
@@ -2107,6 +2155,10 @@
           "Photosensitivity"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 with Fe+Zn every 30d warm / 60d cold (Citrus sinensis — seasonal crop, peak demand at fruit set).",
+      "homemadeRecommendation": "Compost + bone meal + buried banana peel every 30d to sustain the fruit-set cycle."
     }
   },
   "aguacate": {
@@ -2162,6 +2214,10 @@
           "Congestion"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 with Zn every 30d warm / 60d cold (Persea Lauraceae — oily fruit needs heavy K and Zinc).",
+      "homemadeRecommendation": "Compost + bone meal + ash every 30d in spring-summer; shallow roots prefer a deep mulch layer."
     }
   },
   "higuera": {
@@ -2217,6 +2273,10 @@
           "Pawing at face"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-10-12 every 60d in warm season (Mediterranean Ficus carica Moraceae — excess N delays fig ripening).",
+      "homemadeRecommendation": "Mature compost at the base each spring + ash every 60d in summer to sustain fruit sweetness."
     }
   },
   "mandarino": {
@@ -2270,6 +2330,10 @@
           "Photosensitivity"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 with micronutrients every 30d warm / 60d cold (compact Citrus reticulata — early fruit set).",
+      "homemadeRecommendation": "Compost + ash at the base + banana peel tea every 30d; crop more concentrated than orange."
     }
   },
   "zapallito": {
@@ -2550,7 +2614,11 @@
       "Main garden bed away from pipes"
     ],
     "placementAvoid": "Near foundations or pipes — invasive roots when mature.",
-    "whyRationale": "Endemic to northwestern Argentina and southern Bolivia, it evolved in warm valleys with seasonal droughts. Deciduous in winter, it blooms in spring BEFORE leafing out — maximizing the violet flowers' visibility for pollinators."
+    "whyRationale": "Endemic to northwestern Argentina and southern Bolivia, it evolved in warm valleys with seasonal droughts. Deciduous in winter, it blooms in spring BEFORE leafing out — maximizing the violet flowers' visibility for pollinators.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 90d only on young trees; mature specimens draw from deep soil unaided.",
+      "homemadeRecommendation": "Compost along the drip line each autumn; improves structure more than nutrients (long-lived perennial)."
+    }
   },
   "ceibo": {
     "name": "Ceibo (Cockspur Coral Tree)",
@@ -2597,6 +2665,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 90d on young plants (native River Plate Erythrina — riparian soil already supplies most needs).",
+      "homemadeRecommendation": "Compost at the base each spring; this Fabaceae fixes its own N, needs more P+K via yearly bone meal."
     }
   },
   "glicina": {
@@ -2644,6 +2716,10 @@
           "Hypersalivation"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-10 every 60d only at budding (Wisteria Fabaceae fixes N — excess feeds leaf at the cost of flower).",
+      "homemadeRecommendation": "One bone meal application at the base in autumn (P for bloom); skip N-rich compost entirely."
     }
   },
   "gardenia": {
@@ -2696,6 +2772,10 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidified every 30d in warm; 90d in cold (ericoid Gardenia — chlorosis if substrate loses acidity).",
+      "homemadeRecommendation": "Used coffee grounds tea every 30d acidify the soil and add mild N; peat around the rootball each autumn."
     }
   },
   "camelia": {
@@ -2732,7 +2812,11 @@
       "Bed against an east-facing wall"
     ],
     "placementAvoid": "Midday sun — burns flowers and leaves; alkaline soil — chronic chlorosis.",
-    "whyRationale": "Native to East Asia, it evolved in deciduous montane understory. It blooms in winter-spring because the buds need exposure to low temperatures (vernalization) to open properly."
+    "whyRationale": "Native to East Asia, it evolved in deciduous montane understory. It blooms in winter-spring because the buds need exposure to low temperatures (vernalization) to open properly.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 acidified every 45d in warm season (ericoid Camellia — low pH matters more than dosage).",
+      "homemadeRecommendation": "Decomposed pine needles at the base in autumn + coffee tea every 45d; never lime or ash (would raise pH)."
+    }
   },
   "dalia": {
     "name": "Dahlia",
@@ -2782,6 +2866,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-15 every 21d from first bud (Dahlia tubers — excess N grows leaf at the cost of flower).",
+      "homemadeRecommendation": "Bone meal at sprout + mature compost every 30d; never fresh manure (rots the tuber)."
     }
   },
   "salvia-ornamental": {
@@ -2814,7 +2902,11 @@
       "Pollinator garden alongside lavender and rosemary"
     ],
     "placementAvoid": "Frequent watering and waterlogged soil — rots quickly.",
-    "whyRationale": "Native to Brazil and warm zones of South America, it evolved in savannas and dry forest. Its red or violet spikes attract hummingbirds; the aromatic leaves contain essential oils that repel herbivores — typical sage chemistry."
+    "whyRationale": "Native to Brazil and warm zones of South America, it evolved in savannas and dry forest. Its red or violet spikes attract hummingbirds; the aromatic leaves contain essential oils that repel herbivores — typical sage chemistry.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 every 45d in warm season (perennial Lamiaceae Salvia — excess N dulls aroma and bloom).",
+      "homemadeRecommendation": "Light compost once in spring + ash every 60d; the roots leave aromatic traces in the soil."
+    }
   },
   "cala": {
     "name": "Calla Lily",
@@ -2869,6 +2961,10 @@
           "Difficulty swallowing"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 every 30d in warm; 60d in cold (rhizomatous Zantedeschia — rest period needed for rebloom).",
+      "homemadeRecommendation": "Compost over the rhizome in spring + compost tea every 30d; keep substrate moist but never waterlogged."
     }
   },
   "copete": {
@@ -2915,6 +3011,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluted 1:4 every 14d (Tagetes annual — bloom so intense it demands constant P+K).",
+      "homemadeRecommendation": "Mature compost at transplant + compost tea every 14d; roots repel nematodes on their own."
     }
   },
   "verbena": {
@@ -2947,7 +3047,11 @@
       "Wild garden where it can self-seed"
     ],
     "placementAvoid": "Very fertile soil and excess fertilizer — more leaves, fewer flowers.",
-    "whyRationale": "An Argentine native, it evolved in pampas and forest edges with poor soils and dry summers. Its tall slender stems with violet flowers attract pollinators seeking height above the vegetation; self-seeding makes it a practical perennial."
+    "whyRationale": "An Argentine native, it evolved in pampas and forest edges with poor soils and dry summers. Its tall slender stems with violet flowers attract pollinators seeking height above the vegetation; self-seeding makes it a practical perennial.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluted 1:4 every 14d in warm season (trailing Verbena blooms in waves — feed keeps cycles going).",
+      "homemadeRecommendation": "Worm castings at the base every 21d + ash dusted every 30d to sustain the serial bloom."
+    }
   },
   "romero-rastrero": {
     "name": "Trailing Rosemary",
@@ -5101,6 +5205,10 @@
           "Drooling"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-15 high-P+K every 30d during active foliage; stop after bloom to let the bulb store reserves.",
+      "homemadeRecommendation": "Bone meal at sprout (P for new roots) + ash at cycle end (K for the dormant bulb)."
     }
   },
   "ciclamen": {
@@ -5215,6 +5323,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 until buds; switch to 5-15-10 once buds show (Chrysanthemum needs high P for the autumn crop).",
+      "homemadeRecommendation": "Worm castings every 14d in growth + ash every 21d at bud; pinching stems also boosts bloom count."
     }
   },
   "azalea": {
@@ -5270,6 +5382,10 @@
           "Cardiovascular collapse"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidified every 30d in warm season (ericaceous Azalea — lime or ash kill it via pH rise).",
+      "homemadeRecommendation": "Used coffee tea every 30d + decomposed pine needles as mulch; never ash or lime (pH rises beyond recovery)."
     }
   },
   "clavel": {
@@ -5321,6 +5437,10 @@
           "Vomiting"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluted 1:4 every 14d in bloom; ease to 30d in cold (Dianthus reblooms mildly in mild winter).",
+      "homemadeRecommendation": "Monthly wood ash for K + crushed eggshell (Ca prevents floral stem splitting)."
     }
   },
   "fucsia": {
@@ -5358,7 +5478,11 @@
       "Cool patio with good ventilation"
     ],
     "placementAvoid": "Direct midday sun and dry hot air — burns flowers and dehydrates leaves.",
-    "whyRationale": "Patagonian humid-forest Onagraceae — Fuchsia magellanica is Argentine native; tolerates light frosts and prefers humid air with partial shade. Understory-adapted: dappled sun, not full midday."
+    "whyRationale": "Patagonian humid-forest Onagraceae — Fuchsia magellanica is Argentine native; tolerates light frosts and prefers humid air with partial shade. Understory-adapted: dappled sun, not full midday.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 balanced every 21d in warm; move to 60d in cold (subtropical Fuchsia — long bloom prefers cool air).",
+      "homemadeRecommendation": "Worm castings every 21d in spring-summer; pause feed during heat waves (sensitive roots)."
+    }
   },
   "girasol": {
     "name": "Sunflower",
@@ -5395,7 +5519,11 @@
       "40+ cm planter for dwarf varieties (max 60cm)"
     ],
     "placementAvoid": "Shade and shallow soil — without 8h sun and root depth, makes small plants with poor heads.",
-    "whyRationale": "Asteraceae long-day annual — its head is a composite inflorescence of hundreds of florets. Juvenile heliotropism: bud tracks the sun; once mature, locks east-facing. Argentine Pampas is ideal niche."
+    "whyRationale": "Asteraceae long-day annual — its head is a composite inflorescence of hundreds of florets. Juvenile heliotropism: bud tracks the sun; once mature, locks east-facing. Argentine Pampas is ideal niche.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 every 14d until flower bud; switch to 5-15-10 when the head forms (giant Helianthus annual).",
+      "homemadeRecommendation": "Generous compost at planting + banana peel tea every 14d at budding; nothing acidifies its stems more."
+    }
   },
   "magnolia": {
     "name": "Star Magnolia",
@@ -5432,7 +5560,11 @@
       "Garden corner as a focal point — first tree to bloom at end of winter"
     ],
     "placementAvoid": "Permanent planter under 50 liters and persistently dry soil — Magnoliaceae are trees, extensive surface roots require ground for the long term.",
-    "whyRationale": "Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). M. stellata is the dwarf 3m form ideal for small gardens; M. grandiflora reaches 20m. Pot is temporary; ground eventually required."
+    "whyRationale": "Magnoliaceae — ancient flowering-plant lineage (~95M years, predating bees). M. stellata is the dwarf 3m form ideal for small gardens; M. grandiflora reaches 20m. Pot is temporary; ground eventually required.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidified every 60d in warm season (primitive Magnolia — likes slightly acidic, humus-rich soil).",
+      "homemadeRecommendation": "Leaf compost + decomposed pine needles each autumn as mulch; avoid lime and ash (raises pH, stresses it)."
+    }
   },
   "salvia-officinalis": {
     "name": "Common Sage (Culinary)",
@@ -5604,7 +5736,11 @@
       "Slope or terrace with Mediterranean sun"
     ],
     "placementAvoid": "Shade and waterlogged substrate — without full sun it makes thin branches with no fruit; standing humidity rots the roots.",
-    "whyRationale": "Mediterranean Oleaceae evergreen — adapted to summer drought and poor soils. In Argentina (Mendoza, Cuyo) extensive cultivation; Arauco cultivar is national endemic. Pot is temporary; ground transplant is eventuality."
+    "whyRationale": "Mediterranean Oleaceae evergreen — adapted to summer drought and poor soils. In Argentina (Mendoza, Cuyo) extensive cultivation; Arauco cultivar is national endemic. Pot is temporary; ground transplant is eventuality.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-8-12 every 90d only on young trees or spent soil (Mediterranean Olea Oleaceae — millennial without feed).",
+      "homemadeRecommendation": "Compost along the drip line each autumn; structure more than nutrient (deep roots draw from subsoil)."
+    }
   },
   "arandano": {
     "name": "Blueberry (Highbush)",
@@ -5641,7 +5777,11 @@
       "Bed in cold zone (BsAs south, Patagonia, Tucumán) with rainwater"
     ],
     "placementAvoid": "Alkaline soil or hard water — high pH blocks iron and breaks the mycorrhizal symbiosis; dies within months.",
-    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Tucuman and Entre Rios commercial growing thrives with proper water and substrate."
+    "whyRationale": "Ericaceae with obligate mycorrhizae — roots need pH 4.5-5.5 and soft water; alkaline soil blocks iron and kills the symbiosis. Tucuman and Entre Rios commercial growing thrives with proper water and substrate.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-8-8 acidified every 21d in warm; 90d in cold (ericaceous Vaccinium — pH<5.5 mandatory or no harvest).",
+      "homemadeRecommendation": "Used coffee tea every 21d + decomposed pine needles as permanent mulch; never ash or lime (kills roots)."
+    }
   },
   "espinaca": {
     "name": "Spinach",

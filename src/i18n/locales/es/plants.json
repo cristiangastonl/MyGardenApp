@@ -490,6 +490,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d sólo si suelo agotado (Lavandula angustifolia tolera suelo calcáreo magro).",
+      "homemadeRecommendation": "Compost liviano una sola vez en primavera; nunca estiércol fresco (excede N y apaga el aroma)."
     }
   },
   "lavanda-stoechas": {
@@ -533,6 +537,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en cálido (lavanda francesa — más sensible al frío, evitá abono en otoño).",
+      "homemadeRecommendation": "Ceniza de madera espolvoreada al pie cada primavera para aporte de K y subir pH del suelo."
     }
   },
   "lavanda-dentada": {
@@ -576,6 +584,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:8 cada 60d (lavanda dentada — la más continua en floración, demanda algo más sostenida).",
+      "homemadeRecommendation": "Harina de hueso 1 cucharada al pie en primavera para alimentar la floración prolongada."
     }
   },
   "petunia": {
@@ -613,7 +625,11 @@
       "Cantero al sol en bordes y rincones"
     ],
     "placementAvoid": "Sombra densa — tallos largos y muy pocas flores.",
-    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida corta antes de las heladas."
+    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida corta antes de las heladas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluido 1:4 cada 14d en floración (anual de bloom continuo — agotamiento rápido sin abono).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 14d para K de floración; alterná con lombricompuesto cada 21d."
+    }
   },
   "hortensia": {
     "name": "Hortensia",
@@ -666,6 +682,10 @@
           "Anorexia"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 30d; sulfato de aluminio para azul o cal para rosa (Hydrangea — color depende del pH del suelo).",
+      "homemadeRecommendation": "Compost maduro + ceniza para flor rosa, o té de café para flor azul; el sustrato decide la paleta cada temporada."
     }
   },
   "jazmin": {
@@ -703,7 +723,11 @@
       "Maceta grande con tutor en patio cálido"
     ],
     "placementAvoid": "Heladas fuertes prolongadas y maceta sin tutor — colapsa sin soporte.",
-    "whyRationale": "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado escalando árboles hacia la luz. Su perfume nocturno atrae polillas crepusculares — el aroma se intensifica al atardecer, cuando esos polinizadores se activan."
+    "whyRationale": "Trepadora del Cáucaso e Himalaya occidental, evolucionó en bordes de bosque templado escalando árboles hacia la luz. Su perfume nocturno atrae polillas crepusculares — el aroma se intensifica al atardecer, cuando esos polinizadores se activan.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 cada 30d en cálido; 90d en frío (Jasminum trepador — alto P alimenta la cosecha aromática).",
+      "homemadeRecommendation": "Compost maduro al pie del tutor cada primavera + té de cáscara de banana cada 30d en floración."
+    }
   },
   "geranio": {
     "name": "Geranio",
@@ -756,6 +780,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 cada 21d en cálido; 60d en frío (Pelargonium — floración casi continua si se sostiene el abono).",
+      "homemadeRecommendation": "Té de cáscara de banana cada 21d + ceniza espolvoreada cada 30d en pico de floración para más umbelas."
     }
   },
   "albahaca": {
@@ -1101,6 +1129,10 @@
           "Fotosensibilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 con Fe+Mg cada 30d cálido / 60d frío (Citrus limon — fructifica casi continuo, propenso a clorosis).",
+      "homemadeRecommendation": "Compost + ceniza (K para fruto) + cáscara de huevo molida (Ca) al pie cada 30d en primavera-verano."
     }
   },
   "suculenta-generica": {
@@ -1530,7 +1562,11 @@
       "Borde con riego por goteo para riego profundo"
     ],
     "placementAvoid": "Sombra y aire estancado — favorecen mancha negra y hongos.",
-    "whyRationale": "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación entre Asia y Europa. Florece en madera nueva: cada corte invernal estimula brotes que llevan flores. Caduca, aprovecha el reposo frío para acumular reservas."
+    "whyRationale": "Cultivada por la humanidad hace más de 5000 años, las rosas modernas vienen de hibridación entre Asia y Europa. Florece en madera nueva: cada corte invernal estimula brotes que llevan flores. Caduca, aprovecha el reposo frío para acumular reservas.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-15 cada 30d en floración; suspendé 6 sem antes de helada (Rosa Rosácea — bloom multi-ciclo).",
+      "homemadeRecommendation": "Estiércol bien compostado al pie en invierno + harina de hueso cada 60d; cáscara de banana enterrada para K."
+    }
   },
   "bougainvillea": {
     "name": "Bougainvillea",
@@ -1580,6 +1616,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-30-20 alto-P cada 21d en cálido; 90d en frío (Bougainvillea — más estrés hídrico+P = más brácteas color).",
+      "homemadeRecommendation": "Harina de hueso al pie cada primavera + ceniza cada 30d en floración; suelo magro le saca color a las brácteas."
     }
   },
   "hibisco": {
@@ -1633,6 +1673,10 @@
           "Letargo"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-15 cada 21d en cálido; bajá a 60d en frío (Hibiscus tropical — floración continua agota nutrientes).",
+      "homemadeRecommendation": "Lombricompuesto cada 21d + té de cáscara de banana cada 14d en pico de floración para sostener color."
     }
   },
   "margarita": {
@@ -1688,6 +1732,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 cada 21d en cálido; 60d en frío (Leucanthemum perenne — flora más si se divide cada 2-3 años).",
+      "homemadeRecommendation": "Compost maduro al pie cada primavera + té de compost cada 21d; no necesita más para sostener oleadas."
     }
   },
   "perejil": {
@@ -2107,6 +2155,10 @@
           "Fotosensibilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 con Fe+Zn cada 30d cálido / 60d frío (Citrus sinensis — cosecha estacional, demanda alta en cuajado).",
+      "homemadeRecommendation": "Compost + harina de hueso + cáscara de banana enterrada cada 30d para sostener el ciclo de cuajado."
     }
   },
   "aguacate": {
@@ -2162,6 +2214,10 @@
           "Congestión"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 con Zn cada 30d cálido / 60d frío (Persea Laurácea — fruto oleoso demanda mucho K y Zinc).",
+      "homemadeRecommendation": "Compost + harina de hueso + ceniza cada 30d primavera-verano; raíces superficiales prefieren mantillo profundo."
     }
   },
   "higuera": {
@@ -2217,6 +2273,10 @@
           "Manotazos en la cara"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-10-12 cada 60d en cálido (Ficus carica Morácea mediterránea — exceso N retrasa madurez del higo).",
+      "homemadeRecommendation": "Compost maduro al pie cada primavera + ceniza cada 60d en verano para sostener el dulzor del fruto."
     }
   },
   "mandarino": {
@@ -2270,6 +2330,10 @@
           "Fotosensibilidad"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-12-12 con micronutrientes cada 30d cálido / 60d frío (Citrus reticulata compacto — cuajado precoz).",
+      "homemadeRecommendation": "Compost + ceniza al pie + té de cáscara de banana cada 30d; cosecha más concentrada que naranjo."
     }
   },
   "zapallito": {
@@ -2550,7 +2614,11 @@
       "Cantero principal alejado de cañerías"
     ],
     "placementAvoid": "Cerca de cimientos o cañerías — raíces invasivas en madurez.",
-    "whyRationale": "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Caduco en invierno, florece en primavera ANTES de echar hojas — maximiza la visibilidad de las flores violetas para polinizadores."
+    "whyRationale": "Endémico del noroeste argentino y sur de Bolivia, evolucionó en valles cálidos con sequías estacionales. Caduco en invierno, florece en primavera ANTES de echar hojas — maximiza la visibilidad de las flores violetas para polinizadores.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 90d sólo en árboles jóvenes; los adultos extraen del suelo profundo sin abono.",
+      "homemadeRecommendation": "Compost en la línea de goteo cada otoño; mejora estructura más que aporta nutrientes (perenne longeva)."
+    }
   },
   "ceibo": {
     "name": "Ceibo",
@@ -2597,6 +2665,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 90d en plantas jóvenes (Erythrina nativa rioplatense — el suelo riberano ya aporta lo necesario).",
+      "homemadeRecommendation": "Compost al pie cada primavera; Fabácea fija su propio N, demanda más P+K que compensa con harina de hueso anual."
     }
   },
   "glicina": {
@@ -2644,6 +2716,10 @@
           "Hipersalivación"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-10 cada 60d sólo en brotación (Wisteria Fabácea fija N — exceso lo lleva a hoja sin flor).",
+      "homemadeRecommendation": "Harina de hueso al pie en otoño una sola vez (P para floración); nada de compost rico en N."
     }
   },
   "gardenia": {
@@ -2696,6 +2772,10 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidificado cada 30d en cálido; 90d en frío (Gardenia ericoide — clorosis si el sustrato pierde acidez).",
+      "homemadeRecommendation": "Té de café usado cada 30d acidifica el suelo y aporta N suave; turba alrededor del cepellón cada otoño."
     }
   },
   "camelia": {
@@ -2732,7 +2812,11 @@
       "Cantero contra muro orientado al este"
     ],
     "placementAvoid": "Sol del mediodía — quema flores y hojas; suelo alcalino — clorosis crónica.",
-    "whyRationale": "Originaria del este de Asia, evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente."
+    "whyRationale": "Originaria del este de Asia, evolucionó en sotobosque montano caducifolio. Florece en invierno-primavera porque las yemas necesitan exposición a temperaturas bajas (vernalización) para abrir correctamente.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 acidificado cada 45d en cálido (Camellia ericoide — pH bajo es más importante que la dosis).",
+      "homemadeRecommendation": "Pinaza descompuesta al pie en otoño + té de café cada 45d; jamás cal ni cenizas (subiría el pH)."
+    }
   },
   "dalia": {
     "name": "Dalia",
@@ -2782,6 +2866,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-15 cada 21d desde botón floral (Dahlia tubérculo — exceso de N hace hoja y poca flor).",
+      "homemadeRecommendation": "Harina de hueso al brote + compost maduro cada 30d; nunca estiércol fresco (pudre el tubérculo)."
     }
   },
   "salvia-ornamental": {
@@ -2814,7 +2902,11 @@
       "Jardín de polinizadores junto a lavanda y romero"
     ],
     "placementAvoid": "Riego frecuente y suelo encharcado — la pudre rápidamente.",
-    "whyRationale": "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bosque seco. Sus espigas atraen colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros — defensa química típica de las salvias."
+    "whyRationale": "Originaria de Brasil y zonas cálidas de Sudamérica, evolucionó en sabanas y bosque seco. Sus espigas atraen colibríes; las hojas aromáticas tienen aceites esenciales que repelen herbívoros — defensa química típica de las salvias.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 cada 45d en cálido (Salvia Lamiácea perenne — exceso N reduce concentración aromática y flor).",
+      "homemadeRecommendation": "Compost liviano una vez en primavera + ceniza cada 60d; las raíces dejan rastros aromáticos en el suelo."
+    }
   },
   "cala": {
     "name": "Cala",
@@ -2869,6 +2961,10 @@
           "Dificultad para tragar"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 cada 30d en cálido; 60d en frío (Zantedeschia rizomatosa — necesita reposo para refloración).",
+      "homemadeRecommendation": "Compost al rizoma en primavera + té de compost cada 30d; mantené el sustrato húmedo pero no encharcado."
     }
   },
   "copete": {
@@ -2915,6 +3011,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluido 1:4 cada 14d (Tagetes anual — floración tan intensa que demanda P+K constante).",
+      "homemadeRecommendation": "Compost maduro al trasplante + té de compost cada 14d; las raíces repelen nematodos por sí solas."
     }
   },
   "verbena": {
@@ -2947,7 +3047,11 @@
       "Jardín silvestre que se auto-siembre"
     ],
     "placementAvoid": "Suelo muy fértil y exceso de fertilizante — más hojas, menos flores.",
-    "whyRationale": "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos con flores violetas atraen polinizadores que buscan altura sobre la vegetación; se auto-siembra y renueva sola cada año."
+    "whyRationale": "Nativa argentina, evolucionó en pampas y bordes de monte con suelos pobres y veranos secos. Sus tallos altos con flores violetas atraen polinizadores que buscan altura sobre la vegetación; se auto-siembra y renueva sola cada año.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluido 1:4 cada 14d en cálido (Verbena rastrera — flora en oleadas, abono mantiene los ciclos).",
+      "homemadeRecommendation": "Lombricompuesto al pie cada 21d + ceniza espolvoreada cada 30d para sostener la floración seriada."
+    }
   },
   "romero-rastrero": {
     "name": "Romero rastrero",
@@ -5101,6 +5205,10 @@
           "Salivación"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-15-15 alto-P+K cada 30d en hoja activa; suspendé tras floración para alimentar reserva del bulbo.",
+      "homemadeRecommendation": "Harina de hueso al brote (P para raíz nueva) + ceniza al final del ciclo (K para el bulbo dormido)."
     }
   },
   "ciclamen": {
@@ -5215,6 +5323,10 @@
           "Dermatitis"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 hasta botón; cambiá a 5-15-10 al asomar yemas (Chrysanthemum demanda P alto en cosecha otoñal).",
+      "homemadeRecommendation": "Lombricompuesto cada 14d en crecimiento + ceniza cada 21d en botón; pinzar tallos también aumenta flores."
     }
   },
   "azalea": {
@@ -5270,6 +5382,10 @@
           "Colapso cardiovascular"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidificado cada 30d en cálido (Azalea ericácea — cal o cenizas la matan rápido por subida de pH).",
+      "homemadeRecommendation": "Té de café usado cada 30d + pinaza descompuesta como mantillo; nunca cenizas ni cal (sube pH irrecuperable)."
     }
   },
   "clavel": {
@@ -5321,6 +5437,10 @@
           "Vómitos"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-15-10 diluido 1:4 cada 14d en floración; bajá a 30d en frío (Dianthus rebrota suave en invierno mediterráneo).",
+      "homemadeRecommendation": "Ceniza de madera mensual para K + cáscara de huevo molida (Ca evita partidura del tallo floral)."
     }
   },
   "fucsia": {
@@ -5358,7 +5478,11 @@
       "Patio fresco con buena ventilación"
     ],
     "placementAvoid": "Sol directo del mediodía y aire seco caliente — quema flores y deshidrata las hojas.",
-    "whyRationale": "Onagrácea de bosque-húmedo patagónico — Fuchsia magellanica nativa argentina; tolera heladas leves y prefiere humedad ambiental con sombra parcial. Sotobosque-adapted: sol moteado, no pleno mediodía."
+    "whyRationale": "Onagrácea de bosque-húmedo patagónico — Fuchsia magellanica nativa argentina; tolera heladas leves y prefiere humedad ambiental con sombra parcial. Sotobosque-adapted: sol moteado, no pleno mediodía.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 15-15-15 balanceado cada 21d en cálido; pasá a 60d en frío (Fuchsia subtropical — bloom largo, prefiere fresco).",
+      "homemadeRecommendation": "Lombricompuesto cada 21d primavera-verano; pausá riego abonado en olas de calor (raíces sensibles)."
+    }
   },
   "girasol": {
     "name": "Girasol",
@@ -5395,7 +5519,11 @@
       "Maceta de 40+ cm para variedades enanas (max 60cm)"
     ],
     "placementAvoid": "Sombra y suelo poco profundo — sin 8h sol y sin profundidad radicular hace plantas chicas con cabezas pobres.",
-    "whyRationale": "Asterácea anual de día largo — su capítulo es una inflorescencia compuesta de cientos de flores. Heliotropismo juvenil: el botón sigue al sol; al madurar queda fijo al este. Pampa Húmeda es nicho ideal."
+    "whyRationale": "Asterácea anual de día largo — su capítulo es una inflorescencia compuesta de cientos de flores. Heliotropismo juvenil: el botón sigue al sol; al madurar queda fijo al este. Pampa Húmeda es nicho ideal.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 cada 14d hasta botón floral; cambiá a 5-15-10 cuando aparece el capítulo (Helianthus anual gigante).",
+      "homemadeRecommendation": "Compost generoso al plantar + té de cáscara de banana cada 14d en botón; nada acidifica más sus tallos."
+    }
   },
   "magnolia": {
     "name": "Magnolia estrellada",
@@ -5432,7 +5560,11 @@
       "Esquina del jardín como punto focal — primer árbol en florecer al final del invierno"
     ],
     "placementAvoid": "Maceta permanente menor de 50 litros y suelo seco persistente — Magnoliáceas son árboles, raíz superficial extensa requiere tierra a largo plazo.",
-    "whyRationale": "Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). M. stellata es la versión enana 3m, ideal patio chico; M. grandiflora alcanza 20m. Pot temporario; tierra eventualidad."
+    "whyRationale": "Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). M. stellata es la versión enana 3m, ideal patio chico; M. grandiflora alcanza 20m. Pot temporario; tierra eventualidad.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 acidificado cada 60d en cálido (Magnolia primitiva — prefiere suelo ligeramente ácido y rico en humus).",
+      "homemadeRecommendation": "Compost de hojas + pinaza descompuesta cada otoño en mantillo; evita cal y cenizas (sube pH y la estresa)."
+    }
   },
   "salvia-officinalis": {
     "name": "Salvia oficinal",
@@ -5604,7 +5736,11 @@
       "Pendiente o terraza con sol mediterráneo"
     ],
     "placementAvoid": "Sombra y sustrato encharcado — sin sol pleno hace ramas delgadas sin frutos; con humedad estancada pudre las raíces.",
-    "whyRationale": "Oleácea mediterránea perennifolia — adaptada a sequía estival y suelo pobre. En Argentina (Mendoza, Cuyo) cultivos extensivos; cultivar Arauco es endémico nacional. Pot temporario; tierra eventualidad."
+    "whyRationale": "Oleácea mediterránea perennifolia — adaptada a sequía estival y suelo pobre. En Argentina (Mendoza, Cuyo) cultivos extensivos; cultivar Arauco es endémico nacional. Pot temporario; tierra eventualidad.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-8-12 cada 90d sólo en árbol joven o suelo agotado (Olea Oleácea mediterránea — milenaria sin abono).",
+      "homemadeRecommendation": "Compost en la línea de goteo cada otoño; estructura más que nutriente (raíces profundas extraen del subsuelo)."
+    }
   },
   "arandano": {
     "name": "Arándano",
@@ -5641,7 +5777,11 @@
       "Cantero en zona fría (BsAs sur, Patagonia, Tucumán) con agua de lluvia"
     ],
     "placementAvoid": "Tierra alcalina o agua dura — pH alto bloquea hierro y deshace la simbiosis con micorrizas; muere en pocos meses.",
-    "whyRationale": "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Cultivos en Tucumán y Entre Ríos prosperan con agua y sustrato adecuados."
+    "whyRationale": "Ericácea con micorrizas obligadas — su raíz necesita pH 4.5-5.5 y agua blanda; tierra alcalina bloquea hierro y mata la simbiosis. Cultivos en Tucumán y Entre Ríos prosperan con agua y sustrato adecuados.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 8-8-8 acidificado cada 21d en cálido; 90d en frío (Vaccinium ericáceo — pH<5,5 obligatorio o sin cosecha).",
+      "homemadeRecommendation": "Té de café usado cada 21d + pinaza descompuesta como mantillo permanente; jamás ceniza ni cal (mata raíces)."
+    }
   },
   "espinaca": {
     "name": "Espinaca",
