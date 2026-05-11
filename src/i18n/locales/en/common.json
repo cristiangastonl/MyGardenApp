@@ -6,6 +6,36 @@
     "explore": "Explore",
     "settings": "Settings"
   },
+  "journal": {
+    "header": "Journal",
+    "emptyState": "Add your first entry 📔",
+    "addEntry": "+ New entry",
+    "savedToast": "Entry saved 📔",
+    "photoCamera": "📷 Camera",
+    "photoGallery": "🖼️ Gallery",
+    "careTag": {
+      "riego": "Watering 💧",
+      "fertilizar": "Fertilizing 🌱",
+      "sol": "Sun ☀️",
+      "poda": "Pruning ✂️",
+      "problema": "Problem ⚠️",
+      "otro": "Other 📝"
+    },
+    "deleteConfirm": "Delete this entry?",
+    "dateLabel": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "{{count}} days ago"
+    },
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteEntry": "Delete entry",
+    "textPlaceholder": "Write your note...",
+    "error": {
+      "photoSaveFailed": "Couldn't save the photo"
+    }
+  },
   "migration": {
     "banner": {
       "title": "Older data",

@@ -6,6 +6,36 @@
     "explore": "Explorar",
     "settings": "Ajustes"
   },
+  "journal": {
+    "header": "Diario",
+    "emptyState": "Agregá tu primera entrada 📔",
+    "addEntry": "+ Nueva entrada",
+    "savedToast": "Entrada guardada 📔",
+    "photoCamera": "📷 Cámara",
+    "photoGallery": "🖼️ Galería",
+    "careTag": {
+      "riego": "Riego 💧",
+      "fertilizar": "Fertilizar 🌱",
+      "sol": "Sol ☀️",
+      "poda": "Poda ✂️",
+      "problema": "Problema ⚠️",
+      "otro": "Otro 📝"
+    },
+    "deleteConfirm": "¿Eliminar esta entrada?",
+    "dateLabel": {
+      "today": "Hoy",
+      "yesterday": "Ayer",
+      "daysAgo": "Hace {{count}} días"
+    },
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "deleteEntry": "Eliminar entrada",
+    "textPlaceholder": "Escribí tu nota...",
+    "error": {
+      "photoSaveFailed": "No pudimos guardar la foto"
+    }
+  },
   "migration": {
     "banner": {
       "title": "Datos antiguos",
