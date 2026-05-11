@@ -103,8 +103,9 @@ assertSkippable(() => /task\.type === ['"]fertilize['"]/.test(dayDetailModalSrc)
 assertSkippable(() => monthCalendarSrc.includes('hasFertilize') || undefined, 'FERT-03.monthCalendar.dot-indicator');
 assertSkippable(() => schedulerSrc.includes('fertilizeTasks') || undefined, 'FERT-03.scheduler.body-filter');
 assertSkippable(() => {
-  const taskButtonSrc = readSafe('src/components/TaskButton.tsx') || '';
-  return /case "fertilize"|task\.type === ['"]fertilize['"]/.test(taskButtonSrc) || /fertilize/i.test(taskButtonSrc) || undefined;
+  // TaskButton.tsx is generic (icon+label only); fertilize-specific wiring lives in PlantCard's <TaskButton> invocation
+  const plantCardSrc = readSafe('src/components/PlantCard.tsx') || '';
+  return /<TaskButton[^>]*\bicon=\{[^}]*🌱|needsFertilizeToday|onFertilizeDone/.test(plantCardSrc) || undefined;
 }, 'FERT-03.TaskButton.fertilize-render');
 
 // ─── FERT-04 cadence math — SKIP at Wave 0, PASS after Plan 20-02 lands real impl ───
