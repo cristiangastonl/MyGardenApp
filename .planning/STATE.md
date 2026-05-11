@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 6 of 7
-status: verifying
-stopped_at: Completed 21-04-PLAN.md
-last_updated: "2026-05-11T23:13:06.356Z"
-last_activity: "2026-05-11 — Phase 21 Plan 04 complete (JOURNAL-04 UI surfaces: 6th Diario section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + journalToastVisible screen-level Toast wiring; 10 SKIP→PASS sentinels flipped; ~6 min wall-clock)."
+current_plan: 7 of 7
+status: completed
+stopped_at: Completed 21-05-PLAN.md
+last_updated: "2026-05-11T23:19:17.411Z"
+last_activity: "2026-05-11 — Phase 21 Plan 05 complete (JOURNAL-05 negative-grep + i18n parity verification: zero premium-gate references at journal-read sites; all 22 journal.* i18n keys parity-confirmed in EN+ES with voseo discipline intact; smoke runner sentinel extended to JournalQuickAddSheet + Diario block window-grep; verification-only — no source mutation needed; ~1 min wall-clock)."
 progress:
   total_phases: 15
   completed_phases: 11
   total_plans: 71
-  completed_plans: 70
+  completed_plans: 71
   percent: 99
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 2 storage actions + deletePlant cascade complete; JOURNAL-03 + JOURNAL-04 landed)**
-Current Plan: 6 of 7
-Plan: 21-04 complete (JOURNAL-04 Wave 3 UI surfaces: 6th Diario section in MyPlantDetailModal AFTER Mascotas; JournalSection real impl (collapsible 180ms `Easing.out(Easing.cubic)` mirroring EducationalSection + FlatList reverse-chrono timeline + empty-state CTA + "+ Nueva entrada" button); JournalEntryRow real impl (date header via getRelativeDateLabel Hoy/Ayer/Hace N días/locale + careTag chip + 80x80 thumbnail + body + long-press → BottomSheetModal "Eliminar entrada" → Alert.alert → deleteJournalPhoto + onDelete); JournalQuickAddSheet real impl (60% snap BottomSheetModal + multiline TextInput + 📷 Cámara + 🖼️ Galería + 6 careTag chips driven by module-level literal `CARE_TAGS as const satisfies readonly CareTag[]` (Warning D LOCKED) + atomic-write Guardar (saveJournalPhoto FIRST with try/catch + Alert + abort) + Cancelar reset); ModalSectionId union widened to 6 anchors with 'diario'; both consumer screens (PlantsScreen + TodayScreen) widened via SEPARATE `import type { ModalSectionId } from '../components/MyPlantDetailModal'` line — barrel imports untouched (Blocker A LOCKED); journal Toast wiring via screen-level Approach B (Important 6 LOCKED) using DISTINCT `journalToastVisible` identifier (Blocker B LOCKED) — Phase 18 swipe-undo `toastVisible` at PlantsScreen:139 + TodayScreen:253 stays untouched; two `<Toast>` siblings coexist independently with `t('journal.savedToast')` + 2000 ms; pre-flight check (Important 7) verified Plan 21-03 deliverables (journals + addJournalEntry + deleteJournalEntry on StorageContextType); 10 JOURNAL-04 SKIPs flipped to PASS; smoke-phase21 PASS=75 FAIL=0 SKIP=0; cross-phase smoke18/19/20 untouched (56/85/49); tsc green; ~6 min wall-clock; 4 tasks, 6 files modified).
-Status: **Phase 21 Wave 3 complete (Plan 21-04 UI surfaces landed; Diario is now the 6th educational section in MyPlantDetailModal).** Next: Plan 21-05 (Wave 4, JOURNAL-05) — premium-gate verification + negative-grep at journal-read sites (smoke sentinel `JOURNAL-05.negative-grep.no-premium-gate-at-read-sites`).
-Last activity: 2026-05-11 — Phase 21 Plan 04 complete (JOURNAL-04 UI surfaces: 6th Diario section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + journalToastVisible screen-level Toast wiring; 10 SKIP→PASS sentinels flipped; ~6 min wall-clock).
+Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 4 negative-grep + i18n parity verification complete; JOURNAL-05 invariant LOCKED at smoke-runner level)**
+Current Plan: 7 of 7
+Plan: 21-05 complete (JOURNAL-05 Wave 4 negative-grep + i18n parity verification: zero `usePremiumGate` / `isPremium` / `canReadJournal` references in JournalSection.tsx / JournalEntryRow.tsx / JournalQuickAddSheet.tsx — Blossom cautionary tale invariant preserved; MyPlantDetailModal `usePremiumGate()` at line 83 is LEGITIMATE — destructures `canDiagnose` / `isPremium` for Phase 8 diagnosis flow at lines 212/304/308, NOT wrapping the Diario render block at lines 502-509; i18n parity confirmed — all 22 `journal.*` keys present in BOTH en/common.json + es/common.json (Wave 0 shipped via Blocker 4); ES voseo discipline intact INSIDE journal namespace (`Agregá` / `Escribí` imperatives + `Guardar` / `Cancelar` / `Eliminar` infinitives — voseo-neutral); zero `??` fallback literals in Wave 3 component files (Plan 21-04 used bare `t()` calls throughout per Blocker 4); pre-existing `home.emptyGardenText` tuteo string is OUT OF SCOPE per deviation rules § scope boundary; smoke runner JOURNAL-05 sentinel extended to include `JournalQuickAddSheet` in OR-chain + new `JOURNAL-05.modal.diario-block-not-premium-gated` window-grep sentinel (±5 lines around `onSectionLayout('diario')` anchor); smoke-phase21 PASS=75→76 FAIL=0 SKIP=0; cross-phase smoke18/19/20 untouched (56/85/49); tsc green; ~1 min wall-clock; 2 tasks (Task 1 verification-only / Task 2 sentinel extension), 1 file modified (smoke runner only)).
+Status: **Phase 21 Wave 4 complete (Plan 21-05 JOURNAL-05 invariant LOCKED at smoke-runner level — Blossom cautionary tale guarded; i18n parity confirmed).** Next: Plan 21-06 (Wave 5, JOURNAL-06) — final acceptance gate + device-test handoff to v1.2 milestone-end batch.
+Last activity: 2026-05-11 — Phase 21 Plan 05 complete (JOURNAL-05 negative-grep + i18n parity verification: zero premium-gate references at journal-read sites; all 22 journal.* i18n keys parity-confirmed in EN+ES with voseo discipline intact; smoke runner sentinel extended to JournalQuickAddSheet + Diario block window-grep; verification-only — no source mutation needed; ~1 min wall-clock).
 
-Progress: [██████████] 99% (70/71 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces (Diario as 6th section + JournalSection + JournalEntryRow + JournalQuickAddSheet + ModalSectionId widening + screen-level journalToastVisible Toast))
+Progress: [██████████] 99% (71/72 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 + 21-05 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces + JOURNAL-05 negative-grep + i18n parity verification)
 
 ## Performance Metrics
 
@@ -104,6 +104,7 @@ Progress: [██████████] 99% (70/71 plans complete; Phase 21 P
 | Phase 21-plant-journal P01 | 4min | 1 tasks | 2 files |
 | Phase 21-plant-journal P03 | 2min | 2 tasks | 1 files |
 | Phase 21-plant-journal P04 | 6 min | 4 tasks | 6 files |
+| Phase 21-plant-journal P05 | 1min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -298,6 +299,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 21-plant-journal]: Plan 21-04: DISTINCT journalToastVisible identifier for Phase 21 journal-saved Toast (Blocker B) — Phase 18 swipe-undo toastVisible at PlantsScreen:139 + TodayScreen:253 stays untouched; two Toast siblings coexist independently, no shared queue / priority / z-order logic
 - [Phase 21-plant-journal]: Plan 21-04: screen-level Toast ownership via onJournalEntrySaved callback prop (Important 6 Approach B) — MyPlantDetailModal owns ZERO toast state; parent screens own journalToastVisible state; avoids Pitfall 10 Toast-inside-RN-Modal z-order
 - [Phase 21-plant-journal]: Plan 21-04: module-level literal CARE_TAGS array driver for chip render (Warning D) — `const CARE_TAGS = [...] as const satisfies readonly CareTag[]` keeps grep-able literal tag names + runtime array + CareTag union in compile-time lockstep
+- [Phase 21-plant-journal]: Plan 21-05: Verification-only execution path — Task 1 (i18n parity + voseo discipline) required ZERO source changes. Wave 0 (Plan 21-00 post-Blocker 4) shipped all 22 journal.* keys upfront in BOTH en/common.json + es/common.json with voseo-correct copy; Plan 21-04 used bare t() calls throughout (no ?? fallbacks). Audit confirmed both invariants and required no mutation. Plan scope simplifications (Blocker 4 propagation) made this outcome expected.
+- [Phase 21-plant-journal]: Plan 21-05: Window-grep sentinel for sub-block invariants — JOURNAL-05.modal.diario-block-not-premium-gated locates the onSectionLayout('diario') anchor and slices ±5 lines for the negative-grep window. Disambiguates from MyPlantDetailModal's legitimate usePremiumGate() at line 83 (Phase 8 diagnosis flow). Pattern reusable when a forbidden symbol is allowed elsewhere in the same file but forbidden in a specific JSX block.
+- [Phase 21-plant-journal]: Plan 21-05: Rule 2 deviation — extended JOURNAL-05.negative-grep sentinel OR-chain to include journalQuickAddSrc (previously omitted; only 2/3 Wave 3 files were checked). Plan's acceptance criterion line 224 explicitly enumerates all three component files. Also added the new diario-block-not-premium-gated sentinel. PASS=75→76 in smoke-phase21.
+- [Phase 21-plant-journal]: Plan 21-05: Pre-existing home.emptyGardenText tuteo string ('Agrega tu primera planta…' at es/common.json:270) flagged by voseo grep but explicitly OUT OF SCOPE per deviation rules § scope boundary (pre-existing, unrelated namespace, pre-dates Phase 21). Inside the journal namespace specifically, voseo discipline is intact.
 
 ### Pending Todos
 
@@ -312,6 +317,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T23:13:06.353Z
-Stopped at: Completed 21-04-PLAN.md
+Last session: 2026-05-11T23:18:22.931Z
+Stopped at: Completed 21-05-PLAN.md
 Resume file: None

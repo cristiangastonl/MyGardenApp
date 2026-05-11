@@ -99,7 +99,7 @@
 - [x] **JOURNAL-02**: `JournalEntry` type: `{ id, date (ISO), text?: string, photoUri?: string, careTag?: string }`; photos saved to `expo-file-system` `documentDirectory` NOT base64-in-AsyncStorage (Pitfall research lock)
 - [x] **JOURNAL-03**: `useStorage` adds `addJournalEntry(plantId, entry)`, `deleteJournalEntry(plantId, entryId)` actions
 - [x] **JOURNAL-04**: MyPlantDetailModal new "Diario" section shows reverse-chronological timeline; quick-add via bottom sheet (2-tap max — date defaults today, optional text + photo + tag)
-- [ ] **JOURNAL-05**: Journal entries are NEVER premium-gated at the read level (Blossom cautionary tale — data hostage when subscription lapses)
+- [x] **JOURNAL-05**: Journal entries are NEVER premium-gated at the read level (Blossom cautionary tale — data hostage when subscription lapses)
 
 ### Gamification — Light Celebrations (GAM)
 
@@ -247,7 +247,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | JOURNAL-02 | Phase 21 | Complete |
 | JOURNAL-03 | Phase 21 | Complete |
 | JOURNAL-04 | Phase 21 | Complete |
-| JOURNAL-05 | Phase 21 | Pending |
+| JOURNAL-05 | Phase 21 | Complete |
 | GAM-01 | Phase 22 | Pending |
 | GAM-02 | Phase 22 | Pending |
 | GAM-05 | Phase 22 | Pending |
