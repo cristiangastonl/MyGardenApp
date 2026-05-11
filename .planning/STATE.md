@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 10 of 11
+current_plan: 11 of 11
 status: verifying
-stopped_at: Completed 20-08-PLAN.md
-last_updated: "2026-05-11T17:08:50.035Z"
-last_activity: "2026-05-11 — Phase 20 Plan 08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × type='both' fertilizer recipes EN+ES; closes catalog at 118/118; FERT-02 SKIP→PASS; 1 task, 3 files, ~187 min wall-clock)."
+stopped_at: Completed 20-09-PLAN.md
+last_updated: "2026-05-11T17:15:40.000Z"
+last_activity: "2026-05-11 — Phase 20 Plan 09 complete (Wave 5 i18n parity gate: appended conditional fertilizer.industrial/homemadeRecommendation block to check-i18n-keys.mjs mirroring TOX-06 sub-field pattern; FERT-07.checkScript SKIP→PASS; 1 task, 1 file, +21 LOC, ~5 min wall-clock)."
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 63
-  percent: 98
+  completed_plans: 64
+  percent: 100
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 10 of 11
-Plan: 20-08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × {fertilizeIntervalWarm + fertilizeIntervalCold (heterogeneous per physiology) + fertilizer.{type:'both', industrialRecommendation, homemadeRecommendation}} authored across 16+ botanical families — Mediterranean Lavandas/Annual flores/Bulbosas/Subtropical/Climbing+Fabáceas/Geraniaceae/Rosaceae/Asteraceae perennials/Lamiaceae perennial/Ericaceous/Hydrangea/Large trees AND Citrus Rutáceas/Lauráceas/Moráceas/Oleáceas/Vaccinium ericáceo frutales; 1 atomic task commit — b2f95df 35 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json); 140 fertilizer strings authored (70 ES + 70 EN) with locale parity from start, char-limit-from-draft (max ES=117/120, max EN=115/120), distinct per-species/per-family mechanism citations across ALL 118 catalog entries zero copy-paste, voseo baseline preserved at 0 banned forms; HARD CLOSE on FERT-07 catalog content layer — 118/118 entries declare fertilizer field with locale parity; smoke-phase20 PASS=47 FAIL=0 SKIP=2 exit 0 — FERT-02.catalog.fertilizeIntervalWarm-coverage SKIP→PASS at 118/118 (≥100 threshold satisfied via Plan 20-06's mid-band guard pass-through); check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~187min wall-clock).
-Status: **Phase 20 Wave 4 Batch C complete (Plan 20-08 landed atomically). FERT-07 catalog content layer FULLY CLOSED at 118/118.** 118/118 catalog entries declare fertilizer field with locale parity (118 industrial + 94 homemade per locale). Per-sub-typology framing within exterior flores: Mediterranean lavandas (NPK 5-10-10 magro), annual rapid-bloom (10-15-10 cada 14d), bulbosas phase-driven (5-15-15 + harina de hueso al brote + ceniza al final), subtropical mild-winter active (60-90d cold), ericáceas acidified (azalea/camelia/gardenia + té de café + pinaza, JAMÁS cal), Fabácea N-fixers (glicina/ceibo P-only no N), large trees mature self-sufficient (90d sólo jóvenes), bougainvillea high-P bract-color (10-30-20), hortensia pH-driven (sulfato Al azul / cal rosa). Per-family framing for frutales: Citrus Rutáceas + micronutrientes Fe/Mg/Zn (limonero/naranjo/mandarino), Lauráceas Persea + Zn fruto oleoso (aguacate), Moráceas mediterránea N-bajo (higuera), Oleáceas milenaria 90d (olivo), Vaccinium ericáceo pH<5.5 (arandano). Heterogeneous fertilizeIntervalCold encoding (null for bulbs/anuales/large trees / 60-90d for mild-winter actives) — distinct from Batch B's flat-null suculentas pattern. **Full-catalog distinctness verified programmatically across all 118 entries × 2 locales × {industrial, homemade} — zero copy-paste anywhere.** FERT-02 gate flipped automatically via Plan 20-06's mid-band guard pass-through at 118 ≥ 100 (runner remained untouched per Plan 20-00's 'never edited after Wave 0' lock). **Next:** Phase 20 Plan 20-09 (extend check-i18n-keys.mjs with conditional fertilizer parity gate — gate PASSes immediately on land because Batches A+B+C produced locale-parity content); Plan 20-10 closes manual device-test gate.
-Last activity: 2026-05-11 — Phase 20 Plan 08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × type='both' fertilizer recipes EN+ES; closes catalog at 118/118; FERT-02 SKIP→PASS; 1 task, 3 files, ~187 min wall-clock).
+Current Plan: 11 of 11
+Plan: 20-09 complete (Wave 5 i18n parity gate extension: appended conditional fertilizer.industrialRecommendation + fertilizer.homemadeRecommendation validation block to scripts/check-i18n-keys.mjs immediately after the Phase 19 TOX-06 petToxicity.symptoms block — append-only +21 LOC mirroring the TOX-06 sub-field pattern verbatim with independent sub-field gates per Pitfall 6 so Plan 20-07 suculentas industrial-only entries pass without false-negatives; 1 atomic task commit — a5e923c scripts/check-i18n-keys.mjs only; verified npm run check:i18n-keys PASS 118 catalog ids; smoke-phase20 PASS=48 FAIL=0 SKIP=1 — FERT-07.checkScript.fertilizer-conditional-extension SKIP→PASS; CROSS.TOX-06.checkScript.symptoms-extension-preserved sentinel PRESERVED (regex /petToxicity[^]*?symptoms/ matches still-present TOX-06 block above the new FERT-07 append); cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 untouched; npx tsc --noEmit exits 0; ~5min wall-clock).
+Status: **Phase 20 Wave 5 complete (Plan 20-09 landed atomically). FERT-07 i18n parity gate FULLY CLOSED.** The canonical pre-submit gate referenced in CLAUDE.md §Pre-submit Checks now catches future drift between plantDatabase.ts and plants.json fertilizer copy. Plans 20-06/07/08 produced locale-parity content (118 industrial + 94 homemade per locale) → new gate PASSes immediately on land with zero false-negatives on suculentas industrial-only entries. The +21 LOC delta vs PLAN's predicted +17 LOC comes from a slightly more verbose block-comment header for Pitfall 6 traceability; the executable gate logic itself is exactly the 12 lines specified in the plan. **Next:** Phase 20 Plan 20-10 (MANUAL CHECKPOINT — autonomous: false): 14-item Blocks A-E device-test checklist with Option A run-now / Option B defer-to-v1.2-backlog gate, closing Phase 20 at 11/11 plans executed.
+Last activity: 2026-05-11 — Phase 20 Plan 09 complete (Wave 5 i18n parity gate: appended conditional fertilizer parity block to check-i18n-keys.mjs; FERT-07.checkScript SKIP→PASS; 1 task, 1 file, +21 LOC, ~5 min wall-clock).
 
-Progress: [██████████] 98% (63/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 complete — Plans 20-09..10 ahead)
+Progress: [██████████] 100% (64/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 + 09 complete — Plan 20-10 manual checkpoint ahead)
 
 ## Performance Metrics
 
@@ -97,6 +97,7 @@ Progress: [██████████] 98% (63/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P06 | 72min | 1 tasks | 4 files |
 | Phase 20 P07 | 22min | 1 tasks | 3 files |
 | Phase 20-fertilization-subsystem P08 | 187min | 1 tasks | 3 files |
+| Phase 20-fertilization-subsystem P09 | 5min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -274,6 +275,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-08 (Batch C): closed FERT-07 catalog content layer at 118/118; FERT-02 SKIP→PASS at 118 ≥ 100 threshold via Plan 20-06 mid-band guard pass-through (runner untouched)
 - [Phase 20-fertilization-subsystem]: Plan 20-08: per-sub-typology framing across 16+ botanical families for exterior+frutales (Mediterranean lavandas / ericáceas acidified / Fabácea N-fixers / bulbosas phase-driven / Citrus+Lauráceas+Moráceas+Oleáceas+Vaccinium frutales); heterogeneous fertilizeIntervalCold per physiology
 - [Phase 20-fertilization-subsystem]: Plan 20-08: full-catalog distinctness verifier extension (Map-based dedupe against existing 142+118 strings) — zero copy-paste across all 118 entries × 2 locales × {industrial, homemade} = 472 distinct strings verified
+- [Phase 20-fertilization-subsystem]: Plan 20-09: append-only conditional fertilizer.industrialRecommendation + fertilizer.homemadeRecommendation parity validation landed at scripts/check-i18n-keys.mjs immediately after Phase 19 TOX-06 petToxicity.symptoms block (line 124) with independent sub-field gates per Pitfall 6; +21 LOC (12 executable + 9 block-comment for traceability vs PLAN-predicted +17); CROSS.TOX-06.checkScript.symptoms-extension-preserved sentinel intact (regex /petToxicity[^]*?symptoms/ matches still-present TOX-06 block above the new append); FERT-07.checkScript.fertilizer-conditional-extension SKIP→PASS; npm run check:i18n-keys PASS 118 ids; smoke-phase20 PASS=48 FAIL=0 SKIP=1 (remaining SKIP FERT-03.TaskButton.fertilize-render unrelated, unchanged); cross-phase smoke-phase18/19 untouched.
+- [Phase 20-fertilization-subsystem]: i18n parity gate coverage now spans 8 conditional check tiers — Phase 8 CAT-06 (name/tip/description/problems required) + Phase 14 nutrients + Phase 14 EDU-07 careAction/placement*/whyRationale + Phase 19 TOX-06 petToxicity.symptoms.{cats,dogs} + Phase 20 FERT-07 fertilizer.{industrial,homemade}Recommendation. Append-only discipline preserved across all 4 extensions (Phase 14, 19, 20) — same insertion-point pattern, same independent-sub-field rule, zero modifications to pre-existing checks.
 
 ### Pending Todos
 
@@ -288,6 +291,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T17:08:41.616Z
-Stopped at: Completed 20-08-PLAN.md
+Last session: 2026-05-11T17:15:40.000Z
+Stopped at: Completed 20-09-PLAN.md
 Resume file: None
