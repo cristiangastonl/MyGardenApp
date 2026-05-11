@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 7
+current_plan: 4 of 7
 status: executing
-stopped_at: Completed 21-02-PLAN.md
-last_updated: "2026-05-11T22:50:51.558Z"
-last_activity: "2026-05-11 — Phase 21 Plan 02 complete (JOURNAL-02 photo pipeline real impl: modern Paths/File/Directory API, 1080px @ 0.7 JPEG, 4 exported functions mirroring photoService.ts with 3 CONTEXT-locked deltas; smoke-phase21 PASS=54 SKIP=21, 3 JOURNAL-02 SKIPs flipped to PASS; ~1 min wall-clock)."
+stopped_at: Completed 21-01-PLAN.md
+last_updated: "2026-05-11T22:54:06.134Z"
+last_activity: "2026-05-11 — Phase 21 Plan 01 complete (JOURNAL-01 useStorage extension: 8 surgical edits + provider value object exposes journals; smoke-phase21 PASS=59 FAIL=0 SKIP=16, 5 JOURNAL-01 SKIPs flipped to PASS; cross-phase smoke18/19/20 unchanged; ~4 min wall-clock)."
 progress:
   total_phases: 15
   completed_phases: 11
   total_plans: 71
-  completed_plans: 67
-  percent: 94
+  completed_plans: 68
+  percent: 96
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 1 storage layer in flight; JOURNAL-02 landed)**
-Current Plan: 3 of 7
-Plan: 21-02 complete (JOURNAL-02 photo pipeline real impl: src/services/journalService.ts replaced W0 4-no-op skeleton with full real impl mirroring photoService.ts:1-101 verbatim with 3 CONTEXT-locked deltas — directory name 'journal' (vs 'plant-photos'), JPEG resize width 1080 (vs 1200), compression 0.7 (vs 0.8); modern Paths/File/Directory API exclusively, NO legacy FileSystem.documentDirectory string concat; 4 exported async functions [pickJournalPhoto (camera+gallery+permissions), saveJournalPhoto (ensureDir + manipulateAsync + File.copy), deleteJournalPhoto (idempotent single-file), deleteJournalDirectory (idempotent recursive)] + 3 module-local helpers (getPlantDir, ensureDir parent+child guarded create, resizeImage 1080@0.7); idempotency guards explicit (file.exists/dir.exists before delete); ImagePicker quality:1 (let manipulateAsync own the compression to avoid double-compress); ~1 min wall-clock; 1 task, 1 file modified; final 105 lines; 88 insertions 18 deletions over W0).
-Status: **Phase 21 Plan 21-02 landed atomically (1 task commit 26e3f74). Plan 21-01 (JOURNAL-01 useStorage extension) executing in parallel on file-disjoint useStorage.tsx — NOT under this executor.** Next: Plan 21-03 (Wave 1, JOURNAL-03) — useStorage.addJournalEntry / deleteJournalEntry public-interface extension wiring saveJournalPhoto/deleteJournalPhoto from this plan. 3 JOURNAL-02 SKIP→PASS sentinels flipped (Paths-document-uri, compression-pipeline, modern-API). Cross-phase smoke18/19/20 preserved.
-Last activity: 2026-05-11 — Phase 21 Plan 02 complete (JOURNAL-02 photo pipeline real impl: modern Paths/File/Directory API, 1080px @ 0.7 JPEG, 4 exported functions mirroring photoService.ts with 3 CONTEXT-locked deltas; smoke-phase21 PASS=54 SKIP=21, 3 JOURNAL-02 SKIPs flipped to PASS; ~1 min wall-clock).
+Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 1 storage layer complete; JOURNAL-01 + JOURNAL-02 landed in parallel)**
+Current Plan: 4 of 7
+Plan: 21-01 complete (JOURNAL-01 useStorage extension: 8 surgical edits to src/hooks/useStorage.tsx wiring `journals: Record<string, JournalEntry[]>` into StorageState as non-optional + snapshotFromRef + useState setter + dataRef useRef initializer + property-assignment in both brand-new-user fallback branches + load-path hydration `const j = data.journals || {}` + `setJournals(j)` + `journals: j` in complete-rebuild literal + __DEV__ AsyncStorage payload-bytes log inside scheduleSave; provider value object + deps array exposes `journals` since StorageContextType = StorageState & StorageActions intersection requires it; negative-grep guards confirm addJournalEntry/deleteJournalEntry remain Plan 21-03 territory; smoke-runner sentinel JOURNAL-03.useStorage.public-interface-exposes-3-names skip-gate tightened to require both actions before evaluating; 5 JOURNAL-01 SKIP→PASS sentinels flipped; cross-phase smoke18/19/20 unchanged; tsc green; ~4 min wall-clock; 1 task, 2 files modified).
+Status: **Phase 21 Wave 1 complete (Plans 21-01 + 21-02 landed atomically in parallel, file-disjoint).** Next: Plan 21-03 (Wave 2, JOURNAL-03) — useStorage `addJournalEntry` + `deleteJournalEntry` public-interface actions + `deletePlant` cascade (calls `deleteJournalDirectory` + removes journals map entry). 6 JOURNAL-03/04 SKIP→PASS sentinels pending.
+Last activity: 2026-05-11 — Phase 21 Plan 01 complete (JOURNAL-01 useStorage extension: StorageState + snapshotFromRef + dataRef init + load-path hydration + __DEV__ payload-size log; provider value object exposes journals (Rule 3 Blocking — StorageContextType intersection requires it); negative-grep guards preserve Plan 21-03 ownership of actions; smoke-phase21 PASS=59 FAIL=0 SKIP=16; ~4 min wall-clock).
 
-Progress: [█████████░] 94% (67/71 plans complete; Phase 21 Plans 21-00 + 21-02 complete — Wave 0 scaffold landed + JOURNAL-02 photo pipeline real impl)
+Progress: [█████████░] 96% (68/71 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline)
 
 ## Performance Metrics
 
@@ -101,6 +101,7 @@ Progress: [█████████░] 94% (67/71 plans complete; Phase 21 P
 | Phase Phase 20-fertilization-subsystem PP10 | 5min | 2 tasks tasks | 0 files files |
 | Phase 21-plant-journal P00 | 2min | 2 tasks | 9 files |
 | Phase 21-plant-journal P02 | 1min | 1 tasks | 1 files |
+| Phase 21-plant-journal P01 | 4min | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -288,6 +289,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 21-plant-journal]: Plan 21-00: Cross-phase STRICT regression block now spans 3 prior phases (18 + 19 + 20) — extends Phase 20's 2-phase regression with 3 new Phase 20 sentinels (FERT-03 plantLogic+scheduler emit, FERT-06 FertilizeCard file-not-deleted, FERT-07 check-script extension). Third consecutive phase reusing assertion harness helpers verbatim from smoke-phase20.cjs lines 23-44.
 - [Phase 21-plant-journal]: Plan 21-02: Mirrored photoService.ts:1-101 verbatim for journalService with 3 CONTEXT-locked deltas (directory 'journal', width 1080, compress 0.7) — keeps photo pipelines in lockstep for maintenance
 - [Phase 21-plant-journal]: Plan 21-02: ImagePicker quality:1 (vs photoService quality:0.8) — let manipulateAsync own the compression pipeline to avoid double-compression artifacts
+- [Phase 21-plant-journal]: Provider value object exposes journals because StorageContextType = StorageState & StorageActions intersection requires it once StorageState declares journals as non-optional (Plan's Blocker 2 was internally inconsistent — keeping journals required on StorageState but absent from the value object cannot pass tsc). Resolved by Rule 3 (Blocking): expose journals on value object + deps array. Negative-grep (addJournalEntry|deleteJournalEntry count 0) still enforces Plan 21-03 ownership of the two mutation actions.
 
 ### Pending Todos
 
@@ -302,6 +304,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T22:50:51.555Z
-Stopped at: Completed 21-02-PLAN.md
+Last session: 2026-05-11T22:54:06.131Z
+Stopped at: Completed 21-01-PLAN.md
 Resume file: None
