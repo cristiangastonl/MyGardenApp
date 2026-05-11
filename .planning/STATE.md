@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 11 of 11
-status: planning
-stopped_at: Completed 20-10-PLAN.md
-last_updated: "2026-05-11T21:32:18.875Z"
-last_activity: 2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock).
+current_plan: 1 of 7
+status: executing
+stopped_at: Completed 21-00-PLAN.md
+last_updated: "2026-05-11T22:46:57.418Z"
+last_activity: 2026-05-11 — Phase 21 Plan 00 complete (Wave 0 scaffold; smoke runner + npm script + .gitignore + types + journalService skeleton + 3 component skeletons + i18n 22-key EN+ES parity; ~2 min wall-clock).
 progress:
   total_phases: 15
   completed_phases: 11
-  total_plans: 64
-  completed_plans: 65
-  percent: 100
+  total_plans: 71
+  completed_plans: 66
+  percent: 93
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 20 of 24 (Fertilization Subsystem) — **CLOSED at code level (awaiting verifier)**
-Current Plan: 11 of 11
-Plan: 20-10 complete (Wave 6 closing manual checkpoint: 5 automation gates re-verified green at finalization time — npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; node scripts/smoke-phase20.cjs PASS=49 FAIL=0 SKIP=0; npm run smoke:phase18 PASS=56 FAIL=0 SKIP=0; npm run smoke:phase19 PASS=85 FAIL=0 SKIP=0; user selected Option B (defer 14-item device-test checklist to v1_2_test_backlog.md memory per Phase 18-05 / 19-07 milestone-end batching precedent); 14-item checklist appended verbatim to backlog memory with 5-block A-E structure + 12-hard / 2-soft classifier; hard fails A1/A2/A3/B1/B2/B3/B4/B5/B6/D1/D2/D3; soft fails C1/E1; FERT-03 closing flip (the only remaining Pending FERT-* in REQUIREMENTS.md as of plan start; 6 of 7 already Complete from Plans 20-00..09); ~5min wall-clock; 2 tasks, 0 source files modified).
-Status: **Phase 20 Wave 6 complete (Plan 20-10 landed atomically as metadata-only closure). Phase 20 CLOSED at code level — all 7 FERT-* requirement IDs (FERT-01..07) reach closing PASS state.** Manual device verifications batched per CLAUDE.md milestone-end pattern; ship-blocker for v1.2 store submission, NOT for Phase 20 closure. Cumulative v1.2 manual-gate deferral queue now: Phase 13 iOS (5 acceptance behaviors) + Phase 14 e2e re-verify + PaywallModal Z-order coexistence + Phase 18 38-item checklist + Phase 20 14-item checklist + 69-entry image upload backlog. **Next:** orchestrator-spawned verifier runs to confirm Phase 20 closure invariants → Phase 21 (Plant Journal — JOURNAL-01..05) ready to plan (inherits Phase 13 BottomSheetModal + Phase 18 Toast primitive + Phase 20 additive-optional-schedule pattern).
-Last activity: 2026-05-11 — Phase 20 Plan 10 complete (Wave 6 closing manual checkpoint deferred to v1.2 backlog per Option B; all 7 FERT-* closed at code level; ~5 min wall-clock).
+Phase: 21 of 24 (Plant Journal) — **IN PROGRESS (Wave 0 scaffold complete)**
+Current Plan: 1 of 7
+Plan: 21-00 complete (Wave 0 Nyquist scaffold: scripts/smoke-phase21.cjs three-tier runner forked verbatim from smoke-phase20.cjs preserving assert/assertSkippable/readSafe/getNested helpers lines 23-44; npm script smoke:phase21; .gitignore scripts/.tmp-phase21/ entry; src/types/index.ts CareTag union (6 literals) + JournalEntry interface + AppData.journals? additive-optional field; src/services/journalService.ts skeleton with 4 exported async signatures; 3 component skeletons (JournalSection/JournalQuickAddSheet/JournalEntryRow); EN+ES journal.* namespace with 22-key parity (voseo ES) covering all Wave 3 bare-t() call sites; STRICT i18n-namespace-exists + key-count thresholds + TIGHTENED journalToastVisible-proximity Toast sentinel Blocker B + Warning E preventing false-positive against Phase 18 toastVisible; smoke-phase21 PASS=51 FAIL=0 SKIP=24; smoke-phase18/19/20 all PASS unchanged; npx tsc --noEmit exit 0; ~2min wall-clock; 2 tasks, 9 files (5 created + 4 modified)).
+Status: **Phase 21 Wave 0 complete (Plan 21-00 landed atomically with 2 task commits). Phase 21 IN PROGRESS — Plans 21-01..05 remain to land JOURNAL-01..05 implementations on top of Wave 0 scaffold; Plan 21-06 is closing manual gate.** Next: Plan 21-01 (Wave 1, JOURNAL-01) — useStorage.tsx extension with data.journals || {} load-path default + StorageState extension + snapshotFromRef inclusion + __DEV__ payload-size log. 5 SKIP→PASS sentinels wired.
+Last activity: 2026-05-11 — Phase 21 Plan 00 complete (Wave 0 scaffold; smoke runner + npm script + .gitignore + types + journalService skeleton + 3 component skeletons + i18n 22-key EN+ES parity; ~2 min wall-clock).
 
-Progress: [██████████] 100% (65/65 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 + 09 + 10 complete — Phase 20 CLOSED at code level)
+Progress: [█████████░] 93% (66/71 plans complete; Phase 21 Plan 00 complete — Wave 0 scaffold landed)
 
 ## Performance Metrics
 
@@ -99,6 +99,7 @@ Progress: [██████████] 100% (65/65 plans complete; Phase 20 
 | Phase 20-fertilization-subsystem P08 | 187min | 1 tasks | 3 files |
 | Phase 20-fertilization-subsystem P09 | 5min | 1 tasks | 1 files |
 | Phase Phase 20-fertilization-subsystem PP10 | 5min | 2 tasks tasks | 0 files files |
+| Phase 21-plant-journal P00 | 2min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -281,6 +282,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase Phase 20-fertilization-subsystem]: Plan 20-10 (closing manual gate): user selected Option B (defer to v1.2 device-test backlog memory per Phase 18-05 / 19-07 milestone-end batching precedent). 14-item device-test checklist appended verbatim to v1_2_test_backlog.md with 5-block A-E structure + 12-hard/2-soft classifier. Phase 20 CLOSED at code level — all 7 FERT-* requirement IDs reach closing PASS state. Deferred items remain ship-blocker for v1.2 store submission, NOT for Phase 20 closure.
 - [Phase Phase 20-fertilization-subsystem]: Plan 20-10 (closing manual gate): FERT-03 closing flip — last Pending FERT-* in REQUIREMENTS.md as of plan start; 6 of 7 already Complete from Plans 20-00..09. FERT-03 5-site discriminator sweep landed in Plan 20-03; TaskButton-via-PlantCard invocation site verified via orchestrator sentinel-redirect commit f476948. All 7 FERT-* now Complete after this plan's closure metadata commit.
 - [Phase Phase 20-fertilization-subsystem]: Plan 20-10: Manual deferral discipline reused verbatim from Phase 18-05 + Phase 19-07 — when user approves manual checkpoint with Option B deferral (vs run-now), executor (a) appends phase-specific section to backlog memory file with full unrun checklist + classifier, (b) preserves user's explicit approval signal in SUMMARY's Decisions Made, (c) closes plan at code level. 3rd consecutive use of this pattern across consecutive phases — pattern fully canonical for v1.2 manual-checkpoint plans whose device-only gates are blocked by Xcode/RevenueCat/Apple ID friction. Phase 21+ should adopt verbatim.
+- [Phase 21-plant-journal]: Plan 21-00: TIGHTENED Toast sentinel design (Blocker B + Warning E) requires journalToastVisible identifier + journal.savedToast i18n key co-occurrence within 500 chars in same file; both PlantsScreen and TodayScreen must carry wiring; prevents false-positive against existing Phase 18 toastVisible at PlantsScreen:135 / TodayScreen:249.
+- [Phase 21-plant-journal]: Plan 21-00: i18n key-count threshold raised to >=22 (was 15 in VALIDATION.md draft) — adds 6 Wave 3 bare-t() keys (save/cancel/delete/deleteEntry/textPlaceholder/error.photoSaveFailed) so Wave 3 components use bare t() with NO ?? fallback strings; keysets guaranteed present at Wave 0.
+- [Phase 21-plant-journal]: Plan 21-00: Cross-phase STRICT regression block now spans 3 prior phases (18 + 19 + 20) — extends Phase 20's 2-phase regression with 3 new Phase 20 sentinels (FERT-03 plantLogic+scheduler emit, FERT-06 FertilizeCard file-not-deleted, FERT-07 check-script extension). Third consecutive phase reusing assertion harness helpers verbatim from smoke-phase20.cjs lines 23-44.
 
 ### Pending Todos
 
@@ -295,6 +299,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T20:35:50.288Z
-Stopped at: Completed 20-10-PLAN.md
+Last session: 2026-05-11T22:46:57.414Z
+Stopped at: Completed 21-00-PLAN.md
 Resume file: None
