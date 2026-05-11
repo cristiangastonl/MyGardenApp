@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry, ClimateOverride } from '../types';
+import { Plant, PlantPhoto, Note, Reminder, Location, AppData, NotificationSettings, SavedDiagnosis, DiagnosisChatMessage, ShoppingItem, TrackingStatus, ProblemEntry, ClimateOverride, JournalEntry } from '../types';
 import type { PersistedAppData } from '../types';
 import { STORAGE_KEY } from '../data/constants';
 import { formatDate } from '../utils/dates';
@@ -42,6 +42,7 @@ interface StorageState {
   diagnosisCount: number;
   diagnosisHistory: Record<string, SavedDiagnosis[]>;
   shoppingList: ShoppingItem[];
+  journals: Record<string, JournalEntry[]>; // v1.2 Phase 21 JOURNAL-01; never undefined at runtime, defaults to {}
   climateOverride: ClimateOverride; // v1.1 Phase 7 LOC-05; never undefined at runtime, defaults to 'auto'
   loading: boolean;
   migrationFailed: boolean;       // SCHEMA-07: drives MigrationBanner render (Plan 06)
@@ -115,6 +116,7 @@ function snapshotFromRef(ref: React.MutableRefObject<Omit<StorageState, 'loading
     diagnosisHistory: d.diagnosisHistory,
     shoppingList: d.shoppingList,
     climateOverride: d.climateOverride,
+    journals: d.journals,
   };
 }
 
@@ -134,6 +136,8 @@ export function StorageProvider({ children }: StorageProviderProps) {
   const [diagnosisCount, setDiagnosisCount] = useState(0);
   const [diagnosisHistory, setDiagnosisHistory] = useState<Record<string, SavedDiagnosis[]>>({});
   const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
+  // v1.2 Phase 21 (JOURNAL-01): state field; load-path hydrates via setJournals. Mutation actions land in Plan 21-03.
+  const [journals, setJournals] = useState<Record<string, JournalEntry[]>>({});
   const [climateOverride, setClimateOverrideState] = useState<ClimateOverride>('auto');
   const [loading, setLoading] = useState(true);
   const [migrationFailed, setMigrationFailed] = useState(false);
@@ -154,6 +158,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisCount: 0,
     diagnosisHistory: {},
     shoppingList: [],
+    journals: {},
     climateOverride: 'auto',
   });
 
@@ -171,6 +176,12 @@ export function StorageProvider({ children }: StorageProviderProps) {
       try {
         const data = snapshotFromRef(dataRef);
         const persisted: PersistedAppData = { schemaVersion: CURRENT_SCHEMA_VERSION, data };
+        if (__DEV__) {
+          // v1.2 Phase 21 (JOURNAL-01 / Important 9): payload-size instrumentation so Wave 5 device tester
+          // can verify photos are NOT stored as base64 (payload should grow <1KB per photo add, not ~50KB).
+          // eslint-disable-next-line no-console
+          console.log('[useStorage] AsyncStorage payload bytes:', JSON.stringify(persisted).length);
+        }
         await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(persisted));
       } catch (e) {
         console.error('Save error:', e);
@@ -201,6 +212,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
           const id = formatDate(new Date());
           setInstallDate(id);
           dataRef.current.installDate = id;
+          dataRef.current.journals = {};
           setLoading(false);
           return;
         }
@@ -288,6 +300,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
         const dh = data.diagnosisHistory || {};
         const sl = data.shoppingList || [];
         const co: ClimateOverride = (data as AppData).climateOverride ?? 'auto';
+        const j: Record<string, JournalEntry[]> = data.journals || {};
         const effectiveInstallDate = data.installDate || formatDate(new Date());
 
         setPlants(p);
@@ -302,6 +315,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
         setDiagnosisCount(dc);
         setDiagnosisHistory(dh);
         setShoppingList(sl);
+        setJournals(j);
         setClimateOverrideState(co);
         setInstallDate(effectiveInstallDate);
 
@@ -319,6 +333,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
           diagnosisCount: dc,
           diagnosisHistory: dh,
           shoppingList: sl,
+          journals: j,
           climateOverride: co,
         };
       } else {
@@ -326,6 +341,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
         const id = formatDate(new Date());
         setInstallDate(id);
         dataRef.current.installDate = id;
+        dataRef.current.journals = {};
       }
 
       if (didMigrate) {
@@ -783,6 +799,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     diagnosisCount,
     diagnosisHistory,
     shoppingList,
+    journals,
     climateOverride,
     loading,
     migrationFailed,
@@ -827,7 +844,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
   }), [
     plants, notes, reminders, location, onboardingCompleted, userName,
     notificationSettings, plantNetApiKey, installDate, identificationCount,
-    diagnosisCount, diagnosisHistory, shoppingList, climateOverride, loading,
+    diagnosisCount, diagnosisHistory, shoppingList, journals, climateOverride, loading,
     migrationFailed, migrationJustHappened,
     handleSetPlants, addPlant,
     addPlants, deletePlant, updatePlant, fertilizePlant, addNote, deleteNote, addReminder,

@@ -118,7 +118,9 @@ assertSkippable(() => (journalServiceSrc.includes('new Directory') && journalSer
 assertSkippable(() => /addJournalEntry:\s*\(plantId:\s*string,\s*entry:\s*JournalEntry\)/.test(useStorageSrc) || undefined, 'JOURNAL-03.useStorage.addJournalEntry-interface');
 assertSkippable(() => /deleteJournalEntry:\s*\(plantId:\s*string,\s*entryId:\s*string\)/.test(useStorageSrc) || undefined, 'JOURNAL-03.useStorage.deleteJournalEntry-interface');
 assertSkippable(() => (useStorageSrc.match(/addJournalEntry/g) || []).length >= 4 || undefined, 'JOURNAL-03.useStorage.addJournalEntry-4-sites');
-// Important 7: 3-name surface STRICT-ish gate for downstream pre-flight
+// Important 7: 3-name surface STRICT-ish gate for downstream pre-flight.
+// Plan 21-01 lands the `journals` state field standalone (read-side wiring); Plan 21-03 lands the two actions.
+// Skip while either action is absent (Plan 21-03 territory) regardless of `journals` presence.
 assertSkippable(() => {
   if (useStorageSrc.length === 0) return undefined;
   const hasJournals = /\bjournals\b/.test(useStorageSrc);
@@ -126,7 +128,8 @@ assertSkippable(() => {
   const hasDel = /\bdeleteJournalEntry\b/.test(useStorageSrc);
   // Only flip to PASS once all three appear AND at least one is in the public interface (StorageActions or StorageContextType)
   const inInterface = /addJournalEntry:\s*\(/.test(useStorageSrc) && /deleteJournalEntry:\s*\(/.test(useStorageSrc);
-  if (!hasJournals && !hasAdd && !hasDel) return undefined;
+  // Skip until both actions are wired (Plan 21-03). `journals` alone (Plan 21-01) is not enough to flip.
+  if (!hasAdd || !hasDel) return undefined;
   return hasJournals && hasAdd && hasDel && inInterface;
 }, 'JOURNAL-03.useStorage.public-interface-exposes-3-names');
 assertSkippable(() => useStorageSrc.includes('deleteJournalDirectory') || undefined, 'JOURNAL-04.useStorage.deletePlant-calls-deleteJournalDirectory');
