@@ -34,8 +34,9 @@ import { getEffectiveSeason, type WaterSeason } from '../utils/seasonality';
 import { getSeasonalInterval } from '../utils/plantLogic';
 import { getLightLabel } from '../utils/lightLabel';
 
-/** v1.2 Phase 19 (TOX-04) — modal section anchors for scroll-to behavior. */
-export type ModalSectionId = 'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas';
+/** v1.2 Phase 19 (TOX-04) — modal section anchors for scroll-to behavior.
+ *  v1.2 Phase 21 (JOURNAL-04) — extended with 'diario' for the 6th educational section. */
+export type ModalSectionId = 'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas' | 'diario';
 
 interface MyPlantDetailModalProps {
   visible: boolean;

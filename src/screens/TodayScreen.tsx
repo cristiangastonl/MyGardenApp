@@ -40,6 +40,10 @@ import {
   DiagnosisFollowUp,
   Toast,
 } from '../components';
+// Phase 21 (JOURNAL-04, Blocker A): separate type-only NAMED import — the existing
+// barrel import above stays untouched. MyPlantDetailModal is a NAMED export from
+// the component file, so this is the only correct shape.
+import type { ModalSectionId } from '../components/MyPlantDetailModal';
 import { trackEvent } from '../services/analyticsService';
 import { LinearGradient } from 'expo-linear-gradient';
 import { DiagnosisDetailModal } from '../components/PlantDiagnosis/DiagnosisDetailModal';
@@ -131,7 +135,7 @@ export default function TodayScreen() {
 
   const [refreshing, setRefreshing] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
-  const [detailInitialSection, setDetailInitialSection] = useState<'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas' | undefined>(undefined);
+  const [detailInitialSection, setDetailInitialSection] = useState<ModalSectionId | undefined>(undefined);
 
   useEffect(() => {
     if (pendingPlantId && plants.length > 0) {

@@ -37,6 +37,10 @@ import {
   MyPlantDetailModal,
   Toast,
 } from '../components';
+// Phase 21 (JOURNAL-04, Blocker A): separate type-only NAMED import — the existing
+// barrel import above stays untouched. MyPlantDetailModal is a NAMED export from
+// the component file, so this is the only correct shape.
+import type { ModalSectionId } from '../components/MyPlantDetailModal';
 import { PlantDiagnosisModal } from '../components/PlantDiagnosis/PlantDiagnosisModal';
 import { uploadPlantImage } from '../services/imageService';
 import { trackEvent } from '../services/analyticsService';
@@ -71,7 +75,7 @@ export default function PlantsScreen() {
   const [showAddPlant, setShowAddPlant] = useState(false);
   const [showIdentifier, setShowIdentifier] = useState(false);
   const [detailPlant, setDetailPlant] = useState<Plant | null>(null);
-  const [detailInitialSection, setDetailInitialSection] = useState<'que-hacer' | 'donde' | 'por-que' | 'tus-ajustes' | 'mascotas' | undefined>(undefined);
+  const [detailInitialSection, setDetailInitialSection] = useState<ModalSectionId | undefined>(undefined);
   const [diagnosePlantState, setDiagnosePlantState] = useState<Plant | null>(null);
   const [diagnosisInitialImages, setDiagnosisInitialImages] = useState<Array<{ uri: string; base64: string }> | undefined>();
   const [searchQuery, setSearchQuery] = useState('');
