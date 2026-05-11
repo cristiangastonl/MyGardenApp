@@ -140,6 +140,11 @@ export default function PlantsScreen() {
   const [toastMessage, setToastMessage] = useState('');
   const dismissTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Phase 21 (JOURNAL-04): journal-saved Toast — DISTINCT identifier from the Phase 18
+  // swipe-undo `toastVisible` above (Blocker B LOCKED). Two independent <Toast> siblings
+  // coexist; Phase 18 owns swipe-undo, Phase 21 owns journal.savedToast.
+  const [journalToastVisible, setJournalToastVisible] = useState(false);
+
   // Phase 18 CARD-02: long-press BottomSheetModal
   const longPressSheetRef = useRef<BottomSheetModal>(null);
   const [longPressTarget, setLongPressTarget] = useState<Plant | null>(null);
@@ -446,6 +451,11 @@ export default function PlantsScreen() {
         }}
         onAddPhoto={addPhotoToPlant}
         onDeletePhoto={removePhotoFromPlant}
+        // Phase 21 (JOURNAL-04 — Important 6 Approach B + Blocker B): modal forwards
+        // the journal-save signal here so this screen owns Toast state. Uses the
+        // DISTINCT identifier `journalToastVisible` to avoid clashing with the
+        // Phase 18 swipe-undo `toastVisible` declared above.
+        onJournalEntrySaved={() => setJournalToastVisible(true)}
       />
 
       {/* Phase 18 CARD-02 — long-press overflow menu */}
@@ -481,6 +491,15 @@ export default function PlantsScreen() {
         onAction={handleUndo}
         durationMs={4000}
         onDismiss={handleToastDismissed}
+      />
+
+      {/* Phase 21 (JOURNAL-04) — journal-saved Toast. DISTINCT state from the Phase 18
+          Toast above; the two coexist as independent siblings. */}
+      <Toast
+        visible={journalToastVisible}
+        message={t('journal.savedToast')}
+        durationMs={2000}
+        onDismiss={() => setJournalToastVisible(false)}
       />
     </SafeAreaView>
   );

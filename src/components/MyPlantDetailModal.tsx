@@ -26,6 +26,9 @@ import { ActiveProblemsSection } from './ActiveProblemsSection';
 import { MigrationTooltip } from './MigrationTooltip';
 import { EducationalSection } from './plant-detail/EducationalSection';
 import { FertilizeCard } from './plant-detail/FertilizeCard';
+// Phase 21 (JOURNAL-04): 6th Diario section + quick-add sheet portal.
+import JournalSection from './plant-detail/JournalSection';
+import JournalQuickAddSheet from './plant-detail/JournalQuickAddSheet';
 import { compareUserVsCatalog, OverrideField, OverrideResult } from '../utils/overrideDetection';
 import { usePremiumGate } from '../config/premium';
 import { usePremium } from '../hooks/usePremium';
@@ -52,6 +55,10 @@ interface MyPlantDetailModalProps {
   /** v1.2 Phase 20 (FERT-06) — one-shot signal: when 'fertilize', the FertilizeCard inside
    *  `🌿 ¿Qué hacer?` opens auto-expanded on arrival. Orthogonal to initialSection — the two coexist. */
   initialExpanded?: 'fertilize';
+  /** v1.2 Phase 21 (JOURNAL-04) — fired AFTER addJournalEntry succeeds. Screen-level
+   *  toast owner pattern (Approach B per Important 6 LOCKED). Parent screen (PlantsScreen /
+   *  TodayScreen) listens and surfaces the "Entrada guardada 📔" notification at screen level. */
+  onJournalEntrySaved?: () => void;
 }
 
 export function MyPlantDetailModal({
@@ -65,14 +72,25 @@ export function MyPlantDetailModal({
   onDeletePhoto,
   initialSection,
   initialExpanded,
+  onJournalEntrySaved,
 }: MyPlantDetailModalProps) {
   const { t } = useTranslation();
   const [showDiagnosis, setShowDiagnosis] = useState(false);
   const [selectedDiagnosis, setSelectedDiagnosis] = useState<SavedDiagnosis | null>(null);
   const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
+  // Phase 21 (JOURNAL-04): quick-add sheet local visibility — opened by the Diario section.
+  const [quickAddSheetVisible, setQuickAddSheetVisible] = useState(false);
   const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
-  const { diagnosisCount, getDiagnosesForPlant, climateOverride } = useStorage();
+  const {
+    diagnosisCount,
+    getDiagnosesForPlant,
+    climateOverride,
+    // Phase 21 (JOURNAL-04) — read + mutators from Plan 21-03.
+    journals,
+    addJournalEntry,
+    deleteJournalEntry,
+  } = useStorage();
 
   // Phase 19 (TOX-04): ScrollView ref + section layout tracking for scroll-to-section.
   const scrollViewRef = useRef<ScrollView>(null);
@@ -479,6 +497,17 @@ export function MyPlantDetailModal({
               </EducationalSection>
             </View>
 
+            {/* Phase 21 (JOURNAL-04): 6th educational section — Diario. Always visible;
+                empty-state CTA inside JournalSection guides the user to add the first entry. */}
+            <View onLayout={onSectionLayout('diario')}>
+              <JournalSection
+                plantId={plant.id}
+                entries={journals[plant.id] || []}
+                onAddEntry={() => setQuickAddSheetVisible(true)}
+                onDeleteEntry={(entryId) => deleteJournalEntry(plant.id, entryId)}
+              />
+            </View>
+
             {/* Diagnosis History */}
             {plantDiagnoses.length > 0 && (
               <View style={styles.historySection}>
@@ -516,6 +545,20 @@ export function MyPlantDetailModal({
           {plant._migratedFromV0 && visible ? (
             <MigrationTooltip plantId={plant.id} />
           ) : null}
+
+          {/* Phase 21 (JOURNAL-04): quick-add BottomSheetModal — sibling of ScrollView per
+              RESEARCH Pattern 6 Option A. App-root gorhom provider makes the portal mount
+              correctly even inside this RN Modal. Toast wiring is delegated to the parent
+              screen via onJournalEntrySaved (Important 6 Approach B; Pitfall 10 avoided). */}
+          <JournalQuickAddSheet
+            plantId={plant.id}
+            visible={quickAddSheetVisible}
+            onDismiss={() => setQuickAddSheetVisible(false)}
+            onSave={(entry) => {
+              addJournalEntry(plant.id, entry);
+              onJournalEntrySaved?.();
+            }}
+          />
         </View>
       </View>
     </Modal>
