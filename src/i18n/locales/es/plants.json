@@ -1138,7 +1138,10 @@
       "Sustrato arenoso con perlita o piedra pómez para asegurar drenaje"
     ],
     "placementAvoid": "Suelo encharcado y sombra prolongada — pudre raíces y se estira buscando luz (estiolación).",
-    "whyRationale": "Las suculentas usan metabolismo CAM: cierran estomas de día para evitar pérdida de agua y los abren de noche. Sus hojas o tallos suculentos almacenan agua para sequías largas — por eso el exceso de riego, no la falta, es lo que más las mata."
+    "whyRationale": "Las suculentas usan metabolismo CAM: cierran estomas de día para evitar pérdida de agua y los abren de noche. Sus hojas o tallos suculentos almacenan agua para sequías largas — por eso el exceso de riego, no la falta, es lo que más las mata.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en cálido (CAM xerófita — exceso N pudre o estira)."
+    }
   },
   "cactus": {
     "name": "Cactus",
@@ -1175,7 +1178,10 @@
       "Cantero exterior con suelo pedregoso bien drenado"
     ],
     "placementAvoid": "Sombra prolongada y suelo siempre húmedo — pudre la base y se estira deformándose.",
-    "whyRationale": "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Usa metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración."
+    "whyRationale": "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Usa metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en cálido; cero en invierno (necesita reposo seco para florecer)."
+    }
   },
   "echeveria": {
     "name": "Echeveria",
@@ -1212,7 +1218,10 @@
       "Mesada con luz directa de mañana"
     ],
     "placementAvoid": "Sombra prolongada — la roseta se abre y pierde colores; agua estancada en la roseta — pudre el centro.",
-    "whyRationale": "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y usa metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación)."
+    "whyRationale": "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y usa metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación).",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 45d en cálido (Crasulácea — mantiene rosetas compactas y colores vivos)."
+    }
   },
   "espatifilo": {
     "name": "Espatifilo",
@@ -2412,6 +2421,9 @@
           "Heces blandas"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:8 cada 90d (Asfodelácea tolerante-sombra — crece muy lento, casi no demanda)."
     }
   },
   "sedum": {
@@ -2449,7 +2461,10 @@
       "Balcón con sol directo en primavera y verano"
     ],
     "placementAvoid": "Lugares de paso donde la rocen — pierde hojas; sombra prolongada y suelo húmedo — pudre los tallos.",
-    "whyRationale": "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Usa CAM como toda la familia."
+    "whyRationale": "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Usa CAM como toda la familia.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:8 cada 60d en cálido (cola de burro frágil — exceso N debilita los tallos)."
+    }
   },
   "yuca": {
     "name": "Yuca",
@@ -4227,7 +4242,10 @@
       "Pared al norte (HS) o sur (HN) con sol pleno todo el día"
     ],
     "placementAvoid": "Sustrato encharcado y temperaturas bajo 5°C prolongadas.",
-    "whyRationale": "Cactácea de tierras áridas mexicanas — metabolismo CAM cierra estomas de día y fija CO2 nocturno; sus paletas son tallos modificados con almacén de agua. La fotosíntesis nocturna es la clave de su tolerancia al desierto."
+    "whyRationale": "Cactácea de tierras áridas mexicanas — metabolismo CAM cierra estomas de día y fija CO2 nocturno; sus paletas son tallos modificados con almacén de agua. La fotosíntesis nocturna es la clave de su tolerancia al desierto.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:4 cada 60d en cálido (Opuntia xerófita americana — tolera muy poco N)."
+    }
   },
   "mammillaria": {
     "name": "Mammillaria",
@@ -4264,7 +4282,10 @@
       "Balcón cubierto con sol directo de mañana"
     ],
     "placementAvoid": "Rincones sin luz directa y sustrato húmedo más de 7 días seguidos.",
-    "whyRationale": "Cactácea mexicana de hábito agrupado — sus tubérculos almacenan agua y las espinas reflejan luz para reducir transpiración. Florece en corona apical cuando los días alargan: el fotoperiodo dispara la floración primaveral."
+    "whyRationale": "Cactácea mexicana de hábito agrupado — sus tubérculos almacenan agua y las espinas reflejan luz para reducir transpiración. Florece en corona apical cuando los días alargan: el fotoperiodo dispara la floración primaveral.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en primavera-verano (mantiene forma globular compacta)."
+    }
   },
   "cactus-navidad": {
     "name": "Cactus de Navidad",
@@ -4301,7 +4322,10 @@
       "Veranda cubierta sin sol directo"
     ],
     "placementAvoid": "Sol directo del mediodía (quema los segmentos) y temperaturas bajo 10°C.",
-    "whyRationale": "No es cactus de desierto: es epífita del bosque brasileño — crece sobre árboles a media sombra. Sus tallos articulados son fotosintéticos y florece con noches largas (>13h oscuridad) en otoño."
+    "whyRationale": "No es cactus de desierto: es epífita del bosque brasileño — crece sobre árboles a media sombra. Sus tallos articulados son fotosintéticos y florece con noches largas (>13h oscuridad) en otoño.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluido 1:4 cada 30d en crecimiento (cactus de bosque epífito, tolera más N)."
+    }
   },
   "kalanchoe": {
     "name": "Kalanchoe",
@@ -4356,6 +4380,9 @@
           "Colapso"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluido 1:4 cada 30d en floración; bajá a cada 90d post-flor (Crasulácea, demanda según flor)."
     }
   },
   "siempreviva": {
@@ -4393,7 +4420,10 @@
       "Repisa luminosa al sur (HN) o norte (HS)"
     ],
     "placementAvoid": "Sustrato encharcado y rincones sin luz directa.",
-    "whyRationale": "Crassulácea de montañas europeas — hábito en roseta retiene agua y minimiza superficie expuesta al frío. Es monocárpica: la madre florece una vez y muere, pero deja decenas de hijos que la reemplazan."
+    "whyRationale": "Crassulácea de montañas europeas — hábito en roseta retiene agua y minimiza superficie expuesta al frío. Es monocárpica: la madre florece una vez y muere, pero deja decenas de hijos que la reemplazan.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 a un cuarto cada 90d — suculenta alpina, prefiere suelo magro (Sempervivum)."
+    }
   },
   "gasteria": {
     "name": "Gasteria",
@@ -4430,7 +4460,10 @@
       "Estante luminoso de oficina o pasillo"
     ],
     "placementAvoid": "Sol directo del mediodía y sustrato encharcado.",
-    "whyRationale": "Asfodelácea sudafricana de sotobosque árido — hojas en hilera doble (distichous) almacenan agua y toleran sombra parcial. Su CAM modificado le permite vivir donde un cactus pleno-sol no llegaría."
+    "whyRationale": "Asfodelácea sudafricana de sotobosque árido — hojas en hilera doble (distichous) almacenan agua y toleran sombra parcial. Su CAM modificado le permite vivir donde un cactus pleno-sol no llegaría.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:8 cada 90d (Asfodelácea tolerante-sombra, demanda muy baja como Haworthia)."
+    }
   },
   "piedras-vivas": {
     "name": "Piedras vivas (Lithops)",
@@ -4467,7 +4500,10 @@
       "Mesada de cocina con luz directa"
     ],
     "placementAvoid": "Riego en pleno verano (reposo absoluto) y aire húmedo prolongado.",
-    "whyRationale": "Aizoácea sudafricana mesemb — ciclo de reemplazo foliar anual: el par nuevo absorbe agua del par viejo. Reposo estival absoluto — un riego de verano puede reventarla porque las hojas viejas se rehidratan y se rompen."
+    "whyRationale": "Aizoácea sudafricana mesemb — ciclo de reemplazo foliar anual: el par nuevo absorbe agua del par viejo. Reposo estival absoluto — un riego de verano puede reventarla porque las hojas viejas se rehidratan y se rompen.",
+    "fertilizer": {
+      "industrialRecommendation": "Casi nada — NPK 0-10-10 diluido 1:8 cada 60d sólo en otoño-invierno; JAMÁS en dormancia veraniega (Lithops)."
+    }
   },
   "senecio-rowleyanus": {
     "name": "Collar de perlas",
@@ -4520,6 +4556,9 @@
           "Salivación"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en cálido (Asterácea CAM colgante — tallos sensibles a exceso)."
     }
   },
   "corona-espinas": {
@@ -4573,6 +4612,9 @@
           "Irritación ocular"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluido 1:4 cada 30d, más seguido que la mayoría (Euforbiácea floríbera más demandante)."
     }
   },
   "agave": {
@@ -4624,6 +4666,9 @@
           "Diarrea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 90d en crecimiento (rosetófita robusta — raíces fuertes, demanda baja)."
     }
   },
   "hoya": {
@@ -4998,6 +5043,9 @@
           "Temblores"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluido 1:4 cada 45d en cálido (cactus columnar andino — crece rápido si se alimenta)."
     }
   },
   "tulipan": {

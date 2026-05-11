@@ -1138,7 +1138,10 @@
       "Sandy substrate with perlite or pumice for drainage"
     ],
     "placementAvoid": "Waterlogged soil and prolonged shade — rots roots and stretches reaching for light (etiolation).",
-    "whyRationale": "Succulents use CAM metabolism: they close stomata during the day to prevent water loss and open them at night. Their fleshy leaves or stems store water for long droughts — that's why overwatering, not drought, is what kills them most."
+    "whyRationale": "Succulents use CAM metabolism: they close stomata during the day to prevent water loss and open them at night. Their fleshy leaves or stems store water for long droughts — that's why overwatering, not drought, is what kills them most.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d in warm season (CAM xerophyte — excess N rots or etiolates)."
+    }
   },
   "cactus": {
     "name": "Cactus",
@@ -1175,7 +1178,10 @@
       "Outdoor bed with rocky, well-drained soil"
     ],
     "placementAvoid": "Prolonged shade and constantly wet soil — rots the base and stretches deformed.",
-    "whyRationale": "Cactaceae family, native to the arid zones of the Americas. Spines are modified leaves and the green stem replaces leaf photosynthesis. Uses CAM metabolism (nocturnal stomata) to tolerate the desert; a cool dry winter triggers blooming."
+    "whyRationale": "Cactaceae family, native to the arid zones of the Americas. Spines are modified leaves and the green stem replaces leaf photosynthesis. Uses CAM metabolism (nocturnal stomata) to tolerate the desert; a cool dry winter triggers blooming.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d in warm season; none in winter (needs dry rest to bloom)."
+    }
   },
   "echeveria": {
     "name": "Echeveria",
@@ -1212,7 +1218,10 @@
       "Counter with direct morning light"
     ],
     "placementAvoid": "Prolonged shade — the rosette opens and loses color; standing water in the rosette — rots the center.",
-    "whyRationale": "Crassulaceae from semi-arid mountainous regions of Mexico. Its rosette form minimizes water loss and it uses CAM metabolism. Pastel colors intensify with direct sun; in shade they turn green and the plant stretches (etiolation)."
+    "whyRationale": "Crassulaceae from semi-arid mountainous regions of Mexico. Its rosette form minimizes water loss and it uses CAM metabolism. Pastel colors intensify with direct sun; in shade they turn green and the plant stretches (etiolation).",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 45d in warm season (Crassulaceae — keeps compact rosettes and vivid color)."
+    }
   },
   "espatifilo": {
     "name": "Peace Lily",
@@ -2412,6 +2421,9 @@
           "Soft stools"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:8 every 90d (shade-tolerant Asphodelaceae — very slow growth, minimal demand)."
     }
   },
   "sedum": {
@@ -2449,7 +2461,10 @@
       "Balcony with direct sun in spring and summer"
     ],
     "placementAvoid": "Walkways where it gets brushed — drops leaves; prolonged shade and wet soil — rots the stems.",
-    "whyRationale": "Crassulaceae from Mexico (burro's tail), more cold-tolerant than echeveria. Its bead-shaped leaves drop at the slightest touch but each one roots easily — an evolutionary clonal-propagation strategy on rocky soil. Uses CAM like the family."
+    "whyRationale": "Crassulaceae from Mexico (burro's tail), more cold-tolerant than echeveria. Its bead-shaped leaves drop at the slightest touch but each one roots easily — an evolutionary clonal-propagation strategy on rocky soil. Uses CAM like the family.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:8 every 60d in warm season (burro tail is fragile — excess N weakens stems)."
+    }
   },
   "yuca": {
     "name": "Yucca",
@@ -4227,7 +4242,10 @@
       "Wall facing north (SH) or south (NH) with full sun all day"
     ],
     "placementAvoid": "Waterlogged substrate and prolonged temperatures below 5°C.",
-    "whyRationale": "Cactus from Mexican arid lands — CAM metabolism closes stomata by day and fixes CO2 at night; its pads are modified stems that store water. Nocturnal photosynthesis is the key to its desert tolerance."
+    "whyRationale": "Cactus from Mexican arid lands — CAM metabolism closes stomata by day and fixes CO2 at night; its pads are modified stems that store water. Nocturnal photosynthesis is the key to its desert tolerance.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:4 every 60d in warm season (Opuntia American xerophyte — low N tolerance)."
+    }
   },
   "mammillaria": {
     "name": "Ladyfinger Cactus (Mammillaria)",
@@ -4264,7 +4282,10 @@
       "Covered balcony with direct morning sun"
     ],
     "placementAvoid": "Corners without direct light and damp substrate for more than 7 days in a row.",
-    "whyRationale": "Mexican clumping cactus — its tubercles store water and its spines reflect light to reduce transpiration. Blooms in an apical crown as days lengthen: photoperiod triggers spring flowering."
+    "whyRationale": "Mexican clumping cactus — its tubercles store water and its spines reflect light to reduce transpiration. Blooms in an apical crown as days lengthen: photoperiod triggers spring flowering.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d in spring-summer (keeps the compact globe form)."
+    }
   },
   "cactus-navidad": {
     "name": "Christmas Cactus",
@@ -4301,7 +4322,10 @@
       "Covered porch without direct sun"
     ],
     "placementAvoid": "Direct midday sun (burns the segments) and temperatures below 10°C.",
-    "whyRationale": "Not a desert cactus: an epiphyte from Brazilian forest — grows on trees in partial shade. Its segmented stems are photosynthetic and it blooms with long nights (>13h darkness) in autumn."
+    "whyRationale": "Not a desert cactus: an epiphyte from Brazilian forest — grows on trees in partial shade. Its segmented stems are photosynthetic and it blooms with long nights (>13h darkness) in autumn.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluted 1:4 every 30d during growth (epiphytic forest cactus — more N-tolerant)."
+    }
   },
   "kalanchoe": {
     "name": "Kalanchoe",
@@ -4356,6 +4380,9 @@
           "Collapse"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluted 1:4 every 30d during bloom; drop to every 90d post-flower (Crassulaceae bloom-driven)."
     }
   },
   "siempreviva": {
@@ -4393,7 +4420,10 @@
       "Bright shelf facing south (NH) or north (SH)"
     ],
     "placementAvoid": "Waterlogged substrate and corners without direct light.",
-    "whyRationale": "European mountain crassulaceous — its rosette habit retains water and minimizes cold-exposed surface. It's monocarpic: the mother flowers once and dies, but leaves dozens of offsets that replace her."
+    "whyRationale": "European mountain crassulaceous — its rosette habit retains water and minimizes cold-exposed surface. It's monocarpic: the mother flowers once and dies, but leaves dozens of offsets that replace her.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 quarter-strength every 90d — alpine succulent thrives on lean soil (Sempervivum)."
+    }
   },
   "gasteria": {
     "name": "Lawyer's Tongue (Gasteria)",
@@ -4430,7 +4460,10 @@
       "Bright office shelf or hallway"
     ],
     "placementAvoid": "Direct midday sun and waterlogged substrate.",
-    "whyRationale": "South African asphodelaceous succulent of arid understories — distichous (two-row) leaves store water and tolerate partial shade. Its modified CAM lets it thrive where a full-sun cactus could not."
+    "whyRationale": "South African asphodelaceous succulent of arid understories — distichous (two-row) leaves store water and tolerate partial shade. Its modified CAM lets it thrive where a full-sun cactus could not.",
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:8 every 90d (shade-tolerant Asphodelaceae — very low demand, like Haworthia)."
+    }
   },
   "piedras-vivas": {
     "name": "Living Stones (Lithops)",
@@ -4467,7 +4500,10 @@
       "Kitchen counter with direct light"
     ],
     "placementAvoid": "Watering in midsummer (absolute dormancy) and prolonged humid air.",
-    "whyRationale": "South African Aizoaceae mesemb — annual leaf-replacement cycle: the new pair absorbs water from the old pair. Absolute summer dormancy — a single summer watering can split it open as old leaves rehydrate and burst."
+    "whyRationale": "South African Aizoaceae mesemb — annual leaf-replacement cycle: the new pair absorbs water from the old pair. Absolute summer dormancy — a single summer watering can split it open as old leaves rehydrate and burst.",
+    "fertilizer": {
+      "industrialRecommendation": "Almost none — NPK 0-10-10 diluted 1:8 every 60d only in autumn-winter active period; NEVER in summer dormancy (Lithops)."
+    }
   },
   "senecio-rowleyanus": {
     "name": "String of Pearls (Curio rowleyanus)",
@@ -4520,6 +4556,9 @@
           "Drooling"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 60d in warm season (trailing CAM Asteraceae — stems sensitive to over-feed)."
     }
   },
   "corona-espinas": {
@@ -4573,6 +4612,9 @@
           "Eye irritation"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 10-10-10 diluted 1:4 every 30d, more frequent than typical succulents (flowering Euphorbiaceae)."
     }
   },
   "agave": {
@@ -4624,6 +4666,9 @@
           "Diarrhea"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:6 every 90d in active growth (rugged rosette monocot — strong roots, low demand)."
     }
   },
   "hoya": {
@@ -4998,6 +5043,9 @@
           "Tremors"
         ]
       }
+    },
+    "fertilizer": {
+      "industrialRecommendation": "NPK 5-10-10 diluted 1:4 every 45d in warm season (Andean columnar cactus — grows fast if fed)."
     }
   },
   "tulipan": {
