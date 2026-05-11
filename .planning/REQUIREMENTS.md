@@ -91,7 +91,7 @@
 - [x] **FERT-04**: `getTasksForDay` emits `'fertilize'` task on cadence (season-aware via warm/cold split); user marks done via TaskButton; `lastFertilized` updates
 - [x] **FERT-05**: Fertilize push notifications are **opt-in** (toggle in Settings → Notifications, default OFF). Task still appears in Hoy regardless. Avoids notification fatigue (4th task type alongside water/sun/outdoor) while letting power users opt in.
 - [x] **FERT-06**: PlantCard shows fertilize task badge when due today (mode: 'tasks' branch); MyPlantDetailModal "¿Qué hacer?" section explains how + when (referencing FERT-07 fertilizer type per plant)
-- [ ] **FERT-07**: `PlantDBEntry.fertilizer?: { type: 'industrial' | 'homemade' | 'both', industrialRecommendation?: string, homemadeRecommendation?: string }` added — content per entry. Industrial example: "NPK 10-10-10 diluido 1:4 en agua, cada 2 semanas en temporada cálida". Homemade example: "Té de cáscara de banana o cáscara de huevo molida cada 10-14 días en primavera/verano". Horticultural research per category required (tropicales / suculentas / hierbas / huerta / frutales). Industrial recommendations should be generic NPK ratios + standard amendments (NOT specific brands — avoid endorsement liability). All 120 catalog entries × EN+ES. _(Plans 20-06 + 20-07 partial: 83/118 entries — interior + aromáticas + huerta + suculentas. Plan 20-08 will close to 118.)_
+- [x] **FERT-07**: `PlantDBEntry.fertilizer?: { type: 'industrial' | 'homemade' | 'both', industrialRecommendation?: string, homemadeRecommendation?: string }` added — content per entry. Industrial example: "NPK 10-10-10 diluido 1:4 en agua, cada 2 semanas en temporada cálida". Homemade example: "Té de cáscara de banana o cáscara de huevo molida cada 10-14 días en primavera/verano". Horticultural research per category required (tropicales / suculentas / hierbas / huerta / frutales). Industrial recommendations should be generic NPK ratios + standard amendments (NOT specific brands — avoid endorsement liability). All 118 catalog entries × EN+ES. _(Plans 20-06 + 20-07 + 20-08 complete: 118/118 entries — interior + aromáticas + huerta + suculentas + exterior + frutales. FERT-07 catalog content layer fully closed; locale parity verified at 118 × 2 locales.)_
 
 ### Plant Journal (JOURNAL)
 
@@ -242,7 +242,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | FERT-04 | Phase 20 | Complete |
 | FERT-05 | Phase 20 | Complete |
 | FERT-06 | Phase 20 | Complete |
-| FERT-07 | Phase 20 | In Progress (83/118) |
+| FERT-07 | Phase 20 | Complete |
 | JOURNAL-01 | Phase 21 | Pending |
 | JOURNAL-02 | Phase 21 | Pending |
 | JOURNAL-03 | Phase 21 | Pending |

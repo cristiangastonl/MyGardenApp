@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 9 of 11
-status: completed
-stopped_at: Completed 20-07-PLAN.md
-last_updated: "2026-05-11T13:41:11.781Z"
-last_activity: "2026-05-11 — Phase 20 Plan 07 complete (Wave 4 catalog content Batch B: 16 suculentas × industrial-only fertilizer recipes EN+ES; 1 task, 3 files, ~22 min execution)."
+current_plan: 10 of 11
+status: verifying
+stopped_at: Completed 20-08-PLAN.md
+last_updated: "2026-05-11T17:08:50.035Z"
+last_activity: "2026-05-11 — Phase 20 Plan 08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × type='both' fertilizer recipes EN+ES; closes catalog at 118/118; FERT-02 SKIP→PASS; 1 task, 3 files, ~187 min wall-clock)."
 progress:
   total_phases: 15
   completed_phases: 10
   total_plans: 64
-  completed_plans: 62
-  percent: 97
+  completed_plans: 63
+  percent: 98
 ---
 
 # Project State
@@ -27,12 +27,12 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 ## Current Position
 
 Phase: 20 of 24 (Fertilization Subsystem) — **OPEN**
-Current Plan: 9 of 11
-Plan: 20-07 complete (Wave 4 catalog content Batch B: 16 suculentas × {fertilizeIntervalWarm + fertilizeIntervalCold:null + fertilizer.{type:'industrial', industrialRecommendation}} authored across Cactaceae (5) + Crassulaceae (4) + Asphodelaceae (2) + Aizoaceae mesemb (1) + Asteraceae succulent (1) + Euphorbiaceae outlier (1) + Agavoideae (1) + generic suculenta (1); 1 atomic task commit — 220ed78 16 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json); 32 fertilizer strings authored (16 ES + 16 EN) with locale parity from start, char-limit-from-draft (max ES=108/120, max EN=120/120), distinct per-genus mechanism citations zero copy-paste, voseo baseline preserved at 0 banned forms; HARD LOCK on Pitfall 6 — zero suculentas entries declare homemadeRecommendation in plantDatabase.ts or either plants.json locale; Lithops (piedras-vivas) gets unique per-species rationale citing NPK 0-10-10 + autumn-winter active + JAMÁS/NEVER summer dormancy (opposite of generic CAM template); smoke-phase20 PASS=46 FAIL=0 SKIP=3 exit 0 — FERT-02 SKIP preserved per mid-band guard at 83/118; check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~22 min execution).
-Status: **Phase 20 Wave 4 Batch B complete (Plan 20-07 landed atomically).** 83/118 catalog entries (≈ 70%) gain fertilizer content; FERT-02.catalog.fertilizeIntervalWarm-coverage gate continues SKIP per mid-band guard (83 < 100 threshold; flips to PASS in Plan 20-08 once final batch of ~35 entries lands). Per-category framing matrix from RESEARCH §Pattern 12 honored verbatim for suculentas: type='industrial' ONLY (homemade composts té de cáscara de banana / lombricompuesto líquido / té de compost are too N-rich for arid CAM plants → etiolation/rot risk); fertilizeIntervalCold:null encodes CAM cold-season dormancy (no fertilize task emitted in winter); Cactaceae sub-typology framing distinct per-genus (Opuntia xerófita americana / Mammillaria globular compacta / Schlumbergera epífito bosque tolera más N / Echinopsis columnar andino); Crassulaceae sub-typology (rosetas Echeveria / cola de burro frágil Sedum / Kalanchoe floríbera bloom-driven / Sempervivum alpina); Asphodelaceae cross-genus parallel (Haworthia/Gasteria both tolerante-sombra NPK 1:8 cada 90d); Aizoaceae mesemb Lithops UNIQUE annual-cycle citation pattern reusable for future mesemb expansion. Content-table + apply-script pattern from Plan 20-06 reused verbatim (fert-batch-b-apply.cjs forked from fert-batch-a-apply.cjs with industrial-only branch simplification — no homemadeRecommendation key emitted in any of the 3 files). **Next:** Phase 20 Plan 20-08 (Wave 4 Batch C — final exterior/frutales/misc batch ~35 entries to reach 118; FERT-02 gate flips SKIP→PASS at ≥100 once batch lands).
-Last activity: 2026-05-11 — Phase 20 Plan 07 complete (Wave 4 catalog content Batch B: 16 suculentas × industrial-only fertilizer recipes EN+ES; 1 task, 3 files, ~22 min execution).
+Current Plan: 10 of 11
+Plan: 20-08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × {fertilizeIntervalWarm + fertilizeIntervalCold (heterogeneous per physiology) + fertilizer.{type:'both', industrialRecommendation, homemadeRecommendation}} authored across 16+ botanical families — Mediterranean Lavandas/Annual flores/Bulbosas/Subtropical/Climbing+Fabáceas/Geraniaceae/Rosaceae/Asteraceae perennials/Lamiaceae perennial/Ericaceous/Hydrangea/Large trees AND Citrus Rutáceas/Lauráceas/Moráceas/Oleáceas/Vaccinium ericáceo frutales; 1 atomic task commit — b2f95df 35 entries × 3 files (plantDatabase.ts + en/plants.json + es/plants.json); 140 fertilizer strings authored (70 ES + 70 EN) with locale parity from start, char-limit-from-draft (max ES=117/120, max EN=115/120), distinct per-species/per-family mechanism citations across ALL 118 catalog entries zero copy-paste, voseo baseline preserved at 0 banned forms; HARD CLOSE on FERT-07 catalog content layer — 118/118 entries declare fertilizer field with locale parity; smoke-phase20 PASS=47 FAIL=0 SKIP=2 exit 0 — FERT-02.catalog.fertilizeIntervalWarm-coverage SKIP→PASS at 118/118 (≥100 threshold satisfied via Plan 20-06's mid-band guard pass-through); check:i18n-keys 118 ids verified; cross-phase smoke-phase18 PASS=56 + smoke-phase19 PASS=85 preserved; ~187min wall-clock).
+Status: **Phase 20 Wave 4 Batch C complete (Plan 20-08 landed atomically). FERT-07 catalog content layer FULLY CLOSED at 118/118.** 118/118 catalog entries declare fertilizer field with locale parity (118 industrial + 94 homemade per locale). Per-sub-typology framing within exterior flores: Mediterranean lavandas (NPK 5-10-10 magro), annual rapid-bloom (10-15-10 cada 14d), bulbosas phase-driven (5-15-15 + harina de hueso al brote + ceniza al final), subtropical mild-winter active (60-90d cold), ericáceas acidified (azalea/camelia/gardenia + té de café + pinaza, JAMÁS cal), Fabácea N-fixers (glicina/ceibo P-only no N), large trees mature self-sufficient (90d sólo jóvenes), bougainvillea high-P bract-color (10-30-20), hortensia pH-driven (sulfato Al azul / cal rosa). Per-family framing for frutales: Citrus Rutáceas + micronutrientes Fe/Mg/Zn (limonero/naranjo/mandarino), Lauráceas Persea + Zn fruto oleoso (aguacate), Moráceas mediterránea N-bajo (higuera), Oleáceas milenaria 90d (olivo), Vaccinium ericáceo pH<5.5 (arandano). Heterogeneous fertilizeIntervalCold encoding (null for bulbs/anuales/large trees / 60-90d for mild-winter actives) — distinct from Batch B's flat-null suculentas pattern. **Full-catalog distinctness verified programmatically across all 118 entries × 2 locales × {industrial, homemade} — zero copy-paste anywhere.** FERT-02 gate flipped automatically via Plan 20-06's mid-band guard pass-through at 118 ≥ 100 (runner remained untouched per Plan 20-00's 'never edited after Wave 0' lock). **Next:** Phase 20 Plan 20-09 (extend check-i18n-keys.mjs with conditional fertilizer parity gate — gate PASSes immediately on land because Batches A+B+C produced locale-parity content); Plan 20-10 closes manual device-test gate.
+Last activity: 2026-05-11 — Phase 20 Plan 08 complete (Wave 4 catalog content Batch C: 35 exterior+frutales × type='both' fertilizer recipes EN+ES; closes catalog at 118/118; FERT-02 SKIP→PASS; 1 task, 3 files, ~187 min wall-clock).
 
-Progress: [██████████] 97% (62/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 complete — Plans 20-08..10 ahead)
+Progress: [██████████] 98% (63/64 plans complete; Phase 20 Plans 00 + 01 + 02 + 03 + 04 + 05 + 06 + 07 + 08 complete — Plans 20-09..10 ahead)
 
 ## Performance Metrics
 
@@ -96,6 +96,7 @@ Progress: [██████████] 97% (62/64 plans complete; Phase 20 P
 | Phase 20-fertilization-subsystem P05 | 3min | 2 tasks | 2 files |
 | Phase 20-fertilization-subsystem P06 | 72min | 1 tasks | 4 files |
 | Phase 20 P07 | 22min | 1 tasks | 3 files |
+| Phase 20-fertilization-subsystem P08 | 187min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -270,6 +271,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 20-fertilization-subsystem]: Plan 20-06: Mid-band SKIP guard pattern for cross-plan growable assertions — runner returns undefined SKIP at count=0 (Wave 0) AND at count∈[1..N-1] (partial-landing band); PASS only at ≥N. Encodes phase-spanning content rollout without falsely FAILing intermediate plans. Phase 16 Plan 16-01 origin → reused in Plan 20-06 for FERT-02.catalog gate (Rule 3 deviation honoring documented plan-author intent of 'SKIP remains SKIP at mid-band 67/118').
 - [Phase 20-fertilization-subsystem]: Plan 20-06: 8 CAM xerophyte interior entries (sansevieria/aloe-vera/jade/yuca/zamioculca/cola-burro/sansevieria-cilindrica/bambu-suerte) ship type='industrial' only — homemade composts too N-rich for arid succulents per RESEARCH §Pattern 12 framing matrix. 13 aromáticas type='homemade' default with industrial qualified 'cada 60d solo si suelo agotado' (mediterranean herbs concentrate oils in lean soils). 10 huerta type='both' with vegetativa→fructificación NPK switch per family (Solanácea 5-15-5; Cucurbitácea 5-15-10; Apiácea 5-10-10 bajo-N for raíz).
 - [Phase 20]: Plan 20-07: Pitfall 6 HARD LOCK honored — 16 suculentas entries authored with type='industrial' only; ZERO homemadeRecommendation keys emitted in plantDatabase.ts or either plants.json locale; Plan 20-09's conditional parity gate validates this pattern (industrial+homemade sub-fields checked independently). fertilizeIntervalCold:null encodes CAM cold-season dormancy. Lithops (piedras-vivas) unique per-species rationale citing NPK 0-10-10 + autumn-winter active + JAMÁS/NEVER summer dormancy (opposite generic CAM template — mesemb annual cycle precedent reusable for future Aizoaceae expansion).
+- [Phase 20-fertilization-subsystem]: Plan 20-08 (Batch C): closed FERT-07 catalog content layer at 118/118; FERT-02 SKIP→PASS at 118 ≥ 100 threshold via Plan 20-06 mid-band guard pass-through (runner untouched)
+- [Phase 20-fertilization-subsystem]: Plan 20-08: per-sub-typology framing across 16+ botanical families for exterior+frutales (Mediterranean lavandas / ericáceas acidified / Fabácea N-fixers / bulbosas phase-driven / Citrus+Lauráceas+Moráceas+Oleáceas+Vaccinium frutales); heterogeneous fertilizeIntervalCold per physiology
+- [Phase 20-fertilization-subsystem]: Plan 20-08: full-catalog distinctness verifier extension (Map-based dedupe against existing 142+118 strings) — zero copy-paste across all 118 entries × 2 locales × {industrial, homemade} = 472 distinct strings verified
 
 ### Pending Todos
 
@@ -284,6 +288,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T13:40:27.619Z
-Stopped at: Completed 20-07-PLAN.md
+Last session: 2026-05-11T17:08:41.616Z
+Stopped at: Completed 20-08-PLAN.md
 Resume file: None

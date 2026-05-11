@@ -232,7 +232,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. Fertilize push notifications default to OFF in Settings; toggling ON schedules reminders correctly
   4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
   5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
-**Plans:** 8/11 plans executed
+**Plans:** 9/11 plans executed
   - [x] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
   - [x] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
   - [x] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
@@ -241,7 +241,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   - [x] 20-05-PLAN.md — Wave 3: FERT-05 Settings toggle (Switch row in Notifications section) + DEFAULT_SETTINGS.fertilizeReminders=false
   - [x] 20-06-PLAN.md — Wave 4 Batch A: FERT-07 catalog content for 67 entries (interior 44 + aromáticas 13 + huerta 10) — homemade-first framing
   - [x] 20-07-PLAN.md — Wave 4 Batch B: FERT-07 catalog content for 16 suculentas — industrial-only (CAM dormancy, no homemade)
-  - [ ] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
+  - [x] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
   - [ ] 20-09-PLAN.md — Wave 5: check-i18n-keys.mjs conditional fertilizer.industrial/homemade extension (mirrors Phase 19 TOX-06 pattern)
   - [ ] 20-10-PLAN.md — Wave 6: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist; Option A run-now / Option B defer-to-v1.2-backlog
 
