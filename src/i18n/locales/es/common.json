@@ -160,7 +160,7 @@
     "start": "Empezar",
     "continue": "Continuar",
     "begin": "Comenzar",
-    "languageStep": "Elige tu idioma",
+    "languageStep": "Elegí tu idioma",
     "languageSubtitle": "Podés cambiarlo después en Ajustes",
     "plantIdentified": "Planta identificada: {{name}}",
     "identifyWithCamera": "Identificá tu planta con la cámara",
@@ -251,7 +251,7 @@
     "devTestBottomSheetClose": "Cerrar",
     "devSkeletonDemo": "Brillo de skeleton",
     "language": "Idioma",
-    "languageDescription": "Elige el idioma de la aplicación.",
+    "languageDescription": "Elegí el idioma de la aplicación.",
     "spanish": "Español",
     "english": "English",
     "climateOverride": {
@@ -270,7 +270,7 @@
     "withTasksToday": "Con tareas hoy",
     "noTasksToday": "Sin tareas hoy",
     "emptyGarden": "Tu jardín está vacío",
-    "emptyGardenText": "Agrega tu primera planta para comenzar a recibir recordatorios de cuidado.",
+    "emptyGardenText": "Agregá tu primera planta para comenzar a recibir recordatorios de cuidado.",
     "unlockGarden": "Desbloquea tu jardín completo",
     "unlimitedPlants": "Plantas ilimitadas, alertas y más",
     "allCaughtUp": "¡Todo al día!",
@@ -287,9 +287,9 @@
     "plantCount_one": "{{count}} planta en tu jardín",
     "plantCount_other": "{{count}} plantas en tu jardín",
     "tip": "Consejo",
-    "tipText": "Usa el botón + para agregar nuevas plantas. Cada tarjeta muestra las tareas del día.",
+    "tipText": "Usá el botón + para agregar nuevas plantas. Cada tarjeta muestra las tareas del día.",
     "emptyTitle": "Sin plantas todavía",
-    "emptyText": "Toca el botón + para agregar tu primera planta y comenzar a cuidar tu jardín.",
+    "emptyText": "Tocá el botón + para agregar tu primera planta y comenzar a cuidar tu jardín.",
     "loadingPlants": "Cargando plantas...",
     "searchPlaceholder": "Buscar plantas..."
   },
@@ -315,7 +315,7 @@
     "outdoor": "Exterior",
     "notesLabel": "Notas",
     "remindersLabel": "Recordatorios",
-    "instructions": "Toca un día para ver las tareas, agregar notas o recordatorios.",
+    "instructions": "Tocá un día para ver las tareas, agregar notas o recordatorios.",
     "loadingCalendar": "Cargando calendario..."
   },
   "login": {
@@ -332,10 +332,10 @@
     "errorApple": "No se pudo iniciar sesión con Apple"
   },
   "plantCard": {
-    "water": "Regar",
-    "sunLabel": "Sol ({{hours}}h)",
-    "outdoor": "Sacar afuera",
-    "fertilize": "Fertilizar",
+    "water": "Regá ahora 💧",
+    "sunLabel": "Sol ☀️ ({{hours}}h)",
+    "outdoor": "Sacalo afuera 🌳",
+    "fertilize": "Fertilizá 🌱",
     "nextWater": "PRÓXIMO RIEGO",
     "today": "Hoy",
     "tomorrow": "Mañana",
@@ -403,7 +403,7 @@
     "currentRainMessage": "No necesitas regar hoy. La naturaleza se encarga.",
     "expectedRain": "Lluvia esperada",
     "expectedRainMessage": "Se esperan {{amount}}mm de lluvia. Podés omitir el riego.",
-    "tapToUnlock": "Toca para desbloquear",
+    "tapToUnlock": "Tocá para desbloquear",
     "viewMore": "Ver más",
     "hide": "Ocultar"
   },
@@ -461,9 +461,9 @@
   },
   "fab": {
     "identifyPhoto": "Identificar con foto",
-    "useCamera": "Usa la cámara o galería",
+    "useCamera": "Usá la cámara o galería",
     "addFromList": "Agregar de la lista",
-    "chooseKnown": "Elige de plantas conocidas"
+    "chooseKnown": "Elegí de plantas conocidas"
   },
   "photoAlbum": {
     "title": "FOTOS",
@@ -521,12 +521,12 @@
     "yesterdayLabel": "Ayer",
     "daysAgoLabel": "Hace {{count}} días",
     "tipsLabel": "CONSEJOS",
-    "waterEvery": "Riega cada {{days}} días para mantenerla saludable",
+    "waterEvery": "Regá cada {{days}} días para mantenerla saludable",
     "needsSunHours": "Necesita {{hours}} horas de sol por día",
     "sunDays": "Días de sol: {{days}}",
     "outdoorDays": "Sacar afuera: {{days}}",
     "healthLabel": "SALUD",
-    "overdueWaterSuggestion": "Riega la planta lo antes posible. Asegúrate de mojar bien toda la tierra.",
+    "overdueWaterSuggestion": "Regá la planta lo antes posible. Asegúrate de mojar bien toda la tierra.",
     "overdueSunSuggestion": "Coloca la planta en un lugar con luz natural durante las horas recomendadas.",
     "noCareSuggestion": "Registra cuando riegas o cuidas la planta para hacer un seguimiento.",
     "extremeWeatherSuggestion": "Presta atención a las condiciones climáticas y protege tus plantas."
@@ -536,7 +536,7 @@
     "subtitle": "Desbloquea todas las herramientas para cuidar tus plantas como un experto",
     "socialProof": "Miles de jardineros ya usan Premium",
     "unlimitedPlants": "Plantas ilimitadas",
-    "unlimitedPlantsDesc": "Sin límite de 5 plantas, agrega todas las que quieras",
+    "unlimitedPlantsDesc": "Sin límite de 5 plantas, agregá todas las que quieras",
     "aiDiagnosis": "Diagnóstico con IA",
     "aiDiagnosisDesc": "Diagnósticos ilimitados y chat de seguimiento",
     "unlimitedTips": "Consejos ilimitados",
@@ -583,7 +583,7 @@
     "sunDayToday": "Hoy toca sacarla al sol",
     "neverCared": "Esta planta nunca fue cuidada",
     "frostRisk": "Riesgo de heladas - protege tus plantas",
-    "heatWave": "Ola de calor - riega temprano o al atardecer",
+    "heatWave": "Ola de calor - regá temprano o al atardecer",
     "strongWindOutdoor": "Viento fuerte - no saques las plantas afuera",
     "rainNoWater": "Lluvia prevista - quizá no necesites regar"
   },
@@ -591,7 +591,7 @@
     "rainingNow": "Está lloviendo, no necesitas regar",
     "willRainToday": "Va a llover hoy, podés saltear el riego",
     "rainTomorrow": "Mañana se esperan lluvias, podés esperar",
-    "extremeHeat": "Hace mucho calor, riega temprano (antes de las 9am) o al atardecer",
+    "extremeHeat": "Hace mucho calor, regá temprano (antes de las 9am) o al atardecer",
     "heat": "Hace calor, considera regar un poco más de lo habitual",
     "humidity": "Hay mucha humedad, podés esperar un día",
     "wind": "El viento seca rápido, no te olvides de regar",
@@ -599,8 +599,8 @@
     "skipMany": "Podés saltear {{count}} riegos",
     "delayOne": "Podés demorar el riego",
     "delayMany": "Podés demorar {{count}} riegos",
-    "advanceOne": "Riega temprano o al atardecer",
-    "advanceMany": "Riega temprano {{count}} plantas",
+    "advanceOne": "Regá temprano o al atardecer",
+    "advanceMany": "Regá temprano {{count}} plantas",
     "extraOne": "Considera riego extra",
     "extraMany": "Riego extra para {{count}} plantas",
     "normalWatering": "Riego normal"
@@ -850,8 +850,8 @@
     "avoid": "Evitar:",
     "lightLabel": "Luz:",
     "pets": "Mascotas",
-    "water": "Regar",
-    "fertilize": "Fertilizar",
+    "water": "Regá ahora 💧",
+    "fertilize": "Fertilizá 🌱",
     "fertilizeEvery": "Fertilizá cada {{days}} días ({{season}})",
     "fertilizeDormant": "Dormante — no fertilizar en frío"
   },

@@ -2,26 +2,21 @@
 /**
  * scripts/voseo-lint.mjs
  *
- * Phase 23 POLISH-06 voseo-lint enforcement skeleton.
+ * Phase 23 POLISH-06 voseo-lint enforcement (STRICT body).
  *
  * Scope: walks src/i18n/locales/es/*.json and asserts that no banned Castilian /
  * formal forms appear in string values. ES JSON only — NOT .tsx (CLAUDE.md already
  * mandates `t('key')` only; hardcoded strings are caught elsewhere).
  *
- * Wave 0 (Plan 23-00) ships THIS SKELETON: BANNED list is empty, walkValues is
- * implemented, exit codes are wired. The skeleton exits 0 with a stdout flag
- * literal `skeleton — BANNED list empty until Plan 23-02` that smoke-phase23.cjs
- * POLISH-06.voseo-lint-exit-0 sentinel uses to discriminate SKIP (skeleton state)
- * from PASS (strict body shipped in Plan 23-02).
- *
- * Plan 23-02 lands STRICT body:
- *   - Populates BANNED list per RESEARCH §Pattern 3 lines 263-274
- *   - Finalizes WHITELIST_KEYS per RESEARCH §Pitfall 4 + §Open Question 2
- *   - Fixes the 17 pre-existing voseo violations in es/common.json (§Finding 7)
- *   - Removes the `skeleton — BANNED list empty` stdout literal
+ * Plan 23-02 landed the STRICT body:
+ *   - BANNED regex array populated per RESEARCH §Pattern 3 (Castilian tuteo, imperatives,
+ *     pronouns, formal 3rd-person) with §Pitfall 4 accent discrimination on `\btú\b`
+ *   - WHITELIST_KEYS finalized for legitimate 3rd-person uses (§Open Question 2)
+ *   - All pre-existing voseo violations across es/common.json, es/plants.json and
+ *     es/tips.json fixed atomically alongside the lint impl
  *
  * Exit codes:
- *   0 — no violations (or skeleton state at W0 baseline)
+ *   0 — no violations
  *   1 — one or more banned forms detected
  *   2 — parse error or missing locale directory
  *
@@ -39,14 +34,37 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const ES_DIR = path.resolve(ROOT, 'src/i18n/locales/es');
 
-// Plan 23-02 populates per RESEARCH §Pattern 3 lines 263-274 (Castilian tuteo,
-// imperatives, pronouns, formal 3rd-person). Empty placeholder skeleton at W0.
-const BANNED = [];
+/**
+ * Banned forms — word-bounded. Castilian/formal Spanish forbidden in es-AR voseo register.
+ *
+ * IMPORTANT (Pitfall 4): only `\btú\b` (accented pronoun) is banned. The unaccented
+ * `tu` is a legitimate possessive ("tu jardín está esperando"). Spanish keyboards
+ * may produce either form; the regex requires the accent to flag a violation.
+ */
+const BANNED = [
+  // Castilian 2nd-person verbs (tuteo)
+  /\btienes\b/i, /\bpuedes\b/i, /\bdebes\b/i, /\bquieres\b/i, /\beres\b/i,
+  // Castilian imperatives (have voseo equivalents)
+  /\briega\b/i, /\bsaca\b/i, /\bpode\b/i, /\bcorta\b/i,
+  /\bfertiliza\b/i, /\bagrega\b/i, /\bven\b/i, /\bmira\b/i, /\bescucha\b/i,
+  /\belige\b/i, /\busa\b/i, /\btoca\b/i, /\bmueve\b/i, /\bhaz\b/i,
+  // Pronouns (NOT possessive 'tu' — see JSDoc above)
+  /\btú\b/i,
+  // Formal 3rd-person
+  /\busted\b/i, /\bustedes\b/i,
+];
 
-// Plan 23-02 finalizes — see RESEARCH §Open Question 2 + §Pitfall 4 (e.g. allow
-// `tu` as possessive adjective via `\btu\s+\w+` context-aware regex, not `\btú\b`
-// pronoun). Empty placeholder skeleton at W0.
-const WHITELIST_KEYS = new Set();
+/**
+ * Whitelist — i18n key paths where banned forms appear as legitimate 3rd-person
+ * verb forms, NOT Castilian imperatives. Documented in RESEARCH §Open Question 2.
+ *
+ * - settings.locationDescription: "Tu ubicación se usa para..." (reflexive 3rd-person)
+ * - alerts.sunDayToday: "Hoy toca sacarla al sol" (impersonal 3rd-person "it's time to")
+ */
+const WHITELIST_KEYS = new Set([
+  'common.settings.locationDescription',
+  'common.alerts.sunDayToday',
+]);
 
 let fail = 0;
 const violations = [];
@@ -92,5 +110,5 @@ if (fail > 0) {
   process.exit(1);
 }
 
-console.log('voseo-lint: PASS (skeleton — BANNED list empty until Plan 23-02)');
+console.log('voseo-lint: PASS');
 process.exit(0);

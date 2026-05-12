@@ -8,8 +8,8 @@
     "message": "La primavera es el mejor momento para fertilizar. Las plantas están despertando y necesitan nutrientes."
   },
   "summer-early-water": {
-    "title": "Riega temprano",
-    "message": "En verano riega a primera hora de la mañana o al atardecer para evitar que el agua se evapore."
+    "title": "Regá temprano",
+    "message": "En verano regá a primera hora de la mañana o al atardecer para evitar que el agua se evapore."
   },
   "fall-prepare": {
     "title": "Prepárate para el invierno",
@@ -21,11 +21,11 @@
   },
   "summer-mulch": {
     "title": "Protege la tierra",
-    "message": "Agrega mantillo o corteza sobre la tierra para mantener la humedad y proteger las raíces del calor."
+    "message": "Agregá mantillo o corteza sobre la tierra para mantener la humedad y proteger las raíces del calor."
   },
   "cloudy-less-evaporation": {
     "title": "Día nublado",
-    "message": "Los días nublados tienen menos evaporación. Puedes espaciar un poco más el riego."
+    "message": "Los días nublados tienen menos evaporación. Podés espaciar un poco más el riego."
   },
   "high-humidity-fungus": {
     "title": "Humedad alta",
@@ -37,7 +37,7 @@
   },
   "rain-coming": {
     "title": "Lluvia mañana",
-    "message": "Se esperan lluvias para mañana. Puedes saltear el riego de las plantas de exterior."
+    "message": "Se esperan lluvias para mañana. Podés saltear el riego de las plantas de exterior."
   },
   "windy-protect": {
     "title": "Día ventoso",
@@ -61,7 +61,7 @@
   },
   "pale-leaves-light": {
     "title": "Hojas pálidas",
-    "message": "Las hojas pálidas o estiradas indican falta de luz. Mueve la planta a un lugar más iluminado."
+    "message": "Las hojas pálidas o estiradas indican falta de luz. Mové la planta a un lugar más iluminado."
   },
   "check-drainage": {
     "title": "Buen drenaje",

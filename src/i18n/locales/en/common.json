@@ -332,10 +332,10 @@
     "errorApple": "Could not sign in with Apple"
   },
   "plantCard": {
-    "water": "Water",
-    "sunLabel": "Sun ({{hours}}h)",
-    "outdoor": "Put outside",
-    "fertilize": "Fertilize",
+    "water": "Water now 💧",
+    "sunLabel": "Sun ☀️ ({{hours}}h)",
+    "outdoor": "Put outside 🌳",
+    "fertilize": "Fertilize 🌱",
     "nextWater": "NEXT WATERING",
     "today": "Today",
     "tomorrow": "Tomorrow",
@@ -850,8 +850,8 @@
     "avoid": "Avoid:",
     "lightLabel": "Light:",
     "pets": "Pets",
-    "water": "Water",
-    "fertilize": "Fertilize",
+    "water": "Water now 💧",
+    "fertilize": "Fertilize 🌱",
     "fertilizeEvery": "Fertilize every {{days}} days ({{season}})",
     "fertilizeDormant": "Dormant — no fertilizer needed in cold season"
   },

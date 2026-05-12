@@ -71,12 +71,12 @@
       {
         "symptom": "Hojas amarillas",
         "cause": "Exceso de riego",
-        "solution": "Riega solo cuando los primeros cm de tierra estén secos."
+        "solution": "Regá solo cuando los primeros cm de tierra estén secos."
       },
       {
         "symptom": "Puntas marrones",
         "cause": "Baja humedad",
-        "solution": "Agrúpala con otras plantas o usa humidificador."
+        "solution": "Agrupala con otras plantas o usá humidificador."
       }
     ],
     "nutrients": {
@@ -227,7 +227,7 @@
   },
   "orquidea": {
     "name": "Orquídea",
-    "tip": "Riega por inmersión 10 minutos y deja escurrir bien. Nunca agua estancada.",
+    "tip": "Regá por inmersión 10 minutos y dejá escurrir bien. Nunca agua estancada.",
     "description": "Flor exótica y elegante que con los cuidados correctos florece varias veces al año.",
     "problems": [
       {
@@ -243,7 +243,7 @@
       {
         "symptom": "Hojas arrugadas",
         "cause": "Deshidratación",
-        "solution": "Riega más frecuentemente, verifica que las raíces estén sanas."
+        "solution": "Regá más frecuentemente, verificá que las raíces estén sanas."
       }
     ],
     "nutrients": {
@@ -267,18 +267,18 @@
   },
   "calathea": {
     "name": "Calathea",
-    "tip": "Usa agua filtrada o de lluvia. El cloro del agua de grifo le afecta las hojas.",
+    "tip": "Usá agua filtrada o de lluvia. El cloro del agua de canilla le afecta las hojas.",
     "description": "Planta de interior con hojas decorativas que se mueven siguiendo la luz del día.",
     "problems": [
       {
         "symptom": "Bordes marrones",
         "cause": "Agua con cloro o baja humedad",
-        "solution": "Usa agua filtrada y aumenta la humedad."
+        "solution": "Usá agua filtrada y aumentá la humedad."
       },
       {
         "symptom": "Hojas enrolladas",
         "cause": "Falta de agua o humedad",
-        "solution": "Riega y pulveriza, considera un humidificador."
+        "solution": "Regá y pulverizá, considerá un humidificador."
       },
       {
         "symptom": "Colores apagados",
@@ -313,7 +313,7 @@
       {
         "symptom": "Puntas marrones",
         "cause": "Sensibilidad al cloro o flúor del agua",
-        "solution": "Usa agua reposada y corta las puntas secas."
+        "solution": "Usá agua reposada y cortá las puntas secas."
       },
       {
         "symptom": "Hojas pálidas",
@@ -625,7 +625,7 @@
       "Cantero al sol en bordes y rincones"
     ],
     "placementAvoid": "Sombra densa — tallos largos y muy pocas flores.",
-    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida corta antes de las heladas.",
+    "whyRationale": "Anual originaria de los Andes argentinos, evolucionó en suelos volcánicos pobres con sol intenso. Su floración continua es la estrategia reproductiva acelerada de una planta de vida breve antes de las heladas.",
     "fertilizer": {
       "industrialRecommendation": "NPK 10-15-10 diluido 1:4 cada 14d en floración (anual de bloom continuo — agotamiento rápido sin abono).",
       "homemadeRecommendation": "Té de cáscara de banana cada 14d para K de floración; alterná con lombricompuesto cada 21d."
@@ -794,7 +794,7 @@
       {
         "symptom": "Floración prematura",
         "cause": "Estrés por calor o falta de poda",
-        "solution": "Corta las flores apenas aparezcan."
+        "solution": "Cortá las flores apenas aparezcan."
       },
       {
         "symptom": "Hojas negras",
@@ -804,7 +804,7 @@
       {
         "symptom": "Hojas pequeñas",
         "cause": "Falta de nutrientes",
-        "solution": "Fertiliza cada 2 semanas con abono orgánico."
+        "solution": "Fertilizá cada 2 semanas con abono orgánico."
       }
     ],
     "nutrients": {
@@ -876,7 +876,7 @@
       {
         "symptom": "Hojas pequeñas o amarillas",
         "cause": "Falta de agua o nutrientes",
-        "solution": "Le gusta la humedad constante, fertiliza en verano."
+        "solution": "Le gusta la humedad constante, fertilizá en verano."
       },
       {
         "symptom": "Sabor débil",
@@ -886,7 +886,7 @@
       {
         "symptom": "Invade todo",
         "cause": "Naturaleza expansiva",
-        "solution": "Mantén siempre en maceta, corta estolones."
+        "solution": "Mantenela siempre en maceta, cortá los estolones."
       }
     ],
     "nutrients": {
@@ -936,7 +936,7 @@
       {
         "symptom": "Hojas amarillas abajo",
         "cause": "Falta de nutrientes o envejecimiento",
-        "solution": "Fertiliza regularmente, retira hojas viejas."
+        "solution": "Fertilizá regularmente, retirá hojas viejas."
       },
       {
         "symptom": "Manchas en hojas",
@@ -995,7 +995,7 @@
       {
         "symptom": "Frutos pequeños",
         "cause": "Falta de nutrientes",
-        "solution": "Fertiliza con abono rico en potasio cuando florezca."
+        "solution": "Fertilizá con abono rico en potasio cuando florezca."
       },
       {
         "symptom": "Hojas enrolladas",
@@ -1050,7 +1050,7 @@
       {
         "symptom": "Pocas flores",
         "cause": "Exceso de nitrógeno",
-        "solution": "Reduce fertilizante, o usa uno bajo en nitrógeno."
+        "solution": "Reducí el fertilizante, o usá uno bajo en nitrógeno."
       },
       {
         "symptom": "Hojas rojas",
@@ -1153,7 +1153,7 @@
       {
         "symptom": "Hojas arrugadas",
         "cause": "Falta de agua",
-        "solution": "Riega a fondo y espera, se recuperarán."
+        "solution": "Regá a fondo y esperá, se recuperarán."
       }
     ],
     "nutrients": {
@@ -1183,7 +1183,7 @@
       {
         "symptom": "Base blanda y oscura",
         "cause": "Pudrición por exceso de riego",
-        "solution": "Deja de regar, corta parte sana y deja cicatrizar."
+        "solution": "Dejá de regar, cortá la parte sana y dejá cicatrizar."
       },
       {
         "symptom": "Manchas corchosas",
@@ -1210,14 +1210,14 @@
       "Cantero exterior con suelo pedregoso bien drenado"
     ],
     "placementAvoid": "Sombra prolongada y suelo siempre húmedo — pudre la base y se estira deformándose.",
-    "whyRationale": "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Usa metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración.",
+    "whyRationale": "Cactáceas, nativa de zonas áridas de América. Sus espinas son hojas modificadas y el tallo verde reemplaza la fotosíntesis foliar. Funciona con metabolismo CAM (estomas nocturnos) para tolerar el desierto; el invierno fresco y seco dispara la floración.",
     "fertilizer": {
       "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 60d en cálido; cero en invierno (necesita reposo seco para florecer)."
     }
   },
   "echeveria": {
     "name": "Echeveria",
-    "tip": "Evita mojar la roseta. Riega por abajo o directo a la tierra.",
+    "tip": "Evitá mojar la roseta. Regá por abajo o directo a la tierra.",
     "description": "Suculenta en forma de roseta con colores que van del verde al rosa. Muy decorativa.",
     "problems": [
       {
@@ -1228,7 +1228,7 @@
       {
         "symptom": "Manchas negras",
         "cause": "Agua en las hojas",
-        "solution": "Nunca mojes las hojas, riega solo la tierra."
+        "solution": "Nunca mojes las hojas, regá solo la tierra."
       },
       {
         "symptom": "Hojas inferiores secas",
@@ -1250,7 +1250,7 @@
       "Mesada con luz directa de mañana"
     ],
     "placementAvoid": "Sombra prolongada — la roseta se abre y pierde colores; agua estancada en la roseta — pudre el centro.",
-    "whyRationale": "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y usa metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación).",
+    "whyRationale": "Crasulácea originaria de zonas semi-áridas de México. Su forma de roseta minimiza pérdida de agua y aprovecha metabolismo CAM. Los colores pastel se intensifican con sol directo; en sombra se vuelven verdes y la planta se estira (estiolación).",
     "fertilizer": {
       "industrialRecommendation": "NPK 5-10-10 diluido 1:6 cada 45d en cálido (Crasulácea — mantiene rosetas compactas y colores vivos)."
     }
@@ -1268,12 +1268,12 @@
       {
         "symptom": "Puntas marrones",
         "cause": "Baja humedad o agua con cloro",
-        "solution": "Pulveriza las hojas y usa agua reposada o filtrada."
+        "solution": "Pulverizá las hojas y usá agua reposada o filtrada."
       },
       {
         "symptom": "Hojas caídas",
         "cause": "Falta de riego",
-        "solution": "Riega a fondo; se recupera rápido tras una buena hidratación."
+        "solution": "Regá a fondo; se recupera rápido tras una buena hidratación."
       }
     ],
     "nutrients": {
@@ -1322,7 +1322,7 @@
       {
         "symptom": "Puntas marrones",
         "cause": "Sensibilidad al flúor del agua",
-        "solution": "Usa agua filtrada o de lluvia para el riego."
+        "solution": "Usá agua filtrada o de lluvia para el riego."
       },
       {
         "symptom": "Hojas inferiores amarillas",
@@ -1385,7 +1385,7 @@
       {
         "symptom": "Hojas pequeñas",
         "cause": "Falta de luz o nutrientes",
-        "solution": "Acércala a más luz indirecta y fertiliza en primavera."
+        "solution": "Acercala a más luz indirecta y fertilizá en primavera."
       },
       {
         "symptom": "Tallos largos sin hojas",
@@ -1439,7 +1439,7 @@
       {
         "symptom": "Hojas arrugadas",
         "cause": "Falta de riego prolongada",
-        "solution": "Riega a fondo y espera a que las hojas se rehidraten."
+        "solution": "Regá a fondo y esperá a que las hojas se rehidraten."
       },
       {
         "symptom": "Hojas blandas que caen",
@@ -1449,7 +1449,7 @@
       {
         "symptom": "Manchas blancas en hojas",
         "cause": "Depósitos de sales minerales",
-        "solution": "Limpia con un paño húmedo y usa agua filtrada."
+        "solution": "Limpiá con un paño húmedo y usá agua filtrada."
       }
     ],
     "nutrients": {
@@ -1504,7 +1504,7 @@
       {
         "symptom": "Crecimiento detenido",
         "cause": "Maceta demasiado grande o falta de luz",
-        "solution": "Usa maceta ajustada y ubícala en luz indirecta brillante."
+        "solution": "Usá maceta ajustada y ubicala en luz indirecta brillante."
       }
     ],
     "nutrients": {
@@ -1576,7 +1576,7 @@
       {
         "symptom": "Solo hojas, sin flores",
         "cause": "Exceso de riego o nitrógeno",
-        "solution": "Reduce el riego y usa fertilizante bajo en nitrógeno."
+        "solution": "Reducí el riego y usá fertilizante bajo en nitrógeno."
       },
       {
         "symptom": "Caída de brácteas",
@@ -1619,7 +1619,7 @@
     },
     "fertilizer": {
       "industrialRecommendation": "NPK 10-30-20 alto-P cada 21d en cálido; 90d en frío (Bougainvillea — más estrés hídrico+P = más brácteas color).",
-      "homemadeRecommendation": "Harina de hueso al pie cada primavera + ceniza cada 30d en floración; suelo magro le saca color a las brácteas."
+      "homemadeRecommendation": "Harina de hueso al pie cada primavera + ceniza cada 30d en floración; suelo magro le quita color a las brácteas."
     }
   },
   "hibisco": {
@@ -1681,7 +1681,7 @@
   },
   "margarita": {
     "name": "Margarita",
-    "tip": "Corta las flores marchitas regularmente para estimular una floración continua.",
+    "tip": "Cortá las flores marchitas regularmente para estimular una floración continua.",
     "description": "Flor clásica de jardín, alegre y fácil de cultivar. Ideal para bordes, macetas y ramos cortados.",
     "problems": [
       {
@@ -1740,7 +1740,7 @@
   },
   "perejil": {
     "name": "Perejil",
-    "tip": "Corta siempre los tallos exteriores primero para que siga produciendo desde el centro.",
+    "tip": "Cortá siempre los tallos exteriores primero para que siga produciendo desde el centro.",
     "description": "Hierba esencial en la cocina, rica en vitaminas. Se cultiva fácilmente en maceta o en el huerto.",
     "problems": [
       {
@@ -1751,7 +1751,7 @@
       {
         "symptom": "Hojas amarillas",
         "cause": "Exceso de riego o falta de nutrientes",
-        "solution": "Mejora el drenaje y fertiliza con abono orgánico."
+        "solution": "Mejorá el drenaje y fertilizá con abono orgánico."
       },
       {
         "symptom": "Planta que florece",
@@ -1799,7 +1799,7 @@
       {
         "symptom": "Sabor y aroma débiles",
         "cause": "Exceso de riego o fertilizante",
-        "solution": "Riega con moderación; el suelo pobre concentra los aceites."
+        "solution": "Regá con moderación; el suelo pobre concentra los aceites."
       },
       {
         "symptom": "Planta leñosa y sin hojas",
@@ -1948,7 +1948,7 @@
       {
         "symptom": "Se espiga y florece",
         "cause": "Calor excesivo o días largos",
-        "solution": "Cultiva en semisombra en verano y elige variedades resistentes."
+        "solution": "Cultivá en semisombra en verano y elegí variedades resistentes."
       },
       {
         "symptom": "Hojas amargas",
@@ -1989,7 +1989,7 @@
       {
         "symptom": "Frutos amargos",
         "cause": "Estrés hídrico o temperaturas irregulares",
-        "solution": "Riega de forma constante y regular."
+        "solution": "Regá de forma constante y regular."
       },
       {
         "symptom": "Hojas con manchas blancas",
@@ -1999,7 +1999,7 @@
       {
         "symptom": "Pocas flores femeninas",
         "cause": "Exceso de nitrógeno",
-        "solution": "Usa fertilizante equilibrado, rico en fósforo y potasio."
+        "solution": "Usá fertilizante equilibrado, rico en fósforo y potasio."
       }
     ],
     "nutrients": {
@@ -2071,7 +2071,7 @@
       {
         "symptom": "Hojas muy picantes",
         "cause": "Estrés por calor o falta de agua",
-        "solution": "Riega con frecuencia y cultiva en semisombra en verano."
+        "solution": "Regá con frecuencia y cultivá en semisombra en verano."
       },
       {
         "symptom": "Agujeros en las hojas",
@@ -2169,7 +2169,7 @@
       {
         "symptom": "Puntas marrones",
         "cause": "Acumulación de sales o baja humedad",
-        "solution": "Riega abundantemente para lavar sales y pulveriza las hojas."
+        "solution": "Regá abundantemente para lavar sales y pulverizá las hojas."
       },
       {
         "symptom": "Hojas caídas",
@@ -2228,7 +2228,7 @@
       {
         "symptom": "Hojas amarillas que caen",
         "cause": "Falta de agua en verano",
-        "solution": "Riega profundamente en época de calor, especialmente si está en maceta."
+        "solution": "Regá profundamente en época de calor, especialmente si está en maceta."
       },
       {
         "symptom": "Frutos que no maduran",
@@ -2297,7 +2297,7 @@
       {
         "symptom": "Hojas pálidas",
         "cause": "Falta de nutrientes",
-        "solution": "Fertiliza con abono específico para cítricos cada 2 meses."
+        "solution": "Fertilizá con abono específico para cítricos cada 2 meses."
       }
     ],
     "nutrients": {
@@ -2379,7 +2379,7 @@
   },
   "ciboulette": {
     "name": "Ciboulette",
-    "tip": "Corta los tallos desde la base para estimular un rebrote vigoroso.",
+    "tip": "Cortá los tallos desde la base para estimular un rebrote vigoroso.",
     "description": "Hierba perenne con suave sabor a cebolla, ideal para ensaladas y salsas. Fácil de cultivar en maceta durante todo el año.",
     "problems": [
       {
@@ -2390,7 +2390,7 @@
       {
         "symptom": "Puntas amarillas",
         "cause": "Falta de riego o nutrientes",
-        "solution": "Mantén el suelo húmedo y fertiliza mensualmente."
+        "solution": "Mantené el suelo húmedo y fertilizá mensualmente."
       },
       {
         "symptom": "Planta que no rebrota",
@@ -2471,7 +2471,7 @@
       "Baño con luz indirecta — tolera la humedad ambiente"
     ],
     "placementAvoid": "Sol directo intenso y suelo siempre húmedo — el primero quema las hojas, el segundo pudre la base.",
-    "whyRationale": "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual usa CAM y almacena agua.",
+    "whyRationale": "Asfodeláceas, originaria de Sudáfrica semi-árida con sombra parcial. Sus puntas translúcidas (ventanas) permiten fotosíntesis dentro de la hoja — adaptación rara que la hace tolerante a sombra. Igual aprovecha CAM y almacena agua.",
     "petToxicity": {
       "symptoms": {
         "cats": [
@@ -2525,7 +2525,7 @@
       "Balcón con sol directo en primavera y verano"
     ],
     "placementAvoid": "Lugares de paso donde la rocen — pierde hojas; sombra prolongada y suelo húmedo — pudre los tallos.",
-    "whyRationale": "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Usa CAM como toda la familia.",
+    "whyRationale": "Crasulácea originaria de México (cola de burro), más tolerante al frío que la echeveria. Sus hojas caen al menor contacto pero cada una enraíza fácil — estrategia de propagación clonal en suelos rocosos. Funciona con CAM como toda la familia.",
     "fertilizer": {
       "industrialRecommendation": "NPK 5-10-10 diluido 1:8 cada 60d en cálido (cola de burro frágil — exceso N debilita los tallos)."
     }
@@ -3893,7 +3893,7 @@
       "Repisa luminosa lejos de personas"
     ],
     "placementAvoid": "Lugares de paso (pierde hojas) y sustrato siempre húmedo (pudrición de tallos).",
-    "whyRationale": "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y usa metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento.",
+    "whyRationale": "Suculenta mexicana de hábitat rocoso — almacena agua en hojas carnosas y funciona con metabolismo CAM para minimizar pérdida diurna. Las hojas frágiles favorecen reproducción vegetativa por desprendimiento.",
     "fertilizer": {
       "industrialRecommendation": "NPK 5-10-10 cada 60d en cálido (Sedum morganianum CAM — hojas frágiles, mínima dosis)."
     }
@@ -4617,7 +4617,7 @@
       {
         "symptom": "Perlas arrugadas y secas",
         "cause": "Falta de riego prolongada",
-        "solution": "Regá a fondo cuando las perlas se ven blandas; recuperan turgencia en 2-3 días."
+        "solution": "Regá a fondo cuando las perlas se notan blandas; recuperan turgencia en 2-3 días."
       },
       {
         "symptom": "Perlas blandas y pastosas",
@@ -5697,7 +5697,7 @@
     "placementAvoid": "Heladas y temperaturas <5°C — los tejidos jóvenes mueren; el calor seco es preferible al frío.",
     "whyRationale": "Asterácea sudamericana (Paraguay-Brasil) — sus hojas contienen esteviósidos, edulcorantes naturales 200-300x más dulces que el azúcar. Calor + humedad la favorecen; el frío bajo 5°C la debilita.",
     "fertilizer": {
-      "industrialRecommendation": "NPK 10-5-5 cada 30d en activo (Asterácea perenne corta — N modera dulzor de glicósidos).",
+      "industrialRecommendation": "NPK 10-5-5 cada 30d en activo (Asterácea perenne breve — N modera dulzor de glicósidos).",
       "homemadeRecommendation": "Té de compost cada 21d — N suave evita diluir el dulzor de las hojas."
     }
   },
