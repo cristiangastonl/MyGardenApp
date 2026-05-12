@@ -513,7 +513,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -15,
     tempMax: 35,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Podá después de la floración para mantenerla compacta. Atrae abejas.",
     description: "La Lavanda es un arbusto aromático mediterráneo con flores violetas muy perfumadas. Atrae polinizadores y repele mosquitos. Extremadamente resistente a la sequía una vez establecida, prefiere suelos pobres y mucho sol.",
     problems: [
@@ -566,7 +566,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 35,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Elegila si tu invierno es suave. No tolera heladas fuertes como la lavanda inglesa, pero florece más en primavera y es más decorativa con sus brácteas en \"orejas de conejo\".",
     description: "La Lavanda francesa (Lavandula stoechas) se distingue por sus brácteas moradas en forma de orejas de conejo sobre cada flor. Es más amante del calor que la lavanda inglesa y florece abundantemente en primavera. Ideal para climas con inviernos suaves.",
     problems: [
@@ -617,7 +617,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 38,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Es la más calurosa de las lavandas. Florece casi todo el año en climas cálidos. Reconocela por sus hojas con bordes dentados o aserrados.",
     description: "La Lavanda dentada (Lavandula dentata) tiene hojas con bordes festoneados que la distinguen visualmente. Es la variedad más tolerante al calor y la más sensible al frío de las tres. En climas templados-cálidos puede florecer prácticamente todo el año con podas regulares.",
     problems: [
@@ -670,7 +670,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 32,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Quitá flores marchitas para prolongar la floración todo el verano.",
     description: "Las Petunias son las reinas de los balcones en verano, con flores abundantes en muchos colores. Son anuales que florecen sin parar desde primavera hasta las primeras heladas. Perfectas para macetas colgantes y jardineras.",
     problems: [
@@ -715,7 +715,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 28,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "El color de las flores depende del pH del suelo. Ácido = azul, alcalino = rosa.",
     description: "Las Hortensias son arbustos espectaculares con grandes inflorescencias esféricas. Sus flores cambian de color según la acidez del suelo. Prefieren sombra parcial y mucha agua, son ideales para jardines con orientación este.",
     problems: [
@@ -774,7 +774,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "El perfume es más intenso de noche. Ideal cerca de ventanas o patios.",
     description: "El Jazmín es una trepadora de flores blancas extremadamente perfumadas. Su aroma embriagador llena los jardines en verano, especialmente al atardecer. Puede cubrir pérgolas, muros o crecer en maceta con soporte.",
     problems: [
@@ -819,7 +819,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 35,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Clásico de los balcones. Quitá flores secas y pellizcá para más flores.",
     description: "Los Geranios son los reyes de los balcones mediterráneos. Florecen abundantemente con poco cuidado, toleran calor y sequía. Hay variedades colgantes (gitanillas) e hiedra ideales para jardineras.",
     problems: [
@@ -880,7 +880,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 15,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Pellizcá las puntas antes de que florezca para prolongar la cosecha.",
     description: "La Albahaca es la hierba aromática por excelencia de la cocina mediterránea. Anual de verano que necesita calor y sol. Pellizcá regularmente las puntas para que ramifique y produzca más hojas. Compañera ideal del tomate.",
     problems: [
@@ -925,7 +925,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Extremadamente resistente. Prefiere que lo ignores a que lo mimes demasiado.",
     description: "El Romero es un arbusto aromático mediterráneo prácticamente indestructible. Sus hojas perfumadas se usan en cocina y sus flores azules atraen abejas. Tolera sequía extrema, suelos pobres y descuido. El exceso de cuidados lo mata.",
     problems: [
@@ -970,7 +970,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -15,
     tempMax: 35,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "Muy invasiva. Mejor en maceta aislada o se apoderará del jardín.",
     description: "La Menta es una aromática vigorosa con hojas refrescantes perfectas para mojitos, tés y cocina. Crece agresivamente por estolones subterráneos. Siempre plantala en maceta, incluso en el jardín, o invadirá todo el espacio.",
     problems: [
@@ -1194,7 +1194,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Protegelo de heladas fuertes. En maceta, podés entrarlo en invierno.",
     description: "El Limonero es el cítrico más popular para cultivar en casa. Puede crecer en maceta grande o en suelo. Florece varias veces al año perfumando el ambiente. Los limones caseros son más aromáticos que los comprados. Necesita protección de heladas.",
     problems: [
@@ -1678,7 +1678,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Podá en invierno a 3 yemas por rama y vas a tener una floración espectacular en primavera.",
     description: "La Rosa es la reina del jardín, con miles de variedades en todos los colores y aromas. Necesita sol pleno, buen riego y podas regulares para florecer abundantemente. Con los cuidados adecuados, un rosal puede vivir muchos años y mejorar con el tiempo.",
     problems: [
@@ -1723,7 +1723,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Cuanto menos la riegues, más florece; el estrés hídrico la estimula a dar color.",
     description: "La Bougainvillea o Santa Rita es una trepadora espectacular con brácteas de colores intensos: fucsia, violeta, naranja o blanco. Es muy resistente al calor y la sequía una vez establecida. Puede cubrir muros y pérgolas con una cascada de color.",
     problems: [
@@ -1779,7 +1779,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 10,
     tempMax: 35,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "Cada flor dura solo un día, pero produce tantas que siempre vas a tener color.",
     description: "El Hibisco o Rosa china produce flores grandes y llamativas en colores vibrantes: rojo, rosa, amarillo y naranja. Es un arbusto tropical que en climas cálidos florece casi todo el año. En zonas con heladas, se puede cultivar en maceta y proteger en invierno.",
     problems: [
@@ -1838,7 +1838,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Dividí la mata cada 2-3 años para mantenerla vigorosa y con muchas flores.",
     description: "La Margarita es una planta perenne clásica con flores blancas de centro amarillo que alegran cualquier jardín. Es muy resistente al frío y fácil de cuidar. Florece abundantemente en primavera y verano, atrayendo polinizadores al jardín.",
     problems: [
@@ -1901,7 +1901,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Cosechá siempre de afuera hacia adentro; dejá los brotes del centro crecer.",
     description: "El Perejil es una hierba bianual imprescindible en la cocina argentina. Se usa en chimichurri, salsas y como guarnición. Germina lento pero después crece vigoroso. Prefiere semisombra en verano y puede cultivarse en maceta o cantero.",
     problems: [
@@ -1956,7 +1956,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 35,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "El sabor es más intenso cuando las hojas están secas; cosechá antes de que florezca.",
     description: "El Orégano es una aromática perenne muy resistente y fácil de cultivar. Esencial en pizzas, salsas y empanadas. Crece extendiéndose y puede cubrir bastante espacio. Se seca fácilmente colgando ramitas en un lugar ventilado.",
     problems: [
@@ -2013,7 +2013,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 10,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Sembrá escalonado cada 3 semanas para tener cilantro fresco todo el año.",
     description: "El Cilantro es una hierba anual de crecimiento rápido, muy usada en la cocina latinoamericana. Sus hojas frescas y sus semillas secas (coriandro) tienen sabores completamente distintos. Prefiere clima fresco; con calor se va rápido a flor.",
     problems: [
@@ -2058,7 +2058,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 35,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Cuanto más sol y menos agua, más concentrado el aroma; tratalo como al romero.",
     description: "El Tomillo es un pequeño arbusto aromático mediterráneo con hojas diminutas muy perfumadas. Es imprescindible en guisos, carnes asadas y adobos. Extremadamente resistente a la sequía y al frío, prácticamente no necesita cuidados una vez establecido.",
     problems: [
@@ -2293,7 +2293,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Abonalo con fertilizante para cítricos en primavera y verano para naranjas dulces.",
     description: "El Naranjo es un frutal perenne con flores blancas perfumadas (azahar) y frutos deliciosos. En Argentina se cultiva bien en el Litoral y Buenos Aires. Puede crecer en maceta grande, ideal para patios y balcones soleados.",
     problems: [
@@ -2352,7 +2352,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 10,
     tempMax: 35,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "No esperes fruta rápido; un aguacate de semilla puede tardar 7-10 años en dar.",
     description: "El Aguacate o Palta es un árbol subtropical de hojas perennes que puede cultivarse en climas templados protegido del frío. Podés germinarlo desde la semilla como experimento, aunque para fruta conviene comprar un injerto. Necesita buen drenaje.",
     problems: [
@@ -2413,7 +2413,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Dejá que los higos maduren bien en la planta; no maduran más después de cortarlos.",
     description: "La Higuera es un frutal rústico y generoso que se adapta a casi cualquier suelo y clima. Produce higos dulces en verano y a veces una segunda cosecha en otoño. Es un árbol de sombra hermoso que puede vivir cientos de años con muy poco cuidado.",
     problems: [
@@ -2474,7 +2474,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Las mandarinas están listas cuando se sueltan fácil del tallo; no las arranques a la fuerza.",
     description: "El Mandarino es un cítrico más compacto que el naranjo, ideal para jardines pequeños o macetas grandes. Sus frutos son dulces, fáciles de pelar y muy populares entre los chicos. Las flores de azahar perfuman el jardín en primavera.",
     problems: [
@@ -2581,7 +2581,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Cortá a 3 cm del suelo y rebrota; cuanto más cortás, más produce.",
     description: "El Ciboulette es una hierba perenne con hojas tubulares de sabor suave a cebolla. Sus flores violetas son comestibles y decorativas. Es muy resistente al frío y fácil de cultivar en maceta o cantero. Ideal para salsas, omelettes y ensaladas.",
     problems: [
@@ -2804,7 +2804,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -3,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Regala poco una vez establecida; aguanta sequía de verano y florece en noviembre sin necesitarla.",
     description: "El Jacarandá es el árbol más emblemático de Buenos Aires, que pinta la ciudad de violeta en noviembre. Es un árbol grande, ideal para jardines amplios o veredas. Una vez establecido, tolera sequía estival y necesita pocas atenciones.",
     problems: [
@@ -2845,7 +2845,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -3,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Podalo después de la floración para que no se vuelva leñoso. Florece en verano, especialmente cerca del agua.",
     description: "El Ceibo es la flor nacional argentina, un árbol o arbusto que crece naturalmente en las orillas de ríos y lagunas. Sus flores rojas escarlatas son espectaculares en verano. Muy resistente y fácil de cultivar una vez establecido.",
     problems: [
@@ -2900,7 +2900,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Podala fuerte en invierno y en verano (poda verde) para que concentre energía en florecer. Sin poda, crece sin control.",
     description: "La Glicina es una trepadora espectacular con cascadas de flores lila perfumadas en primavera. Puede vivir décadas y volverse enorme. Necesita una estructura muy resistente para sostenerse y podas regulares para florecer bien.",
     problems: [
@@ -2955,7 +2955,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 0,
     tempMax: 32,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "Usá agua sin cloro y nunca mojes las flores. Es exigente, pero el perfume vale el esfuerzo.",
     description: "La Gardenia es famosa por sus flores blancas de perfume intenso. Es una planta exigente que necesita acidez del suelo, agua sin cloro, alta humedad y protección del frío intenso. Cuando florece, es una de las más hermosas del jardín.",
     problems: [
@@ -3011,7 +3011,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -8,
     tempMax: 32,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Plantala donde no le llegue el sol de la tarde; las flores se queman con el calor de mediodía. Florece en invierno, ¡cuando la mayoría del jardín duerme!",
     description: "La Camelia es un arbusto de flor invernal con pétalos perfectos en rosa, blanco y rojo. Prefiere semisombra, suelos ácidos y protección del sol fuerte. En Buenos Aires florece de otoño a primavera, llenando el jardín de color en los meses más fríos.",
     problems: [
@@ -3053,7 +3053,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 0,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "En otoño, cuando las hojas se ponen negras por la helada, desenterrá los tubérculos, sécalos y guardalos en un lugar fresco y seco hasta primavera.",
     description: "Las Dalias son las reinas del jardín estival con flores enormes en todos los colores y formas. Son tuberosas que se plantan en primavera y florecen de verano a otoño. En climas fríos los tubérculos deben desenterrarse para invernar. Aportan un color espectacular al jardín.",
     problems: [
@@ -3107,7 +3107,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -3,
     tempMax: 38,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Quitá las flores viejas para que siga produciendo nuevas. Muy resistente a la sequía una vez establecida; no la riegues de más.",
     description: "La Salvia ornamental atrae colibríes y mariposas con sus espigas floridas en azul, violeta o rojo. Es una planta perenne o anual según la variedad, muy resistente al calor y la sequía. Ideal para jardines de polinizadores y bordes de canteros.",
     problems: [
@@ -3149,7 +3149,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -3,
     tempMax: 32,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "Plantala en semisombra y mantené el suelo húmedo; en verano caliente necesita más agua. Florece mejor con algo de frío invernal.",
     description: "La Cala o Cartucho es una planta elegante con flores en forma de embudo, blancas y puras. Crece desde un rizoma y prefiere suelos húmedos, incluso aguanta estar cerca del agua. Florece en primavera y principios del verano. En jardines argentinos es un clásico de la sombra y semisombra.",
     problems: [
@@ -3208,7 +3208,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 0,
     tempMax: 38,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Plantalo cerca de tomates y pimientos — repele nematodos y pulgones. Quitá las flores secas para que siga floreciendo toda la temporada.",
     description: "El Copete o Tagetes es una flor anual de verano que cumple doble función: decora con sus flores amarillas y naranjas, y protege la huerta de plagas como nematodos y pulgones. Fácil de cultivar, resistente al calor y de crecimiento rápido. Ideal para bordes de canteros y macetas.",
     problems: [
@@ -3262,7 +3262,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -8,
     tempMax: 38,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Tolerá que se auto-siembre; la verbena bonariensis rebrota sola cada año. Cortá las flores secas para prolongar la floración.",
     description: "La Verbena bonariensis es una planta nativa argentina que atrae mariposas y abejas con sus pequeñas flores violetas en tallos delgados y altos. Muy tolerante a la sequía y casi sin necesidad de cuidado una vez establecida. Se auto-siembra, lo que la convierte en una perenne práctica.",
     problems: [
@@ -3306,7 +3306,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Ideal para balcones y muros; crece colgando. Regalo muy poco y dale todo el sol que puedas. Mismo cuidado que el romero erecto pero más decorativo en altura.",
     description: "El Romero rastrero es una variedad de romero de porte postrado que en lugar de crecer hacia arriba, se extiende horizontalmente o cae en cascada. Perfecto para macetas colgantes, terrazas o para cubrir muros. Tan resistente y aromático como el romero común, con una silueta más decorativa.",
     problems: [
@@ -5268,7 +5268,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -3,
     tempMax: 40,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Aroma cítrico fuerte de citronellal. Usá hojas para infusiones; pleno sol exterior.",
     description: "El Eucalyptus citriodora (sinónimo POWO Corymbia citriodora desde los 2000s) es una mirtácea australiana con hojas de aroma cítrico intenso por el compuesto volátil citronellal (defensa anti-herbivoría y repelente natural de insectos). Crecimiento muy rápido en exterior (>1m al año); difícil de mantener en maceta a largo plazo — mejor plantarlo en suelo. El mercado argentino lo vende mayormente bajo el nombre Eucalyptus.",
     problems: [
@@ -5511,7 +5511,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 25,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Si tu zona no enfría a 5°C en invierno, dale 6-8 semanas de heladera antes de plantar.",
     description: "El Tulipán (Tulipa gesneriana) es una Liliácea de bulbo subterráneo. Requiere ~12 semanas de frío bajo 8°C en invierno para desarrollar el botón floral. En BsAs sur y Patagonia florece naturalmente; en NEA-NOA hace falta pre-frío en heladera. La parte aérea muere en verano y el bulbo entra en dormancia hasta la primavera siguiente.",
     problems: [
@@ -5633,7 +5633,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Pellizcá las puntas hasta enero (HS) para más capítulos en otoño con días cortos.",
     description: "El Crisantemo (Chrysanthemum × morifolium) es una Asterácea perenne con corona invernante. Flor de otoño en LATAM (Día de los Muertos en México; clásico de Día de la Madre en HS). Pellizcar las puntas en primavera-verano fuerza ramificación y multiplica capítulos. La corona queda dormante en invierno; sol pleno + drenaje son críticos.",
     problems: [
@@ -5697,7 +5697,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Usá agua de lluvia o filtrada — el agua dura alcaliniza y mata la simbiosis con micorrizas.",
     description: "La Azalea (Rhododendron simsii) es una Ericácea originaria del sudoeste chino. Arbusto de flor primaveral abundante (rosa, rojo, blanco, lila). Requiere tierra ácida pH 4.5-5.5 y agua blanda. Es sotobosque-adapted: sol filtrado, no pleno. Con tierra alcalina o agua dura desarrolla clorosis ferrítica y muere en pocos meses.",
     problems: [
@@ -5758,7 +5758,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Pellizcá puntas en juvenil para ramificar; cortá flores marchitas para forzar re-floración.",
     description: "El Clavel (Dianthus caryophyllus) es una Cariofilácea mediterránea de tallos articulados grises-azulados. Flores muy fragantes (rosa, rojo, blanco, jaspeado). Planta de jardín europea clásica que prefiere sol pleno + drenaje rápido + pH neutro-alcalino (lo opuesto a la azalea). Las hojas grises tienen tricomas que reducen evaporación.",
     problems: [
@@ -5815,7 +5815,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 0,
     tempMax: 30,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Nativa de Patagonia — prefiere sombra parcial, no sol pleno mediodía.",
     description: "La Fucsia (Fuchsia magellanica) es una Onagrácea nativa argentina (Patagonia, sotobosque húmedo). Arbusto colgante con flores péndulas rojo-púrpura características; ideal para macetas colgantes en patio sombreado. Tolera heladas leves. En HS florece de noviembre a marzo. Necesita humedad ambiental, NO sol pleno mediodía.",
     problems: [
@@ -5862,7 +5862,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: 5,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "El botón joven sigue al sol (heliotropismo); al madurar queda fijo al este.",
     description: "El Girasol (Helianthus annuus) es una Asterácea anual de día largo, nativa de Norteamérica y de cultivo masivo en Argentina (Pampa Húmeda). Altura 1-3m según cultivar. El capítulo (cabeza floral) está compuesto por cientos de flores. Sembrá en primavera (sept-nov en HS); cosecha de semillas a fin de verano cuando el dorso del capítulo amarillea.",
     problems: [
@@ -5907,7 +5907,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 35,
     humidity: "media",
-    outdoor: true,
+    outdoor: false,
     tip: "Magnolia es un árbol — M. stellata enana 3m cabe en patio chico; M. grandiflora alcanza 20m.",
     description: "La Magnolia estrellada (Magnolia stellata) es una Magnoliácea — linaje arcaico de plantas con flor (~95M años, anteriores a las abejas). Es la versión enana (3m máx) ideal para patio o jardín pequeño argentino. Floración primaveral antes de hojas (jul-sept HS) en estrellas blancas-rosadas. M. grandiflora (20m) es la variante grande icónica. Honestidad sobre trayectoria: primero maceta grande, eventualmente trasplante a tierra.",
     problems: [
@@ -6107,7 +6107,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -5,
     tempMax: 40,
     humidity: "baja",
-    outdoor: true,
+    outdoor: false,
     tip: "Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra.",
     description: "El Olivo (Olea europaea) es una Oleácea mediterránea perennifolia — árbol icónico. En Argentina extensivos cultivos en Mendoza, Cuyo y La Rioja; el cultivar 'Arauco' es endémico nacional, 'Arbequina' la más plantada. Olivo joven en maceta grande puede vivir varios años antes de necesitar trasplante a tierra firme. Tolerante a sequía, sol pleno y frío leve; floración primaveral, fructificación verano-otoño.",
     problems: [
@@ -6151,7 +6151,7 @@ export const PLANT_DATABASE: PlantDBEntry[] = [
     tempMin: -10,
     tempMax: 30,
     humidity: "alta",
-    outdoor: true,
+    outdoor: false,
     tip: "Usá agua de lluvia o filtrada — el agua dura alcaliniza la tierra y mata la simbiosis con micorrizas.",
     description: "El Arándano (Vaccinium corymbosum) es una Ericácea acidofilica nativa de Norteamérica; arbusto frutal de bayas azules muy nutritivas. Necesita pH 4.5-5.5 estricto + agua blanda + sol pleno + frío invernal. En Argentina hay cultivos extensos en Tucumán y Entre Ríos. El agua dura alcaliniza la tierra y deshace la simbiosis con micorrizas — clorosis ferrítica y muerte progresiva en meses.",
     problems: [
