@@ -8,9 +8,8 @@ export const colors = {
 
   // Text
   textPrimary: '#2d3a2e',
-  textSecondary: '#8a7e6b',
+  textSecondary: '#6f6450', // POLISH-05 (Phase 23) — darkened from #8a7e6b (3.50:1 on bgPrimary — FAIL AA) to #6f6450 (5.12:1 on bgPrimary, 5.72:1 on card — both PASS AA per WCAG 2.1).
   // textMuted: darkened from #a89e8b → #6a604f to meet WCAG AA contrast on bgPrimary (#f5f0e6) and card (#fffdf8). Was ~3.1:1 → now ~4.9:1.
-  // NOTE (v1.2): textSecondary #8a7e6b also fails AA on bgPrimary (~3.1:1). Audit + fix in v1.2 polish phase.
   textMuted: '#6a604f',
 
   // Accents
