@@ -117,8 +117,8 @@
 - [ ] **POLISH-04**: Verify identification entry points (onboarding card + PlantsScreen FAB) — both must open `PlantIdentifierModal` AND keep the identify→diagnose chain functional via `onDiagnoseAfterIdentify` after Phase 7 changes. NO removal of either entry point per UAT user decision (UAT #2 marked "verified, no change needed"). Device-test both flows on iOS + Android: take photo → identify → save plant AND take photo → identify → diagnose → chat.
 - [x] **POLISH-05**: `colors.textSecondary` darkened from `#8a7e6b` to a value passing WCAG AA (~4.5:1) on both `bgPrimary` and `card`; audit usages and adjust if needed (carryover from QW4)
 - [x] **POLISH-06**: All action buttons updated with voseo + emoji microcopy ("Regá ahora 💧" instead of "Regar"); audit `t()` keys for action verbs; locale parity preserved
-- [ ] **POLISH-07**: Empty states in PlantsScreen, ExploreScreen, CalendarScreen are illustrated (Lottie or SVG) with motivating voseo copy ("Tu jardín está esperando")
-- [ ] **POLISH-08**: NO sample plant pre-loaded on first launch — first-run empty-state UX is handled exclusively by POLISH-07's illustrated empty states with strong CTAs ("Agregá tu primera planta" / "Tu jardín está esperando"). Rejected sample-data approach to avoid "test event" syndrome and zero confusion about plant origin.
+- [x] **POLISH-07**: Empty states in PlantsScreen, ExploreScreen, CalendarScreen are illustrated (Lottie or SVG) with motivating voseo copy ("Tu jardín está esperando")
+- [x] **POLISH-08**: NO sample plant pre-loaded on first launch — first-run empty-state UX is handled exclusively by POLISH-07's illustrated empty states with strong CTAs ("Agregá tu primera planta" / "Tu jardín está esperando"). Rejected sample-data approach to avoid "test event" syndrome and zero confusion about plant origin.
 
 ### Documentation (DOCS)
 
@@ -257,8 +257,8 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | POLISH-04 | Phase 23 | Pending |
 | POLISH-05 | Phase 23 | Complete |
 | POLISH-06 | Phase 23 | Complete |
-| POLISH-07 | Phase 23 | Pending |
-| POLISH-08 | Phase 23 | Pending |
+| POLISH-07 | Phase 23 | Complete |
+| POLISH-08 | Phase 23 | Complete |
 | DOCS-01 | Phase 24 | Pending |
 | DOCS-02 | Phase 24 | Pending |
 

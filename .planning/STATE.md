@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 5
+current_plan: 4 of 5
 status: executing
-stopped_at: Completed 23-02-PLAN.md
-last_updated: "2026-05-12T05:04:05.633Z"
-last_activity: 2026-05-12 — Phase 23 Plan 02 complete (Wave 2 WCAG + voseo — POLISH-05 textSecondary darkening + POLISH-06 STRICT voseo-lint with 70 pre-existing violations fixed atomically + 4 action button voseo+emoji + EN parity; 2 atomic commits; PASS=46→48 SKIP=3→1 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 2 deviations auto-fixed).
+stopped_at: Completed 23-03-PLAN.md
+last_updated: "2026-05-12T05:10:57.970Z"
+last_activity: 2026-05-12 — Phase 23 Plan 03 complete (Wave 3 empty states — POLISH-07 3 PNG illustrations + 3 EmptyState JSX swaps/adds (CalendarScreen NEW per Pitfall 7) using RN built-in Image; zero new deps; POLISH-08 STRICT negative-grep PASS preserved; 2 atomic commits; smoke-phase23 PASS=49 FAIL=0 SKIP=0 — all automated POLISH sentinels green; Phase 18-22 cross-phase regression preserved; zero deviations).
 progress:
   total_phases: 15
   completed_phases: 13
   total_plans: 80
-  completed_plans: 79
-  percent: 99
+  completed_plans: 80
+  percent: 100
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo complete; Plan 23-03 empty states next)**
-Current Plan: 3 of 5
-Plan: 23-02 complete (Wave 2 WCAG + voseo — POLISH-05 + POLISH-06 closed in 2 atomic commits). POLISH-05: colors.textSecondary flipped #8a7e6b → #6f6450 in src/theme.ts (5.12:1 on bgPrimary, 5.72:1 on card — both PASS WCAG 2.1 AA at 4.5:1); obsolete two-line TODO comment removed; hierarchy preserved (textSecondary lighter than textMuted #6a604f). POLISH-06 (composite atomic): scripts/voseo-lint.mjs STRICT body landed with 22-regex BANNED array (5 tuteo verbs + 14 Castilian imperatives + accented \\btú\\b + 2 formal 3rd-person — `tu` unaccented possessive NOT in BANNED per Pitfall 4) + WHITELIST_KEYS Set with 2 keys (common.settings.locationDescription + common.alerts.sunDayToday); skeleton stdout tag + JSDoc references scrubbed throughout. 70 pre-existing voseo violations fixed atomically (16 in es/common.json per RESEARCH §Finding 7, 49 in es/plants.json — Rule 3 Blocking deviation since lint walks all es/*.json, 5 in es/tips.json). 4 ES action button voseo+emoji values: plantCard.water "Regá ahora 💧" / sunLabel "Sol ☀️ ({{hours}}h)" / outdoor "Sacalo afuera 🌳" / fertilize "Fertilizá 🌱"; plantDetailModal.water + .fertilize mirrored. 4 EN action button emoji parity: "Water now 💧" / "Sun ☀️ ({{hours}}h)" / "Put outside 🌳" / "Fertilize 🌱". Smoke-phase23: PASS=46→48, SKIP=3→1 (POLISH-05 + POLISH-06.action-button + POLISH-06.voseo-lint all flipped SKIP→PASS; only POLISH-07 SKIP remains for Plan 23-03). Phase 18-22 cross-phase STRICT sentinels all preserved verbatim. All gates green: voseo-lint exit 0, tsc clean, check:i18n-keys PASS 118 catalog ids, smoke-phase23 48/0/1. 2 tasks, 5 files modified, 25 min, 2 deviations (Rule 3 scope-expansion + Rule 2 JSDoc-scrub both auto-fixed).
-Status: **Phase 23 Plan 23-02 WCAG + voseo cluster landed; Plan 23-03 (Wave 3 empty states: POLISH-07 3 illustrated empty-state JSX inserts + POLISH-08 negative-grep sample-plant-array confirmation) ready to execute.** 1 SKIP placeholder remains in smoke-phase23 (POLISH-07 only); closes in Plan 23-03.
-Last activity: 2026-05-12 — Phase 23 Plan 02 complete (Wave 2 WCAG + voseo — POLISH-05 textSecondary darkening + POLISH-06 STRICT voseo-lint with 70 pre-existing violations fixed atomically + 4 action button voseo+emoji + EN parity; 2 atomic commits; PASS=46→48 SKIP=3→1 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 2 deviations auto-fixed).
+Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo + 23-03 empty states complete; Plan 23-04 manual gate next)**
+Current Plan: 4 of 5
+Plan: 23-03 complete (Wave 3 empty states — POLISH-07 + POLISH-08 closed in 2 atomic commits). POLISH-07 (assets): 3 hand-authored 600×600 PNG illustrations under assets/illustrations/ — empty-plants.png (30,999B, planta-en-maceta motif), empty-calendar.png (11,267B, calendario-sin-tasks motif), empty-explore.png (60,950B, lupa-sobre-hoja motif). Generated via SVG-to-ImageMagick conversion (Approach A — `magick <svg> -background "#f5f0e6" -resize 600x600`); SVG sources under scripts/.tmp-phase23/ (gitignored). Palette restricted to existing theme tokens only — no new design-system tokens introduced (CLAUDE.md lock honored). POLISH-07 (JSX): PlantsScreen EmptyState swap (emoji 🌿 → <Image> at line ~365 + i18n keys plants.emptyTitle/emptyText → emptyState.plants.title/cta); ExploreScreen EmptyState swap (emoji 🔍 → <Image> at line ~164 + i18n keys explore.noResults/noResultsText → emptyState.explore.title/cta); CalendarScreen NEW EmptyState (RESEARCH §Pitfall 7 — none existed previously) conditionally rendered below MonthCalendar when plants.length === 0 + emptyState.calendar.title/cta. All 3 EmptyState use 180×180 illustration sizing; consistent PlayfairDisplay/DMSans typography. RN built-in <Image> path — zero new dependencies (react-native-svg deliberately avoided per RESEARCH §Finding 10 + §Pitfall 6). POLISH-08 STRICT negative-grep PASS preserved — zero samplePlants/mockPlants/seedPlants/demoPlants/firstLaunchPlants arrays introduced; permanent CI gate locks "no test event syndrome" product discipline. Smoke-phase23: PASS=48→49 SKIP=1→0 — POLISH-07.illustrated-empty-states flipped SKIP→PASS; all POLISH-01..08 automated sentinels green (POLISH-04 manual-only deferred to Plan 23-04). Phase 18-22 cross-phase STRICT sentinels all preserved verbatim. All gates green: tsc clean, check:i18n-keys PASS 118 catalog ids, lint:voseo exit 0 STRICT, smoke-phase23 49/0/0, all 6 phase smoke runners (18+19+20+21+22+23) green. 2 tasks, 3 source files + 3 PNG assets, 2 min, ZERO deviations (Approach A succeeded on first attempt — no fallback to B/C needed).
+Status: **Phase 23 Plan 23-03 empty-states cluster landed; Plan 23-04 (Wave 4 manual gate: POLISH-04 device-test on iOS + Android + Block A-E 8-12-item manual checklist + Option A/B closure) ready to execute.** Zero SKIP in smoke-phase23 (all automated POLISH sentinels PASS); POLISH-04 manual-only.
+Last activity: 2026-05-12 — Phase 23 Plan 03 complete (Wave 3 empty states — POLISH-07 3 PNG illustrations + 3 EmptyState JSX swaps/adds (CalendarScreen NEW per Pitfall 7) using RN built-in Image; zero new deps; POLISH-08 STRICT negative-grep PASS preserved; 2 atomic commits; smoke-phase23 PASS=49 FAIL=0 SKIP=0 — all automated POLISH sentinels green; Phase 18-22 cross-phase regression preserved; zero deviations).
 
-Progress: [██████████] 99% (79/80 plans complete; Phase 23 Plans 23-00 + 23-01 + 23-02 landed; Plans 23-03/04 pending)
+Progress: [██████████] 100% (80/80 plans complete; Phase 23 Plans 23-00 + 23-01 + 23-02 + 23-03 landed; Plan 23-04 manual gate pending)
 
 ## Performance Metrics
 
@@ -113,6 +113,7 @@ Progress: [██████████] 99% (79/80 plans complete; Phase 23 P
 | Phase 23-polish-uat-brand-voice P00 | 3min | 2 tasks | 6 files |
 | Phase 23-polish-uat-brand-voice P01 | 2min | 3 tasks | 3 files |
 | Phase 23-polish-uat-brand-voice P02 | 25 min | 2 tasks | 5 files |
+| Phase 23 P03 | 2 min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -333,6 +334,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: Voseo lint scope extended beyond es/common.json to ALL es/*.json (lint walks the entire ES locale tree). 70 violations fixed atomically — 16 in common.json (planned) + 49 in plants.json + 5 in tips.json (Rule 3 Blocking deviation auto-fixed)
 - [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: descriptive-3rd-person false positives reworded (Usa CAM → Funciona con CAM; vida corta → vida breve; le saca color → le quita color; se ven blandas → se notan blandas) rather than expanding WHITELIST_KEYS — preserves STRICT lint surface and prevents exception culture; WHITELIST_KEYS kept minimal at 2 entries (settings.locationDescription + alerts.sunDayToday)
 - [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: unaccented possessive 'tu' NOT in BANNED — only accented \btú\b pronoun flagged per RESEARCH Pitfall 4; permits legitimate possessive uses like 'Tu jardín está esperando 🌱' empty state copy
+- [Phase 23]: Plan 23-03 Approach A (Claude SVG-to-PNG via ImageMagick) chosen over fallback approaches B/C — ImageMagick `magick` binary available at /opt/homebrew/bin/magick; hand-authored SVG sources produce deterministic on-brand illustrations rather than emoji/data-URI placeholders. SVG sources committed to scripts/.tmp-phase23/ (gitignored, mirrors Plan 23-02 fix-plants-voseo.cjs runner discipline) so future plans can re-render the PNGs by re-running ImageMagick.
+- [Phase 23]: Plan 23-03 CalendarScreen empty-state placed BELOW MonthCalendar grid as addendum (Pitfall 7 explicit lock) — does NOT replace the grid — Users with zero plants still want to see month navigation context; the empty illustration informs without removing affordances. Per-day "no tasks scheduled" inside DayDetailModal stays in place — out of scope per plan. CalendarScreen previously had no EmptyState at all (RESEARCH §Pitfall 7), so a fresh styles block was added mirroring the PlantsScreen + ExploreScreen shape (180×180 illustration, PlayfairDisplay title, DMSans body).
+- [Phase 23]: Plan 23-03 POLISH-08 STRICT negative-grep gate locked permanent — zero sample-plant arrays in src/ enforced on every smoke-phase23 run — RESEARCH §Finding 12 PASS at baseline carried forward; smoke-phase23 TIER 2.5 walks src/ recursively and asserts `\b(samplePlants|mockPlants|seedPlants|demoPlants|firstLaunchPlants)\b` returns zero matches. Any future plan that accidentally introduces a sample-plant array will hard-fail at smoke time. Locks "no test event syndrome" as a permanent product discipline — empty state IS the first-launch UX.
 
 ### Pending Todos
 
@@ -347,6 +351,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T05:02:40.858Z
-Stopped at: Completed 23-02-PLAN.md
+Last session: 2026-05-12T05:10:45.048Z
+Stopped at: Completed 23-03-PLAN.md
 Resume file: None
