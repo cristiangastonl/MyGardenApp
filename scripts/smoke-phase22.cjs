@@ -102,10 +102,15 @@ assertSkippable(() => {
   if (!/const\s+outdoorPlant\s*=\s*useCallback/.test(useStorageSrc)) return undefined;
   return /const\s+outdoorPlant\s*=\s*useCallback[\s\S]{0,400}triggerHaptic\(['"]success['"]\)/.test(useStorageSrc);
 }, 'GAM-02.useStorage.outdoorPlant.triggerHaptic-success');
-// fertilizePlant: SKIP if /triggerHaptic/ test on useStorageSrc is false (Wave 0 baseline)
+// fertilizePlant: SKIP if /triggerHaptic/ test on useStorageSrc is false (Wave 0 baseline).
+// Proximity widened to 1000 chars because fertilizePlant body has multi-branch catalog-bootstrap
+// logic (~16 lines) BEFORE the haptic+callback firing site — per Plan 22-01 step F, the haptic
+// MUST fire AFTER the no-op early-return guard so custom plants without a schedule do not get
+// spurious celebration feedback. The 400-char window in Plan 22-00's scaffold was sized for the
+// simpler waterPlant shape, not fertilizePlant's longer body.
 assertSkippable(() => {
   if (!/triggerHaptic/.test(useStorageSrc)) return undefined;
-  return /const\s+fertilizePlant\s*=\s*useCallback[\s\S]{0,400}triggerHaptic\(['"]success['"]\)/.test(useStorageSrc);
+  return /const\s+fertilizePlant\s*=\s*useCallback[\s\S]{0,1000}triggerHaptic\(['"]success['"]\)/.test(useStorageSrc);
 }, 'GAM-02.useStorage.fertilizePlant.triggerHaptic-success');
 
 // GAM-02 triggerHaptic import
@@ -129,9 +134,10 @@ assertSkippable(() => {
   if (!/onTaskCompletedRef/.test(useStorageSrc)) return undefined;
   return /const\s+outdoorPlant\s*=\s*useCallback[\s\S]{0,400}onTaskCompletedRef\.current\?\.\(\)/.test(useStorageSrc);
 }, 'GAM-01.useStorage.outdoorPlant.onTaskCompleted-call');
+// fertilizePlant proximity widened to 1000 chars per same rationale as the triggerHaptic sentinel above.
 assertSkippable(() => {
   if (!/onTaskCompletedRef/.test(useStorageSrc)) return undefined;
-  return /const\s+fertilizePlant\s*=\s*useCallback[\s\S]{0,400}onTaskCompletedRef\.current\?\.\(\)/.test(useStorageSrc);
+  return /const\s+fertilizePlant\s*=\s*useCallback[\s\S]{0,1000}onTaskCompletedRef\.current\?\.\(\)/.test(useStorageSrc);
 }, 'GAM-01.useStorage.fertilizePlant.onTaskCompleted-call');
 
 // GAM-01 gamificationToastVisible state in each screen (Plan 22-02)
@@ -198,9 +204,13 @@ assertSkippable(() => {
 
 // ─── GAM-05 STRICT negative-grep (NEVER SKIP — runs unconditionally at W0 and beyond) ───
 // Whitelist: lines containing CARE_STREAKS (V2.0 placeholder at src/config/features.ts:31)
-// OR the literal `gam_anti_patterns.md` (allows code-comment references to the memory file).
+// OR the literal `gam_anti_patterns.md` (allows code-comment references to the memory file)
+// OR the literal `GAM-05 lock` (anchors the canonical 4-line anti-pattern comment block —
+//   only the 4th line of each block carries the gam_anti_patterns.md path; lines 1-3 contain
+//   the word `streak` inside the anti-pattern doc itself, so they need a separate whitelist
+//   token. Plan 22-01 lands these comment blocks verbatim above each task-done useCallback).
 const STREAK_TOKENS_RE = /\b(streak|consecutiveDays|dayCount|currentStreak|bestStreak|streakReset)\b/i;
-const WHITELIST_LINE_RE = /CARE_STREAKS|gam_anti_patterns\.md/;
+const WHITELIST_LINE_RE = /CARE_STREAKS|gam_anti_patterns\.md|GAM-05 lock|streaks weaponize missed days/;
 const STREAK_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx']);
 const streakViolations = [];
 function walkSrcForStreakTokens(dir) {

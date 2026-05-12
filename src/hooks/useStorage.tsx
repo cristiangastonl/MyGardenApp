@@ -15,6 +15,7 @@ import {
 } from '../utils/migration';
 import { getCatalogEntry } from '../data/plantDatabase';
 import { deleteJournalDirectory } from '../services/journalService';
+import { triggerHaptic } from '../utils/haptics';
 
 /**
  * v1.2 Phase 14 (EDU-06). Fields that represent user-customized values which catalog-source
@@ -58,6 +59,14 @@ interface StorageActions {
   updatePlant: (id: string, updates: Partial<Plant>, options?: UpdatePlantOptions) => void;
   /** v1.2 Phase 20 (FERT-06) — marks fertilization done on plant.fertilizeSchedule.lastFertilized; bootstraps schedule from catalog when absent. */
   fertilizePlant: (id: string) => void;
+  /** v1.2 Phase 22 (GAM-02) — marks water task done on plant.lastWatered; fires triggerHaptic('success') + onTaskCompleted callback. NOT a toggle. */
+  waterPlant: (id: string) => void;
+  /** v1.2 Phase 22 (GAM-02) — marks sun task done on plant.sunDoneDate (TOGGLE — celebration fires ONLY on transition to done). */
+  sunPlant: (id: string) => void;
+  /** v1.2 Phase 22 (GAM-02) — marks outdoor task done on plant.outdoorDoneDate (TOGGLE — celebration fires ONLY on transition to done). */
+  outdoorPlant: (id: string) => void;
+  /** v1.2 Phase 22 (GAM-01) — registers or clears the screen-level Toast callback. Pass `null` to clear on unmount. Screens (PlantsScreen, TodayScreen, CalendarScreen) register their setGamificationToastVisible setter via useEffect. */
+  setOnTaskCompleted: (cb: (() => void) | null) => void;
   addNote: (dateStr: string, note: Note) => void;
   deleteNote: (dateStr: string, noteId: string) => void;
   addReminder: (dateStr: string, reminder: Reminder) => void;
@@ -173,6 +182,11 @@ export function StorageProvider({ children }: StorageProviderProps) {
 
   // Debounced save timer ref
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Phase 22 GAM-01: screen-level Toast surfaces register a setter here (NOT useState) so the
+  // value memo does not invalidate on every callback re-register. Ref-mutation is invisible
+  // to React's reconciler. See 22-RESEARCH.md Pattern 1 + Pitfall 4.
+  const onTaskCompletedRef = useRef<(() => void) | null>(null);
 
   // Persist the current ref snapshot to AsyncStorage (debounced)
   // Always emits the v1.1 versioned envelope { schemaVersion, data } (SCHEMA-09).
@@ -482,6 +496,10 @@ export function StorageProvider({ children }: StorageProviderProps) {
    * If the plant has no databaseId AND no existing fertilizeSchedule → no-op (custom plant without
    * a manual fertilize schedule has nothing to bootstrap from).
    */
+  // GAM-05 lock: NEVER add streak counters or consecutive-day tracking here.
+  // The mood emoji (Phase 18 GAM-03/04) communicates plant state without anxiety.
+  // Blossom cautionary tale — streaks weaponize missed days.
+  // See /Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/gam_anti_patterns.md
   const fertilizePlant = useCallback((id: string) => {
     const plant = dataRef.current.plants.find(p => p.id === id);
     if (!plant) return;
@@ -497,8 +515,61 @@ export function StorageProvider({ children }: StorageProviderProps) {
       }
     }
     if (!nextSchedule) return; // custom plant without manual schedule → no-op
+    triggerHaptic('success');
+    onTaskCompletedRef.current?.();
     updatePlant(id, { fertilizeSchedule: nextSchedule }, { fromUserEdit: true });
   }, [updatePlant]);
+
+  // GAM-05 lock: NEVER add streak counters or consecutive-day tracking here.
+  // The mood emoji (Phase 18 GAM-03/04) communicates plant state without anxiety.
+  // Blossom cautionary tale — streaks weaponize missed days.
+  // See /Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/gam_anti_patterns.md
+  const waterPlant = useCallback((id: string) => {
+    const plant = dataRef.current.plants.find(p => p.id === id);
+    if (!plant) return;
+    const todayStr = formatDate(new Date());
+    triggerHaptic('success');
+    onTaskCompletedRef.current?.();
+    updatePlant(id, { lastWatered: todayStr }, { fromUserEdit: true });
+  }, [updatePlant]);
+
+  // GAM-05 lock: NEVER add streak counters or consecutive-day tracking here.
+  // The mood emoji (Phase 18 GAM-03/04) communicates plant state without anxiety.
+  // Blossom cautionary tale — streaks weaponize missed days.
+  // See /Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/gam_anti_patterns.md
+  const sunPlant = useCallback((id: string) => {
+    const plant = dataRef.current.plants.find(p => p.id === id);
+    if (!plant) return;
+    const todayStr = formatDate(new Date());
+    const wasUndone = plant.sunDoneDate !== todayStr; // transitioning TO done
+    if (wasUndone) {
+      triggerHaptic('success');
+      onTaskCompletedRef.current?.();
+    }
+    updatePlant(id, { sunDoneDate: wasUndone ? todayStr : null }, { fromUserEdit: true });
+  }, [updatePlant]);
+
+  // GAM-05 lock: NEVER add streak counters or consecutive-day tracking here.
+  // The mood emoji (Phase 18 GAM-03/04) communicates plant state without anxiety.
+  // Blossom cautionary tale — streaks weaponize missed days.
+  // See /Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/gam_anti_patterns.md
+  const outdoorPlant = useCallback((id: string) => {
+    const plant = dataRef.current.plants.find(p => p.id === id);
+    if (!plant) return;
+    const todayStr = formatDate(new Date());
+    const wasUndone = plant.outdoorDoneDate !== todayStr; // transitioning TO done
+    if (wasUndone) {
+      triggerHaptic('success');
+      onTaskCompletedRef.current?.();
+    }
+    updatePlant(id, { outdoorDoneDate: wasUndone ? todayStr : null }, { fromUserEdit: true });
+  }, [updatePlant]);
+
+  // v1.2 Phase 22 (GAM-01) — ref-based setter. Empty deps array: ref mutation is stable
+  // and does not need to participate in the value memo identity churn.
+  const setOnTaskCompleted = useCallback((cb: (() => void) | null) => {
+    onTaskCompletedRef.current = cb;
+  }, []);
 
   const addNote = useCallback((dateStr: string, note: Note) => {
     const cur = dataRef.current.notes;
@@ -854,6 +925,10 @@ export function StorageProvider({ children }: StorageProviderProps) {
     deletePlant,
     updatePlant,
     fertilizePlant,
+    waterPlant,
+    sunPlant,
+    outdoorPlant,
+    setOnTaskCompleted,
     addNote,
     deleteNote,
     addReminder,
@@ -895,7 +970,7 @@ export function StorageProvider({ children }: StorageProviderProps) {
     climateOverride, loading,
     migrationFailed, migrationJustHappened,
     handleSetPlants, addPlant,
-    addPlants, deletePlant, updatePlant, fertilizePlant, addNote, deleteNote, addReminder,
+    addPlants, deletePlant, updatePlant, fertilizePlant, waterPlant, sunPlant, outdoorPlant, setOnTaskCompleted, addNote, deleteNote, addReminder,
     deleteReminder, updateReminder, addJournalEntry, deleteJournalEntry, updateLocation, completeOnboarding,
     completeOnboardingWithData, setUserName, updateNotificationSettings,
     updatePlantNetApiKey, incrementIdentificationCount, incrementDiagnosisCount,
