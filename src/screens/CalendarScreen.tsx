@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,7 @@ import { Note, Reminder } from '../types';
 import {
   MonthCalendar,
   DayDetailModal,
+  Toast,
 } from '../components';
 
 export default function CalendarScreen() {
@@ -30,6 +31,10 @@ export default function CalendarScreen() {
     climateOverride,
     loading,
     updatePlant,
+    waterPlant,
+    sunPlant,
+    outdoorPlant,
+    setOnTaskCompleted,
     fertilizePlant,
     addNote,
     deleteNote,
@@ -45,6 +50,15 @@ export default function CalendarScreen() {
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [showDayDetail, setShowDayDetail] = useState(false);
+
+  // Phase 22 (GAM-01): task-completion Toast — FIRST Toast surface on CalendarScreen.
+  // Distinct identifier from Phase 18 / Phase 21 Toasts present on PlantsScreen + TodayScreen.
+  const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
+
+  useEffect(() => {
+    setOnTaskCompleted(() => setGamificationToastVisible(true));
+    return () => setOnTaskCompleted(null);
+  }, [setOnTaskCompleted]);
 
   const goToPreviousMonth = useCallback(() => {
     if (viewMonth === 0) {
@@ -80,17 +94,28 @@ export default function CalendarScreen() {
     setShowDayDetail(false);
   };
 
-  // Day detail handlers
+  // Phase 22 (GAM-02): handlers delegate to useStorage task actions when the user
+  // marks tasks done for TODAY (selectedDate === today). For back-dating (selectedDate
+  // !== today) we preserve the inline updatePlant pattern — celebration feedback
+  // (haptic + Toast) only fires for present-day completions.
   const handleWater = (plantId: string) => {
-    if (selectedDate) {
-      const dateStr = formatDate(selectedDate);
+    if (!selectedDate) return;
+    const dateStr = formatDate(selectedDate);
+    const todayStr = formatDate(new Date());
+    if (dateStr === todayStr) {
+      waterPlant(plantId);
+    } else {
       updatePlant(plantId, { lastWatered: dateStr });
     }
   };
 
   const handleSunDone = (plantId: string) => {
-    if (selectedDate) {
-      const dateStr = formatDate(selectedDate);
+    if (!selectedDate) return;
+    const dateStr = formatDate(selectedDate);
+    const todayStr = formatDate(new Date());
+    if (dateStr === todayStr) {
+      sunPlant(plantId);
+    } else {
       const plant = plants.find(p => p.id === plantId);
       if (plant) {
         updatePlant(plantId, {
@@ -101,8 +126,12 @@ export default function CalendarScreen() {
   };
 
   const handleOutdoorDone = (plantId: string) => {
-    if (selectedDate) {
-      const dateStr = formatDate(selectedDate);
+    if (!selectedDate) return;
+    const dateStr = formatDate(selectedDate);
+    const todayStr = formatDate(new Date());
+    if (dateStr === todayStr) {
+      outdoorPlant(plantId);
+    } else {
       const plant = plants.find(p => p.id === plantId);
       if (plant) {
         updatePlant(plantId, {
@@ -271,6 +300,14 @@ export default function CalendarScreen() {
           onDeleteReminder={handleDeleteReminder}
         />
       )}
+
+      {/* Phase 22 (GAM-01) — task-completion Toast. First Toast surface on CalendarScreen. */}
+      <Toast
+        visible={gamificationToastVisible}
+        message={t('gamification.toastSuccess')}
+        durationMs={2000}
+        onDismiss={() => setGamificationToastVisible(false)}
+      />
     </SafeAreaView>
   );
 }
