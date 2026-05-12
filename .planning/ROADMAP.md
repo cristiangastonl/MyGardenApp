@@ -330,5 +330,5 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
 | 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
 | 22. Gamification — Toasts + Haptics | 4/4 | Complete    | 2026-05-12 | - |
-| 23. Polish — UAT Fixes + Brand Voice | 5/5 | Complete   | 2026-05-12 | - |
+| 23. Polish — UAT Fixes + Brand Voice | 5/5 | Complete    | 2026-05-12 | - |
 | 24. Documentation | v1.2 | 0/TBD | Not started | - |
