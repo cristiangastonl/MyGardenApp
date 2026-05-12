@@ -2,11 +2,11 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 3 of 4
+current_plan: 4 of 4
 status: verifying
-stopped_at: Completed 22-02-PLAN.md
-last_updated: "2026-05-12T01:26:02.196Z"
-last_activity: 2026-05-12 — Phase 22 Plan 02 complete (Wave 2 screen wiring + handler migration; smoke PASS=56 FAIL=0 SKIP=0; cross-phase chain green; 0 deviations).
+stopped_at: Completed 22-03-PLAN.md
+last_updated: "2026-05-11T01:31:00.000Z"
+last_activity: 2026-05-11 — Phase 22 Plan 03 complete (closing manual gate — Option B auto-selected per Phase 18-05/19-07/20-10/21-06 precedent; 14-item Blocks A-E checklist appended to v1_2_test_backlog.md; all 7 automation gates green; GAM-01/02/05 closed at code level; 0 deviations).
 progress:
   total_phases: 15
   completed_phases: 12
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 22 of 24 (Gamification — Toasts + Haptics) — **In Progress (Plan 22-02 Wave 2 screen wiring complete; Plan 22-03 manual gate remaining)**
-Current Plan: 3 of 4
-Plan: 22-02 complete (Wave 2 screen wiring + handler migration: PlantsScreen + TodayScreen + CalendarScreen each declare gamificationToastVisible useState distinct from Phase 18 toastVisible and Phase 21 journalToastVisible; each registers setGamificationToastVisible via useStorage.setOnTaskCompleted in useEffect with null cleanup; each renders independent <Toast visible={gamificationToastVisible} message={t('gamification.toastSuccess')} durationMs={2000} ...> sibling. PlantsScreen receives Toast surface + callback registration ONLY (verified PlantCard mode='collection' does not consume onWater/onSunDone/onOutdoorDone props — only onFertilizeDone={fertilizePlant} at L300; that flow already wires haptic+Toast via Plan 22-01's fertilizePlant extension). TodayScreen handleWater/handleSunDone/handleOutdoorDone fully migrated from inline updatePlant({lastWatered/sunDoneDate/outdoorDoneDate: ...}) calls to waterPlant(id)/sunPlant(id)/outdoorPlant(id) action calls (toggle semantics for sun/outdoor now live inside the actions via Plan 22-01's wasUndone gate; trackEvent analytics calls preserved verbatim; plants.find lookups removed from handler layer). CalendarScreen handlers migrated with selectedDate guard — when dateStr === todayStr the new action fires (haptic+Toast); otherwise the inline updatePlant pattern with back-dating toggle ternary is preserved (silent, no celebration for retroactive marking). CalendarScreen gains FIRST-ever Toast surface (Phase 21 only added Toasts to PlantsScreen + TodayScreen); imports extended with useEffect (added to React import) + Toast (added to ../components barrel). All 10 GAM-01/02 SKIPs from Plan 22-01 baseline flipped to PASS: GAM-01.{PlantsScreen,TodayScreen,CalendarScreen}.gamificationToastVisible-state (3) + GAM-01.{PlantsScreen,TodayScreen,CalendarScreen}.useEffect-registers-callback (3) + GAM-01.Toast.vas-bien-wired-3-screens (1) + GAM-01.Toast.durationMs-2000-3-screens (1) + GAM-02.{TodayScreen,CalendarScreen}.handlers-migrated-to-actions (2). Smoke runner: PASS=56 FAIL=0 SKIP=0; GAM-05 STRICT negative-grep clean (0 violations). Cross-phase chain green: Phase 18 PASS=56, Phase 19 PASS=85, Phase 20 PASS=49, Phase 21 PASS=76, all FAIL=0. Toast surface counts: PlantsScreen 3 (Phase 18 swipe-undo + Phase 21 journal-saved + Phase 22 task-done), TodayScreen 3 (same), CalendarScreen 1 (Phase 22 task-done only — first surface). npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; 3 task atomic commits b20a6c1 + 5faf2b4 + 07dd033; 4 min wall-clock; 0 deviations.
-Status: **Phase 22 Plan 22-02 complete (screen wiring + handler migration landed; full smoke green).** Next: Plan 22-03 is the manual device-test gate — per established Phase 18-05 / 19-07 / 20-10 / 21-06 precedent, typically Option B deferred to v1.2 milestone-end backlog. Phase 22 implementation surface is complete (Plan 22-00 + 22-01 + 22-02 cover all 3 phase requirements GAM-01/02/05 with smoke full PASS); only manual device verification remains.
-Last activity: 2026-05-12 — Phase 22 Plan 02 complete (Wave 2 screen wiring + handler migration; smoke PASS=56 FAIL=0 SKIP=0; cross-phase chain green; 0 deviations).
+Phase: 22 of 24 (Gamification — Toasts + Haptics) — **Closing (Plan 22-03 closing manual gate complete via Option B auto-mode chain; verifier pending)**
+Current Plan: 4 of 4
+Plan: 22-03 complete (closing manual gate: pre-checkpoint automation suite re-verified GREEN at plan-start time — `npx tsc --noEmit` exit 0, `npm run check:i18n-keys` PASS 118 catalog ids, `node scripts/smoke-phase18.cjs` PASS=56/0/0, `node scripts/smoke-phase19.cjs` PASS=85/0/0, `node scripts/smoke-phase20.cjs` PASS=49/0/0, `node scripts/smoke-phase21.cjs` PASS=76/0/0, `node scripts/smoke-phase22.cjs` PASS=56/0/0. User auto-selected Option B — milestone-end batching of the 14-item iOS + Android device-test checklist per established Phase 18-05 / 19-07 / 20-10 / 21-06 precedent (auto-mode chain `--auto --no-transition`; four prior consecutive Option B selections with Phase 19-07 as the ONE Option A outlier). 14-item Blocks A-E checklist (12 hard-fail + 2 soft-fail) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` BEFORE the pre-submission session structure section; backlog file grew from 235 → 294 lines (+59 LOC delta). Phase 22 CLOSED at code level — all 3 GAM-* requirement IDs (GAM-01 Toast wired in 3 screens via `gamificationToastVisible` distinct-identifier state + setOnTaskCompleted callback registration; GAM-02 `triggerHaptic('success')` in all 4 useStorage task actions + wasUndone toggle gate for sun/outdoor; GAM-05 STRICT negative-grep over `src/` for 6 streak-anxiety terms with CARE_STREAKS + gam_anti_patterns.md whitelist) reach closing PASS state. 0 source file changes (verification-only plan). 2 min wall-clock. 0 deviations.
+Status: **Phase 22 CLOSED at code level via Plan 22-03 closing manual gate (Option B deferral); verifier-pending.** All 3 GAM-* requirement IDs reach closing PASS at file-content/i18n-parity/smoke-runner surface; deferred 14-item device-test checklist is ship-blocker for v1.2 store submission, NOT for Phase 22 closure. Next: Phase 22 verifier (orchestrator-spawned) confirms phase closure invariants; then Phase 23 (Polish — UAT Fixes + Brand Voice) ready to plan.
+Last activity: 2026-05-11 — Phase 22 Plan 03 complete (closing manual gate — Option B auto-selected; 14-item checklist appended to v1_2_test_backlog.md; all 7 automation gates green; GAM-01/02/05 closed at code level; 0 deviations).
 
-Progress: [██████████] 100% (75/75 plans complete; Phase 22 Plan 22-02 complete — Wave 2 screen wiring + handler migration; Plan 22-03 manual gate remaining)
+Progress: [██████████] 100% (75/75 plans complete; Phase 22 fully landed at code level — Plans 22-00..22-02 implementation + Plan 22-03 closing manual gate via Option B deferral)
 
 ## Performance Metrics
 
@@ -109,6 +109,7 @@ Progress: [██████████] 100% (75/75 plans complete; Phase 22 
 | Phase 22-gamification-toasts-haptics P00 | 3min | 2 tasks | 5 files |
 | Phase 22-gamification-toasts-haptics P01 | 3min | 1 tasks | 2 files |
 | Phase 22-gamification-toasts-haptics P02 | 4 min | 3 tasks | 3 files |
+| Phase 22-gamification-toasts-haptics P03 | 2 min | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -317,6 +318,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 22-gamification-toasts-haptics]: Smoke runner deviation (Rule 1 Bug + Rule 3 Blocking): extended WHITELIST_LINE_RE to accept "GAM-05 lock" + "streaks weaponize missed days" literals and widened fertilizePlant proximity sentinels 400→1000 chars — Plan 22-00 scaffold's WHITELIST_LINE_RE (CARE_STREAKS|gam_anti_patterns.md) could not match the canonical 4-line GAM-05 comment block specified verbatim by CONTEXT.md / RESEARCH.md / PLAN.md (lines 1+3 contain `streak` substrings but only line 4 carries the path token). The 400-char proximity window also could not match fertilizePlant's haptic firing site (~833 chars deep into the body because the haptic MUST fire AFTER the no-op early-return guard per Plan 22-01 step F). The 'FROZEN runner' principle from Plan 22-00 applies to normal SKIP→PASS landing flow; a regex bug preventing the runner from validating the plan's verbatim contract is a legitimate Rule 1+3 deviation. Documented inline in the runner.
 - [Phase 22-gamification-toasts-haptics]: Plan 22-02: PlantsScreen Toast surface without handler migration — verified PlantCard mode='collection' does not consume onWater/onSunDone/onOutdoorDone props
 - [Phase 22-gamification-toasts-haptics]: Plan 22-02: CalendarScreen selectedDate guard via dateStr === todayStr — today-branch calls new useStorage action (celebration), else-branch preserves inline updatePlant pattern (silent back-dating)
+- [Phase 22-gamification-toasts-haptics]: Plan 22-03: User auto-selected Option B (defer to v1.2 backlog) — NOT Option A (run-now). Auto-mode chain via orchestrator's `--auto --no-transition` flag, applying established v1.2 closure precedent (four prior consecutive Option B selections at the same manual-checkpoint structural threshold: Phase 18-05 + Phase 20-10 + Phase 21-06; Phase 19-07 was the ONE Option A outlier). 14-item Blocks A-E checklist (12 hard-fail + 2 soft-fail) appended verbatim to v1_2_test_backlog.md memory file
+- [Phase 22-gamification-toasts-haptics]: Plan 22-03: Phase 22 CLOSED at code level despite device-only deferral — all 7 automation gates green (tsc + i18n + smoke-18/19/20/21/22) + GAM-05 STRICT negative-grep covering 6 streak-anxiety terms across src/ + cross-phase regression sentinels green = 3 Phase 22 requirement IDs (GAM-01, GAM-02, GAM-05) reach closing PASS state. Deferred 14-item device-test checklist remains ship-blocker for v1.2 store submission, NOT for Phase 22 closure.
 
 ### Pending Todos
 
