@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 4
-status: completed
-stopped_at: Completed 22-01-PLAN.md
-last_updated: "2026-05-12T01:17:20.964Z"
-last_activity: 2026-05-12 — Phase 22 Plan 01 complete (Wave 1 useStorage action layer; smoke PASS=46 FAIL=0 SKIP=10; cross-phase chain green; 1 deviation Rule 1+3 smoke runner whitelist+proximity fix).
+current_plan: 3 of 4
+status: verifying
+stopped_at: Completed 22-02-PLAN.md
+last_updated: "2026-05-12T01:26:02.196Z"
+last_activity: 2026-05-12 — Phase 22 Plan 02 complete (Wave 2 screen wiring + handler migration; smoke PASS=56 FAIL=0 SKIP=0; cross-phase chain green; 0 deviations).
 progress:
   total_phases: 15
   completed_phases: 12
   total_plans: 75
-  completed_plans: 74
-  percent: 99
+  completed_plans: 75
+  percent: 100
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 22 of 24 (Gamification — Toasts + Haptics) — **In Progress (Plan 22-01 Wave 1 useStorage action layer complete)**
-Current Plan: 2 of 4
-Plan: 22-01 complete (Wave 1 useStorage action layer: 3 NEW task-done useCallback actions waterPlant/sunPlant/outdoorPlant land in src/hooks/useStorage.tsx mirroring the Plan 20-04 fertilizePlant shape; setOnTaskCompleted(cb|null) setter + onTaskCompletedRef useRef<(() => void)|null>(null) shipped — ref-based registration so screen-level Toast surfaces in Plan 22-02 can register/unregister without invalidating the value memo (Pitfall 4); all 4 task-done actions fire triggerHaptic('success') + onTaskCompletedRef.current?.() BEFORE the updatePlant setState (matches PlantCard swipe-commit precedent Phase 18 CARD-05); sun + outdoor are TOGGLES with wasUndone boolean gate — haptic+toast fire ONLY on transition TO done (Pitfall 3); water + fertilize fire unconditionally (fertilize after the no-op early-return guard per Plan 22-01 step F); 4 GAM-05 lock anti-pattern comment blocks land one above each task-done useCallback body; StorageActions interface gains 4 new entries; value memo updated in both object literal AND deps array; triggerHaptic imported from ../utils/haptics (first non-worklet consumer); smoke runner deviation Rule 1+Rule 3 fix [scripts/smoke-phase22.cjs]: WHITELIST_LINE_RE extended to also accept literals "GAM-05 lock" + "streaks weaponize missed days" (Plan 22-00 scaffold only whitelisted CARE_STREAKS + gam_anti_patterns.md path which covers line 4 of the canonical 4-line comment block but NOT lines 1+3 that contain `streak` substrings without the path token); fertilizePlant proximity sentinels widened {0,400}→{0,1000} because the fertilizePlant body is ~833 chars from useCallback open to the post-guard haptic firing site (multi-branch catalog-bootstrap logic runs BEFORE haptic per Plan 22-01 step F mandating haptic-after-guard ordering); smoke PASS=46 FAIL=0 SKIP=10 — 16 SKIPs flipped to PASS (was 30/0/26); GAM-05 STRICT negative-grep returns 0 violations; cross-phase chain Phase 18 PASS=56, Phase 19 PASS=85, Phase 20 PASS=49, Phase 21 PASS=76, all FAIL=0; npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; 1 task atomic commit 1131342; ~3 min wall-clock).
-Status: **Phase 22 Plan 22-01 complete (useStorage action layer + Pitfall 3+4 locks landed).** Next: Plan 22-02 wires screen-level gamificationToastVisible state + <Toast> sibling + useEffect callback registration in PlantsScreen + TodayScreen + CalendarScreen; migrates 6 TodayScreen+CalendarScreen handlers from direct updatePlant calls to the new useStorage task actions; remaining 10 smoke SKIPs flip to PASS.
-Last activity: 2026-05-12 — Phase 22 Plan 01 complete (Wave 1 useStorage action layer; smoke PASS=46 FAIL=0 SKIP=10; cross-phase chain green; 1 deviation Rule 1+3 smoke runner whitelist+proximity fix).
+Phase: 22 of 24 (Gamification — Toasts + Haptics) — **In Progress (Plan 22-02 Wave 2 screen wiring complete; Plan 22-03 manual gate remaining)**
+Current Plan: 3 of 4
+Plan: 22-02 complete (Wave 2 screen wiring + handler migration: PlantsScreen + TodayScreen + CalendarScreen each declare gamificationToastVisible useState distinct from Phase 18 toastVisible and Phase 21 journalToastVisible; each registers setGamificationToastVisible via useStorage.setOnTaskCompleted in useEffect with null cleanup; each renders independent <Toast visible={gamificationToastVisible} message={t('gamification.toastSuccess')} durationMs={2000} ...> sibling. PlantsScreen receives Toast surface + callback registration ONLY (verified PlantCard mode='collection' does not consume onWater/onSunDone/onOutdoorDone props — only onFertilizeDone={fertilizePlant} at L300; that flow already wires haptic+Toast via Plan 22-01's fertilizePlant extension). TodayScreen handleWater/handleSunDone/handleOutdoorDone fully migrated from inline updatePlant({lastWatered/sunDoneDate/outdoorDoneDate: ...}) calls to waterPlant(id)/sunPlant(id)/outdoorPlant(id) action calls (toggle semantics for sun/outdoor now live inside the actions via Plan 22-01's wasUndone gate; trackEvent analytics calls preserved verbatim; plants.find lookups removed from handler layer). CalendarScreen handlers migrated with selectedDate guard — when dateStr === todayStr the new action fires (haptic+Toast); otherwise the inline updatePlant pattern with back-dating toggle ternary is preserved (silent, no celebration for retroactive marking). CalendarScreen gains FIRST-ever Toast surface (Phase 21 only added Toasts to PlantsScreen + TodayScreen); imports extended with useEffect (added to React import) + Toast (added to ../components barrel). All 10 GAM-01/02 SKIPs from Plan 22-01 baseline flipped to PASS: GAM-01.{PlantsScreen,TodayScreen,CalendarScreen}.gamificationToastVisible-state (3) + GAM-01.{PlantsScreen,TodayScreen,CalendarScreen}.useEffect-registers-callback (3) + GAM-01.Toast.vas-bien-wired-3-screens (1) + GAM-01.Toast.durationMs-2000-3-screens (1) + GAM-02.{TodayScreen,CalendarScreen}.handlers-migrated-to-actions (2). Smoke runner: PASS=56 FAIL=0 SKIP=0; GAM-05 STRICT negative-grep clean (0 violations). Cross-phase chain green: Phase 18 PASS=56, Phase 19 PASS=85, Phase 20 PASS=49, Phase 21 PASS=76, all FAIL=0. Toast surface counts: PlantsScreen 3 (Phase 18 swipe-undo + Phase 21 journal-saved + Phase 22 task-done), TodayScreen 3 (same), CalendarScreen 1 (Phase 22 task-done only — first surface). npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; 3 task atomic commits b20a6c1 + 5faf2b4 + 07dd033; 4 min wall-clock; 0 deviations.
+Status: **Phase 22 Plan 22-02 complete (screen wiring + handler migration landed; full smoke green).** Next: Plan 22-03 is the manual device-test gate — per established Phase 18-05 / 19-07 / 20-10 / 21-06 precedent, typically Option B deferred to v1.2 milestone-end backlog. Phase 22 implementation surface is complete (Plan 22-00 + 22-01 + 22-02 cover all 3 phase requirements GAM-01/02/05 with smoke full PASS); only manual device verification remains.
+Last activity: 2026-05-12 — Phase 22 Plan 02 complete (Wave 2 screen wiring + handler migration; smoke PASS=56 FAIL=0 SKIP=0; cross-phase chain green; 0 deviations).
 
-Progress: [██████████] 99% (74/75 plans complete; Phase 22 Plan 22-01 complete — Wave 1 useStorage action layer)
+Progress: [██████████] 100% (75/75 plans complete; Phase 22 Plan 22-02 complete — Wave 2 screen wiring + handler migration; Plan 22-03 manual gate remaining)
 
 ## Performance Metrics
 
@@ -108,6 +108,7 @@ Progress: [██████████] 99% (74/75 plans complete; Phase 22 P
 | Phase 21-plant-journal P06 | 3min | 2 tasks | 0 files |
 | Phase 22-gamification-toasts-haptics P00 | 3min | 2 tasks | 5 files |
 | Phase 22-gamification-toasts-haptics P01 | 3min | 1 tasks | 2 files |
+| Phase 22-gamification-toasts-haptics P02 | 4 min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -314,6 +315,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 22-gamification-toasts-haptics]: Ref-based registration (not state) for setOnTaskCompleted — Pitfall 4 lock: state would invalidate the value memo on every callback re-register, triggering a rerender of every useStorage consumer — useRef + useCallback([]) is invisible to React's reconciler. First use of this cross-cutting-callback-via-ref pattern in the codebase; sets the precedent for future cross-cutting screen-level subscriptions (analytics, achievements deferred to v2.0).
 - [Phase 22-gamification-toasts-haptics]: Sun + Outdoor TOGGLE actions gate haptic+toast on wasUndone boolean computed BEFORE the updatePlant call — celebration feedback fires ONLY on transition TO done (Pitfall 3) — Sun + Outdoor are TOGGLES in current code (TodayScreen L210-212, CalendarScreen L96-99). Firing haptic+toast on the undo direction would be wrong UX. Water + Fertilize fire unconditionally; Fertilize fires AFTER the no-op early-return guard so custom plants without a schedule do not get spurious celebration.
 - [Phase 22-gamification-toasts-haptics]: Smoke runner deviation (Rule 1 Bug + Rule 3 Blocking): extended WHITELIST_LINE_RE to accept "GAM-05 lock" + "streaks weaponize missed days" literals and widened fertilizePlant proximity sentinels 400→1000 chars — Plan 22-00 scaffold's WHITELIST_LINE_RE (CARE_STREAKS|gam_anti_patterns.md) could not match the canonical 4-line GAM-05 comment block specified verbatim by CONTEXT.md / RESEARCH.md / PLAN.md (lines 1+3 contain `streak` substrings but only line 4 carries the path token). The 400-char proximity window also could not match fertilizePlant's haptic firing site (~833 chars deep into the body because the haptic MUST fire AFTER the no-op early-return guard per Plan 22-01 step F). The 'FROZEN runner' principle from Plan 22-00 applies to normal SKIP→PASS landing flow; a regex bug preventing the runner from validating the plan's verbatim contract is a legitimate Rule 1+3 deviation. Documented inline in the runner.
+- [Phase 22-gamification-toasts-haptics]: Plan 22-02: PlantsScreen Toast surface without handler migration — verified PlantCard mode='collection' does not consume onWater/onSunDone/onOutdoorDone props
+- [Phase 22-gamification-toasts-haptics]: Plan 22-02: CalendarScreen selectedDate guard via dateStr === todayStr — today-branch calls new useStorage action (celebration), else-branch preserves inline updatePlant pattern (silent back-dating)
 
 ### Pending Todos
 
@@ -328,6 +331,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T01:16:56.947Z
-Stopped at: Completed 22-01-PLAN.md
+Last session: 2026-05-12T01:26:02.193Z
+Stopped at: Completed 22-02-PLAN.md
 Resume file: None
