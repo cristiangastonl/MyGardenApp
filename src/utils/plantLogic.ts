@@ -4,6 +4,22 @@ import type { WaterSeason } from "./seasonality";
 import { getCatalogEntry } from "../data/plantDatabase";
 import i18n from "../i18n";
 
+// ─── POLISH-01 (Phase 23) ───────────────────────────────────────────────────
+/**
+ * Plants whose typeId implies they LIVE outdoors permanently. The "outdoor"
+ * task (take indoor plant out for occasional sun) is nonsensical for these.
+ *
+ * Code-layer defense; the data layer is catalog `outdoor: false` set on the
+ * same set of entries (POLISH-02). Both layers compose; either alone would
+ * still close UAT #3 for a subset of cases.
+ *
+ * NOTE: ONLY 'exterior' and 'frutales' here. Aromáticas + huerta have mixed
+ * indoor/outdoor entries (e.g. stevia/eneldo/salvia-officinalis indoor;
+ * tomato/oregano outdoor); per-entry catalog `outdoor: false` decides
+ * those (POLISH-02 data layer).
+ */
+const OUTDOOR_TYPE_IDS: ReadonlySet<string> = new Set(['exterior', 'frutales']);
+
 /**
  * Resolves the active watering interval (days) for a plant given the season.
  * Tropical zone maps to the 'warm' bucket — Plant.waterSchedule has only
@@ -78,7 +94,13 @@ export function getTasksForDay(plants: Plant[], day: Date, season: WaterSeason):
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       tasks.push({ type: "sun", icon: "☀️", label: `Sol para ${p.name} (${p.sunHours}h)`, plantId: p.id });
     }
-    if (p.outdoorDays.includes(day.getDay())) {
+    // POLISH-01: skip outdoor-task emission for plants that already live outdoors permanently.
+    // Two-layer defense — POLISH-02 catalog `outdoor: false` ALSO prevents `outdoorDays`
+    // from being initialized at AddPlant time.
+    if (
+      p.outdoorDays.includes(day.getDay()) &&
+      !OUTDOOR_TYPE_IDS.has(p.typeId)
+    ) {
       tasks.push({ type: "outdoor", icon: "🌤️", label: `Sacar ${p.name}`, plantId: p.id });
     }
     // FERT-03/04 — emit fertilize task on cadence (season-aware via warm/cold split).
