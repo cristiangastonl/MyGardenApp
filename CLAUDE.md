@@ -14,6 +14,8 @@ npx tsc --noEmit              # Type-check (no linter or test runner configured)
 npx expo install [pkg]        # Install Expo-compatible dependency version
 npm run check:i18n-keys       # Pre-submit: catalog id ↔ i18n keyset parity
 npm run check:images          # Pre-submit: catalog imageUrl 200 OK (network)
+npm run lint:voseo            # Pre-submit: ES action buttons voseo + emoji discipline (STRICT)
+node scripts/smoke-phase23.cjs  # Pre-submit: STRICT cross-phase regression (forks Phase 18-22 sentinels)
 
 # Supabase Edge Functions
 source .envrc && supabase functions deploy identify-plant
@@ -71,12 +73,16 @@ When `Features.AUTH` is `false`, AuthProvider is skipped entirely. AppContent go
 - **Plant knowledge cache** — `plantKnowledgeService.ts` checks Supabase `plant_knowledge` table first, falls back to Perenual API, then caches result
 - **Emoji icons throughout** — Uses emoji instead of an icon library
 - **Feature-gated rendering** — Components check `Features.*` and `usePremiumGate()` before rendering gated UI
+- **Journal photo storage** — `journalService.ts` (Phase 21) saves journal photos to `expo-file-system` `documentDirectory` via the modern `Paths`/`File`/`Directory` API under per-plant subdirectories (`<documentDirectory>/journals/<plantId>/<entryId>.jpg`, compressed to 1080px @ 0.7 JPEG). Photo URIs in `JournalEntry.photoUri` are filesystem paths, NEVER base64 strings in AsyncStorage. `deletePlant` calls `deleteJournalDirectory(plantId)` for orphan cleanup
+- **Three-tier smoke runner discipline (Phase 19+)** — Each non-trivial phase ships a `scripts/smoke-phase<N>.cjs` runner with three tiers: (1) **W0 scaffold STRICT PASS** asserting Wave-0 files exist; (2) **SKIP→PASS placeholders** that flip from SKIP to PASS as later plans land concrete code; (3) **STRICT cross-phase regression sentinels** forked verbatim from the prior phase's runner (NEVER SKIP) — locks Phase 18-23 invariants like `PlantCard.moodEmoji`, `MyPlantDetailModal.ModalSectionId`, `useStorage.triggerHaptic`, `journals?: Record<string, JournalEntry[]>`, `petToxicity` symptoms validation, `fertilizer.industrial/homemade` validation, and GAM-05 streak-counter negative-grep
 
 ### Services Layer (`src/services/`)
 - `authService.ts` — (V1.1) Google/Apple OAuth via `expo-auth-session` + `expo-web-browser`
 - `syncService.ts` — (V1.1) Supabase CRUD with local↔DB converters
 - `plantKnowledgeService.ts` — Two-tier lookup: Supabase cache → Perenual API → cache result
 - `imageService.ts` — (V1.1) Upload/delete plant photos to Supabase Storage bucket `plant-images`
+- `unknownPlantTracker.ts` — (v1.2 Phase 12) Fire-and-forget tracker writing catalog misses to AsyncStorage key `@unknown_plants` (Record<scientificName, UnknownPlantEntry>). Called from `getEnrichedPlantData()` BEFORE the Perenual fallback when `getPlantById(scientificName)` returns no curated entry. `getUnknownPlantsReport()` reads back sorted desc by count for Settings → Dev tools display. Future v2 (`TRACK-V01`) migrates to a Supabase `unknown_plant_requests` table once AUTH ships
+- `journalService.ts` — (v1.2 Phase 21) Per-plant journal photo I/O against `expo-file-system` `documentDirectory` via the modern `Paths`/`File`/`Directory` API: `pickJournalPhoto()`, `saveJournalPhoto(plantId, entryId, srcUri)`, `deleteJournalPhoto(uri)`, `deleteJournalDirectory(plantId)`. Photos are saved as 1080px @ 0.7 JPEG (`expo-image-manipulator`) into `<documentDirectory>/journals/<plantId>/<entryId>.jpg`. `deletePlant` invokes `deleteJournalDirectory` for orphan cleanup — no base64 strings in AsyncStorage
 
 ### Supabase Configuration
 - Client in `src/lib/supabase.ts` — Uses `expo-secure-store` for session (localStorage on web)
@@ -167,12 +173,21 @@ eas submit --platform ios --profile production --id <BUILD_ID>
 
 ## Pre-submit Checks
 
-Two npm scripts must be run before submitting builds to catch catalog drift:
+Before submitting builds, run the following commands to catch catalog drift, ES microcopy drift, and cross-phase regressions:
 
 ```bash
-npm run check:i18n-keys   # sync; ~2s; fails on missing en/es plants.json keys
-npm run check:images      # async network HEAD; ~30-60s; fails on 404 imageUrl
+npm run check:i18n-keys     # sync; ~2s; fails on missing en/es plants.json keys (incl. conditional petToxicity.symptoms + fertilizer.industrial/homemade sub-fields)
+npm run check:images        # async network HEAD; ~30-60s; fails on 404 imageUrl
+npm run lint:voseo          # STRICT; ~1s; fails on ES action buttons missing voseo + emoji
+node scripts/smoke-phase18.cjs    # Phase 18 — PlantCard 5-element layout + mood emoji + Gesture.Pan + Toast
+node scripts/smoke-phase19.cjs    # Phase 19 — Pet toxicity badges + Mascotas section + initialSection prop
+node scripts/smoke-phase20.cjs    # Phase 20 — Fertilize task type 5-site discriminator + FertilizeCard
+node scripts/smoke-phase21.cjs    # Phase 21 — Journal data layer + FileSystem service + UI surfaces
+node scripts/smoke-phase22.cjs    # Phase 22 — Gamification toasts + haptics + GAM-05 anti-streak negative-grep
+node scripts/smoke-phase23.cjs    # Phase 23 — POLISH-01..08 + STRICT cross-phase regression Phase 18-22 sentinels
 ```
+
+The `lint:voseo` + smoke-phase{18..23}.cjs chain enforces the **three-tier discipline** (W0 scaffold / SKIP→PASS / STRICT cross-phase regression) described in Architecture §Key Patterns. Each runner forks the prior phase's STRICT cross-phase block verbatim, so running the latest (`smoke-phase23.cjs`) is sufficient to cover Phase 18-22 invariants. The full chain is recommended pre-submit to localize regressions to the originating phase.
 
 **`check:i18n-keys`** — verifies every entry id in `src/data/plantDatabase.ts` has a complete keyset (`name`, `tip`, `description`, `problems[>=1]`, `nutrients` if entry declares any) in both `src/i18n/locales/en/plants.json` AND `src/i18n/locales/es/plants.json`. Exits 1 with itemised list of missing keys. **MUST pass before any submit.**
 
