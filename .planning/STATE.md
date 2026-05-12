@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 4 of 4
-status: planning
-stopped_at: Completed 22-02-PLAN.md
-last_updated: "2026-05-12T01:35:47.318Z"
-last_activity: 2026-05-11 — Phase 22 Plan 03 complete (closing manual gate — Option B auto-selected; 14-item checklist appended to v1_2_test_backlog.md; all 7 automation gates green; GAM-01/02/05 closed at code level; 0 deviations).
+current_plan: 1 of 5
+status: executing
+stopped_at: Completed 23-00-PLAN.md
+last_updated: "2026-05-12T04:28:43.220Z"
+last_activity: 2026-05-12 — Phase 23 Plan 00 complete (Wave 0 Nyquist scaffold — smoke-phase23.cjs three-tier runner forked from smoke-phase22.cjs + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + EN/ES emptyState namespace; PASS=43 SKIP=6 FAIL=0; Phase 18-22 cross-phase regression preserved verbatim; 0 deviations).
 progress:
   total_phases: 15
   completed_phases: 13
-  total_plans: 75
-  completed_plans: 76
-  percent: 100
+  total_plans: 80
+  completed_plans: 77
+  percent: 96
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 22 of 24 (Gamification — Toasts + Haptics) — **Closing (Plan 22-03 closing manual gate complete via Option B auto-mode chain; verifier pending)**
-Current Plan: 4 of 4
-Plan: 22-03 complete (closing manual gate: pre-checkpoint automation suite re-verified GREEN at plan-start time — `npx tsc --noEmit` exit 0, `npm run check:i18n-keys` PASS 118 catalog ids, `node scripts/smoke-phase18.cjs` PASS=56/0/0, `node scripts/smoke-phase19.cjs` PASS=85/0/0, `node scripts/smoke-phase20.cjs` PASS=49/0/0, `node scripts/smoke-phase21.cjs` PASS=76/0/0, `node scripts/smoke-phase22.cjs` PASS=56/0/0. User auto-selected Option B — milestone-end batching of the 14-item iOS + Android device-test checklist per established Phase 18-05 / 19-07 / 20-10 / 21-06 precedent (auto-mode chain `--auto --no-transition`; four prior consecutive Option B selections with Phase 19-07 as the ONE Option A outlier). 14-item Blocks A-E checklist (12 hard-fail + 2 soft-fail) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` BEFORE the pre-submission session structure section; backlog file grew from 235 → 294 lines (+59 LOC delta). Phase 22 CLOSED at code level — all 3 GAM-* requirement IDs (GAM-01 Toast wired in 3 screens via `gamificationToastVisible` distinct-identifier state + setOnTaskCompleted callback registration; GAM-02 `triggerHaptic('success')` in all 4 useStorage task actions + wasUndone toggle gate for sun/outdoor; GAM-05 STRICT negative-grep over `src/` for 6 streak-anxiety terms with CARE_STREAKS + gam_anti_patterns.md whitelist) reach closing PASS state. 0 source file changes (verification-only plan). 2 min wall-clock. 0 deviations.
-Status: **Phase 22 CLOSED at code level via Plan 22-03 closing manual gate (Option B deferral); verifier-pending.** All 3 GAM-* requirement IDs reach closing PASS at file-content/i18n-parity/smoke-runner surface; deferred 14-item device-test checklist is ship-blocker for v1.2 store submission, NOT for Phase 22 closure. Next: Phase 22 verifier (orchestrator-spawned) confirms phase closure invariants; then Phase 23 (Polish — UAT Fixes + Brand Voice) ready to plan.
-Last activity: 2026-05-11 — Phase 22 Plan 03 complete (closing manual gate — Option B auto-selected; 14-item checklist appended to v1_2_test_backlog.md; all 7 automation gates green; GAM-01/02/05 closed at code level; 0 deviations).
+Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plan 23-00 Wave 0 Nyquist scaffold complete; Plan 23-01 outdoor cluster next)**
+Current Plan: 1 of 5
+Plan: 23-00 complete (Wave 0 Nyquist scaffold — forked smoke-phase22.cjs verbatim into `scripts/smoke-phase23.cjs` (344 LOC three-tier runner with STRICT W0 scaffold + POLISH-01/02/03/05/06/07 SKIP→PASS placeholders + STRICT POLISH-08 negative-grep + STRICT cross-phase Phase 18-22 Tier 3 block); landed `scripts/voseo-lint.mjs` skeleton (89 LOC, empty BANNED + walkValues + exit 0/1/2 + stdout flag literal `skeleton — BANNED list empty until Plan 23-02` so smoke sentinel auto-discriminates skeleton vs strict-body state); wired `smoke:phase23` + `lint:voseo` npm scripts (count grew 22 → 24); appended `scripts/.tmp-phase23/` to `.gitignore` (parity with Phase 19/20/21/22); seeded `emptyState.{plants,calendar,explore}.{title,cta}` i18n namespace in EN + ES `common.json` (12 leaf keys total; ES locked to CONTEXT.md voseo copy `Tu jardín está esperando 🌱` / `Agregá tu primera planta` / `No hay tareas hoy ☀️` / `Disfrutá del descanso` / `Explorá +100 plantas para tu hogar` / `Buscar especies`). W0 baseline: smoke-phase23 PASS=43 SKIP=6 FAIL=0 (POLISH-01/03/05/06-button/06-lint/07 SKIP; POLISH-02 PASSing because catalog already has 54 outdoor:false ≥ 45 threshold; POLISH-08 STRICT PASS at baseline per RESEARCH §Finding 12). All 4 automation gates green (smoke:phase23, lint:voseo, tsc, check:i18n-keys 118 ids). Cross-phase regression preserved: Phase 18 (56/0/0), 19 (85/0/0), 20 (49/0/0), 21 (76/0/0), 22 (56/0/0). 2 tasks, 6 files (2 created, 4 modified), 3 min wall-clock, 0 deviations.
+Status: **Phase 23 Plan 23-00 W0 scaffold landed; Plan 23-01 (outdoor cluster: POLISH-01 + POLISH-02 + POLISH-03) ready to execute.** Validation contract locked before any source change; 6 POLISH-* SKIP placeholders flip to PASS as Plans 23-01/02/03 land concrete code.
+Last activity: 2026-05-12 — Phase 23 Plan 00 complete (Wave 0 Nyquist scaffold — smoke-phase23.cjs three-tier runner forked from smoke-phase22.cjs + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + EN/ES emptyState namespace; PASS=43 SKIP=6 FAIL=0; Phase 18-22 cross-phase regression preserved verbatim; 0 deviations).
 
-Progress: [██████████] 100% (75/75 plans complete; Phase 22 fully landed at code level — Plans 22-00..22-02 implementation + Plan 22-03 closing manual gate via Option B deferral)
+Progress: [██████████] 96% (77/80 plans complete; Phase 23 Plan 23-00 W0 scaffold landed; Plans 23-01/02/03/04 pending)
 
 ## Performance Metrics
 
@@ -110,6 +110,7 @@ Progress: [██████████] 100% (75/75 plans complete; Phase 22 
 | Phase 22-gamification-toasts-haptics P01 | 3min | 1 tasks | 2 files |
 | Phase 22-gamification-toasts-haptics P02 | 4 min | 3 tasks | 3 files |
 | Phase 22-gamification-toasts-haptics P03 | 2 min | 2 tasks | 0 files |
+| Phase 23-polish-uat-brand-voice P00 | 3min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -320,6 +321,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 22-gamification-toasts-haptics]: Plan 22-02: CalendarScreen selectedDate guard via dateStr === todayStr — today-branch calls new useStorage action (celebration), else-branch preserves inline updatePlant pattern (silent back-dating)
 - [Phase 22-gamification-toasts-haptics]: Plan 22-03: User auto-selected Option B (defer to v1.2 backlog) — NOT Option A (run-now). Auto-mode chain via orchestrator's `--auto --no-transition` flag, applying established v1.2 closure precedent (four prior consecutive Option B selections at the same manual-checkpoint structural threshold: Phase 18-05 + Phase 20-10 + Phase 21-06; Phase 19-07 was the ONE Option A outlier). 14-item Blocks A-E checklist (12 hard-fail + 2 soft-fail) appended verbatim to v1_2_test_backlog.md memory file
 - [Phase 22-gamification-toasts-haptics]: Plan 22-03: Phase 22 CLOSED at code level despite device-only deferral — all 7 automation gates green (tsc + i18n + smoke-18/19/20/21/22) + GAM-05 STRICT negative-grep covering 6 streak-anxiety terms across src/ + cross-phase regression sentinels green = 3 Phase 22 requirement IDs (GAM-01, GAM-02, GAM-05) reach closing PASS state. Deferred 14-item device-test checklist remains ship-blocker for v1.2 store submission, NOT for Phase 22 closure.
+- [Phase 23-polish-uat-brand-voice]: Voseo-lint skeleton ships at W0 with stdout discriminator (literal 'skeleton — BANNED list empty until Plan 23-02') so the smoke sentinel can auto-flip SKIP → PASS when Plan 23-02 lands the STRICT body and removes the flag; runner stays read-only after Wave 0 per Phase 14-00 / 19-00 / 20-00 / 21-00 / 22-00 precedent
+- [Phase 23-polish-uat-brand-voice]: WCAG AA contrast helper inlined directly in smoke-phase23.cjs (hexToRgb + linearize + relativeLuminance + contrast ratio); keeps validation contract self-contained — smoke runner only does regex extraction of textSecondary hex, never imports the soon-to-be-edited theme.ts module
+- [Phase 23-polish-uat-brand-voice]: Phase 22 cross-phase block promoted from Tier 2 SKIP to Tier 3 STRICT in smoke-phase23.cjs — GAM-01/02/05 sentinels now regression-only; establishes precedent that each new phase's smoke runner upgrades the prior phase's SKIP-tier sentinels to STRICT
 
 ### Pending Todos
 
@@ -334,6 +338,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T01:26:02.193Z
-Stopped at: Completed 22-02-PLAN.md
+Last session: 2026-05-12T04:27:58.465Z
+Stopped at: Completed 23-00-PLAN.md
 Resume file: None
