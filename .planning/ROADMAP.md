@@ -51,7 +51,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 - [x] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications (completed 2026-05-11)
 - [x] **Phase 21: Plant Journal** — Per-plant `JournalEntry[]` with file-system photo storage; bottom-sheet quick-add; reverse-chronological timeline; orphan cleanup on plant delete (completed 2026-05-11)
 - [x] **Phase 22: Gamification — Toasts + Haptics** — Completion toasts; haptic feedback on task done; streak-anxiety anti-pattern documented and enforced (completed 2026-05-12)
-- [ ] **Phase 23: Polish — UAT Fixes + Brand Voice** — Outdoor task gate; outdoor picker labels; textSecondary WCAG AA; voseo microcopy; illustrated empty states
+- [x] **Phase 23: Polish — UAT Fixes + Brand Voice** — Outdoor task gate; outdoor picker labels; textSecondary WCAG AA; voseo microcopy; illustrated empty states (completed 2026-05-12)
 - [ ] **Phase 24: Documentation** — CLAUDE.md + PROJECT.md updated for v1.2 architecture decisions
 
 ## Phase Details
@@ -288,12 +288,12 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. `colors.textSecondary` passes WCAG AA contrast ratio (~4.5:1) against both `bgPrimary` and `card` backgrounds
   4. All action buttons in ES locale use voseo imperative forms ("Regá ahora 💧", not "Regar"); voseo linter passes
   5. PlantsScreen, CalendarScreen, and ExploreScreen show illustrated empty states with motivating voseo copy when empty
-**Plans:** 4/5 plans executed
-  - [ ] 23-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase23.cjs (fork phase 22; STRICT cross-phase Phase 18-22) + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + emptyState i18n namespace EN+ES (POLISH-01..08 scaffold)
-  - [ ] 23-01-PLAN.md — Wave 1 outdoor cluster: POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 catalog outdoor:false on 45 entries + POLISH-03 resolveTypeIdForPicker (3 atomic commits)
-  - [ ] 23-02-PLAN.md — Wave 2 WCAG + voseo: POLISH-05 textSecondary #8a7e6b → #6f6450 (WCAG AA) + POLISH-06 STRICT voseo-lint body + 17 pre-existing violation fixes + 4 action button voseo+emoji (2 atomic commits)
-  - [ ] 23-03-PLAN.md — Wave 3 empty states: POLISH-07 3 PNG illustrations + 3 EmptyState JSX in PlantsScreen/CalendarScreen/ExploreScreen + POLISH-08 STRICT negative-grep verified (2 atomic commits)
-  - [ ] 23-04-PLAN.md — Wave 4 manual gate: POLISH-04 identify→diagnose device test (automation gate first, then Option A/B closure per Phase 22-03 precedent)
+**Plans:** 5/5 plans complete
+  - [x] 23-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase23.cjs (fork phase 22; STRICT cross-phase Phase 18-22) + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + emptyState i18n namespace EN+ES (POLISH-01..08 scaffold)
+  - [x] 23-01-PLAN.md — Wave 1 outdoor cluster: POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 catalog outdoor:false on 45 entries + POLISH-03 resolveTypeIdForPicker (3 atomic commits)
+  - [x] 23-02-PLAN.md — Wave 2 WCAG + voseo: POLISH-05 textSecondary #8a7e6b → #6f6450 (WCAG AA) + POLISH-06 STRICT voseo-lint body + 17 pre-existing violation fixes + 4 action button voseo+emoji (2 atomic commits)
+  - [x] 23-03-PLAN.md — Wave 3 empty states: POLISH-07 3 PNG illustrations + 3 EmptyState JSX in PlantsScreen/CalendarScreen/ExploreScreen + POLISH-08 STRICT negative-grep verified (2 atomic commits)
+  - [x] 23-04-PLAN.md — Wave 4 closing manual gate: 9-command automation suite re-verified GREEN (tsc + check:i18n-keys + smoke-phase18/19/20/21/22/23 + lint:voseo); user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent — 14-item POLISH-04 device-test checklist deferred to v1_2_test_backlog.md memory (Phase 23 closes at code level for all 8 POLISH-* requirement IDs)
 
 ### Phase 24: Documentation
 **Goal**: CLAUDE.md and PROJECT.md accurately reflect v1.2 architecture decisions so future Claude sessions start with correct context
@@ -330,5 +330,5 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
 | 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
 | 22. Gamification — Toasts + Haptics | 4/4 | Complete    | 2026-05-12 | - |
-| 23. Polish — UAT Fixes + Brand Voice | 4/5 | In Progress|  | - |
+| 23. Polish — UAT Fixes + Brand Voice | 5/5 | Complete   | 2026-05-12 | - |
 | 24. Documentation | v1.2 | 0/TBD | Not started | - |

@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 4 of 5
-status: executing
-stopped_at: Completed 23-03-PLAN.md
-last_updated: "2026-05-12T05:10:57.970Z"
-last_activity: 2026-05-12 — Phase 23 Plan 03 complete (Wave 3 empty states — POLISH-07 3 PNG illustrations + 3 EmptyState JSX swaps/adds (CalendarScreen NEW per Pitfall 7) using RN built-in Image; zero new deps; POLISH-08 STRICT negative-grep PASS preserved; 2 atomic commits; smoke-phase23 PASS=49 FAIL=0 SKIP=0 — all automated POLISH sentinels green; Phase 18-22 cross-phase regression preserved; zero deviations).
+current_plan: 5 of 5
+status: verifying
+stopped_at: Completed 23-04-PLAN.md
+last_updated: "2026-05-12T05:16:29.406Z"
+last_activity: 2026-05-12 — Phase 23 Plan 04 complete (Wave 4 closing manual gate — 9-command automation suite re-verified GREEN; user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent; 14-item Phase 23 device-test checklist appended to v1_2_test_backlog.md memory +63 LOC; all 8 POLISH-* requirement IDs closed at code level; 0 source file changes).
 progress:
   total_phases: 15
-  completed_phases: 13
+  completed_phases: 14
   total_plans: 80
-  completed_plans: 80
+  completed_plans: 81
   percent: 100
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo + 23-03 empty states complete; Plan 23-04 manual gate next)**
-Current Plan: 4 of 5
-Plan: 23-03 complete (Wave 3 empty states — POLISH-07 + POLISH-08 closed in 2 atomic commits). POLISH-07 (assets): 3 hand-authored 600×600 PNG illustrations under assets/illustrations/ — empty-plants.png (30,999B, planta-en-maceta motif), empty-calendar.png (11,267B, calendario-sin-tasks motif), empty-explore.png (60,950B, lupa-sobre-hoja motif). Generated via SVG-to-ImageMagick conversion (Approach A — `magick <svg> -background "#f5f0e6" -resize 600x600`); SVG sources under scripts/.tmp-phase23/ (gitignored). Palette restricted to existing theme tokens only — no new design-system tokens introduced (CLAUDE.md lock honored). POLISH-07 (JSX): PlantsScreen EmptyState swap (emoji 🌿 → <Image> at line ~365 + i18n keys plants.emptyTitle/emptyText → emptyState.plants.title/cta); ExploreScreen EmptyState swap (emoji 🔍 → <Image> at line ~164 + i18n keys explore.noResults/noResultsText → emptyState.explore.title/cta); CalendarScreen NEW EmptyState (RESEARCH §Pitfall 7 — none existed previously) conditionally rendered below MonthCalendar when plants.length === 0 + emptyState.calendar.title/cta. All 3 EmptyState use 180×180 illustration sizing; consistent PlayfairDisplay/DMSans typography. RN built-in <Image> path — zero new dependencies (react-native-svg deliberately avoided per RESEARCH §Finding 10 + §Pitfall 6). POLISH-08 STRICT negative-grep PASS preserved — zero samplePlants/mockPlants/seedPlants/demoPlants/firstLaunchPlants arrays introduced; permanent CI gate locks "no test event syndrome" product discipline. Smoke-phase23: PASS=48→49 SKIP=1→0 — POLISH-07.illustrated-empty-states flipped SKIP→PASS; all POLISH-01..08 automated sentinels green (POLISH-04 manual-only deferred to Plan 23-04). Phase 18-22 cross-phase STRICT sentinels all preserved verbatim. All gates green: tsc clean, check:i18n-keys PASS 118 catalog ids, lint:voseo exit 0 STRICT, smoke-phase23 49/0/0, all 6 phase smoke runners (18+19+20+21+22+23) green. 2 tasks, 3 source files + 3 PNG assets, 2 min, ZERO deviations (Approach A succeeded on first attempt — no fallback to B/C needed).
-Status: **Phase 23 Plan 23-03 empty-states cluster landed; Plan 23-04 (Wave 4 manual gate: POLISH-04 device-test on iOS + Android + Block A-E 8-12-item manual checklist + Option A/B closure) ready to execute.** Zero SKIP in smoke-phase23 (all automated POLISH sentinels PASS); POLISH-04 manual-only.
-Last activity: 2026-05-12 — Phase 23 Plan 03 complete (Wave 3 empty states — POLISH-07 3 PNG illustrations + 3 EmptyState JSX swaps/adds (CalendarScreen NEW per Pitfall 7) using RN built-in Image; zero new deps; POLISH-08 STRICT negative-grep PASS preserved; 2 atomic commits; smoke-phase23 PASS=49 FAIL=0 SKIP=0 — all automated POLISH sentinels green; Phase 18-22 cross-phase regression preserved; zero deviations).
+Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **Awaiting verifier (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo + 23-03 empty states + 23-04 closing manual gate all complete)**
+Current Plan: 5 of 5
+Plan: 23-04 complete (Wave 4 closing manual gate — verification-only, 0 source files modified). Task 1 (9-command automation gate re-verify) PASS: `npx tsc --noEmit` exit 0 / `npm run check:i18n-keys` PASS 118 catalog ids / `node scripts/smoke-phase18.cjs` PASS=56 FAIL=0 SKIP=0 / `node scripts/smoke-phase19.cjs` PASS=85 FAIL=0 SKIP=0 / `node scripts/smoke-phase20.cjs` PASS=49 FAIL=0 SKIP=0 / `node scripts/smoke-phase21.cjs` PASS=76 FAIL=0 SKIP=0 / `node scripts/smoke-phase22.cjs` PASS=56 FAIL=0 SKIP=0 / `node scripts/smoke-phase23.cjs` PASS=49 FAIL=0 SKIP=0 / `npm run lint:voseo` exit 0 STRICT. Task 2 (manual checkpoint POLISH-04 device-test vs deferral): user auto-selected **Option B** per orchestrator auto-mode chain `--auto --no-transition` flag applying established v1.2 closure precedent (5 prior consecutive Option B selections at the same manual-checkpoint structural threshold: Phase 18-05 + Phase 20-10 + Phase 21-06 + Phase 22-03; Phase 19-07 was the ONE Option A outlier across the v1.2 manual-checkpoint chain). The 14-item Phase 23 device-test checklist (5 blocks A-E: A POLISH-01/02 outdoor task gate / B POLISH-03 PlantNet category-over-indoor / C POLISH-04 identify→diagnose flow / D POLISH-05 + POLISH-06 visual/brand-voice / E POLISH-07 + POLISH-08 illustrated empty states; 12 hard-fail + 2 soft-fail) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` (+63 LOC delta; from 294 → 357 lines). Phase 23 closes at code level for all 8 POLISH-* requirement IDs (POLISH-01/02/03/05/06/07/08 via Plans 23-00..23-03 source surface; POLISH-04 via Option B deferral routing — manual-only by design). 2 tasks, 0 source files modified, ~2 min, ZERO deviations.
+Status: **Phase 23 Plan 23-04 closing manual gate complete; all 5 plans landed (23-00 + 23-01 + 23-02 + 23-03 + 23-04). Phase 23 ready for orchestrator-spawned verifier to confirm phase closure invariants.** Phase 23 deferred device-test checklist (14 items) joins consolidated v1.2 milestone-end batch session (alongside Phase 13 iOS verification + Phase 14 e2e re-verify + PaywallModal Z-order coexistence + Phase 18 38-item + Phase 20 14-item + Phase 21 14-item + Phase 22 14-item + 69-entry image upload backlog) before v1.2 App Store / Play Store submission.
+Last activity: 2026-05-12 — Phase 23 Plan 04 complete (Wave 4 closing manual gate — 9-command automation suite re-verified GREEN; user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent; 14-item Phase 23 device-test checklist appended to v1_2_test_backlog.md memory +63 LOC; all 8 POLISH-* requirement IDs closed at code level; 0 source file changes).
 
-Progress: [██████████] 100% (80/80 plans complete; Phase 23 Plans 23-00 + 23-01 + 23-02 + 23-03 landed; Plan 23-04 manual gate pending)
+Progress: [██████████] 100% (81/80 plans complete — Phase 23 Plan 04 closes Phase 23 at code level; awaiting verifier for phase status flip)
 
 ## Performance Metrics
 
@@ -114,6 +114,7 @@ Progress: [██████████] 100% (80/80 plans complete; Phase 23 
 | Phase 23-polish-uat-brand-voice P01 | 2min | 3 tasks | 3 files |
 | Phase 23-polish-uat-brand-voice P02 | 25 min | 2 tasks | 5 files |
 | Phase 23 P03 | 2 min | 2 tasks | 6 files |
+| Phase 23-polish-uat-brand-voice P04 | 4min | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -337,6 +338,8 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 23]: Plan 23-03 Approach A (Claude SVG-to-PNG via ImageMagick) chosen over fallback approaches B/C — ImageMagick `magick` binary available at /opt/homebrew/bin/magick; hand-authored SVG sources produce deterministic on-brand illustrations rather than emoji/data-URI placeholders. SVG sources committed to scripts/.tmp-phase23/ (gitignored, mirrors Plan 23-02 fix-plants-voseo.cjs runner discipline) so future plans can re-render the PNGs by re-running ImageMagick.
 - [Phase 23]: Plan 23-03 CalendarScreen empty-state placed BELOW MonthCalendar grid as addendum (Pitfall 7 explicit lock) — does NOT replace the grid — Users with zero plants still want to see month navigation context; the empty illustration informs without removing affordances. Per-day "no tasks scheduled" inside DayDetailModal stays in place — out of scope per plan. CalendarScreen previously had no EmptyState at all (RESEARCH §Pitfall 7), so a fresh styles block was added mirroring the PlantsScreen + ExploreScreen shape (180×180 illustration, PlayfairDisplay title, DMSans body).
 - [Phase 23]: Plan 23-03 POLISH-08 STRICT negative-grep gate locked permanent — zero sample-plant arrays in src/ enforced on every smoke-phase23 run — RESEARCH §Finding 12 PASS at baseline carried forward; smoke-phase23 TIER 2.5 walks src/ recursively and asserts `\b(samplePlants|mockPlants|seedPlants|demoPlants|firstLaunchPlants)\b` returns zero matches. Any future plan that accidentally introduces a sample-plant array will hard-fail at smoke time. Locks "no test event syndrome" as a permanent product discipline — empty state IS the first-launch UX.
+- [Phase 23-polish-uat-brand-voice]: Plan 23-04 — User auto-selected Option B (defer Phase 23 14-item device-test checklist to v1.2 milestone-end batch) per established Phase 18-05 / 20-10 / 21-06 / 22-03 precedent via auto-mode chain --auto --no-transition; 5 prior consecutive Option B selections at the manual-checkpoint structural threshold (Phase 19-07 was the ONE Option A outlier across v1.2 manual-checkpoint chain) = canonical path for autonomous:false closing plans.
+- [Phase 23-polish-uat-brand-voice]: Plan 23-04 — Phase 23 closes at code level despite POLISH-04 manual-only deferral: 9 automation gates green (tsc + check:i18n-keys + smoke-phase18/19/20/21/22/23 + lint:voseo) + voseo-lint STRICT + POLISH-08 STRICT negative-grep covering 5 sample-plant terms + cross-phase regression sentinels green (Phase 18 56 / Phase 19 85 / Phase 20 49 / Phase 21 76 / Phase 22 56) = all 8 POLISH-* requirement IDs reach closing PASS state. POLISH-04 marked Complete via Option B deferral routing.
 
 ### Pending Todos
 
@@ -351,6 +354,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T05:10:45.048Z
-Stopped at: Completed 23-03-PLAN.md
+Last session: 2026-05-12T05:16:29.402Z
+Stopped at: Completed 23-04-PLAN.md
 Resume file: None
