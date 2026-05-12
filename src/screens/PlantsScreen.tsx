@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -362,13 +363,20 @@ export default function PlantsScreen() {
     </View>
   );
 
+  // Phase 23 POLISH-07: illustrated empty state (PNG via RN built-in <Image>; no
+  // react-native-svg dependency per RESEARCH §Finding 10 + §Pitfall 6). Copy keys
+  // swap from legacy `plants.emptyTitle`/`plants.emptyText` to the new
+  // `emptyState.plants.{title,cta}` namespace landed in Plan 23-00 (CONTEXT.md voseo lock).
   const EmptyState = () => (
     <View style={styles.emptyState}>
-      <Text style={styles.emptyIcon}>🌿</Text>
-      <Text style={styles.emptyTitle}>{t('plants.emptyTitle')}</Text>
-      <Text style={styles.emptyText}>
-        {t('plants.emptyText')}
-      </Text>
+      <Image
+        source={require('../../assets/illustrations/empty-plants.png')}
+        style={styles.emptyIllustration}
+        resizeMode="contain"
+        accessibilityIgnoresInvertColors
+      />
+      <Text style={styles.emptyTitle}>{t('emptyState.plants.title')}</Text>
+      <Text style={styles.emptyText}>{t('emptyState.plants.cta')}</Text>
     </View>
   );
 
@@ -602,9 +610,12 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xxxl,
     paddingHorizontal: spacing.xl,
   },
-  emptyIcon: {
-    fontSize: 64,
+  // Phase 23 POLISH-07: illustrated empty-state PNG sizing — 180×180 mirrors RESEARCH §Pattern 4.
+  emptyIllustration: {
+    width: 180,
+    height: 180,
     marginBottom: spacing.lg,
+    alignSelf: 'center',
   },
   emptyTitle: {
     fontFamily: fonts.heading,

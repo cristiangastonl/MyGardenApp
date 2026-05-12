@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -243,6 +244,25 @@ export default function CalendarScreen() {
           onSelectDate={handleSelectDate}
         />
 
+        {/* Phase 23 POLISH-07: illustrated empty state — NEW on CalendarScreen
+            (RESEARCH §Pitfall 7: no EmptyState existed previously). Rendered BELOW
+            MonthCalendar when plants.length === 0 (zero-plants mode); the
+            DayDetailModal continues to handle the per-day "no tasks scheduled"
+            empty state. PNG via RN built-in <Image>; no react-native-svg dependency
+            per §Finding 10 + §Pitfall 6. */}
+        {plants.length === 0 && (
+          <View style={styles.emptyState}>
+            <Image
+              source={require('../../assets/illustrations/empty-calendar.png')}
+              style={styles.emptyIllustration}
+              resizeMode="contain"
+              accessibilityIgnoresInvertColors
+            />
+            <Text style={styles.emptyTitle}>{t('emptyState.calendar.title')}</Text>
+            <Text style={styles.emptyText}>{t('emptyState.calendar.cta')}</Text>
+          </View>
+        )}
+
         {/* Legend */}
         <View style={styles.legend}>
           <Text style={styles.legendTitle}>{t('calendar.legend')}</Text>
@@ -434,5 +454,33 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.infoText,
     lineHeight: 19,
+  },
+  // Phase 23 POLISH-07: NEW illustrated empty state on CalendarScreen (RESEARCH
+  // §Pitfall 7 — none existed previously). Style shape mirrors PlantsScreen +
+  // ExploreScreen for surface consistency. Tokens reused from theme.ts only — no
+  // new design-system tokens introduced (CLAUDE.md design-system lock).
+  emptyState: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.xl,
+  },
+  emptyIllustration: {
+    width: 180,
+    height: 180,
+    marginBottom: spacing.lg,
+    alignSelf: 'center',
+  },
+  emptyTitle: {
+    fontFamily: fonts.heading,
+    fontSize: 18,
+    color: colors.textPrimary,
+    textAlign: 'center',
+    marginBottom: spacing.sm,
+  },
+  emptyText: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
   },
 });
