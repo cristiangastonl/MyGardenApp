@@ -103,11 +103,11 @@
 
 ### Gamification — Light Celebrations (GAM)
 
-- [ ] **GAM-01**: Toast component shown on task completion ("¡Vas bien! 🌱") — positive-only, NEVER a broken-streak penalty
-- [ ] **GAM-02**: Haptic feedback (`Haptics.NotificationFeedbackType.Success`) on water/sun/outdoor/fertilize task done
+- [x] **GAM-01**: Toast component shown on task completion ("¡Vas bien! 🌱") — positive-only, NEVER a broken-streak penalty
+- [x] **GAM-02**: Haptic feedback (`Haptics.NotificationFeedbackType.Success`) on water/sun/outdoor/fertilize task done
 - [x] **GAM-03**: Per-plant happiness mood emoji ALWAYS visible on PlantCard (Greg-style). Derived from existing `calculatePlantHealth(plant).healthLevel` — `excellent`→🌱, `good`→😊, `warning`→😐, `danger`→😟. Tap opens existing `PlantHealthDetail` modal (preserves current behavior).
 - [x] **GAM-04**: Mood emoji REPLACES the conditional `PlantHealthBadge` (currently shown only when score<80). Card stays at 5 elements per CARD-03 — mood emoji is the always-visible health affordance, healthBadge component deprecated. NO numeric score on the card itself; numbers only inside HealthDetail modal.
-- [ ] **GAM-05**: NO persistent streak counter in primary UI (anti-pattern per research — creates anxiety; missing a watering day is sometimes horticulturally correct). Mood emoji communicates state without requiring sustained streaks.
+- [x] **GAM-05**: NO persistent streak counter in primary UI (anti-pattern per research — creates anxiety; missing a watering day is sometimes horticulturally correct). Mood emoji communicates state without requiring sustained streaks.
 
 ### Polish — UAT Bug Fixes + Brand Voice (POLISH)
 
@@ -248,9 +248,9 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | JOURNAL-03 | Phase 21 | Complete |
 | JOURNAL-04 | Phase 21 | Complete |
 | JOURNAL-05 | Phase 21 | Complete |
-| GAM-01 | Phase 22 | Pending |
-| GAM-02 | Phase 22 | Pending |
-| GAM-05 | Phase 22 | Pending |
+| GAM-01 | Phase 22 | Complete |
+| GAM-02 | Phase 22 | Complete |
+| GAM-05 | Phase 22 | Complete |
 | POLISH-01 | Phase 23 | Pending |
 | POLISH-02 | Phase 23 | Pending |
 | POLISH-03 | Phase 23 | Pending |
