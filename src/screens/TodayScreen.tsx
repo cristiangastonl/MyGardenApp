@@ -78,6 +78,10 @@ export default function TodayScreen() {
     deletePlant,
     addPlant,
     fertilizePlant,
+    waterPlant,
+    sunPlant,
+    outdoorPlant,
+    setOnTaskCompleted,
     deleteNote,
     deleteReminder,
     updateReminder,
@@ -199,29 +203,23 @@ export default function TodayScreen() {
     return silent.sort((a, b) => a.name.localeCompare(b.name));
   }, [plants, today, effectiveSeason]);
 
+  // Phase 22 (GAM-02): handlers delegate to useStorage task actions which fire
+  // triggerHaptic('success') + Toast callback BEFORE setState (Plan 22-01 wiring).
+  // Sun/outdoor toggle semantics live inside the actions (wasUndone gate). Analytics
+  // trackEvent calls preserved for continuity.
   const handleWater = (plantId: string) => {
-    updatePlant(plantId, { lastWatered: todayStr });
+    waterPlant(plantId);
     trackEvent('watering_logged', { plant_id: plantId });
   };
 
   const handleSunDone = (plantId: string) => {
-    const plant = plants.find(p => p.id === plantId);
-    if (plant) {
-      updatePlant(plantId, {
-        sunDoneDate: plant.sunDoneDate === todayStr ? null : todayStr
-      });
-      trackEvent('sun_logged', { plant_id: plantId });
-    }
+    sunPlant(plantId);
+    trackEvent('sun_logged', { plant_id: plantId });
   };
 
   const handleOutdoorDone = (plantId: string) => {
-    const plant = plants.find(p => p.id === plantId);
-    if (plant) {
-      updatePlant(plantId, {
-        outdoorDoneDate: plant.outdoorDoneDate === todayStr ? null : todayStr
-      });
-      trackEvent('outdoor_logged', { plant_id: plantId });
-    }
+    outdoorPlant(plantId);
+    trackEvent('outdoor_logged', { plant_id: plantId });
   };
 
   const handleDeletePlant = (plantId: string) => {
@@ -258,6 +256,15 @@ export default function TodayScreen() {
   // swipe-undo `toastVisible` above (Blocker B LOCKED). Two independent <Toast> siblings
   // coexist; Phase 18 owns swipe-undo, Phase 21 owns journal.savedToast.
   const [journalToastVisible, setJournalToastVisible] = useState(false);
+
+  // Phase 22 (GAM-01): task-completion Toast — DISTINCT identifier from Phase 18 `toastVisible`
+  // and Phase 21 `journalToastVisible`. Three coexisting <Toast> siblings.
+  const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
+
+  useEffect(() => {
+    setOnTaskCompleted(() => setGamificationToastVisible(true));
+    return () => setOnTaskCompleted(null);
+  }, [setOnTaskCompleted]);
 
   // Phase 18 CARD-02: long-press BottomSheetModal
   const longPressSheetRef = useRef<BottomSheetModal>(null);
@@ -708,6 +715,14 @@ export default function TodayScreen() {
         message={t('journal.savedToast')}
         durationMs={2000}
         onDismiss={() => setJournalToastVisible(false)}
+      />
+
+      {/* Phase 22 (GAM-01) — task-completion Toast. THIRD independent sibling. */}
+      <Toast
+        visible={gamificationToastVisible}
+        message={t('gamification.toastSuccess')}
+        durationMs={2000}
+        onDismiss={() => setGamificationToastVisible(false)}
       />
     </SafeAreaView>
   );
