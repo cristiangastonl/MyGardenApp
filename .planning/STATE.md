@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 5 of 5
-status: verifying
-stopped_at: Completed 23-04-PLAN.md
-last_updated: "2026-05-12T05:20:38.575Z"
-last_activity: 2026-05-12 — Phase 23 Plan 04 complete (Wave 4 closing manual gate — 9-command automation suite re-verified GREEN; user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent; 14-item Phase 23 device-test checklist appended to v1_2_test_backlog.md memory +63 LOC; all 8 POLISH-* requirement IDs closed at code level; 0 source file changes).
+current_plan: 2 of 2
+status: completed
+stopped_at: Completed 24-01-PLAN.md
+last_updated: "2026-05-12T05:31:55.259Z"
+last_activity: "2026-05-12 — Phase 24 Plan 01 complete (DOCS-01 — CLAUDE.md surgical extensions; 4 targeted Edit-tool insertions: Commands block / Architecture §Key Patterns +2 bullets / Architecture §Services Layer +2 bullets / Pre-submit Checks block + paragraph; +18/-3 net lines on CLAUDE.md only; 15 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~2 min, ZERO deviations)."
 progress:
   total_phases: 15
   completed_phases: 14
-  total_plans: 80
-  completed_plans: 81
+  total_plans: 82
+  completed_plans: 82
   percent: 100
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **Awaiting verifier (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo + 23-03 empty states + 23-04 closing manual gate all complete)**
-Current Plan: 5 of 5
-Plan: 23-04 complete (Wave 4 closing manual gate — verification-only, 0 source files modified). Task 1 (9-command automation gate re-verify) PASS: `npx tsc --noEmit` exit 0 / `npm run check:i18n-keys` PASS 118 catalog ids / `node scripts/smoke-phase18.cjs` PASS=56 FAIL=0 SKIP=0 / `node scripts/smoke-phase19.cjs` PASS=85 FAIL=0 SKIP=0 / `node scripts/smoke-phase20.cjs` PASS=49 FAIL=0 SKIP=0 / `node scripts/smoke-phase21.cjs` PASS=76 FAIL=0 SKIP=0 / `node scripts/smoke-phase22.cjs` PASS=56 FAIL=0 SKIP=0 / `node scripts/smoke-phase23.cjs` PASS=49 FAIL=0 SKIP=0 / `npm run lint:voseo` exit 0 STRICT. Task 2 (manual checkpoint POLISH-04 device-test vs deferral): user auto-selected **Option B** per orchestrator auto-mode chain `--auto --no-transition` flag applying established v1.2 closure precedent (5 prior consecutive Option B selections at the same manual-checkpoint structural threshold: Phase 18-05 + Phase 20-10 + Phase 21-06 + Phase 22-03; Phase 19-07 was the ONE Option A outlier across the v1.2 manual-checkpoint chain). The 14-item Phase 23 device-test checklist (5 blocks A-E: A POLISH-01/02 outdoor task gate / B POLISH-03 PlantNet category-over-indoor / C POLISH-04 identify→diagnose flow / D POLISH-05 + POLISH-06 visual/brand-voice / E POLISH-07 + POLISH-08 illustrated empty states; 12 hard-fail + 2 soft-fail) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` (+63 LOC delta; from 294 → 357 lines). Phase 23 closes at code level for all 8 POLISH-* requirement IDs (POLISH-01/02/03/05/06/07/08 via Plans 23-00..23-03 source surface; POLISH-04 via Option B deferral routing — manual-only by design). 2 tasks, 0 source files modified, ~2 min, ZERO deviations.
-Status: **Phase 23 Plan 23-04 closing manual gate complete; all 5 plans landed (23-00 + 23-01 + 23-02 + 23-03 + 23-04). Phase 23 ready for orchestrator-spawned verifier to confirm phase closure invariants.** Phase 23 deferred device-test checklist (14 items) joins consolidated v1.2 milestone-end batch session (alongside Phase 13 iOS verification + Phase 14 e2e re-verify + PaywallModal Z-order coexistence + Phase 18 38-item + Phase 20 14-item + Phase 21 14-item + Phase 22 14-item + 69-entry image upload backlog) before v1.2 App Store / Play Store submission.
-Last activity: 2026-05-12 — Phase 23 Plan 04 complete (Wave 4 closing manual gate — 9-command automation suite re-verified GREEN; user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent; 14-item Phase 23 device-test checklist appended to v1_2_test_backlog.md memory +63 LOC; all 8 POLISH-* requirement IDs closed at code level; 0 source file changes).
+Phase: 24 of 24 (Documentation — CLAUDE.md + PROJECT.md handoff updates for v1.2)
+Current Plan: 2 of 2
+Plan: 24-01 complete (DOCS-01 — CLAUDE.md surgical extensions). 4 targeted Edit-tool insertions against verbatim anchors: (1) Commands block +2 lines (lint:voseo + smoke-phase23 references); (2) Architecture §Key Patterns +2 bullets (Journal photo storage `documentDirectory`/Paths API + Three-tier smoke runner discipline Phase 19+ W0/SKIP→PASS/STRICT cross-phase regression); (3) Architecture §Services Layer +2 bullets (unknownPlantTracker.ts `@unknown_plants` AsyncStorage + journalService.ts full API surface); (4) Pre-submit Checks block extended from 2 to 9 commands + explanatory paragraph documenting three-tier discipline. Edit 4 (Security section "has been rotated as of v1.2") verify-only — already current per Phase 10 SEC-01 (2026-05-03), no edit applied. Net diff CLAUDE.md +18/-3 lines, structure preserved (6 top-level `##` sections + 2 `###` subsections all unchanged verbatim). 15 grep sentinels PASS; cross-phase verification `npx tsc --noEmit` exit 0 / `check:i18n-keys` PASS 118 catalog ids / `lint:voseo` PASS / smoke-phase{18..23}.cjs ALL 6 PASS (FAIL=0 SKIP=0). 1 task, 1 file modified (CLAUDE.md), ~2 min, ZERO deviations, commit `65b6edc`.
+Status: **Phase 24 Plan 24-01 complete (CLAUDE.md handoff context for future Claude sessions now covers journal photo storage + unknownPlantTracker + lint:voseo + smoke-phase{18..23}.cjs chain + three-tier discipline). Ready for Plan 24-02 (DOCS-02 — PROJECT.md Key Decisions table extension with v1.2 decisions: recommendation-first pivot / deep-merge guard / derived-only streaks / journal photo FS / two-AppContent-paths discipline / ModalSectionId precedent / three-tier smoke runner / Option B device-test deferral pattern).**
+Last activity: 2026-05-12 — Phase 24 Plan 01 complete (DOCS-01 — CLAUDE.md surgical extensions; 4 targeted Edit-tool insertions: Commands block / Architecture §Key Patterns +2 bullets / Architecture §Services Layer +2 bullets / Pre-submit Checks block + paragraph; +18/-3 net lines on CLAUDE.md only; 15 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~2 min, ZERO deviations).
 
-Progress: [██████████] 100% (81/80 plans complete — Phase 23 Plan 04 closes Phase 23 at code level; awaiting verifier for phase status flip)
+Progress: [██████████] 100% (82/82 plans complete on disk — Phase 24 Plan 24-01 lands DOCS-01 CLAUDE.md handoff; Plan 24-02 next for DOCS-02 PROJECT.md)
 
 ## Performance Metrics
 
@@ -115,6 +115,7 @@ Progress: [██████████] 100% (81/80 plans complete — Phase 
 | Phase 23-polish-uat-brand-voice P02 | 25 min | 2 tasks | 5 files |
 | Phase 23 P03 | 2 min | 2 tasks | 6 files |
 | Phase 23-polish-uat-brand-voice P04 | 4min | 2 tasks | 0 files |
+| Phase 24 P01 | 2 min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -340,6 +341,7 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 23]: Plan 23-03 POLISH-08 STRICT negative-grep gate locked permanent — zero sample-plant arrays in src/ enforced on every smoke-phase23 run — RESEARCH §Finding 12 PASS at baseline carried forward; smoke-phase23 TIER 2.5 walks src/ recursively and asserts `\b(samplePlants|mockPlants|seedPlants|demoPlants|firstLaunchPlants)\b` returns zero matches. Any future plan that accidentally introduces a sample-plant array will hard-fail at smoke time. Locks "no test event syndrome" as a permanent product discipline — empty state IS the first-launch UX.
 - [Phase 23-polish-uat-brand-voice]: Plan 23-04 — User auto-selected Option B (defer Phase 23 14-item device-test checklist to v1.2 milestone-end batch) per established Phase 18-05 / 20-10 / 21-06 / 22-03 precedent via auto-mode chain --auto --no-transition; 5 prior consecutive Option B selections at the manual-checkpoint structural threshold (Phase 19-07 was the ONE Option A outlier across v1.2 manual-checkpoint chain) = canonical path for autonomous:false closing plans.
 - [Phase 23-polish-uat-brand-voice]: Plan 23-04 — Phase 23 closes at code level despite POLISH-04 manual-only deferral: 9 automation gates green (tsc + check:i18n-keys + smoke-phase18/19/20/21/22/23 + lint:voseo) + voseo-lint STRICT + POLISH-08 STRICT negative-grep covering 5 sample-plant terms + cross-phase regression sentinels green (Phase 18 56 / Phase 19 85 / Phase 20 49 / Phase 21 76 / Phase 22 56) = all 8 POLISH-* requirement IDs reach closing PASS state. POLISH-04 marked Complete via Option B deferral routing.
+- [Phase 24]: DOCS-01: CLAUDE.md extended via 4 surgical Edit-tool insertions (Commands block / Architecture Key Patterns / Services Layer / Pre-submit Checks) — handoff context now covers journalService documentDirectory + unknownPlantTracker @unknown_plants + lint:voseo + smoke-phase18..23.cjs three-tier discipline. Edit 4 Security section verify-only (text already current per Phase 10 SEC-01 2026-05-03).
 
 ### Pending Todos
 
@@ -354,6 +356,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T05:16:29.402Z
-Stopped at: Completed 23-04-PLAN.md
+Last session: 2026-05-12T05:31:55.256Z
+Stopped at: Completed 24-01-PLAN.md
 Resume file: None
