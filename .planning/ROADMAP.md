@@ -302,7 +302,9 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 **Success Criteria** (what must be TRUE):
   1. CLAUDE.md contains the `get-plant-care` edge function deploy command and post-deploy verification steps
   2. PROJECT.md Key Decisions table includes all v1.2 decisions: recommendation-first pivot, deep-merge guard, derived-only streak approach, journal photos in FileSystem, two-AppContent-paths extended to BottomSheetProvider
-**Plans**: TBD
+**Plans:** 2 plans
+  - [ ] 24-01-PLAN.md — DOCS-01 surgical CLAUDE.md extensions (Key Patterns + Services Layer + Pre-submit Checks + Security verification)
+  - [ ] 24-02-PLAN.md — DOCS-02 PROJECT.md Key Decisions table extended with 7 v1.2 architectural decisions + footer date bump
 
 ## Progress
 
@@ -331,4 +333,4 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
 | 22. Gamification — Toasts + Haptics | 4/4 | Complete    | 2026-05-12 | - |
 | 23. Polish — UAT Fixes + Brand Voice | 5/5 | Complete    | 2026-05-12 | - |
-| 24. Documentation | v1.2 | 0/TBD | Not started | - |
+| 24. Documentation | v1.2 | 0/2 | Not started | - |
