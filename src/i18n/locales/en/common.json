@@ -6,6 +6,9 @@
     "explore": "Explore",
     "settings": "Settings"
   },
+  "gamification": {
+    "toastSuccess": "You're on it! 🌱"
+  },
   "journal": {
     "header": "Journal",
     "emptyState": "Add your first entry 📔",
