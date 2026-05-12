@@ -931,5 +931,10 @@
     "noApiKeyWarning": "Sin API key, la identificación usará datos de ejemplo.",
     "appearance": "Apariencia",
     "comingSoon": "Próximamente"
+  },
+  "emptyState": {
+    "plants": { "title": "Tu jardín está esperando 🌱", "cta": "Agregá tu primera planta" },
+    "calendar": { "title": "No hay tareas hoy ☀️", "cta": "Disfrutá del descanso" },
+    "explore": { "title": "Explorá +100 plantas para tu hogar", "cta": "Buscar especies" }
   }
 }

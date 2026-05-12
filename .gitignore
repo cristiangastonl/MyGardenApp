@@ -71,5 +71,6 @@ scripts/.tmp-phase19/
 scripts/.tmp-phase20/
 scripts/.tmp-phase21/
 scripts/.tmp-phase22/
+scripts/.tmp-phase23/
 scripts/*.compiled.mjs
 scripts/*.compiled-*.mjs

@@ -19,6 +19,8 @@
     "smoke:phase20": "node scripts/smoke-phase20.cjs",
     "smoke:phase21": "node scripts/smoke-phase21.cjs",
     "smoke:phase22": "node scripts/smoke-phase22.cjs",
+    "smoke:phase23": "node scripts/smoke-phase23.cjs",
+    "lint:voseo": "node scripts/voseo-lint.mjs",
     "typecheck": "tsc --noEmit",
     "web": "expo start --web"
   },
