@@ -288,7 +288,7 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   3. `colors.textSecondary` passes WCAG AA contrast ratio (~4.5:1) against both `bgPrimary` and `card` backgrounds
   4. All action buttons in ES locale use voseo imperative forms ("Regá ahora 💧", not "Regar"); voseo linter passes
   5. PlantsScreen, CalendarScreen, and ExploreScreen show illustrated empty states with motivating voseo copy when empty
-**Plans:** 2/5 plans executed
+**Plans:** 3/5 plans executed
   - [ ] 23-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase23.cjs (fork phase 22; STRICT cross-phase Phase 18-22) + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + emptyState i18n namespace EN+ES (POLISH-01..08 scaffold)
   - [ ] 23-01-PLAN.md — Wave 1 outdoor cluster: POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 catalog outdoor:false on 45 entries + POLISH-03 resolveTypeIdForPicker (3 atomic commits)
   - [ ] 23-02-PLAN.md — Wave 2 WCAG + voseo: POLISH-05 textSecondary #8a7e6b → #6f6450 (WCAG AA) + POLISH-06 STRICT voseo-lint body + 17 pre-existing violation fixes + 4 action button voseo+emoji (2 atomic commits)
@@ -330,5 +330,5 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
 | 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
 | 22. Gamification — Toasts + Haptics | 4/4 | Complete    | 2026-05-12 | - |
-| 23. Polish — UAT Fixes + Brand Voice | 2/5 | In Progress|  | - |
+| 23. Polish — UAT Fixes + Brand Voice | 3/5 | In Progress|  | - |
 | 24. Documentation | v1.2 | 0/TBD | Not started | - |

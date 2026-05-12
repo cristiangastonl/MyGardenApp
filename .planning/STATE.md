@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 5
+current_plan: 3 of 5
 status: executing
-stopped_at: Completed 23-01-PLAN.md
-last_updated: "2026-05-12T04:34:00.766Z"
-last_activity: 2026-05-12 — Phase 23 Plan 01 complete (Wave 1 outdoor cluster — POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 45-entry catalog flip + POLISH-03 resolveTypeIdForPicker helper; 3 atomic commits; PASS=43→45 SKIP=6→4 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 0 deviations).
+stopped_at: Completed 23-02-PLAN.md
+last_updated: "2026-05-12T05:04:05.633Z"
+last_activity: 2026-05-12 — Phase 23 Plan 02 complete (Wave 2 WCAG + voseo — POLISH-05 textSecondary darkening + POLISH-06 STRICT voseo-lint with 70 pre-existing violations fixed atomically + 4 action button voseo+emoji + EN parity; 2 atomic commits; PASS=46→48 SKIP=3→1 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 2 deviations auto-fixed).
 progress:
   total_phases: 15
   completed_phases: 13
   total_plans: 80
-  completed_plans: 78
-  percent: 98
+  completed_plans: 79
+  percent: 99
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plans 23-00 W0 + 23-01 outdoor cluster complete; Plan 23-02 WCAG + voseo next)**
-Current Plan: 2 of 5
-Plan: 23-01 complete (Wave 1 outdoor cluster — POLISH-01 + POLISH-02 + POLISH-03 closed in 3 atomic commits. POLISH-01: OUTDOOR_TYPE_IDS = new Set(['exterior','frutales']) module-private ReadonlySet declared at top of plantLogic.ts; getTasksForDay outdoor emit branch AND-gated with !OUTDOOR_TYPE_IDS.has(p.typeId) — exterior+frutales typeIds never emit 'Sacar afuera'. POLISH-02: 45 catalog entries flipped outdoor:true → outdoor:false in plantDatabase.ts (28 exterior + 7 frutales + 10 outdoor-aromaticas per RESEARCH §Finding 2); deterministic Node walker apply-polish-02.cjs in scripts/.tmp-phase23/ logged all 45 modified ids by sub-category. Pre-edit: outdoor:true=65, outdoor:false=53. Post-edit: outdoor:true=20, outdoor:false=98 (exact delta -45/+45). POLISH-03: resolveTypeIdForPicker(plant) three-tier ladder helper added near top of IdentificationResults.tsx — catalog category wins, PlantNet indoor:false fallback, 'interior' default. Both call sites rewired (Case B const line ~53 + Case A inline JSX line ~100); old `indoor === false ? 'exterior' : 'interior'` ternary fully removed. Smoke-phase23: PASS=43→45, SKIP=6→4 (POLISH-01 + POLISH-03 flipped SKIP→PASS; POLISH-02 was already PASSing at W0 because count threshold met). Cross-phase regression preserved verbatim: Phase 18 (56/0/0), 19 (85/0/0), 20 (49/0/0), 21 (76/0/0), 22 (56/0/0). All gates green: tsc, smoke-phase23, check:i18n-keys 118 ids. 3 tasks, 3 files modified, 2 min wall-clock, 0 deviations.
-Status: **Phase 23 Plan 23-01 outdoor cluster landed; Plan 23-02 (WCAG + voseo: POLISH-05 textSecondary darkening + POLISH-06 voseo button literals + voseo-lint strict body) ready to execute.** 4 SKIP placeholders remain in smoke-phase23 (POLISH-05/06-button/06-lint/07); 3 close in Plan 23-02 and 1 in Plan 23-03.
-Last activity: 2026-05-12 — Phase 23 Plan 01 complete (Wave 1 outdoor cluster — POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 45-entry catalog flip + POLISH-03 resolveTypeIdForPicker helper; 3 atomic commits; PASS=43→45 SKIP=6→4 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 0 deviations).
+Phase: 23 of 24 (Polish — UAT Fixes + Brand Voice) — **In progress (Plans 23-00 W0 + 23-01 outdoor cluster + 23-02 WCAG + voseo complete; Plan 23-03 empty states next)**
+Current Plan: 3 of 5
+Plan: 23-02 complete (Wave 2 WCAG + voseo — POLISH-05 + POLISH-06 closed in 2 atomic commits). POLISH-05: colors.textSecondary flipped #8a7e6b → #6f6450 in src/theme.ts (5.12:1 on bgPrimary, 5.72:1 on card — both PASS WCAG 2.1 AA at 4.5:1); obsolete two-line TODO comment removed; hierarchy preserved (textSecondary lighter than textMuted #6a604f). POLISH-06 (composite atomic): scripts/voseo-lint.mjs STRICT body landed with 22-regex BANNED array (5 tuteo verbs + 14 Castilian imperatives + accented \\btú\\b + 2 formal 3rd-person — `tu` unaccented possessive NOT in BANNED per Pitfall 4) + WHITELIST_KEYS Set with 2 keys (common.settings.locationDescription + common.alerts.sunDayToday); skeleton stdout tag + JSDoc references scrubbed throughout. 70 pre-existing voseo violations fixed atomically (16 in es/common.json per RESEARCH §Finding 7, 49 in es/plants.json — Rule 3 Blocking deviation since lint walks all es/*.json, 5 in es/tips.json). 4 ES action button voseo+emoji values: plantCard.water "Regá ahora 💧" / sunLabel "Sol ☀️ ({{hours}}h)" / outdoor "Sacalo afuera 🌳" / fertilize "Fertilizá 🌱"; plantDetailModal.water + .fertilize mirrored. 4 EN action button emoji parity: "Water now 💧" / "Sun ☀️ ({{hours}}h)" / "Put outside 🌳" / "Fertilize 🌱". Smoke-phase23: PASS=46→48, SKIP=3→1 (POLISH-05 + POLISH-06.action-button + POLISH-06.voseo-lint all flipped SKIP→PASS; only POLISH-07 SKIP remains for Plan 23-03). Phase 18-22 cross-phase STRICT sentinels all preserved verbatim. All gates green: voseo-lint exit 0, tsc clean, check:i18n-keys PASS 118 catalog ids, smoke-phase23 48/0/1. 2 tasks, 5 files modified, 25 min, 2 deviations (Rule 3 scope-expansion + Rule 2 JSDoc-scrub both auto-fixed).
+Status: **Phase 23 Plan 23-02 WCAG + voseo cluster landed; Plan 23-03 (Wave 3 empty states: POLISH-07 3 illustrated empty-state JSX inserts + POLISH-08 negative-grep sample-plant-array confirmation) ready to execute.** 1 SKIP placeholder remains in smoke-phase23 (POLISH-07 only); closes in Plan 23-03.
+Last activity: 2026-05-12 — Phase 23 Plan 02 complete (Wave 2 WCAG + voseo — POLISH-05 textSecondary darkening + POLISH-06 STRICT voseo-lint with 70 pre-existing violations fixed atomically + 4 action button voseo+emoji + EN parity; 2 atomic commits; PASS=46→48 SKIP=3→1 in smoke-phase23; Phase 18-22 cross-phase regression preserved; 2 deviations auto-fixed).
 
-Progress: [██████████] 98% (78/80 plans complete; Phase 23 Plans 23-00 + 23-01 landed; Plans 23-02/03/04 pending)
+Progress: [██████████] 99% (79/80 plans complete; Phase 23 Plans 23-00 + 23-01 + 23-02 landed; Plans 23-03/04 pending)
 
 ## Performance Metrics
 
@@ -112,6 +112,7 @@ Progress: [██████████] 98% (78/80 plans complete; Phase 23 P
 | Phase 22-gamification-toasts-haptics P03 | 2 min | 2 tasks | 0 files |
 | Phase 23-polish-uat-brand-voice P00 | 3min | 2 tasks | 6 files |
 | Phase 23-polish-uat-brand-voice P01 | 2min | 3 tasks | 3 files |
+| Phase 23-polish-uat-brand-voice P02 | 25 min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -328,6 +329,10 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 23-polish-uat-brand-voice]: Plan 23-01: Two-layer outdoor defense — code-layer OUTDOOR_TYPE_IDS = new Set(['exterior','frutales']) module-private ReadonlySet in plantLogic.ts gates getTasksForDay outdoor emit branch; data-layer 45 catalog entries (28 exterior + 7 frutales + 10 outdoor-aromaticas) flipped outdoor:true → outdoor:false in plantDatabase.ts. Either layer alone closes UAT #3 for a subset; together they cover the full intersect (catalog-known + catalog-unknown plants).
 - [Phase 23-polish-uat-brand-voice]: Plan 23-01: resolveTypeIdForPicker three-tier ladder (catalog category wins → PlantNet indoor:false fallback → 'interior' default) in IdentificationResults.tsx closes UAT #3a — pure preference reorder, not a new data path, because IdentifiedPlant.category is ALWAYS populated by convertPlantNetResult (plantIdentification.ts:337 catalog hit OR :364 generic family-based fallback).
 - [Phase 23-polish-uat-brand-voice]: Plan 23-01: POLISH-02 used deterministic Node walker (scripts/.tmp-phase23/apply-polish-02.cjs) — walks entry blocks by 'id: "<id>"' opener + body-end heuristic, checks category membership in {exterior, frutales, aromaticas}, replaces ONLY entry-scoped 'outdoor: true,' line. Logged 45 modified ids by sub-category (28/7/10) for human sanity check. Temp script deleted post-run (scripts/.tmp-phase23/ is .gitignored per Plan 23-00). Reusable pattern for future bulk per-entry boolean flips.
+- [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-05: textSecondary hex #6f6450 chosen for 5.12:1 contrast on bgPrimary + 5.72:1 on card (both pass WCAG AA 4.5:1) while preserving warm-brown identity of original #8a7e6b; hierarchy preserved (textSecondary lighter than textMuted #6a604f)
+- [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: Voseo lint scope extended beyond es/common.json to ALL es/*.json (lint walks the entire ES locale tree). 70 violations fixed atomically — 16 in common.json (planned) + 49 in plants.json + 5 in tips.json (Rule 3 Blocking deviation auto-fixed)
+- [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: descriptive-3rd-person false positives reworded (Usa CAM → Funciona con CAM; vida corta → vida breve; le saca color → le quita color; se ven blandas → se notan blandas) rather than expanding WHITELIST_KEYS — preserves STRICT lint surface and prevents exception culture; WHITELIST_KEYS kept minimal at 2 entries (settings.locationDescription + alerts.sunDayToday)
+- [Phase 23-polish-uat-brand-voice]: Plan 23-02 POLISH-06: unaccented possessive 'tu' NOT in BANNED — only accented \btú\b pronoun flagged per RESEARCH Pitfall 4; permits legitimate possessive uses like 'Tu jardín está esperando 🌱' empty state copy
 
 ### Pending Todos
 
@@ -342,6 +347,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T04:33:43.477Z
-Stopped at: Completed 23-01-PLAN.md
+Last session: 2026-05-12T05:02:40.858Z
+Stopped at: Completed 23-02-PLAN.md
 Resume file: None
