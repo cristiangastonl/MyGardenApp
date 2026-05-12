@@ -5,7 +5,7 @@ milestone_name: Recommendation-First Plant Guide
 current_plan: 2 of 2 (Phase 24 fully landed)
 status: completed
 stopped_at: Completed 24-02-PLAN.md (Phase 24 fully closed — v1.2 milestone landed at code+docs level)
-last_updated: "2026-05-12T05:36:57.818Z"
+last_updated: "2026-05-12T05:40:11.939Z"
 last_activity: "2026-05-12 — Phase 24 Plan 02 complete (DOCS-02 — PROJECT.md Key Decisions table extension; 2 surgical Edit-tool inserts: append 7 new v1.2 decision rows + footer date bump; +8/-1 net lines on `.planning/PROJECT.md` only; 24 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~1 min, ZERO deviations)."
 progress:
   total_phases: 15
