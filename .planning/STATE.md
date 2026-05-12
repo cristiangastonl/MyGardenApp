@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 2
+current_plan: 2 of 2 (Phase 24 fully landed)
 status: completed
-stopped_at: Completed 24-01-PLAN.md
-last_updated: "2026-05-12T05:31:55.259Z"
-last_activity: "2026-05-12 — Phase 24 Plan 01 complete (DOCS-01 — CLAUDE.md surgical extensions; 4 targeted Edit-tool insertions: Commands block / Architecture §Key Patterns +2 bullets / Architecture §Services Layer +2 bullets / Pre-submit Checks block + paragraph; +18/-3 net lines on CLAUDE.md only; 15 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~2 min, ZERO deviations)."
+stopped_at: Completed 24-02-PLAN.md (Phase 24 fully closed — v1.2 milestone landed at code+docs level)
+last_updated: "2026-05-12T05:36:57.818Z"
+last_activity: "2026-05-12 — Phase 24 Plan 02 complete (DOCS-02 — PROJECT.md Key Decisions table extension; 2 surgical Edit-tool inserts: append 7 new v1.2 decision rows + footer date bump; +8/-1 net lines on `.planning/PROJECT.md` only; 24 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~1 min, ZERO deviations)."
 progress:
   total_phases: 15
-  completed_phases: 14
+  completed_phases: 15
   total_plans: 82
-  completed_plans: 82
+  completed_plans: 83
   percent: 100
 ---
 
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 24 of 24 (Documentation — CLAUDE.md + PROJECT.md handoff updates for v1.2)
-Current Plan: 2 of 2
-Plan: 24-01 complete (DOCS-01 — CLAUDE.md surgical extensions). 4 targeted Edit-tool insertions against verbatim anchors: (1) Commands block +2 lines (lint:voseo + smoke-phase23 references); (2) Architecture §Key Patterns +2 bullets (Journal photo storage `documentDirectory`/Paths API + Three-tier smoke runner discipline Phase 19+ W0/SKIP→PASS/STRICT cross-phase regression); (3) Architecture §Services Layer +2 bullets (unknownPlantTracker.ts `@unknown_plants` AsyncStorage + journalService.ts full API surface); (4) Pre-submit Checks block extended from 2 to 9 commands + explanatory paragraph documenting three-tier discipline. Edit 4 (Security section "has been rotated as of v1.2") verify-only — already current per Phase 10 SEC-01 (2026-05-03), no edit applied. Net diff CLAUDE.md +18/-3 lines, structure preserved (6 top-level `##` sections + 2 `###` subsections all unchanged verbatim). 15 grep sentinels PASS; cross-phase verification `npx tsc --noEmit` exit 0 / `check:i18n-keys` PASS 118 catalog ids / `lint:voseo` PASS / smoke-phase{18..23}.cjs ALL 6 PASS (FAIL=0 SKIP=0). 1 task, 1 file modified (CLAUDE.md), ~2 min, ZERO deviations, commit `65b6edc`.
-Status: **Phase 24 Plan 24-01 complete (CLAUDE.md handoff context for future Claude sessions now covers journal photo storage + unknownPlantTracker + lint:voseo + smoke-phase{18..23}.cjs chain + three-tier discipline). Ready for Plan 24-02 (DOCS-02 — PROJECT.md Key Decisions table extension with v1.2 decisions: recommendation-first pivot / deep-merge guard / derived-only streaks / journal photo FS / two-AppContent-paths discipline / ModalSectionId precedent / three-tier smoke runner / Option B device-test deferral pattern).**
-Last activity: 2026-05-12 — Phase 24 Plan 01 complete (DOCS-01 — CLAUDE.md surgical extensions; 4 targeted Edit-tool insertions: Commands block / Architecture §Key Patterns +2 bullets / Architecture §Services Layer +2 bullets / Pre-submit Checks block + paragraph; +18/-3 net lines on CLAUDE.md only; 15 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~2 min, ZERO deviations).
+Phase: 24 of 24 (Documentation — CLAUDE.md + PROJECT.md handoff updates for v1.2 — COMPLETE)
+Current Plan: 2 of 2 (Phase 24 fully landed)
+Plan: 24-02 complete (DOCS-02 — PROJECT.md Key Decisions table extension). 2 surgical Edit-tool insertions against verbatim anchors: (1) appended 7 new decision rows immediately before the closing horizontal rule (recommendation-first pivot 4-section modal + 5 EDU fields / deep-merge guard PROTECTED_USER_FIELDS Phase 14 + Phase 20 / GAM-05 anti-pattern lock derived-only mood emoji + STRICT smoke negative-grep / journal photos in FileSystem documentDirectory NEVER base64 / single App-root BottomSheetModalProvider wrap above Features.AUTH branch covering both AppContent paths / ModalSectionId controlled extension precedent Phase 19 mascotas + Phase 21 diario; Phase 20 deliberately did NOT extend via orthogonal initialExpanded / three-tier smoke runner discipline + Option B end-of-milestone device-test deferral 5 precedents + Phase 19-07 outlier); (2) footer "Last updated" line bumped 2026-05-02 → 2026-05-12 with v1.2 closure note enumerating the 7 new decisions inline. Net diff `.planning/PROJECT.md` +8/-1 lines, all 18 pre-existing decision rows preserved verbatim, top-level structure unchanged (## What This Is / ## Core Value / ## Requirements / ## Context / ## Constraints / ## Key Decisions sections all intact). 24 grep sentinels PASS (8 new-row content + 2 footer date + 14 pre-existing row preservation + 3 structure-preservation invariants). Cross-phase verification (run even though zero source code touched): `npx tsc --noEmit` exit 0 / `check:i18n-keys` PASS 118 catalog ids / `lint:voseo` PASS / smoke-phase{18..23}.cjs ALL 6 PASS (PASS=371 FAIL=0 SKIP=0). 1 task, 1 file modified (`.planning/PROJECT.md`), ~1 min, ZERO deviations, commit `bc98ca0`.
+Status: **Phase 24 COMPLETE — both DOCS-01 (Plan 24-01, CLAUDE.md handoff) and DOCS-02 (Plan 24-02, PROJECT.md Key Decisions table) shipped. v1.2 Recommendation-First Plant Guide milestone FULLY LANDED at code+docs level (all 15 phases Phase 10 → Phase 24 complete on disk). Only manual ops backlog remains before v1.2 App Store / Play Store submit: device-test backlog per `v1_2_test_backlog.md` memory (iOS + Android E2E sweep) + 69-entry image-upload backlog to Supabase Storage (15 v1.1 LATAM + 23 Phase 15 Wave A + 17 Phase 16 Wave B + 14 Phase 17 Wave C) + Perenual API key rotation before public ship.**
+Last activity: 2026-05-12 — Phase 24 Plan 02 complete (DOCS-02 — PROJECT.md Key Decisions table extension; 2 surgical Edit-tool inserts: append 7 new v1.2 decision rows + footer date bump; +8/-1 net lines on `.planning/PROJECT.md` only; 24 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~1 min, ZERO deviations).
 
-Progress: [██████████] 100% (82/82 plans complete on disk — Phase 24 Plan 24-01 lands DOCS-01 CLAUDE.md handoff; Plan 24-02 next for DOCS-02 PROJECT.md)
+Progress: [██████████] 100% (82/82 plans complete on disk — Phase 24 closed; both DOCS-01 + DOCS-02 shipped; v1.2 milestone fully landed at code+docs level; manual ops backlog remains before public ship)
 
 ## Performance Metrics
 
@@ -116,6 +116,7 @@ Progress: [██████████] 100% (82/82 plans complete on disk �
 | Phase 23 P03 | 2 min | 2 tasks | 6 files |
 | Phase 23-polish-uat-brand-voice P04 | 4min | 2 tasks | 0 files |
 | Phase 24 P01 | 2 min | 1 tasks | 1 files |
+| Phase 24-documentation P02 | 1min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -342,6 +343,9 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 23-polish-uat-brand-voice]: Plan 23-04 — User auto-selected Option B (defer Phase 23 14-item device-test checklist to v1.2 milestone-end batch) per established Phase 18-05 / 20-10 / 21-06 / 22-03 precedent via auto-mode chain --auto --no-transition; 5 prior consecutive Option B selections at the manual-checkpoint structural threshold (Phase 19-07 was the ONE Option A outlier across v1.2 manual-checkpoint chain) = canonical path for autonomous:false closing plans.
 - [Phase 23-polish-uat-brand-voice]: Plan 23-04 — Phase 23 closes at code level despite POLISH-04 manual-only deferral: 9 automation gates green (tsc + check:i18n-keys + smoke-phase18/19/20/21/22/23 + lint:voseo) + voseo-lint STRICT + POLISH-08 STRICT negative-grep covering 5 sample-plant terms + cross-phase regression sentinels green (Phase 18 56 / Phase 19 85 / Phase 20 49 / Phase 21 76 / Phase 22 56) = all 8 POLISH-* requirement IDs reach closing PASS state. POLISH-04 marked Complete via Option B deferral routing.
 - [Phase 24]: DOCS-01: CLAUDE.md extended via 4 surgical Edit-tool insertions (Commands block / Architecture Key Patterns / Services Layer / Pre-submit Checks) — handoff context now covers journalService documentDirectory + unknownPlantTracker @unknown_plants + lint:voseo + smoke-phase18..23.cjs three-tier discipline. Edit 4 Security section verify-only (text already current per Phase 10 SEC-01 2026-05-03).
+- [Phase 24-documentation]: Phase 24 DOCS-02: PROJECT.md Key Decisions table extended append-only with 7 v1.2 architectural decision rows (recommendation-first pivot / deep-merge guard PROTECTED_USER_FIELDS / GAM-05 anti-pattern lock derived-only streaks / journal photos in FileSystem documentDirectory / single App-root BottomSheetModalProvider wrap / ModalSectionId controlled extension precedent / three-tier smoke runner discipline + Option B end-of-milestone device-test deferral) — surfaces locked patterns for future Claude sessions without re-deriving rationale from phase summaries
+- [Phase 24-documentation]: Phase 24 closure (joint Plan 24-01 + 24-02): v1.2 Recommendation-First Plant Guide milestone FULLY LANDED at code+docs level — all 15 phases (Phase 10 → Phase 24) complete on disk. Cumulative Phase 24 diff: +26/-4 lines across 2 doc files (CLAUDE.md + PROJECT.md), zero source code touched. Only manual ops backlog remains before App Store / Play Store submit: device-test backlog (iOS + Android E2E per v1_2_test_backlog.md) + 69-entry image-upload backlog + Perenual API key rotation
+- [Phase 24-documentation]: Documentation phase final-plan pattern established: surgical Edit-tool inserts against verbatim anchors (no replace_all, no paragraph reflows, no row reorderings), structure-preservation grep sentinels run alongside content sentinels, cross-phase verification (tsc + i18n + voseo + smoke chain) executed even on zero-source-code-touch plans as collateral-damage check. Pattern reusable for any future docs/handoff phase
 
 ### Pending Todos
 
@@ -356,6 +360,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-12T05:31:55.256Z
-Stopped at: Completed 24-01-PLAN.md
+Last session: 2026-05-12T05:36:57.814Z
+Stopped at: Completed 24-02-PLAN.md (Phase 24 fully closed — v1.2 milestone landed at code+docs level)
 Resume file: None

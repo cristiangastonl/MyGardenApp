@@ -123,7 +123,7 @@
 ### Documentation (DOCS)
 
 - [x] **DOCS-01**: CLAUDE.md updated with: new edge function `get-plant-care` deploy commands; v1.2 architecture decisions (Perenual now server-side, unknown-plant tracker, journal photo storage strategy); pre-submit checks updated for new CI guards
-- [ ] **DOCS-02**: PROJECT.md Key Decisions table extended with v1.2 decisions (recommendation-first pivot, deep-merge guard for updatePlant, derived-only streaks, journal photos in FileSystem, two-AppContent-paths discipline extended to BottomSheetProvider)
+- [x] **DOCS-02**: PROJECT.md Key Decisions table extended with v1.2 decisions (recommendation-first pivot, deep-merge guard for updatePlant, derived-only streaks, journal photos in FileSystem, two-AppContent-paths discipline extended to BottomSheetProvider)
 
 ## v2 Requirements
 
@@ -260,7 +260,7 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | POLISH-07 | Phase 23 | Complete |
 | POLISH-08 | Phase 23 | Complete |
 | DOCS-01 | Phase 24 | Complete |
-| DOCS-02 | Phase 24 | Pending |
+| DOCS-02 | Phase 24 | Complete |
 
 **Coverage:**
 - v1.2 requirements: 74 total (5 SEC + 4 DATA + 3 TRACK + 4 INFRA + 7 EDU + 13 CAT + 5 CARD + 6 TOX + 7 FERT + 5 JOURNAL + 5 GAM + 8 POLISH + 2 DOCS)
