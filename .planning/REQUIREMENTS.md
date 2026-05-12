@@ -111,9 +111,9 @@
 
 ### Polish — UAT Bug Fixes + Brand Voice (POLISH)
 
-- [ ] **POLISH-01**: Outdoor task gate — `getTasksForDay` in `plantLogic.ts` skips `'outdoor'` task emission when `plant.typeId ∈ OUTDOOR_TYPE_IDS` (closes UAT #3 — no more "Sacar afuera" on outdoor plants)
-- [ ] **POLISH-02**: Outdoor entries' `outdoor: 0` set in catalog as defensive complement to POLISH-01 (data + code gate, both layers)
-- [ ] **POLISH-03**: PlantNet identification result `typeId` derivation in `IdentificationResults.tsx` honors catalog category over PlantNet's `indoor` flag when conflict exists (closes UAT #3a — picker labels match plant category)
+- [x] **POLISH-01**: Outdoor task gate — `getTasksForDay` in `plantLogic.ts` skips `'outdoor'` task emission when `plant.typeId ∈ OUTDOOR_TYPE_IDS` (closes UAT #3 — no more "Sacar afuera" on outdoor plants)
+- [x] **POLISH-02**: Outdoor entries' `outdoor: 0` set in catalog as defensive complement to POLISH-01 (data + code gate, both layers)
+- [x] **POLISH-03**: PlantNet identification result `typeId` derivation in `IdentificationResults.tsx` honors catalog category over PlantNet's `indoor` flag when conflict exists (closes UAT #3a — picker labels match plant category)
 - [ ] **POLISH-04**: Verify identification entry points (onboarding card + PlantsScreen FAB) — both must open `PlantIdentifierModal` AND keep the identify→diagnose chain functional via `onDiagnoseAfterIdentify` after Phase 7 changes. NO removal of either entry point per UAT user decision (UAT #2 marked "verified, no change needed"). Device-test both flows on iOS + Android: take photo → identify → save plant AND take photo → identify → diagnose → chat.
 - [ ] **POLISH-05**: `colors.textSecondary` darkened from `#8a7e6b` to a value passing WCAG AA (~4.5:1) on both `bgPrimary` and `card`; audit usages and adjust if needed (carryover from QW4)
 - [ ] **POLISH-06**: All action buttons updated with voseo + emoji microcopy ("Regá ahora 💧" instead of "Regar"); audit `t()` keys for action verbs; locale parity preserved
@@ -251,9 +251,9 @@ Populated during roadmap creation by `gsd-roadmapper`. Every v1.2 requirement ma
 | GAM-01 | Phase 22 | Complete |
 | GAM-02 | Phase 22 | Complete |
 | GAM-05 | Phase 22 | Complete |
-| POLISH-01 | Phase 23 | Pending |
-| POLISH-02 | Phase 23 | Pending |
-| POLISH-03 | Phase 23 | Pending |
+| POLISH-01 | Phase 23 | Complete |
+| POLISH-02 | Phase 23 | Complete |
+| POLISH-03 | Phase 23 | Complete |
 | POLISH-04 | Phase 23 | Pending |
 | POLISH-05 | Phase 23 | Pending |
 | POLISH-06 | Phase 23 | Pending |
