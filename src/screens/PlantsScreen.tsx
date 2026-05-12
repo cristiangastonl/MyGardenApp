@@ -67,6 +67,7 @@ export default function PlantsScreen() {
     diagnosisHistory,
     getActiveDiagnosesForPlant,
     fertilizePlant,
+    setOnTaskCompleted,
     climateOverride,
   } = useStorage();
 
@@ -144,6 +145,16 @@ export default function PlantsScreen() {
   // swipe-undo `toastVisible` above (Blocker B LOCKED). Two independent <Toast> siblings
   // coexist; Phase 18 owns swipe-undo, Phase 21 owns journal.savedToast.
   const [journalToastVisible, setJournalToastVisible] = useState(false);
+
+  // Phase 22 (GAM-01): task-completion Toast — DISTINCT identifier from Phase 18 swipe-undo
+  // `toastVisible` and Phase 21 `journalToastVisible`. Three coexisting <Toast> siblings.
+  // The setter is registered with useStorage.setOnTaskCompleted on mount; cleared on unmount.
+  const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
+
+  useEffect(() => {
+    setOnTaskCompleted(() => setGamificationToastVisible(true));
+    return () => setOnTaskCompleted(null);
+  }, [setOnTaskCompleted]);
 
   // Phase 18 CARD-02: long-press BottomSheetModal
   const longPressSheetRef = useRef<BottomSheetModal>(null);
@@ -500,6 +511,15 @@ export default function PlantsScreen() {
         message={t('journal.savedToast')}
         durationMs={2000}
         onDismiss={() => setJournalToastVisible(false)}
+      />
+
+      {/* Phase 22 (GAM-01) — task-completion Toast. THIRD independent sibling alongside Phase 18 swipe-undo
+          Toast and Phase 21 journal-saved Toast. */}
+      <Toast
+        visible={gamificationToastVisible}
+        message={t('gamification.toastSuccess')}
+        durationMs={2000}
+        onDismiss={() => setGamificationToastVisible(false)}
       />
     </SafeAreaView>
   );
