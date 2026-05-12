@@ -28,6 +28,22 @@ const HUMIDITY_KEYS: Record<string, string> = {
   alta: 'identification.humidityHigh',
 };
 
+/**
+ * POLISH-03 (Phase 23) — Resolves the typeId for LightLevelPicker honoring
+ * catalog category over PlantNet's `indoor` boolean.
+ *
+ * Catalog wins because PlantNet often mis-flags species (e.g. tomato as
+ * `indoor: true`). IdentifiedPlant.category is populated on EVERY successful
+ * identification (convertPlantNetResult in plantIdentification.ts:337 — catalog
+ * hit) or :364 (generic family-based fallback), so this rewire is a pure
+ * preference reorder, not a new data path.
+ */
+function resolveTypeIdForPicker(plant: IdentifiedPlant | null | undefined): string {
+  if (plant?.category) return plant.category;       // catalog wins
+  if (plant?.indoor === false) return 'exterior';   // PlantNet flag fallback
+  return 'interior';                                // safe default
+}
+
 export function IdentificationResults({
   result,
   imageUri,
@@ -50,7 +66,7 @@ export function IdentificationResults({
     }
   }, [selectedPlant]);
 
-  const typeIdForPicker = selectedPlant?.indoor === false ? 'exterior' : 'interior';
+  const typeIdForPicker = resolveTypeIdForPicker(selectedPlant);
 
   // Case C: No result / error
   if (!result.success || result.type === 'none') {
@@ -97,7 +113,7 @@ export function IdentificationResults({
         <View style={styles.pickerSection}>
           <Text style={styles.pickerLabel}>{t('identification.lightLevelLabel')}</Text>
           <LightLevelPicker
-            typeId={plant.indoor === false ? 'exterior' : 'interior'}
+            typeId={resolveTypeIdForPicker(plant)}
             value={selectedLightLevel}
             onChange={setSelectedLightLevel}
           />
