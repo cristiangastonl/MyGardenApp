@@ -272,7 +272,11 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
   1. Completing any care task (water/sun/outdoor/fertilize) shows a transient celebration toast ("¡Vas bien! 🌱") that auto-dismisses in ~2 seconds
   2. Task completion triggers a haptic (`NotificationFeedbackType.Success`) on both iOS and Android
   3. No streak counter, reset number, or "N-day streak" is visible anywhere in the UI
-**Plans**: TBD
+**Plans:** 1/4 plans executed
+  - [ ] 22-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase22.cjs three-tier runner + npm script + .gitignore + gamification.toastSuccess i18n key EN+ES voseo + STRICT cross-phase Phase 18+19+20+21 regression sentinels + GAM-05 negative-grep with CARE_STREAKS/gam_anti_patterns.md whitelist (GAM-01, GAM-02, GAM-05)
+  - [ ] 22-01-PLAN.md — Wave 1: useStorage extensions — 3 NEW actions (waterPlant, sunPlant, outdoorPlant) mirroring fertilizePlant precedent + setOnTaskCompleted setter + onTaskCompletedRef useRef + triggerHaptic('success') + onTaskCompletedRef.current?.() in all 4 task actions + sun/outdoor wasUndone toggle gate + 4 GAM-05 lock anti-pattern comment blocks (GAM-01, GAM-02, GAM-05)
+  - [ ] 22-02-PLAN.md — Wave 2: 3-screen integration — PlantsScreen + TodayScreen + CalendarScreen gain gamificationToastVisible state + useEffect callback registration + Toast sibling (durationMs=2000); TodayScreen handlers fully migrated; CalendarScreen handlers migrated with selectedDate === todayStr gate (back-dating preserved); PlantsScreen no handler migration (GAM-01, GAM-02)
+  - [ ] 22-03-PLAN.md — Wave 3: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist with Option A run-now vs Option B defer to v1.2 backlog memory per Phase 18-05 / 19-07 / 20-10 / 21-06 precedent (GAM-01, GAM-02, GAM-05)
 
 ### Phase 23: Polish — UAT Fixes + Brand Voice
 **Goal**: All four UAT bugs are fixed; all action button copy uses voseo + emoji; textSecondary passes WCAG AA; illustrated empty states replace blank screens
@@ -320,6 +324,6 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 | 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
 | 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
 | 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
-| 22. Gamification — Toasts + Haptics | v1.2 | 0/TBD | Not started | - |
+| 22. Gamification — Toasts + Haptics | 1/4 | In Progress|  | - |
 | 23. Polish — UAT Fixes + Brand Voice | v1.2 | 0/TBD | Not started | - |
 | 24. Documentation | v1.2 | 0/TBD | Not started | - |

@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Recommendation-First Plant Guide
-current_plan: 7 of 7
-status: planning
-stopped_at: Completed 21-06-PLAN.md
-last_updated: "2026-05-11T23:30:23.476Z"
-last_activity: "2026-05-11 — Phase 21 Plan 06 complete (JOURNAL-01..05 closing manual gate: automation suite re-verified green; user auto-selected Option B per established v1.2 precedent; 14-item Blocks A-E device-test checklist appended to v1_2_test_backlog.md memory; Phase 21 CLOSED at code level, verifier-ready)."
+current_plan: 1 of 4
+status: executing
+stopped_at: Completed 22-00-PLAN.md
+last_updated: "2026-05-12T01:07:04Z"
+last_activity: "2026-05-12 — Phase 22 Plan 00 complete (Wave 0 scaffold: scripts/smoke-phase22.cjs three-tier runner + npm script + .gitignore + gamification.toastSuccess i18n key EN/ES voseo; baseline PASS=30 FAIL=0 SKIP=26; cross-phase regression Phase 18-21 all green)."
 progress:
   total_phases: 15
   completed_phases: 12
-  total_plans: 71
-  completed_plans: 72
-  percent: 100
+  total_plans: 76
+  completed_plans: 73
+  percent: 96
 ---
 
 # Project State
@@ -26,13 +26,13 @@ See: .planning/PROJECT.md (updated 2026-05-02)
 
 ## Current Position
 
-Phase: 21 of 24 (Plant Journal) — **CLOSED at code level (Plan 21-06 closing manual gate complete; verifier-ready)**
-Current Plan: 7 of 7
-Plan: 21-06 complete (JOURNAL-01..05 closing manual gate: pre-checkpoint automation suite re-verified GREEN at plan-start time — `npx tsc --noEmit` exit 0 + `npm run check:i18n-keys` PASS 118 ids + `node scripts/smoke-phase18.cjs` PASS=56 FAIL=0 SKIP=0 + `node scripts/smoke-phase19.cjs` PASS=85 FAIL=0 SKIP=0 + `node scripts/smoke-phase20.cjs` PASS=49 FAIL=0 SKIP=0 + `node scripts/smoke-phase21.cjs` PASS=76 FAIL=0 SKIP=0; user auto-selected Option B (defer to v1.2 milestone-end device-test backlog memory per Phase 18-05 / 19-07 / 20-10 milestone-end batching precedent) via orchestrator's `--auto --no-transition` chain flag; 14-item Blocks A-E device-test checklist (12 HARD-fail: A1/A2/A3/B1/B2/B3/B4/B5/B6/D1/D2/D3 + 2 SOFT-fail: C1/E1) appended verbatim to `/Users/gaston/.claude/projects/-Users-gaston-Documents-Personal-MiJardinApp/memory/v1_2_test_backlog.md` BEFORE the pre-submission session structure section with "What was built" + "Device-test checklist" + "Why deferred" + "Pre-submission unblock" subsection structure mirroring Phase 20-10 entry exactly; pre-submission session structure comment block updated to enumerate Phase 21 14-item checklist alongside Phase 18 38-item + Phase 20 14-item checklists; Phase 21 CLOSED at code level — all 5 JOURNAL-* requirement IDs reach closing PASS state; ~3 min wall-clock; 2 tasks (Task 1 automation gate re-verify / Task 2 manual checkpoint auto-deferred via Option B); 0 source files modified (verification-only plan; SUMMARY + STATE + ROADMAP + backlog memory are metadata)).
-Status: **Phase 21 CLOSED at code level (Plan 21-06 closing manual gate auto-resolved via Option B; 14-item device-test checklist deferred to v1.2 milestone-end batch).** Next: orchestrator-spawned verifier confirms phase closure invariants → Phase 22 (Gamification — Toasts + Haptics — GAM-01, GAM-02, GAM-05) ready to plan.
-Last activity: 2026-05-11 — Phase 21 Plan 06 complete (JOURNAL-01..05 closing manual gate: automation suite re-verified green; user auto-selected Option B per established v1.2 precedent; 14-item Blocks A-E device-test checklist appended to v1_2_test_backlog.md memory; Phase 21 CLOSED at code level, verifier-ready).
+Phase: 22 of 24 (Gamification — Toasts + Haptics) — **In Progress (Plan 22-00 Wave 0 scaffold complete)**
+Current Plan: 1 of 4
+Plan: 22-00 complete (Wave 0 Nyquist scaffold: scripts/smoke-phase22.cjs 291-line three-tier runner forked verbatim from scripts/smoke-phase21.cjs harness; TIER 1 = 7 W0 scaffold STRICT asserts; TIER 2 = 26 SKIP→PASS placeholders for GAM-01 setOnTaskCompleted plumbing + gamificationToastVisible state + Toast wiring across PlantsScreen/TodayScreen/CalendarScreen + GAM-02 waterPlant/sunPlant/outdoorPlant/fertilizePlant haptic+callback + GAM-05 anti-pattern-comment-x4 marker + GAM-05 STRICT negative-grep walking src/ recursively for streak|consecutiveDays|dayCount|currentStreak|bestStreak|streakReset tokens with line-level whitelist for CARE_STREAKS + gam_anti_patterns.md; TIER 3 = 22 STRICT cross-phase regression asserts spanning Phase 18 PlantCard 5-element + mood emoji + PlantHealthBadge + Gesture.Pan + Toast primitive + Phase 19 TOX-03/04/06 + Phase 20 FERT-03/06/07 + Phase 21 JOURNAL-01/02/04/05; package.json gains "smoke:phase22": "node scripts/smoke-phase22.cjs" adjacent to smoke:phase21; .gitignore gains scripts/.tmp-phase22/ for precautionary parity; src/i18n/locales/en/common.json gains gamification.toastSuccess "You're on it! 🌱" before journal namespace; src/i18n/locales/es/common.json gains voseo "¡Vas bien! 🌱"; baseline PASS=30 FAIL=0 SKIP=26 exit 0; full cross-phase chain green (Phase 18 PASS=56, Phase 19 PASS=85, Phase 20 PASS=49, Phase 21 PASS=76, all FAIL=0); npx tsc --noEmit exit 0; npm run check:i18n-keys PASS 118 catalog ids; runner FROZEN — never edited after this plan; 2 tasks atomic commits b12d4f5 + 1098aaa; ~3 min wall-clock).
+Status: **Phase 22 Plan 22-00 complete (Wave 0 validation contract locked).** Next: Plan 22-01 wires triggerHaptic('success') + onTaskCompletedRef.current?.() into 4 useStorage task-done actions + setOnTaskCompleted plumbing + 4 GAM-05 lock anti-pattern comment blocks.
+Last activity: 2026-05-12 — Phase 22 Plan 00 complete (Wave 0 scaffold; baseline PASS=30 FAIL=0 SKIP=26; cross-phase regression Phase 18-21 all green; runner frozen).
 
-Progress: [██████████] 100% (72/72 plans complete; Phase 21 Plans 21-00 + 21-01 + 21-02 + 21-03 + 21-04 + 21-05 + 21-06 complete — Wave 0 scaffold + JOURNAL-01 useStorage read-side + JOURNAL-02 photo pipeline + JOURNAL-03/04 useStorage actions + deletePlant cascade + JOURNAL-04 UI surfaces + JOURNAL-05 negative-grep + i18n parity verification + closing manual gate Option B)
+Progress: [█████████░] 96% (73/76 plans complete; Phase 22 Plan 22-00 complete — Wave 0 scaffold: smoke runner + npm script + .gitignore + gamification.toastSuccess EN/ES voseo + GAM-05 negative-grep + Phase 18-21 cross-phase regression)
 
 ## Performance Metrics
 
@@ -106,6 +106,7 @@ Progress: [██████████] 100% (72/72 plans complete; Phase 21 
 | Phase 21-plant-journal P04 | 6 min | 4 tasks | 6 files |
 | Phase 21-plant-journal P05 | 1min | 2 tasks | 1 files |
 | Phase 21-plant-journal P06 | 3min | 2 tasks | 0 files |
+| Phase 22-gamification-toasts-haptics P00 | 3min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -304,6 +305,11 @@ Key v1.2 pre-decisions locked during research:
 - [Phase 21-plant-journal]: Plan 21-05: Window-grep sentinel for sub-block invariants — JOURNAL-05.modal.diario-block-not-premium-gated locates the onSectionLayout('diario') anchor and slices ±5 lines for the negative-grep window. Disambiguates from MyPlantDetailModal's legitimate usePremiumGate() at line 83 (Phase 8 diagnosis flow). Pattern reusable when a forbidden symbol is allowed elsewhere in the same file but forbidden in a specific JSX block.
 - [Phase 21-plant-journal]: Plan 21-05: Rule 2 deviation — extended JOURNAL-05.negative-grep sentinel OR-chain to include journalQuickAddSrc (previously omitted; only 2/3 Wave 3 files were checked). Plan's acceptance criterion line 224 explicitly enumerates all three component files. Also added the new diario-block-not-premium-gated sentinel. PASS=75→76 in smoke-phase21.
 - [Phase 21-plant-journal]: Plan 21-05: Pre-existing home.emptyGardenText tuteo string ('Agrega tu primera planta…' at es/common.json:270) flagged by voseo grep but explicitly OUT OF SCOPE per deviation rules § scope boundary (pre-existing, unrelated namespace, pre-dates Phase 21). Inside the journal namespace specifically, voseo discipline is intact.
+- [Phase 22-gamification-toasts-haptics]: Plan 22-00: Three-tier smoke runner pattern extended (fourth consecutive Wave 0 plan after 14-00/19-00/20-00/21-00) — forked smoke-phase21.cjs verbatim; TIER 1 W0 scaffold STRICT (7 asserts) + TIER 2 SKIP→PASS for GAM-01/02 + TIER 2 GAM-05 STRICT negative-grep (NEVER SKIP) + TIER 3 cross-phase regression (22 STRICT asserts spanning Phase 18-21).
+- [Phase 22-gamification-toasts-haptics]: Plan 22-00: GAM-05 anti-pattern lock encoded as compile-time gate, not just policy — STREAK_TOKENS_RE matches /\b(streak|consecutiveDays|dayCount|currentStreak|bestStreak|streakReset)\b/i, line-level whitelist WHITELIST_LINE_RE matches /CARE_STREAKS|gam_anti_patterns\.md/. Walks src/ recursively for .ts/.tsx/.js/.jsx. Baseline returns 0 violations (lone false-positive at src/config/features.ts:31 CARE_STREAKS:false absorbed by whitelist). Allows future Plan 22-01 code comments referencing memory/gam_anti_patterns.md inline.
+- [Phase 22-gamification-toasts-haptics]: Plan 22-00: gamification.toastSuccess i18n key landed in EN ("You're on it! 🌱") and ES voseo ("¡Vas bien! 🌱"). Exact-literal === equality enforced by smoke sentinels W0.scaffold.i18n.es.voseo-literal and W0.scaffold.i18n.en.literal. Single Toast copy locked for all 4 task types (no per-task variants per RESEARCH § single-message decision).
+- [Phase 22-gamification-toasts-haptics]: Plan 22-00: Cross-phase regression growth — Phase 22 inherits ALL prior phase invariants verbatim: 5 Phase 18 asserts (PlantHealthBadge modal+file + Gesture.Pan + moodEmoji+moodBadge + Toast file) + 4 Phase 19 asserts (PetToxicityBadge + MascotasContent + initialSection + checkScript symptoms) + 4 Phase 20 asserts (fertilize emit + scheduler filter + FertilizeCard file + checkScript industrial/homemade) + 9 Phase 21 asserts (journals?: Record + journalService.ts file + ModalSectionId.diario union + JournalSection rendered + journalToastVisible×2 + no-premium-gate×3) = 22 STRICT cross-phase asserts, never SKIP.
+- [Phase 22-gamification-toasts-haptics]: Plan 22-00: Runner FROZEN after Wave 0 — Plans 22-01/02 flip 26 SKIPs to PASSes by landing concrete code (useStorage actions, screen state, JSX, GAM-05 lock comments), never by editing the runner. Encodes plan-then-execute discipline; smoke runner is the deterministic gate per VALIDATION.md.
 
 ### Pending Todos
 
@@ -318,6 +324,6 @@ None yet for v1.2.
 
 ## Session Continuity
 
-Last session: 2026-05-11T23:24:57.955Z
-Stopped at: Completed 21-06-PLAN.md
+Last session: 2026-05-12T01:07:04Z
+Stopped at: Completed 22-00-PLAN.md
 Resume file: None
