@@ -4,7 +4,8 @@
 
 - ✅ **v1.0 Diagnosis & Tracking** — Phases 1-3 (shipped 2026-03-19)
 - ✅ **v1.1 Precision Care** — Phases 4-9 (shipped 2026-05-02)
-- 📋 **v1.2 Recommendation-First Plant Guide** — Phases 10-24 (planning)
+- ✅ **v1.2 Recommendation-First Plant Guide** — Phases 10-24 (shipped 2026-05-12)
+- 📋 **Next milestone — TBD** (run `/gsd:new-milestone` to define)
 
 ## Phases
 
@@ -33,304 +34,30 @@ See: `.planning/milestones/v1.1-ROADMAP.md` for full details
 
 </details>
 
-### 📋 v1.2 Recommendation-First Plant Guide (Phases 10-24)
+<details>
+<summary>✅ v1.2 Recommendation-First Plant Guide (Phases 10-24) — SHIPPED 2026-05-12</summary>
 
-**Milestone Goal:** Pivot from passive tracker to guided assistant — the app recommends what to do (with horticultural rationale) and the user adjusts to their reality. Polish PlantCard, add brand voice, fix UAT bugs, modernize mobile patterns, secure the Perenual API key, and expand plant coverage from 64 to 120 entries with fertilization, pet toxicity, and journal features.
+- [x] Phase 10: Perenual Security (4/4 plans) — completed 2026-05-03
+- [x] Phase 11: Perenual Data Quality (4/4 plans) — completed 2026-05-03
+- [x] Phase 12: Unknown Plant Tracking (4/4 plans) — completed 2026-05-03
+- [x] Phase 13: Gesture + Bottom-Sheet Infrastructure (4/4 plans) — completed 2026-05-04
+- [x] Phase 14: Educational Detail Modal (9/9 plans) — completed 2026-05-06
+- [x] Phase 14.1: databaseId Persistence Fix (1/1 plans) — completed 2026-05-07
+- [x] Phase 15: Catalog Wave A — Interior Tropicals (5/5 plans) — completed 2026-05-07
+- [x] Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending (5/5 plans) — completed 2026-05-08
+- [x] Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales (5/5 plans) — completed 2026-05-08
+- [x] Phase 18: PlantCard Cleanup + Mood Emoji (5/5 plans) — completed 2026-05-08
+- [x] Phase 19: Pet Toxicity (8/8 plans) — completed 2026-05-09
+- [x] Phase 20: Fertilization Subsystem (11/11 plans) — completed 2026-05-11
+- [x] Phase 21: Plant Journal (7/7 plans) — completed 2026-05-11
+- [x] Phase 22: Gamification — Toasts + Haptics (4/4 plans) — completed 2026-05-12
+- [x] Phase 23: Polish — UAT Fixes + Brand Voice (5/5 plans) — completed 2026-05-12
+- [x] Phase 24: Documentation (2/2 plans) — completed 2026-05-12
 
-- [x] **Phase 10: Perenual Security** — Move Perenual API key server-side via new `get-plant-care` edge function; rotate key; remove from client bundle (completed 2026-05-03)
-- [x] **Phase 11: Perenual Data Quality** — Harden Perenual response parsing: match validator, dynamic `tempMax`, inferred `humidity` (completed 2026-05-03; DATA-04 FINDING: free-tier API paywall; see 11-03-SUMMARY.md)
-- [x] **Phase 12: Unknown Plant Tracking** — Fire-and-forget tracker for catalog misses; dev-tools report in Settings (completed 2026-05-03)
-- [x] **Phase 13: Gesture + Bottom-Sheet Infrastructure** — Install 4 native deps; wire `GestureHandlerRootView` + `BottomSheetModalProvider` into both AppContent paths; custom Skeleton component (completed 2026-05-04)
-- [x] **Phase 14: Educational Detail Modal** — 4-section `MyPlantDetailModal` redesign; 5 new catalog fields; 640 new strings for 64 existing entries; identification picker pre-selects recommendation; deep-merge guard (completed 2026-05-06)
-- [x] **Phase 14.1: databaseId Persistence Fix** — gap-closure: AddPlantModal + PlantIdentifierModal persist `plant.databaseId` so MyPlantDetailModal can resolve catalog entries (~10 LOC, single atomic commit) (completed 2026-05-07)
-- [x] **Phase 15: Catalog Wave A — Interior Tropicals** — 23 new catalog entries (interior/tropical) with full v1.1+EDU schema, i18n, identification map, image plan (completed 2026-05-07)
-- [x] **Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending** — 19 new catalog entries across 3 waves with full schema (completed 2026-05-08)
-- [x] **Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales** — 14 new catalog entries; catalog reaches 118 total; smoke asserts count (5 plans) (completed 2026-05-08)
-- [x] **Phase 18: PlantCard Cleanup + Mood Emoji** — Swipe-to-delete with `Gesture.Pan()`; long-press menu; 5-element card; mood emoji (GAM-03/04) replaces health badge (completed 2026-05-08)
-- [x] **Phase 19: Pet Toxicity** — ASPCA-verified `petToxicity` field on all 120 entries; toxicity badge + detail section + pet-safe catalog filter (completed 2026-05-09)
-- [x] **Phase 20: Fertilization Subsystem** — `'fertilize'` task type with full discriminator sweep; season-aware scheduling; fertilizer type content; opt-in push notifications (completed 2026-05-11)
-- [x] **Phase 21: Plant Journal** — Per-plant `JournalEntry[]` with file-system photo storage; bottom-sheet quick-add; reverse-chronological timeline; orphan cleanup on plant delete (completed 2026-05-11)
-- [x] **Phase 22: Gamification — Toasts + Haptics** — Completion toasts; haptic feedback on task done; streak-anxiety anti-pattern documented and enforced (completed 2026-05-12)
-- [x] **Phase 23: Polish — UAT Fixes + Brand Voice** — Outdoor task gate; outdoor picker labels; textSecondary WCAG AA; voseo microcopy; illustrated empty states (completed 2026-05-12)
-- [x] **Phase 24: Documentation** — CLAUDE.md + PROJECT.md updated for v1.2 architecture decisions (completed 2026-05-12)
+See: `.planning/milestones/v1.2-ROADMAP.md` for full details
 
-## Phase Details
+</details>
 
-### Phase 10: Perenual Security
-**Goal**: The Perenual API key is removed from the client bundle and all future catalog lookups go through a server-side edge function
-**Depends on**: Phase 9 (v1.1 complete)
-**Requirements**: SEC-01, SEC-02, SEC-03, SEC-04, SEC-05
-**Success Criteria** (what must be TRUE):
-  1. `grep -r "EXPO_PUBLIC_PERENUAL_API_KEY" src/` returns no results
-  2. Plant identification that previously fell back to Perenual still enriches data correctly (end-to-end smoke test with a known species)
-  3. Supabase Functions logs show `get-plant-care` invocations with no errors after deploy
-  4. Old Perenual API key is rotated and the new key is only accessible via `Deno.env.get` server-side
-**Plans:** 5/4 plans complete
-  - [ ] 10-01-PLAN.md — Create get-plant-care edge function source mirroring identify-plant (SEC-02)
-  - [ ] 10-02-PLAN.md — Swap fetchFromPerenual to invoke edge function; remove EXPO_PUBLIC_PERENUAL_API_KEY from client bundle + .env + .env.example + audit app.json (SEC-01, SEC-03)
-  - [ ] 10-03-PLAN.md — MANUAL CHECKPOINTS: deploy edge function + set Supabase secret + verify live; decision gate; rotate Perenual key + final verify (SEC-04)
-  - [ ] 10-04-PLAN.md — Update CLAUDE.md (edge function list + deploy command + secret + grep guard) and PROJECT.md Key Decisions (SEC-05)
+### 📋 Next milestone — TBD
 
-### Phase 11: Perenual Data Quality
-**Goal**: Plants identified via Perenual return accurate `tempMax` and `humidity` values instead of hardcoded fallbacks, and mismatched results are rejected before caching
-**Depends on**: Phase 10
-**Requirements**: DATA-01, DATA-02, DATA-03, DATA-04
-**Success Criteria** (what must be TRUE):
-  1. Identifying a species with a known USDA hardiness zone returns a `tempMax` derived from that zone (not always 35)
-  2. Identifying an Araceae/tropical plant returns `humidity: 'alta'`; identifying a cactus returns `humidity: 'baja'`
-  3. Querying a species name that doesn't match the top Perenual result returns `null` (no garbage cached)
-  4. Test fixture of 5 known species shows `tempMax ≠ 35` and `humidity ≠ null` in ≥80% of cases
-**Plans:** 4/4 plans complete
-  - [x] 11-00-PLAN.md — Wave 0 scaffold: smoke-phase11.mjs runner + 2 import-stub modules (Nyquist gate)
-  - [x] 11-01-PLAN.md — Edge function: isGoodMatch validator + PerenualPlantDetail family/type schema (DATA-01)
-  - [x] 11-02-PLAN.md — Client service: parseHardiness reads .max + inferHumidity + classifyTempMaxFallback + schema parity (DATA-02, DATA-03)
-  - [x] 11-03-PLAN.md — Manual checkpoints: redeploy + 5-species fixture (DATA-04 FINDING: Perenual free tier paywalls family/type/hardiness — 0/5 threshold; implementation correct; forward-compatible)
-
-### Phase 12: Unknown Plant Tracking
-**Goal**: Every time a user identifies a plant not in the curated catalog, that species is silently logged so future expansion waves can be prioritized by real user demand
-**Depends on**: Nothing (independent)
-**Requirements**: TRACK-01, TRACK-02, TRACK-03
-**Success Criteria** (what must be TRUE):
-  1. Identifying a plant that isn't in the 64-entry catalog increments its count in `@unknown_plants` AsyncStorage key (verified in dev tools)
-  2. Settings → Dev tools section shows the unknown plant report sorted by count descending
-  3. The tracking call is fire-and-forget — identifying a plant completes at the same speed whether tracking succeeds or fails
-**Plans:** 4/4 plans complete
-  - [ ] 12-00-PLAN.md — Wave 0 scaffold: smoke-phase12.mjs runner + AsyncStorage stub (Nyquist gate)
-  - [ ] 12-01-PLAN.md — Wave 1: src/services/unknownPlantTracker.ts service module (TRACK-01)
-  - [ ] 12-02-PLAN.md — Wave 2 (parallel): TRACK-02 catalog-miss gate in getEnrichedPlantData
-  - [ ] 12-03-PLAN.md — Wave 2 (parallel): TRACK-03 Settings dev-tools UI + 4 i18n keys × 2 locales
-
-### Phase 13: Gesture + Bottom-Sheet Infrastructure
-**Goal**: The four native gesture/animation/haptic packages are installed and wired into the provider hierarchy so all future swipe and bottom-sheet UI can be built without a second rebuild
-**Depends on**: Phase 9 (v1.1 complete)
-**Requirements**: INFRA-01, INFRA-02, INFRA-03, INFRA-04
-**Success Criteria** (what must be TRUE):
-  1. App boots without crash on both iOS and Android dev client after the 4 package installs
-  2. `grep -c "BottomSheetModalProvider" App.tsx` returns 3 (1 import + 1 JSX opening tag + 1 JSX closing tag — single App-root wrap covers both AppContent paths via React context per locked CONTEXT.md decision; success-criterion adjustment from original "=== 2" reflects literal grep semantics with locked JSX shape)
-  3. A test bottom sheet opens and closes with correct gesture behavior and no z-order conflict with the existing `PaywallModal`
-  4. The custom `Skeleton` component renders a shimmer animation on a device (not just simulator)
-**Plans:** 4/4 plans complete
-  - [ ] 13-00-PLAN.md — Wave 0 scaffold: smoke-phase13.mjs runner with 5 W0.* scaffolds + 1 babel-conditional + 15 Plan 13-01/02 placeholders (file-content asserts only — no transpileModule)
-  - [ ] 13-01-PLAN.md — Wave 1: install 4 native packages via npx expo install (INFRA-01) + wire GestureHandlerRootView + BottomSheetModalProvider into App.tsx default export above Features.AUTH branch (INFRA-02)
-  - [ ] 13-02-PLAN.md — Wave 2: Skeleton.tsx + haptics.ts (triggerHaptic + HapticKind) + useDismissOnPaywall.ts hook + SettingsScreen __DEV__ test BottomSheetModal + Skeleton demo + 3 i18n keys × 2 locales (INFRA-03 + INFRA-04 verification surface)
-  - [ ] 13-03-PLAN.md — Wave 3: MANUAL CHECKPOINT (autonomous: false) — iOS + Android dev client device verification of sheet gestures, Skeleton shimmer, PaywallModal Z-order coexistence (INFRA-04)
-
-### Phase 14: Educational Detail Modal
-**Goal**: Opening any plant's detail reveals four sections — what to do, where to place it, why, and the user's current settings — with horticultural rationale for all 64 existing catalog entries
-**Depends on**: Phase 13 (INFRA for bottom-sheet section animations; EDU-06 deep-merge guard needs INFRA types)
-**Requirements**: EDU-01, EDU-02, EDU-03, EDU-04, EDU-05, EDU-06, EDU-07
-**Success Criteria** (what must be TRUE):
-  1. A user can open any of the 64 existing catalog plants and see all four sections: "¿Qué hacer?", "¿Dónde ponerla?", "¿Por qué?", "Tus ajustes"
-  2. Opening the detail modal on a plant with a custom watering schedule and closing without saving leaves the custom schedule intact (CRIT-1 guard)
-  3. After identifying a plant via PlantNet, the light level picker pre-selects the species' recommended level
-  4. `npm run check:i18n-keys` passes with the 5 new field validations in place
-  5. "Tus ajustes" shows a soft override note when the user's stored value differs from the catalog recommendation
-**Plans:** 9/9 plans complete
-  - [x] 14-00-PLAN.md — Wave 0 scaffold: smoke-phase14.mjs runner + 2 .tmp-phase14 stubs + npm-script entry + .gitignore line (Nyquist gate; covers EDU-01/02/04/05/06/07 placeholders)
-  - [ ] 14-01-PLAN.md — Wave 1: PlantDBEntry extended with 5 EDU-02 fields + getTranslatedPlant surfaces them + check-i18n-keys validator extended (EDU-02, EDU-07)
-  - [ ] 14-02-PLAN.md — Wave 1: useStorage.updatePlant deep-merge guard (EDU-06) + compareUserVsCatalog override comparator (EDU-05) + 6 plantDetailModal section labels in common.json (EDU-01 prep)
-  - [ ] 14-03-PLAN.md — Wave 2: EducationalSection.tsx Reanimated v4 collapsible card + MyPlantDetailModal restructured into 4 educational sections (EDU-01) + LightLevelPicker pre-select regression check (EDU-04) + 3 sub-block labels in common.json
-  - [ ] 14-04-PLAN.md — Wave 3: EDU-03 catalog content authoring — 15 INTERIOR entries (aloe-vera, calathea, cinta, dracaena, espatifilo, ficus, filodendro, jade, monstera, orquidea, palmera-interior, peperomia, potus, sansevieria, yuca) × 5 fields × 2 locales
-  - [ ] 14-05-PLAN.md — Wave 4: EDU-03 catalog content authoring — 21 EXTERIOR entries (3 lavandas + 18 others) × 5 fields × 2 locales
-  - [ ] 14-06-PLAN.md — Wave 5: EDU-03 catalog content authoring — 18 entries (9 AROMATICAS + 9 HUERTA) × 5 fields × 2 locales
-  - [ ] 14-07-PLAN.md — Wave 6: EDU-03 catalog content authoring — 10 entries (5 FRUTALES + 5 SUCULENTAS) × 5 fields × 2 locales — completes 64-entry catalog (FULL coverage)
-  - [ ] 14-08-PLAN.md — Wave 7: MANUAL CHECKPOINT (autonomous: false) — iOS + Android dev client device verification of EDU-01/04/05/06 + PaywallModal Z-order regression
-
-### Phase 15: Catalog Wave A — Interior Tropicals
-**Goal**: 23 interior/tropical plants are fully added to the catalog with educational content, identification routing, and image plan — expanding from 64 to 87 entries
-**Depends on**: Phase 14 (EDU schema fields established)
-**Requirements**: CAT-09, CAT-10, CAT-11, CAT-12
-**Success Criteria** (what must be TRUE):
-  1. `PLANT_DATABASE.length === 87` (64 + 23)
-  2. All 23 entries have full i18n keyset in EN + ES; `npm run check:i18n-keys` passes
-  3. PlantNet identification of any of the 23 species routes to the curated entry (not to unknown-plant fallback)
-  4. Each entry's image is either uploaded to Supabase Storage or documented as accepted-known in CLAUDE.md
-**Plans:** 5/5 plans complete
-  - [x] 15-00-PLAN.md — Wave 0 scaffold: smoke-phase15.cjs runner with CAT-09/10/11/12 SKIP placeholders + npm script + .gitignore (Nyquist gate)
-  - [ ] 15-01-PLAN.md — Wave 2: Sub-batch A (12 entries — 7 aroceous + 5 foliage especial) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-09, CAT-10 partial)
-  - [ ] 15-02-PLAN.md — Wave 3: Sub-batch B (11 entries — 2 CAM + 1 trepadora + 2 palmeras + 2 helechos + 4 all-rounders) — closes CAT-09 (87 entries) + CAT-10
-  - [ ] 15-03-PLAN.md — Wave 4 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts + identification routing verification (CAT-11)
-  - [ ] 15-04-PLAN.md — Wave 4 (parallel): CLAUDE.md image plan registry update — 23 entries documented as accepted-known failures (CAT-12)
-
-### Phase 16: Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending
-**Goal**: 17 net-new plants + 2 EDU upgrades to existing entries (potus, filodendro) — catalog grows from 87 to 104 entries (CAT-14 includes 2 in-place EDU upgrades on existing v1.0 entries per Phase 16 research finding)
-**Depends on**: Phase 15 (authoring pattern established)
-**Requirements**: CAT-13, CAT-14, CAT-15, CAT-16
-**Success Criteria** (what must be TRUE):
-  1. `PLANT_DATABASE.length === 104` (87 + 17 net-new; potus + filodendro upgraded in place per Option A, see 16-CONTEXT.md addendum)
-  2. All Wave B entries (19 ids: 17 new + 2 upgraded) have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
-  3. Wave B entries appear correctly in identification map and catalog browse
-  4. `sansevieria-cilindrica` is distinct from existing `sansevieria` entry with no i18n key collision
-  5. `findPlantInDatabase` exact-match-first routing fix landed; smoke runner asserts each Phase 16 species-qualified scientificName routes to its OWN id (resolves Dracaena genus collision affecting bambu-suerte / sansevieria-cilindrica / sansevieria / dracaena)
-**Plans:** 5/5 plans complete
-  - [ ] 16-00-PLAN.md — Wave 0 scaffold: scripts/phase16-smoke.cjs (CJS + ts.transpileModule routing path) + npm wiring + .gitignore + findPlantInDatabase exact-match-first refactor (5 LOC) — closes routing fix at Wave 0
-  - [ ] 16-01-PLAN.md — Wave 1: Sub-batch A (10 cactus/suculentas — kalanchoe, siempreviva, piedras-vivas, nopal, mammillaria, corona-espinas, gasteria, senecio-rowleyanus, cactus-navidad, agave) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-13)
-  - [ ] 16-02-PLAN.md — Wave 2: Sub-batch B (7 net-new — hoya, mini-monstera, strelitzia, eucalipto, bambu-suerte, sansevieria-cilindrica, cactus-san-pedro) — closes CAT-13/14/15 (104 entries; potus + filodendro counted as upgrades)
-  - [ ] 16-03-PLAN.md — Wave 3 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts — 19 species-qualified mappings + 7-8 legacy synonym aliases (CAT-16 routing)
-  - [x] 16-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 17 NEW Phase 16 entries documented as accepted-known failures (CAT-16 image plan) (completed 2026-05-08)
-
-### Phase 17: Catalog Wave C — Exterior + Aromáticas + Frutales
-**Goal**: The final 14 catalog entries land and the catalog reaches exactly 118 entries — the v1.2 expansion target (amended 2026-05-08 from original 120 per Phase 17 CONTEXT addendum; potus + filodendro Phase 16 in-place upgrades reduce v1.2 net-add from 56 to 54)
-**Depends on**: Phase 16 (authoring pattern established)
-**Requirements**: CAT-17, CAT-18, CAT-19, CAT-20, CAT-21
-**Success Criteria** (what must be TRUE):
-  1. `PLANT_DATABASE.length === 118` (104 + 14); smoke runner asserts this count
-  2. All Wave C entries have full v1.1 + EDU keyset; `npm run check:i18n-keys` passes
-  3. `salvia-officinalis` is clearly distinguished from existing `salvia-ornamental` in both name and description (distinct top-level i18n namespace, mirroring sansevieria/sansevieria-cilindrica precedent)
-  4. `npm run check:i18n-keys` passes across all 118 entries end-to-end
-**Plans:** 5/5 plans complete
-  - [ ] 17-00-PLAN.md — Wave 0 scaffold: scripts/phase17-smoke.cjs (CJS + ts.transpileModule routing path inheriting Phase 16 exact-match-first refactor) + npm wiring + .gitignore — closes Wave 0 baseline at idMatches=104 mid-band SKIP
-  - [ ] 17-01-PLAN.md — Wave 1: Sub-batch A (8 exterior flores — azalea, ciclamen, fucsia, clavel, crisantemo, tulipan, girasol, magnolia) appended to PLANT_DATABASE + EN+ES i18n keysets (CAT-17)
-  - [ ] 17-02-PLAN.md — Wave 2: Sub-batch B (6 entries: 3 aromáticas + 3 frutales/huerta — salvia-officinalis, eneldo, stevia, olivo, arandano, espinaca) — closes CAT-17/18/19 (118 entries) + CAT-20 keysets + CAT-21 final count assertion
-  - [ ] 17-03-PLAN.md — Wave 3 (parallel): COMMON_NAMES_ES extension in plantIdentification.ts — 14 species-qualified mappings + 8 selective genus aliases + 5 legacy synonym aliases (CAT-20 routing)
-  - [x] 17-04-PLAN.md — Wave 3 (parallel): CLAUDE.md image plan registry update — 14 NEW Phase 17 entries documented as accepted-known failures (CAT-20 image plan) (completed 2026-05-08)
-
-### Phase 18: PlantCard Cleanup + Mood Emoji
-**Goal**: PlantCard is reduced to 5 visual elements; swipe-to-delete and long-press menu replace the in-card trash button; mood emoji is always visible as the health affordance
-**Depends on**: Phase 13 (gesture infrastructure), Phase 17 (full 118-entry catalog)
-**Requirements**: CARD-01, CARD-02, CARD-03, CARD-04, CARD-05, GAM-03, GAM-04
-**Success Criteria** (what must be TRUE):
-  1. Swiping left on a PlantCard reveals a delete affordance; completing the swipe triggers a haptic and a confirmation step — the plant is not instantly deleted
-  2. Long-pressing a PlantCard reveals an overflow menu with favorite, delete, and edit options
-  3. Every PlantCard shows a mood emoji (🌱/😊/😐/😟) derived from health score — always visible, not conditional on score threshold
-  4. The legacy conditional `PlantHealthBadge` (shown only when score < 80) is removed from PlantCard
-  5. First-render swipe affordance hint is shown on the first card in PlantsScreen (dismissible)
-**Plans:** 5/5 plans complete
-  - [x] 18-01-PLAN.md — Wave 0 scaffold: smoke-phase18.cjs runner + npm script + 13 i18n keys (EN+ES parity) + Toast.tsx skeleton + index.ts re-export (Nyquist gate)
-  - [x] 18-02-PLAN.md — Wave 2 (parallel): Toast.tsx full Reanimated v4 impl + tip relocation into MyPlantDetailModal '¿Qué hacer?' section with 3-rung fallback (CARD-03 modal side)
-  - [x] 18-03-PLAN.md — Wave 3: PlantCard.tsx restructure — remove PlantHealthBadge/Alert/trash/heart/tip + add Gesture.Pan/LongPress/Race + mood emoji overlay + onLongPress/onSwipeCommitted props (CARD-01/02/03/05, GAM-03/04)
-  - [x] 18-04-PLAN.md — Wave 4: PlantsScreen + TodayScreen integration — Toast undo flow + BottomSheetModal long-press menu + CARD-04 first-card affordance hint (PlantsScreen only)
-  - [ ] 18-05-PLAN.md — Wave 5: MANUAL CHECKPOINT (autonomous: false) — iOS + Android device verification of swipe gestures, haptics, BottomSheetModal z-order, mood emoji, Toast positioning, affordance hint persistence
-
-### Phase 19: Pet Toxicity
-**Goal**: Every catalog entry is classified for cat and dog toxicity against the ASPCA list; users can see pet safety information in plant detail and filter the catalog to pet-safe plants
-**Depends on**: Phase 18 (PlantCard 5-element budget + headerRight slot)
-**Requirements**: TOX-01, TOX-02, TOX-03, TOX-04, TOX-05, TOX-06
-**Success Criteria** (what must be TRUE):
-  1. Every one of the 118 catalog entries has `petToxicity` set (not absent/undefined); `grep` count assertion passes
-  2. PlantCard shows a red cat/dog badge only for `'toxic'` species and a yellow badge for `'caution'` — nothing shown for `'safe'` or `'unknown'`
-  3. MyPlantDetailModal "Mascotas" section is always visible with species-appropriate copy for all four states
-  4. Catalog browse has a pet-safe filter toggle that correctly filters to entries where both cats and dogs are `'safe'`
-  5. LATAM species not in the ASPCA database show the `'unknown'` state honestly ("No verificada para esta especie en LATAM 🤷")
-**Plans:** 8/8 plans complete
-  - [ ] 19-00-PLAN.md — Wave 0 scaffold: smoke-phase19.cjs + ToxLevel/PetToxicityEntry types + petToxicity helper module + PetToxicityBadge skeleton + data/petToxicity.csv stub + i18n skeleton (toxicity.* namespace EN+ES) + npm script + .gitignore (Nyquist gate)
-  - [ ] 19-01-PLAN.md — Wave 1: TOX-01 helper hardening with absence === 'unknown' discipline + JSDoc + petToxicity.test-stub.ts (literal-type contract gate)
-  - [ ] 19-02-PLAN.md — Wave 1: TOX-02 catalog classification (118 entries × cats+dogs against ASPCA) — CSV research pass + plantDatabase.ts merge + plants.json EN+ES symptom arrays
-  - [ ] 19-03-PLAN.md — Wave 2: TOX-03 PetToxicityBadge full impl + PlantCard headerRight cluster + onOpenToMascotas wiring in PlantsScreen + TodayScreen
-  - [ ] 19-04-PLAN.md — Wave 2: TOX-04 5th 🐾 Mascotas section in MyPlantDetailModal (always visible) + initialSection prop + ScrollView scrollTo-section mechanism
-  - [ ] 19-05-PLAN.md — Wave 2: TOX-05 OnboardingScreen pet-safe Switch (AND-style filter chain + empty-state fallback) + AddPlantModal toxicity warning banner (passive informational, severity-aware)
-  - [ ] 19-06-PLAN.md — Wave 3: TOX-06 check-i18n-keys.mjs conditional petToxicity.symptoms validation + common.json toxicity.* polish + voseo regression audit
-  - [ ] 19-07-PLAN.md — Wave 4: MANUAL CHECKPOINT (autonomous: false) — iOS + Android device verification of badge gestures (Pitfall 3), scroll-to-Mascotas (Pitfall 2), filter behavior, banner copy across 14-item checklist; Option B deferral lane to v1.2 backlog memory per Phase 18 precedent
-
-### Phase 20: Fertilization Subsystem
-**Goal**: Fertilize tasks appear in the Hoy screen on the correct cadence; all five discriminator sites are updated; push notifications are opt-in; every catalog entry has fertilizer type content
-**Depends on**: Phase 17 (full 120-entry catalog for fertilizer content), Phase 13 (INFRA for bottom-sheet task actions)
-**Requirements**: FERT-01, FERT-02, FERT-03, FERT-04, FERT-05, FERT-06, FERT-07
-**Success Criteria** (what must be TRUE):
-  1. A plant with `fertilizeSchedule` set shows a fertilize task in Hoy on the correct due date and not on other days
-  2. `npx tsc --noEmit` passes with `'fertilize'` in the Task union — all five discriminator sites updated (DayDetail, DayDetailModal, MonthCalendar, TaskButton, notificationScheduler)
-  3. Fertilize push notifications default to OFF in Settings; toggling ON schedules reminders correctly
-  4. MyPlantDetailModal "¿Qué hacer?" section shows how and when to fertilize, including the fertilizer type (industrial and/or homemade) for that species
-  5. Plants without `fertilizeSchedule` emit no fertilize task and are not penalized in health score
-**Plans:** 11/11 plans complete
-  - [x] 20-00-PLAN.md — Wave 0 scaffold: smoke-phase20.cjs runner + npm script + .gitignore + i18n skeleton (EN+ES) + FertilizeCard skeleton + plantLogic helper skeletons + type extensions (FERT-01/02/03/05 placeholders)
-  - [x] 20-01-PLAN.md — Wave 1: PROTECTED_USER_FIELDS tuple extension in useStorage.tsx (CRIT-1 deep-merge guard for Plant.fertilizeSchedule)
-  - [x] 20-02-PLAN.md — Wave 1: getSeasonalFertilizeInterval + getNextFertilizeDate real impls in plantLogic.ts (FERT-04 cadence math; cold-season null = no emission; catch-up clip)
-  - [x] 20-03-PLAN.md — Wave 2: FERT-03 5-site discriminator sweep (plantLogic emit + scheduler body filter + notifSettings ratchet + DayDetail/DayDetailModal/MonthCalendar discriminators + plantHealth defensive no-op)
-  - [x] 20-04-PLAN.md — Wave 3: FERT-06 PlantCard mode='tasks' fertilize TaskButton + MyPlantDetailModal two-column layout + FertilizeCard real impl (180ms Reanimated v4) + initialExpanded prop + useStorage.fertilizePlant action
-  - [x] 20-05-PLAN.md — Wave 3: FERT-05 Settings toggle (Switch row in Notifications section) + DEFAULT_SETTINGS.fertilizeReminders=false
-  - [x] 20-06-PLAN.md — Wave 4 Batch A: FERT-07 catalog content for 67 entries (interior 44 + aromáticas 13 + huerta 10) — homemade-first framing
-  - [x] 20-07-PLAN.md — Wave 4 Batch B: FERT-07 catalog content for 16 suculentas — industrial-only (CAM dormancy, no homemade)
-  - [x] 20-08-PLAN.md — Wave 4 Batch C: FERT-07 catalog content for 35 entries (exterior 28 + frutales 7) — both industrial+homemade; closes catalog at 118/118 (FERT-02 PASS)
-  - [x] 20-09-PLAN.md — Wave 5: check-i18n-keys.mjs conditional fertilizer.industrial/homemade extension (mirrors Phase 19 TOX-06 pattern; FERT-07 i18n parity gate closed)
-  - [x] 20-10-PLAN.md — Wave 6: MANUAL CHECKPOINT (autonomous: false) — automation gate + 14-item Blocks A-E device-test checklist; user selected Option B (defer to v1.2 backlog memory per Phase 18-05 / 19-07 milestone-end batching precedent); Phase 20 CLOSED at code level (completed 2026-05-11)
-
-### Phase 21: Plant Journal
-**Goal**: Users can log text notes and photos for any plant in a reverse-chronological journal; journal data is stored safely in the file system (not AsyncStorage base64); deleting a plant cleans up its journal
-**Depends on**: Phase 20 (serializes useStorage.tsx changes to avoid concurrent conflicts)
-**Requirements**: JOURNAL-01, JOURNAL-02, JOURNAL-03, JOURNAL-04, JOURNAL-05
-**Success Criteria** (what must be TRUE):
-  1. A user can add a journal entry (text + optional photo + optional care tag) via a bottom sheet from MyPlantDetailModal in 2 taps or fewer
-  2. Journal entries survive an app restart and appear in reverse-chronological order
-  3. Journal photo URIs point to `documentDirectory` paths — no base64 strings in AsyncStorage (verified by startup size log)
-  4. Deleting a plant also removes its journal entries from storage (no orphans)
-  5. Journal entries are readable without a premium subscription — no paywall at read level
-**Plans:** 7/7 plans complete
-  - [x] 21-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase21.cjs + npm script + .gitignore + type skeletons (CareTag + JournalEntry + AppData.journals?) + journalService.ts skeleton + 3 component skeletons + i18n skeleton ≥15 keys EN+ES
-  - [x] 21-01-PLAN.md — Wave 1 (parallel): JOURNAL-01/02 data layer — useStorage load-path default {} + dataRef init + snapshotFromRef journals inclusion
-  - [x] 21-02-PLAN.md — Wave 1 (parallel): JOURNAL-02 journalService.ts real impl — modern Paths/File/Directory API + 1080px @ 0.7 JPEG compression + 4 functions (pickJournalPhoto / saveJournalPhoto / deleteJournalPhoto / deleteJournalDirectory)
-  - [x] 21-03-PLAN.md — Wave 2: JOURNAL-03/04 useStorage actions — addJournalEntry + deleteJournalEntry (mirror addNote/deleteNote 4-site mutation); deletePlant orphan cleanup (deleteJournalDirectory call + journals[id] map removal)
-  - [x] 21-04-PLAN.md — Wave 3: JOURNAL-04 UI surfaces — ModalSectionId extended with diario; JournalSection (collapsible 180ms timeline) + JournalQuickAddSheet (60% snap + camera/gallery + 6 careTag chips + atomic-write Guardar) + JournalEntryRow (date header + long-press delete sheet); Toast Entrada guardada wiring; PlantsScreen + TodayScreen consumer widening
-  - [x] 21-05-PLAN.md — Wave 4: JOURNAL-05 negative-grep guard (NO premium-gate at read sites) + i18n parity finalization (EN+ES voseo, all Wave 3 t() call sites covered)
-  - [x] 21-06-PLAN.md — Wave 5: MANUAL CHECKPOINT (autonomous: false) — automation gate (tsc + check:i18n-keys + smoke 18/19/20/21) + 14-item Blocks A-E device-test checklist with Option A (run-now) vs Option B (defer to v1_2_test_backlog memory per Phase 18-05 / 19-07 / 20-10 precedent) — **Option B auto-selected via established v1.2 precedent (Phase 18-05/19-07/20-10); 14-item checklist deferred to v1_2_test_backlog.md memory; Phase 21 CLOSED at code level 2026-05-11**
-
-### Phase 22: Gamification — Toasts + Haptics
-**Goal**: Completing a care task triggers a positive celebration (toast + haptic) without introducing streak counters, punishment, or persistent scorekeeping in the UI
-**Depends on**: Phase 13 (expo-haptics installed), Phase 21 (all task types exist for toast triggers)
-**Requirements**: GAM-01, GAM-02, GAM-05
-**Success Criteria** (what must be TRUE):
-  1. Completing any care task (water/sun/outdoor/fertilize) shows a transient celebration toast ("¡Vas bien! 🌱") that auto-dismisses in ~2 seconds
-  2. Task completion triggers a haptic (`NotificationFeedbackType.Success`) on both iOS and Android
-  3. No streak counter, reset number, or "N-day streak" is visible anywhere in the UI
-**Plans:** 4/4 plans complete
-  - [x] 22-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase22.cjs three-tier runner + npm script + .gitignore + gamification.toastSuccess i18n key EN+ES voseo + STRICT cross-phase Phase 18+19+20+21 regression sentinels + GAM-05 negative-grep with CARE_STREAKS/gam_anti_patterns.md whitelist (GAM-01, GAM-02, GAM-05)
-  - [x] 22-01-PLAN.md — Wave 1: useStorage extensions — 3 NEW actions (waterPlant, sunPlant, outdoorPlant) mirroring fertilizePlant precedent + setOnTaskCompleted setter + onTaskCompletedRef useRef + triggerHaptic('success') + onTaskCompletedRef.current?.() in all 4 task actions + sun/outdoor wasUndone toggle gate + 4 GAM-05 lock anti-pattern comment blocks (GAM-01, GAM-02, GAM-05)
-  - [x] 22-02-PLAN.md — Wave 2: 3-screen integration — PlantsScreen + TodayScreen + CalendarScreen gain gamificationToastVisible state + useEffect callback registration + Toast sibling (durationMs=2000); TodayScreen handlers fully migrated; CalendarScreen handlers migrated with selectedDate === todayStr gate (back-dating preserved); PlantsScreen no handler migration (GAM-01, GAM-02)
-  - [x] 22-03-PLAN.md — Wave 3: MANUAL CHECKPOINT (autonomous: false) — automation gate re-verified GREEN at plan-start (7/7 commands exit 0; smoke-22 PASS=56/0/0); Option B auto-selected per Phase 18-05 / 20-10 / 21-06 precedent (Phase 19-07 was ONE Option A outlier); 14-item Blocks A-E checklist (12 hard + 2 soft) appended verbatim to v1_2_test_backlog.md memory; Phase 22 closed at code level (GAM-01, GAM-02, GAM-05)
-
-### Phase 23: Polish — UAT Fixes + Brand Voice
-**Goal**: All four UAT bugs are fixed; all action button copy uses voseo + emoji; textSecondary passes WCAG AA; illustrated empty states replace blank screens
-**Depends on**: Phase 22 (all features exist for copy to reference)
-**Requirements**: POLISH-01, POLISH-02, POLISH-03, POLISH-04, POLISH-05, POLISH-06, POLISH-07, POLISH-08
-**Success Criteria** (what must be TRUE):
-  1. An outdoor plant (e.g. tomato, rose) generates no "Sacar afuera" task in Hoy
-  2. After PlantNet identifies an outdoor plant, the light level picker shows outdoor-appropriate labels ("Pleno sol", "Sol parcial") not indoor labels
-  3. `colors.textSecondary` passes WCAG AA contrast ratio (~4.5:1) against both `bgPrimary` and `card` backgrounds
-  4. All action buttons in ES locale use voseo imperative forms ("Regá ahora 💧", not "Regar"); voseo linter passes
-  5. PlantsScreen, CalendarScreen, and ExploreScreen show illustrated empty states with motivating voseo copy when empty
-**Plans:** 5/5 plans complete
-  - [x] 23-00-PLAN.md — Wave 0 Nyquist scaffold: smoke-phase23.cjs (fork phase 22; STRICT cross-phase Phase 18-22) + voseo-lint.mjs skeleton + 2 npm scripts + .gitignore + emptyState i18n namespace EN+ES (POLISH-01..08 scaffold)
-  - [x] 23-01-PLAN.md — Wave 1 outdoor cluster: POLISH-01 OUTDOOR_TYPE_IDS gate + POLISH-02 catalog outdoor:false on 45 entries + POLISH-03 resolveTypeIdForPicker (3 atomic commits)
-  - [x] 23-02-PLAN.md — Wave 2 WCAG + voseo: POLISH-05 textSecondary #8a7e6b → #6f6450 (WCAG AA) + POLISH-06 STRICT voseo-lint body + 17 pre-existing violation fixes + 4 action button voseo+emoji (2 atomic commits)
-  - [x] 23-03-PLAN.md — Wave 3 empty states: POLISH-07 3 PNG illustrations + 3 EmptyState JSX in PlantsScreen/CalendarScreen/ExploreScreen + POLISH-08 STRICT negative-grep verified (2 atomic commits)
-  - [x] 23-04-PLAN.md — Wave 4 closing manual gate: 9-command automation suite re-verified GREEN (tsc + check:i18n-keys + smoke-phase18/19/20/21/22/23 + lint:voseo); user auto-selected Option B per Phase 18-05 / 20-10 / 21-06 / 22-03 precedent — 14-item POLISH-04 device-test checklist deferred to v1_2_test_backlog.md memory (Phase 23 closes at code level for all 8 POLISH-* requirement IDs)
-
-### Phase 24: Documentation
-**Goal**: CLAUDE.md and PROJECT.md accurately reflect v1.2 architecture decisions so future Claude sessions start with correct context
-**Depends on**: Phase 23 (all v1.2 features complete)
-**Requirements**: DOCS-01, DOCS-02
-**Success Criteria** (what must be TRUE):
-  1. CLAUDE.md contains the `get-plant-care` edge function deploy command and post-deploy verification steps
-  2. PROJECT.md Key Decisions table includes all v1.2 decisions: recommendation-first pivot, deep-merge guard, derived-only streak approach, journal photos in FileSystem, two-AppContent-paths extended to BottomSheetProvider
-**Plans:** 2/2 plans complete
-  - [ ] 24-01-PLAN.md — DOCS-01 surgical CLAUDE.md extensions (Key Patterns + Services Layer + Pre-submit Checks + Security verification)
-  - [ ] 24-02-PLAN.md — DOCS-02 PROJECT.md Key Decisions table extended with 7 v1.2 architectural decisions + footer date bump
-
-## Progress
-
-| Phase | Milestone | Plans Complete | Status | Completed |
-|-------|-----------|----------------|--------|-----------|
-| 1. Camera in Chat | v1.0 | 1/1 | Complete | 2026-03-19 |
-| 2. Problem Tracking Core | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 3. Reminders, Tasks & Plant Detail UI | v1.0 | 3/3 | Complete | 2026-03-19 |
-| 4. Schema Foundation + Migration Core | v1.1 | 7/7 | Complete | 2026-04-30 |
-| 5. Hemisphere/Season Helpers + Pure-Utility Switchover | v1.1 | 5/5 | Complete | 2026-05-01 |
-| 6. UI Read-Side Propagation | v1.1 | 6/6 | Complete | 2026-05-01 |
-| 7. UI Write-Side + Onboarding + Edge-Function Contract | v1.1 | 8/8 | Complete | 2026-05-01 |
-| 8. Catalog Rebalance | v1.1 | 5/5 | Complete | 2026-05-02 |
-| 9. Diagnosis Continuity + Paywall Architecture | v1.1 | 8/8 | Complete | 2026-05-02 |
-| 10. Perenual Security | 5/4 | Complete    | 2026-05-03 | - |
-| 11. Perenual Data Quality | 3/4 | Complete    | 2026-05-03 | - |
-| 12. Unknown Plant Tracking | 4/4 | Complete    | 2026-05-03 | - |
-| 13. Gesture + Bottom-Sheet Infrastructure | 4/4 | Complete    | 2026-05-04 | - |
-| 14. Educational Detail Modal | 9/9 | Complete    | 2026-05-07 | - |
-| 15. Catalog Wave A — Interior Tropicals | 5/5 | Complete    | 2026-05-07 | - |
-| 16. Catalog Wave B — Suculentas/Cactus + Trepadoras + Trending | 5/5 | Complete    | 2026-05-08 | - |
-| 17. Catalog Wave C — Exterior + Aromáticas + Frutales | 5/5 | Complete    | 2026-05-08 | - |
-| 18. PlantCard Cleanup + Mood Emoji | 5/5 | Complete    | 2026-05-08 | - |
-| 19. Pet Toxicity | 8/8 | Complete    | 2026-05-09 | - |
-| 20. Fertilization Subsystem | 11/11 | Complete    | 2026-05-11 | - |
-| 21. Plant Journal | 7/7 | Complete    | 2026-05-11 | - |
-| 22. Gamification — Toasts + Haptics | 4/4 | Complete    | 2026-05-12 | - |
-| 23. Polish — UAT Fixes + Brand Voice | 5/5 | Complete    | 2026-05-12 | - |
-| 24. Documentation | 2/2 | Complete    | 2026-05-12 | - |
+No active milestone defined. Run `/gsd:new-milestone` to scope the next milestone (v1.3 or v2.0) — this will create `.planning/REQUIREMENTS.md` for the next milestone and reset the active phase list above.

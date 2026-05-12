@@ -1,38 +1,38 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.2
-milestone_name: Recommendation-First Plant Guide
-current_plan: 2 of 2 (Phase 24 fully landed)
-status: completed
-stopped_at: Completed 24-02-PLAN.md (Phase 24 fully closed — v1.2 milestone landed at code+docs level)
-last_updated: "2026-05-12T05:40:11.939Z"
-last_activity: "2026-05-12 — Phase 24 Plan 02 complete (DOCS-02 — PROJECT.md Key Decisions table extension; 2 surgical Edit-tool inserts: append 7 new v1.2 decision rows + footer date bump; +8/-1 net lines on `.planning/PROJECT.md` only; 24 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~1 min, ZERO deviations)."
+milestone: null
+milestone_name: TBD — define via /gsd:new-milestone
+current_phase: null
+current_plan: null
+status: between-milestones
+stopped_at: v1.2 milestone CLOSED 2026-05-12 — archived to .planning/milestones/v1.2-* ; awaiting next milestone definition
+last_updated: "2026-05-12T18:00:00.000Z"
+last_activity: "2026-05-12 — v1.2 Recommendation-First Plant Guide milestone closure: ROADMAP collapsed, REQUIREMENTS archived to milestones/v1.2-REQUIREMENTS.md, MILESTONES.md updated with 10 v1.2 accomplishments, PROJECT.md evolved (16 v1.2 reqs moved to Validated, Active reset to TBD), RETROSPECTIVE.md v1.2 section appended. Ready for /gsd:new-milestone."
 progress:
-  total_phases: 15
-  completed_phases: 15
-  total_plans: 82
-  completed_plans: 83
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-05-02)
+See: .planning/PROJECT.md (updated 2026-05-12 after v1.2 milestone — full evolution review)
 
-**Core value:** Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
-**Current focus:** v1.2 Recommendation-First Plant Guide — Phase 10 ready to plan (Perenual Security: move API key server-side before any catalog work).
+**Core value:** Users get recommendations on what to do for each plant (with horticultural rationale) and adjust to their reality — the app guides instead of passively recording. When a plant has a problem, photo + AI diagnosis and proactive follow-up tracking ensure nothing goes forgotten.
+**Current focus:** Planning next milestone — v1.2 closed 2026-05-12 (16 phases, 83 plans). Run `/gsd:new-milestone` to scope v1.3 (or v2.0). Manual ops backlog remains before public ship: device-test sweep per `v1_2_test_backlog.md`, 69-entry image-upload to Supabase Storage, Perenual API key rotation.
 
 ## Current Position
 
-Phase: 24 of 24 (Documentation — CLAUDE.md + PROJECT.md handoff updates for v1.2 — COMPLETE)
-Current Plan: 2 of 2 (Phase 24 fully landed)
-Plan: 24-02 complete (DOCS-02 — PROJECT.md Key Decisions table extension). 2 surgical Edit-tool insertions against verbatim anchors: (1) appended 7 new decision rows immediately before the closing horizontal rule (recommendation-first pivot 4-section modal + 5 EDU fields / deep-merge guard PROTECTED_USER_FIELDS Phase 14 + Phase 20 / GAM-05 anti-pattern lock derived-only mood emoji + STRICT smoke negative-grep / journal photos in FileSystem documentDirectory NEVER base64 / single App-root BottomSheetModalProvider wrap above Features.AUTH branch covering both AppContent paths / ModalSectionId controlled extension precedent Phase 19 mascotas + Phase 21 diario; Phase 20 deliberately did NOT extend via orthogonal initialExpanded / three-tier smoke runner discipline + Option B end-of-milestone device-test deferral 5 precedents + Phase 19-07 outlier); (2) footer "Last updated" line bumped 2026-05-02 → 2026-05-12 with v1.2 closure note enumerating the 7 new decisions inline. Net diff `.planning/PROJECT.md` +8/-1 lines, all 18 pre-existing decision rows preserved verbatim, top-level structure unchanged (## What This Is / ## Core Value / ## Requirements / ## Context / ## Constraints / ## Key Decisions sections all intact). 24 grep sentinels PASS (8 new-row content + 2 footer date + 14 pre-existing row preservation + 3 structure-preservation invariants). Cross-phase verification (run even though zero source code touched): `npx tsc --noEmit` exit 0 / `check:i18n-keys` PASS 118 catalog ids / `lint:voseo` PASS / smoke-phase{18..23}.cjs ALL 6 PASS (PASS=371 FAIL=0 SKIP=0). 1 task, 1 file modified (`.planning/PROJECT.md`), ~1 min, ZERO deviations, commit `bc98ca0`.
-Status: **Phase 24 COMPLETE — both DOCS-01 (Plan 24-01, CLAUDE.md handoff) and DOCS-02 (Plan 24-02, PROJECT.md Key Decisions table) shipped. v1.2 Recommendation-First Plant Guide milestone FULLY LANDED at code+docs level (all 15 phases Phase 10 → Phase 24 complete on disk). Only manual ops backlog remains before v1.2 App Store / Play Store submit: device-test backlog per `v1_2_test_backlog.md` memory (iOS + Android E2E sweep) + 69-entry image-upload backlog to Supabase Storage (15 v1.1 LATAM + 23 Phase 15 Wave A + 17 Phase 16 Wave B + 14 Phase 17 Wave C) + Perenual API key rotation before public ship.**
-Last activity: 2026-05-12 — Phase 24 Plan 02 complete (DOCS-02 — PROJECT.md Key Decisions table extension; 2 surgical Edit-tool inserts: append 7 new v1.2 decision rows + footer date bump; +8/-1 net lines on `.planning/PROJECT.md` only; 24 grep sentinels PASS + cross-phase Phase 18-23 smoke chain 6/6 GREEN + tsc/check:i18n-keys/lint:voseo all PASS; 1 task, ~1 min, ZERO deviations).
+Phase: none (between milestones)
+Current Plan: none
+Status: **v1.2 Recommendation-First Plant Guide milestone CLOSED 2026-05-12.** All 16 phases (10-24 including 14.1) and 83 plans complete at code+docs level. Closure tasks complete: ROADMAP collapsed, REQUIREMENTS archived to `.planning/milestones/v1.2-REQUIREMENTS.md`, MILESTONES.md updated with 10 v1.2 accomplishments, PROJECT.md evolved (16 v1.2 reqs moved to Validated, Active section reset to TBD), RETROSPECTIVE.md v1.2 section appended. Manual ops backlog (device tests + 69 image uploads + Perenual key rotation) tracked in `v1_2_test_backlog.md` memory.
+Last activity: 2026-05-12 — v1.2 milestone closure documentation pass (5 files updated, REQUIREMENTS.md deleted; ready for `/gsd:new-milestone`).
 
-Progress: [██████████] 100% (82/82 plans complete on disk — Phase 24 closed; both DOCS-01 + DOCS-02 shipped; v1.2 milestone fully landed at code+docs level; manual ops backlog remains before public ship)
+Progress: [          ] 0% (no active milestone — run `/gsd:new-milestone` to define next scope)
 
 ## Performance Metrics
 

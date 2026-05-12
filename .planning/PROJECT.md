@@ -2,11 +2,11 @@
 
 ## What This Is
 
-My Garden Care is a React Native (Expo) plant care app where users track watering, sun, and outdoor activities for their plants, with weather integration, AI plant identification, AI health diagnosis with camera support, and premium AI-powered plant problem tracking with follow-up reminders and photo timelines.
+My Garden Care is a React Native (Expo) plant care app where users track watering, sun, outdoor, and fertilization activities for their plants, with weather integration, AI plant identification, AI health diagnosis with camera support, premium AI-powered plant problem tracking with follow-up reminders and photo timelines, a 118-entry curated plant catalog with horticultural recommendations and pet toxicity, and a per-plant photo journal.
 
 ## Core Value
 
-Users can diagnose their plants' problems through photos and AI, and the app proactively tracks recovery — so no plant issue goes forgotten.
+Users get recommendations on what to do for each plant (with horticultural rationale) and adjust to their reality — the app guides instead of passively recording. When a plant has a problem, photo + AI diagnosis and proactive follow-up tracking ensure nothing goes forgotten.
 
 ## Requirements
 
@@ -43,30 +43,34 @@ Users can diagnose their plants' problems through photos and AI, and the app pro
 - ✓ Catalog rebalance: 50 expert overrides + 14 new LATAM outdoor plants + lavender split (64 total) — v1.1
 - ✓ Lookup-by-id catalog content with `_aliases` for renamed slugs — v1.1
 - ✓ CI guards for catalog i18n key parity + image URL 200 OK — v1.1
+- ✓ Perenual API key moved server-side via `get-plant-care` Supabase edge function (rotation pending pre-public-ship) — v1.2
+- ✓ Hardened Perenual response parsing: `isGoodMatch` validator + dynamic `tempMax` from USDA hardiness + inferred `humidity` from family/type — v1.2
+- ✓ Unknown plant tracking: fire-and-forget logging of catalog misses + Settings dev-tools report — v1.2
+- ✓ Gesture + bottom-sheet infrastructure: 4 native deps, `GestureHandlerRootView` + `BottomSheetModalProvider` at App root, custom `Skeleton` shimmer — v1.2
+- ✓ Educational `MyPlantDetailModal` with 4 base sections (¿Qué hacer? / ¿Dónde ponerla? / ¿Por qué? / Tus ajustes) + Mascotas + Diario; 5 new EDU fields per catalog entry; identification picker pre-selects recommendation; override-detection note in "Tus ajustes" — v1.2
+- ✓ `PROTECTED_USER_FIELDS` deep-merge guard in `useStorage.updatePlant` (extended for `fertilizeSchedule` in Phase 20) — v1.2
+- ✓ Catalog expansion 64 → 118 entries across 3 waves (interior tropicals, suculentas/cactus/trepadoras, exterior/aromáticas/frutales) — v1.2
+- ✓ PlantCard 5-element redesign: swipe-to-delete + long-press menu + always-visible mood emoji (replaces conditional health badge) — v1.2
+- ✓ Pet toxicity (ASPCA-verified) on all 118 entries: cat/dog badges + Mascotas detail section + pet-safe catalog filter + onboarding switch — v1.2
+- ✓ Fertilization subsystem: `'fertilize'` task type with 5-site discriminator sweep, season-aware cadence, opt-in push notifications, full EN/ES fertilizer-type content — v1.2
+- ✓ Plant Journal: per-plant `JournalEntry[]` with file-system photo storage (1080px @ 0.7 JPEG, never base64), bottom-sheet quick-add, reverse-chronological timeline, orphan cleanup on plant delete — v1.2
+- ✓ Celebration toasts + `NotificationFeedbackType.Success` haptics on task completion; GAM-05 anti-pattern lock (no persistent streak counters) enforced via smoke negative-grep — v1.2
+- ✓ UAT + brand voice polish: outdoor task gate, outdoor picker labels, `textSecondary` WCAG AA contrast, voseo lint over ES locale, illustrated empty states on 3 screens — v1.2
 
 ### Active
 
 <!-- Current scope. Building toward these. -->
 
-## Current Milestone: v1.2 Recommendation-First Plant Guide
+- TBD — define next milestone via `/gsd:new-milestone`
 
-**Goal:** Pivot from passive tracker to guided assistant — the app recommends what to do (with horticultural rationale) and the user adjusts to their reality. Polish PlantCard, add brand voice, fix UAT bugs, modernize mobile patterns, and expand plant-app domain coverage (fertilization, pet toxicity, journal).
+### Pending Operational Tasks (v1.2 closeout)
 
-**Target features (6 themes):**
-- **Educational Detail Modal** (centerpiece): 4-section redesign with ¿Qué hacer? / ¿Dónde ponerla? / ¿Por qué? / Tus ajustes; catalog extended with `careAction`, `placementRecommended`, `placementAlternatives`, `placementAvoid`, `whyRationale` per entry; identification picker pre-selects species recommendation
-- **PlantCard Cleanup**: delete trash out of card (swipe-to-delete or detail menu); reduce 10 visual elements → 5; tip italic collapses to detail
-- **Microcopy + Brand Voice**: voseo + emoji on action buttons; consistent voice/personality; illustrated empty states; sample-data path in onboarding
-- **UAT Bug Fixes**: outdoor task gate (no "Sacar afuera" on outdoor plants); picker outdoor labels for outdoor PlantNet results; consolidate two identification entry points; textSecondary contrast fix (WCAG AA)
-- **Mobile UX Modernization**: bottom sheets replacing full-screen modals for short actions; swipe gestures (delete, complete, favorite); long-press actions; haptic feedback at key moments; skeleton loaders
-- **Plant-App Domain Expansion**: fertilization schedule per plant; pet toxicity (cats/dogs) per catalog entry; per-plant photo journal; light streaks/celebration toasts (no heavy gamification)
-
-### Pending Operational Tasks (v1.1 closeout)
-
-Manual ops batched at end of milestone — must complete before declaring v1.1 publicly released:
-- Run device-test backlog (~27 scenarios) on Android device
-- Deploy 2 Supabase edge functions: `chat-diagnosis` + `diagnose-plant`
-- Upload 15 catalog images to Supabase Storage `plant-images/catalog/<id>.jpg` (14 new outdoor + lavanda-angustifolia rename)
+Manual ops batched at end of milestone — must complete before public ship to App Store / Play Store:
+- Run device-test backlog (see `v1_2_test_backlog.md` memory) on iOS + Android (14-item checklist per phase × 5 deferred phases — Phase 18-05 / 20-10 / 21-06 / 22-03 / 23-04)
+- Upload 69 catalog images to Supabase Storage `plant-images/catalog/<id>.jpg` (15 v1.1 LATAM + 23 Phase 15 Wave A + 17 Phase 16 Wave B + 14 Phase 17 Wave C)
 - Re-run `npm run check:images` until exit 0
+- Rotate Perenual API key in Perenual dashboard (SEC-04 — deferred from Phase 10 trusted-test-build context)
+- RevenueCat-gated PaywallModal Z-order regression check on iOS (per `v1_2_test_backlog.md`)
 
 ### Out of Scope
 
@@ -82,11 +86,13 @@ Manual ops batched at end of milestone — must complete before declaring v1.1 p
 
 ## Context
 
-Shipped v1.1 Precision Care milestone (39 plans across 6 phases, 4 waves of complexity). v1.0 shipped earlier with +1,545 LOC. The app is on Google Play (internal track), preparing for production after v1.1 device-test backlog completes.
+Shipped v1.2 Recommendation-First Plant Guide milestone (83 plans across 16 phases — Phases 10-24 including 14.1 — over 10 days, 2026-05-02 → 2026-05-12). v1.1 Precision Care shipped earlier (39 plans / 6 phases); v1.0 Diagnosis & Tracking shipped before that (7 plans / 3 phases). The app is on Google Play (internal track), preparing for public ship after v1.2 device-test backlog + 69-entry image-upload backlog + Perenual key rotation complete (tracked in `v1_2_test_backlog.md` memory).
 
-**Current state (post-v1.1):** Plant care is precision-driven — light quality (4 levels indoor/outdoor), seasonal warm/cold watering split, three-zone seasonality (lat-derived or manual override), soil-check mode for cacti. Onboarding asks for location with skip-safe path. Catalog has 64 expert-vetted entries (50 rebalanced + 14 new LATAM outdoor + lavender 3-variant split). Diagnosis chat now resumes across sessions with App-level paywall + deferred callback. All code green: smoke 752 PASS across all phases, project-wide tsc strict.
+**Current state (post-v1.2):** App pivoted from passive tracker to guided assistant. 6-section `MyPlantDetailModal` (¿Qué hacer? / ¿Dónde ponerla? / ¿Por qué? / Tus ajustes + Mascotas + Diario) with override-detection note. Catalog is 118 expert-vetted entries with full EDU schema (`careAction`, `placementRecommended`, `placementAlternatives`, `placementAvoid`, `whyRationale`), ASPCA-verified pet toxicity flags, and fertilizer-type content (industrial + homemade). PlantCard reduced to 5 elements with swipe-to-delete + long-press menu + always-visible mood emoji. Fertilization is a first-class task type with season-aware cadence. Plant Journal stores photos in `documentDirectory` (never base64). Three-tier smoke runner with STRICT cross-phase regression covers all phases 4-23 (single `smoke-phase23.cjs` invocation is sufficient pre-submit coverage). Codebase: ~39,322 LOC `src/` TS+TSX, project-wide `tsc --noEmit` strict, `check:i18n-keys` PASS on all 118 entries, `lint:voseo` PASS on ES locale.
 
-**Tech stack:** React Native + Expo SDK 54, TypeScript strict, Supabase edge functions (with dual-payload backward compat), AsyncStorage local-first with versioned envelope, RevenueCat premium gating, single-compile-path smoke runner via `typescript.transpileModule` (no jest/vitest installed).
+**Tech stack:** React Native + Expo SDK 54, TypeScript strict, Supabase edge functions (with dual-payload backward compat; `identify-plant` + `get-plant-care` + `diagnose-plant` + `chat-diagnosis` + `waitlist`), AsyncStorage local-first with versioned envelope, RevenueCat premium gating, `@gorhom/bottom-sheet` v5 + Reanimated v4 + `react-native-gesture-handler` + `expo-haptics`, expo-image-manipulator for journal photo compression, single-compile-path smoke runner via `typescript.transpileModule` (no jest/vitest installed).
+
+**Deferred items:** See `v1_2_test_backlog.md` memory for the device-test backlog + 69-entry image-upload backlog + Perenual key rotation + RevenueCat-gated PaywallModal Z-order iOS check. Same milestone-end batching pattern as v1.1.
 
 ## Constraints
 
@@ -128,4 +134,4 @@ Shipped v1.1 Precision Care milestone (39 plans across 6 phases, 4 waves of comp
 | Three-tier smoke runner discipline + STRICT cross-phase regression sentinels (Phase 19+); Option B end-of-milestone device-test deferral pattern (5 consecutive precedents — Phase 18-05 / 20-10 / 21-06 / 22-03 / 23-04; Phase 19-07 ONE outlier) | Three-tier pattern: (1) W0 scaffold STRICT PASS — files MUST exist; (2) SKIP→PASS placeholders — flip as later plans land code; (3) STRICT cross-phase regression — forked verbatim from prior phase, locks invariants. Each `smoke-phase<N>.cjs` runner ships in Wave 0 of its phase, is NOT modified after, and the latest runner in the chain (Phase 23 = `smoke-phase23.cjs`) is sufficient pre-submit coverage for Phase 18-22 invariants. Manual-checkpoint Option B (defer device-test to `v1_2_test_backlog.md` memory) is the established v1.2 closure pattern for non-source-code device-test gates — 5 consecutive precedents at the manual-checkpoint structural threshold. Phase 19-07 was the ONE Option A (run-now) outlier. Full manual device-test batch runs end-of-milestone before v1.2 App Store / Play Store submit, alongside the 69-entry image-upload backlog. | ✓ Good (v1.2 Phase 19-23) |
 
 ---
-*Last updated: 2026-05-12 after v1.2 Recommendation-First Plant Guide milestone Phase 24 docs closure — Key Decisions table extended with 7 v1.2 architectural decisions (recommendation-first pivot, deep-merge guard, derived-only streaks, journal in FileSystem, single BottomSheetProvider wrap, ModalSectionId controlled extension, three-tier smoke + Option B deferral). Previous: 2026-05-02 v1.2 milestone defined. v1.1 Precision Care shipped (39 plans / 6 phases).*
+*Last updated: 2026-05-12 after v1.2 milestone — full evolution review: What This Is + Core Value updated for recommendation-first pivot; 16 v1.2 requirements moved to Validated; Active section reset to TBD pending `/gsd:new-milestone`; Context section refreshed (118-entry catalog, ~39,322 LOC, deferred items reference `v1_2_test_backlog.md` memory); Key Decisions table preserves all 18 prior + 7 v1.2 rows added in Phase 24 Plan 02. Previous: 2026-05-12 Phase 24 docs closure. v1.0/v1.1/v1.2 all shipped.*
