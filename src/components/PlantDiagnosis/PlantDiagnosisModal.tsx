@@ -375,6 +375,7 @@ export function PlantDiagnosisModal({
             remaining={remaining}
             chatLimit={FREE_CHAT_MESSAGES_PER_DIAGNOSIS}
             onPaywallWithDeferredSend={handlePaywallWithDeferredSend}
+            plantDatabaseId={plant.databaseId}
             onAddToShoppingList={onAddToShoppingList}
             canAddToShoppingList={canAddToShoppingList}
             onTrackProblem={handleTrackProblem}

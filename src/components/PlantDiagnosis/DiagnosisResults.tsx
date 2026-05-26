@@ -14,8 +14,10 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
-import { DiagnosisResult, DiagnosisSeverity, DiagnosisChatMessage, TrackingStatus } from '../../types';
+import { DiagnosisResult, DiagnosisSeverity, DiagnosisChatMessage, TrackingStatus, ToxLevel } from '../../types';
 import { shouldShowTrackButton, isTrackingOptional, TRACKING_STATUS_CONFIG } from '../../services/problemTrackingService';
+import { getCatalogEntry } from '../../data/plantDatabase';
+import { getPetToxicity } from '../../utils/petToxicity';
 
 interface DiagnosisResultsProps {
   result: DiagnosisResult;
@@ -36,6 +38,8 @@ interface DiagnosisResultsProps {
   remaining?: number;
   chatLimit?: number;
   onPaywallWithDeferredSend?: (text: string, base64?: string, uri?: string) => void;
+  // Pet safety surface — when set, renders compact toxicity summary after the diagnosis summary.
+  plantDatabaseId?: string;
   // Shopping list
   onAddToShoppingList?: (treatment: string) => void;
   canAddToShoppingList?: boolean;
@@ -81,8 +85,12 @@ export function DiagnosisResults({
   showResolutionSuggestion = false,
   onConfirmResolution,
   onDismissResolution,
+  plantDatabaseId,
 }: DiagnosisResultsProps) {
   const { t } = useTranslation();
+
+  const catalogEntry = plantDatabaseId ? getCatalogEntry(plantDatabaseId) : null;
+  const petToxicity = catalogEntry ? getPetToxicity(catalogEntry) : null;
 
   const STATUS_LABELS: Record<DiagnosisSeverity, string> = {
     healthy: t('diagnosis.statusHealthy'),
@@ -182,6 +190,21 @@ export function DiagnosisResults({
 
       {/* Summary */}
       <Text style={styles.summary}>{result.summary}</Text>
+
+      {/* Pet safety — renders only when the diagnosed plant matches a catalog entry. */}
+      {petToxicity && (
+        <View style={styles.petSafetyCard}>
+          <Text style={styles.petSafetyTitle}>🐾 {t('plantDetailModal.pets')}</Text>
+          {petToxicity.cats === 'safe' && petToxicity.dogs === 'safe' ? (
+            <Text style={styles.petSafetyLine}>{t('toxicity.safeForBoth')}</Text>
+          ) : (
+            <>
+              <PetSafetyLine species="cats" level={petToxicity.cats} />
+              <PetSafetyLine species="dogs" level={petToxicity.dogs} />
+            </>
+          )}
+        </View>
+      )}
 
       {/* Issues */}
       {result.issues.length > 0 && (
@@ -371,7 +394,7 @@ export function DiagnosisResults({
                   styles.messagesRemainingRow,
                   remaining <= 2 && styles.messagesRemainingWarning,
                 ]}>
-                  {t('diagnosis.messagesRemaining', { remaining, total: chatLimit ?? 3 })}
+                  {t('diagnosis.messagesRemaining', { count: remaining, total: chatLimit ?? 3 })}
                 </Text>
               )}
               {pendingPhoto && (
@@ -472,6 +495,25 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'center',
     marginBottom: spacing.xxl,
+  },
+  petSafetyCard: {
+    backgroundColor: colors.card,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    marginBottom: spacing.xl,
+    ...shadows.sm,
+  },
+  petSafetyTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 13,
+    color: colors.textPrimary,
+    marginBottom: spacing.xs,
+  },
+  petSafetyLine: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    color: colors.textPrimary,
+    lineHeight: 20,
   },
   section: {
     marginBottom: spacing.xl,
@@ -886,3 +928,27 @@ const styles = StyleSheet.create({
     color: colors.warningText,
   },
 });
+
+// File-private helper for the pet safety section. Mirrors the per-species
+// rendering used by MyPlantDetailModal's Mascotas section, minus the symptoms
+// detail (the diagnosis view shows a compact summary; users can open the
+// MyPlantDetailModal Mascotas section for the full breakdown including symptoms).
+function PetSafetyLine({
+  species,
+  level,
+}: {
+  species: 'cats' | 'dogs';
+  level: ToxLevel;
+}): React.ReactElement {
+  const { t } = useTranslation();
+  const speciesLabel = t(`toxicity.species.${species}`);
+
+  if (level === 'safe') {
+    return <Text style={styles.petSafetyLine}>{t('toxicity.safeForSpecies', { species: speciesLabel })}</Text>;
+  }
+  if (level === 'unknown') {
+    return <Text style={styles.petSafetyLine}>{t('toxicity.unverifiedLatam')}</Text>;
+  }
+  const headerKey = level === 'toxic' ? 'toxicity.toxicForSpecies' : 'toxicity.cautionForSpecies';
+  return <Text style={styles.petSafetyLine}>{t(headerKey, { species: speciesLabel })}</Text>;
+}
