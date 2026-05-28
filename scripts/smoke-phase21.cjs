@@ -135,11 +135,15 @@ assertSkippable(() => {
 assertSkippable(() => useStorageSrc.includes('deleteJournalDirectory') || undefined, 'JOURNAL-04.useStorage.deletePlant-calls-deleteJournalDirectory');
 assertSkippable(() => /delete\s+newJournals\[id\]|delete\s+newJournals\[plantId\]/.test(useStorageSrc) || undefined, 'JOURNAL-04.useStorage.deletePlant-removes-journals-map-entry');
 
-// ─── JOURNAL-04 ModalSectionId + Diario section + BottomSheetModal — SKIP at W0, PASS after 21-04 ───
+// ─── JOURNAL-04 ModalSectionId + Diario section + sheet presentation — SKIP at W0, PASS after 21-04 ───
+// Note: 2026-05-28 — JournalQuickAddSheet migrated from gorhom BottomSheetModal to RN <Modal>
+// (gorhom portal mounts at App root, which iOS keeps BELOW any active RN Modal layer — the parent
+// MyPlantDetailModal is an RN Modal, so the gorhom version always rendered hidden behind it).
+// Sentinel now locks the RN-Modal slide-up sheet shape: `animationType="slide"` + max-height cap.
 assertSkippable(() => /'que-hacer'\s*\|\s*'donde'\s*\|\s*'por-que'\s*\|\s*'tus-ajustes'\s*\|\s*'mascotas'\s*\|\s*'diario'/.test(modalSrc) || undefined, 'JOURNAL-04.ModalSectionId.diario-extension');
 assertSkippable(() => modalSrc.includes("onSectionLayout('diario')") || undefined, 'JOURNAL-04.modal.diario-section-layout');
 assertSkippable(() => modalSrc.includes('JournalSection') || undefined, 'JOURNAL-04.modal.JournalSection-rendered');
-assertSkippable(() => /snapPoints=\{\[['"]60%['"]\]\}/.test(journalQuickAddSrc) || undefined, 'JOURNAL-04.JournalQuickAddSheet.60-percent-snap');
+assertSkippable(() => (/animationType=["']slide["']/.test(journalQuickAddSrc) && /maxHeight:\s*['"][0-9]+%['"]/.test(journalQuickAddSrc)) || undefined, 'JOURNAL-04.JournalQuickAddSheet.rn-modal-slide-sheet');
 assertSkippable(() => journalQuickAddSrc.includes('launchCameraAsync') || journalQuickAddSrc.includes('photoCamera') || undefined, 'JOURNAL-04.JournalQuickAddSheet.camera-button');
 assertSkippable(() => journalQuickAddSrc.includes('launchImageLibraryAsync') || journalQuickAddSrc.includes('photoGallery') || undefined, 'JOURNAL-04.JournalQuickAddSheet.gallery-button');
 assertSkippable(() => /careTag/.test(journalQuickAddSrc) || undefined, 'JOURNAL-04.JournalQuickAddSheet.careTag-chips');

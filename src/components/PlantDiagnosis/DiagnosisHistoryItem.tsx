@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
 import { SavedDiagnosis, DiagnosisSeverity } from '../../types';
 
@@ -13,11 +14,11 @@ interface DiagnosisHistoryItemProps {
   onPress: (diagnosis: SavedDiagnosis) => void;
 }
 
-const STATUS_CONFIG: Record<DiagnosisSeverity, { icon: string; label: string; color: string; bg: string }> = {
-  healthy: { icon: '✅', label: 'Saludable', color: colors.green, bg: colors.successBg },
-  minor: { icon: '💛', label: 'Leve', color: colors.warningText, bg: colors.warningBg },
-  moderate: { icon: '🟠', label: 'Moderado', color: '#c47a20', bg: '#fef3e0' },
-  severe: { icon: '🔴', label: 'Grave', color: colors.dangerText, bg: colors.dangerBg },
+const STATUS_STYLE: Record<DiagnosisSeverity, { icon: string; color: string; bg: string }> = {
+  healthy: { icon: '✅', color: colors.green, bg: colors.successBg },
+  minor: { icon: '💛', color: colors.warningText, bg: colors.warningBg },
+  moderate: { icon: '🟠', color: '#c47a20', bg: '#fef3e0' },
+  severe: { icon: '🔴', color: colors.dangerText, bg: colors.dangerBg },
 };
 
 function formatDiagnosisDate(dateStr: string): string {
@@ -31,7 +32,15 @@ function formatDiagnosisDate(dateStr: string): string {
 }
 
 export function DiagnosisHistoryItem({ diagnosis, onPress }: DiagnosisHistoryItemProps) {
-  const config = STATUS_CONFIG[diagnosis.result.overallStatus];
+  const { t } = useTranslation();
+  const STATUS_LABELS: Record<DiagnosisSeverity, string> = {
+    healthy: t('diagnosis.statusHealthy'),
+    minor: t('diagnosis.statusMinor'),
+    moderate: t('diagnosis.statusModerate'),
+    severe: t('diagnosis.statusSevere'),
+  };
+  const style = STATUS_STYLE[diagnosis.result.overallStatus];
+  const label = STATUS_LABELS[diagnosis.result.overallStatus];
   const chatCount = diagnosis.chat.filter(m => m.role === 'user').length;
   const issueCount = diagnosis.result.issues.length;
 
@@ -42,11 +51,11 @@ export function DiagnosisHistoryItem({ diagnosis, onPress }: DiagnosisHistoryIte
       activeOpacity={0.7}
     >
       <View style={styles.header}>
-        <Text style={styles.statusIcon}>{config.icon}</Text>
+        <Text style={styles.statusIcon}>{style.icon}</Text>
         <View style={styles.headerInfo}>
           <View style={styles.headerTop}>
-            <Text style={[styles.statusLabel, { color: config.color }]}>
-              {config.label}
+            <Text style={[styles.statusLabel, { color: style.color }]}>
+              {label}
             </Text>
             <Text style={styles.date}>{formatDiagnosisDate(diagnosis.date)}</Text>
           </View>

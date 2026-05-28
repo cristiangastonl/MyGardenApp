@@ -21,6 +21,7 @@ import { calculatePlantHealth } from '../utils/plantHealth';
 import { findDatabaseEntry } from '../utils/plantInfo';
 import { PlantHealthBadge } from './PlantHealthBadge';
 import { PlantPhotoAlbum } from './PlantPhotoAlbum';
+import { Toast } from './Toast';
 import { PlantDiagnosisModal, DiagnosisHistoryItem, DiagnosisDetailModal } from './PlantDiagnosis';
 import { ActiveProblemsSection } from './ActiveProblemsSection';
 import { MigrationTooltip } from './MigrationTooltip';
@@ -80,6 +81,7 @@ export function MyPlantDetailModal({
   const [resumeDiagnosis, setResumeDiagnosis] = useState<SavedDiagnosis | null>(null);
   // Phase 21 (JOURNAL-04): quick-add sheet local visibility — opened by the Diario section.
   const [quickAddSheetVisible, setQuickAddSheetVisible] = useState(false);
+  const [localJournalToastVisible, setLocalJournalToastVisible] = useState(false);
   const { canDiagnose, isPremium } = usePremiumGate();
   const { showPaywall } = usePremium();
   const {
@@ -546,10 +548,9 @@ export function MyPlantDetailModal({
             <MigrationTooltip plantId={plant.id} />
           ) : null}
 
-          {/* Phase 21 (JOURNAL-04): quick-add BottomSheetModal — sibling of ScrollView per
-              RESEARCH Pattern 6 Option A. App-root gorhom provider makes the portal mount
-              correctly even inside this RN Modal. Toast wiring is delegated to the parent
-              screen via onJournalEntrySaved (Important 6 Approach B; Pitfall 10 avoided). */}
+          {/* Phase 21 fix: JournalQuickAddSheet uses RN <Modal> (stackable above this parent
+              RN Modal on iOS). Previous BottomSheetModal-based impl could not present —
+              gorhom portal mounts at App root which iOS keeps BELOW any active RN Modal layer. */}
           <JournalQuickAddSheet
             plantId={plant.id}
             visible={quickAddSheetVisible}
@@ -557,7 +558,18 @@ export function MyPlantDetailModal({
             onSave={(entry) => {
               addJournalEntry(plant.id, entry);
               onJournalEntrySaved?.();
+              setLocalJournalToastVisible(true);
             }}
+          />
+
+          {/* Phase 21 fix: Toast inside the modal — parent-screen Toast at PlantsScreen/TodayScreen
+              level is hidden behind this RN Modal (iOS layer z-order). Local Toast guarantees
+              visibility when an entry is saved from within the open modal. */}
+          <Toast
+            visible={localJournalToastVisible}
+            message={t('journal.savedToast')}
+            durationMs={2000}
+            onDismiss={() => setLocalJournalToastVisible(false)}
           />
         </View>
       </View>

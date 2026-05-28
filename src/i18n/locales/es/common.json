@@ -10,7 +10,7 @@
     "toastSuccess": "¡Vas bien! 🌱"
   },
   "journal": {
-    "header": "Diario",
+    "header": "Bitácora de cuidados",
     "emptyState": "Agregá tu primera entrada 📔",
     "addEntry": "+ Nueva entrada",
     "savedToast": "Entrada guardada 📔",
@@ -466,7 +466,7 @@
     "chooseKnown": "Elegí de plantas conocidas"
   },
   "photoAlbum": {
-    "title": "FOTOS",
+    "title": "GALERÍA DE PROGRESO",
     "addPhoto": "Agregar foto",
     "camera": "Cámara",
     "gallery": "Galería",

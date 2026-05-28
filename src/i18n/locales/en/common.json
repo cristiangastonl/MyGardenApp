@@ -10,7 +10,7 @@
     "toastSuccess": "You're on it! 🌱"
   },
   "journal": {
-    "header": "Journal",
+    "header": "Care log",
     "emptyState": "Add your first entry 📔",
     "addEntry": "+ New entry",
     "savedToast": "Entry saved 📔",
@@ -466,7 +466,7 @@
     "chooseKnown": "Choose from known plants"
   },
   "photoAlbum": {
-    "title": "PHOTOS",
+    "title": "PROGRESS GALLERY",
     "addPhoto": "Add photo",
     "camera": "Camera",
     "gallery": "Gallery",

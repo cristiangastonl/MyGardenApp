@@ -1,7 +1,9 @@
 /**
- * src/components/plant-detail/JournalQuickAddSheet.tsx — Phase 21 (JOURNAL-04) real impl.
+ * src/components/plant-detail/JournalQuickAddSheet.tsx — Phase 21 (JOURNAL-04).
  *
- * BottomSheetModal quick-add UI (60% snap), driven by `visible` prop from parent modal.
+ * RN <Modal>-based quick-add UI (was BottomSheetModal — gorhom portal cannot
+ * mount above an active RN Modal on iOS; the parent MyPlantDetailModal is an RN Modal,
+ * so the gorhom version always rendered hidden behind it. RN Modals DO stack natively).
  *
  * Form fields (all optional — 2-tap floor permits saving a date-only entry):
  *  - Multiline text input
@@ -17,28 +19,26 @@
  *
  * i18n: bare t() calls only — Blocker 4 enforced (Wave 0 ships all keys).
  */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Alert,
   Image,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { useTranslation } from 'react-i18next';
-import { useDismissOnPaywall } from '../../hooks/useDismissOnPaywall';
 import { pickJournalPhoto, saveJournalPhoto } from '../../services/journalService';
 import { colors, spacing, borderRadius, fonts } from '../../theme';
 import type { CareTag, JournalEntry } from '../../types';
 
 // Phase 21 (JOURNAL-04, Warning D LOCKED) — explicit literal array for the 6 care-tag chips.
-// Listing the tag names verbatim in source (a) makes them grep-able for acceptance criteria,
-// (b) drives chip rendering via .map() so adding/removing a tag is a single-line change,
-// (c) keeps the literal union (types/index.ts `CareTag`) and the runtime array in lockstep
-// via the `as const satisfies readonly CareTag[]` annotation.
 const CARE_TAGS = ['riego', 'fertilizar', 'sol', 'poda', 'problema', 'otro'] as const satisfies readonly CareTag[];
 
 interface JournalQuickAddSheetProps {
@@ -55,19 +55,11 @@ export default function JournalQuickAddSheet({
   onSave,
 }: JournalQuickAddSheetProps): React.ReactElement {
   const { t } = useTranslation();
-  const sheetRef = useRef<BottomSheetModal>(null);
-  useDismissOnPaywall(sheetRef); // Pitfall 10 — paywall z-order safety.
 
   const [text, setText] = useState('');
   const [rawPhotoUri, setRawPhotoUri] = useState<string | undefined>(undefined);
   const [selectedTag, setSelectedTag] = useState<CareTag | undefined>(undefined);
   const [saving, setSaving] = useState(false);
-
-  // Drive presentation from `visible` prop — gives the parent modal full control.
-  useEffect(() => {
-    if (visible) sheetRef.current?.present();
-    else sheetRef.current?.dismiss();
-  }, [visible]);
 
   const handlePhotoCamera = useCallback(async () => {
     const uri = await pickJournalPhoto('camera');
@@ -86,10 +78,12 @@ export default function JournalQuickAddSheet({
     setSaving(false);
   }, []);
 
+  const hasContent = text.trim().length > 0 || !!rawPhotoUri || !!selectedTag;
+
   const handleSave = useCallback(async () => {
-    if (saving) return;
+    if (saving || !hasContent) return;
     setSaving(true);
-    const entryId = Date.now().toString(); // app-wide convention (RESEARCH).
+    const entryId = Date.now().toString();
     let savedPhotoUri: string | undefined;
     if (rawPhotoUri) {
       try {
@@ -102,7 +96,7 @@ export default function JournalQuickAddSheet({
     }
     const entry: JournalEntry = {
       id: entryId,
-      date: new Date().toISOString().slice(0, 10), // "YYYY-MM-DD"
+      date: new Date().toISOString().slice(0, 10),
       text: text.trim() || undefined,
       photoUri: savedPhotoUri,
       careTag: selectedTag,
@@ -110,7 +104,7 @@ export default function JournalQuickAddSheet({
     onSave(entry);
     resetForm();
     onDismiss();
-  }, [plantId, text, rawPhotoUri, selectedTag, saving, onSave, onDismiss, resetForm, t]);
+  }, [plantId, text, rawPhotoUri, selectedTag, saving, hasContent, onSave, onDismiss, resetForm, t]);
 
   const handleCancel = useCallback(() => {
     resetForm();
@@ -118,84 +112,111 @@ export default function JournalQuickAddSheet({
   }, [resetForm, onDismiss]);
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
-      snapPoints={['60%']}
-      enablePanDownToClose
-      onDismiss={onDismiss}
-      backdropComponent={(props) => (
-        <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
-      )}
+    <Modal
+      visible={visible}
+      transparent
+      animationType="slide"
+      onRequestClose={handleCancel}
     >
-      <BottomSheetView style={styles.content}>
-        <TextInput
-          style={styles.input}
-          multiline
-          numberOfLines={3}
-          placeholder={t('journal.textPlaceholder')}
-          placeholderTextColor={colors.textMuted}
-          value={text}
-          onChangeText={setText}
-        />
-        <View style={styles.photoRow}>
-          <TouchableOpacity onPress={handlePhotoCamera} style={styles.photoBtn}>
-            <Text style={styles.photoBtnText}>{t('journal.photoCamera')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handlePhotoGallery} style={styles.photoBtn}>
-            <Text style={styles.photoBtnText}>{t('journal.photoGallery')}</Text>
-          </TouchableOpacity>
-        </View>
-        {rawPhotoUri ? (
-          <View style={styles.previewTile}>
-            <Image source={{ uri: rawPhotoUri }} style={styles.preview} resizeMode="cover" />
-            <TouchableOpacity
-              onPress={() => setRawPhotoUri(undefined)}
-              style={styles.removeBtn}
-              hitSlop={8}
-            >
-              <Text style={styles.removeBtnText}>✕</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={styles.kbAvoid}
+      >
+      <Pressable style={styles.backdrop} onPress={handleCancel}>
+        <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
+          <View style={styles.handle} />
+          <TextInput
+            style={styles.input}
+            multiline
+            numberOfLines={3}
+            placeholder={t('journal.textPlaceholder')}
+            placeholderTextColor={colors.textMuted}
+            value={text}
+            onChangeText={setText}
+          />
+          <View style={styles.photoRow}>
+            <TouchableOpacity onPress={handlePhotoCamera} style={styles.photoBtn}>
+              <Text style={styles.photoBtnText}>{t('journal.photoCamera')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handlePhotoGallery} style={styles.photoBtn}>
+              <Text style={styles.photoBtnText}>{t('journal.photoGallery')}</Text>
             </TouchableOpacity>
           </View>
-        ) : null}
-        <View style={styles.chipRow}>
-          {CARE_TAGS.map((tag) => {
-            const isSelected = selectedTag === tag;
-            return (
+          {rawPhotoUri ? (
+            <View style={styles.previewTile}>
+              <Image source={{ uri: rawPhotoUri }} style={styles.preview} resizeMode="cover" />
               <TouchableOpacity
-                key={tag}
-                onPress={() => setSelectedTag(isSelected ? undefined : tag)}
-                style={[styles.chip, isSelected && styles.chipSelected]}
-                accessibilityRole="button"
-                accessibilityState={{ selected: isSelected }}
+                onPress={() => setRawPhotoUri(undefined)}
+                style={styles.removeBtn}
+                hitSlop={8}
               >
-                <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
-                  {t(`journal.careTag.${tag}`)}
-                </Text>
+                <Text style={styles.removeBtnText}>✕</Text>
               </TouchableOpacity>
-            );
-          })}
-        </View>
-        <View style={styles.footer}>
-          <TouchableOpacity onPress={handleCancel} style={styles.cancelBtn}>
-            <Text style={styles.cancelBtnText}>{t('journal.cancel')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleSave}
-            disabled={saving}
-            style={[styles.saveBtn, saving && styles.saveBtnDisabled]}
-          >
-            <Text style={styles.saveBtnText}>{t('journal.save')}</Text>
-          </TouchableOpacity>
-        </View>
-      </BottomSheetView>
-    </BottomSheetModal>
+            </View>
+          ) : null}
+          <View style={styles.chipRow}>
+            {CARE_TAGS.map((tag) => {
+              const isSelected = selectedTag === tag;
+              return (
+                <TouchableOpacity
+                  key={tag}
+                  onPress={() => setSelectedTag(isSelected ? undefined : tag)}
+                  style={[styles.chip, isSelected && styles.chipSelected]}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isSelected }}
+                >
+                  <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
+                    {t(`journal.careTag.${tag}`)}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={handleCancel} style={styles.cancelBtn}>
+              <Text style={styles.cancelBtnText}>{t('journal.cancel')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleSave}
+              disabled={saving || !hasContent}
+              style={[styles.saveBtn, (saving || !hasContent) && styles.saveBtnDisabled]}
+            >
+              <Text style={styles.saveBtnText}>{t('journal.save')}</Text>
+            </TouchableOpacity>
+          </View>
+        </Pressable>
+      </Pressable>
+      </KeyboardAvoidingView>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  content: {
-    padding: spacing.md,
+  kbAvoid: {
+    flex: 1,
+  },
+  backdrop: {
+    flex: 1,
+    backgroundColor: colors.overlay,
+    justifyContent: 'flex-end',
+  },
+  sheet: {
+    backgroundColor: colors.card,
+    borderTopLeftRadius: borderRadius.xxl,
+    borderTopRightRadius: borderRadius.xxl,
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.xl,
     gap: spacing.md,
+    maxHeight: '70%',
+  },
+  handle: {
+    alignSelf: 'center',
+    width: 40,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: colors.border,
+    marginBottom: spacing.sm,
   },
   input: {
     borderWidth: 1,
