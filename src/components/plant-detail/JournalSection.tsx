@@ -14,7 +14,7 @@
  * i18n: bare t() calls only — Wave 0 shipped 22 keys (Blocker 4).
  */
 import React, { useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -109,22 +109,23 @@ export default function JournalSection({
             if (h > 0) measuredHeight.value = h;
           }}
         >
-          <FlatList
-            data={sorted}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <JournalEntryRow entry={item} plantId={plantId} onDelete={onDeleteEntry} />
-            )}
-            scrollEnabled={false} // Modal ScrollView owns vertical scroll; inner list just lays out.
-            ListEmptyComponent={
-              <View style={styles.emptyState}>
-                <Text style={styles.emptyText}>{t('journal.emptyState')}</Text>
-                <TouchableOpacity onPress={onAddEntry} style={styles.emptyCtaBtn}>
-                  <Text style={styles.emptyCtaText}>{t('journal.addEntry')}</Text>
-                </TouchableOpacity>
-              </View>
-            }
-          />
+          {sorted.length === 0 ? (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyText}>{t('journal.emptyState')}</Text>
+              <TouchableOpacity onPress={onAddEntry} style={styles.emptyCtaBtn}>
+                <Text style={styles.emptyCtaText}>{t('journal.addEntry')}</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            sorted.map((item) => (
+              <JournalEntryRow
+                key={item.id}
+                entry={item}
+                plantId={plantId}
+                onDelete={onDeleteEntry}
+              />
+            ))
+          )}
         </View>
       </Animated.View>
     </View>

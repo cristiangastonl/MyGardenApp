@@ -33,6 +33,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { pickJournalPhoto, saveJournalPhoto } from '../../services/journalService';
 import { colors, spacing, borderRadius, fonts } from '../../theme';
@@ -55,6 +56,7 @@ export default function JournalQuickAddSheet({
   onSave,
 }: JournalQuickAddSheetProps): React.ReactElement {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const [text, setText] = useState('');
   const [rawPhotoUri, setRawPhotoUri] = useState<string | undefined>(undefined);
@@ -123,7 +125,10 @@ export default function JournalQuickAddSheet({
         style={styles.kbAvoid}
       >
       <Pressable style={styles.backdrop} onPress={handleCancel}>
-        <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
+        <Pressable
+          style={[styles.sheet, { paddingBottom: spacing.md + insets.bottom }]}
+          onPress={(e) => e.stopPropagation()}
+        >
           <View style={styles.handle} />
           <TextInput
             style={styles.input}
