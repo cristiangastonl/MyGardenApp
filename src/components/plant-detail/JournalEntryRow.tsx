@@ -7,26 +7,28 @@
  *   + optional 80x80 photo thumbnail
  *   + optional text body
  *
- * Long-press → BottomSheetModal with "Eliminar entrada" option → Alert.alert confirm
- * → deleteJournalPhoto (best-effort) + onDelete(entryId).
+ * Long-press → native Alert.alert confirm → deleteJournalPhoto (best-effort) + onDelete(entryId).
+ *
+ * 2026-06-01 — dropped the gorhom BottomSheetModal intermediate step. Same iOS z-order
+ * root cause as the JournalQuickAddSheet fix (4b8f7ab): a gorhom BottomSheetModal portals
+ * to the App root, which iOS keeps BELOW the active RN <Modal> (MyPlantDetailModal), so
+ * long-press appeared to do nothing. A single destructive action only needs the native
+ * confirm Alert, which always renders on top — no intermediate sheet required.
  *
  * i18n: bare t() calls only — Wave 0 ships ALL keys (Blocker 4 enforced).
  * Theme tokens: colors / spacing / borderRadius / fonts from ../../theme.
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Alert,
   Image,
   Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
-import { useDismissOnPaywall } from '../../hooks/useDismissOnPaywall';
 import { deleteJournalPhoto } from '../../services/journalService';
 import { colors, spacing, borderRadius, fonts } from '../../theme';
 import type { JournalEntry } from '../../types';
@@ -62,17 +64,14 @@ export default function JournalEntryRow({
   onDelete,
 }: JournalEntryRowProps): React.ReactElement {
   const { t } = useTranslation();
-  const deleteSheetRef = useRef<BottomSheetModal>(null);
-  useDismissOnPaywall(deleteSheetRef); // Pitfall 10 — paywall z-order safety.
 
   const dateLabel = getRelativeDateLabel(entry.date, t);
   const careTagLabel = entry.careTag ? t(`journal.careTag.${entry.careTag}`) : null;
 
-  const handleConfirmDelete = () => {
-    deleteSheetRef.current?.dismiss();
+  const handleLongPress = () => {
     Alert.alert(
+      t('journal.deleteEntry'),
       t('journal.deleteConfirm'),
-      '',
       [
         { text: t('journal.cancel'), style: 'cancel' },
         {
@@ -97,8 +96,9 @@ export default function JournalEntryRow({
 
   return (
     <Pressable
-      onLongPress={() => deleteSheetRef.current?.present()}
-      style={styles.card}
+      onLongPress={handleLongPress}
+      delayLongPress={300}
+      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
       accessibilityRole="button"
       accessibilityLabel={dateLabel}
     >
@@ -114,22 +114,6 @@ export default function JournalEntryRow({
         <Image source={{ uri: entry.photoUri }} style={styles.thumbnail} resizeMode="cover" />
       ) : null}
       {entry.text ? <Text style={styles.body}>{entry.text}</Text> : null}
-
-      {/* Long-press → delete sheet. Sibling of the Pressable card for portal mount. */}
-      <BottomSheetModal
-        ref={deleteSheetRef}
-        snapPoints={['25%']}
-        enablePanDownToClose
-        backdropComponent={(props) => (
-          <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
-        )}
-      >
-        <BottomSheetView style={styles.sheet}>
-          <TouchableOpacity onPress={handleConfirmDelete} style={styles.sheetItem}>
-            <Text style={styles.sheetItemDestructive}>{t('journal.deleteEntry')}</Text>
-          </TouchableOpacity>
-        </BottomSheetView>
-      </BottomSheetModal>
     </Pressable>
   );
 }
@@ -140,6 +124,13 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.md,
     padding: spacing.sm,
     marginBottom: spacing.sm,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
+  cardPressed: {
+    // While the long-press is held, highlight which entry is about to be deleted.
+    backgroundColor: 'rgba(91,154,106,0.12)', // colors.green tint
+    borderColor: colors.green,
   },
   headerRow: {
     flexDirection: 'row',
@@ -176,17 +167,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textPrimary,
     lineHeight: 20,
-  },
-  sheet: {
-    padding: spacing.lg,
-  },
-  sheetItem: {
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  sheetItemDestructive: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 16,
-    color: colors.dangerText,
   },
 });
