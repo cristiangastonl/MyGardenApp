@@ -327,7 +327,12 @@ export default function PlantsScreen() {
     );
   };
 
-  const ListHeader = () => (
+  // NOTE: built as an element (not a `() => (...)` component) and passed to
+  // ListHeaderComponent directly. Passing a freshly-defined component *type* each
+  // render makes FlatList remount the header subtree on every keystroke, which steals
+  // focus from the search TextInput (keyboard closes after one character). An element
+  // reconciles by stable child type, so the TextInput stays mounted + focused.
+  const listHeaderElement = (
     <View style={styles.header}>
       <Text style={styles.title}>{t('plants.title')}</Text>
       <Text style={styles.subtitle}>
@@ -367,7 +372,7 @@ export default function PlantsScreen() {
   // react-native-svg dependency per RESEARCH §Finding 10 + §Pitfall 6). Copy keys
   // swap from legacy `plants.emptyTitle`/`plants.emptyText` to the new
   // `emptyState.plants.{title,cta}` namespace landed in Plan 23-00 (CONTEXT.md voseo lock).
-  const EmptyState = () => (
+  const emptyStateElement = (
     <View style={styles.emptyState}>
       <Image
         source={require('../../assets/illustrations/empty-plants.png')}
@@ -387,8 +392,9 @@ export default function PlantsScreen() {
         renderItem={renderPlant}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
-        ListHeaderComponent={ListHeader}
-        ListEmptyComponent={EmptyState}
+        ListHeaderComponent={listHeaderElement}
+        ListEmptyComponent={emptyStateElement}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       />
 
