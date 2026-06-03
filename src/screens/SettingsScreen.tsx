@@ -41,6 +41,7 @@ export default function SettingsScreen() {
     plants,
     location,
     climateOverride,
+    setClimateOverride,
     notificationSettings,
     updateLocation,
     updateNotificationSettings,
@@ -523,6 +524,43 @@ export default function SettingsScreen() {
               }}
             >
               <Text style={styles.devButtonText}>🧪 Load v0 fixture (smoke test)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.devButton}
+              onPress={() => {
+                Alert.alert(
+                  'Seed Phase 20',
+                  'Replaces current data with 5 fertilize test plants (Anturio both / Jade industrial / Tomate huerta / custom sin catálogo / Anturio dormancia). climateOverride=northern → junio = cálido. Continues?',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Load & reload',
+                      onPress: async () => {
+                        const fixture = require('../../tests/fixtures/phase20-seed.json');
+                        await AsyncStorage.removeItem('plant-agenda-v2.backup-pre-v1.1');
+                        await AsyncStorage.setItem('plant-agenda-v2', JSON.stringify(fixture));
+                        DevSettings?.reload?.();
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.devButtonText}>🌱 Seed Phase 20 (fertilize)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.devButton}
+              onPress={() => {
+                const cycle: Array<typeof climateOverride> = ['auto', 'northern', 'southern', 'tropical'];
+                const i = cycle.indexOf(climateOverride ?? 'auto');
+                setClimateOverride(cycle[(i + 1) % cycle.length] as any);
+              }}
+            >
+              <Text style={styles.devButtonText}>
+                🌡️ Clima: {climateOverride ?? 'auto'} → {effectiveSeason} (tap para ciclar)
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.devButton} onPress={openTestSheet}>

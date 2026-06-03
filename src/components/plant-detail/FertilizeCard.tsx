@@ -13,9 +13,13 @@
  * Per-modal-session expand state via useState — NOT AsyncStorage (Phase 14 precedent).
  * Modal close + reopen resets the prop to undefined; expand state resets accordingly.
  *
- * Pitfall 4 averted (lazy-measure + hasInteracted gate): while !hasInteracted, body
- * renders with `height: 'auto'` so RN measures naturally on Android; after first toggle
- * the animated height takes over driven by measuredHeight + open shared values.
+ * Pitfall 4 averted (off-layout measuring ghost): an absolutely-positioned, opacity-0
+ * copy of the body always renders at natural height (never clipped) so its onLayout
+ * reliably reports the true height on both platforms. The visible clip animates between
+ * 0 and that measured height. This replaces the earlier lazy-measure+hasInteracted gate,
+ * which left measuredHeight at 0 when the card was first reached collapsed (e.g. Jade /
+ * any plant opened without the initialExpanded auto-expand routing) → re-expand showed
+ * nothing because height = measuredHeight(0) × open.
  */
 import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ViewStyle, StyleProp } from 'react-native';
@@ -58,7 +62,6 @@ export function FertilizeCard({
 }: FertilizeCardProps): React.ReactElement | null {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(defaultExpanded);
-  const [hasInteracted, setHasInteracted] = useState(false);
   const measuredHeight = useSharedValue(0);
   const open = useSharedValue(defaultExpanded ? 1 : 0);
 
@@ -80,7 +83,6 @@ export function FertilizeCard({
   }));
 
   const toggle = () => {
-    if (!hasInteracted) setHasInteracted(true);
     const next = !expanded;
     setExpanded(next);
     open.value = next ? 1 : 0;
@@ -117,6 +119,13 @@ export function FertilizeCard({
   const hasHomemade = !!homemadeText;
   const hasBody = hasIndustrial || hasHomemade;
 
+  const bodyChildren = (
+    <>
+      {hasIndustrial && <Text style={styles.recipe}>🧪 {industrialText}</Text>}
+      {hasHomemade && <Text style={styles.recipe}>🏡 {homemadeText}</Text>}
+    </>
+  );
+
   return (
     <View style={[styles.card, style]}>
       <Pressable
@@ -128,22 +137,24 @@ export function FertilizeCard({
         <Text style={styles.header}>🌱 {headerText}{hasBody ? ' ›' : ''}</Text>
       </Pressable>
       {hasBody && (
-        <Animated.View style={[styles.bodyClip, hasInteracted ? bodyStyle : styles.bodyAuto]}>
+        <View style={styles.bodyWrap}>
+          {/* Off-layout measuring ghost — natural height, invisible, never clipped, so
+              onLayout reliably reports the true body height on both platforms. */}
           <View
-            style={styles.bodyContent}
+            style={styles.ghost}
+            pointerEvents="none"
             onLayout={(e) => {
               const h = e.nativeEvent.layout.height;
               if (h > 0) measuredHeight.value = h;
             }}
           >
-            {hasIndustrial && (
-              <Text style={styles.recipe}>🧪 {industrialText}</Text>
-            )}
-            {hasHomemade && (
-              <Text style={styles.recipe}>🏡 {homemadeText}</Text>
-            )}
+            <View style={styles.bodyContent}>{bodyChildren}</View>
           </View>
-        </Animated.View>
+          {/* Visible animated clip — height/opacity driven by measuredHeight × open. */}
+          <Animated.View style={[styles.bodyClip, bodyStyle]}>
+            <View style={styles.bodyContent}>{bodyChildren}</View>
+          </Animated.View>
+        </View>
       )}
     </View>
   );
@@ -161,11 +172,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.green,
   },
+  bodyWrap: {
+    position: 'relative',
+  },
   bodyClip: {
     overflow: 'hidden',
+    height: 0,
   },
-  bodyAuto: {
-    height: 'auto',
+  ghost: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    opacity: 0,
+    zIndex: -1,
   },
   bodyContent: {
     paddingTop: spacing.sm,
