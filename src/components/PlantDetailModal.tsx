@@ -55,6 +55,19 @@ export function PlantDetailModal({ visible, plant: rawPlant, onClose, onAdd }: P
         <View style={styles.container}>
           <View style={styles.handle} />
 
+          {/* Fixed top-right close affordance — lets the user dismiss without
+              scrolling all the way down to the "Cerrar" button. Sits above the
+              ScrollView (zIndex) so the gallery/content scrolls underneath it. */}
+          <TouchableOpacity
+            style={styles.closeX}
+            onPress={onClose}
+            accessibilityRole="button"
+            accessibilityLabel={t('plantDetailModal.close')}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Text style={styles.closeXText}>×</Text>
+          </TouchableOpacity>
+
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* Galería de imágenes */}
             {(plant.imageUrl || (plant.galleryUrls && plant.galleryUrls.length > 0)) && (
@@ -194,6 +207,8 @@ interface Styles {
   addButtonText: TextStyle;
   closeButton: ViewStyle;
   closeButtonText: TextStyle;
+  closeX: ViewStyle;
+  closeXText: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -391,6 +406,25 @@ const styles = StyleSheet.create<Styles>({
   closeButtonText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 16,
+    color: colors.textSecondary,
+  },
+  closeX: {
+    position: 'absolute',
+    top: spacing.md,
+    right: spacing.md,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    ...shadows.sm,
+  },
+  closeXText: {
+    fontFamily: fonts.body,
+    fontSize: 22,
+    lineHeight: 24,
     color: colors.textSecondary,
   },
 });

@@ -238,8 +238,12 @@ export function MyPlantDetailModal({
 
   return (
     <>
+    {/* iOS can't present a second RN Modal while this one is still presented — the
+        child PlantDiagnosisModal / DiagnosisDetailModal would fail to appear ("no
+        pasa nada"). Hide this modal whenever a child modal is open so only one RN
+        Modal is ever presented at a time; it re-presents when the child closes. */}
     <Modal
-      visible={visible}
+      visible={visible && !showDiagnosis && !selectedDiagnosis}
       animationType="slide"
       transparent
       onRequestClose={onClose}

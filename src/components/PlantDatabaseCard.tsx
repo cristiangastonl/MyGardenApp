@@ -12,6 +12,10 @@ interface PlantDatabaseCardProps {
 
 export function PlantDatabaseCard({ plant, onPress }: PlantDatabaseCardProps) {
   const { t } = useTranslation();
+  // v1.2 entries dropped the legacy `waterDays` in favour of `waterSchedule.{warm,cold}`.
+  // Fall back to the warm interval (then a weekly default, mirroring getSeasonalInterval)
+  // so cards never render a bare "💧 d" with no number for schedule-only catalog entries.
+  const waterDays = plant.waterDays ?? plant.waterSchedule?.warm ?? 7;
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       {plant.imageUrl ? (
@@ -28,7 +32,7 @@ export function PlantDatabaseCard({ plant, onPress }: PlantDatabaseCardProps) {
       </Text>
       <View style={styles.badges}>
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>💧 {plant.waterDays}d</Text>
+          <Text style={styles.badgeText}>💧 {waterDays}d</Text>
         </View>
         <View style={styles.badge}>
           <Text style={styles.badgeText} numberOfLines={2}>
@@ -79,7 +83,9 @@ const styles = StyleSheet.create<Styles>({
   },
   badges: {
     flexDirection: 'row',
+    flexWrap: 'wrap', // long light labels wrap the sun badge to its own line instead of overflowing
     justifyContent: 'center',
+    alignItems: 'center',
     gap: spacing.xs,
   },
   badge: {
@@ -87,6 +93,7 @@ const styles = StyleSheet.create<Styles>({
     borderRadius: borderRadius.sm,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
+    flexShrink: 1, // let a badge shrink + wrap its text rather than push past the card edge
   },
   badgeText: {
     fontFamily: fonts.body,

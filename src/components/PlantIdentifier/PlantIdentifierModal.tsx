@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Modal,
@@ -43,6 +43,10 @@ export function PlantIdentifierModal({
   const { showPaywall } = usePremium();
   const [showDiagnosisPrompt, setShowDiagnosisPrompt] = useState(false);
   const [addedPlant, setAddedPlant] = useState<Plant | null>(null);
+  // Synchronous double-submit guard: rapid taps on "Agregar" otherwise each open a
+  // "use this photo?" Alert and add the plant once per tap. A ref blocks re-entry
+  // from the very first tap (state would update too late to stop the burst).
+  const isAddingRef = useRef(false);
   const {
     state,
     imageUri,
@@ -63,6 +67,7 @@ export function PlantIdentifierModal({
     reset();
     setShowDiagnosisPrompt(false);
     setAddedPlant(null);
+    isAddingRef.current = false;
     onClose();
   };
 
@@ -70,6 +75,7 @@ export function PlantIdentifierModal({
     reset();
     setShowDiagnosisPrompt(false);
     setAddedPlant(null);
+    isAddingRef.current = false;
   };
 
   const handleDiagnose = (reusePhotos: boolean) => {
@@ -89,6 +95,8 @@ export function PlantIdentifierModal({
 
   const handleAddPlant = (lightLevel: LightLevel) => {
     if (!selectedPlant) return;
+    if (isAddingRef.current) return; // ignore repeat taps until this add resolves
+    isAddingRef.current = true;
 
     // Use enriched data if available, otherwise fall back to identified data
     const data = enrichedData;
@@ -121,13 +129,17 @@ export function PlantIdentifierModal({
     };
 
     const doAdd = async (usePhoto: boolean) => {
-      const createdPlant = await onAddPlant(plantData, usePhoto ? imageUri : null);
-      // Show diagnosis prompt if feature is enabled
-      if (Features.DLC_PEST_DIAGNOSIS && onDiagnoseAfterIdentify) {
-        setAddedPlant(createdPlant);
-        setShowDiagnosisPrompt(true);
-      } else {
-        handleClose();
+      try {
+        const createdPlant = await onAddPlant(plantData, usePhoto ? imageUri : null);
+        // Show diagnosis prompt if feature is enabled
+        if (Features.DLC_PEST_DIAGNOSIS && onDiagnoseAfterIdentify) {
+          setAddedPlant(createdPlant);
+          setShowDiagnosisPrompt(true);
+        } else {
+          handleClose();
+        }
+      } catch (e) {
+        isAddingRef.current = false; // allow retry if the add failed
       }
     };
 

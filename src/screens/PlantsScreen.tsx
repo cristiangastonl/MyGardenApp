@@ -435,8 +435,14 @@ export default function PlantsScreen() {
           isPremium={premium.isPremium}
           onDiagnoseAfterIdentify={(plant, reusePhotos, capturedUri, capturedBase64) => {
             setShowIdentifier(false);
-            setDiagnosePlantState(plant);
-            setDiagnosisInitialImages(reusePhotos && capturedUri && capturedBase64 ? [{ uri: capturedUri, base64: capturedBase64 }] : undefined);
+            // iOS: presenting the diagnosis RN Modal while the identifier Modal is
+            // still dismissing fails silently (the diagnosis modal never appears —
+            // "no pasa nada"). Defer the mount until the dismissal settles, same
+            // close-then-trigger pattern as the PAY-02 paywall (350ms).
+            setTimeout(() => {
+              setDiagnosePlantState(plant);
+              setDiagnosisInitialImages(reusePhotos && capturedUri && capturedBase64 ? [{ uri: capturedUri, base64: capturedBase64 }] : undefined);
+            }, 350);
           }}
         />
       )}

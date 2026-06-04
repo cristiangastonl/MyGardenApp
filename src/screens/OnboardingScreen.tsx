@@ -264,13 +264,19 @@ export default function OnboardingScreen() {
   }, []);
 
   const handleDiagnoseAfterIdentify = useCallback((plant: Plant, reusePhotos: boolean, imageUri: string | null, imageBase64: string | null) => {
-    setDiagnosePlant(plant);
-    if (reusePhotos && imageUri && imageBase64) {
-      setDiagnosisInitialImages([{ uri: imageUri, base64: imageBase64 }]);
-    } else {
-      setDiagnosisInitialImages(undefined);
-    }
-    setShowDiagnosis(true);
+    setShowIdentifier(false);
+    // iOS: defer the diagnosis RN Modal until the identifier Modal finishes
+    // dismissing — presenting a second modal mid-dismissal fails silently. Same
+    // close-then-trigger pattern as the PAY-02 paywall (350ms).
+    setTimeout(() => {
+      setDiagnosePlant(plant);
+      if (reusePhotos && imageUri && imageBase64) {
+        setDiagnosisInitialImages([{ uri: imageUri, base64: imageBase64 }]);
+      } else {
+        setDiagnosisInitialImages(undefined);
+      }
+      setShowDiagnosis(true);
+    }, 350);
   }, []);
 
   const handleIdentifiedPlant = useCallback(async (plantData: Omit<Plant, 'id'>, imageUri?: string | null): Promise<Plant> => {

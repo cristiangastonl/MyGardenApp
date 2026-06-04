@@ -64,7 +64,15 @@ export default function ExploreScreen() {
       typeId: plantDB.category,
       typeName: getCategoryName(plantDB.category),
       icon: plantDB.icon,
-      waterEvery: plantDB.waterDays,
+      // Phase 14.1: persist databaseId so MyPlantDetailModal can resolve the catalog
+      // entry (strictDbEntry) and render the educational sections (¿Qué hacer? / dónde
+      // ubicar / por qué) with real content instead of empty-state placeholders. The
+      // AddPlantModal + PlantIdentifierModal flows already did this; Explore did not.
+      databaseId: plantDB.id,
+      // v1.2 schedule-only entries have no legacy waterDays — carry the warm/cold
+      // schedule through and fall back to a sane waterEvery so cadence isn't lost.
+      waterEvery: plantDB.waterDays ?? plantDB.waterSchedule?.warm ?? 7,
+      waterSchedule: plantDB.waterSchedule,
       sunHours: plantDB.sunHours,
       sunDays: [],
       outdoorDays: plantDB.outdoor ? [0, 1, 2, 3, 4, 5, 6] : [],
@@ -97,7 +105,11 @@ export default function ExploreScreen() {
     />
   );
 
-  const ListHeader = () => (
+  // Built as a React ELEMENT (not an inline () => component) so FlatList reconciles
+  // it in place across renders instead of remounting the header subtree on every
+  // keystroke — otherwise the search TextInput loses focus and the keyboard closes
+  // after each character (same root cause as PlantsScreen F27 fix, commit d341f11).
+  const listHeaderElement = (
     <View style={styles.header}>
       <Text style={styles.title}>{t('explore.title')}</Text>
       <Text style={styles.subtitle}>
@@ -166,7 +178,7 @@ export default function ExploreScreen() {
   // react-native-svg dependency per RESEARCH §Finding 10 + §Pitfall 6). Copy keys
   // swap from legacy `explore.noResults`/`explore.noResultsText` to the new
   // `emptyState.explore.{title,cta}` namespace landed in Plan 23-00 (CONTEXT.md voseo lock).
-  const EmptyState = () => (
+  const emptyStateElement = (
     <View style={styles.emptyState}>
       <Image
         source={require('../../assets/illustrations/empty-explore.png')}
@@ -188,8 +200,9 @@ export default function ExploreScreen() {
         numColumns={2}
         columnWrapperStyle={styles.gridRow}
         contentContainerStyle={styles.listContent}
-        ListHeaderComponent={ListHeader}
-        ListEmptyComponent={EmptyState}
+        ListHeaderComponent={listHeaderElement}
+        ListEmptyComponent={emptyStateElement}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       />
 
