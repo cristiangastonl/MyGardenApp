@@ -94,6 +94,18 @@ const PLANT_SEARCHES = {
   'begonia-rex': 'begonia leaves',
   'croton': 'croton leaves',
   'fitonia': 'fittonia pink',
+
+  // Batch 2 — remaining interior tropicals / ferns / palms (Phase 15)
+  'zamioculca': 'zz plant zamioculcas',
+  'cola-burro': 'donkey tail sedum morganianum',
+  'hiedra': 'english ivy plant',
+  'palmera-areca': 'areca palm plant',
+  'palmera-kentia': 'kentia palm indoor pot',
+  'helecho-boston': 'nephrolepis boston fern potted',
+  'helecho-nido': 'asplenium nidus fern',
+  'pilea': 'pilea peperomioides',
+  'maranta': 'maranta prayer plant',
+  'ficus-lyrata': 'fiddle leaf fig',
 };
 
 async function searchUnsplash(query, plantId) {
