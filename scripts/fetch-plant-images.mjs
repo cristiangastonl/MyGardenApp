@@ -106,6 +106,18 @@ const PLANT_SEARCHES = {
   'pilea': 'pilea peperomioides',
   'maranta': 'maranta prayer plant',
   'ficus-lyrata': 'fiddle leaf fig',
+
+  // Batch 3 — cactus / suculentas (Phase 16 Wave B)
+  'nopal': 'opuntia prickly pear cactus',
+  'mammillaria': 'mammillaria cactus',
+  'cactus-navidad': 'christmas cactus schlumbergera',
+  'kalanchoe': 'kalanchoe blossfeldiana flowers',
+  'siempreviva': 'sempervivum hens and chicks',
+  'gasteria': 'gasteria succulent',
+  'piedras-vivas': 'lithops',
+  'senecio-rowleyanus': 'string of pearls plant',
+  'corona-espinas': 'euphorbia milii crown of thorns',
+  'agave': 'agave plant',
 };
 
 async function searchUnsplash(query, plantId) {
