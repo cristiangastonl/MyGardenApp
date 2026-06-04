@@ -553,6 +553,30 @@ export default function SettingsScreen() {
             <TouchableOpacity
               style={styles.devButton}
               onPress={() => {
+                Alert.alert(
+                  'Seed Phase 22',
+                  'Replaces current data with 4 gamification test plants, each due today for ONE task: 💧 water / ☀️ sun / 🌤️ outdoor / 🌱 fertilize. climateOverride=northern. Continues?',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Load & reload',
+                      onPress: async () => {
+                        const fixture = require('../../tests/fixtures/phase22-seed.json');
+                        await AsyncStorage.removeItem('plant-agenda-v2.backup-pre-v1.1');
+                        await AsyncStorage.setItem('plant-agenda-v2', JSON.stringify(fixture));
+                        DevSettings?.reload?.();
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.devButtonText}>🎮 Seed Phase 22 (toasts/haptics)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.devButton}
+              onPress={() => {
                 const cycle: Array<typeof climateOverride> = ['auto', 'northern', 'southern', 'tropical'];
                 const i = cycle.indexOf(climateOverride ?? 'auto');
                 setClimateOverride(cycle[(i + 1) % cycle.length] as any);

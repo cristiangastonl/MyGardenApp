@@ -21,6 +21,7 @@ import type { WaterSeason } from '../utils/seasonality';
 import { TaskButton } from './TaskButton';
 import { ReminderItem } from './ReminderItem';
 import { NoteItem } from './NoteItem';
+import { Toast } from './Toast';
 
 interface DayDetailModalProps {
   visible: boolean;
@@ -39,6 +40,12 @@ interface DayDetailModalProps {
   onAddReminder: (text: string, time: string) => void;
   onToggleReminder: (reminderId: string, done: boolean) => void;
   onDeleteReminder: (reminderId: string) => void;
+  // Phase 22 (GAM-01): celebration Toast hosted INSIDE this RN Modal so it paints
+  // above the sheet on iOS (a screen-level Toast renders BELOW an active RN Modal —
+  // same z-order trap as the Phase 21 journal sheet fix). State lives in CalendarScreen.
+  toastVisible?: boolean;
+  toastMessage?: string;
+  onToastDismiss?: () => void;
 }
 
 export function DayDetailModal({
@@ -58,6 +65,9 @@ export function DayDetailModal({
   onAddReminder,
   onToggleReminder,
   onDeleteReminder,
+  toastVisible = false,
+  toastMessage = '',
+  onToastDismiss,
 }: DayDetailModalProps) {
   const [newNote, setNewNote] = useState('');
   const [newReminder, setNewReminder] = useState('');
@@ -252,6 +262,15 @@ export function DayDetailModal({
             </ScrollView>
           </View>
         </KeyboardAvoidingView>
+
+        {/* Phase 22 (GAM-01): Toast painted last inside the overlay → above the sheet
+            on iOS. Driven by CalendarScreen state via props. */}
+        <Toast
+          visible={toastVisible}
+          message={toastMessage}
+          durationMs={2000}
+          onDismiss={onToastDismiss}
+        />
       </View>
     </Modal>
   );

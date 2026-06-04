@@ -55,6 +55,10 @@ const useStorageSrc = readSafe('src/hooks/useStorage.tsx') || '';
 const plantsScreenSrc = readSafe('src/screens/PlantsScreen.tsx') || '';
 const todayScreenSrc = readSafe('src/screens/TodayScreen.tsx') || '';
 const calendarScreenSrc = readSafe('src/screens/CalendarScreen.tsx') || '';
+// Phase 22 z-order fix: the CalendarScreen celebration Toast is hosted INSIDE DayDetailModal
+// (a screen-level Toast renders BELOW an active RN Modal on iOS). The Toast render with
+// durationMs={2000} now lives here; CalendarScreen passes toastVisible={gamificationToastVisible}.
+const dayDetailModalSrc = readSafe('src/components/DayDetailModal.tsx') || '';
 const plantCardSrc = readSafe('src/components/PlantCard.tsx') || '';
 const modalSrc = readSafe('src/components/MyPlantDetailModal.tsx') || '';
 const plantLogicSrc = readSafe('src/utils/plantLogic.ts') || '';
@@ -155,14 +159,20 @@ assertSkippable(() => {
   return inPlants && inToday && inCalendar;
 }, 'GAM-01.Toast.vas-bien-wired-3-screens');
 
-// GAM-01 durationMs={2000} proximity in all 3 screens
+// GAM-01 durationMs={2000} proximity across all 3 task-completion surfaces.
+// PlantsScreen + TodayScreen render the Toast at screen level (visible={gamificationToastVisible}).
+// CalendarScreen completes tasks inside DayDetailModal (an RN Modal), so its Toast is hosted
+// INSIDE the modal (visible={toastVisible}, durationMs={2000}) to clear the iOS z-order trap;
+// CalendarScreen wires it via toastVisible={gamificationToastVisible}. Verify both the modal
+// render AND the CalendarScreen handoff.
 assertSkippable(() => {
-  const proximityRe = /visible=\{gamificationToastVisible\}[\s\S]{0,300}durationMs=\{2000\}|durationMs=\{2000\}[\s\S]{0,300}visible=\{gamificationToastVisible\}/;
-  const inPlants = proximityRe.test(plantsScreenSrc);
-  const inToday = proximityRe.test(todayScreenSrc);
-  const inCalendar = proximityRe.test(calendarScreenSrc);
-  if (!inPlants && !inToday && !inCalendar) return undefined;
-  return inPlants && inToday && inCalendar;
+  const screenRe = /visible=\{gamificationToastVisible\}[\s\S]{0,300}durationMs=\{2000\}|durationMs=\{2000\}[\s\S]{0,300}visible=\{gamificationToastVisible\}/;
+  const modalRe = /visible=\{toastVisible\}[\s\S]{0,300}durationMs=\{2000\}|durationMs=\{2000\}[\s\S]{0,300}visible=\{toastVisible\}/;
+  const inPlants = screenRe.test(plantsScreenSrc);
+  const inToday = screenRe.test(todayScreenSrc);
+  const inCalendarModal = modalRe.test(dayDetailModalSrc) && /toastVisible=\{gamificationToastVisible\}/.test(calendarScreenSrc);
+  if (!inPlants && !inToday && !inCalendarModal) return undefined;
+  return inPlants && inToday && inCalendarModal;
 }, 'GAM-01.Toast.durationMs-2000-3-screens');
 
 // GAM-01 useEffect registers callback (setOnTaskCompleted + setGamificationToastVisible proximity)

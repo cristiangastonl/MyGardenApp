@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useContext, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { colors, spacing, fonts, borderRadius, shadows } from '../theme';
 import { LoadingScreen } from '../components/LoadingScreen';
@@ -261,10 +261,16 @@ export default function TodayScreen() {
   // and Phase 21 `journalToastVisible`. Three coexisting <Toast> siblings.
   const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
 
-  useEffect(() => {
-    setOnTaskCompleted(() => setGamificationToastVisible(true));
-    return () => setOnTaskCompleted(null);
-  }, [setOnTaskCompleted]);
+  // GAM-01 — register the toast callback on FOCUS, not mount. With a tab navigator
+  // screens stay mounted, so a plain useEffect would leave the single onTaskCompleted
+  // ref pointing at whichever screen mounted last (not the visible one). useFocusEffect
+  // ensures the currently-focused screen always owns the celebration toast.
+  useFocusEffect(
+    useCallback(() => {
+      setOnTaskCompleted(() => setGamificationToastVisible(true));
+      return () => setOnTaskCompleted(null);
+    }, [setOnTaskCompleted])
+  );
 
   // Phase 18 CARD-02: long-press BottomSheetModal
   const longPressSheetRef = useRef<BottomSheetModal>(null);

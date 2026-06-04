@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -19,7 +20,6 @@ import { Note, Reminder } from '../types';
 import {
   MonthCalendar,
   DayDetailModal,
-  Toast,
 } from '../components';
 
 export default function CalendarScreen() {
@@ -56,10 +56,15 @@ export default function CalendarScreen() {
   // Distinct identifier from Phase 18 / Phase 21 Toasts present on PlantsScreen + TodayScreen.
   const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
 
-  useEffect(() => {
-    setOnTaskCompleted(() => setGamificationToastVisible(true));
-    return () => setOnTaskCompleted(null);
-  }, [setOnTaskCompleted]);
+  // GAM-01 — register on FOCUS not mount: with a tab navigator screens stay mounted,
+  // so a plain useEffect leaves the single onTaskCompleted ref on the last-mounted
+  // screen rather than the visible one. useFocusEffect keeps it on the focused screen.
+  useFocusEffect(
+    useCallback(() => {
+      setOnTaskCompleted(() => setGamificationToastVisible(true));
+      return () => setOnTaskCompleted(null);
+    }, [setOnTaskCompleted])
+  );
 
   const goToPreviousMonth = useCallback(() => {
     if (viewMonth === 0) {
@@ -318,16 +323,14 @@ export default function CalendarScreen() {
           onAddReminder={handleAddReminder}
           onToggleReminder={handleToggleReminder}
           onDeleteReminder={handleDeleteReminder}
+          // Phase 22 (GAM-01): the celebration Toast is hosted INSIDE DayDetailModal so it
+          // paints above the sheet on iOS. Tasks are only completed from within this modal
+          // on CalendarScreen, so a screen-level Toast would always render behind it.
+          toastVisible={gamificationToastVisible}
+          toastMessage={t('gamification.toastSuccess')}
+          onToastDismiss={() => setGamificationToastVisible(false)}
         />
       )}
-
-      {/* Phase 22 (GAM-01) — task-completion Toast. First Toast surface on CalendarScreen. */}
-      <Toast
-        visible={gamificationToastVisible}
-        message={t('gamification.toastSuccess')}
-        durationMs={2000}
-        onDismiss={() => setGamificationToastVisible(false)}
-      />
     </SafeAreaView>
   );
 }

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -152,10 +153,15 @@ export default function PlantsScreen() {
   // The setter is registered with useStorage.setOnTaskCompleted on mount; cleared on unmount.
   const [gamificationToastVisible, setGamificationToastVisible] = useState(false);
 
-  useEffect(() => {
-    setOnTaskCompleted(() => setGamificationToastVisible(true));
-    return () => setOnTaskCompleted(null);
-  }, [setOnTaskCompleted]);
+  // GAM-01 — register on FOCUS not mount: with a tab navigator screens stay mounted,
+  // so a plain useEffect leaves the single onTaskCompleted ref on the last-mounted
+  // screen rather than the visible one. useFocusEffect keeps it on the focused screen.
+  useFocusEffect(
+    useCallback(() => {
+      setOnTaskCompleted(() => setGamificationToastVisible(true));
+      return () => setOnTaskCompleted(null);
+    }, [setOnTaskCompleted])
+  );
 
   // Phase 18 CARD-02: long-press BottomSheetModal
   const longPressSheetRef = useRef<BottomSheetModal>(null);
