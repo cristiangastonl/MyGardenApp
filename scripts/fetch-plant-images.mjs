@@ -81,31 +81,51 @@ const PLANT_SEARCHES = {
   'echeveria': 'echeveria succulent rosette',
   'haworthia': 'haworthia succulent striped',
   'sedum': 'sedum morganianum burros tail',
+
+  // ─── v1.2 catalog expansion — fetched in review batches via --only=<ids> ───
+  // Batch 1 — interior tropicals (Phase 15 Wave A)
+  'anthurium': 'anthurium andraeanum flamingo flower plant',
+  'alocasia': 'alocasia elephant ear plant',
+  'caladium': 'caladium',
+  'singonio': 'syngonium',
+  'aglaonema': 'chinese evergreen',
+  'costilla-adan': 'monstera deliciosa swiss cheese plant',
+  'difenbaquia': 'dumb cane plant',
+  'begonia-rex': 'begonia leaves',
+  'croton': 'croton leaves',
+  'fitonia': 'fittonia pink',
 };
 
 async function searchUnsplash(query, plantId) {
-  const url = new URL('https://api.unsplash.com/search/photos');
-  url.searchParams.set('query', query);
-  url.searchParams.set('per_page', '3');
-  url.searchParams.set('orientation', 'squarish');
-  url.searchParams.set('content_filter', 'high');
+  const fetchResults = async (orientation) => {
+    const url = new URL('https://api.unsplash.com/search/photos');
+    url.searchParams.set('query', query);
+    url.searchParams.set('per_page', '3');
+    if (orientation) url.searchParams.set('orientation', orientation);
+    url.searchParams.set('content_filter', 'high');
 
-  const res = await fetch(url.toString(), {
-    headers: { 'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}` },
-  });
+    const res = await fetch(url.toString(), {
+      headers: { 'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}` },
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Unsplash API error for "${plantId}": ${res.status} ${text}`);
+    }
+    const data = await res.json();
+    return data.results || [];
+  };
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Unsplash API error for "${plantId}": ${res.status} ${text}`);
-  }
-
-  const data = await res.json();
-  if (!data.results || data.results.length === 0) {
+  // Prefer squarish (best fit for catalog cards), but fall back to any orientation
+  // so scarce species (caladium, syngonium, …) still get a hit — squarish-only
+  // frequently returns nothing for less-photographed plants.
+  let results = await fetchResults('squarish');
+  if (results.length === 0) results = await fetchResults(null);
+  if (results.length === 0) {
     console.warn(`  ⚠ No results for "${plantId}" (query: "${query}")`);
     return null;
   }
 
-  const photo = data.results[0];
+  const photo = results[0];
   return {
     id: plantId,
     photoId: photo.id,
@@ -131,6 +151,12 @@ async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const doUpload = args.includes('--upload');
+  // --only=id1,id2 restricts the run to specific IDs so we can fetch+review in small
+  // batches without re-hitting Unsplash for the already-uploaded older catalog entries.
+  const onlyArg = args.find(a => a.startsWith('--only='));
+  const onlyIds = onlyArg
+    ? onlyArg.slice('--only='.length).split(',').map(s => s.trim()).filter(Boolean)
+    : null;
 
   console.log(`\n🌱 Plant Image Fetcher`);
   console.log(`   ${Object.keys(PLANT_SEARCHES).length} plants to process\n`);
@@ -156,7 +182,8 @@ async function main() {
   }
 
   const results = { ...existingResults };
-  const entries = Object.entries(PLANT_SEARCHES);
+  const entries = Object.entries(PLANT_SEARCHES)
+    .filter(([id]) => !onlyIds || onlyIds.includes(id));
   let searched = 0;
   let downloaded = 0;
   let errors = 0;
