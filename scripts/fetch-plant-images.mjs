@@ -118,6 +118,18 @@ const PLANT_SEARCHES = {
   'senecio-rowleyanus': 'string of pearls plant',
   'corona-espinas': 'euphorbia milii crown of thorns',
   'agave': 'agave plant',
+
+  // Batch 4 — exterior flores (Phase 17 + v1.1 LATAM)
+  'azalea': 'azalea flowers',
+  'ciclamen': 'cyclamen flowers',
+  'fucsia': 'fuchsia magellanica hanging flower',
+  'clavel': 'carnation dianthus flowers',
+  'crisantemo': 'chrysanthemum flowers',
+  'tulipan': 'tulip flowers',
+  'girasol': 'sunflower',
+  'magnolia': 'magnolia flower',
+  'dalia': 'dahlia flower',
+  'camelia': 'camellia flower',
 };
 
 async function searchUnsplash(query, plantId) {
