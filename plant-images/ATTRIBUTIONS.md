@@ -88,7 +88,7 @@ cheflera: Photo by Emils Nemse (https://unsplash.com/@ejn) on Unsplash (https://
 hoya: Photo by Vladimir Argenta (https://unsplash.com/@vladiargenta) on Unsplash (https://unsplash.com/photos/cluster-of-delicate-pink-star-shaped-flowers-with-red-centers-2rsdwefQagE)
 mini-monstera: Photo by P (https://unsplash.com/@excusethemoss) on Unsplash (https://unsplash.com/photos/a-plant-sits-on-a-wooden-surface-in-sunlight-5rHKwDFQC6o)
 bambu-suerte: Photo by feey (https://unsplash.com/@feeypflanzen) on Unsplash (https://unsplash.com/photos/green-cactus-plant-during-daytime-9c0J8P4qHX0)
-sansevieria-cilindrica: Photo by Het Suthar (https://unsplash.com/@hetsuthar) on Unsplash (https://unsplash.com/photos/a-close-up-of-a-plant-jLIQ2aYh-b0)
+sansevieria-cilindrica: Photo by Juliya Oleinik (https://unsplash.com/@s_juliya) on Unsplash (https://unsplash.com/photos/a-close-up-of-a-green-plant-with-white-spots-7cGWLXhaMwE)
 strelitzia: Photo by luca romano (https://unsplash.com/@lucaakalu) on Unsplash (https://unsplash.com/photos/a-vibrant-orange-bird-of-paradise-flower-bloom-Z0cAvuk7y1Q)
 eucalipto: Photo by Annie Spratt (https://unsplash.com/@anniespratt) on Unsplash (https://unsplash.com/photos/selective-focus-photography-of-green-leafed-plant-eZk9w9RBHRo)
 cactus-san-pedro: Photo by Anchor Lee (https://unsplash.com/@anchorlee) on Unsplash (https://unsplash.com/photos/green-cactus-plant-RLicxqg_ly8)

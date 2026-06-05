@@ -138,7 +138,12 @@ const PLANT_SEARCHES = {
   'hoya': 'hoya carnosa wax plant',
   'mini-monstera': 'rhaphidophora tetrasperma pot',
   'bambu-suerte': 'lucky bamboo stalks',
-  'sansevieria-cilindrica': 'dracaena angolensis',
+  // NOTE: sansevieria-cilindrica was sourced MANUALLY from Wikimedia Commons
+  // (CC0, David E Mead — "Cylindrical snake plant (Sansevieria cylindrica) Ereke
+  // Buton Island.jpg"). Unsplash mis-tags it across 5+ query variants (returns
+  // flat-leaf snake plants, aloes, haworthias, dracaenas). Do NOT re-fetch from
+  // Unsplash — the query below is a dead placeholder kept only for completeness.
+  'sansevieria-cilindrica': 'spear sansevieria',
   'strelitzia': 'strelitzia bird of paradise plant',
   'eucalipto': 'eucalyptus plant',
   'cactus-san-pedro': 'trichocereus columnar cactus pot',
