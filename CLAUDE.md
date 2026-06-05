@@ -177,7 +177,7 @@ Before submitting builds, run the following commands to catch catalog drift, ES 
 
 ```bash
 npm run check:i18n-keys     # sync; ~2s; fails on missing en/es plants.json keys (incl. conditional petToxicity.symptoms + fertilizer.industrial/homemade sub-fields)
-npm run check:images        # async network HEAD; ~30-60s; fails on 404 imageUrl
+npm run check:images        # async network HEAD; ~30-60s; PASSES 118/118 as of 2026-06-05 (image backlog cleared)
 npm run lint:voseo          # STRICT; ~1s; fails on ES action buttons missing voseo + emoji
 node scripts/smoke-phase18.cjs    # Phase 18 — PlantCard 5-element layout + mood emoji + Gesture.Pan + Toast
 node scripts/smoke-phase19.cjs    # Phase 19 — Pet toxicity badges + Mascotas section + initialSection prop
@@ -191,7 +191,11 @@ The `lint:voseo` + smoke-phase{18..23}.cjs chain enforces the **three-tier disci
 
 **`check:i18n-keys`** — verifies every entry id in `src/data/plantDatabase.ts` has a complete keyset (`name`, `tip`, `description`, `problems[>=1]`, `nutrients` if entry declares any) in both `src/i18n/locales/en/plants.json` AND `src/i18n/locales/es/plants.json`. Exits 1 with itemised list of missing keys. **MUST pass before any submit.**
 
-**`check:images`** — HEAD-requests every `imageUrl` in PLANT_DATABASE at concurrency 8. Exits 1 with itemised URL list on any non-200. **Accepted-known failures (Phase 8, v1.1):** the following 15 entries point at imageUrls that 404 until manual image upload to Supabase Storage:
+**`check:images`** — HEAD-requests every `imageUrl` in PLANT_DATABASE at concurrency 8. Exits 1 with itemised URL list on any non-200.
+
+> **✅ IMAGE BACKLOG CLEARED 2026-06-05 — `check:images` now PASSES 118/118.** All 69 previously-pending catalog images were sourced and uploaded to Supabase Storage (`plant-images/catalog/<id>.jpg`): 68 from Unsplash via `scripts/fetch-plant-images.mjs` (`--only=<ids>` batches + orientation fallback), 1 (`sansevieria-cilindrica`) from Wikimedia Commons CC0 (Unsplash mis-tags it). Each image was species-verified before upload. **The four "Accepted-known failures" lists below are HISTORICAL — they are all resolved; there are no remaining image failures.**
+
+**Accepted-known failures (Phase 8, v1.1) — ✅ RESOLVED 2026-06-05:** the following 15 entries previously 404'd until manual image upload to Supabase Storage:
 
 - jacaranda, ceibo, glicina, gardenia, camelia, dalia
 - salvia-ornamental, cala, copete, verbena
