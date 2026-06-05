@@ -154,6 +154,17 @@ const PLANT_SEARCHES = {
   'romero-rastrero': 'creeping rosemary plant',
   'lavanda-stoechas': 'lavandula stoechas lavender',
   'lavanda-dentada': 'fringed lavender dentata',
+
+  // Batch 7 — ornamentales LATAM (v1.1)
+  'jacaranda': 'jacaranda tree blossom',
+  'ceibo': 'coral tree red flowers erythrina',
+  'glicina': 'wisteria purple flowers',
+  'gardenia': 'gardenia white flower',
+  'salvia-ornamental': 'salvia leucantha purple flowers',
+  'cala': 'calla lily white flower',
+  'copete': 'marigold flowers tagetes',
+  'verbena': 'verbena flowers',
+  'lavanda-angustifolia': 'english lavender field',
 };
 
 async function searchUnsplash(query, plantId) {
