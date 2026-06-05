@@ -130,6 +130,18 @@ const PLANT_SEARCHES = {
   'magnolia': 'magnolia flower',
   'dalia': 'dahlia flower',
   'camelia': 'camellia flower',
+
+  // Batch 5 — follaje / trepadoras / trending (Phase 15-16)
+  'arbol-dinero': 'pachira money tree plant',
+  'tradescantia': 'tradescantia zebrina plant',
+  'cheflera': 'schefflera umbrella plant',
+  'hoya': 'hoya carnosa wax plant',
+  'mini-monstera': 'rhaphidophora tetrasperma pot',
+  'bambu-suerte': 'lucky bamboo stalks',
+  'sansevieria-cilindrica': 'dracaena angolensis',
+  'strelitzia': 'strelitzia bird of paradise plant',
+  'eucalipto': 'eucalyptus plant',
+  'cactus-san-pedro': 'trichocereus columnar cactus pot',
 };
 
 async function searchUnsplash(query, plantId) {
