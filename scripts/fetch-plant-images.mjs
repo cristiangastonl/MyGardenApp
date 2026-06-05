@@ -142,6 +142,18 @@ const PLANT_SEARCHES = {
   'strelitzia': 'strelitzia bird of paradise plant',
   'eucalipto': 'eucalyptus plant',
   'cactus-san-pedro': 'trichocereus columnar cactus pot',
+
+  // Batch 6 — aromáticas / frutales / huerta / lavandas (Phase 17 + v1.1)
+  'salvia-officinalis': 'sage herb leaves culinary',
+  'eneldo': 'dill herb plant',
+  'stevia': 'stevia leaves green',
+  'olivo': 'olive tree branch',
+  'arandano': 'blueberry plant berries bush',
+  'espinaca': 'spinach plant growing',
+  'tomate-cherry': 'cherry tomato plant',
+  'romero-rastrero': 'creeping rosemary plant',
+  'lavanda-stoechas': 'lavandula stoechas lavender',
+  'lavanda-dentada': 'fringed lavender dentata',
 };
 
 async function searchUnsplash(query, plantId) {
