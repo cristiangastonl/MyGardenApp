@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Animated,
   Dimensions,
+  Linking,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
@@ -43,6 +44,9 @@ const pw = {
 
 const ANIM_STAGGER = 80;
 const ANIM_DURATION = 400;
+
+const PRIVACY_URL = 'https://mygardencare.app/privacy';
+const TERMS_URL = 'https://mygardencare.app/terms';
 
 export function PaywallModal() {
   const { t } = useTranslation();
@@ -359,6 +363,24 @@ export function PaywallModal() {
                   ? t('paywall.finePrintAnnual')
                   : t('paywall.finePrintLifetime')}
               </Text>
+
+              {/* Auto-renew disclosure — required by App Store guideline 3.1.2 for subscriptions */}
+              {selectedPlan === 'annual' && (
+                <Text style={styles.finePrint}>
+                  {t('paywall.autoRenewDisclosure', { price: annualPrice })}
+                </Text>
+              )}
+
+              {/* Legal links — required by App Store guideline 3.1.2 */}
+              <View style={styles.legalLinksRow}>
+                <TouchableOpacity onPress={() => Linking.openURL(TERMS_URL)} hitSlop={8}>
+                  <Text style={styles.legalLink}>{t('paywall.termsOfUse')}</Text>
+                </TouchableOpacity>
+                <Text style={styles.legalLinkSeparator}>·</Text>
+                <TouchableOpacity onPress={() => Linking.openURL(PRIVACY_URL)} hitSlop={8}>
+                  <Text style={styles.legalLink}>{t('paywall.privacyPolicy')}</Text>
+                </TouchableOpacity>
+              </View>
             </Animated.View>
           </ScrollView>
         </View>
@@ -710,5 +732,24 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     lineHeight: 16,
     paddingHorizontal: spacing.md,
+  },
+  legalLinksRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: spacing.sm,
+  },
+  legalLink: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: pw.sage,
+    textDecorationLine: 'underline',
+    paddingHorizontal: spacing.xs,
+  },
+  legalLinkSeparator: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: pw.barkLight,
+    opacity: 0.5,
   },
 });

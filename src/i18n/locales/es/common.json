@@ -230,6 +230,10 @@
     "premium": "Premium",
     "premiumActive": "Premium activo",
     "manageSubscription": "Gestionar suscripción",
+    "legal": "Legal",
+    "legalDescription": "Nuestras políticas y términos",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfUse": "Términos de uso",
     "upgradeToPremium": "Pásate a Premium",
     "supportId": "ID de soporte",
     "supportIdDescription": "Mostrá este ID si necesitás soporte o estás participando en el beta.",
@@ -564,7 +568,10 @@
     "purchaseError": "No se pudo completar la compra. Intenta de nuevo.",
     "genericError": "Ocurrió un error. Intenta de nuevo.",
     "noPurchasesFound": "No se encontraron compras previas.",
-    "restoreError": "Error al restaurar compras."
+    "restoreError": "Error al restaurar compras.",
+    "autoRenewDisclosure": "Después de la prueba gratis de 7 días, la suscripción se renueva automáticamente a {{price}}/año salvo que se cancele al menos 24 horas antes de que termine el período. Podés gestionarla o cancelarla cuando quieras desde los ajustes de tu cuenta.",
+    "termsOfUse": "Términos de uso",
+    "privacyPolicy": "Política de privacidad"
   },
   "alerts": {
     "plantAtRisk": "{{name}} en riesgo",

@@ -166,10 +166,12 @@ eas submit --platform ios --profile production --id <BUILD_ID>
 - Team ID: `N3K92QGR4U`
 
 ### Pre-submit Checklist
-- RevenueCat iOS key must be set (currently placeholder in `revenuecat.ts`)
-- In-app purchase products must be created in App Store Connect (yearly + lifetime)
-- Privacy Policy URL required
+- ✅ RevenueCat iOS + Android keys set in `revenuecat.ts` (real keys, not placeholders) — `payments.ts` wires real `Purchases.configure` with a mock fallback for Expo Go
+- In-app purchase products must be created in App Store Connect + Play Console with IDs matching `PRODUCT_IDS` in `revenuecat.ts` (`yearly` + `lifetime`); RevenueCat dashboard needs entitlement `premium` + a default offering bundling both
+- ✅ Privacy Policy + Terms of Use pages live (`https://mygardencare.app/privacy`, `https://mygardencare.app/terms`); both linked in-app from Settings → Legal and the `PaywallModal` footer (App Store guideline 3.1.2). Privacy Policy URL still must be entered in App Store Connect / Play Console metadata
+- `PaywallModal` shows the auto-renew disclosure (annual plan) + Terms/Privacy links — required for auto-renewable subscriptions
 - Screenshots required (6.7" iPhone, 5.5" iPhone minimum)
+- See `.planning/STORE-LAUNCH-CHECKLIST.md` for the full console-side verification steps
 
 ## Pre-submit Checks
 

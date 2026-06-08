@@ -446,6 +446,34 @@ export default function SettingsScreen() {
           )}
         </View>
 
+        {/* Legal Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('settings.legal')}</Text>
+          <Text style={styles.sectionDescription}>{t('settings.legalDescription')}</Text>
+
+          <TouchableOpacity
+            style={styles.settingRow}
+            onPress={() => Linking.openURL('https://mygardencare.app/privacy')}
+          >
+            <View style={styles.settingInfo}>
+              <Text style={styles.settingIcon}>🔒</Text>
+              <Text style={styles.settingTitle}>{t('settings.privacyPolicy')}</Text>
+            </View>
+            <Text style={styles.settingChevron}>›</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.settingRow}
+            onPress={() => Linking.openURL('https://mygardencare.app/terms')}
+          >
+            <View style={styles.settingInfo}>
+              <Text style={styles.settingIcon}>📄</Text>
+              <Text style={styles.settingTitle}>{t('settings.termsOfUse')}</Text>
+            </View>
+            <Text style={styles.settingChevron}>›</Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Dev tools — only in development */}
         {__DEV__ && (
           <View style={styles.section}>
@@ -854,6 +882,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: 15,
     color: colors.textPrimary,
+  },
+  settingChevron: {
+    fontFamily: fonts.body,
+    fontSize: 22,
+    color: colors.textSecondary,
   },
   settingSubtitle: {
     fontFamily: fonts.body,

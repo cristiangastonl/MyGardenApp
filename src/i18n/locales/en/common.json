@@ -230,6 +230,10 @@
     "premium": "Premium",
     "premiumActive": "Premium active",
     "manageSubscription": "Manage subscription",
+    "legal": "Legal",
+    "legalDescription": "Our policies and terms",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
     "upgradeToPremium": "Upgrade to Premium",
     "supportId": "Support ID",
     "supportIdDescription": "Show this ID if you need support or you're in the beta program.",
@@ -564,7 +568,10 @@
     "purchaseError": "Could not complete the purchase. Please try again.",
     "genericError": "An error occurred. Please try again.",
     "noPurchasesFound": "No previous purchases found.",
-    "restoreError": "Error restoring purchases."
+    "restoreError": "Error restoring purchases.",
+    "autoRenewDisclosure": "After the 7-day free trial, the subscription renews automatically at {{price}}/year unless cancelled at least 24 hours before the end of the period. You can manage or cancel it anytime in your account settings.",
+    "termsOfUse": "Terms of Use",
+    "privacyPolicy": "Privacy Policy"
   },
   "alerts": {
     "plantAtRisk": "{{name}} at risk",
