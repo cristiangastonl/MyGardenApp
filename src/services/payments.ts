@@ -123,6 +123,13 @@ const MockPaymentService: PaymentService = {
 
 // ─── Real Implementation (EAS builds) ───────────────────────────
 
+// Google Play subscriptions surface as `productId:basePlanId` (Billing Library 5+),
+// e.g. `yearly:p1y` — one-time products and all iOS products keep the bare id.
+function productMatches(pkg: any, productId: string): boolean {
+  const id: string = pkg?.product?.identifier ?? '';
+  return id === productId || id.startsWith(`${productId}:`);
+}
+
 function createRealPaymentService(): PaymentService {
   // Dynamic import — react-native-purchases only available in EAS builds
   let Purchases: any = null;
@@ -183,10 +190,10 @@ function createRealPaymentService(): PaymentService {
         );
 
         const annualPkg = current.availablePackages.find(
-          (p: any) => p.product.identifier === PRODUCT_IDS.ANNUAL
+          (p: any) => productMatches(p, PRODUCT_IDS.ANNUAL)
         );
         const lifetimePkg = current.availablePackages.find(
-          (p: any) => p.product.identifier === PRODUCT_IDS.LIFETIME
+          (p: any) => productMatches(p, PRODUCT_IDS.LIFETIME)
         );
 
         if (!annualPkg) {
@@ -237,7 +244,7 @@ function createRealPaymentService(): PaymentService {
         const offerings = await Purchases.getOfferings();
         const available = offerings.current?.availablePackages ?? [];
         const pkg = available.find(
-          (p: any) => p.product.identifier === PRODUCT_IDS.ANNUAL
+          (p: any) => productMatches(p, PRODUCT_IDS.ANNUAL)
         );
         if (!pkg) {
           console.error(
@@ -281,7 +288,7 @@ function createRealPaymentService(): PaymentService {
         const offerings = await Purchases.getOfferings();
         const available = offerings.current?.availablePackages ?? [];
         const pkg = available.find(
-          (p: any) => p.product.identifier === PRODUCT_IDS.LIFETIME
+          (p: any) => productMatches(p, PRODUCT_IDS.LIFETIME)
         );
         if (!pkg) {
           console.error(
