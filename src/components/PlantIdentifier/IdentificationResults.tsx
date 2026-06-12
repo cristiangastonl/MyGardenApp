@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts, spacing, borderRadius, shadows } from '../../theme';
@@ -20,6 +21,7 @@ interface IdentificationResultsProps {
   onAddPlant: (lightLevel: LightLevel) => void;   // CHANGED — accepts user's picker selection
   onRetry: () => void;
   onClose: () => void;
+  isAdding?: boolean;   // add-in-flight: disables actions + spinner on the add button
 }
 
 const HUMIDITY_KEYS: Record<string, string> = {
@@ -52,6 +54,7 @@ export function IdentificationResults({
   onAddPlant,
   onRetry,
   onClose,
+  isAdding = false,
 }: IdentificationResultsProps) {
   const { t } = useTranslation();
 
@@ -120,10 +123,22 @@ export function IdentificationResults({
         </View>
 
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.addButton} onPress={() => onAddPlant(selectedLightLevel)}>
-            <Text style={styles.addButtonText}>{t('identification.addToGarden')}</Text>
+          <TouchableOpacity
+            style={[styles.addButton, isAdding && styles.addButtonDisabled]}
+            onPress={() => onAddPlant(selectedLightLevel)}
+            disabled={isAdding}
+          >
+            {isAdding ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.addButtonText}>{t('identification.addToGarden')}</Text>
+            )}
           </TouchableOpacity>
-          <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
+          <TouchableOpacity
+            style={[styles.retryButton, isAdding && styles.addButtonDisabled]}
+            onPress={onRetry}
+            disabled={isAdding}
+          >
             <Text style={styles.retryButtonText}>{t('identification.notThisOneTryAgain')}</Text>
           </TouchableOpacity>
         </View>
@@ -166,15 +181,23 @@ export function IdentificationResults({
 
       <View style={styles.actions}>
         <TouchableOpacity
-          style={[styles.addButton, !selectedPlant && styles.addButtonDisabled]}
+          style={[styles.addButton, (!selectedPlant || isAdding) && styles.addButtonDisabled]}
           onPress={() => selectedPlant && onAddPlant(selectedLightLevel)}
-          disabled={!selectedPlant}
+          disabled={!selectedPlant || isAdding}
         >
-          <Text style={styles.addButtonText}>
-            {selectedPlant ? t('identification.addToGarden') : t('identification.selectAnOption')}
-          </Text>
+          {isAdding ? (
+            <ActivityIndicator size="small" color={colors.white} />
+          ) : (
+            <Text style={styles.addButtonText}>
+              {selectedPlant ? t('identification.addToGarden') : t('identification.selectAnOption')}
+            </Text>
+          )}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
+        <TouchableOpacity
+          style={[styles.retryButton, isAdding && styles.addButtonDisabled]}
+          onPress={onRetry}
+          disabled={isAdding}
+        >
           <Text style={styles.retryButtonText}>{t('identification.noneCorrect')}</Text>
         </TouchableOpacity>
       </View>

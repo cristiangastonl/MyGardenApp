@@ -746,6 +746,7 @@
     "tracking": {
       "trackButton": "Seguir este problema",
       "trackButtonOptional": "Seguir este problema (opcional)",
+      "problemTracked": "Seguimiento activado. Te vamos a recordar revisar esta planta",
       "statusWatching": "Vigila de cerca",
       "statusNeedsAttention": "Necesita atencion",
       "statusRecovering": "Recuperandose",

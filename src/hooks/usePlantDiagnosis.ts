@@ -4,6 +4,7 @@ import * as FileSystem from 'expo-file-system';
 import { useTranslation } from 'react-i18next';
 import { DiagnosisState, DiagnosisResult, DiagnosisChatMessage, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry, TrackingStatus } from '../types';
 import { diagnosePlant, chatDiagnosis, ChatDiagnosisResponse } from '../utils/plantDiagnosis';
+import { normalizePickedImage } from '../utils/imageNormalize';
 import { trackEvent } from '../services/analyticsService';
 import { persistDiagnosisPhoto } from '../services/problemTrackingService';
 
@@ -131,7 +132,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
     setChatError(null);
   }, []);
 
-  const addImage = useCallback((pickerResult: ImagePicker.ImagePickerResult) => {
+  const addImage = useCallback(async (pickerResult: ImagePicker.ImagePickerResult) => {
     if (pickerResult.canceled || !pickerResult.assets?.[0]) {
       return false;
     }
@@ -141,9 +142,17 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
       return false;
     }
 
+    // Re-encode to file:// JPEG — gallery content:// / HEIF assets render blank
+    // thumbnails on some Android devices even though the diagnosis works.
+    const normalized = await normalizePickedImage(asset);
+    if (!normalized.base64) {
+      console.warn('[Diagnosis] No base64 after normalization');
+      return false;
+    }
+
     setImages(prev => {
       if (prev.length >= MAX_PHOTOS) return prev;
-      return [...prev, { uri: asset.uri, base64: asset.base64! }];
+      return [...prev, { uri: normalized.uri, base64: normalized.base64! }];
     });
     setState('capturing');
     setError(null);
@@ -174,7 +183,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
         quality: 0.5,
         base64: true,
       });
-      addImage(pickerResult);
+      await addImage(pickerResult);
     } catch (err) {
       console.error('[Diagnosis] Camera error:', err);
       setError(t('diagnosis.cameraError'));
@@ -196,7 +205,7 @@ export function usePlantDiagnosis(options?: UsePlantDiagnosisOptions): UsePlantD
         quality: 0.5,
         base64: true,
       });
-      addImage(pickerResult);
+      await addImage(pickerResult);
     } catch (err) {
       console.error('[Diagnosis] Gallery error:', err);
       setError(t('diagnosis.galleryError'));

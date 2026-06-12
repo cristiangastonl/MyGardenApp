@@ -3,6 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useTranslation } from 'react-i18next';
 import { IdentificationState, IdentificationResult, IdentifiedPlant } from '../types';
 import { identifyPlant } from '../utils/plantIdentification';
+import { normalizePickedImage } from '../utils/imageNormalize';
 import { getEnrichedPlantData, EnrichedPlantData } from '../services/plantKnowledgeService';
 import { trackEvent } from '../services/analyticsService';
 
@@ -56,14 +57,16 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
     setIsEnriching(false);
   }, []);
 
-  const handleImageResult = useCallback((result: ImagePicker.ImagePickerResult) => {
+  const handleImageResult = useCallback(async (result: ImagePicker.ImagePickerResult) => {
     if (result.canceled || !result.assets?.[0]) {
       return false;
     }
 
-    const asset = result.assets[0];
-    setImageUri(asset.uri);
-    setImageBase64(asset.base64 || null);
+    // Re-encode to file:// JPEG — gallery content:// / HEIF assets render blank
+    // in <Image> on some Android devices even though identification works.
+    const normalized = await normalizePickedImage(result.assets[0]);
+    setImageUri(normalized.uri);
+    setImageBase64(normalized.base64);
     setState('capturing');
     setError(null);
     return true;
@@ -90,7 +93,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       });
 
       if (__DEV__) console.log('[PlantID] Camera result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
-      handleImageResult(result);
+      await handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Camera error:', err);
       setError(t('identification.cameraError'));
@@ -119,7 +122,7 @@ export function usePlantIdentification(): UsePlantIdentificationReturn {
       });
 
       if (__DEV__) console.log('[PlantID] Gallery result - canceled:', result.canceled, 'assets:', result.assets?.length, 'hasBase64:', !!result.assets?.[0]?.base64, 'base64Length:', result.assets?.[0]?.base64?.length);
-      handleImageResult(result);
+      await handleImageResult(result);
     } catch (err) {
       console.error('[PlantID] Gallery error:', err);
       setError(t('identification.galleryError'));

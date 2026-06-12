@@ -110,7 +110,7 @@ export async function startTracking(
     notificationId: string | null,
     problemSummary: string
   ) => void
-): Promise<void> {
+): Promise<TrackingStatus> {
   const severity = diagnosis.severity || diagnosis.result.overallStatus;
   const trackingStatus = severityToTrackingStatus(severity);
   const followUpDate = calculateFollowUpDate(severity);
@@ -132,4 +132,6 @@ export async function startTracking(
     notificationId,
     diagnosis.problemSummary || diagnosis.result.summary
   );
+
+  return trackingStatus;
 }

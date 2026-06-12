@@ -43,6 +43,9 @@ export function PlantIdentifierModal({
   const { showPaywall } = usePremium();
   const [showDiagnosisPrompt, setShowDiagnosisPrompt] = useState(false);
   const [addedPlant, setAddedPlant] = useState<Plant | null>(null);
+  // Visible counterpart of isAddingRef: disables buttons + shows spinner while
+  // onAddPlant (photo persistence) is in flight after the "use this photo?" Alert.
+  const [isAdding, setIsAdding] = useState(false);
   // Synchronous double-submit guard: rapid taps on "Agregar" otherwise each open a
   // "use this photo?" Alert and add the plant once per tap. A ref blocks re-entry
   // from the very first tap (state would update too late to stop the burst).
@@ -129,6 +132,7 @@ export function PlantIdentifierModal({
     };
 
     const doAdd = async (usePhoto: boolean) => {
+      setIsAdding(true);
       try {
         const createdPlant = await onAddPlant(plantData, usePhoto ? imageUri : null);
         // Show diagnosis prompt if feature is enabled
@@ -140,6 +144,8 @@ export function PlantIdentifierModal({
         }
       } catch (e) {
         isAddingRef.current = false; // allow retry if the add failed
+      } finally {
+        setIsAdding(false);
       }
     };
 
@@ -235,6 +241,7 @@ export function PlantIdentifierModal({
             onAddPlant={handleAddPlant}
             onRetry={handleRetake}
             onClose={handleClose}
+            isAdding={isAdding}
           />
         );
 

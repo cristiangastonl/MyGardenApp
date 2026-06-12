@@ -20,6 +20,8 @@ import { Plant, WeatherData, PlantDiagnosisContext, SavedDiagnosis, ProblemEntry
 import { startTracking } from '../../services/problemTrackingService';
 import { getEffectiveSeason } from '../../utils/seasonality';
 import { inferWaterMode } from '../../utils/migration';
+import { triggerHaptic } from '../../utils/haptics';
+import { Toast } from '../Toast';
 import { CameraCapture } from '../PlantIdentifier/CameraCapture';
 import { DiagnosisAnalyzingState } from './DiagnosisAnalyzingState';
 import { DiagnosisResults } from './DiagnosisResults';
@@ -91,6 +93,10 @@ export function PlantDiagnosisModal({
   const [dismissedResolution, setDismissedResolution] = useState(false);
   const [resolvedAnimation, setResolvedAnimation] = useState(false);
 
+  // "Track this problem" confirmation toast
+  const [trackedToastVisible, setTrackedToastVisible] = useState(false);
+  const handleTrackedToastDismiss = useCallback(() => setTrackedToastVisible(false), []);
+
   const handleDiagnosisComplete = useCallback((diagnosis: SavedDiagnosis) => {
     currentDiagnosisRef.current = diagnosis;
     saveDiagnosis(diagnosis);
@@ -156,7 +162,13 @@ export function PlantDiagnosisModal({
   const handleTrackProblem = useCallback(async () => {
     const diagnosis = currentDiagnosisRef.current;
     if (!plant || !diagnosis) return;
-    await startTracking(plant, diagnosis, trackProblem);
+    const trackingStatus = await startTracking(plant, diagnosis, trackProblem);
+    // Mutating the ref alone never re-renders (the Track button used to stay
+    // visible with zero feedback) — the toast state flip below forces the
+    // re-render that swaps it for the tracked indicator.
+    currentDiagnosisRef.current = { ...diagnosis, isTracked: true, trackingStatus };
+    triggerHaptic('success');
+    setTrackedToastVisible(true);
   }, [plant, trackProblem]);
 
   // Handler for resolution confirmation
@@ -426,6 +438,12 @@ export function PlantDiagnosisModal({
               {renderContent()}
             </View>
           </SafeAreaView>
+
+          <Toast
+            visible={trackedToastVisible}
+            message={t('diagnosis.tracking.problemTracked')}
+            onDismiss={handleTrackedToastDismiss}
+          />
         </View>
       </Modal>
 
