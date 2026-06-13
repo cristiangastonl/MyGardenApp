@@ -809,6 +809,16 @@
     "toxicForSpecies": "Toxic for {{species}}.",
     "unverifiedLatam": "Unverified for this species in LATAM 🤷",
     "symptomsLabel": "Symptoms:",
+    "mitigation": {
+      "caution": {
+        "title": "💡 No need to worry",
+        "body": "It's a mild irritant — at worst a bit of nausea if they chew on it. Just keep it somewhere your pets won't nibble and you're set."
+      },
+      "toxic": {
+        "title": "💡 You can still keep it",
+        "body": "Plenty of people keep it with pets. The key is that they don't chew it: put it out of reach — a high shelf, a hanging planter, or a room they can't get into."
+      }
+    },
     "species": {
       "cats": "cats",
       "dogs": "dogs"

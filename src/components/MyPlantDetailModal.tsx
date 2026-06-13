@@ -887,6 +887,25 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginTop: spacing.sm,
   },
+  // TOX-06: placement-guidance tip box in the Mascotas section.
+  toxMitigationBox: {
+    backgroundColor: colors.infoBg,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginTop: spacing.sm,
+  },
+  toxMitigationTitle: {
+    fontFamily: fonts.bodySemiBold,
+    fontSize: 14,
+    color: colors.infoText,
+    marginBottom: spacing.xs,
+  },
+  toxMitigationBody: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.infoText,
+    lineHeight: 19,
+  },
 });
 
 // ─── Phase 19 (TOX-04): Mascotas section sub-components ───────────────────────
@@ -938,6 +957,23 @@ function SpeciesLine({
   );
 }
 
+/**
+ * Reframes the toxicity section from a binary "no apta con mascotas" warning
+ * into actionable placement guidance: most toxic/caution plants are perfectly
+ * keepable if pets can't chew them. Tone is differentiated by the worst level
+ * present — 'caution' (mild irritant) gets a reassuring note, 'toxic' gets a
+ * real-but-actionable one. Generic copy (no per-plant catalog dependency).
+ */
+function ToxicityMitigation({ worstLevel }: { worstLevel: 'caution' | 'toxic' }): React.ReactElement {
+  const { t } = useTranslation();
+  return (
+    <View style={styles.toxMitigationBox}>
+      <Text style={styles.toxMitigationTitle}>{t(`toxicity.mitigation.${worstLevel}.title`)}</Text>
+      <Text style={styles.toxMitigationBody}>{t(`toxicity.mitigation.${worstLevel}.body`)}</Text>
+    </View>
+  );
+}
+
 function MascotasContent({
   toxicity,
   plantId,
@@ -953,11 +989,22 @@ function MascotasContent({
     return <Text style={styles.eduCopy}>{t('toxicity.safeForBoth')}</Text>;
   }
 
-  // Otherwise: two independent lines (per-species asymmetry per CONTEXT.md TOX-04).
+  // Worst level across both species drives the mitigation tone (toxic > caution).
+  // null when neither species is toxic/caution (e.g. safe + unknown) → no tip box.
+  const worstLevel: 'caution' | 'toxic' | null =
+    cats === 'toxic' || dogs === 'toxic'
+      ? 'toxic'
+      : cats === 'caution' || dogs === 'caution'
+        ? 'caution'
+        : null;
+
+  // Otherwise: two independent lines (per-species asymmetry per CONTEXT.md TOX-04),
+  // followed by the placement-guidance tip when there's an actual toxicity warning.
   return (
     <>
       <SpeciesLine species="cats" level={cats} plantId={plantId} />
       <SpeciesLine species="dogs" level={dogs} plantId={plantId} />
+      {worstLevel && <ToxicityMitigation worstLevel={worstLevel} />}
     </>
   );
 }

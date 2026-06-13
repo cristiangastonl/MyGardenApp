@@ -809,6 +809,16 @@
     "toxicForSpecies": "Tóxica para {{species}}.",
     "unverifiedLatam": "No verificada para esta especie en LATAM 🤷",
     "symptomsLabel": "Síntomas:",
+    "mitigation": {
+      "caution": {
+        "title": "💡 Tranqui, podés tenerla",
+        "body": "Es una molestia leve: a lo sumo le da un poco de náuseas si la llega a morder. Tenela donde tus mascotas no la anden mordisqueando y listo."
+      },
+      "toxic": {
+        "title": "💡 Podés tenerla igual",
+        "body": "Un montón de gente la tiene con mascotas. La clave es que no la mastiquen: ubicala fuera de su alcance — un estante alto, colgante, o una habitación donde no entren."
+      }
+    },
     "species": {
       "cats": "gatos",
       "dogs": "perros"
