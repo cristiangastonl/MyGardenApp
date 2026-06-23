@@ -461,7 +461,9 @@
     "weather": "Weather",
     "care": "Care",
     "general": "General",
-    "nextTip": "Another tip"
+    "nextTip": "Another tip",
+    "seenToday_one": "{{count}} tip seen today",
+    "seenToday_other": "{{count}} tips seen today"
   },
   "fab": {
     "identifyPhoto": "Identify with photo",

@@ -161,7 +161,7 @@ export function DailyTip({ plants, location, weather }: DailyTipProps) {
         <Text style={styles.message}>{translatedTip.message}</Text>
 
         <View style={styles.footer}>
-          <Text style={styles.tipCounter}>{seenTipIds.length} {seenTipIds.length === 1 ? 'tip visto' : 'tips vistos'} hoy</Text>
+          <Text style={styles.tipCounter}>{t('dailyTip.seenToday', { count: seenTipIds.length })}</Text>
           <TouchableOpacity
             style={styles.nextButton}
             onPress={handleNextTip}

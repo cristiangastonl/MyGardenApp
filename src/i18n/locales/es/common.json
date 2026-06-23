@@ -461,7 +461,9 @@
     "weather": "Clima",
     "care": "Cuidado",
     "general": "General",
-    "nextTip": "Otro consejo"
+    "nextTip": "Otro consejo",
+    "seenToday_one": "{{count}} consejo visto hoy",
+    "seenToday_other": "{{count}} consejos vistos hoy"
   },
   "fab": {
     "identifyPhoto": "Identificar con foto",
