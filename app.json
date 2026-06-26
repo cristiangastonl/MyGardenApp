@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "My Happy Garden",
+    "name": "My Garden Care",
     "slug": "MiJardinApp",
     "scheme": "mijardin",
     "version": "2.0.2",
@@ -21,7 +21,7 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "CFBundleDisplayName": "My Happy Garden",
+        "CFBundleDisplayName": "My Garden Care",
         "CFBundleDevelopmentRegion": "en",
         "NSCameraUsageDescription": "Allow access to the camera to take photos of your plants",
         "NSPhotoLibraryUsageDescription": "Allow access to your photos to identify plants",
