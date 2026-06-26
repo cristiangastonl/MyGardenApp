@@ -74,3 +74,6 @@ scripts/.tmp-phase22/
 scripts/.tmp-phase23/
 scripts/*.compiled.mjs
 scripts/*.compiled-*.mjs
+
+# Claude Code local config + memory (personal, may contain tokens)
+.claude/
